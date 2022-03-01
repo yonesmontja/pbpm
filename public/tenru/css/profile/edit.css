@@ -1,0 +1,160 @@
+.screen {
+    display: flex;
+    background-color: #ecf0f1;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 20%;
+    background-color: #ff6f00;
+}
+
+.avatar {
+    margin-top: 6rem;
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    border: 5px solid white;
+    overflow: hidden;
+}
+
+.avatar-img {
+    position: absolute;
+    height: 100%;
+    transform: translateX(-50%);
+}
+
+.identitas {
+    margin: 1rem 0;
+}
+
+.username {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    letter-spacing: 0.2rem;
+}
+
+.guru {
+    color: #fff;
+    font-size: 1rem;
+}
+
+.main {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-box {
+    margin-top: 8rem;
+    width: 80%;
+    height: 75vh;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+    background-image: linear-gradient(
+            105deg,
+            rgba(255, 255, 255, 0.8) 55%,
+            transparent 55%
+        ),
+        url("../../img/bg-profile.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.heading-form {
+    color: #ff6f00;
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0.2rem;
+}
+
+.form {
+    margin-top: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+}
+
+.label {
+    /* margin-left: 1rem; */
+    color: #707070;
+    font-size: 0.9rem;
+}
+
+.input-form {
+    width: 20rem;
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #707070;
+    border: 1px solid #ff6f00;
+    border-radius: 5px;
+}
+
+.input-file {
+    outline: none;
+    cursor: pointer;
+    width: 20rem;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: #707070;
+}
+
+.text-muted {
+    margin-top: 0.3rem;
+    color: #707070;
+    font-size: 0.7rem;
+}
+
+.btn {
+    margin-top: 0.5rem;
+    background-color: #ff6f00;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.error-msg {
+    /* padding: 0 2rem; */
+    color: red;
+    font-weight: 400;
+    font-size: 0.8rem;
+}
+
+.default {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 9rem;
+}

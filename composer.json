@@ -8,17 +8,18 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3",
+        "php": "^7.3|^8.0.9",
         "barryvdh/laravel-dompdf": "^0.8.7",
+        "cviebrock/eloquent-sluggable": "^8.0",
+        "doctrine/dbal": "^2.12",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^3.0",
-        "laravelcollective/html": "^6.2",
+        "laravolt/indonesia": "^0.27.0",
         "maatwebsite/excel": "^3.1",
-        "twbs/bootstrap": "4.4.1"
+        "phpoffice/phpword": "^0.17.0"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
@@ -47,7 +48,6 @@
             "app/Helpers/Global.php"
         ]
     },
-
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"

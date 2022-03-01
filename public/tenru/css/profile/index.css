@@ -1,0 +1,116 @@
+.screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ecf0f1;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.profile-box {
+    margin-top: 6rem;
+    display: flex;
+    /* justify-content: space-between; */
+    width: 60%;
+    min-height: 70vh;
+    border-radius: 2rem;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 60%;
+    padding: 1rem 3rem;
+    background-image: url("../../img/pattern.jpg");
+    background-size: cover;
+}
+
+.heading-primary {
+    color: #ff6f00;
+    font-size: 3rem;
+    font-weight: 400;
+    letter-spacing: 0.2rem;
+}
+
+.desc {
+    margin-bottom: 1rem;
+    color: #707070;
+    font-size: 1rem;
+}
+
+.btn {
+    display: block;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    background-color: #ff6f00;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 100px;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.2);
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    padding: 1rem 2rem;
+    text-align: center;
+    background-color: #ff6f00;
+}
+
+.avatar {
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    border: 5px solid white;
+    overflow: hidden;
+}
+
+.avatar-img {
+    position: absolute;
+    height: 100%;
+    transform: translateX(-50%);
+}
+
+.identitas {
+    margin: 1rem 0;
+}
+
+.username {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    letter-spacing: 0.2rem;
+}
+
+.guru {
+    color: #fff;
+    font-size: 1rem;
+}
+
+.default {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 9rem;
+}

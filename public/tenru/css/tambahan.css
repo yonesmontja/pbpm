@@ -1,0 +1,65 @@
+.section-nilai {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.sidebar {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-image: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+        ),
+        url("../../img/pattern.jpg");
+}
+
+.heading {
+    margin-top: 25rem;
+}
+
+.heading-primary {
+    color: #ff6f00;
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+}
+
+.desc {
+    color: #fff;
+    font-size: 0.8rem;
+    width: 80%;
+}
+
+.main {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-item {
+    font-size: 1rem;
+    color: #fff;
+    text-decoration: none;
+    background-color: #ff6f00;
+    padding: 0.7rem 0;
+    width: 40%;
+    text-align: center;
+    border-radius: 0.5rem;
+}
+
+.menu-item:first-child {
+    margin-top: 4rem;
+}
+
+.menu-item:not(:last-child) {
+    margin-bottom: 1.2rem;
+}

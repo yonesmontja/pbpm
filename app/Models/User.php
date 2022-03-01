@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -17,7 +18,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
+        'role',
+        'avatar',
     ];
 
     /**
@@ -26,7 +31,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -38,8 +44,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function posts()
+    public function journals()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Journal::class);
+    }
+        public function getuserAvatar()
+    {
+        if(!$this -> avatar)
+        {
+            return asset('images/default.jpg');
+        }
+        return asset('images/'.$this->avatar);
+    }
+    public function siswa()
+    {
+        return $this -> belongsTo(Siswa::class);
+    }
+    public function guru()
+    {
+        return $this -> belongsTo(Guru::class);
     }
 }

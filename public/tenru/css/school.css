@@ -1,0 +1,73 @@
+.section-school {
+    padding: 2rem 10rem;
+}
+
+.title {
+    margin-top: 5rem;
+    text-align: center;
+}
+
+.heading-primary {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-family: inherit;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #fbb309;
+    letter-spacing: 0.2rem;
+}
+
+.btn-edit {
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-family: inherit;
+    color: #fff;
+    background-color: #ff6f00;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    border-radius: 5px;
+    border: 2px solid transparent;
+
+    transition: all 0.3s;
+}
+
+.btn-edit:hover {
+    background-color: #fff;
+    color: #ff6f00;
+    border: 2px solid #ff6f00;
+}
+
+.main {
+    display: flex;
+}
+
+.left,
+.right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.form-group {
+    margin: 0.5rem 0;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 1rem;
+    /* margin-left: 1rem; */
+    color: #ff6f00;
+}
+
+.input-form {
+    margin: 0.5rem 0;
+    padding-bottom: 0.2rem;
+    font-size: 1rem;
+    font-family: inherit;
+    border: none;
+    background-color: #fff;
+    border-bottom: 2px solid #ff6f00;
+}

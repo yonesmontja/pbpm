@@ -1,0 +1,129 @@
+.section-show-nilai {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+}
+
+.heading {
+    margin-top: 25rem;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    width: 20%;
+    background-image: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+        ),
+        url("../../img/pattern.jpg");
+}
+
+.heading-primary {
+    /* margin-top: 6rem; */
+    color: #ff6f00;
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+}
+
+.desc {
+    color: #fff;
+    font-size: 0.8rem;
+    width: 80%;
+}
+
+.main {
+    width: 80%;
+    position: relative;
+    padding: 2rem 6rem;
+    text-align: center;
+}
+
+.title {
+    margin-top: 6rem;
+}
+
+.form-btn {
+    display: inline-block;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+    background-color: #ff6f00;
+    font-size: 0.8rem;
+    padding: 0.8rem 1.5rem;
+    margin-top: 0.5rem;
+    border-radius: 0.2rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+
+    transition: all 0.3s;
+}
+
+.form-btn:hover {
+    color: #ff6f00;
+    background-color: #fff;
+    border: 1px solid #ff6f00;
+}
+
+.content {
+    margin-top: 2rem;
+    display: flex;
+}
+
+.left,
+.right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.form-label {
+    font-size: 1rem;
+    color: #ff6f00;
+    margin-bottom: 0.5rem;
+}
+
+.form-input {
+    outline: none;
+    font-family: inherit;
+    font-size: 1rem;
+    border: none;
+    background-color: #fff;
+    color: #707070;
+    border-bottom: 2px solid #ff6f00;
+}
+
+.form-textarea {
+    outline: none;
+    background-color: #fff;
+    padding: 0.5rem 1rem;
+    border: 2px solid #ff6f00;
+    font-size: 1rem;
+    color: #707070;
+    font-family: inherit;
+}

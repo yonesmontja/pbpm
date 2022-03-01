@@ -14,12 +14,6 @@
         "cross-env": "^7.0",
         "laravel-mix": "^5.0.1",
         "lodash": "^4.17.19",
-        "resolve-url-loader": "^3.1.0",
-        "vue-template-compiler": "^2.6.12"
-    },
-    "dependencies": {
-        "highcharts": "^8.2.0",
-        "sweetalert": "^2.1.2",
-        "toastr": "^2.1.4"
+        "resolve-url-loader": "^3.1.0"
     }
 }

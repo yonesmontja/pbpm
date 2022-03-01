@@ -8,11 +8,48 @@ use Illuminate\Database\Eloquent\Model;
 class Siswa extends Model
 {
     use HasFactory;
+
     protected $table = 'siswa';
-    protected $fillable = ['nama_depan','nama_belakang','jenis_kelamin','agama','alamat','avatar','user_id'];
+    protected $fillable = 
+    [
+        'nama_depan',
+    'nama_belakang',
+    'nis',
+    'jenis_kelamin',
+    'agama',
+    'alamat',
+    'avatar',
+    'user_id',
+    'nisn',
+    'kelas',
+    'tempat_lahir',
+    'tgl_lahir',
+    'pend_sebelum',
+    'nama_ayah',
+    'nik',
+    'nama_ibu',
+    'pekerjaan_ayah',
+    'pekerjaan_ibu',
+    'alamat_ortu',
+    'nama_wali',
+    'pekerjaan_wali',
+    'alamat_wali',
+    'email',
+    'role',
+    'password',
+    'status_keluarga',
+    'anak_ke',
+    'masuk_kls_awal',
+    'tgl_masuk_awal',
+    'status',
+    'siswaOAP',
+    'distrik',
+    ];
+
     public function getAvatar()
     {
-    	if(!$this->avatar){
+    	if(!$this -> avatar)
+    	{
     		return asset('images/default.jpg');
     	}
     	return asset('images/'.$this->avatar);
@@ -21,30 +58,66 @@ class Siswa extends Model
     {
         return $this -> belongsToMany(Mapel::class)->withPivot(['nilai'])->withTimeStamps();
     }
-    public function ratarataNilai()
+    public function user()
     {
-        $total = 0;
-        $hitung = 0;
-        $rata = 0;
-        foreach ($this->mapel as $mapel){
-            //$total = $total + $mapel->pivot->nilai;
-            $total += $mapel->pivot->nilai;
-            //$hitung + 1;
-            $hitung++;
-        }
-        $rata = ($hitung!=0)?$total/$hitung:0;
-        return round($rata);
+        return $this -> belongsTo('App\Models\User','user_id');
     }
-    public function nama_lengkap()
+    public function keimanan()
     {
-        return $this -> nama_depan.' '.$this -> nama_belakang;
+        return $this->hasOne(Keimanan::class);
     }
-    public function totalNilai()
+    
+    public function ppkn()
     {
-        $total = 0;
-        foreach($this->mapel as $mapel){
-            $total += $mapel->pivot->nilai;
-        }
-        return round($total);
+        return $this->hasOne('App\Models\Ppkn','nis','nis');
     }
+
+    public function bindo()
+    {
+        return $this->hasOne(Bindo::class);
+    }
+    public function bing()
+    {
+        return $this->hasOne(Bing::class);
+    }
+    public function matematika()
+    {
+        return $this->hasOne(Matematika::class);
+    }
+
+    public function Ipa()
+    {
+        return $this->hasOne(Ipa::class);
+    }
+
+    public function Ips()
+    {
+        return $this->hasOne(Ips::class);
+    }
+
+    public function Sbk()
+    {
+        return $this->hasOne(Sbk::class);
+    }
+
+    public function penjas()
+    {
+        return $this->hasOne(Penjas::class);
+    }
+
+    public function Ikanasin()
+    {
+        return $this->hasOne(Ikanasin::class);
+    }
+
+    public function sikap()
+    {
+        return $this->hasOne(Sikap::class);
+    }
+
+    public function extra()
+    {
+        return $this->hasOne(Extra::class);
+    }
+
 }
