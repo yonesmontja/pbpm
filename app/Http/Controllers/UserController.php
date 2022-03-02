@@ -27,26 +27,8 @@ class UserController extends Controller
     public function my_profile($id)
     {
         $user = \App\Models\User::find($id);
-        $siswa = \App\Models\Siswa::find($id);
-        $matapelajaran = \App\Models\Mapel::all();
-        //dd($mapel);
-
-        // data untuk Chart.js
-        $categories = [];
-        $data = [];
-        foreach($matapelajaran as $mp){
-            if($siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()){
-                $categories[] = $mp ->nama_mapel;
-                $data[] = $siswa -> mapel() -> wherePivot('mapel_id',$mp ->id) -> first()->pivot->nilai;
-            }
-        }
-        //dd($data);
-
-        //dd(json_encode($categories));
-
-        //dd($matapelajaran);
-        return view('profile.my_profile',['user' => $user,'siswa'=> $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data]);
-        //return view('profile.my_profile',['user' => $user]);
+        
+        return view('profile.my_profile',['user' => $user]);
     }
 
     public function portofolio()

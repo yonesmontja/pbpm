@@ -113,7 +113,7 @@
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a href="/my_profile" class="nav-link" data-toggle="dropdown">
+        <a href="/my_profile/{{ auth() -> user() ->id }}/myprofile" class="nav-link" data-toggle="dropdown">
           <span>{{auth() -> user()->name}}</span>
           <i class="icon-submenu lnr lnr-chevron-down"></i>
         </a>

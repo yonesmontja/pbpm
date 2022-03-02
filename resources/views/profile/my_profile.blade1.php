@@ -18,7 +18,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+              <li class="breadcrumb-item"><a href="/tdu">Home</a></li>
               <li class="breadcrumb-item active">User Profile</li>
             </ol>
           </div>
@@ -48,17 +48,17 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="{{$user->getuserAvatar()}}"
+                       
                        alt="User profile picture">
                 </div>
 
-                <h3 class="profile-username text-center"><a href="#">{{$user -> name}}</a></h3>
+                <h3 class="profile-username text-center"><a href="#">{{$user -> nama_depan}} {{$user -> nama_belakang}}</a></h3>
 
                 <p class="text-muted text-center">Software Engineer</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>Email</b> <a class="float-right">{{$user->email}}</a>
+                    <b>Mapel</b> <a class="float-right">#</a>
                   </li>
                   <li class="list-group-item">
                     <b>Following</b> <a class="float-right">543</a>
@@ -120,7 +120,9 @@
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#nilai" data-toggle="tab">Tabel Nilai</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#grafiknilai" data-toggle="tab">Grafik Nilai</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Activity</a></li>
                   <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
                   <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
                 </ul>
@@ -128,9 +130,117 @@
               <div class="card-body">
                 <div class="tab-content">
                   <!-- /.tab-pane -->
-
+                  <div class="active tab-pane" id="nilai">
+                    <div class="card">
+                      <div class="card-header">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <h3 class="card-title">Nilai User</h3>
+                          </div>
+                          <div class="col-md-2 float-right">
+                            <div class="card-tools">
+                              <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
+                                Tambah Nilai
+                              </button>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="card-tools">
+                              <ul class="pagination pagination-sm float-right">
+                                <li class="page-item"><a class="page-link" href="#">«</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">»</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                          <thead>
+                            <tr>
+                              <th style="width: 10px">Kode Mapel</th>
+                              <th>Mapel</th>
+                              <th>Semester</th>
+                              <th></th>
+                              <th style="width: 40px">Nilai</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            @foreach($user->mapel as $mapel)
+                            <tr>
+                              <td>{{$mapel->kode}}</td>
+                              <td>{{$mapel->nama_mapel}}</td>
+                              <td>{{$mapel->semester}}</td>
+                              <td>
+                                <div class="progress progress-xs">
+                                  <div class="progress-bar progress-bar-danger" style="width: {{$mapel->pivot->nilai}}%"></div>
+                                </div>
+                              </td>
+                              <td><span class="badge bg-danger">{{$mapel->pivot->nilai}}</span></td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                  </div>
                   <!-- /.tab-pane --> 
+                  <div class="tab-pane" id="grafiknilai">
+                    <div class="card">
+                      <div class="card-header">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <h3 class="card-title">Grafik Nilai</h3>
+                          </div>
+                          <div class="col-md-2 float-right">
+                            <div class="card-tools">
+                              <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
+                                Tambah Nilai
+                              </button>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="card-tools">
+                              <ul class="pagination pagination-sm float-right">
+                                <li class="page-item"><a class="page-link" href="#">«</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">»</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body p-0">
+                        <div class="card card-success">
+                          <div class="card-header">
+                            <h3 class="card-title">Nilai Siswa</h3>
 
+                            <div class="card-tools">
+                              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                              </button>
+                              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                            <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 757px;" width="757" height="250" class="chartjs-render-monitor"></canvas>
+                            
+                          </div>
+                        </div>
+                        <!-- /.card-body -->
+                      </div>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                  </div>
                   <div class="tab-pane" id="activity">
                     <!-- Post -->
                     <div class="post">
@@ -401,5 +511,113 @@
     </section>
     <!-- /.content -->
   </div>
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Nilai Mata Pelajaran</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="/test/{{$user -> id}}/addnilai" method="POST" enctype="multipart/form-data">
+          {{csrf_field()}}
+          <div class="form-group">
+            <label for="mapel">Pilih Mata Pelajaran</label>
+            <select class="form-control" id="mapel" name="mapel">
+              @foreach ($matapelajaran as $mp)
+              <option value="{{$mp -> id}}">{{$mp->nama_mapel}}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group {{$errors->has('nilai')?' has-error' : ''}}">
+            <label for="formGroupExampleInput">Nilai</label>
+            <input name="nilai" nilaitype="text" class="form-control" id="formGroupExampleInput" placeholder="Masukkan Nilai" value="{{old('nilai')}}" >
+            @if($errors->has('nilai'))
+            <span class="help-block">{{$errors->first('nilai')}}</span>
+            @endif
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> 
 @endsection
+
+@section('footer')
+<!-- ChartJS -->
+<script src="{{asset('/admin/plugins/chart.js/Chart.min.js')}}"></script>
+<script>
+  $(function () {
+    /* ChartJS
+     * -------
+     * Here we will create a few charts using ChartJS
+     */
+
+    var areaChartData = {
+      labels  : {!!json_encode($categories)!!},
+      datasets: [
+        {
+          label               : 'PH',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : {!!json_encode($data)!!}
+        },
+      ]
+    }
+
+    var areaChartOptions = {
+      maintainAspectRatio : false,
+      responsive : true,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }],
+        yAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }]
+      }
+    }
+
+    //-------------
+    //- BAR CHART -
+    //-------------
+    var barChartCanvas = $('#barChart').get(0).getContext('2d')
+    var barChartData = jQuery.extend(true, {}, areaChartData)
+    var temp0 = areaChartData.datasets[0]
+    
+    
+    barChartData.datasets[0] = temp0
+
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
+    }
+
+    var barChart = new Chart(barChartCanvas, {
+      type: 'bar', 
+      data: barChartData,
+      options: barChartOptions
+    })
+  })
+</script>
+@stop
