@@ -17,9 +17,12 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
+        "laravel/ui": "^3.4",
         "laravolt/indonesia": "^0.27.0",
         "maatwebsite/excel": "^3.1",
-        "phpoffice/phpword": "^0.17.0"
+        "phpoffice/phpword": "^0.17.0",
+        "symfony/mailer": "^6.0",
+        "zendframework/zend-escaper": "^2.6"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

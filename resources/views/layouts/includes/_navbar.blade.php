@@ -104,23 +104,23 @@
             <span class="float-right text-muted text-sm">12 hours</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
+          <a href="/jelek" class="dropdown-item">
             <i class="fas fa-file mr-2"></i> 3 new reports
             <span class="float-right text-muted text-sm">2 days</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+          <a href="/jelek" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a href="/profile" class="nav-link" data-toggle="dropdown">
+        <a href="/my_profile" class="nav-link" data-toggle="dropdown">
           <span>{{auth() -> user()->name}}</span>
           <i class="icon-submenu lnr lnr-chevron-down"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header">--00--</span>
           <div class="dropdown-divider"></div>
-          <a href="/profile" class="dropdown-item">
+          <a href="/my_profile/{{ auth() -> user() ->id }}/myprofile" class="dropdown-item">
             <i class="lnr lnr-user"></i> <span>My Profile</span>
           </a>
           <div class="dropdown-divider"></div>

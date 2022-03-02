@@ -41,6 +41,7 @@ use App\Http\Controllers\DependentDropdownController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PpknController;
 use App\Http\Controllers\Str;
+use App\Models\User;
 
 Route::get('/', function () {
     return view('welcome');
@@ -105,7 +106,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/compose',[MailboxController::class,'compose']);
 	Route::get('/read',[MailboxController::class,'read']);
 
-	Route::get('/profile',[UserController::class,'profile']);
+	Route::get('/profile/{id}/profile',[UserController::class,'profile1']);
 	Route::get('/portofolio',[UserController::class,'portofolio']);
 	Route::get('/projects',[UserController::class,'projects']);
 	Route::get('/projects-add',[UserController::class,'projects_add']);
@@ -113,6 +114,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/projects-detail',[UserController::class,'projects_detail']);
 	Route::get('/user',[UserController::class,'user']);
 	Route::get('/user/{id}/profile',[UserController::class,'userprofile']);
+	Route::get('/my_profile/{id}/myprofile',[UserController::class,'my_profile']);
 	Route::post('/user/create',[UserController::class,'create']);
 	Route::get('/contacts',[UserController::class,'contacts']);
 	Route::get('/user/{user}/edit',[UserController::class,'useredit']);
