@@ -34,20 +34,20 @@
             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
               <div class="card bg-light">
                 <div class="card-header text-muted border-bottom-0">
-                  Digital Strategist
+                  Kelas {{ $siswa -> kelas }}
                 </div>
                 <div class="card-body pt-0">
                   <div class="row">
                     <div class="col-7">
                       <h2 class="lead"><b>{{ $siswa -> nama_depan }}</b></h2>
-                      <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                      <p class="text-muted text-sm"><b>Tempat lahir: </b> {{ $siswa -> tempat_lahir }} </p>
                       <ul class="ml-4 mb-0 fa-ul text-muted">
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
-                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-address-book"></i></span>  {{ $siswa -> alamat }}</li>
+                        <li class="small"><span class="fa-li"><i class="fas fa-lg fa-city"></i></span>  {{ $siswa -> distrik }}</li>
                       </ul>
                     </div>
                     <div class="col-5 text-center">
-                      <img src="{{asset('/admin/dist/img/user1-128x128.jpg')}}" alt="" class="img-circle img-fluid">
+                      <img src="{{ $siswa -> getAvatar() }}" alt="" class="img-circle img-fluid">
                     </div>
                   </div>
                 </div>
@@ -56,7 +56,7 @@
                     <a href="#" class="btn btn-sm bg-teal">
                       <i class="fas fa-comments"></i>
                     </a>
-                    <a href="#" class="btn btn-sm btn-primary">
+                    <a href="/test/{{ $siswa -> id }}/profile" class="btn btn-sm btn-primary">
                       <i class="fas fa-user"></i> View Profile
                     </a>
                   </div>
