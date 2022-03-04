@@ -47,6 +47,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 Route::get('/login',[AuthController::class,'login'])->name('login');
@@ -220,10 +223,4 @@ Route::get('/{slug}',[
 	'uses' => 'App\Http\Controllers\JurnalController@singlepost',
 	'as' => 'site.single.post'
 ]);
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

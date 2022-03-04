@@ -53,7 +53,8 @@ class UserController extends Controller
     }
     public function contacts()
     {
-    	return view('profile.contacts');
+    	$siswa = Siswa::all();
+        return view('profile.contacts',['siswa' => $siswa]);
     }
     public function user()
     {
