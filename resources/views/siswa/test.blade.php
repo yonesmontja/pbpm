@@ -124,7 +124,7 @@
                         
                         <td>
                           @if($siswa->status==1)
-                          <a href="/test/{{$siswa->id}}/aktivasi" class="btn btn-success btn-sm" onclick="return confirm('Yakin mau diaktivasi?')" >Aktif</a>
+                          <a href="#" class="btn btn-success btn-sm" onclick="return confirm('Siswa ini sudah aktif sebagai user!')" >Aktif</a>
                           @endif
                           @if($siswa->status==0)
                           <a href="/test/{{$siswa->id}}/aktivasi" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau diaktivasi?')" >Non-Aktif</a>
