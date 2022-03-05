@@ -42,6 +42,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PpknController;
 use App\Http\Controllers\Str;
 use App\Models\User;
+use App\Models\Siswa;
 
 Route::get('/', function () {
     return view('welcome');
