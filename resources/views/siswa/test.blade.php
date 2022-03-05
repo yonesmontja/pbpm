@@ -131,7 +131,7 @@
                           @endif
                         </td>
                         <td>
-                          <a href="/test/{{$siswa->user_id}}/edit" class="btn btn-warning btn-sm">Ubah
+                          <a href="/test/{{$siswa->id}}/edit" class="btn btn-warning btn-sm">Ubah
                           </a>
                           <a href="/test/{{$siswa->id}}/delete" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau dihapus?')" >Hapus</a>
                         </td>
