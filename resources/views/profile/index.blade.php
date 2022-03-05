@@ -113,9 +113,10 @@
 
                 <hr>
 
-                <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+                <strong><i class="far fa-file-alt mr-1"></i> Mapel</strong>
 
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                <p class="text-muted">@foreach ($matpel as $m) {{ $m }} @endforeach</p>
+                
               </div>
               <!-- /.card-body -->
             </div>
