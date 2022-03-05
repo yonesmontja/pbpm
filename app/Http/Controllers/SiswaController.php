@@ -142,13 +142,14 @@ class SiswaController extends Controller
                 $data[] = $siswa -> mapel() -> wherePivot('mapel_id',$mp ->id) -> first()->pivot->nilai;
             }
         }
-        //dd($data);
+        $matpel = collect($categories);
         $average = collect($data)->avg();
+        //dd($matpel);
         //dd($average);
         //dd(json_encode($categories));
 
         //dd($matapelajaran);
-        return view('profile.index',['average'=> $average,'siswa'=> $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data]);
+        return view('profile.index',['matpel'=>$matpel,'average'=> $average,'siswa'=> $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data]);
     }
     public function testaddnilai(Request $request, $idsiswa)
     {
