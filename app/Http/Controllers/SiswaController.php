@@ -129,6 +129,8 @@ class SiswaController extends Controller
     {
         $siswa = \App\Models\Siswa::find($id);
         $matapelajaran = \App\Models\Mapel::all();
+        //$nilairata = \App\Models\MapelSiswa::avg();
+        //dd('$nilairata');
         //dd($mapel);
 
         // data untuk Chart.js
@@ -141,11 +143,12 @@ class SiswaController extends Controller
             }
         }
         //dd($data);
-
+        $average = collect($data)->avg();
+        //dd($average);
         //dd(json_encode($categories));
 
         //dd($matapelajaran);
-        return view('profile.index',['siswa'=> $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data]);
+        return view('profile.index',['average'=> $average,'siswa'=> $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data]);
     }
     public function testaddnilai(Request $request, $idsiswa)
     {
