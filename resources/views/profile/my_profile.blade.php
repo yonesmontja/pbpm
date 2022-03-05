@@ -54,7 +54,7 @@
 
                 <h3 class="profile-username text-center"><a href="#">{{$user -> name}}</a></h3>
 
-                <p class="text-muted text-center">Software Engineer</p>
+                <p class="text-muted text-center">{{ $user -> role }}</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">

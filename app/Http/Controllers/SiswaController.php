@@ -43,10 +43,11 @@ class SiswaController extends Controller
         }
         return redirect('/siswa')->with('sukses','berhasil diupdate!');
     }
-    public function test(Siswa $siswa)
+    public function test(Siswa $data_siswa)
     {
         $data_siswa = \App\Models\Siswa::all();
         $user_id = \App\Models\Siswa::all();
+        //dd('$data_siswa');
         return view('siswa.test',['data_siswa' => $data_siswa,'user_id'=> $user_id]);
     }
     public function testcreate(Request $request)
@@ -71,8 +72,10 @@ class SiswaController extends Controller
         //insert ke tabel Siswa
         $request -> request -> add(['user_id' => $user -> id]);
         $siswa = \App\Models\Siswa::create($request -> all());
+        $siswa -> password = bcrypt('rahasia');
+        $siswa -> role = 'siswa';
         if($request->hasFile('avatar')){
-            $request->file('avatar')->move('images/',$request->file('avatar')->getClientOriginalName());
+            $request->file('avatar')->move('/images/',$request->file('avatar')->getClientOriginalName());
             $siswa->avatar= $request->file('avatar')->getClientOriginalName();
             $siswa->save();
         }

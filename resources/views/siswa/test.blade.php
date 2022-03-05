@@ -33,61 +33,62 @@
         </div>
         @endif
         <div class="row">
+          <div class="col-sm-2">
+            <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal" data-target="#staticBackdrop">
+              Tambah Data Siswa
+            </button>
+          </div>
+          <div class="col-sm-2">
+            <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal" data-target="#staticBackdrop">
+              AKTIVASI USER
+            </button>
+          </div>
+          <div class="col-sm-2">
+            <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal" data-target="#importExcel">
+              IMPOR EXCEL
+            </button>
+            <!-- Import Excel -->
+            <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <form method="post" action="/siswa/import_excel" enctype="multipart/form-data">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+                    </div>
+                    <div class="modal-body">
+
+                      {{ csrf_field() }}
+
+                      <label>Pilih file excel</label>
+                      <div class="form-group">
+                        <input type="file" name="file" required="required">
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Import</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <a href="/siswa/export_excel" class="btn btn-primary float-right btn-sm" target="_blank">EXPOR EXCEL</a>
+          </div>
+          <div class="col-sm-2">
+            <a href="/siswa/export_pdf" class="btn btn-primary float-right btn-sm" target="_blank">EXPOR PDF</a>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-12">
             <!-- /.card -->
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Tahun Pelajaran 2020/2021</h3>
               </div>
-              <div class="row">
-                <div class="col-sm-8">
-                  <button type="button" class="btn btn-primary float-left btn-sm" data-toggle="modal" data-target="#staticBackdrop">
-                    Tambah Data Siswa
-                  </button>
-                </div>
-                <div class="col-sm-1">
-                  <button type="button" class="btn btn-primary float-left btn-sm" data-toggle="modal" data-target="#staticBackdrop">
-                    AKTIVASI USER
-                  </button>
-                </div>
-                <div class="col-sm-1">
-                  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#importExcel">
-                    IMPOR EXCEL
-                  </button>
-                  <!-- Import Excel -->
-                  <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <form method="post" action="/siswa/import_excel" enctype="multipart/form-data">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
-                          </div>
-                          <div class="modal-body">
 
-                            {{ csrf_field() }}
-
-                            <label>Pilih file excel</label>
-                            <div class="form-group">
-                              <input type="file" name="file" required="required">
-                            </div>
-
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Import</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-1">
-                  <a href="/siswa/export_excel" class="btn btn-primary float-right btn-sm" target="_blank">EXPOR EXCEL</a>
-                </div>
-                <div class="col-sm-1">
-                  <a href="/siswa/export_pdf" class="btn btn-primary float-right btn-sm" target="_blank">EXPOR PDF</a>
-                </div>
-              </div>
 
               <!-- /.card-header -->
               <div class="card-body">

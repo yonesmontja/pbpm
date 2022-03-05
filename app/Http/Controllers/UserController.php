@@ -78,7 +78,7 @@ class UserController extends Controller
         $user -> password = bcrypt('rahasia');
         $user -> remember_token = Str::random(60);
                 if($request->hasFile('avatar')){
-            $request->file('avatar')->move('images/',$request->file('avatar')->getClientOriginalName());
+            $request->file('avatar')->move('/images/',$request->file('avatar')->getClientOriginalName());
             $user->avatar= $request->file('avatar')->getClientOriginalName();
             $user->save();
         }

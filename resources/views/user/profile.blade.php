@@ -68,7 +68,7 @@
                   </li>
                 </ul>
 
-                <a href="/test/{{$user->id}}/edit" class="btn btn-primary btn-block"><b>Ubah Profil</b></a>
+                <a href="/user/{{$user->id}}/edit" class="btn btn-primary btn-block"><b>Ubah Profil</b></a>
               </div>
               <!-- /.card-body -->
             </div>

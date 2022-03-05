@@ -217,6 +217,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 Route::group(['middleware' => ['auth','checkRole:admin,siswa']], function()
 {
 	Route::get('/dashboard',[DashboardController::class,'index']);
+	Route::get('/my_profile/{id}/myprofile',[UserController::class,'my_profile']);
 });
 
 Route::get('/{slug}',[
