@@ -96,8 +96,8 @@ class SiswaController extends Controller
         $user -> remember_token = Str::random(60);
         $user -> save();
         //dd($user);
-
-        $request -> request -> add(['user_id' => $user -> id]);
+        $status = '1';
+        $request -> request -> add(['user_id' => $user -> id,'status' => $status]);
         $siswa ->update($request->all());
         
         //dd($siswa);
