@@ -58,6 +58,10 @@ class Siswa extends Model
     {
         return $this -> belongsToMany(Mapel::class)->withPivot(['nilai'])->withTimeStamps();
     }
+    public function penilaian()
+    {
+        return $this -> belongsToMany(Penilaian::class)->withPivot(['nilai'])->withTimeStamps();
+    }
     public function user()
     {
         return $this -> belongsTo('App\Models\User','user_id');

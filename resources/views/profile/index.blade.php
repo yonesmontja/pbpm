@@ -172,6 +172,7 @@
                               <th style="width: 10px">Kode Mapel</th>
                               <th>Mapel</th>
                               <th>Semester</th>
+                              <th>Penilaian</th>
                               <th></th>
                               <th style="width: 40px">Nilai</th>
                               <th style="width: 40px">Guru</th>
@@ -184,6 +185,9 @@
                               <td>{{$mapel->kode}}</td>
                               <td>{{$mapel->nama_mapel}}</td>
                               <td>{{$mapel->semester}}</td>
+                              
+                              <td>{{ $mapel->pivot->penilaian }}</td>
+                              
                               <td>
                                 <div class="progress progress-xs">
                                   <div class="progress-bar progress-bar-danger" style="width: {{$mapel->pivot->nilai}}%"></div>
@@ -548,6 +552,14 @@
             <select class="form-control" id="mapel" name="mapel">
               @foreach ($matapelajaran as $mp)
               <option value="{{$mp -> id}}">{{$mp->nama_mapel}}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="mapel">Pilih Penilaian</label>
+            <select class="form-control" id="penilaian" name="penilaian">
+              @foreach ($penilaian as $tes)
+              <option value="{{$tes -> id}}">{{$tes->nama_tes}}</option>
               @endforeach
             </select>
           </div>

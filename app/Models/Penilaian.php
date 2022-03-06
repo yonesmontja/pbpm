@@ -15,8 +15,8 @@ class Penilaian extends Model
     {
         return $this -> belongsToMany(Siswa::class)->withPivot(['nilai']);
     }
-    public function mapel()
+    public function guru()
     {
-        return $this -> belongsToMany(Mapel::class)->withPivot(['nilai'])->withTimeStamps();
+    	return $this -> belongsTo(Guru::class);
     }
 }

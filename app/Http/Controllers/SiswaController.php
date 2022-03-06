@@ -10,6 +10,7 @@ use App\Imports\UserImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Siswa;
 use App\Models\User;
+use App\Models\Penilaian;
 use PDF;
 use Session;
 
@@ -129,40 +130,48 @@ class SiswaController extends Controller
     {
         $siswa = \App\Models\Siswa::find($id);
         $matapelajaran = \App\Models\Mapel::all();
+        $penilaian = \App\Models\Penilaian::all();
         //$nilairata = \App\Models\MapelSiswa::avg();
         //dd('$nilairata');
-        //dd($mapel);
+        //dd($penilaian);
 
         // data untuk Chart.js
         $categories = [];
         $data = [];
+        
         foreach($matapelajaran as $mp){
             if($siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()){
                 $categories[] = $mp ->nama_mapel;
+                
                 $data[] = $siswa -> mapel() -> wherePivot('mapel_id',$mp ->id) -> first()->pivot->nilai;
             }
         }
         $matpel = collect($categories);
         $average = collect($data)->avg();
+        
         //dd($matpel);
         //dd($average);
         //dd(json_encode($categories));
 
         //dd($matapelajaran);
-        return view('profile.index',['matpel'=>$matpel,'average'=> $average,'siswa'=> $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data]);
+        return view('profile.index',['penilaian'=>$penilaian,'matpel'=>$matpel,'average'=> $average,'siswa'=> $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data]);
     }
     public function testaddnilai(Request $request, $idsiswa)
     {
         //dd($request->all());
+        $tes = $request->penilaian;
         $siswa = \App\Models\Siswa::find($idsiswa);
+        //$tes = \App\Models\Penilaian::find($idsiswa);
         //dd($siswa);
         if($siswa->mapel()->where('mapel_id',$request->mapel)->exists())
         {
             return redirect('test/'.$idsiswa.'/profile')->with('error','data mapel sudah ada');
         }
         $siswa->mapel()->attach($request->mapel,['nilai' => $request->nilai]);
-
-        return redirect('test/'.$idsiswa.'/profile')->with('sukses','nilai sukses diinput');
+        //dd($siswa);
+        $siswa->penilaian()->attach($request->penilaian,['nilai' => $request->nilai]);
+        //dd($tes);
+        return redirect('test/'.$idsiswa.'/profile',['tes'=>$tes])->with('sukses','nilai sukses diinput');
     }
     public function testdeletenilai(Siswa $siswa, $idmapel)
     {
