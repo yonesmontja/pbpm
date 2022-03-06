@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePenilaiansTable extends Migration
+class AddPenilaianIdToMapelSiswaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreatePenilaiansTable extends Migration
      */
     public function up()
     {
-        Schema::create('penilaians', function (Blueprint $table) {
-            $table->id();
-            $table->string('kode');
-            $table->string('nama_tes');
-            $table->string('semester');
-            $table->timestamps();
+        Schema::table('mapel_siswa', function (Blueprint $table) {
+            //
         });
     }
 
@@ -29,6 +25,8 @@ class CreatePenilaiansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penilaians');
+        Schema::table('mapel_siswa', function (Blueprint $table) {
+            //
+        });
     }
 }
