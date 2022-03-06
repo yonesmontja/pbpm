@@ -15,6 +15,7 @@ class AddPenilaianIdToMapelSiswaTable extends Migration
     {
         Schema::table('mapel_siswa', function (Blueprint $table) {
             //
+            $table->integer('penilaian_id');
         });
     }
 
