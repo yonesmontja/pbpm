@@ -115,7 +115,7 @@ class SiswaController extends Controller
 
         $siswa ->update($request->all());
         if($request->hasFile('avatar')){
-            $request->file('avatar')->move('images/',$request->file('avatar')->getClientOriginalName());
+            $request->file('avatar')->move('/images/',$request->file('avatar')->getClientOriginalName());
             $siswa->avatar= $request->file('avatar')->getClientOriginalName();
             $siswa->save();
         }
@@ -159,7 +159,7 @@ class SiswaController extends Controller
     public function testaddnilai(Request $request, $idsiswa)
     {
         //dd($request->all());
-        $tes = $request->penilaian;
+        //$tes = $request->penilaian;
         $siswa = \App\Models\Siswa::find($idsiswa);
         //$tes = \App\Models\Penilaian::find($idsiswa);
         //dd($siswa);
@@ -171,7 +171,7 @@ class SiswaController extends Controller
         //dd($siswa);
         $siswa->penilaian()->attach($request->penilaian,['nilai' => $request->nilai]);
         //dd($tes);
-        return redirect('test/'.$idsiswa.'/profile',['tes'=>$tes])->with('sukses','nilai sukses diinput');
+        return redirect('test/'.$idsiswa.'/profile',['siswa'=>$siswa])->with('sukses','nilai sukses diinput');
     }
     public function testdeletenilai(Siswa $siswa, $idmapel)
     {
