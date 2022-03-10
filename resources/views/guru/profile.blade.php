@@ -17,7 +17,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-              <li class="breadcrumb-item active">User Profile</li>
+              <li class="breadcrumb-item active">Profile Guru</li>
             </ol>
           </div>
         </div>
@@ -46,13 +46,13 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="#"
+                       src="{{$guru->getAvatar()}}"
                        alt="User profile picture">
                 </div>
 
                 <h3 class="profile-username text-center"><a href="#">{{$guru -> nama_guru}} </a></h3>
 
-                <p class="text-muted text-center">#</p>
+                <p class="text-muted text-center">Guru</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
