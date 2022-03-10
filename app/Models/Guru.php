@@ -16,9 +16,9 @@ class Guru extends Model
     {
     	if(!$this -> avatar)
     	{
-    		return asset('images/default.jpg');
+    		return asset('/images/default.jpg');
     	}
-    	return asset('images/'.$this->avatar);
+    	return asset('/images/'.$this->avatar);
     }
 
     public function mapel()
