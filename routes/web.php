@@ -21,6 +21,9 @@ use App\Http\Controllers\WidgetController;
 use App\Http\Controllers\JurnalController;
 use App\Http\Controllers\GrafikController;
 use App\Http\Controllers\KalenderController;
+use App\Http\Controllers\FullCalendarController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\FastEventController;
 use App\Http\Controllers\MailboxController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
@@ -106,6 +109,19 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/grafikkompetensi',[GrafikController::class,'grafikkompetensi']);
 
 	Route::get('/kalender',[KalenderController::class,'kalender']);
+	Route::get('/incalendar',[KalenderController::class,'incalendar'])->name('kalender.incalendar');
+	Route::post('/instorecalendar',[KalenderController::class,'instorecalendar'])->name('kalender.instorecalendar');
+	Route::patch('/inupdatecalendar/{id}',[KalenderController::class,'inupdatecalendar'])->name('kalender.inupdatecalendar');
+	Route::delete('/indeletecalendar/{id}',[KalenderController::class,'indeletecalendar'])->name('kalender.indeletecalendar');
+
+	Route::get('/calendar',[FullCalendarController::class,'index']);
+	Route::get('/load-events',[EventController::class,'loadEvents'])->name('routeLoadEvents');
+	Route::put('/event-update', [EventController::class,'update'])->name('routeEventUpdate');
+	Route::post('/event-store', [EventController::class,'store'])->name('routeEventStore');
+	Route::delete('/event-destroy', [EventController::class,'destroy'])->name('routeEventDelete');
+	Route::delete('/fast-event-destroy', [FastEventController::class,'destroy'])->name('routeFastEventDelete');
+	Route::put('/fast-event-update', [FastEventController::class,'update'])->name('routeFastEventUpdate');
+	Route::post('/fast-event-store', [FastEventController::class,'store'])->name('routeFastEventStore');
 	Route::get('/inbox',[MailboxController::class,'inbox']);
 	Route::get('/compose',[MailboxController::class,'compose']);
 	Route::get('/read',[MailboxController::class,'read']);

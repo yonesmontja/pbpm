@@ -23,8 +23,8 @@ class CreateMatematikaTable extends Migration
             $table->text("deskripsi_keterampilan");
             $table->string('ppeng');
             $table->string('pketr');
-            $table->foreign("nis")->references("nis")->on("siswa")->onDelete('cascade');
-            $table->foreign("nisn")->references("nisn")->on("siswa")->onDelete('cascade');
+            //$table->foreign("nis")->references("nis")->on("siswa")->onDelete('cascade');
+            //$table->foreign("nisn")->references("nisn")->on("siswa")->onDelete('cascade');
             $table->timestamps();
         });
     }

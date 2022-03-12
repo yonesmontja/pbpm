@@ -31,7 +31,7 @@ class CreateExtraTable extends Migration
             $table->integer("ijin");
             $table->integer("alfa");
 
-            $table->foreign("nis")->references("nis")->on("siswa")->onDelete('cascade');
+           // $table->foreign("nis")->references("nis")->on("siswa")->onDelete('cascade');
             $table->timestamps();
         });
     }

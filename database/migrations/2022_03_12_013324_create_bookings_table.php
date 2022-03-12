@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSikapTable extends Migration
+class CreateBookingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateSikapTable extends Migration
      */
     public function up()
     {
-        Schema::create('sikap', function (Blueprint $table) {
+        Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->string("nis")->unique();
-            $table->text("sikap_spiritual");
-            $table->text("sikap_sosial");
-
-            $table->foreign("nis")->references("nis")->on("siswa")->onDelete('cascade');
+            $table->string('title');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateSikapTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sikap');
+        Schema::dropIfExists('bookings');
     }
 }

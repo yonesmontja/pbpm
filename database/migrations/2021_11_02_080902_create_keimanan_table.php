@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePpknTable extends Migration
+class CreateKeimananTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePpknTable extends Migration
      */
     public function up()
     {
-        Schema::create('ppkn', function (Blueprint $table) {
+        Schema::create('keimanan', function (Blueprint $table) {
             $table->id();
             $table->string("nis")->unique();
             $table->string("nisn")->unique();
@@ -21,9 +21,10 @@ class CreatePpknTable extends Migration
             $table->text("deskripsi_pengetahuan");
             $table->double("nilai_keterampilan");
             $table->text("deskripsi_keterampilan");
-
-            $table->foreign("nis")->references("nis")->on("siswa")->onDelete('cascade');
-            $table->foreign("nisn")->references("nisn")->on("siswa")->onDelete('cascade');
+            $table->string('ppeng');
+            $table->string('pketr');
+           // $table->foreign("nis")->references("nis")->on("siswa")->onDelete('cascade');
+           // $table->foreign("nisn")->references("nisn")->on("siswa")->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -35,6 +36,6 @@ class CreatePpknTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ppkn');
+        Schema::dropIfExists('keimanan');
     }
 }

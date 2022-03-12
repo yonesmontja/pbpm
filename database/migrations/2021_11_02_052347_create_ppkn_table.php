@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBingTable extends Migration
+class CreatePpknTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBingTable extends Migration
      */
     public function up()
     {
-        Schema::create('bing', function (Blueprint $table) {
+        Schema::create('ppkn', function (Blueprint $table) {
             $table->id();
             $table->string("nis")->unique();
             $table->string("nisn")->unique();
@@ -21,10 +21,9 @@ class CreateBingTable extends Migration
             $table->text("deskripsi_pengetahuan");
             $table->double("nilai_keterampilan");
             $table->text("deskripsi_keterampilan");
-            $table->string('ppeng');
-            $table->string('pketr');
-            $table->foreign("nis")->references("nis")->on("siswa")->onDelete('cascade');
-            $table->foreign("nisn")->references("nisn")->on("siswa")->onDelete('cascade');
+
+            //$table->foreign("nis")->references("nis")->on("siswa")->onDelete('cascade');
+            //$table->foreign("nisn")->references("nisn")->on("siswa")->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -36,6 +35,6 @@ class CreateBingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bing');
+        Schema::dropIfExists('ppkn');
     }
 }

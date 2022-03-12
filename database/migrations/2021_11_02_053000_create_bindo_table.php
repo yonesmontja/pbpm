@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIpaTable extends Migration
+class CreateBindoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateIpaTable extends Migration
      */
     public function up()
     {
-        Schema::create('ipa', function (Blueprint $table) {
+        Schema::create('bindo', function (Blueprint $table) {
             $table->id();
             $table->string("nis")->unique();
             $table->string("nisn")->unique();
@@ -23,8 +23,8 @@ class CreateIpaTable extends Migration
             $table->text("deskripsi_keterampilan");
             $table->string('ppeng');
             $table->string('pketr');
-            $table->foreign("nis")->references("nis")->on("siswa")->onDelete('cascade');
-            $table->foreign("nisn")->references("nisn")->on("siswa")->onDelete('cascade');
+            //$table->foreign("nis")->references("nis")->on("siswa")->onDelete('cascade');
+            //$table->foreign("nisn")->references("nisn")->on("siswa")->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -36,6 +36,6 @@ class CreateIpaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ipa');
+        Schema::dropIfExists('bindo');
     }
 }
