@@ -13,10 +13,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<
+ 
 </head> 
 <body>
-<div class="container"> 
+<div class="container">  
 <div class="row">
 <div class="col-12">
 <h3 class="text-center mt-5">Fullcalendar Js Laravel</h3>

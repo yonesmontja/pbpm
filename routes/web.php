@@ -20,6 +20,7 @@ use App\Http\Controllers\KesiswaanController;
 use App\Http\Controllers\WidgetController;
 use App\Http\Controllers\JurnalController;
 use App\Http\Controllers\GrafikController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KalenderController;
 use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\EventController;
@@ -109,6 +110,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/grafikkompetensi',[GrafikController::class,'grafikkompetensi']);
 
 	Route::get('/kalender',[KalenderController::class,'kalender']);
+	Route::get('/jadwal',[JadwalController::class,'jadwal'])->name('kalender.jadwal');
 	Route::get('/incalendar',[KalenderController::class,'incalendar'])->name('kalender.incalendar');
 	Route::post('/instorecalendar',[KalenderController::class,'instorecalendar'])->name('kalender.instorecalendar');
 	Route::patch('/inupdatecalendar/{id}',[KalenderController::class,'inupdatecalendar'])->name('kalender.inupdatecalendar');
