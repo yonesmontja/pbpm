@@ -176,6 +176,7 @@
       ],
       editable  : true,
       selectable: true,
+      selectHelper: true,
       droppable : true, // this allows things to be dropped onto the calendar !!!
       drop      : function(info) {
         // is the "remove after drop" checkbox checked?
@@ -187,7 +188,13 @@
     });
 
     calendar.render();
-    //$('#calendar').fullCalendar();
+    $('#calendar').fullCalendar({
+                  header: {
+                'left': 'prev, next today',
+                'center': 'title',
+                'right': 'month, agendaWeek, agendaDay',
+            },
+    })
 
     /* ADDING EVENTS */
     var currColor = '#3c8dbc' //Red by default
