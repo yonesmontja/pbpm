@@ -11,7 +11,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{auth() -> user() -> getuserAvatar()}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{auth() -> user() -> avatar()}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{auth() -> user()->name}}</a>
@@ -31,7 +31,7 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            
+
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/tdu" class="nav-link active">
@@ -54,7 +54,7 @@
               </li>
               @endif
             </ul>
-            
+
           </li>
           @if(auth() -> user() -> role == 'admin')
           <li class="nav-item">
@@ -338,6 +338,12 @@
                 <a href="/contacts" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Contacts</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/posting" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Posting</p>
                 </a>
               </li>
             </ul>

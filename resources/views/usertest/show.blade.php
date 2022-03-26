@@ -48,17 +48,17 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="{{$user->avatar()}}"
+                       src="{{$usertest->avatar()}}"
                        alt="User profile picture">
                 </div>
 
-                <h3 class="profile-username text-center"><a href="#">{{$user -> name}}</a></h3>
+                <h3 class="profile-username text-center"><a href="#">{{$usertest -> name}}</a></h3>
 
                 <p class="text-muted text-center">Software Engineer</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>Email</b> <a class="float-right">{{$user->email}}</a>
+                    <b>Email</b> <a class="float-right">{{$usertest->email}}</a>
                   </li>
                   <li class="list-group-item">
                     <b>Following</b> <a class="float-right">543</a>
@@ -68,7 +68,7 @@
                   </li>
                 </ul>
 
-                <a href="/user/{{$user->id}}/edit" class="btn btn-primary btn-block"><b>Ubah Profil</b></a>
+                <a href="/user/{{$usertest->id}}/edit" class="btn btn-primary btn-block"><b>Ubah Profil</b></a>
               </div>
               <!-- /.card-body -->
             </div>

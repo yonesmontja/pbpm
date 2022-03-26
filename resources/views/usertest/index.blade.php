@@ -12,12 +12,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Data user</h1>
+                        <h1>Data usertest</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                            <li class="breadcrumb-item active">Data user</li>
+                            <li class="breadcrumb-item active">Data usertest</li>
                         </ol>
                     </div>
                 </div>
@@ -38,6 +38,13 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Tahun Pelajaran 2020/2021</h3>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="text" name="q" value="{{ $q }}"
+                                    placeholder="Search here..." />
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-success">Refresh</button>
                             </div>
                             <div class="col-12">
                                 <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal"
@@ -64,26 +71,31 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data_user as $user)
+                                        @foreach ($usertests as $usertest)
                                             <tr>
                                                 @if (auth()->user()->role == 'admin')
-                                                    <td><a href="/user/{{ $user->id }}/profile">{{ $user->name }}</a>
+                                                    <td><a
+                                                            href="/usertest/{{ $usertest->id }}">{{ $usertest->name }}</a>
                                                     </td>
-                                                    <td>{{ $user->email }}</td>
-                                                    <td>{{ $user->role }}</td>
+                                                    <td>{{ $usertest->email }}</td>
+                                                    <td>{{ $usertest->role }}</td>
                                                     <td>
-                                                        <img src="{{ $user->avatar() }}" height="75" />
+                                                        <img src="{{ $usertest->avatar() }}" height="75" />
                                                     </td>
                                                     <td>
-                                                        <a href="/user/{{ $user->id }}/edit"
-                                                            class="btn btn-warning btn-sm">Ubah
+                                                        <a class="btn btn-sm btn-info"
+                                                            href="{{ route('usertest.show', $usertest) }}">Show</a>
+                                                        <a class="btn btn-sm btn-warning"
+                                                            href="{{ route('usertest.edit', $usertest) }}">Edit</a>
                                                         </a>
-                                                        <!--a href="/user/{{ $user->id }}/delete" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau dihapus?')" >Hapus</a-->
-                                                        <button href="/user/{{ $user->id }}/delete" type="button"
-                                                            class="btn btn-danger btn-sm" data-toggle="modal"
-                                                            data-target="#modal-danger">
-                                                            Hapus
-                                                        </button>
+                                                        <form method="post"
+                                                            action="{{ route('usertest.destroy', $usertest->id) }}"
+                                                            style="display: inline-block;">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button class="btn btn-sm btn-danger"
+                                                                onclick="return confirm('Hapus Data?')">Delete</button>
+                                                        </form>
                                                     </td>
                                                 @endif
                                             </tr>
@@ -113,7 +125,8 @@
                                             </div>
                                             <div class="modal-body">
                                                 <!-- form isian data -->
-                                                <form action="/user/create" method="POST" enctype="multipart/form-data">
+                                                <form action="{{ route('usertest.store') }}" method="POST"
+                                                    enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     <div class="row">
                                                         <div class="col-sm-6">
@@ -209,8 +222,8 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-default"><a href="/test/{{ $user->id }}/delete"
-                            user-id="{{ $user->id }}">Hapus</a></button>
+                    <button type="button" class="btn btn-default"><a
+                            href="{{ route('usertest.destroy', $usertest) }}">Hapus</a></button>
                 </div>
             </div>
             <!-- /.modal-content -->

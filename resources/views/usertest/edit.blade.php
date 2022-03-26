@@ -1,7 +1,7 @@
 @extends('layouts.master4')
 
 @section('title')
-    <title> AdminLTE 3 | Data User </title>
+    <title> AdminLTE 3 | Data Usertes </title>
 @endsection
 
 @section('content')
@@ -11,12 +11,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Form Data User</h1>
+                        <h1>Form Data Usertest</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                            <li class="breadcrumb-item active">Form Data User</li>
+                            <li class="breadcrumb-item active">Form Data Usertest</li>
                         </ol>
                     </div>
                 </div>
@@ -37,17 +37,18 @@
                 @endif
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Data User</h3>
+                        <h3 class="card-title">Data Usertest</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="/user/{{ $user->id }}/update" method="POST" enctype="multipart/form-data" role="form">
-                        {{ csrf_field() }}
+                    <form action="{{ route('usertest.update', $usertest) }}" method="POST" enctype="multipart/form-data" role="form">
+                        @csrf
+                        @method('PUT')
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="formGroupExampleInput">Username</label>
+                                <label for="formGroupExampleInput">Name</label>
                                 <input name="name" type="text" class="form-control" id="formGroupExampleInput"
-                                    placeholder="" value="{{ $user->name }}" dissabled>
+                                    placeholder="" value="{{ $usertest->name }}" dissabled>
                             </div>
                             <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label for="formGroupExampleInput">Email</label>
@@ -100,7 +101,7 @@
 @stop
 @section('content1')
 
-    <h1>Edit Data user</h1>
+    <h1>Edit Data usertest</h1>
     @if (session('sukses'))
         <div class="alert alert-success" role="alert">
             {{ session('sukses') }}

@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,40 +13,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Http\Controllers\SiswaController;
+use App\Models\Siswa;
+use App\Http\Controllers\Str;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SklController;
 use App\Http\Controllers\TduController;
-use App\Http\Controllers\KurikulumController;
-use App\Http\Controllers\KesiswaanController;
-use App\Http\Controllers\WidgetController;
-use App\Http\Controllers\JurnalController;
-use App\Http\Controllers\GrafikController;
-use App\Http\Controllers\JadwalController;
-use App\Http\Controllers\KalenderController;
-use App\Http\Controllers\FullCalendarController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\FastEventController;
-use App\Http\Controllers\MailboxController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GuruController;
-use App\Http\Controllers\SklController;
-use App\Http\Controllers\KompetensiintiController;
-use App\Http\Controllers\VisiController;
 use App\Http\Controllers\MisiController;
-use App\Http\Controllers\TujuanController;
-use App\Http\Controllers\NilaiController;
-use App\Http\Controllers\SasaranController;
-use App\Http\Controllers\SwotController;
-use App\Http\Controllers\SwotanalysisController;
-use App\Http\Controllers\LangkahstrategisController;
-use App\Http\Controllers\KompetensidasarController;
-use App\Http\Controllers\DependentDropdownController;
-use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PpknController;
-use App\Http\Controllers\Str;
-use App\Models\User;
-use App\Models\Siswa;
+use App\Http\Controllers\SwotController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\VisiController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\NilaiController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\GrafikController;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\JurnalController;
+use App\Http\Controllers\TujuanController;
+use App\Http\Controllers\WidgetController;
+use App\Http\Controllers\MailboxController;
+use App\Http\Controllers\PostingController;
+use App\Http\Controllers\SasaranController;
+use App\Http\Controllers\KalenderController;
+use App\Http\Controllers\UsertestController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FastEventController;
+use App\Http\Controllers\KesiswaanController;
+use App\Http\Controllers\KurikulumController;
+use App\Http\Controllers\FullCalendarController;
+use App\Http\Controllers\SwotanalysisController;
+use App\Http\Controllers\KompetensiintiController;
+use App\Http\Controllers\KompetensidasarController;
+use App\Http\Controllers\LangkahstrategisController;
+use App\Http\Controllers\DependentDropdownController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -65,7 +67,8 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 {
 
 	Route::get('/dashboard',[DashboardController::class,'index']);
-
+    Route::resource('posting',PostingController::class);
+    Route::resource('usertest',UsertestController::class);
 	Route::get('/siswa',[SiswaController::class,'index']);
 	Route::post('/siswa/create',[SiswaController::class,'create']);
 	Route::get('/siswa/{siswa}/edit',[SiswaController::class,'edit']);
@@ -208,7 +211,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::post('/langkahstrategis/langkahstrategiscreate',[LangkahstrategisController::class,'langkahstrategiscreate']);
 	Route::get('/langkahstrategis/{langkahstrategis}/langkahstrategisdelete',[LangkahstrategisController::class,'langkahstrategisdelete']);
 	Route::get('/langkahstrategis/{langkahstrategis}/langkahstrategisedit',[LangkahstrategisController::class,'langkahstrategisedit']);
-	Route::post('/langkahstrategis/{langkahstrategis}/langkahstrategisupdate',[LangkahstrategisController::class,'langkahstrategisupdate']);	
+	Route::post('/langkahstrategis/{langkahstrategis}/langkahstrategisupdate',[LangkahstrategisController::class,'langkahstrategisupdate']);
 
 	Route::get('dependent-dropdown', 'DependentDropdownController@index')
     ->name('dependent-dropdown.index');
