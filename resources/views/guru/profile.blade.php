@@ -46,7 +46,7 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="{{$guru->getAvatar()}}"
+                       src="{{$guru->avatar()}}"
                        alt="User profile picture">
                 </div>
 
@@ -117,7 +117,7 @@
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active" href="#nilai" data-toggle="tab">Mapel Guru</a></li>
-                  
+
                   <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Activity</a></li>
                   <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
                   <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
@@ -173,7 +173,7 @@
                       <!-- /.card-body -->
                     </div>
                   </div>
-                  <!-- /.tab-pane --> 
+                  <!-- /.tab-pane -->
 
                   <div class="tab-pane" id="activity">
                     <!-- Post -->
@@ -431,7 +431,7 @@
                         </div>
                       </div>
                     </form>
-                  </div>                 
+                  </div>
                 </div>
                 <!-- /.tab-content -->
               </div><!-- /.card-body -->
