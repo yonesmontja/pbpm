@@ -54,7 +54,23 @@ class User extends Authenticatable
         {
             return asset('images/default.jpg');
         }
-        return asset('images/'.$this->avatar);
+        return asset('storage/images/'.$this->avatar);
+    }
+    function avatar($real_size = false)
+    {
+        $thumbnail = $real_size ? '' : 'small_';
+
+        if ($this->avatar && file_exists(public_path('users/posting/' . $thumbnail . $this->avatar)))
+            return asset('users/posting/' . $thumbnail  . $this->avatar);
+        else
+            return asset('users/no_image.png');
+    }
+    function delete_avatar()
+    {
+        if ($this->avatar && file_exists(public_path('users/posting/' . $this->avatar)))
+            unlink(public_path('users/posting/' . $this->avatar));
+        if ($this->avatar && file_exists(public_path('users/posting/small_' . $this->avatar)))
+            unlink(public_path('users/posting/small_' . $this->avatar));
     }
     public function siswa()
     {
