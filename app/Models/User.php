@@ -60,17 +60,17 @@ class User extends Authenticatable
     {
         $thumbnail = $real_size ? '' : 'small_';
 
-        if ($this->avatar && file_exists(public_path('users/posting/' . $thumbnail . $this->avatar)))
-            return asset('users/posting/' . $thumbnail  . $this->avatar);
+        if ($this->avatar && file_exists(public_path('images/' . $thumbnail . $this->avatar)))
+            return asset('images/' . $thumbnail  . $this->avatar);
         else
-            return asset('users/no_image.png');
+            return asset('no_avatar.png');
     }
     function delete_avatar()
     {
-        if ($this->avatar && file_exists(public_path('users/posting/' . $this->avatar)))
-            unlink(public_path('users/posting/' . $this->avatar));
-        if ($this->avatar && file_exists(public_path('users/posting/small_' . $this->avatar)))
-            unlink(public_path('users/posting/small_' . $this->avatar));
+        if ($this->avatar && file_exists(public_path('images/' . $this->avatar)))
+            unlink(public_path('images/' . $this->avatar));
+        if ($this->avatar && file_exists(public_path('images/small_' . $this->avatar)))
+            unlink(public_path('images/small_' . $this->avatar));
     }
     public function siswa()
     {
