@@ -49,7 +49,7 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="{{$siswa->getAvatar()}}"
+                       src="{{$siswa->avatar()}}"
                        alt="User profile picture">
                 </div>
 
@@ -106,9 +106,9 @@
                 <strong><i class="fas fa-pencil-alt mr-1"></i> Nilai rata-rata</strong>
 
                 <p class="text-muted">
-                  
+
                   <span class="tag tag-danger">{{ $average }}</span>
-                  
+
                 </p>
 
                 <hr>
@@ -116,7 +116,7 @@
                 <strong><i class="far fa-file-alt mr-1"></i> Mapel</strong>
 
                 <p class="text-muted">@foreach ($matpel as $m) {{ $m }} @endforeach</p>
-                
+
               </div>
               <!-- /.card-body -->
             </div>
@@ -185,9 +185,9 @@
                               <td>{{$mapel->kode}}</td>
                               <td>{{$mapel->nama_mapel}}</td>
                               <td>{{$mapel->semester}}</td>
-                              
+
                               <td>{{ $mapel->pivot->penilaian }}</td>
-                              
+
                               <td>
                                 <div class="progress progress-xs">
                                   <div class="progress-bar progress-bar-danger" style="width: {{$mapel->pivot->nilai}}%"></div>
@@ -212,7 +212,7 @@
                       <!-- /.card-body -->
                     </div>
                   </div>
-                  <!-- /.tab-pane --> 
+                  <!-- /.tab-pane -->
                   <div class="tab-pane" id="grafiknilai">
                     <div class="card">
                       <div class="card-header">
@@ -255,7 +255,7 @@
                           <div class="card-body">
                             <div class="chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
                             <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 757px;" width="757" height="250" class="chartjs-render-monitor"></canvas>
-                            
+
                           </div>
                         </div>
                         <!-- /.card-body -->
@@ -520,7 +520,7 @@
                         </div>
                       </div>
                     </form>
-                  </div>                 
+                  </div>
                 </div>
                 <!-- /.tab-content -->
               </div><!-- /.card-body -->
@@ -578,7 +578,7 @@
       </div>
     </div>
   </div>
-</div> 
+</div>
 @endsection
 
 @section('footer')
@@ -635,8 +635,8 @@
     var barChartCanvas = $('#barChart').get(0).getContext('2d')
     var barChartData = jQuery.extend(true, {}, areaChartData)
     var temp0 = areaChartData.datasets[0]
-    
-    
+
+
     barChartData.datasets[0] = temp0
 
     var barChartOptions = {
@@ -646,7 +646,7 @@
     }
 
     var barChart = new Chart(barChartCanvas, {
-      type: 'bar', 
+      type: 'bar',
       data: barChartData,
       options: barChartOptions
     })

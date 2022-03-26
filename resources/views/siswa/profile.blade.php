@@ -28,7 +28,7 @@
 						<div class="profile-header">
 							<div class="overlay"></div>
 							<div class="profile-main">
-								<img src="{{$siswa->getAvatar()}}" class="img-circle" alt="Avatar">
+								<img src="{{$siswa->avatar()}}" class="img-circle" alt="Avatar">
 								<h3 class="name">{{$siswa->nama_depan}} {{$siswa->nama_belakang}}</h3>
 								<span class="online-status status-available">Available</span>
 							</div>
@@ -54,7 +54,7 @@
 								<ul class="list-unstyled list-justify">
 									<li>Jenis Kelamin <span> @if($siswa->jenis_kelamin == 'L') Laki-laki @endif @if($siswa->jenis_kelamin == 'P') Perempuan @endif </span></li>
 									<li>Agama <span>{{$siswa->agama}}</span></li>
-									<li>Alamat <span>{{$siswa->alamat}}</span></li>										
+									<li>Alamat <span>{{$siswa->alamat}}</span></li>
 								</ul>
 							</div>
 							<div class="text-center"><a href="/siswa/{{$siswa->id}}/edit" class="btn btn-warning">Edit Profile</a></div>
@@ -316,7 +316,7 @@
 	 },
 	 title: {
 	  text: "PEROLEHAN NILAI SISWA"
-	 }, 
+	 },
 	 subtitle: {
 	  text: 'TAHUN 2019 - 2020'
 	 },
@@ -346,7 +346,7 @@
 	 series: [{
 	 	name: 'Nilai',
 	 	data: {!!json_encode($data)!!}
-	 }] 
+	 }]
 	});
 
 	$(document).ready(function() {

@@ -81,7 +81,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::post('/test/testcreate',[SiswaController::class,'testcreate']);
 	Route::get('/test/{siswa}/edit',[SiswaController::class,'testedit']);
 	Route::post('/test/{siswa}/update',[SiswaController::class,'testupdate']);
-	Route::get('/test/{siswa}/delete',[SiswaController::class,'testdelete']);
+	Route::get('/test/{siswa}/{user_id}/delete',[SiswaController::class,'testdelete']);
 	Route::get('/test/{siswa}/profile',[SiswaController::class,'testprofile']);
 	Route::post('/test/{siswa}/addnilai',[SiswaController::class,'testaddnilai']);
 	Route::get('/test/{siswa}/{idmapel}/testdeletenilai',[SiswaController::class,'testdeletenilai']);
