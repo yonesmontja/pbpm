@@ -73,10 +73,10 @@ class UserController extends Controller
         $avatar = $request->file('avatar');
         $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
         $img = Image::make($avatar->path());
-        $img->resize('180', '120')
-            ->save(public_path('users/posting') . '/small_' . $file_name);
+        $img->resize('120', '120')
+            ->save(public_path('/images') . '/small_' . $file_name);
 
-        $avatar->move('users/posting', $file_name);
+        $avatar->move('/images', $file_name);
         //insert ke tabel Users
         $user = new User();
         $user -> role = $request -> role;
@@ -112,8 +112,8 @@ class UserController extends Controller
             $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
             $img = Image::make($avatar->path());
             $img->resize('120', '120')
-                ->save(public_path('users/posting') . '/small_' . $file_name);
-            $avatar->move('users/posting', $file_name);
+                ->save(public_path('/images') . '/small_' . $file_name);
+            $avatar->move('/images', $file_name);
             $user->avatar = $file_name;
         }
         $user->name = $request->name;
