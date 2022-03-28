@@ -18,9 +18,13 @@ class TahunpelController extends Controller
     {
         //
         $data['title'] = 'Tahun pelajaran';
-        $data['q'] = $request->query('q');
         //dd($data['q']);
-        $data['tahunpel'] = Tahunpel::where('thn_pel', 'like', '%' . $data['q'] . '%')->get();
+
+        $data['tahunpel'] = Tahunpel::all();
+        $data['tp'] = Tahunpel::find(1);
+        $data['tp1'] =  Tahunpel::find(1)->thn_pel;
+        //$data['tp'] = Tahunpel::where(id,thn_pel)->get();
+        //dd($data);
         return view('tahunpel.index', $data);
     }
 
