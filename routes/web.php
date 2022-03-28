@@ -50,6 +50,7 @@ use App\Http\Controllers\KompetensiintiController;
 use App\Http\Controllers\KompetensidasarController;
 use App\Http\Controllers\LangkahstrategisController;
 use App\Http\Controllers\DependentDropdownController;
+use App\Http\Controllers\TahunpelController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -71,6 +72,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
     Route::resource('posting',PostingController::class);
     Route::resource('usertest',UsertestController::class);
     Route::resource('mapel',MapelController::class);
+    Route::resource('tahunpel',TahunpelController::class);
 	Route::get('/siswa',[SiswaController::class,'index']);
 	Route::post('/siswa/create',[SiswaController::class,'create']);
 	Route::get('/siswa/{siswa}/edit',[SiswaController::class,'edit']);
