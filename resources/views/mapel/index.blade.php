@@ -39,11 +39,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Tahun Pelajaran 2020/2021</h3>
                             </div>
-
-                            <div class="col">
-                                <button class="btn btn-success">Refresh</button>
-                            </div>
-                            <div class="col-12">
+                            <div class="card-header">
                                 <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal"
                                     data-target="#staticBackdrop">
                                     Tambah Data Mapel
@@ -64,10 +60,9 @@
                                             <th>MAPEL</th>
                                             <th>SEMESTER</th>
                                             <th>KELOMPOK</th>
-                                            <th>SUB-MAPEL</th>
                                             <th>GURU</th>
                                             <th>DESKRIPSI</th>
-                                            <th>KI 1-2?</th>
+                                            <th></th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -77,14 +72,14 @@
                                                 @if (auth()->user()->role == 'admin')
                                                     <td><a href="/mapel/{{ $mapel->id }}">{{ $mapel->kode }}</a>
                                                     </td>
-                                                    <td>{{ $mapel->kode }}</td>
                                                     <td>{{ $mapel->nama_mapel }}</td>
                                                     <td>{{ $mapel->semester }}</td>
                                                     <td>{{ $mapel->kelompok }}</td>
-                                                    <td>{{ $mapel->tambahan_sub }}</td>
-                                                    <td>{{ $mapel->guru_id }}</td>
+                                                    <td>{{ $mapel->guru->nama_guru }}</td>
                                                     <td>{{ $mapel->kd_singkat }}</td>
-                                                    <td>{{ $mapel->is_sikap }}</td>
+                                                    <td>
+                                                        <img src="{{ $mapel->avatar() }}" height="75" />
+                                                    </td>
                                                     <td>
                                                         <a class="btn btn-sm btn-info"
                                                             href="{{ route('mapel.show', $mapel) }}">Show</a>
@@ -110,10 +105,9 @@
                                             <th>MAPEL</th>
                                             <th>SEMESTER</th>
                                             <th>KELOMPOK</th>
-                                            <th>SUB-MAPEL</th>
                                             <th>GURU</th>
                                             <th>DESKRIPSI</th>
-                                            <th>KI 1-2?</th>
+                                            <th></th>
                                             <th></th>
                                         </tr>
                                     </tfoot>
@@ -150,8 +144,6 @@
                                                                 @endif
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
                                                         <div class="col-sm-6">
                                                             <div
                                                                 class="form-group {{ $errors->has('nama_mapel') ? ' has-error' : '' }}">
@@ -166,6 +158,8 @@
                                                                 @endif
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    <div class="row">
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlInput1">Semester</label>
@@ -173,37 +167,8 @@
                                                                     id="exampleFormControlInput3" placeholder="Semester">
                                                             </div>
                                                         </div>
-                                                        <div
-                                                            class="form-group {{ $errors->has('kelompok') ? ' has-error' : '' }}">
-                                                            <label for="exampleFormControlSelect1">Kelompok</label>
-                                                            <select name="kelompok" class="form-control"
-                                                                id="exampleFormControlSelect1">
-                                                                <option>pilih kelompok mapel</option>
-                                                                <option value="A"
-                                                                    {{ old('kelompok') == 'A' ? ' selected' : '' }}>
-                                                                    Kelompok A</option>
-                                                                <option value="B"
-                                                                    {{ old('kelompok') == 'B' ? ' selected' : '' }}>
-                                                                    Kelompok B</option>
-                                                            </select>
-                                                            @if ($errors->has('kelompok'))
-                                                                <span
-                                                                    class="help-block">{{ $errors->first('kelompok') }}</span>
-                                                            @endif
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleFormControlSelect1">Sub-mapel</label>
-                                                            <select name="tambahan_sub" class="form-control"
-                                                                id="exampleFormControlSelect2">
-                                                                <option>---</option>
-                                                                <option>KEIMANAN</option>
-                                                                <option>NO</option>
-                                                                <option>MULOK</option>
-                                                                <option>KATOLIK</option>
-                                                                <option>PROTESTAN</option>
-                                                                <option>ISLAM</option>
-                                                            </select>
-                                                        </div>
+
+
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlInput1">Deskripsi</label>
@@ -211,40 +176,82 @@
                                                                     id="exampleFormControlInput3" placeholder="Deskripsi">
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <label for="guru_id"
-                                                                class="col-md-4 col-form-label">Guru</label>
-
-                                                            <div class="col-md-6">
-                                                                <select name="guru_id" id="guru_id"
-                                                                    class="form-control">
-                                                                    <option value="">== Pilih Guru ==</option>
-                                                                    @foreach ($gurus as $id => $nama_guru)
-                                                                        <option value="{{ $id }}">
-                                                                            {{ $nama_guru }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleFormControlSelect1">Sub-mapel</label>
+                                                        <select name="tambahan_sub" class="form-control"
+                                                            id="exampleFormControlSelect2">
+                                                            <option>---</option>
+                                                            <option>KEIMANAN</option>
+                                                            <option>NO</option>
+                                                            <option>MULOK</option>
+                                                            <option>KATOLIK</option>
+                                                            <option>PROTESTAN</option>
+                                                            <option>ISLAM</option>
+                                                        </select>
+                                                    </div>
+                                                    <div
+                                                        class="form-group {{ $errors->has('kelompok') ? ' has-error' : '' }}">
+                                                        <label for="exampleFormControlSelect1">Kelompok</label>
+                                                        <select name="kelompok" class="form-control"
+                                                            id="exampleFormControlSelect1">
+                                                            <option>pilih kelompok mapel</option>
+                                                            <option value="A"
+                                                                {{ old('kelompok') == 'A' ? ' selected' : '' }}>
+                                                                Kelompok A</option>
+                                                            <option value="B"
+                                                                {{ old('kelompok') == 'B' ? ' selected' : '' }}>
+                                                                Kelompok B</option>
+                                                        </select>
+                                                        @if ($errors->has('kelompok'))
+                                                            <span
+                                                                class="help-block">{{ $errors->first('kelompok') }}</span>
+                                                        @endif
+                                                    </div>
+                                                    <div
+                                                        class="form-group {{ $errors->has('guru_id') ? ' has-error' : '' }}">
+                                                        <label for="guru_id">Guru</label>
+                                                        <div class="col-md-6">
+                                                            <select name="guru_id" id="guru_id" class="form-control">
+                                                                <option value="">== Pilih Guru ==</option>
+                                                                @foreach ($gurus as $guru)
+                                                                    <option value="{{ $guru->id }}">
+                                                                        {{ $guru->nama_guru }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div
                                                         class="form-group {{ $errors->has('is_sikap') ? ' has-error' : '' }}">
                                                         <label for="exampleFormControlSelect1">KI 1 2?</label>
-                                                        <select name="is_sikap" class="form-control"
-                                                            id="exampleFormControlSelect1">
-                                                            <option>---</option>
-                                                            <option value="0"
-                                                                {{ old('is_sikap') == '1' ? ' selected' : '' }}>Tidak
-                                                            </option>
-                                                            <option value="1"
-                                                                {{ old('is_sikap') == '0' ? ' selected' : '' }}>Ya
-                                                            </option>
-                                                        </select>
-                                                        @if ($errors->has('is_sikap'))
-                                                            <span
-                                                                class="help-block">{{ $errors->first('is_sikap') }}</span>
-                                                        @endif
+                                                        <div class="col-md-6">
+                                                            <select name="is_sikap" class="form-control"
+                                                                id="exampleFormControlSelect1">
+                                                                <option>---</option>
+                                                                <option value="0"
+                                                                    {{ old('is_sikap') == '1' ? ' selected' : '' }}>Tidak
+                                                                </option>
+                                                                <option value="1"
+                                                                    {{ old('is_sikap') == '0' ? ' selected' : '' }}>Ya
+                                                                </option>
+                                                            </select>
+                                                            @if ($errors->has('is_sikap'))
+                                                                <span
+                                                                    class="help-block">{{ $errors->first('is_sikap') }}</span>
+                                                            @endif
+                                                        </div>
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label>Avatar <span class="text-danger">*</span></label>
+                                                        <div class="mb-3">
+
+                                                            <input class="form-control" type="file" name="avatar" />
+                                                        </div>
+                                                    </div>
+                                                    @if ($errors->has('avatar'))
+                                                        <span
+                                                            class="help-block">{{ $errors->first('avatar') }}</span>
+                                                    @endif
                                                     <!-- akhir form isian data -->
                                             </div>
                                             <div class="modal-footer">
@@ -262,7 +269,7 @@
                             <!-- /.card -->
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                SMP Persiapan Negeri 3 Agats
+                                SD Inpres Dabolding
                             </div>
                             <!-- /.card-footer-->
                         </div>

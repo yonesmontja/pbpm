@@ -21,7 +21,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b> SMP Negeri 3 Agats</a>
+    <a href="../../index2.html"><b>Admin</b> SD Inpres Dabolding</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">

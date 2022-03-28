@@ -53,7 +53,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                
+
                 @if(session('sukses'))
                 <div class="alert alert-success" role="alert">
                   Data <a href="#" class="alert-link">KD</a> {{session('sukses')}}
@@ -75,7 +75,7 @@
                     <tbody>
                 	@foreach($data_ki as $kid)
                 	@foreach($kid ->kompetensidasar as $kad)
-                	
+
                 	<tr>
                 		<td>{{$kid -> ki_domain}}</td>
                 		<td>{{$kid -> ki_deskripsi}}</td>
@@ -86,11 +86,11 @@
                 		<td>
                 			<a href="/kompetensidasar/{{$kad->id}}/kompetensidasaredit" class="btn btn-warning btn-sm">Ubah
                 			</a>
-                			
+
                 			<a href="/kompetensidasar/{{$kad->id}}/kompetensidasardelete" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau dihapus?')" >Hapus</a>
                 		</td>
                 	</tr>
-                	
+
                 	@endforeach
                 	@endforeach
                     </tbody>
@@ -178,13 +178,13 @@
                     </div>
                   </div>
                 </div>
-                <!-- End Modal -->  
+                <!-- End Modal -->
               <!-- /.card-body -->
               </div>
             <!-- /.card -->
               <!-- /.card-body -->
               <div class="card-footer">
-                SMP Persiapan Negeri 3 Agats
+                SD Inpres Dabolding
               </div>
               <!-- /.card-footer-->
           </div>

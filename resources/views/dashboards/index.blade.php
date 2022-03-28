@@ -38,7 +38,6 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <h3>{{totalSiswa()}}</h3>
-
                 <p>Jumlah Siswa</p>
               </div>
               <div class="icon">
@@ -52,14 +51,13 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>{{totalStrategis()}}<sup style="font-size: 20px">%</sup></h3>
-
-                <p>Langkah strategis</p>
+                <h3>{{totalMapel()}}</h3>
+                <p>Jumlah Mapel</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="/langkahstrategis" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/mapel" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

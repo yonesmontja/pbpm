@@ -37,7 +37,7 @@
         {{-- notifikasi sukses --}}
         @if ($sukses = Session::get('sukses'))
         <div class="alert alert-success alert-block">
-          <button type="button" class="close" data-dismiss="alert">×</button> 
+          <button type="button" class="close" data-dismiss="alert">×</button>
           <strong>{{ $sukses }}</strong>
         </div>
         @endif
@@ -121,17 +121,17 @@
                     <tbody>
                       @php $no = 1; @endphp
                     @foreach($ppkn as $p)
-                    
+
                       <tr>
                         <td>
                           {{ $no }}
                         </td>
-                        
+
                         <td>
                           <a href="/test/{{$p->siswa->id}}/profile">{{$p->siswa['nama_depan']}} {{$p->siswa['nama_belakang']}}
                           </a>
                         </td>
-                        
+
                         <td>
                           {{ $p ->nis}}
                         </td>
@@ -165,7 +165,7 @@
                       </tr>
                       @php $no++; @endphp
                       @endforeach
-                      
+
                     </tbody>
                     <tfoot>
                       <tr>
@@ -189,7 +189,7 @@
             <!-- /.card -->
               <!-- /.card-body -->
               <div class="card-footer">
-                SMP Persiapan Negeri 3 Agats
+                SD Inpres Dabolding
               </div>
               <!-- /.card-footer-->
           </div>
@@ -225,4 +225,3 @@
 </div>
 <!-- /.modal -->
 @endsection
-                          

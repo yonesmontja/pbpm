@@ -5,7 +5,7 @@ return [
 	'logo_url' => '/images/logo.png',
 	'image_banner_url' => '/images/banner-bg.jpg',
 
-	'title' => 'SMP PERSIAPAN NEGERI 3 AGATS',
+	'title' => 'SD INPRES DABOLDING',
 	'welcome_message' => 'Selamat datang di website SMPN3 Agats',
 	'sub_welcome_message' => 'Sekolah dengan Kurikulum Kontekstual Papua',
 	'welcome_message_button_text' => 'Jelajahi',

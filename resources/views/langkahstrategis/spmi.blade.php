@@ -202,13 +202,13 @@
 									</div>
 								</div>
 							</div>
-							<!-- End Modal -->  
+							<!-- End Modal -->
 							<!-- /.card-body -->
 						</div>
 						<!-- /.card -->
 						<!-- /.card-body -->
 						<div class="card-footer">
-							SMP Persiapan Negeri 3 Agats
+							SD Inpres Dabolding
 						</div>
 						<!-- /.card-footer-->
 					</div>

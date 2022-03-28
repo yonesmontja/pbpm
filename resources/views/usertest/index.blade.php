@@ -195,7 +195,7 @@
                             <!-- /.card -->
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                SMP Persiapan Negeri 3 Agats
+                                SD Inpres Dabolding
                             </div>
                             <!-- /.card-footer-->
                         </div>

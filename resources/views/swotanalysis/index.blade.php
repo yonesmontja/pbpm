@@ -46,7 +46,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                
+
                 @if(session('sukses'))
                 <div class="alert alert-success" role="alert">
                   Data <a href="#" class="alert-link">SWOT Analysis</a> {{session('sukses')}}
@@ -169,13 +169,13 @@
                     </div>
                   </div>
                 </div>
-                <!-- End Modal -->  
+                <!-- End Modal -->
               <!-- /.card-body -->
               </div>
             <!-- /.card -->
               <!-- /.card-body -->
               <div class="card-footer">
-                SMP Persiapan Negeri 3 Agats
+                SD Inpres Dabolding
               </div>
               <!-- /.card-footer-->
           </div>
@@ -190,4 +190,3 @@
 <!-- /.content-wrapper -->
 @endsection
 
-                          
