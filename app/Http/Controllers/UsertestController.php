@@ -53,7 +53,7 @@ class UsertestController extends Controller
         $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
 
         $img = Image::make($avatar->path());
-        $img->resize('180', '120')
+        $img->resize('120', '120')
             ->save(public_path('avatars/posting') . '/small_' . $file_name);
 
         $avatar->move('avatars/posting', $file_name);
