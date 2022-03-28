@@ -3,6 +3,7 @@ use App\Models\Guru;
 use App\Models\Mapel;
 use App\Models\Siswa;
 use App\Models\Journal;
+use App\Models\Tahunpel;
 use App\Models\Kompetensiinti;
 use App\Models\Langkahstrategis;
 
@@ -30,6 +31,11 @@ function totalOAP()
 	$siswaOAP = Siswa::where('siswaOAP','like','%OAP%')->count();
 	return $siswaOAP;
 
+}
+function thnPel()
+{
+    $tp = Tahunpel::first()->thn_pel;
+    return $tp;
 }
 function totalAgats()
 {
