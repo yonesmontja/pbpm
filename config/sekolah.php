@@ -6,7 +6,7 @@ return [
 	'image_banner_url' => '/images/banner-bg.jpg',
 
 	'title' => 'SD INPRES DABOLDING',
-	'welcome_message' => 'Selamat datang di website SMPN3 Agats',
+	'welcome_message' => 'Selamat datang di website SD Inpres Dabolding',
 	'sub_welcome_message' => 'Sekolah dengan Kurikulum Kontekstual Papua',
 	'welcome_message_button_text' => 'Jelajahi',
 	'welcome_message_button_url' => '/jelajahi',
