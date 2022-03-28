@@ -86,6 +86,9 @@ class TahunpelController extends Controller
     public function edit(Tahunpel $tahunpel)
     {
         //
+        $data['title'] = 'Edit Tahun Pelajaran';
+        $data['tahunpel'] = $tahunpel;
+        return view('tahunpel.edit', $data);
     }
 
     /**
@@ -98,6 +101,20 @@ class TahunpelController extends Controller
     public function update(Request $request, Tahunpel $tahunpel)
     {
         //
+        $request->validate([
+            'thn_pel' => 'required',
+        ]);
+        //$usertest ->update($request->all());
+        $tahunpel->thn_pel = $request->thn_pel;
+        $tahunpel->semester = $request->semester;
+        $tahunpel->tahun = $request->tahun;
+        $tahunpel->aktif = $request->aktif;
+        $tahunpel->nama_kepsek = $request->nama_kepsek;
+        $tahunpel->kode_kepsek = $request->kode_kepsek;
+        $tahunpel->tgl_raport = $request->tgl_raport;
+        $tahunpel->tgl_raport_kelas3 = $request->tgl_raport_kelas3;
+        $tahunpel->save();
+        return redirect()->route('tahunpel.index')->with('success', 'Tahun pelajaran edited successfully');
     }
 
     /**
@@ -109,5 +126,8 @@ class TahunpelController extends Controller
     public function destroy(Tahunpel $tahunpel)
     {
         //
+        //$tahunpel->delete_avatar();
+        $tahunpel->delete();
+        return redirect()->route('tahunpel.index')->with('success', 'TP deleted successfully');
     }
 }
