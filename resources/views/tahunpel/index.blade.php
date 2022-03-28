@@ -37,13 +37,13 @@
                         <!-- /.card -->
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Tahun Pelajaran 2020/2021</h3>
+                                <h3 class="card-title">Tahun Pelajaran {{ $tp1 }}</h3>
                             </div>
 
-                            <div class="col-12">
+                            <div class="card-header">
                                 <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal"
                                     data-target="#staticBackdrop">
-                                    Tambah Data user
+                                    Tambah Data Tahun Pelajaran
                                 </button>
                             </div>
                             <!-- /.card-header -->
@@ -77,7 +77,7 @@
                                                     </td>
                                                     <td>{{ $tahunpel->semester }}</td>
                                                     <td>{{ $tahunpel->tahun }}</td>
-                                                    <td>{{ $tahunpel->aktif }}</td>
+                                                    <td>{{ $tahunpel->aktif == 'Y' ? 'Aktif' : 'Nonaktif' }}</td>
                                                     <td>{{ $tahunpel->nama_kepsek }}</td>
                                                     <td>{{ $tahunpel->kode_kepsek }}</td>
                                                     <td>{{ $tahunpel->tgl_raport }}</td>
