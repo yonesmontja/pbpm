@@ -37,7 +37,7 @@
             <!-- /.card -->
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Tahun Pelajaran 2020/2021</h3>
+                <h3 class="card-title">Tahun Pelajaran <a href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
               </div>
               <div class="col-12">
                 <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal" data-target="#staticBackdrop">

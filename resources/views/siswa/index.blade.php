@@ -51,7 +51,7 @@
                                 @endif
                                 <div class="row">
                                     <div class="col-6">
-                                        <h5>Tahun Pelajaran 2020/2021</h5>
+                                        <h5>Tahun Pelajaran <a href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h5>
                                     </div>
                                     <div class="col-6">
                                         <!-- Button trigger modal -->

@@ -134,7 +134,7 @@
                             <h3 class="card-title">Mapel Guru</h3>
                           </div>
                           <div class="col-md-2 float-right">
-                            <h3 class="card-title">TA 2020/2021</h3>
+                            <h3 class="card-title">TA <a href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
                           </div>
                           <div class="col-md-4">
                             <div class="card-tools">
