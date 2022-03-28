@@ -1,9 +1,10 @@
 <?php
-use App\Models\Siswa;
 use App\Models\Guru;
+use App\Models\Mapel;
+use App\Models\Siswa;
 use App\Models\Journal;
-use App\Models\Langkahstrategis;
 use App\Models\Kompetensiinti;
+use App\Models\Langkahstrategis;
 
 function rangking5Besar()
 {
@@ -20,11 +21,15 @@ function totalSiswa()
 {
 	return Siswa::count();
 }
+function totalMapel()
+{
+	return Mapel::count();
+}
 function totalOAP()
 {
 	$siswaOAP = Siswa::where('siswaOAP','like','%OAP%')->count();
 	return $siswaOAP;
-	
+
 }
 function totalAgats()
 {
