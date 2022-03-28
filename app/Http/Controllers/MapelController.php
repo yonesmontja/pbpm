@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Guru;
 use App\Models\Mapel;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class MapelController extends Controller
 {
@@ -16,7 +17,7 @@ class MapelController extends Controller
     public function index(Request $request)
     {
         //
-        $data['gurus'] = Guru::pluck('nama_guru','id');
+        $data['gurus'] = Guru::all();
         $data['title'] = 'Mapel';
         $data['q'] = $request->query('q');
         //dd($data['q']);
@@ -32,7 +33,7 @@ class MapelController extends Controller
     public function create()
     {
         //
-        $data['gurus'] = Guru::pluck('nama_guru','id');
+        $data['gurus'] = Guru::all();
         $data['title'] = 'Add Mapel';
         return view('mapel.create', $data);
     }
@@ -50,8 +51,15 @@ class MapelController extends Controller
             'nama_mapel' => 'required',
             'kode' => 'required',
         ]);
+        $avatar = $request->file('avatar');
+        $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
 
-        //insert ke tabel Users
+        $img = Image::make($avatar->path());
+        $img->resize('120', '120')
+            ->save(public_path('/images') . '/small_' . $file_name);
+
+        $avatar->move('/images', $file_name);
+        //insert ke tabel Mapel
         $mapel = new Mapel();
         $mapel -> kode = $request -> kode;
         $mapel -> nama_mapel = $request->nama_mapel;
@@ -60,6 +68,8 @@ class MapelController extends Controller
         $mapel -> is_sikap = $request -> is_sikap;
         $mapel -> tambahan_sub = $request -> tambahan_sub;
         $mapel -> kd_singkat = $request -> kd_singkat;
+        $mapel -> guru_id = $request -> guru_id;
+        $mapel -> avatar = $file_name;
         $mapel->save();
         return redirect()->route('mapel.index')->with('success', 'Mapel added successfully');
     }
@@ -70,9 +80,12 @@ class MapelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Mapel $mapel)
     {
         //
+        $data['title'] = $mapel->nama_mapel;
+        $data['mapel'] = $mapel;
+        return view('mapel.show', $data);
     }
 
     /**
@@ -81,9 +94,13 @@ class MapelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Mapel $mapel)
     {
         //
+        $data['gurus'] = Guru::all();
+        $data['title'] = 'Edit Mapel';
+        $data['mapel'] = $mapel;
+        return view('mapel.edit', $data);
     }
 
     /**
@@ -93,9 +110,33 @@ class MapelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Mapel $mapel)
     {
         //
+        $request->validate([
+            'nama_mapel' => 'required',
+        ]);
+        //$usertest ->update($request->all());
+        if ($request->hasFile('avatar')) {
+            $mapel->delete_avatar();
+            $avatar = $request->file('avatar');
+            $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
+            $img = Image::make($avatar->path());
+            $img->resize('120', '120')
+                ->save(public_path('/images') . '/small_' . $file_name);
+            $avatar->move('/images', $file_name);
+            $mapel->avatar = $file_name;
+        }
+        $mapel->nama_mapel = $request->nama_mapel;
+        $mapel->kode = $request->kode;
+        $mapel->semester = $request->semester;
+        $mapel->is_sikap = $request->is_sikap;
+        $mapel->tambahan_sub = $request->tambahan_sub;
+        $mapel->guru_id = $request->guru_id;
+        $mapel->kd_singkat = $request->kd_singkat;
+        $mapel->kelompok = $request->kelompok;
+        $mapel->save();
+        return redirect()->route('mapel.index')->with('success', 'Mapel edited successfully');
     }
 
     /**
@@ -104,8 +145,11 @@ class MapelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Mapel $mapel)
     {
         //
+        $mapel->delete_avatar();
+        $mapel->delete();
+        return redirect()->route('mapel.index')->with('success', 'Mapel deleted successfully');
     }
 }
