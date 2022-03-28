@@ -10,8 +10,8 @@ class Mapel extends Model
     use HasFactory;
 
     protected $table = 'mapel';
-    protected $fillable = ['kode','nama_mapel','semester','kelompok','tambahan_sub','kd_singkat','is_sikap'];
-    
+    protected $fillable = ['kode','nama_mapel','semester','kelompok','guru_id','tambahan_sub','kd_singkat','is_sikap'];
+
     public function siswa()
     {
         return $this -> belongsToMany(Siswa::class)->withPivot(['nilai']);

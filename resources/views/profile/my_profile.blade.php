@@ -48,7 +48,7 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="{{$user->getuserAvatar()}}"
+                       src="{{$user->avatar()}}"
                        alt="User profile picture">
                 </div>
 
@@ -129,7 +129,7 @@
                 <div class="tab-content">
                   <!-- /.tab-pane -->
 
-                  <!-- /.tab-pane --> 
+                  <!-- /.tab-pane -->
 
                   <div class="tab-pane" id="activity">
                     <!-- Post -->
@@ -387,7 +387,7 @@
                         </div>
                       </div>
                     </form>
-                  </div>                 
+                  </div>
                 </div>
                 <!-- /.tab-content -->
               </div><!-- /.card-body -->

@@ -121,4 +121,10 @@ class UserController extends Controller
         $user->save();
         return redirect('/user')->with('sukses','berhasil diupdate!');
     }
+    public function userdelete(User $user)
+    {
+        $user ->delete_avatar();
+        $user ->delete();
+        return redirect('/user')->with('sukses','berhasil dihapus!');
+    }
 }

@@ -44,7 +44,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="/siswa" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/test" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -122,11 +122,11 @@
                   <!-- Morris chart - Sales -->
                   <div class="chart tab-pane active" id="revenue-chart"
                        style="position: relative; height: 300px;">
-                      <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>                         
+                      <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
                    </div>
                   <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                    <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>                         
-                  </div>  
+                    <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
+                  </div>
                 </div>
               </div><!-- /.card-body -->
             </div>
@@ -661,7 +661,7 @@
                       </desc>
                       <path class="fil14 str14" d="M327 79c24,-15 99,-25 131,0 32,25 184,34 192,46 7,10 221,54 224,55 39,6 8,-8 18,39 11,52 -12,37 6,67 14,23 -20,39 -5,41 2,0 17,85 20,99 16,78 -3,65 -17,139 -5,26 -52,178 -33,190 6,4 11,61 -35,63 -39,2 36,56 -54,21 -1,-1 -115,-18 -131,-24 -50,-21 -166,-55 -220,-41 -36,9 -81,-15 -112,-19 -27,-3 -32,23 -37,31 -4,5 0,-4 1,22 0,5 -14,6 -14,10 -8,65 -105,-6 -145,-9 -5,-1 -81,-61 60,-55 2,0 31,-24 -13,-43 -6,-2 -7,-49 37,-46 20,1 26,-84 -42,-28 -11,9 -36,-23 10,-30 26,-3 -3,-33 8,-86 2,-13 -33,-33 42,-87 72,-51 34,-31 66,-97 8,-16 49,-95 38,-98 -16,-63 16,-14 -16,-76 -4,-6 27,-88 21,-84z"/>
                     </g>
-                    <g id="der-komour"> 
+                    <g id="der-komour">
                       <title>Der Komour: {{totalDerkomour()}} siswa</title>
                       <desc>
                         <image href="philipus.jpg" alt=""></image>
@@ -748,7 +748,7 @@
               </div>
               <div class="card-body">
                 <div id="world-map" style="height: 250px; width: 100%;">
-                  
+
                 </div>
               </div>
               <!-- /.card-body-->

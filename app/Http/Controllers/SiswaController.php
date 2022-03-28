@@ -18,7 +18,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Input;
 class SiswaController extends Controller
 {
-    public function index()
+    public function index(Siswa $data_siswa)
     {
     	$data_siswa = \App\Models\Siswa::all();
     	return view('siswa.index',['data_siswa' => $data_siswa]);
@@ -177,10 +177,10 @@ class SiswaController extends Controller
         $siswa->save();
         return redirect('/test')->with('sukses','berhasil diupdate!');
     }
-    public function testdelete(Siswa $siswa, $user_id)
+    public function testdelete(Siswa $siswa)
     {
-        $siswa -> user() -> detach($user_id);
-        //$user -> delete();
+        $user ->delete_avatar();
+        $siswa ->delete();
         return redirect('/test')->with('sukses','berhasil dihapus!');
     }
     public function testprofile($id)

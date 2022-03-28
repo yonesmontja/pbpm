@@ -115,8 +115,6 @@
       <li class="nav-item dropdown">
         <a href="/my_profile/{{ auth() -> user() ->id }}/myprofile" class="nav-link" data-toggle="dropdown">
           <span>{{auth() -> user()->name}}</span>
-          <i class="icon-submenu lnr lnr-chevron-down"></i>
-        </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header">--00--</span>
           <div class="dropdown-divider"></div>
@@ -130,6 +128,7 @@
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">ALIRENA | 2020</a>
         </div>
+        </a>
       </li>
 
 

@@ -209,7 +209,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-default"><a href="/test/{{ $user->id }}/delete"
+                    <button type="button" class="btn btn-default"><a href="/user/{{ $user->id }}/delete"
                             user-id="{{ $user->id }}">Hapus</a></button>
                 </div>
             </div>

@@ -26,6 +26,7 @@ use App\Http\Controllers\SwotController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VisiController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\MapelController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\SiswaController;
@@ -69,6 +70,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/dashboard',[DashboardController::class,'index']);
     Route::resource('posting',PostingController::class);
     Route::resource('usertest',UsertestController::class);
+    Route::resource('mapel',MapelController::class);
 	Route::get('/siswa',[SiswaController::class,'index']);
 	Route::post('/siswa/create',[SiswaController::class,'create']);
 	Route::get('/siswa/{siswa}/edit',[SiswaController::class,'edit']);
@@ -81,7 +83,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::post('/test/testcreate',[SiswaController::class,'testcreate']);
 	Route::get('/test/{siswa}/edit',[SiswaController::class,'testedit']);
 	Route::post('/test/{siswa}/update',[SiswaController::class,'testupdate']);
-	Route::get('/test/{siswa}/{user_id}/delete',[SiswaController::class,'testdelete']);
+	Route::get('/test/{siswa}/delete',[SiswaController::class,'testdelete']);
 	Route::get('/test/{siswa}/profile',[SiswaController::class,'testprofile']);
 	Route::post('/test/{siswa}/addnilai',[SiswaController::class,'testaddnilai']);
 	Route::get('/test/{siswa}/{idmapel}/testdeletenilai',[SiswaController::class,'testdeletenilai']);
@@ -144,6 +146,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/contacts',[UserController::class,'contacts']);
 	Route::get('/user/{user}/edit',[UserController::class,'useredit']);
 	Route::post('/user/{user}/update',[UserController::class,'userupdate']);
+    Route::get('/user/{user}/delete',[UserController::class,'userdelete']);
 
 	Route::get('/skl',[SklController::class,'skl']);
 	Route::post('/skl/sklcreate',[SklController::class,'sklcreate']);
