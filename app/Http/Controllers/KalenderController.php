@@ -11,7 +11,7 @@ class KalenderController extends Controller
     {
         if($request -> ajax())
         {
-            $data = Booking::whereDate('start', '>=', $request->start)->whereDate('end','<=', $request->end)->get(['id','title','start','end']);
+            $data = Event::whereDate('start_date', '>=', $request->start_date)->whereDate('end_date','<=', $request->end_date)->get(['id','title','start_date','end_date']);
             return response()->json($data);
         }
     return view('kalender.full-calender');
@@ -24,8 +24,8 @@ class KalenderController extends Controller
     		{
     			$event = Booking::create([
     				'title'		=>	$request->title,
-    				'start'		=>	$request->start,
-    				'end'		=>	$request->end
+    				'start_date'		=>	$request->start_date,
+    				'end_date'		=>	$request->end_date
     			]);
 
     			return response()->json($event);
@@ -35,8 +35,8 @@ class KalenderController extends Controller
     		{
     			$event = Booking::find($request->id)->update([
     				'title'		=>	$request->title,
-    				'start'		=>	$request->start,
-    				'end'		=>	$request->end
+    				'start_date'		=>	$request->start_date,
+    				'end_date'		=>	$request->end_date
     			]);
 
     			return response()->json($event);
@@ -71,8 +71,8 @@ class KalenderController extends Controller
             $events[]=[
             'id'    => $booking -> id,
             'title' => $booking -> title,
-            'start' => $booking -> start,
-            'end'   => $booking -> end,
+            'start' => $booking -> start_date,
+            'end'   => $booking -> end_date,
             'color' => $color
             ];
 
@@ -98,8 +98,8 @@ class KalenderController extends Controller
             $events[]=[
             'id'    => $booking -> id,
             'title' => $booking -> title,
-            'start' => $booking -> start,
-            'end'   => $booking -> end,
+            'start' => $booking -> start_date,
+            'end'   => $booking -> end_date,
             'color' => $color
              ];
 
@@ -115,8 +115,8 @@ class KalenderController extends Controller
         ]);
         $booking = Booking::create([
             'title' => $request->title,
-            'start' => $request->start,
-            'end' => $request->end,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
         ]);
         $color = null;
         if($booking->title == 'Test 3'){
@@ -124,8 +124,8 @@ class KalenderController extends Controller
         }
         return response()->json([
             'id'    => $booking->id,
-            'start' => $booking->start,
-            'end'   => $booking->end,
+            'start' => $booking->start_date,
+            'end'   => $booking->end_date,
             'title' => $booking->title,
             'color' => $color ? $color: '',
         ]);
@@ -140,8 +140,8 @@ class KalenderController extends Controller
             ],404);
         }
 
-        $booking -> start = $request -> start;
-        $booking -> end = $request -> end;
+        $booking -> start_date = $request -> start_date;
+        $booking -> end_date = $request -> end_date;
         return response()->json('Event updated');
     }
     public function indeletecalendar($id)
