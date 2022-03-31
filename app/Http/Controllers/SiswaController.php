@@ -215,7 +215,7 @@ class SiswaController extends Controller
     }
     public function testaddnilai(Request $request, $idsiswa)
     {
-        //dd($request->all());
+        //dd($idsiswa);
         //$tes = $request->penilaian;
         $siswa = \App\Models\Siswa::find($idsiswa);
         //$tes = \App\Models\Penilaian::find($idsiswa);
@@ -226,9 +226,9 @@ class SiswaController extends Controller
         }
         $siswa->mapel()->attach($request->mapel,['nilai' => $request->nilai]);
         //dd($siswa);
-        $siswa->penilaian()->attach($request->penilaian,['nilai' => $request->nilai]);
+        //$siswa->penilaian()->attach($request->penilaian,['nilai' => $request->nilai]);
         //dd($tes);
-        return redirect('test/'.$idsiswa.'/profile',['siswa'=>$siswa])->with('sukses','nilai sukses diinput');
+        return redirect()->back()->with('sukses','nilai sukses diinput');
     }
     public function testdeletenilai(Siswa $siswa, $idmapel)
     {
