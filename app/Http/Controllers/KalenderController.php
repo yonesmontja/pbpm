@@ -7,9 +7,77 @@ use App\Models\Booking;
 class KalenderController extends Controller
 {
     //
+    public function index(Request $request)
+    {
+        if($request -> ajax())
+        {
+            $data = Booking::whereDate('start', '>=', $request->start)->whereDate('end','<=', $request->end)->get(['id','title','start','end']);
+            return response()->json($data);
+        }
+    return view('kalender.full-calender');
+    }
+    public function action(Request $request)
+    {
+    	if($request->ajax())
+    	{
+    		if($request->type == 'add')
+    		{
+    			$event = Booking::create([
+    				'title'		=>	$request->title,
+    				'start'		=>	$request->start,
+    				'end'		=>	$request->end
+    			]);
+
+    			return response()->json($event);
+    		}
+
+    		if($request->type == 'update')
+    		{
+    			$event = Booking::find($request->id)->update([
+    				'title'		=>	$request->title,
+    				'start'		=>	$request->start,
+    				'end'		=>	$request->end
+    			]);
+
+    			return response()->json($event);
+    		}
+
+    		if($request->type == 'delete')
+    		{
+    			$event = Booking::find($request->id)->delete();
+
+    			return response()->json($event);
+    		}
+    	}
+    }
     public function kalender()
     {
-    	return view('kalender.index');
+    	$bookings = Booking::all();
+        $events = array();
+
+        foreach($bookings as $booking)
+        {
+            $color = null;
+            if($booking -> title == "Test")
+            {
+                $color = '#924ACE';
+            }
+            if($booking->title=='Test 1'){
+                $color = '#68801A';
+            }
+            if($booking->title=='Test 2'){
+                $color = '#8ECE4A';
+            }
+            $events[]=[
+            'id'    => $booking -> id,
+            'title' => $booking -> title,
+            'start' => $booking -> start,
+            'end'   => $booking -> end,
+            'color' => $color
+            ];
+
+        }
+        return view('kalender.index',['events' => $events]);
     }
     public function incalendar()
     {
@@ -30,11 +98,11 @@ class KalenderController extends Controller
             $events[]=[
             'id'    => $booking -> id,
             'title' => $booking -> title,
-            'start' => $booking -> start_date,
-            'end'   => $booking -> end_date,
+            'start' => $booking -> start,
+            'end'   => $booking -> end,
             'color' => $color
              ];
-             
+
         }
         //dd($events);
     	return view('kalender.incalendar',['events' => $events]);
@@ -47,8 +115,8 @@ class KalenderController extends Controller
         ]);
         $booking = Booking::create([
             'title' => $request->title,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
+            'start' => $request->start,
+            'end' => $request->end,
         ]);
         $color = null;
         if($booking->title == 'Test 3'){
@@ -56,8 +124,8 @@ class KalenderController extends Controller
         }
         return response()->json([
             'id'    => $booking->id,
-            'start' => $booking->start_date,
-            'end'   => $booking->end_date,
+            'start' => $booking->start,
+            'end'   => $booking->end,
             'title' => $booking->title,
             'color' => $color ? $color: '',
         ]);
@@ -71,10 +139,9 @@ class KalenderController extends Controller
                 'error' => 'Unable to locate the event'
             ],404);
         }
-        $booking -> update([
-            'start_date' => $request->start_date,
-            'end_date'   => $request->end_date,
-        ]);
+
+        $booking -> start = $request -> start;
+        $booking -> end = $request -> end;
         return response()->json('Event updated');
     }
     public function indeletecalendar($id)
