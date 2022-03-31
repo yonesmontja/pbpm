@@ -71,20 +71,16 @@
                 }
             });
             var booking = @json($events);
+            //console.log(booking);
             $('#calendar').fullCalendar({
-
                 header: {
                     'left': 'prev, next today',
                     'center': 'title',
                     'right': 'month, agendaWeek, agendaDay',
                 },
-
-                //Random default events
                 events: booking,
-                editable: true,
                 selectable: true,
                 selectHelper: true,
-                droppable: true, // this allows things to be dropped onto the calendar !!!
                 select: function(start, end, allDays) {
                     //console.log(start)
                     // to show modal from jquery
@@ -92,17 +88,18 @@
                     $('#saveBtn').click(function() {
                         var title = $('#title').val();
                         //console.log(title);
-                        var start = moment(start).format('YYYY-MM-DD');
-                        //console.log(start);
-                        var end = moment(end).format('YYYY-MM-DD');
+                        var start_date = moment(start).format('YYYY-MM-DD');
+                        //console.log(start_date);
+                        var end_date = moment(end).format('YYYY-MM-DD');
+
                         $.ajax({
                             url: "{{ route('kalender.instorecalendar') }}",
                             type: "POST",
                             dateType: 'json',
                             data: {
                                 title,
-                                start,
-                                end
+                                start_date,
+                                end_date
                             },
                             success: function(response) {
                                 $('#bookingModal').modal('hide')
@@ -124,19 +121,20 @@
                         });
                     });
                 },
+                editable: true,
                 eventDrop: function(event) {
                     //console.log(event)
                     var id = event.id;
-                    var start = moment(event.start).format('YYYY-MM-DD');
-                    //console.log(start);
-                    var end = moment(event.end).format('YYYY-MM-DD');
+                    var start_date = moment(event.start).format('YYYY-MM-DD');
+                    //console.log(start_date);
+                    var end_date = moment(event.end).format('YYYY-MM-DD');
                     $.ajax({
                         url: "{{ route('kalender.inupdatecalendar', '') }}" + '/' + id,
                         type: "PATCH",
                         dateType: 'json',
                         data: {
-                            start,
-                            end
+                            start_date,
+                            end_date
                         },
                         success: function(response) {
                             swal("Good job!", "Event updated!", "success");
@@ -168,10 +166,12 @@
                     }
 
                 },
+
                 selectAllow: function(event) {
                     return moment(event.start).utcOffset(false).isSame(moment(event.end).subtract(1,
                         'second').utcOffset(false), 'day');
                 }
+
             });
 
             $("#bookingModal").on("hidden.bs.modal", function() {
@@ -180,11 +180,7 @@
             $('.fc-event').css('font-size', '10px');
             $('.fc-event').css('width', '60px');
             //$('.fc-event').css('border-radius','50%');
-
-            //calendar.render();
-
-
-        })
+        });
     </script>
     @yield('footer')
 </body>
