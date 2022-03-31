@@ -117,7 +117,10 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/grafikkompetensi',[GrafikController::class,'grafikkompetensi']);
 
 	Route::get('/kalender',[KalenderController::class,'kalender']);
-	Route::get('/jadwal',[JadwalController::class,'jadwal'])->name('kalender.jadwal');
+    Route::get('full-calender',[KalenderController::class,'index']);
+    Route::post('full-calender/action', [KalenderController::class, 'action']);
+	Route::get('/jadwal',[JadwalController::class,'index'])->name('kalender.jadwal');
+    Route::post('store',[JadwalController::class,'store'])->name('eventStore');
 	Route::get('/incalendar',[KalenderController::class,'incalendar'])->name('kalender.incalendar');
 	Route::post('/instorecalendar',[KalenderController::class,'instorecalendar'])->name('kalender.instorecalendar');
 	Route::patch('/inupdatecalendar/{id}',[KalenderController::class,'inupdatecalendar'])->name('kalender.inupdatecalendar');

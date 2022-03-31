@@ -160,6 +160,7 @@
                     }
 
                 },
+
                 selectAllow: function(event) {
                     return moment(event.start).utcOffset(false).isSame(moment(event.end).subtract(1,
                         'second').utcOffset(false), 'day');
