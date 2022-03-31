@@ -195,6 +195,8 @@ class SiswaController extends Controller
         // data untuk Chart.js
         $categories = [];
         $data = [];
+        $tescategories = [];
+        $tes1 = [];
 
         foreach($matapelajaran as $mp){
             if($siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()){
@@ -203,15 +205,24 @@ class SiswaController extends Controller
                 $data[] = $siswa -> mapel() -> wherePivot('mapel_id',$mp ->id) -> first()->pivot->nilai;
             }
         }
+        foreach($penilaian as $mp2){
+            if($siswa->penilaian()->wherePivot('penilaian_id',$mp2->id)->first()){
+                $tescategories[] = $mp2 ->kode;
+
+                $tes1[] = $siswa -> penilaian() -> wherePivot('penilaian_id',$mp2 ->id) -> first()->pivot->nilai;
+                //dd($tes);
+            }
+        }
         $matpel = collect($categories);
         $average = collect($data)->avg();
 
         //dd($matpel);
         //dd($average);
-        //dd(json_encode($categories));
-
+        //dd(json_encode($tes));
+        //dd($data);
+        //dd($tes);
         //dd($matapelajaran);
-        return view('profile.index',['penilaian'=>$penilaian,'matpel'=>$matpel,'average'=> $average,'siswa'=> $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data]);
+        return view('profile.index',['penilaian'=>$penilaian,'matpel'=>$matpel,'average'=> $average,'siswa'=> $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data, 'tescategories' => $tescategories, 'tes1' => $tes1]);
     }
     public function testaddnilai(Request $request, $idsiswa)
     {
@@ -224,15 +235,21 @@ class SiswaController extends Controller
         {
             return redirect('test/'.$idsiswa.'/profile')->with('error','data mapel sudah ada');
         }
+        if($siswa->penilaian()->where('penilaian_id',$request->mapel)->exists())
+        {
+            return redirect('test/'.$idsiswa.'/profile')->with('error','data mapel sudah ada');
+        }
         $siswa->mapel()->attach($request->mapel,['nilai' => $request->nilai]);
         //dd($siswa);
-        //$siswa->penilaian()->attach($request->penilaian,['nilai' => $request->nilai]);
+        $siswa->penilaian()->attach($request->penilaian,['nilai' => $request->nilai]);
         //dd($tes);
         return redirect()->back()->with('sukses','nilai sukses diinput');
     }
     public function testdeletenilai(Siswa $siswa, $idmapel)
     {
+        //$penilaian = Penilaian::find($idmapel);
         $siswa -> mapel() -> detach($idmapel);
+        $siswa -> penilaian() -> detach($idmapel);
         return redirect()->back()->with('sukses','nilai berhasil dihapus');
     }
     public function export_excel()
