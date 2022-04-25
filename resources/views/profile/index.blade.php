@@ -767,7 +767,7 @@
               */
 
              var areaChartData = {
-                 labels: {!! json_encode($tescategories) !!},
+                 labels: {!! json_encode($categories3) !!},
                  datasets: [{
                      label: 'PH',
                      backgroundColor: 'rgba(60,141,188,0.9)',
@@ -777,11 +777,11 @@
                      pointStrokeColor: 'rgba(60,141,188,1)',
                      pointHighlightFill: '#fff',
                      pointHighlightStroke: 'rgba(60,141,188,1)',
-                     data: {!! json_encode($tes1) !!}
+                     data: {!! json_encode($data6) !!}
                  }, ]
              }
              var areaChartData2 = {
-                 labels: {!! json_encode($categories) !!},
+                 labels: {!! json_encode($categories2) !!},
                  datasets: [{
                      label: 'PH',
                      backgroundColor: 'rgba(60,141,188,0.9)',
@@ -791,7 +791,7 @@
                      pointStrokeColor: 'rgba(60,141,188,1)',
                      pointHighlightFill: '#fff',
                      pointHighlightStroke: 'rgba(60,141,188,1)',
-                     data: {!! json_encode($data) !!}
+                     data: {!! json_encode($data5) !!}
                  }, ]
              }
              var areaChartOptions = {
@@ -826,10 +826,14 @@
                          }
                      }],
                      yAxes: [{
-                         gridLines: {
-                             display: false,
-                         }
-                     }]
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function(value) {if (value % 1 === 0) {return value;}}
+                    },
+                    scaleLabel: {
+                        display: false
+                    }
+                }]
                  }
              }
 
