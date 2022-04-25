@@ -185,14 +185,13 @@ class SiswaController extends Controller
         $siswa ->delete();
         return redirect('/test')->with('sukses','berhasil dihapus!');
     }
-    public function testprofile($id)
+    public function testprofile($id, Penilaian $penilaian, Request $request)
     {
         $siswa = \App\Models\Siswa::find($id);
         $matapelajaran = \App\Models\Mapel::all();
-        $penilaian = \App\Models\Penilaian::get();
+        $penilaian = \App\Models\Penilaian::all();
         //dd($penilaian);
-
-        //dd($penilaian1);
+        //$siswa->penilaian();
         //$nilairata = \App\Models\MapelSiswa::avg();
         //dd('$nilairata');
         //dd($penilaian);
@@ -223,6 +222,7 @@ class SiswaController extends Controller
         //$hasil = Penilaian::with('siswa')->where('id',$id)->get();
         $hasil = $siswa->penilaian()->first()->pivot->penilaian_id;
         $penilaian1 = Penilaian::find($hasil);
+        $cuma = $siswa->penilaian()->where('siswa_id',$id)->get();
         //dd($cuma);
         //$hasil = $siswa->penilaian->where('id');
         //dd($hasil);
@@ -244,7 +244,7 @@ class SiswaController extends Controller
         //dd($data);
         //dd($tes);
         //dd($matapelajaran);
-        return view('profile.index',['matang'=>$matang,'tescategories1' => $tescategories1,'hasil'=>$hasil,'penilaian1'=>$penilaian1,'data2'=>$data2,'penilaian'=>$penilaian,'matpel'=>$matpel,'average'=> $average,'siswa'=> $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data, 'tescategories' => $tescategories, 'tes1' => $tes1]);
+        return view('profile.index',['cuma'=>$cuma,'matang'=>$matang,'tescategories1' => $tescategories1,'hasil'=>$hasil,'penilaian1'=>$penilaian1,'data2'=>$data2,'penilaian'=>$penilaian,'matpel'=>$matpel,'average'=> $average,'siswa'=> $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data, 'tescategories' => $tescategories, 'tes1' => $tes1]);
     }
     public function testaddnilai(Request $request, $idsiswa)
     {
