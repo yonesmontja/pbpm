@@ -15,8 +15,21 @@ class KompetensiintiController extends Controller
     }
     public function kompetensiinticreate(Request $request)
     {
-    	\App\Models\Kompetensiinti::create($request -> all());
+    	 $this -> validate($request,[
+            'ki_domain' => 'required',
+            'ki_deskripsi' => 'required',
+            'level' => 'required',
+        ]);
     	//return $request -> all();
+        $kompetensiinti = new Kompetensiinti;
+        $kompetensiinti -> kompetensi_inti = $request -> kompetensi_inti;
+        $kompetensiinti -> ki_domain = $request -> ki_domain;
+        $kompetensiinti -> ki_deskripsi = $request -> ki_deskripsi;
+        $kompetensiinti -> level = $request -> level;
+        $kompetensiinti -> id_level = 1;
+        $kompetensiinti -> id_kinti = 1;
+        $kompetensiinti -> kompetensi_inti = "Kompetensi inti";
+        $kompetensiinti->save();
     	return redirect('/kompetensiinti')->with('sukses','berhasil diinput');
     }
     public function kompetensiintidelete($id)
@@ -27,7 +40,7 @@ class KompetensiintiController extends Controller
     }
     public function kompetensiintiedit(Kompetensiinti $ki)
     {
-        return view('kompetensiinti.kompetensiintiedit',['ki'=>$ki]); 
+        return view('kompetensiinti.kompetensiintiedit',['ki'=>$ki]);
     }
     public function kompetensiintiupdate(Request $request, Kompetensiinti $ki)
     {
