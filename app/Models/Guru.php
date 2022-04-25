@@ -45,4 +45,8 @@ class Guru extends Model
     {
         return $this -> belongsTo('App\Models\User','user_id');
     }
+    public function penilaian()
+    {
+    	return $this -> belongsTo(Penilaian::class);
+    }
 }
