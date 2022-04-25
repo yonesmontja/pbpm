@@ -17,7 +17,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-              <li class="breadcrumb-item active">Profile Guru</li>
+              <li class="breadcrumb-item active">Profile Penilaian</li>
             </ol>
           </div>
         </div>
@@ -46,17 +46,17 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="{{$guru->avatar()}}"
+                       src="{{$penilaian->avatar()}}"
                        alt="User profile picture">
                 </div>
 
-                <h3 class="profile-username text-center"><a href="#">{{$guru -> nama_guru}} </a></h3>
+                <h3 class="profile-username text-center"><a href="#">{{$penilaian -> nama_tes}} </a></h3>
 
-                <p class="text-muted text-center">Guru</p>
+                <p class="text-muted text-center">Penilaian</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>Mapel</b> <a class="float-right">{{$guru->mapel->count()}}</a>
+                    <b>Mapel</b> <a class="float-right">{{$penilaian->siswa->count()}}</a>
                   </li>
                   <li class="list-group-item">
                     <b>Following</b> <a class="float-right">543</a>
@@ -116,7 +116,7 @@
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#nilai" data-toggle="tab">Mapel Guru</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#nilai" data-toggle="tab">Mapel penilaian</a></li>
 
                   <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Activity</a></li>
                   <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
@@ -131,7 +131,7 @@
                       <div class="card-header">
                         <div class="row">
                           <div class="col-md-6">
-                            <h3 class="card-title">Mapel Guru</h3>
+                            <h3 class="card-title">Mapel penilaian</h3>
                           </div>
                           <div class="col-md-2 float-right">
                             <h3 class="card-title">TA <a href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
@@ -160,7 +160,7 @@
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach($guru->mapel as $mapel)
+                            @foreach($penilaian->mapel as $mapel)
                             <tr>
                               <td>{{$mapel->kode}}</td>
                               <td>{{$mapel->nama_mapel}}</td>
