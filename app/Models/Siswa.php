@@ -77,7 +77,7 @@ class Siswa extends Model
     }
     public function penilaian()
     {
-        return $this -> belongsToMany(Penilaian::class)->withPivot(['nilai','penilaian_id'])->withTimeStamps();
+        return $this -> belongsToMany(Penilaian::class,'penilaian_siswa', 'siswa_id', 'penilaian_id')->withPivot(['nilai'])->withTimeStamps();
     }
     public function user()
     {
