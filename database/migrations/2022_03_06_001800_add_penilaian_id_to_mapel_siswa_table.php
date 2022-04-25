@@ -16,7 +16,7 @@ class AddPenilaianIdToMapelSiswaTable extends Migration
         Schema::table('mapel_siswa', function (Blueprint $table) {
             //
             $table->bigInt('penilaian_id')->unsigned();
-            $table->
+
         });
     }
 
