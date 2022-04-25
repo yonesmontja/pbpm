@@ -23,5 +23,14 @@ class Penilaian extends Model
     {
         return $this -> hasMany(Mapel::class);
     }
+    function avatar($real_size = false)
+    {
+        $thumbnail = $real_size ? '' : 'small_';
+
+        if ($this->avatar && file_exists(public_path('images/' . $thumbnail . $this->avatar)))
+            return asset('images/' . $thumbnail  . $this->avatar);
+        else
+            return asset('no_avatar.png');
+    }
 
 }
