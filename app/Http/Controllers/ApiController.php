@@ -11,5 +11,6 @@ class ApiController extends Controller
     {
     	$siswa = \App\Models\Siswa::find($id);
     	$siswa->mapel()->updateExistingPivot($request->pk,['nilai'=>$request->value]);
+    	$siswa->penilaian()->updateExistingPivot($request->pk,['nilai'=>$request->value]);
     }
 }
