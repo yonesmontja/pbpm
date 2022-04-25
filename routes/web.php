@@ -160,10 +160,10 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::post('/skl/{skl}/sklupdate',[SklController::class,'sklupdate']);
 
 	Route::get('/kompetensiinti',[KompetensiintiController::class,'kompetensiinti']);
-	Route::post('/kompetensiinti/kompetensiinticreate',[KompetensiintiConroller::class,'kompetensiinticreate']);
-	Route::get('/kompetensiinti/{ki}/kompetensiintidelete',[KompetensiintiConroller::class,'kompetensiintidelete']);
-	Route::get('/kompetensiinti/{ki}/kompetensiintiedit',[KompetensiintiConroller::class,'kompetensiintiedit']);
-	Route::post('/kompetensiinti/{ki}/kompetensiintiupdate',[KompetensiintiConroller::class,'kompetensiintiupdate']);
+	Route::post('/kompetensiinti/kompetensiinticreate',[KompetensiintiController::class,'kompetensiinticreate']);
+	Route::get('/kompetensiinti/{ki}/kompetensiintidelete',[KompetensiintiController::class,'kompetensiintidelete']);
+	Route::get('/kompetensiinti/{ki}/kompetensiintiedit',[KompetensiintiController::class,'kompetensiintiedit']);
+	Route::post('/kompetensiinti/{ki}/kompetensiintiupdate',[KompetensiintiController::class,'kompetensiintiupdate']);
 
 	Route::get('/kompetensidasar',[KompetensidasarController::class,'kompetensidasar']);
 	Route::post('/kompetensidasar/kompetensidasarcreate',[KompetensidasarController::class,'kompetensidasarcreate']);
