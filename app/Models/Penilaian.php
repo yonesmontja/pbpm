@@ -9,7 +9,7 @@ class Penilaian extends Model
 {
     use HasFactory;
     protected $table = 'penilaian';
-    protected $fillable = ['kode','nama_tes','semester'];
+    protected $fillable = ['kode','nama_tes','semester','avatar'];
 
     public function siswa()
     {
@@ -31,6 +31,13 @@ class Penilaian extends Model
             return asset('images/' . $thumbnail  . $this->avatar);
         else
             return asset('no_avatar.png');
+    }
+    function delete_avatar()
+    {
+        if ($this->avatar && file_exists(public_path('images/' . $this->avatar)))
+            unlink(public_path('images/' . $this->avatar));
+        if ($this->avatar && file_exists(public_path('images/small_' . $this->avatar)))
+            unlink(public_path('images/small_' . $this->avatar));
     }
 
 }

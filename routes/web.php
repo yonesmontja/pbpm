@@ -39,18 +39,19 @@ use App\Http\Controllers\MailboxController;
 use App\Http\Controllers\PostingController;
 use App\Http\Controllers\SasaranController;
 use App\Http\Controllers\KalenderController;
+use App\Http\Controllers\TahunpelController;
 use App\Http\Controllers\UsertestController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FastEventController;
 use App\Http\Controllers\KesiswaanController;
 use App\Http\Controllers\KurikulumController;
+use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\SwotanalysisController;
 use App\Http\Controllers\KompetensiintiController;
 use App\Http\Controllers\KompetensidasarController;
 use App\Http\Controllers\LangkahstrategisController;
 use App\Http\Controllers\DependentDropdownController;
-use App\Http\Controllers\TahunpelController;
 
 Route::get('/', function () {
     return view('welcome');

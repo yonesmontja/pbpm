@@ -185,7 +185,7 @@ class SiswaController extends Controller
         $siswa ->delete();
         return redirect('/test')->with('sukses','berhasil dihapus!');
     }
-    public function testprofile($id, Penilaian $penilaian, Request $request)
+    public function testprofile($id, Request $request)
     {
         $siswa = \App\Models\Siswa::find($id);
         $matapelajaran = \App\Models\Mapel::all();
@@ -211,7 +211,7 @@ class SiswaController extends Controller
         }
         foreach($penilaian as $mp2){
             if($siswa->penilaian()->wherePivot('penilaian_id',$mp2->id)->first()){
-                $tescategories[] = $mp2 ->kode;
+                $tescategories[] = $mp2 ->nama_tes;
 
                 $tes1[] = $siswa -> penilaian() -> wherePivot('penilaian_id',$mp2 ->id) -> first()->pivot->nilai;
                 //dd($tes1);
@@ -220,8 +220,8 @@ class SiswaController extends Controller
         $matang = $siswa->penilaian->pluck('nama_tes');
         //dd($matang);
         //$hasil = Penilaian::with('siswa')->where('id',$id)->get();
-        $hasil = $siswa->penilaian()->first()->pivot->penilaian_id;
-        $penilaian1 = Penilaian::find($hasil);
+        //$hasil = $siswa->penilaian()->first()->pivot->penilaian_id;
+        //$penilaian1 = Penilaian::find($hasil);
         $cuma = $siswa->penilaian()->where('siswa_id',$id)->get();
         //dd($cuma);
         //$hasil = $siswa->penilaian->where('id');
@@ -244,7 +244,7 @@ class SiswaController extends Controller
         //dd($data);
         //dd($tes);
         //dd($matapelajaran);
-        return view('profile.index',['cuma'=>$cuma,'matang'=>$matang,'tescategories1' => $tescategories1,'hasil'=>$hasil,'penilaian1'=>$penilaian1,'data2'=>$data2,'penilaian'=>$penilaian,'matpel'=>$matpel,'average'=> $average,'siswa'=> $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data, 'tescategories' => $tescategories, 'tes1' => $tes1]);
+        return view('profile.index',['cuma'=>$cuma,'matang'=>$matang,'tescategories1' => $tescategories1,'data2'=>$data2,'penilaian'=>$penilaian,'matpel'=>$matpel,'average'=> $average,'siswa'=> $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data, 'tescategories' => $tescategories, 'tes1' => $tes1]);
     }
     public function testaddnilai(Request $request, $idsiswa)
     {
@@ -253,14 +253,14 @@ class SiswaController extends Controller
         $siswa = \App\Models\Siswa::find($idsiswa);
         //$tes = \App\Models\Penilaian::find($idsiswa);
         //dd($siswa);
-        if($siswa->mapel()->where('mapel_id',$request->mapel)->exists())
-        {
-            return redirect('test/'.$idsiswa.'/profile')->with('error','data mapel sudah ada');
-        }
-        if($siswa->penilaian()->where('penilaian_id',$request->penilaian)->exists())
-        {
-            return redirect('test/'.$idsiswa.'/profile')->with('error','data mapel sudah ada');
-        }
+        //if($siswa->mapel()->where('mapel_id',$request->mapel)->exists())
+        //{
+        //    return redirect('test/'.$idsiswa.'/profile')->with('error','data mapel sudah ada');
+        //}
+        //if($siswa->penilaian()->where('penilaian_id',$request->penilaian)->exists())
+        //{
+        //    return redirect('test/'.$idsiswa.'/profile')->with('error','data mapel sudah ada');
+       // }
         $siswa->mapel()->attach($request->mapel,['nilai' => $request->nilai]);
         //dd($siswa);
         $siswa->penilaian()->attach($request->penilaian,['nilai' => $request->nilai]);
