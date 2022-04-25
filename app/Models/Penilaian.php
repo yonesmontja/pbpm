@@ -13,10 +13,15 @@ class Penilaian extends Model
 
     public function siswa()
     {
-        return $this -> belongsToMany(Siswa::class)->withPivot(['nilai']);
+        return $this -> belongsToMany(Siswa::class)->withPivot(['nilai','penilaian_id']);
     }
     public function guru()
     {
     	return $this -> belongsTo(Guru::class);
     }
+    public function mapel()
+    {
+        return $this -> hasMany(Mapel::class);
+    }
+
 }

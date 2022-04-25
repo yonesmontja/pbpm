@@ -11,7 +11,7 @@ class Kompetensiinti extends Model
     use HasFactory;
 
     protected $table = 'kompetensiinti';
-    protected $fillable = ['ki_domain','level','ki_deskripsi'];
+    protected $fillable = ['id_level','id_kinti','kompetensi_inti','ki_domain','level','ki_deskripsi'];
     public function kompetensidasar()
     {
     	return $this -> hasMany(Kompetensidasar::class);

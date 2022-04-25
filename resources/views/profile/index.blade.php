@@ -242,14 +242,16 @@
                                                          </tr>
                                                      </thead>
                                                      <tbody>
-                                                         @foreach ($siswa->mapel as $mapel)
+                                                         @foreach ($siswa->mapel as $key => $mapel)
                                                              <tr>
                                                                  <td>{{ $mapel->kode }}</td>
                                                                  <td>{{ $mapel->nama_mapel }}</td>
                                                                  <td>{{ $mapel->semester }}</td>
+                                                                @foreach ($siswa->penilaian->pluck('nama_tes') as $key => $m)
 
-                                                                 <td>{{ $mapel->pivot->penilaian }}</td>
 
+                                                                 <td>{{ $m }}</td>
+                                                                @endforeach
                                                                  <td>
                                                                      <div class="progress progress-xs">
                                                                          <div class="progress-bar progress-bar-danger"
