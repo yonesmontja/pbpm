@@ -247,11 +247,20 @@
                                                                  <td>{{ $mapel->kode }}</td>
                                                                  <td>{{ $mapel->nama_mapel }}</td>
                                                                  <td>{{ $mapel->semester }}</td>
-                                                                @foreach ($siswa->penilaian->pluck('nama_tes') as $key => $m)
-
-
-                                                                 <td>{{ $m }}</td>
-                                                                @endforeach
+                                                                 @foreach ($siswa->penilaian->pluck('nama_tes') as $key1 => $m)
+                                                                     @if ($key1 == $key)
+                                                                         <td>
+                                                                             @foreach ($siswa->penilaian->pluck('id') as $key2 => $mn)
+                                                                                 @if ($key2 == $key1)
+                                                                                     <a
+                                                                                         href="/penilaian/{{ $mn }}/profile">
+                                                                                 @endif
+                                                                             @endforeach
+                                                                             {{ $key1 }} - {{ $m }}
+                                                                             </a>
+                                                                         </td>
+                                                                     @endif
+                                                                 @endforeach
                                                                  <td>
                                                                      <div class="progress progress-xs">
                                                                          <div class="progress-bar progress-bar-danger"
