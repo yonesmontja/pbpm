@@ -12,10 +12,12 @@ use Illuminate\Support\Str;
 use App\Exports\SiswaExport;
 use App\Imports\SiswaImport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
-use Intervention\Image\Facades\Image;
 
 use Illuminate\Support\Facades\Input;
+use Intervention\Image\Facades\Image;
+
 class SiswaController extends Controller
 {
     public function index(Siswa $data_siswa)
@@ -187,7 +189,10 @@ class SiswaController extends Controller
     {
         $siswa = \App\Models\Siswa::find($id);
         $matapelajaran = \App\Models\Mapel::all();
-        $penilaian = \App\Models\Penilaian::all();
+        $penilaian = \App\Models\Penilaian::get();
+        //dd($penilaian);
+
+        //dd($penilaian1);
         //$nilairata = \App\Models\MapelSiswa::avg();
         //dd('$nilairata');
         //dd($penilaian);
@@ -210,19 +215,36 @@ class SiswaController extends Controller
                 $tescategories[] = $mp2 ->kode;
 
                 $tes1[] = $siswa -> penilaian() -> wherePivot('penilaian_id',$mp2 ->id) -> first()->pivot->nilai;
-                //dd($tes);
+                //dd($tes1);
             }
         }
+        $matang = $siswa->penilaian->pluck('nama_tes');
+        //dd($matang);
+        //$hasil = Penilaian::with('siswa')->where('id',$id)->get();
+        $hasil = $siswa->penilaian()->first()->pivot->penilaian_id;
+        $penilaian1 = Penilaian::find($hasil);
+        //dd($cuma);
+        //$hasil = $siswa->penilaian->where('id');
+        //dd($hasil);
+        $tescategories1 = collect($tescategories);
+        //dd($tescategories1);
         $matpel = collect($categories);
         $average = collect($data)->avg();
+        $data2 = DB::table('penilaian_siswa')
+                    ->join('mapel_siswa', 'mapel_siswa.siswa_id', '=', 'penilaian_siswa.siswa_id');
 
+        //$data3 = $siswa -> penilaian() ->wherePivot('penilaian_id',$id);
+        //dd($data3);
+        //dd($penilaian);
+        //dd($tes1);
+        //dd($data2);
         //dd($matpel);
         //dd($average);
         //dd(json_encode($tes));
         //dd($data);
         //dd($tes);
         //dd($matapelajaran);
-        return view('profile.index',['penilaian'=>$penilaian,'matpel'=>$matpel,'average'=> $average,'siswa'=> $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data, 'tescategories' => $tescategories, 'tes1' => $tes1]);
+        return view('profile.index',['matang'=>$matang,'tescategories1' => $tescategories1,'hasil'=>$hasil,'penilaian1'=>$penilaian1,'data2'=>$data2,'penilaian'=>$penilaian,'matpel'=>$matpel,'average'=> $average,'siswa'=> $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data, 'tescategories' => $tescategories, 'tes1' => $tes1]);
     }
     public function testaddnilai(Request $request, $idsiswa)
     {
@@ -235,7 +257,7 @@ class SiswaController extends Controller
         {
             return redirect('test/'.$idsiswa.'/profile')->with('error','data mapel sudah ada');
         }
-        if($siswa->penilaian()->where('penilaian_id',$request->mapel)->exists())
+        if($siswa->penilaian()->where('penilaian_id',$request->penilaian)->exists())
         {
             return redirect('test/'.$idsiswa.'/profile')->with('error','data mapel sudah ada');
         }
