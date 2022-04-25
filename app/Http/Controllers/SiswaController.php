@@ -201,7 +201,10 @@ class SiswaController extends Controller
         $data = [];
         $tescategories = [];
         $tes1 = [];
-
+        $data5 = [];
+        $categories2 = [];
+        $data6 = [];
+        $categories3 = [];
         foreach($matapelajaran as $mp){
             if($siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()){
                 $categories[] = $mp ->nama_mapel;
@@ -209,6 +212,16 @@ class SiswaController extends Controller
                 $data[] = $siswa -> mapel() -> wherePivot('mapel_id',$mp ->id) -> first()->pivot->nilai;
             }
         }
+        foreach($siswa->mapel as $mnp){
+            $data5[] = $mnp->pivot->nilai;
+            $categories2[] = $mnp -> nama_mapel;
+        }
+        foreach($siswa->penilaian as $mnpx){
+            $data6[] = $mnpx->pivot->nilai;
+            $categories3[] = $mnpx -> nama_tes;
+        }
+        //dd($categories2);
+        //dd($data5);
         foreach($penilaian as $mp2){
             if($siswa->penilaian()->wherePivot('penilaian_id',$mp2->id)->first()){
                 $tescategories[] = $mp2 ->nama_tes;
@@ -218,7 +231,7 @@ class SiswaController extends Controller
             }
         }
         $matang = $siswa->penilaian->pluck('nama_tes');
-        //dd($matang);
+        //dd($data);
         //$hasil = Penilaian::with('siswa')->where('id',$id)->get();
         //$hasil = $siswa->penilaian()->first()->pivot->penilaian_id;
         //$penilaian1 = Penilaian::find($hasil);
@@ -229,7 +242,8 @@ class SiswaController extends Controller
         $tescategories1 = collect($tescategories);
         //dd($tescategories1);
         $matpel = collect($categories);
-        $average = collect($data)->avg();
+        //$average = collect($data)->avg();
+        $average = collect($data5)->avg();
         $data2 = DB::table('penilaian_siswa')
                     ->join('mapel_siswa', 'mapel_siswa.siswa_id', '=', 'penilaian_siswa.siswa_id');
 
@@ -244,7 +258,7 @@ class SiswaController extends Controller
         //dd($data);
         //dd($tes);
         //dd($matapelajaran);
-        return view('profile.index',['cuma'=>$cuma,'matang'=>$matang,'tescategories1' => $tescategories1,'data2'=>$data2,'penilaian'=>$penilaian,'matpel'=>$matpel,'average'=> $average,'siswa'=> $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data, 'tescategories' => $tescategories, 'tes1' => $tes1]);
+        return view('profile.index',['categories3'=>$categories3,'data6'=>$data6,'data5'=>$data5,'categories2'=>$categories2,'cuma'=>$cuma,'matang'=>$matang,'tescategories1' => $tescategories1,'data2'=>$data2,'penilaian'=>$penilaian,'matpel'=>$matpel,'average'=> $average,'siswa'=> $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data, 'tescategories' => $tescategories, 'tes1' => $tes1]);
     }
     public function testaddnilai(Request $request, $idsiswa)
     {
