@@ -98,6 +98,13 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/guru/{guru}/gurudelete',[GuruController::class,'gurudelete']);
 	Route::get('/guru/{guru}/profile',[GuruController::class,'profile']);
 
+	Route::get('/penilaian',[PenilaianController::class,'index']);
+	Route::post('/penilaian/penilaiancreate',[PenilaianController::class,'penilaiancreate']);
+	Route::get('/penilaian/{penilaian}/penilaianedit',[PenilaianController::class,'penilaianedit']);
+	Route::post('/penilaian/{penilaian}/penilaianupdate',[PenilaianController::class,'penilaianupdate']);
+	Route::get('/penilaian/{penilaian}/penilaiandelete',[PenilaianController::class,'penilaiandelete']);
+	Route::get('/penilaian/{penilaian}/profile',[PenilaianController::class,'profile']);
+
 	Route::get('/tdu',[TduController::class,'index']);
 	Route::get('/kurikulum',[KurikulumController::class,'index']);
 	Route::get('/kesiswaan',[KesiswaanController::class,'index']);
