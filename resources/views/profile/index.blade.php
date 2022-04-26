@@ -269,10 +269,13 @@
                                                                      </div>
                                                                  </td>
                                                                  <td>
+
                                                                      <a href="#" class="nilai" data-type="text"
                                                                          data-pk="{{ $mapel->id }}"
                                                                          data-url="/api/siswa/{{ $siswa->id }}/editnilai"
-                                                                         data-title="Masukkan nilai">{{ $mapel->pivot->nilai }}</a>
+                                                                         data-title="Masukkan
+                                                                                             nilai">{{ $mapel->pivot->nilai }}</a>
+
                                                                  </td>
                                                                  <td>
                                                                      <a href="/guru/{{ $mapel->guru_id }}/profile">
@@ -826,14 +829,18 @@
                          }
                      }],
                      yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        callback: function(value) {if (value % 1 === 0) {return value;}}
-                    },
-                    scaleLabel: {
-                        display: false
-                    }
-                }]
+                         ticks: {
+                             beginAtZero: true,
+                             callback: function(value) {
+                                 if (value % 1 === 0) {
+                                     return value;
+                                 }
+                             }
+                         },
+                         scaleLabel: {
+                             display: false
+                         }
+                     }]
                  }
              }
 

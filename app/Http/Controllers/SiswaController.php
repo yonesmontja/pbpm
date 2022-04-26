@@ -230,8 +230,8 @@ class SiswaController extends Controller
                 //dd($tes1);
             }
         }
-        $matang = $siswa->penilaian->pluck('nama_tes');
-        //dd($data);
+        $matang = $siswa->penilaian->pluck('id');
+        //dd($matang);
         //$hasil = Penilaian::with('siswa')->where('id',$id)->get();
         //$hasil = $siswa->penilaian()->first()->pivot->penilaian_id;
         //$penilaian1 = Penilaian::find($hasil);
