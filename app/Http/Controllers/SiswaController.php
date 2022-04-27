@@ -4,17 +4,21 @@ namespace App\Http\Controllers;
 
 use PDF;
 use Session;
+use App\Models\Guru;
 use App\Models\User;
+use App\Models\Mapel;
+use App\Models\Nilai;
 use App\Models\Siswa;
 use App\Models\Penilaian;
 use App\Imports\UserImport;
 use Illuminate\Support\Str;
 use App\Exports\SiswaExport;
 use App\Imports\SiswaImport;
+
 use Illuminate\Http\Request;
+use App\Models\Kompetensiinti;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
-
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\Facades\Image;
 
@@ -179,6 +183,19 @@ class SiswaController extends Controller
         $siswa->save();
         return redirect('/test')->with('sukses','berhasil diupdate!');
     }
+
+    public function editnilai(Request $request)
+    {
+        if ($request->ajax()) {
+            Nilai::find($request->pk)
+                ->update([
+                    $request->name => $request->value
+                ]);
+
+            return response()->json(['success' => true]);
+        }
+    }
+
     public function testdelete(Siswa $siswa)
     {
         $user ->delete_avatar();
@@ -188,14 +205,14 @@ class SiswaController extends Controller
     public function testprofile($id, Request $request)
     {
         $siswa = \App\Models\Siswa::find($id);
+        $siswa1 = \App\Models\Siswa::all();
         $matapelajaran = \App\Models\Mapel::all();
         $penilaian = \App\Models\Penilaian::all();
-        //dd($penilaian);
-        //$siswa->penilaian();
-        //$nilairata = \App\Models\MapelSiswa::avg();
-        //dd('$nilairata');
-        //dd($penilaian);
-
+        $nilai = Nilai::all();
+        $data_nilai = Nilai::all();
+        $kompetensiinti = Kompetensiinti::all();
+        $mapel = Mapel::all();
+        $guru = Guru::all();
         // data untuk Chart.js
         $categories = [];
         $data = [];
@@ -205,10 +222,13 @@ class SiswaController extends Controller
         $categories2 = [];
         $data6 = [];
         $categories3 = [];
+        $data7 = [];
+        $categories7 = [];
+        $data8 = [];
+        $categories8 = [];
         foreach($matapelajaran as $mp){
             if($siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()){
                 $categories[] = $mp ->nama_mapel;
-
                 $data[] = $siswa -> mapel() -> wherePivot('mapel_id',$mp ->id) -> first()->pivot->nilai;
             }
         }
@@ -220,45 +240,94 @@ class SiswaController extends Controller
             $data6[] = $mnpx->pivot->nilai;
             $categories3[] = $mnpx -> nama_tes;
         }
-        //dd($categories2);
-        //dd($data5);
+        foreach($nilai as $mnp){
+            if($mnp->siswa_id == $id){
+                $data7[] = $mnp->nilai;
+                $categories7[] = $mnp -> mapel -> nama_mapel;
+            }
+        }
+        foreach($nilai as $mnpx){
+            if($mnpx->siswa_id == $id){
+                $data8[] = $mnpx->nilai;
+                $categories8[] = $mnpx -> penilaian -> nama_tes;
+            }
+        }
         foreach($penilaian as $mp2){
             if($siswa->penilaian()->wherePivot('penilaian_id',$mp2->id)->first()){
                 $tescategories[] = $mp2 ->nama_tes;
-
                 $tes1[] = $siswa -> penilaian() -> wherePivot('penilaian_id',$mp2 ->id) -> first()->pivot->nilai;
                 //dd($tes1);
             }
         }
-        $matang = $siswa->penilaian->pluck('id');
-        //dd($matang);
-        //$hasil = Penilaian::with('siswa')->where('id',$id)->get();
-        //$hasil = $siswa->penilaian()->first()->pivot->penilaian_id;
-        //$penilaian1 = Penilaian::find($hasil);
-        $cuma = $siswa->penilaian()->where('siswa_id',$id)->get();
-        //dd($cuma);
-        //$hasil = $siswa->penilaian->where('id');
-        //dd($hasil);
+        $id1 = Nilai::all()->where('siswa_id',$id)->pluck('siswa_id',$id)->first();
+        $mapel1 = Nilai::all()->where('siswa_id',$id)->pluck('mapel_id')->count();
+        $matang1 = [];
+        $islam_average = Nilai::all()->where('mapel_id',1)->pluck('nilai')->avg();
+        $mapel3 = Mapel::all()->pluck('nama_mapel');
+
+        $protestan_average = Nilai::all()->where('mapel_id',2)->pluck('nilai')->avg();
+        $katolik_average = Nilai::all()->where('mapel_id',3)->pluck('nilai')->avg();
+        $ppkn_average = Nilai::all()->where('mapel_id',4)->pluck('nilai')->avg();
+        $indonesia_average = Nilai::all()->where('mapel_id',5)->pluck('nilai')->avg();
+        $matematika_average = Nilai::all()->where('mapel_id',6)->pluck('nilai')->avg();
+        $ipa_average = Nilai::all()->where('mapel_id',7)->pluck('nilai')->avg();
+        $ips_average = Nilai::all()->where('mapel_id',8)->pluck('nilai')->avg();
+        $pjok_average = Nilai::all()->where('mapel_id',9)->pluck('nilai')->avg();
+        $sbk_average = Nilai::all()->where('mapel_id',10)->pluck('nilai')->avg();
+        $matang1[0] = $islam_average;
+        $matang1[1] = $protestan_average;
+        $matang1[2] = $katolik_average;
+        $matang1[3] = $ppkn_average;
+        $matang1[4] = $indonesia_average;
+        $matang1[5] = $matematika_average;
+        $matang1[6] = $ipa_average;
+        $matang1[7] = $ips_average;
+        $matang1[8] = $pjok_average;
+        $matang1[9] = $sbk_average;
         $tescategories1 = collect($tescategories);
-        //dd($tescategories1);
-        $matpel = collect($categories);
-        //$average = collect($data)->avg();
-        $average = collect($data5)->avg();
+        $matpel = collect($data7)->sum();
+        $average = collect($data7)->avg();
         $data2 = DB::table('penilaian_siswa')
                     ->join('mapel_siswa', 'mapel_siswa.siswa_id', '=', 'penilaian_siswa.siswa_id');
+        return view('profile.index',[
 
-        //$data3 = $siswa -> penilaian() ->wherePivot('penilaian_id',$id);
-        //dd($data3);
-        //dd($penilaian);
-        //dd($tes1);
-        //dd($data2);
-        //dd($matpel);
-        //dd($average);
-        //dd(json_encode($tes));
-        //dd($data);
-        //dd($tes);
-        //dd($matapelajaran);
-        return view('profile.index',['categories3'=>$categories3,'data6'=>$data6,'data5'=>$data5,'categories2'=>$categories2,'cuma'=>$cuma,'matang'=>$matang,'tescategories1' => $tescategories1,'data2'=>$data2,'penilaian'=>$penilaian,'matpel'=>$matpel,'average'=> $average,'siswa'=> $siswa,'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data, 'tescategories' => $tescategories, 'tes1' => $tes1]);
+        'islam_average'=>$islam_average,
+        'protestan_average'=>$protestan_average,
+        'katolik_average'=>$katolik_average,
+        'ppkn_average'=>$ppkn_average,
+        'indonesia_average'=>$indonesia_average,
+        'matematika_average'=>$matematika_average,
+        'ipa_average'=>$ipa_average,
+        'ips_average'=>$ips_average,
+        'pjok_average'=>$pjok_average,
+        'sbk_average'=>$sbk_average,
+        'mapel1'=>$mapel1,
+        'siswa1'=>$siswa1,
+        'guru'=>$guru,
+        'kompetensiinti'=>$kompetensiinti,
+        'mapel'=>$mapel,
+        'data_nilai'=>$data_nilai,
+        'id1'=>$id1,
+        'nilai'=>$nilai,
+        'categories7'=>$categories7,
+        'data7'=>$data7,
+        'categories8'=>$categories8,
+        'data8'=>$data8,
+        'data5'=>$data5,
+        'categories2'=>$categories2,
+        'mapel3'=>$mapel3,
+        'matang1'=>$matang1,
+        'tescategories1' => $tescategories1,
+        'data2'=>$data2,
+        'penilaian'=>$penilaian,
+        'matpel'=>$matpel,
+        'average'=> $average,
+        'siswa'=> $siswa,
+        'matapelajaran' => $matapelajaran,
+        'categories' => $categories,
+        'data' => $data,
+        'tescategories' => $tescategories,
+        'tes1' => $tes1]);
     }
     public function testaddnilai(Request $request, $idsiswa)
     {
