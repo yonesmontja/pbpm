@@ -78,6 +78,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::post('/siswa/create',[SiswaController::class,'create']);
 	Route::get('/siswa/{siswa}/edit',[SiswaController::class,'edit']);
 	Route::post('/siswa/{siswa}/update',[SiswaController::class,'update']);
+    Route::post('/siswa/editnilai', [SiswaController::class, 'editnilai'])->name('siswa.editnilai');
 	Route::get('/siswa/export_excel',[SiswaController::class,'export_excel']);
 	Route::post('/siswa/import_excel',[SiswaController::class,'import_excel']);
 	Route::get('/siswa/export_pdf',[SiswaController::class,'export_pdf']);
