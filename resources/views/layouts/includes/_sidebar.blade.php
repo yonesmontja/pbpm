@@ -163,6 +163,14 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="/mapel" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Mapel</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
                 <a href="/user" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Users</p>
@@ -238,14 +246,6 @@
                 <a href="/swotanalysis" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>SWOT ANALYSIS</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/mapel" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>MAPEL</p>
                 </a>
               </li>
             </ul>
