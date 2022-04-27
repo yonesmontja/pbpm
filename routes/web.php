@@ -106,6 +106,13 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/penilaian/{penilaian}/penilaiandelete',[PenilaianController::class,'penilaiandelete']);
 	Route::get('/penilaian/{penilaian}/profile',[PenilaianController::class,'profile']);
 
+    //Route::get('/nilai',[NilaiController::class,'index']);
+	//Route::post('/nilai/nilaicreate',[NilaiController::class,'nilaicreate']);
+	//Route::get('/nilai/{nilai}/nilaiedit',[NilaiController::class,'nilaiedit']);
+	//Route::post('/nilai/{nilai}/nilaiupdate',[NilaiController::class,'nilaiupdate']);
+	//Route::get('/nilai/{nilai}/nilaidelete',[NilaiController::class,'nilaidelete']);
+	//Route::get('/nilai/{nilai}/profile',[NilaiController::class,'profile']);
+
 	Route::get('/tdu',[TduController::class,'index']);
 	Route::get('/kurikulum',[KurikulumController::class,'index']);
 	Route::get('/kesiswaan',[KesiswaanController::class,'index']);
