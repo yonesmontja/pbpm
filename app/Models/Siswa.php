@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Nilai;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Siswa extends Model
 {
@@ -71,6 +73,17 @@ class Siswa extends Model
         if ($this->avatar && file_exists(public_path('images/small_' . $this->avatar)))
             unlink(public_path('images/small_' . $this->avatar));
     }
+
+    /**
+     * Get all of the nilai for the Siswa
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function nilai(): HasMany
+    {
+        return $this->hasMany(Nilai::class);
+    }
+
     public function mapel()
     {
         return $this -> belongsToMany(Mapel::class)->withPivot(['nilai'])->withTimeStamps();

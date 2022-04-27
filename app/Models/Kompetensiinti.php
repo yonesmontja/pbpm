@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Nilai;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class Kompetensiinti extends Model
@@ -15,6 +17,16 @@ class Kompetensiinti extends Model
     public function kompetensidasar()
     {
     	return $this -> hasMany(Kompetensidasar::class);
+    }
+
+    /**
+     * Get all of the nilai for the Kompetensiinti
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function nilai(): HasMany
+    {
+        return $this->hasMany(Nilai::class);
     }
     public function level()
     {

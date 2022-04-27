@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Nilai;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Penilaian extends Model
 {
@@ -23,6 +25,17 @@ class Penilaian extends Model
     {
         return $this -> hasMany(Mapel::class);
     }
+
+    /**
+     * Get all of the nilai for the Penilaian
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function nilai(): HasMany
+    {
+        return $this->hasMany(Nilai::class);
+    }
+
     function avatar($real_size = false)
     {
         $thumbnail = $real_size ? '' : 'small_';
