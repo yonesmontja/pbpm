@@ -9,6 +9,7 @@ use App\Models\Siswa;
 use App\Models\Penilaian;
 use Illuminate\Http\Request;
 use App\Models\Kompetensiinti;
+use Illuminate\Support\Facades\Redirect;
 
 class NilaiController extends Controller
 {
@@ -21,8 +22,6 @@ class NilaiController extends Controller
         $siswa = Siswa::all();
         $penilaian = Penilaian::all();
         $guru = Guru::all();
-
-
         //dd($guru);
     	return view('nilai.index',['penilaian' => $penilaian,'siswa' => $siswa,'mapel' => $mapel,'kompetensiinti' => $kompetensiinti,'data_nilai' => $data_nilai,'guru' => $guru]);
     }
@@ -30,7 +29,9 @@ class NilaiController extends Controller
     {
     	\App\Models\Nilai::create($request -> all());
     	//return $request -> all();
-    	return redirect('/nilai')->with('sukses','berhasil diinput');
+    	//return redirect('/nilai')->with('sukses','berhasil diinput');
+    	return Redirect::back()->with('sukses','berhasil diinput');
+
     }
     public function nilaidelete($id)
     {
