@@ -48,25 +48,21 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-
                                 @if (session('sukses'))
                                     <div class="alert alert-success" role="alert">
                                         Data <a href="#" class="alert-link">Nilai</a> {{ session('sukses') }}
                                     </div>
                                 @endif
-
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>PERIODE</th>
-
                                             <th>KI</th>
                                             <th>MAPEL</th>
                                             <th>GURU</th>
                                             <th>PENILAIAN</th>
                                             <th>SISWA</th>
                                             <th>NILAI</th>
-
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -107,7 +103,6 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-
                                 <!-- Modal -->
                                 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
                                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -253,7 +248,6 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                     <div
                                                         class="form-group {{ $errors->has('nilai_deskripsi') ? ' has-error' : '' }}">
@@ -276,7 +270,6 @@
                                                         <span
                                                             class="help-block">{{ $errors->first('nilai_notes') }}</span>
                                                     @endif
-
                                                     <!-- akhir form isian data -->
                                             </div>
                                             <div class="modal-footer">

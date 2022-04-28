@@ -26,6 +26,7 @@ use App\Http\Controllers\SwotController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VisiController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\NilaiController;
@@ -114,6 +115,13 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::post('/level/{level}/levelupdate',[LevelController::class,'levelupdate']);
 	Route::get('/level/{level}/leveldelete',[LevelController::class,'leveldelete']);
 	Route::get('/level/{level}/profile',[LevelController::class,'profile']);
+
+    Route::get('/kelas',[KelasController::class,'index']);
+	Route::post('/kelas/kelascreate',[KelasController::class,'kelascreate']);
+	Route::get('/kelas/{kelas}/kelasedit',[KelasController::class,'kelasedit']);
+	Route::post('/kelas/{kelas}/kelasupdate',[KelasController::class,'kelasupdate']);
+	Route::get('/kelas/{kelas}/kelasdelete',[KelasController::class,'kelasdelete']);
+	Route::get('/kelas/{kelas}/profile',[KelasController::class,'profile']);
 
 	Route::get('/tdu',[TduController::class,'index']);
 	Route::get('/kurikulum',[KurikulumController::class,'index']);

@@ -1,7 +1,7 @@
 @extends('layouts.master5')
 
 @section('title')
-    <title> AdminLTE 3 | Level </title>
+    <title> AdminLTE 3 | Kelas </title>
 @endsection
 
 @section('content')
@@ -12,12 +12,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Data Level</h1>
+                        <h1>Data Kelas</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                            <li class="breadcrumb-item active">Data Level</li>
+                            <li class="breadcrumb-item active">Data Kelas</li>
                         </ol>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                                 <div class="col-sm-8">
                                     <button type="button" class="btn btn-primary float-left btn-sm" data-toggle="modal"
                                         data-target="#staticBackdrop">
-                                        Tambah Data Level
+                                        Tambah Data Kelas
                                     </button>
                                 </div>
 
@@ -57,7 +57,7 @@
                                     <div class="modal fade" id="importExcel" tabindex="-1" role="dialog"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
-                                            <form method="post" action="/level/import_excel" enctype="multipart/form-data">
+                                            <form method="post" action="/kelas/import_excel" enctype="multipart/form-data">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
@@ -83,11 +83,11 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
-                                    <a href="/level/export_excel" class="btn btn-primary float-right btn-sm"
+                                    <a href="/kelas/export_excel" class="btn btn-primary float-right btn-sm"
                                         target="_blank">EXPOR EXCEL</a>
                                 </div>
                                 <div class="col-sm-1">
-                                    <a href="/level/export_pdf" class="btn btn-primary float-right btn-sm"
+                                    <a href="/kelas/export_pdf" class="btn btn-primary float-right btn-sm"
                                         target="_blank">EXPOR PDF</a>
                                 </div>
                             </div>
@@ -97,26 +97,35 @@
 
                                 @if (session('sukses'))
                                     <div class="alert alert-success" role="alert">
-                                        Data <a href="#" class="alert-link">level</a> {{ session('sukses') }}
+                                        Data <a href="#" class="alert-link">kelas</a> {{ session('sukses') }}
                                     </div>
                                 @endif
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>NAMA</th>
+                                            <th>LEVEL</th>
+                                            <th>KELAS</th>
+                                            <th></th>
                                             <th>AKSI</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($level1 as $level)
+                                        @foreach ($kelas1 as $kelas)
                                             <tr>
-                                                <td><a href="/level/{{ $level->id }}/profile">{{ $level->level }}</a>
+                                                <td>
+                                                    <a href="/level/{{ $kelas->level->id }}/profile">{{ $kelas->level->level }}</a>
+                                                </td>
+                                                <td><a href="/kelas/{{ $kelas->id }}/profile">{{ $kelas->nama }}</a>
                                                 </td>
                                                 <td>
-                                                    <a href="/level/{{ $level->id }}/leveledit"
+                                                    <img class="profile-user-img img-fluid img-circle"
+                                                        src="{{ $kelas->avatar() }}" alt="User profile picture">
+                                                </td>
+                                                <td>
+                                                    <a href="/kelas/{{ $kelas->id }}/kelasedit"
                                                         class="btn btn-warning btn-sm">Ubah
                                                     </a>
-                                                    <button href="/level/{{ $level->id }}/leveldelete" type="button"
+                                                    <button href="/kelas/{{ $kelas->id }}/kelasdelete" type="button"
                                                         class="btn btn-danger btn-sm" data-toggle="modal"
                                                         data-target="#modal-danger">
                                                         Hapus
@@ -127,7 +136,9 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>NAMA</th>
+                                            <th>LEVEL</th>
+                                            <th>KELAS</th>
+                                            <th></th>
                                             <th>AKSI</th>
                                         </tr>
                                     </tfoot>
@@ -146,22 +157,36 @@
                                             </div>
                                             <div class="modal-body">
                                                 <!-- form isian data -->
-                                                <form action="/level/levelcreate" method="POST"
+                                                <form action="/kelas/kelascreate" method="POST"
                                                     enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     <div class="row">
-                                                        <div class="col-sm-12">
+                                                        <div class="col-sm-6">
                                                             <div
                                                                 class="form-group {{ $errors->has('nama_tes') ? ' has-error' : '' }}">
-                                                                <label for="exampleFormControlInput1">Nama Level</label>
-                                                                <input name="level" type="text" class="form-control"
+                                                                <label for="exampleFormControlInput1">Nama Kelas</label>
+                                                                <input name="nama" type="text" class="form-control"
                                                                     id="exampleFormControlInput1"
-                                                                    placeholder="Masukkan nama level"
-                                                                    value="{{ old('level') }}">
-                                                                @if ($errors->has('level'))
+                                                                    placeholder="Masukkan nama nama"
+                                                                    value="{{ old('nama') }}">
+                                                                @if ($errors->has('nama'))
                                                                     <span
-                                                                        class="help-block">{{ $errors->first('level') }}</span>
+                                                                        class="help-block">{{ $errors->first('nama') }}</span>
                                                                 @endif
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label for="exampleFormControlSelect1">Level</label>
+                                                                <select name="level_id" class="form-control"
+                                                                    id="exampleFormControlSelect2">
+                                                                    <option>---</option>
+                                                                    @foreach ($level as $key => $m)
+                                                                        <option value="{{ $m->id }}">
+                                                                            {{ $m->level }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -229,8 +254,8 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-default"><a href="/level/{{ $level->id }}/leveldelete"
-                            level-id="{{ $level->id }}">Hapus</a></button>
+                    <button type="button" class="btn btn-default"><a href="/kelas/{{ $kelas->id }}/kelasdelete"
+                            kelas-id="{{ $kelas->id }}">Hapus</a></button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -249,12 +274,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Anda yakin mengaktifkan user atas nama level ini&hellip;?</p>
+                    <p>Anda yakin mengaktifkan user atas nama kelas ini&hellip;?</p>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-default"><a href="/test/{{ $level->id }}/aktivasi"
-                            level-id="{{ $level->id }}">Aktivasi</a></button>
+                    <button type="button" class="btn btn-default"><a href="/test/{{ $kelas->id }}/aktivasi"
+                            kelas-id="{{ $kelas->id }}">Aktivasi</a></button>
                 </div>
             </div>
             <!-- /.modal-content -->
