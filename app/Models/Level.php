@@ -9,7 +9,7 @@ class Level extends Model
 {
     use HasFactory;
     protected $table = 'level';
-
+    protected $fillable=['level'];
     public function kompetensiinti()
     {
     	return $this -> hasMany(Kompetensiinti::class);
@@ -17,5 +17,14 @@ class Level extends Model
     public function kompetensidasar()
     {
     	return $this -> hasMany(Kompetensidasar::class);
+    }
+    /**
+     * Get all of the kelas for the Level
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function kelas(): HasMany
+    {
+        return $this->hasMany(Kelas::class);
     }
 }
