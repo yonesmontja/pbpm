@@ -110,7 +110,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($level as $level)
+                                        @foreach ($level1 as $level)
                                             <tr>
                                                 <td><a
                                                         href="/level/{{ $level->id }}/profile">{{ $level->level }}</a>
