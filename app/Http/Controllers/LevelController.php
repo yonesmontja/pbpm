@@ -9,7 +9,11 @@ class LevelController extends Controller
 {
     public function index()
     {
-    	$level = Level::all();
-    	return view('level.index',['level' => $level]);
+    	$level1 = Level::all();
+    	return view('level.index',['level1' => $level1]);
+    }
+     public function leveledit(Level $level)
+    {
+        return view('level.leveledit',['level'=>$level]);
     }
 }
