@@ -57,8 +57,7 @@
                                     <div class="modal fade" id="importExcel" tabindex="-1" role="dialog"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
-                                            <form method="post" action="/level/import_excel"
-                                                enctype="multipart/form-data">
+                                            <form method="post" action="/level/import_excel" enctype="multipart/form-data">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
@@ -105,28 +104,23 @@
                                     <thead>
                                         <tr>
                                             <th>NAMA</th>
-
                                             <th>AKSI</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($level1 as $level)
                                             <tr>
-                                                <td><a
-                                                        href="/level/{{ $level->id }}/profile">{{ $level->level }}</a>
+                                                <td><a href="/level/{{ $level->id }}/profile">{{ $level->level }}</a>
                                                 </td>
-
                                                 <td>
                                                     <a href="/level/{{ $level->id }}/leveledit"
                                                         class="btn btn-warning btn-sm">Ubah
                                                     </a>
-
-                                                    <button href="/level/{{ $level->id }}/leveldelete"
-                                                        type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                                    <button href="/level/{{ $level->id }}/leveldelete" type="button"
+                                                        class="btn btn-danger btn-sm" data-toggle="modal"
                                                         data-target="#modal-danger">
                                                         Hapus
                                                     </button>
-
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -134,12 +128,10 @@
                                     <tfoot>
                                         <tr>
                                             <th>NAMA</th>
-
                                             <th>AKSI</th>
                                         </tr>
                                     </tfoot>
                                 </table>
-
                                 <!-- Modal -->
                                 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
                                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -239,8 +231,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-default"><a
-                            href="/level/{{ $level->id }}/leveldelete"
+                    <button type="button" class="btn btn-default"><a href="/level/{{ $level->id }}/leveldelete"
                             level-id="{{ $level->id }}">Hapus</a></button>
                 </div>
             </div>

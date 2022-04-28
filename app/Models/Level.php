@@ -9,7 +9,7 @@ class Level extends Model
 {
     use HasFactory;
     protected $table = 'level';
-    protected $fillable=['level'];
+    protected $fillable=['level','avatar'];
     public function kompetensiinti()
     {
     	return $this -> hasMany(Kompetensiinti::class);
@@ -26,5 +26,21 @@ class Level extends Model
     public function kelas(): HasMany
     {
         return $this->hasMany(Kelas::class);
+    }
+    function avatar($real_size = false)
+    {
+        $thumbnail = $real_size ? '' : 'small_';
+
+        if ($this->avatar && file_exists(public_path('images/' . $thumbnail . $this->avatar)))
+            return asset('images/' . $thumbnail  . $this->avatar);
+        else
+            return asset('no_avatar.png');
+    }
+    function delete_avatar()
+    {
+        if ($this->avatar && file_exists(public_path('images/' . $this->avatar)))
+            unlink(public_path('images/' . $this->avatar));
+        if ($this->avatar && file_exists(public_path('images/small_' . $this->avatar)))
+            unlink(public_path('images/small_' . $this->avatar));
     }
 }
