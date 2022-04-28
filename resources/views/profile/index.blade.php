@@ -34,6 +34,7 @@
              visibility: hidden;
              z-index: -1
          }
+
          .chartjs-size-monitor-expand>div {
              position: absolute;
              width: 1000000px;
@@ -41,6 +42,7 @@
              left: 0;
              top: 0
          }
+
          .chartjs-size-monitor-shrink>div {
              position: absolute;
              width: 200%;
@@ -48,6 +50,7 @@
              left: 0;
              top: 0
          }
+
      </style>
      <link href="{{ asset('bootstrap3-editable/css/bootstrap-editable.css') }}" rel="stylesheet">
  @endsection
@@ -99,10 +102,11 @@
                                          <b>Penilaian</b> <a class="float-right">{{ $mapel1 }}</a>
                                      </li>
                                      <li class="list-group-item">
-                                         <b>Total Nilai Semua Penilaian</b> <a class="float-right">{{ $matpel }}</a>
+                                         <b>Total Nilai Semua Penilaian</b> <a
+                                             class="float-right">{{ $matpel }}</a>
                                      </li>
                                      <li class="list-group-item">
-                                         <b>Rata-rata Semua Penilaian</b> <a class="float-right">{{ $average }}</a>
+                                         <b>Rata-rata Semua Penilaian</b> <a class="float-right">{{ (int)$average }}</a>
                                      </li>
                                  </ul>
                                  <a href="/test/{{ $siswa->id }}/edit" class="btn btn-primary btn-block"><b>Ubah
@@ -355,8 +359,11 @@
                                          <div class="card">
                                              <div class="card-header">
                                                  <div class="row">
-                                                     <div class="col-md-6">
+                                                     <div class="col-md-4">
                                                          <h3 class="card-title">Rata-rata Mapel</h3>
+                                                     </div>
+                                                     <div class="col-md-4">
+                                                         <h3 class="card-title">{{ $average_mapel }}</h3>
                                                      </div>
                                                      <div class="col-md-4">
                                                          <div class="card-tools">
@@ -381,47 +388,35 @@
                                                  <table class="table table-hover text-nowrap">
                                                      <thead>
                                                          <tr>
-                                                             <th style="width: 10px">Kode Mapel</th>
                                                              <th>Mapel</th>
-                                                             <th>Semester</th>
                                                              <th></th>
                                                              <th style="width: 40px">Nilai</th>
                                                          </tr>
                                                      </thead>
                                                      <tbody>
-                                                         @foreach ($nilai as $key4 => $key)
-                                                             @if ($key->siswa_id == $id1)
-                                                                 <tr>
-                                                                     <td>{{ $key->mapel->kode }}</td>
-                                                                     @foreach ($mapel3 as $key8 => $n)
-                                                                         @if ($key8 == $key4)
-                                                                             <td>
-                                                                                 <a
-                                                                                     href="/mapel/{{ $key8 + 1 }}">{{ $n }}</a>
-                                                                             </td>
-                                                                         @endif
-                                                                     @endforeach
-
-                                                                     <td>{{ $key->mapel->semester }}</td>
-
-                                                                     @foreach ($matang1 as $key1 => $m)
-                                                                         @if ($key1 == $key4)
-                                                                             <td>
-                                                                                 <div class="progress progress-xs">
-                                                                                     <div class="progress-bar progress-bar-danger"
-                                                                                         style="width: {{ $m }}%">
-                                                                                     </div>
+                                                         @foreach ($mapel3 as $key8 => $m)
+                                                             <tr>
+                                                                 <td>
+                                                                     <a
+                                                                         href="/mapel/{{ $key8 + 1 }}">{{ $m }}</a>
+                                                                 </td>
+                                                                 @foreach ($matang1 as $key9 => $n)
+                                                                     @if ($key9 == $key8)
+                                                                         <td>
+                                                                             <div class="progress progress-xs">
+                                                                                 <div class="progress-bar progress-bar-danger"
+                                                                                     style="width: {{ $n }}%">
                                                                                  </div>
-                                                                             </td>
-                                                                         @endif
-                                                                     @endforeach
-                                                                     @foreach ($matang1 as $key1 => $m)
-                                                                         @if ($key1 == $key4)
-                                                                             <td>{{ $m }}</td>
-                                                                         @endif
-                                                                     @endforeach
-                                                                 </tr>
-                                                             @endif
+                                                                             </div>
+                                                                         </td>
+                                                                     @endif
+                                                                 @endforeach
+                                                                 @foreach ($matang1 as $key10 => $o )
+                                                                     @if($key10 == $key8)
+                                                                     <td>{{ $o }}</td>
+                                                                     @endif
+                                                                 @endforeach
+                                                             </tr>
                                                          @endforeach
                                                      </tbody>
                                                  </table>
