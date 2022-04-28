@@ -1,6 +1,7 @@
 <?php
 use App\Models\Guru;
 use App\Models\Mapel;
+use App\Models\Nilai;
 use App\Models\Siswa;
 use App\Models\Journal;
 use App\Models\Tahunpel;
@@ -17,6 +18,28 @@ function rangking5Besar()
 	$siswa = $siswa->sortByDesc('ratarataNilai')->take(5);
         //dd($siswa);
 	return $siswa;
+}
+function luasxGrafik()
+{
+    $nilai = Nilai::all();
+    $sumbux = [];
+    //$sumbuy = [];
+    foreach($nilai as $mnp){
+                $sumbux[] = $mnp->nilai;
+                //$sumbuy[] = $mnp -> mapel -> nama_mapel;
+        }
+    return $sumbux;
+}
+function luasyGrafik()
+{
+    $nilai = Nilai::all();
+    //$sumbux = [];
+    $sumbuy = [];
+    foreach($nilai as $mnp){
+                //$sumbux[] = $mnp->nilai;
+                $sumbuy[] = $mnp -> mapel -> nama_mapel;
+        }
+    return $sumbuy;
 }
 function totalSiswa()
 {
