@@ -26,6 +26,7 @@ use App\Http\Controllers\SwotController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VisiController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\LevelController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\PagesController;
@@ -107,12 +108,12 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/penilaian/{penilaian}/penilaiandelete',[PenilaianController::class,'penilaiandelete']);
 	Route::get('/penilaian/{penilaian}/profile',[PenilaianController::class,'profile']);
 
-    //Route::get('/nilai',[NilaiController::class,'index']);
-	//Route::post('/nilai/nilaicreate',[NilaiController::class,'nilaicreate']);
-	//Route::get('/nilai/{nilai}/nilaiedit',[NilaiController::class,'nilaiedit']);
-	//Route::post('/nilai/{nilai}/nilaiupdate',[NilaiController::class,'nilaiupdate']);
-	//Route::get('/nilai/{nilai}/nilaidelete',[NilaiController::class,'nilaidelete']);
-	//Route::get('/nilai/{nilai}/profile',[NilaiController::class,'profile']);
+    Route::get('/level',[LevelController::class,'index']);
+	Route::post('/level/levelcreate',[LevelController::class,'levelcreate']);
+	Route::get('/level/{level}/leveledit',[LevelController::class,'leveledit']);
+	Route::post('/level/{level}/levelupdate',[LevelController::class,'levelupdate']);
+	Route::get('/level/{level}/leveldelete',[LevelController::class,'leveldelete']);
+	Route::get('/level/{level}/profile',[LevelController::class,'profile']);
 
 	Route::get('/tdu',[TduController::class,'index']);
 	Route::get('/kurikulum',[KurikulumController::class,'index']);
