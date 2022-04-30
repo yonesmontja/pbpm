@@ -6,6 +6,7 @@ use PDF;
 use Session;
 use App\Models\Guru;
 use App\Models\User;
+use App\Models\Kelas;
 use App\Models\Mapel;
 use App\Models\Nilai;
 use App\Models\Siswa;
@@ -13,8 +14,8 @@ use App\Models\Penilaian;
 use App\Imports\UserImport;
 use Illuminate\Support\Str;
 use App\Exports\SiswaExport;
-use App\Imports\SiswaImport;
 
+use App\Imports\SiswaImport;
 use Illuminate\Http\Request;
 use App\Models\Kompetensiinti;
 use Illuminate\Support\Facades\DB;
@@ -213,6 +214,7 @@ class SiswaController extends Controller
         $kompetensiinti = Kompetensiinti::all();
         $mapel = Mapel::all();
         $guru = Guru::all();
+        $kelas = Kelas::all();
         // data untuk Chart.js
         $categories = [];
         $data = [];
@@ -322,6 +324,7 @@ class SiswaController extends Controller
         'matpel'=>$matpel,
         'average'=> $average,
         'siswa'=> $siswa,
+        'kelas'=> $kelas,
         'matapelajaran' => $matapelajaran,
         'categories' => $categories,
         'data' => $data,

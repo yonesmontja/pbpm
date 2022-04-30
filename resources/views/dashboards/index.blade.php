@@ -658,7 +658,7 @@
                             <div class="card-header border-0">
                                 <h3 class="card-title">
                                     <i class="fas fa-map-marker-alt mr-1"></i>
-                                    Asmat
+                                    Pegunungan Bintang
                                 </h3>
                                 <!-- card tools -->
                                 <div class="card-tools">
@@ -674,7 +674,7 @@
                                 <!-- /.card-tools -->
                             </div>
                             <div class="card-body">
-                                <div id="world-map" style="height: 250px; width: 100%;">
+                                <div id="world-map" style="height: 450px; width: 100%;">
 
                                 </div>
                             </div>

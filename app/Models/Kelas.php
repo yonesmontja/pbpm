@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use App\Models\Level;
+use App\Models\Nilai;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Kelas extends Model
 {
@@ -20,6 +22,15 @@ class Kelas extends Model
     public function level(): BelongsTo
     {
         return $this->belongsTo(Level::class, 'level_id', 'id');
+    }
+    /**
+     * Get the nilai that owns the Kelas
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function nilai(): HasMany
+    {
+        return $this->hasMany(Nilai::class);
     }
     function avatar($real_size = false)
     {

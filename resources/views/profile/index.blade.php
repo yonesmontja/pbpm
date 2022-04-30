@@ -538,7 +538,7 @@
                              </div>
                          </div>
                          <div class="row">
-                             <div class="col-sm-6">
+                             <div class="col-sm-4">
                                  <div class="form-group">
                                      <label for="exampleFormControlSelect1">GURU</label>
                                      <select name="guru_id" class="form-control" id="exampleFormControlSelect2">
@@ -551,7 +551,20 @@
                                      </select>
                                  </div>
                              </div>
-                             <div class="col-sm-6">
+                             <div class="col-sm-4">
+                                 <div class="form-group">
+                                     <label for="exampleFormControlSelect1">KELAS</label>
+                                     <select name="kelas_id" class="form-control" id="exampleFormControlSelect2">
+                                         <option>---</option>
+                                         @foreach ($kelas as $key => $m)
+                                             <option value="{{ $m->id }}">
+                                                 {{ $m->nama }}
+                                             </option>
+                                         @endforeach
+                                     </select>
+                                 </div>
+                             </div>
+                             <div class="col-sm-4">
                                  <div class="form-group">
                                      <label for="exampleFormControlSelect1">SISWA</label>
                                      <select name="siswa_id" class="form-control" id="exampleFormControlSelect2">

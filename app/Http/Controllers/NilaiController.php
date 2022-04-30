@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\Kelas;
 use App\Models\Mapel;
 use App\Models\Nilai;
 use App\Models\Siswa;
@@ -22,8 +23,9 @@ class NilaiController extends Controller
         $siswa = Siswa::all();
         $penilaian = Penilaian::all();
         $guru = Guru::all();
+        $kelas = Kelas::all();
         //dd($guru);
-    	return view('nilai.index',['penilaian' => $penilaian,'siswa' => $siswa,'mapel' => $mapel,'kompetensiinti' => $kompetensiinti,'data_nilai' => $data_nilai,'guru' => $guru]);
+    	return view('nilai.index',['kelas' => $kelas,'penilaian' => $penilaian,'siswa' => $siswa,'mapel' => $mapel,'kompetensiinti' => $kompetensiinti,'data_nilai' => $data_nilai,'guru' => $guru]);
     }
     public function nilaicreate(Request $request)
     {

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Guru;
+use App\Models\Kelas;
 use App\Models\Mapel;
 use App\Models\Siswa;
 use App\Models\Penilaian;
@@ -19,6 +20,7 @@ class Nilai extends Model
     'nilai',
     'kompetensi_inti_id',
     'mapel_id',
+    'kelas_id',
     'penilaian_id',
     'guru_id',
     'siswa_id',
@@ -72,5 +74,14 @@ class Nilai extends Model
     public function siswa(): BelongsTo
     {
         return $this->belongsTo(Siswa::class, 'siswa_id', 'id');
+    }
+    /**
+     * Get the kelas that owns the Nilai
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function kelas(): BelongsTo
+    {
+        return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
     }
 }

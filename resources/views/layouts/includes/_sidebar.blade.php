@@ -147,6 +147,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="/kelas" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Kelas</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
                 <a href="/test" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Siswa</p>
@@ -166,6 +174,14 @@
                 <a href="/mapel" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Mapel</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/nilai" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Nilai</p>
                 </a>
               </li>
             </ul>
