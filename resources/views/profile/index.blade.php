@@ -96,7 +96,7 @@
                                  </div>
                                  <h3 class="profile-username text-center"><a href="#">{{ $siswa->nama_depan }}
                                          {{ $siswa->nama_belakang }}</a></h3>
-                                 <p class="text-muted text-center">{{ $siswa->kelas }}</p>
+                                 <p class="text-muted text-center">{{ $rombel }}</p>
                                  <ul class="list-group list-group-unbordered mb-3">
                                      <li class="list-group-item">
                                          <b>Penilaian</b> <a class="float-right">{{ $mapel1 }}</a>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Kelas;
 use App\Models\Nilai;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -22,6 +23,7 @@ class Siswa extends Model
     'alamat',
     'avatar',
     'user_id',
+    'kelas_id',
     'nisn',
     'kelas',
     'tempat_lahir',
@@ -152,6 +154,15 @@ class Siswa extends Model
     public function extra()
     {
         return $this->hasOne(Extra::class);
+    }
+    /**
+     * Get the kelas that owns the Siswa
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function kelas(): BelongsTo
+    {
+        return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
     }
 
 }

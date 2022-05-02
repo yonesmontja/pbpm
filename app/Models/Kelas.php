@@ -4,10 +4,11 @@ namespace App\Models;
 
 use App\Models\Level;
 use App\Models\Nilai;
+use App\Models\Siswa;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Kelas extends Model
 {
@@ -47,5 +48,14 @@ class Kelas extends Model
             unlink(public_path('images/' . $this->avatar));
         if ($this->avatar && file_exists(public_path('images/small_' . $this->avatar)))
             unlink(public_path('images/small_' . $this->avatar));
+    }
+    /**
+     * Get all of the siswa for the Kelas
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function siswa(): HasMany
+    {
+        return $this->hasMany(Siswa::class);
     }
 }
