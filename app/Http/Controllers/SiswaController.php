@@ -67,8 +67,9 @@ class SiswaController extends Controller
     {
         $data_siswa = \App\Models\Siswa::all();
         $user_id = \App\Models\Siswa::all();
+        $kelas = Kelas::all();
         //dd('$data_siswa');
-        return view('siswa.test',['data_siswa' => $data_siswa,'user_id'=> $user_id]);
+        return view('siswa.test',['kelas' => $kelas,'data_siswa' => $data_siswa,'user_id'=> $user_id]);
     }
     public function testcreate(Request $request)
     {
@@ -261,6 +262,13 @@ class SiswaController extends Controller
                 //dd($tes1);
             }
         }
+
+        foreach($kelas as $dua){
+
+                $rombel = $dua ->  nama;
+
+        }
+        //dd($rombel);
         $id1 = Nilai::all()->where('siswa_id',$id)->pluck('siswa_id',$id)->first();
         $mapel1 = Nilai::all()->where('siswa_id',$id)->pluck('mapel_id')->count();
         $mapel3 = Mapel::all()->pluck('nama_mapel');
@@ -290,7 +298,9 @@ class SiswaController extends Controller
         $average_mapel = collect($matang1)->avg();
         $data2 = DB::table('penilaian_siswa')
                     ->join('mapel_siswa', 'mapel_siswa.siswa_id', '=', 'penilaian_siswa.siswa_id');
+
         return view('profile.index',[
+        'rombel' => $rombel,
         'average_mapel' => $average_mapel,
         'islam_average'=>$islam_average,
         'protestan_average'=>$protestan_average,
