@@ -113,6 +113,7 @@ class SiswaController extends Controller
         $siswa -> jenis_kelamin = $input['jenis_kelamin'];
         $siswa -> agama = $input['agama'];
         $siswa -> alamat = $input['alamat'];
+        $siswa -> kelas_id = $input['kelas_id'];
         $siswa -> avatar = $file_name;
         //$request -> request -> add(['user_id' => $user -> id]);
         //dd($request -> request -> add(['user_id' => $user -> id]));
@@ -207,6 +208,8 @@ class SiswaController extends Controller
     public function testprofile($id, Request $request)
     {
         $siswa = \App\Models\Siswa::find($id);
+        $rombel = $siswa -> kelas_id;
+        //dd($rombel);
         $siswa1 = \App\Models\Siswa::all();
         $matapelajaran = \App\Models\Mapel::all();
         $penilaian = \App\Models\Penilaian::all();
@@ -216,6 +219,9 @@ class SiswaController extends Controller
         $mapel = Mapel::all();
         $guru = Guru::all();
         $kelas = Kelas::all();
+        $rombel1 = Kelas::find($rombel);
+        $rombel2 = $rombel1 -> nama;
+
         // data untuk Chart.js
         $categories = [];
         $data = [];
@@ -263,12 +269,6 @@ class SiswaController extends Controller
             }
         }
 
-        foreach($kelas as $dua){
-
-                $rombel = $dua ->  nama;
-
-        }
-        //dd($rombel);
         $id1 = Nilai::all()->where('siswa_id',$id)->pluck('siswa_id',$id)->first();
         $mapel1 = Nilai::all()->where('siswa_id',$id)->pluck('mapel_id')->count();
         $mapel3 = Mapel::all()->pluck('nama_mapel');
@@ -300,7 +300,8 @@ class SiswaController extends Controller
                     ->join('mapel_siswa', 'mapel_siswa.siswa_id', '=', 'penilaian_siswa.siswa_id');
 
         return view('profile.index',[
-        'rombel' => $rombel,
+        'rombel2' => $rombel2,
+
         'average_mapel' => $average_mapel,
         'islam_average'=>$islam_average,
         'protestan_average'=>$protestan_average,
