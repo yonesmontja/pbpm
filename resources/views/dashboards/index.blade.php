@@ -105,7 +105,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">
                                     <i class="fas fa-chart-pie mr-1"></i>
-                                    Sales
+                                    Nilai Siswa
                                 </h3>
                                 <div class="card-tools">
                                     <ul class="nav nav-pills ml-auto">
@@ -134,11 +134,11 @@
                             </div><!-- /.card-body -->
                         </div>
                         <!-- solid sales graph -->
-                        <div class="card bg-gradient-info">
+                        <div class="card">
                             <div class="card-header border-0">
                                 <h3 class="card-title">
                                     <i class="fas fa-th mr-1"></i>
-                                    Sales Graph
+                                    Rata-rata Nilai Siswa
                                 </h3>
 
                                 <div class="card-tools">
@@ -160,24 +160,27 @@
                             <div class="card-footer bg-transparent">
                                 <div class="row">
                                     <div class="col-4 text-center">
-                                        <input type="text" class="knob" data-readonly="true" value="20"
-                                            data-width="60" data-height="60" data-fgColor="#39CCCC">
+                                        <input type="text" class="knob" data-readonly="true"
+                                            value="{{ $sikap_average }}" data-width="60" data-height="60"
+                                            data-fgColor="#39CCCC">
 
                                         <div class="text-white">Sikap</div>
                                     </div>
                                     <!-- ./col -->
                                     <div class="col-4 text-center">
-                                        <input type="text" class="knob" data-readonly="true" value="50"
-                                            data-width="60" data-height="60" data-fgColor="#39CCCC">
+                                        <input type="text" class="knob" data-readonly="true"
+                                            value="{{ $skill_average }}" data-width="60" data-height="60"
+                                            data-fgColor="#39CCCC">
 
                                         <div class="text-white">Skill</div>
                                     </div>
                                     <!-- ./col -->
                                     <div class="col-4 text-center">
-                                        <input type="text" class="knob" data-readonly="true" value="30"
-                                            data-width="60" data-height="60" data-fgColor="#39CCCC">
+                                        <input type="text" class="knob" data-readonly="true"
+                                            value="{{ $budaya_average }}" data-width="60" data-height="60"
+                                            data-fgColor="#39CCCC">
 
-                                        <div class="text-white">Pengetahuan</div>
+                                        <div class="text-white">SBK</div>
                                     </div>
                                     <!-- ./col -->
                                 </div>
@@ -185,6 +188,50 @@
                             </div>
                             <!-- /.card-footer -->
                         </div>
+                        <!-- /.card -->
+                        <!-- BAR CHART -->
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">Bar Chart</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                            class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart">
+                                    <canvas id="barChart"
+                                        style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- STACKED BAR CHART -->
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h3 class="card-title">Stacked Bar Chart</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                            class="fas fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart">
+                                    <canvas id="stackedBarChart"
+                                        style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
                         <!-- /.card -->
                         <!-- Calendar -->
                         <div class="card bg-gradient-success">
@@ -918,17 +965,28 @@
             var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
 
             var areaChartData = {
-                labels: {!! json_encode($sumbuy) !!},
+                labels: {!! json_encode($matpel) !!},
                 datasets: [{
-                        label: 'Digital Goods',
-                        backgroundColor: 'rgba(60,141,188,0.9)',
+                        label: 'Nilai Siswa',
+                        backgroundColor: 'rgba(255, 0, 0, 0.4)',
                         borderColor: 'rgba(60,141,188,0.8)',
                         pointRadius: false,
-                        pointColor: '#3b8bba',
-                        pointStrokeColor: 'rgba(60,141,188,1)',
+                        pointColor: '#B7E675',
+                        pointStrokeColor: 'rgba(148, 233, 78, 0.57)',
                         pointHighlightFill: '#fff',
-                        pointHighlightStroke: 'rgba(60,141,188,1)',
-                        data: {!! json_encode($sumbux) !!}
+                        pointHighlightStroke: 'rgba(148, 233, 78, 0.57)',
+                        data: {!! json_encode($matang1) !!}
+                    },
+                    {
+                        label: 'Nilai Siswa',
+                        backgroundColor: 'rgba(255, 0, 0, 0.4)',
+                        borderColor: 'rgba(60,141,188,0.8)',
+                        pointRadius: false,
+                        pointColor: '#B7E675',
+                        pointStrokeColor: 'rgba(148, 233, 78, 0.57)',
+                        pointHighlightFill: '#fff',
+                        pointHighlightStroke: 'rgba(148, 233, 78, 0.57)',
+                        data: {!! json_encode($matang1) !!}
                     },
 
                 ]
@@ -968,7 +1026,7 @@
             var lineChartOptions = jQuery.extend(true, {}, areaChartOptions)
             var lineChartData = jQuery.extend(true, {}, areaChartData)
             lineChartData.datasets[0].fill = false;
-            //lineChartData.datasets[1].fill = false;
+            lineChartData.datasets[1].fill = false;
             lineChartOptions.datasetFill = false
 
             var lineChart = new Chart(lineChartCanvas, {
@@ -983,10 +1041,21 @@
             // Get context with jQuery - using jQuery's .get() method.
             var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
             var donutData = {
-                labels: {!! json_encode($sumbuy) !!},
+                labels: {!! json_encode($matpel) !!},
                 datasets: [{
-                    data: {!! json_encode($sumbux) !!},
-                    backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+                    data: {!! json_encode($matang1) !!},
+                    backgroundColor: [
+                        '#f56954',
+                        '#00a65a',
+                        '#f39c12',
+                        '#00c0ef',
+                        '#3c8dbc',
+                        '#1F8708',
+                        '#325E3E',
+                        '#C064DE',
+                        '#d2d6de',
+                        '#40CC19'
+                    ],
                 }]
             }
             var donutOptions = {
@@ -1005,29 +1074,76 @@
             //- PIE CHART -
             //-------------
             // Get context with jQuery - using jQuery's .get() method.
-            var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-            var pieData = donutData;
-            var pieOptions = {
-                maintainAspectRatio: false,
-                responsive: true,
-            }
+            //var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+            //var pieData = donutData;
+            //var pieOptions = {
+            //    maintainAspectRatio: false,
+            //    responsive: true,
+            //}
             //Create pie or douhnut chart
             // You can switch between pie and douhnut using the method below.
-            var pieChart = new Chart(pieChartCanvas, {
+            /*var pieChart = new Chart(pieChartCanvas, {
                 type: 'pie',
                 data: pieData,
                 options: pieOptions
             })
-
+            */
             //-------------
             //- BAR CHART -
             //-------------
             var barChartCanvas = $('#barChart').get(0).getContext('2d')
-            var barChartData = jQuery.extend(true, {}, areaChartData)
-            var temp0 = areaChartData.datasets[0]
-            var temp1 = areaChartData.datasets[1]
-            barChartData.datasets[0] = temp1
-            barChartData.datasets[1] = temp0
+            var barChartData = {
+                labels: ['Agama Islam', 'Agama Kristen', 'Agama Katolik', 'PPKn', 'B. Indonesia', 'Matematika', 'IPA','IPS','PJOK','SBK'],
+                datasets: [{
+                        label: 'Pemetaan Awal',
+                        backgroundColor: 'rgba(60,141,188,0.9)',
+                        borderColor: 'rgba(60,141,188,0.8)',
+                        pointRadius: false,
+                        pointColor: '#3b8bba',
+                        pointStrokeColor: 'rgba(60,141,188,1)',
+                        pointHighlightFill: '#fff',
+                        pointHighlightStroke: 'rgba(60,141,188,1)',
+                        data: [{!! json_encode($islam_average) !!},
+                        {!! json_encode($protestan_average) !!},
+                        {!! json_encode($katolik_average) !!},
+                        {!! json_encode($ppkn_average) !!},
+                        {!! json_encode($indonesia_average) !!},
+                        {!! json_encode($matematika_average) !!},
+                        {!! json_encode($ipa_average) !!},
+                        {!! json_encode($ips_average) !!},
+                        {!! json_encode($pjok_average) !!},
+                        {!! json_encode($sbk_average) !!},
+                    ]
+                    },
+                    {
+                        label: 'Pemetaan Akhir',
+                        backgroundColor: 'rgba(210, 214, 222, 1)',
+                        borderColor: 'rgba(210, 214, 222, 1)',
+                        pointRadius: false,
+                        pointColor: 'rgba(210, 214, 222, 1)',
+                        pointStrokeColor: '#c1c7d1',
+                        pointHighlightFill: '#fff',
+                        pointHighlightStroke: 'rgba(220,220,220,1)',
+                        data: [{!! json_encode($islam_average) !!},
+                        {!! json_encode($protestan_average) !!},
+                        {!! json_encode($katolik_average) !!},
+                        {!! json_encode($ppkn_average) !!},
+                        {!! json_encode($indonesia_average) !!},
+                        {!! json_encode($matematika_average) !!},
+                        {!! json_encode($ipa_average) !!},
+                        {!! json_encode($ips_average) !!},
+                        {!! json_encode($pjok_average) !!},
+                        {!! json_encode($sbk_average) !!},
+                    ]
+                    },
+                ]
+            }
+
+            var barChartData = jQuery.extend(true, {}, barChartData)
+            var temp0 = barChartData.datasets[0]
+            var temp1 = barChartData.datasets[1]
+            barChartData.datasets[0] = temp0
+            barChartData.datasets[1] = temp1
 
             var barChartOptions = {
                 responsive: true,
@@ -1040,6 +1156,29 @@
                 data: barChartData,
                 options: barChartOptions
             })
+            // Sparkline charts
+            var sparkline1 = new Sparkline($('#sparkline-1')[0], {
+                width: 80,
+                height: 50,
+                lineColor: '#92c1dc',
+                endColor: '#ebf4f9',
+            });
+            var sparkline2 = new Sparkline($('#sparkline-2')[0], {
+                width: 80,
+                height: 50,
+                lineColor: '#92c1dc',
+                endColor: '#ebf4f9',
+            });
+            var sparkline3 = new Sparkline($('#sparkline-3')[0], {
+                width: 80,
+                height: 50,
+                lineColor: '#92c1dc',
+                endColor: '#ebf4f9',
+            });
+
+            sparkline1.draw({!! json_encode($matang1) !!});
+            sparkline2.draw({!! json_encode($matang1) !!});
+            sparkline3.draw({!! json_encode($matang1) !!});
 
             //---------------------
             //- STACKED BAR CHART -
