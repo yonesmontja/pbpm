@@ -44,56 +44,101 @@
                     <form action="/test/{{ $siswa->id }}/update" method="POST" enctype="multipart/form-data" role="form">
                         {{ csrf_field() }}
                         <div class="card-body">
-                            <div class="form-group">
-                                <label for="formGroupExampleInput">Nama Depan</label>
-                                <input name="nama_depan" type="text" class="form-control" id="formGroupExampleInput"
-                                    placeholder="Masukkan Nama Depan" value="{{ $siswa->nama_depan }}">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="formGroupExampleInput">Nama Depan</label>
+                                        <input name="nama_depan" type="text" class="form-control"
+                                            id="formGroupExampleInput" placeholder="Masukkan Nama Depan"
+                                            value="{{ $siswa->nama_depan }}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="formGroupExampleInput">Nama Belakang</label>
+                                        <input name="nama_belakang" type="text" class="form-control"
+                                            id="formGroupExampleInput" placeholder="Masukkan Nama Belakang"
+                                            value="{{ $siswa->nama_belakang }}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+                                        <label for="formGroupExampleInput">Email</label>
+                                        <input name="email" type="email" class="form-control" id="formGroupExampleInput"
+                                            placeholder="Masukkan Email" value="{{ old('email') }}">
+                                        @if ($errors->has('email'))
+                                            <span class="help-block">{{ $errors->first('email') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">KELAS</label>
+                                        <select name="kelas_id" class="form-control" id="exampleFormControlSelect2">
+                                            <option>---</option>
+                                            @foreach ($kelas as $key => $m)
+                                                <option value="{{ $m->id }}">
+                                                    {{ $m->nama }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="formGroupExampleInput">Nama Belakang</label>
-                                <input name="nama_belakang" type="text" class="form-control" id="formGroupExampleInput"
-                                    placeholder="Masukkan Nama Belakang" value="{{ $siswa->nama_belakang }}">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Pilih Jenis Kelamin</label>
+                                        <select name="jenis_kelamin" class="form-control" id="exampleFormControlSelect1">
+                                            <option value="Laki-laki" @if ($siswa->jenis_kelamin == 'Laki-laki') selected @endif>
+                                                Laki-laki
+                                            </option>
+                                            <option value="Perempuan" @if ($siswa->jenis_kelamin == 'Perempuan') selected @endif>
+                                                Perempuan
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Pilih Agama</label>
+                                        <select name="agama" class="form-control" id="exampleFormControlSelect1">
+                                            <option value="islam" @if ($siswa->agama == 'islam') selected @endif>Islam
+                                            </option>
+                                            <option value="katolik" @if ($siswa->agama == 'katolik') selected @endif>
+                                                Katolik
+                                            </option>
+                                            <option value="kristen protestan"
+                                                @if ($siswa->agama == 'kristen protestan') selected @endif>
+                                                Kristen Protestan</option>
+                                            <option value="budha" @if ($siswa->agama == 'budha') selected @endif>Budha
+                                            </option>
+                                            <option value="hindu" @if ($siswa->agama == 'hindu') selected @endif>Hindu
+                                            </option>
+                                            <option value="konghucu" @if ($siswa->agama == 'konghucu') selected @endif>
+                                                Konghucu
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+
+                                </div>
+                                <div class="col-sm-3">
+
+                                </div>
                             </div>
-                            <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="formGroupExampleInput">Email</label>
-                                <input name="email" type="email" class="form-control" id="formGroupExampleInput"
-                                    placeholder="Masukkan Email" value="{{ old('email') }}">
-                                @if ($errors->has('email'))
-                                    <span class="help-block">{{ $errors->first('email') }}</span>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Pilih Jenis Kelamin</label>
-                                <select name="jenis_kelamin" class="form-control" id="exampleFormControlSelect1">
-                                    <option value="Laki-laki" @if ($siswa->jenis_kelamin == 'Laki-laki') selected @endif>Laki-laki
-                                    </option>
-                                    <option value="Perempuan" @if ($siswa->jenis_kelamin == 'Perempuan') selected @endif>Perempuan
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Pilih Agama</label>
-                                <select name="agama" class="form-control" id="exampleFormControlSelect1">
-                                    <option value="islam" @if ($siswa->agama == 'islam') selected @endif>Islam</option>
-                                    <option value="katolik" @if ($siswa->agama == 'katolik') selected @endif>Katolik
-                                    </option>
-                                    <option value="kristen protestan" @if ($siswa->agama == 'kristen protestan') selected @endif>
-                                        Kristen Protestan</option>
-                                    <option value="budha" @if ($siswa->agama == 'budha') selected @endif>Budha</option>
-                                    <option value="hindu" @if ($siswa->agama == 'hindu') selected @endif>Hindu</option>
-                                    <option value="konghucu" @if ($siswa->agama == 'konghucu') selected @endif>Konghucu
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="form-group">
+                            <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Alamat</label>
-                                    <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1"
-                                        rows="3">{{ $siswa->alamat }}</textarea>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Alamat</label>
+                                        <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1"
+                                            rows="3">{{ $siswa->alamat }}</textarea>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="avatar" class="form-label">Avatar</label>
+                                <label for="avatar" class="form-label">Foto Siswa</label>
                                 <div class="input-group">
                                     <div class="custom-file">
 

@@ -156,7 +156,8 @@ class SiswaController extends Controller
 
     public function testedit(Siswa $siswa)
     {
-        return view('siswa/testedit',['siswa'=>$siswa]);
+        $kelas = Kelas::all();
+        return view('siswa/testedit',['kelas'=>$kelas,'siswa'=>$siswa]);
     }
     public function testupdate(Request $request, Siswa $siswa)
     {
@@ -183,6 +184,7 @@ class SiswaController extends Controller
         $siswa->jenis_kelamin = $request->jenis_kelamin;
         $siswa->agama = $request->agama;
         $siswa->alamat = $request->alamat;
+        $siswa->kelas_id = $request->kelas_id;
         $siswa->save();
         return redirect('/test')->with('sukses','berhasil diupdate!');
     }

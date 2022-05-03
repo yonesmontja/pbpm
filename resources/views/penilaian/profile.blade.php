@@ -171,12 +171,12 @@
                                                          </tr>
                                                      </thead>
                                                      <tbody>
-                                                         @foreach ($penilaian->siswa as $siswa)
+                                                         @foreach ($nilai as $siswa)
                                                              <tr>
-                                                                 <td>{{ $siswa->nis }}</td>
-                                                                 <td>{{ $siswa->nama_depan }} {{ $siswa->nama_belakang }}
+                                                                 <td>{{ $siswa->siswa->nis }}</td>
+                                                                 <td>{{ $siswa->siswa->nama_depan }} {{ $siswa->siswa->nama_belakang }}
                                                                  </td>
-                                                                 <td>{{ $siswa->kelas }}</td>
+                                                                 <td>{{ $siswa->kelas_id }}</td>
                                                              </tr>
                                                          @endforeach
                                                      </tbody>

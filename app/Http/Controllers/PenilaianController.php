@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mapel;
+use App\Models\Nilai;
 use App\Models\Penilaian;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -14,7 +15,23 @@ class PenilaianController extends Controller
     {
     	$mapel = Mapel::all();
         $penilaian = Penilaian::find($id);
-    	return view('penilaian.profile',['penilaian' => $penilaian,'mapel'=>$mapel]);
+        $tes = Penilaian::find($id) -> id;
+        $nilai = Nilai::all()->where('penilaian_id',$tes);
+        $nilai1 = Nilai::all();
+        $tes2 = [];
+        $nama_tes = "Tugas 2";
+        foreach($nilai1 as $key){
+            if($penilaian->where('nama_tes','=',$nama_tes)){
+                $tes2[] = $key->penilaian->nama_tes;
+            }
+
+        }
+        dd($tes2);
+        //foreach($nilai -)
+    	return view('penilaian.profile',[
+            'penilaian' => $penilaian,
+            'nilai' => $nilai,
+            'mapel'=>$mapel]);
     }
     public function index()
     {
