@@ -99,7 +99,7 @@
                 <!-- Main row -->
                 <div class="row">
                     <!-- Left col -->
-                    <section class="col-lg-7 connectedSortable">
+                    <section class="col-lg-9 connectedSortable">
                         <!-- Custom tabs (Charts with tabs)-->
                         <div class="card">
                             <div class="card-header">
@@ -110,10 +110,10 @@
                                 <div class="card-tools">
                                     <ul class="nav nav-pills ml-auto">
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
+                                            <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Nilai Siswa</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
+                                            <a class="nav-link" href="#sales-chart" data-toggle="tab">Rata-rata Nilai</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -164,7 +164,7 @@
                                             value="{{ $sikap_average }}" data-width="60" data-height="60"
                                             data-fgColor="#39CCCC">
 
-                                        <div class="text-white">Sikap</div>
+                                        <div class="text-dark">Sikap</div>
                                     </div>
                                     <!-- ./col -->
                                     <div class="col-4 text-center">
@@ -172,7 +172,7 @@
                                             value="{{ $skill_average }}" data-width="60" data-height="60"
                                             data-fgColor="#39CCCC">
 
-                                        <div class="text-white">Skill</div>
+                                        <div class="text-dark">Skill</div>
                                     </div>
                                     <!-- ./col -->
                                     <div class="col-4 text-center">
@@ -180,7 +180,7 @@
                                             value="{{ $budaya_average }}" data-width="60" data-height="60"
                                             data-fgColor="#39CCCC">
 
-                                        <div class="text-white">SBK</div>
+                                        <div class="text-dark">SBK</div>
                                     </div>
                                     <!-- ./col -->
                                 </div>
@@ -192,7 +192,7 @@
                         <!-- BAR CHART -->
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Bar Chart</h3>
+                                <h3 class="card-title">Nilai Siswa</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
@@ -213,7 +213,7 @@
                         <!-- STACKED BAR CHART -->
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Stacked Bar Chart</h3>
+                                <h3 class="card-title">Nilai Siswa</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
@@ -274,20 +274,17 @@
                     </section>
                     <!-- /.Left col -->
                     <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                    <section class="col-lg-5 connectedSortable">
+                    <section class="col-lg-3 connectedSortable">
                         <!-- Map card -->
                         <div class="card bg-gradient-primary">
                             <div class="card-header border-0">
                                 <h3 class="card-title">
                                     <i class="fas fa-map-marker-alt mr-1"></i>
-                                    Pegunungan Bintang
+                                    Pegunungan Bintang Wilayah
                                 </h3>
                                 <!-- card tools -->
                                 <div class="card-tools">
-                                    <button type="button" class="btn btn-primary btn-sm daterange" data-toggle="tooltip"
-                                        title="Date range">
-                                        <i class="far fa-calendar-alt"></i>
-                                    </button>
+
                                     <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse"
                                         data-toggle="tooltip" title="Collapse">
                                         <i class="fas fa-minus"></i>
@@ -298,11 +295,10 @@
                             <div class="card-body">
                                 <div class="mapdiv">
                                     <!-- Creator: CorelDRAW X7 -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="100%" height="350px"
+                                    <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="100%" height="250px"
                                         version="1.0"
-                                        style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-                                        viewBox="0 0 2970 2550" xmlns:xlink="http://www.w3.org/1999/xlink" id="asmat-map"
-                                        preserveAspectRatio="xMinYMin meet">
+
+                                        viewBox="0 0 3608 2580" xmlns:xlink="http://www.w3.org/1999/xlink" id="asmat-map">
                                         <defs>
                                             <style type="text/css">
                                                 <![CDATA[

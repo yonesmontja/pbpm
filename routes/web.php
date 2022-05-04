@@ -123,7 +123,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/kelas/{kelas}/kelasdelete',[KelasController::class,'kelasdelete']);
 	Route::get('/kelas/{kelas}/profile',[KelasController::class,'profile']);
 
-	Route::get('/tdu',[TduController::class,'index']);
+	Route::get('/tdu',[DashboardController::class,'index']);
 	Route::get('/kurikulum',[KurikulumController::class,'index']);
 	Route::get('/kesiswaan',[KesiswaanController::class,'index']);
 	Route::get('/widget',[WidgetController::class,'index']);
@@ -169,6 +169,8 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/projects-add',[UserController::class,'projects_add']);
 	Route::get('/projects-edit',[UserController::class,'projects_edit']);
 	Route::get('/projects-detail',[UserController::class,'projects_detail']);
+
+    Route::get('online-user',[UserController::class,'index']);
 	Route::get('/user',[UserController::class,'user']);
 	Route::get('/user/{id}/profile',[UserController::class,'userprofile']);
 	Route::get('/my_profile/{id}/myprofile',[UserController::class,'my_profile']);

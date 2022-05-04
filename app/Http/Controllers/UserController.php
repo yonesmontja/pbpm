@@ -57,6 +57,14 @@ class UserController extends Controller
     	$siswa = Siswa::all();
         return view('profile.contacts',['siswa' => $siswa]);
     }
+    public function index(Request $request)
+    {
+        $data_user = User::select("*")
+                        ->whereNotNull('last_seen')
+                        ->orderBy('last_seen','DESC')
+                        ->paginate(10);
+        return view('user.online',compact('data_user'));
+    }
     public function user()
     {
         $data_user = \App\Models\User::all();

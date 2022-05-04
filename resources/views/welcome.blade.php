@@ -21,7 +21,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b> SMP Negeri 3 Agats</a>
+    <a href="../../index2.html"><b>Admin</b> SD INPRES DABOLDING</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -39,7 +39,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input name="password" type="password" class="form-control" placeholder="Password">
+          <input name="password" type="password" class="form-control" placeholder="password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

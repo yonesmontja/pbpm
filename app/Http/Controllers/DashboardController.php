@@ -17,7 +17,7 @@ class DashboardController extends Controller
     public function index()
     {
     	$nilai = Nilai::all();
-
+        $user = User::all();
         //dd($islam);
         $matpel = ['Agama Islam','Agama Protestan','Agama Katolik','PPKn','Bahasa Indonesia','Matematika','IPA','IPS','PJOK','SBK'];
         $islam_average = Nilai::all()->where('mapel_id',1)->pluck('nilai')->avg();
@@ -56,6 +56,7 @@ class DashboardController extends Controller
         }
         //dd($sumbuy);
         return view('dashboards.index',[
+            'user' => $user,
             'islam_average' => $islam_average,
             'protestan_average' => $protestan_average,
             'katolik_average' => $katolik_average,
