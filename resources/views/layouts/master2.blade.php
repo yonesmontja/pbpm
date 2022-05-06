@@ -65,7 +65,8 @@
 <script src="{{asset('/admin/plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
 <script src="{{asset('/admin/plugins/raphael/raphael.min.js')}}"></script>
 <script src="{{asset('/admin/plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
-<script src="{{asset('/admin/plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
+<!-- <script src="{{asset('/admin/plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>-->
+<script src="{{asset('/admin/plugins/jquery-mapael/maps/pegubin.js')}}"></script>
 <!-- ChartJS -->
 <script src="{{asset('/admin/plugins/chart.js/Chart.min.js')}}"></script>
 

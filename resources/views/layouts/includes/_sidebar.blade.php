@@ -197,7 +197,7 @@
               <li class="nav-item">
                 <a href="/skl" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Data SKL SMP</p>
+                  <p>Data SKL</p>
                 </a>
               </li>
             </ul>
@@ -205,7 +205,7 @@
               <li class="nav-item">
                 <a href="/kompetensiinti" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Data KI SMP</p>
+                  <p>Data KI</p>
                 </a>
               </li>
             </ul>
