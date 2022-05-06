@@ -125,7 +125,7 @@
                                             <th>NIS</th>
                                             <th>JENIS KELAMIN</th>
                                             <th>AGAMA</th>
-                                            <th>ALAMAT</th>
+                                            <th>KELAS</th>
                                             <th>STATUS</th>
                                             <th>AKSI</th>
                                         </tr>
@@ -142,7 +142,7 @@
                                                 <td>{{ $siswa->nis }}</td>
                                                 <td>{{ $siswa->jenis_kelamin }}</td>
                                                 <td>{{ $siswa->agama }}</td>
-                                                <td>{{ $siswa->alamat }}</td>
+                                                <td>{{ $siswa->kelas }}</td>
 
                                                 <td>
                                                     @if ($siswa->status == 1)
@@ -173,8 +173,8 @@
                                             <th>NIS</th>
                                             <th>JENIS KELAMIN</th>
                                             <th>AGAMA</th>
-                                            <th>ALAMAT</th>
-                                            <th>USER</th>
+                                            <th>KELAS</th>
+                                            <th>STATUS</th>
                                             <th>AKSI</th>
                                         </tr>
                                     </tfoot>
