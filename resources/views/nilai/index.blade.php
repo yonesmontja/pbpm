@@ -40,12 +40,55 @@
                                 <h3 class="card-title">Tahun Pelajaran <a
                                         href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
                             </div>
-                            <div class="col-12">
-                                <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal"
-                                    data-target="#staticBackdrop">
-                                    Tambah Nilai
-                                </button>
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <button type="button" class="btn btn-primary float btn-sm" data-toggle="modal"
+                                            data-target="#importExcel">
+                                            IMPORT NILAI
+                                        </button>
+
+                                        <!-- Import Excel -->
+                                        <div class="modal fade" id="importExcel" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <form method="post" action="/nilai/import_excel"
+                                                    enctype="multipart/form-data">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Import Excel
+                                                            </h5>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            {{ csrf_field() }}
+
+                                                            <label>Pilih file excel</label>
+                                                            <div class="form-group">
+                                                                <input type="file" name="file" required="required">
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Import</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal"
+                                            data-target="#staticBackdrop">
+                                            TAMBAH NILAI
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
+
+
                             <!-- /.card-header -->
                             <div class="card-body">
                                 @if (session('sukses'))
@@ -74,7 +117,8 @@
                                                 <td>{{ $nilai->mapel->nama_mapel }}</td>
                                                 <td>{{ $nilai->guru->nama_guru }}</td>
                                                 <td>{{ $nilai->penilaian->nama_tes }}</td>
-                                                <td>{{ $nilai->siswa->nama_depan }} {{ $nilai->siswa->nama_belakang }}</td>
+                                                <td>{{ $nilai->siswa->nama_depan }} {{ $nilai->siswa->nama_belakang }}
+                                                </td>
                                                 <td>{{ $nilai->nilai }}</td>
                                                 <td>
                                                     <a href="/nilai/{{ $nilai->id }}/nilaiedit"
@@ -256,7 +300,8 @@
                                                                     <option>---</option>
                                                                     @foreach ($siswa as $key => $m)
                                                                         <option value="{{ $m->id }}">
-                                                                            {{ $m->nama_depan }} {{ $m->nama_belakang }}
+                                                                            {{ $m->nama_depan }}
+                                                                            {{ $m->nama_belakang }}
                                                                         </option>
                                                                     @endforeach
                                                                 </select>
