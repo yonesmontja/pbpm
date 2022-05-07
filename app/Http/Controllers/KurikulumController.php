@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Nilai;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class KurikulumController extends Controller
@@ -13,7 +14,17 @@ class KurikulumController extends Controller
     {
     	$nilai = Nilai::all();
         $user = User::all();
-        //dd($islam);
+        $siswa = Siswa::all();
+        $kelas = Nilai::all()->where('kelas_id','=',1)->pluck('nilai');
+        $id_kelas = Nilai::all()->pluck('kelas_id')->first();
+        dd($id_kelas);
+        $kelas1 = [];
+        foreach($kelas as $k)
+        {
+            $kelas1[] = $k;
+        }
+
+        dd($kelas1);
         $matpel = ['Agama Islam','Agama Protestan','Agama Katolik','PPKn','Bahasa Indonesia','Matematika','IPA','IPS','PJOK','SBK'];
         $islam_average = Nilai::all()->where('mapel_id',1)->pluck('nilai')->avg();
         $protestan_average = Nilai::all()->where('mapel_id',2)->pluck('nilai')->avg();
@@ -51,6 +62,7 @@ class KurikulumController extends Controller
         }
         //dd($sumbuy);
         return view('kurikulum.index',[
+            'siswa' => $siswa,
             'user' => $user,
             'islam_average' => $islam_average,
             'protestan_average' => $protestan_average,

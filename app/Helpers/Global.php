@@ -171,3 +171,51 @@ function totalKi()
 {
 	return Kompetensiinti::count();
 }
+function totalKelas1()
+{
+    return Siswa::all()->where('kelas','=','Kelas 1')->pluck('kelas')->count();
+}
+function totalKelas1Percentage()
+{
+    return totalKelas1()/totalSiswa()*100;
+}
+function totalKelas2()
+{
+    return Siswa::all()->where('kelas','=','Kelas 2')->pluck('kelas')->count();
+}
+function totalKelas2Percentage()
+{
+    return totalKelas2()/totalSiswa()*100;
+}
+function totalKelas3()
+{
+    return Siswa::all()->where('kelas','=','Kelas 3')->pluck('kelas')->count();
+}
+function totalKelas3Percentage()
+{
+    return totalKelas3()/totalSiswa()*100;
+}
+function totalKelas4()
+{
+    return Siswa::all()->where('kelas','=','Kelas 4')->pluck('kelas')->count();
+}
+function totalKelas4Percentage()
+{
+    return totalKelas4()/totalSiswa()*100;
+}
+function totalKelas5()
+{
+    return Siswa::all()->where('kelas','=','Kelas 5')->pluck('kelas')->count();
+}
+function totalKelas5Percentage()
+{
+    return totalKelas5()/totalSiswa()*100;
+}
+function totalKelas6()
+{
+    return Siswa::all()->where('kelas','=','Kelas 6')->pluck('kelas')->count();
+}
+function totalKelas6Percentage()
+{
+    return totalKelas6()/totalSiswa()*100;
+}

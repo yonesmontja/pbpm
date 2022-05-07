@@ -32,15 +32,15 @@
       <div class="container-fluid">
         <!-- Info boxes -->
         <div class="row">
-          <div class="col-12 col-sm-6 col-md-3">
+          <div class="col-12 col-sm-6 col-md-2">
             <div class="info-box">
-              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">CPU Traffic</span>
+                <span class="info-box-text"><a href="/kelas/1/profile">Kelas 1</a></span>
                 <span class="info-box-number">
-                  10
-                  <small>%</small>
+                  {{ totalKelas1() }}
+                  <small> siswa</small>
                 </span>
               </div>
               <!-- /.info-box-content -->
@@ -48,13 +48,80 @@
             <!-- /.info-box -->
           </div>
           <!-- /.col -->
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+          <div class="col-12 col-sm-6 col-md-2">
+            <div class="info-box">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Likes</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-text"><a href="/kelas/2/profile">Kelas 2</a></span>
+                <span class="info-box-number">
+                  {{ totalKelas2() }}
+                  <small> siswa</small>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-2">
+            <div class="info-box">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text"><a href="/kelas/3/profile">Kelas 3</a></span>
+                <span class="info-box-number">
+                  {{ totalKelas3() }}
+                  <small> siswa</small>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-2">
+            <div class="info-box">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text"><a href="/kelas/4/profile">Kelas 4</a></span>
+                <span class="info-box-number">
+                  {{ totalKelas4() }}
+                  <small> siswa</small>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-2">
+            <div class="info-box">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text"><a href="/kelas/5/profile">Kelas 5</a></span>
+                <span class="info-box-number">
+                  {{ totalKelas5() }}
+                  <small> siswa</small>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-2">
+            <div class="info-box">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text"><a href="/kelas/6/profile">Kelas 6</a></span>
+                <span class="info-box-number">
+                  {{ totalKelas6() }}
+                  <small> siswa</small>
+                </span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -62,35 +129,6 @@
           </div>
           <!-- /.col -->
 
-          <!-- fix for small devices only -->
-          <div class="clearfix hidden-md-up"></div>
-
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Sales</span>
-                <span class="info-box-number">760</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-          <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">New Members</span>
-                <span class="info-box-number">2,000</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
         </div>
         <!-- /.row -->
 
@@ -138,41 +176,57 @@
                   <!-- /.col -->
                   <div class="col-md-4">
                     <p class="text-center">
-                      <strong>Goal Completion</strong>
+                      <strong>Persentase Jumlah Siswa</strong>
                     </p>
 
                     <div class="progress-group">
-                      Add Products to Cart
-                      <span class="float-right"><b>160</b>/200</span>
+                      Kelas 1
+                      <span class="float-right"><b>{{ totalKelas1() }}</b>/{{ totalSiswa() }}</span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar bg-primary" style="width: 80%"></div>
+                        <div class="progress-bar bg-primary" style="width: {{ totalKelas1Percentage() }}%"></div>
                       </div>
                     </div>
                     <!-- /.progress-group -->
 
                     <div class="progress-group">
-                      Complete Purchase
-                      <span class="float-right"><b>310</b>/400</span>
+                      Kelas 2
+                      <span class="float-right"><b>{{ totalKelas2() }}</b>/{{ totalSiswa() }}</span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar bg-danger" style="width: 75%"></div>
+                        <div class="progress-bar bg-primary" style="width: {{ totalKelas2Percentage() }}%"></div>
                       </div>
                     </div>
 
                     <!-- /.progress-group -->
                     <div class="progress-group">
-                      <span class="progress-text">Visit Premium Page</span>
-                      <span class="float-right"><b>480</b>/800</span>
+                      <span class="progress-text">Kelas 3</span>
+                      <span class="float-right"><b>{{ totalKelas3() }}</b>/{{ totalSiswa() }}</span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar bg-success" style="width: 60%"></div>
+                        <div class="progress-bar bg-primary" style="width: {{ totalKelas3Percentage() }}%"></div>
                       </div>
                     </div>
 
                     <!-- /.progress-group -->
                     <div class="progress-group">
-                      Send Inquiries
-                      <span class="float-right"><b>250</b>/500</span>
+                      Kelas 4
+                      <span class="float-right"><b>{{ totalKelas4() }}</b>/{{ totalSiswa() }}</span>
                       <div class="progress progress-sm">
-                        <div class="progress-bar bg-warning" style="width: 50%"></div>
+                        <div class="progress-bar bg-primary" style="width: {{ totalKelas4Percentage() }}%"></div>
+                      </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                      Kelas 5
+                      <span class="float-right"><b>{{ totalKelas5() }}</b>/{{ totalSiswa() }}</span>
+                      <div class="progress progress-sm">
+                        <div class="progress-bar bg-primary" style="width: {{ totalKelas5Percentage() }}%"></div>
+                      </div>
+                    </div>
+                    <!-- /.progress-group -->
+                    <div class="progress-group">
+                      Kelas 6
+                      <span class="float-right"><b>{{ totalKelas6() }}</b>/{{ totalSiswa() }}</span>
+                      <div class="progress progress-sm">
+                        <div class="progress-bar bg-primary" style="width: {{ totalKelas6Percentage() }}%"></div>
                       </div>
                     </div>
                     <!-- /.progress-group -->
