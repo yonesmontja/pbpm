@@ -100,7 +100,7 @@
                                         Data <a href="#" class="alert-link">kelas</a> {{ session('sukses') }}
                                     </div>
                                 @endif
-                                <table id="example2" class="table table-bordered table-hover">
+                                <table id="example1" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>LEVEL</th>

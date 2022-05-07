@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +13,15 @@ use App\Models\User;
 |
 */
 
+use App\Models\Guru;
+use App\Models\User;
+use App\Models\Kelas;
+use App\Models\Mapel;
+use App\Models\Nilai;
 use App\Models\Siswa;
+use App\Models\Penilaian;
 use App\Http\Controllers\Str;
+use App\Models\Kompetensiinti;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SklController;
 use App\Http\Controllers\TduController;
@@ -219,6 +226,23 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::post('/tujuan/{tujuan}/tujuanupdate',[TujuanController::class,'tujuanupdate']);
 
 	Route::get('/nilai',[NilaiController::class,'nilai']);
+    Route::post('/nilaiSub', [NilaiController::class, 'nilaiSub']);
+    Route::get('/nilai_filter', function () {
+    if (request()->start_date || request()->end_date) {
+        $start_date = Carbon::parse(request()->start_date)->toDateTimeString();
+        $end_date = Carbon::parse(request()->end_date)->toDateTimeString();
+        $data = App\Models\Nilai::whereBetween('created_at',[$start_date,$end_date])->get();
+    } else {
+        $data = App\Models\Nilai::latest()->get();
+    }
+    $kompetensiinti = Kompetensiinti::all();
+        $mapel = Mapel::all();
+        $siswa = Siswa::all();
+        $penilaian = Penilaian::all();
+        $guru = Guru::all();
+        $kelas = Kelas::all();
+    return view('nilai.filter', compact('data','mapel','siswa','penilaian','guru','kelas','kompetensiinti'));
+});
     Route::post('/nilai/import_excel',[NilaiController::class,'import_excel']);
 	Route::post('/nilai/nilaicreate',[NilaiController::class,'nilaicreate']);
 	Route::get('/nilai/{nilai}/nilaidelete',[NilaiController::class,'nilaidelete']);

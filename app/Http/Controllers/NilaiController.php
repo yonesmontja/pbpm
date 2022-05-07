@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Session;
+use Carbon\Carbon;
 use App\Models\Guru;
 use App\Models\Kelas;
 use App\Models\Mapel;
@@ -11,8 +13,9 @@ use App\Models\Penilaian;
 use App\Imports\NilaiImport;
 use Illuminate\Http\Request;
 use App\Models\Kompetensiinti;
+use App\Models\Tahunpelajaran;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
-use Session;
 use Illuminate\Support\Facades\Redirect;
 
 class NilaiController extends Controller
@@ -27,8 +30,26 @@ class NilaiController extends Controller
         $penilaian = Penilaian::all();
         $guru = Guru::all();
         $kelas = Kelas::all();
-        //dd($guru);
-    	return view('nilai.index',['kelas' => $kelas,'penilaian' => $penilaian,'siswa' => $siswa,'mapel' => $mapel,'kompetensiinti' => $kompetensiinti,'data_nilai' => $data_nilai,'guru' => $guru]);
+        $nilai_start = Tahunpelajaran::all()->where('id','=',2)->pluck('tahun');
+        $nilai_end = Tahunpelajaran::all()->where('id','=',1)->pluck('tahun');
+        $kelas_sub = Kelas::where('kelas_id',0)->get();
+        for($bulan=1;$bulan < 7;$bulan++){
+            $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
+            $jumlah_penilaian[] = $chart_penilaian->jumlah;
+        }
+        //dd($jumlah_penilaian);
+    	return view('nilai.index',[
+            'jumlah_penilaian' => $jumlah_penilaian,
+            'kelas_sub' => $kelas_sub,
+            'nilai_start' => $nilai_start,
+            'nilai_end' => $nilai_end,
+            'kelas' => $kelas,
+            'penilaian' => $penilaian,
+            'siswa' => $siswa,
+            'mapel' => $mapel,
+            'kompetensiinti' => $kompetensiinti,
+            'data_nilai' => $data_nilai,
+            'guru' => $guru]);
     }
     public function nilaicreate(Request $request)
     {

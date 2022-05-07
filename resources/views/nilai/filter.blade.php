@@ -105,7 +105,7 @@
                                         Data <a href="#" class="alert-link">Nilai</a> {{ session('sukses') }}
                                     </div>
                                 @endif
-                                <table id="example1" class="table table-bordered table-hover">
+                                <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
 
@@ -117,11 +117,10 @@
                                             <th>SISWA</th>
                                             <th>NILAI</th>
                                             <th></th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data_nilai as $nilai)
+                                        @foreach ($data as $nilai)
                                             <tr>
 
                                                 <td>{{ $nilai->kompetensiinti->kompetensi_inti }}</td>
@@ -181,7 +180,7 @@
                                                                 <label for="exampleFormControlInput1">Mulai</label>
                                                                 <input name="nilai_start" type="text" class="form-control"
                                                                     id="exampleFormControlInput1" placeholder="Kapan mulai?"
-                                                                    value="{{ $nilai_start[0] }}">
+                                                                    value="{{ old('nilai_start') }}">
                                                                 @if ($errors->has('nilai_start'))
                                                                     <span
                                                                         class="help-block">{{ $errors->first('nilai_start') }}</span>
@@ -199,7 +198,7 @@
                                                                 <input name="nilai_end" type="text" class="form-control"
                                                                     id="exampleFormControlInput1"
                                                                     placeholder="Kapan selesai?"
-                                                                    value="{{ $nilai_end[0] }}">
+                                                                    value="{{ old('nilai_end') }}">
                                                                 @if ($errors->has('nilai_end'))
                                                                     <span
                                                                         class="help-block">{{ $errors->first('nilai_end') }}</span>

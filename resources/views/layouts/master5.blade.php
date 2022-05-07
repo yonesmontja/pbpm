@@ -86,6 +86,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('/admin/dist/js/demo.js') }}"></script>
     <!-- page script -->
+
     <script>
         $(function() {
             //Initialize Select2 Elements
@@ -179,7 +180,7 @@
                 "ordering": true,
                 "info": true,
             });
-            $('#example2').DataTable({
+            $("#example2").DataTable({
                 "paging": true,
                 "lengthChange": true,
                 "searching": true,
@@ -190,6 +191,7 @@
             });
         });
     </script>
+
     @yield('footer')
 </body>
 
