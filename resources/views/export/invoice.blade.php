@@ -1,170 +1,213 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Invoice Print</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Bootstrap 4 -->
+    <meta charset="utf-8">
+    <title>INVOICE</title>
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="/admin/plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="/admin/dist/css/adminlte.min.css">
+    <style>
+    .invoice-box {
+        max-width: 800px;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #eee;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+        font-size: 16px;
+        line-height: 24px;
+        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        color: #555;
+    }
 
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    .invoice-box table {
+        width: 100%;
+        line-height: inherit;
+        text-align: left;
+    }
+
+    .invoice-box table td {
+        padding: 5px;
+        vertical-align: top;
+    }
+
+    .invoice-box table tr td:nth-child(2) {
+        text-align: right;
+    }
+
+    .invoice-box table tr.top table td {
+        padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.top table td.title {
+        font-size: 45px;
+        line-height: 45px;
+        color: #333;
+    }
+
+    .invoice-box table tr.information table td {
+        padding-bottom: 40px;
+    }
+
+    .invoice-box table tr.heading td {
+        background: #eee;
+        border-bottom: 1px solid #ddd;
+        font-weight: bold;
+    }
+
+    .invoice-box table tr.details td {
+        padding-bottom: 20px;
+    }
+
+    .invoice-box table tr.item td{
+        border-bottom: 1px solid #eee;
+    }
+
+    .invoice-box table tr.item.last td {
+        border-bottom: none;
+    }
+
+    .invoice-box table tr.total td:nth-child(2) {
+        border-top: 2px solid #eee;
+        font-weight: bold;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .invoice-box table tr.top table td {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+
+        .invoice-box table tr.information table td {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+    }
+
+    /** RTL **/
+    .rtl {
+        direction: rtl;
+        font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    }
+
+    .rtl table {
+        text-align: right;
+    }
+
+    .rtl table tr td:nth-child(2) {
+        text-align: left;
+    }
+    </style>
 </head>
+
 <body>
-<div class="wrapper">
-  <!-- Main content -->
-  <section class="invoice">
-    <!-- title row -->
-    <div class="row">
-      <div class="col-12">
-        <h2 class="page-header">
-          <i class="fas fa-globe"></i> AdminLTE, Inc.
-          <small class="float-right">Date: 2/10/2014</small>
-        </h2>
-      </div>
-      <!-- /.col -->
-    </div>
-    <!-- info row -->
-    <div class="row invoice-info">
-      <div class="col-sm-4 invoice-col">
-        From
-        <address>
-          <strong>Admin, Inc.</strong><br>
-          795 Folsom Ave, Suite 600<br>
-          San Francisco, CA 94107<br>
-          Phone: (804) 123-5432<br>
-          Email: info@almasaeedstudio.com
-        </address>
-      </div>
-      <!-- /.col -->
-      <div class="col-sm-4 invoice-col">
-        To
-        <address>
-          <strong>John Doe</strong><br>
-          795 Folsom Ave, Suite 600<br>
-          San Francisco, CA 94107<br>
-          Phone: (555) 539-1037<br>
-          Email: john.doe@example.com
-        </address>
-      </div>
-      <!-- /.col -->
-      <div class="col-sm-4 invoice-col">
-        <b>Invoice #007612</b><br>
-        <br>
-        <b>Order ID:</b> 4F3S8J<br>
-        <b>Payment Due:</b> 2/22/2014<br>
-        <b>Account:</b> 968-34567
-      </div>
-      <!-- /.col -->
-    </div>
-    <!-- /.row -->
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                INVOICE LOGO
+                            </td>
 
-    <!-- Table row -->
-    <div class="row">
-      <div class="col-12 table-responsive">
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <th>Qty</th>
-            <th>Product</th>
-            <th>Serial #</th>
-            <th>Description</th>
-            <th>Subtotal</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>1</td>
-            <td>Call of Duty</td>
-            <td>455-981-221</td>
-            <td>El snort testosterone trophy driving gloves handsome</td>
-            <td>$64.50</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Need for Speed IV</td>
-            <td>247-925-726</td>
-            <td>Wes Anderson umami biodiesel</td>
-            <td>$50.00</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Monsters DVD</td>
-            <td>735-845-642</td>
-            <td>Terry Richardson helvetica tousled street art master</td>
-            <td>$10.70</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Grown Ups Blue Ray</td>
-            <td>422-568-642</td>
-            <td>Tousled lomo letterpress</td>
-            <td>$25.99</td>
-          </tr>
-          </tbody>
+                            <td>
+                                Invoice #: 123<br>
+                                Created: January 1, 2015<br>
+                                Due: February 1, 2015
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                Sparksuite, Inc.<br>
+                                12345 Sunny Road<br>
+                                Sunnyville, CA 12345
+                            </td>
+
+                            <td>
+                                Acme Corp.<br>
+                                John Doe<br>
+                                john@example.com
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td>
+                    Payment Method
+                </td>
+
+                <td>
+                    Check #
+                </td>
+            </tr>
+
+            <tr class="details">
+                <td>
+                    Check
+                </td>
+
+                <td>
+                    1000
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td>
+                    Item
+                </td>
+
+                <td>
+                    Price
+                </td>
+            </tr>
+
+            <tr class="item">
+                <td>
+                    Website design
+                </td>
+
+                <td>
+                    $300.00
+                </td>
+            </tr>
+
+            <tr class="item">
+                <td>
+                    Hosting (3 months)
+                </td>
+
+                <td>
+                    $75.00
+                </td>
+            </tr>
+
+            <tr class="item last">
+                <td>
+                    Domain name (1 year)
+                </td>
+
+                <td>
+                    $10.00
+                </td>
+            </tr>
+
+            <tr class="total">
+                <td></td>
+
+                <td>
+                   Total: $385.00
+                </td>
+            </tr>
         </table>
-      </div>
-      <!-- /.col -->
     </div>
-    <!-- /.row -->
-
-    <div class="row">
-      <!-- accepted payments column -->
-      <div class="col-6">
-        <p class="lead">Payment Methods:</p>
-        <img src="/admin/dist/img/credit/visa.png" alt="Visa">
-        <img src="/admin/dist/img/credit/mastercard.png" alt="Mastercard">
-        <img src="/admin/dist/img/credit/american-express.png" alt="American Express">
-        <img src="/admin/dist/img/credit/paypal2.png" alt="Paypal">
-
-        <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-          Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg dopplr
-          jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
-        </p>
-      </div>
-      <!-- /.col -->
-      <div class="col-6">
-        <p class="lead">Amount Due 2/22/2014</p>
-
-        <div class="table-responsive">
-          <table class="table">
-            <tr>
-              <th style="width:50%">Subtotal:</th>
-              <td>$250.30</td>
-            </tr>
-            <tr>
-              <th>Tax (9.3%)</th>
-              <td>$10.34</td>
-            </tr>
-            <tr>
-              <th>Shipping:</th>
-              <td>$5.80</td>
-            </tr>
-            <tr>
-              <th>Total:</th>
-              <td>$265.24</td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <!-- /.col -->
-    </div>
-    <!-- /.row -->
-  </section>
-  <!-- /.content -->
-</div>
-<!-- ./wrapper -->
-
-<script type="text/javascript">
-  window.addEventListener("load", window.print());
-</script>
 </body>
 </html>

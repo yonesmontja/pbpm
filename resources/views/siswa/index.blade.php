@@ -60,7 +60,7 @@
                                             Tambah Data Siswa
                                         </button>
                                     </div>
-                                    <table class="table table-hover">
+                                    <table id="example1" class="table table-hover">
                                         <thead>
                                             <tr>
                                                 <th>NAMA DEPAN</th>
