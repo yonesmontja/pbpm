@@ -26,7 +26,7 @@ class PenilaianController extends Controller
             }
 
         }
-        dd($tes2);
+        //dd($tes2);
         //foreach($nilai -)
     	return view('penilaian.profile',[
             'penilaian' => $penilaian,

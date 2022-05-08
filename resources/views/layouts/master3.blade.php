@@ -33,7 +33,7 @@ to get the desired effect
 |---------------------------------------------------------|
 -->
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
         <!-- Navbar -->
         @include('layouts.includes._navbar')
@@ -83,14 +83,179 @@ to get the desired effect
                 data: {
                     labels: {!! json_encode($matpel) !!},
                     datasets: [{
-                            backgroundColor: '#007bff',
-                            borderColor: '#007bff',
-                            data: {!! json_encode($matang1) !!}
+                            backgroundColor: '#252626',
+                            borderColor: '#252626',
+                            data: {!! json_encode($mapel_last_month) !!}
                         },
                         {
-                            backgroundColor: '#ced4da',
-                            borderColor: '#ced4da',
-                            data: {!! json_encode($matang1) !!}
+                            backgroundColor: '#007bff',
+                            borderColor: '#007bff',
+                            data: {!! json_encode($mapel_this_month) !!}
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: 100,
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: false
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+
+            var $salesChart = $('#sales-chart1')
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($penilaian_list) !!},
+                    datasets: [{
+                            backgroundColor: '#252626',
+                            borderColor: '#252626',
+                            data: {!! json_encode($penilaian_last_month) !!}
+                        },
+                        {
+                            backgroundColor: '#007bff',
+                            borderColor: '#007bff',
+                            data: {!! json_encode($penilaian_this_month) !!}
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: 100,
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: false
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+
+            var $salesChart = $('#sales-chart2')
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($matpel) !!},
+                    datasets: [{
+                            backgroundColor: '#252626',
+                            borderColor: '#252626',
+                            data: {!! json_encode($mapel_last_week) !!}
+                        },
+                        {
+                            backgroundColor: '#007bff',
+                            borderColor: '#007bff',
+                            data: {!! json_encode($mapel_this_week) !!}
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: 100,
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: false
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+
+            var $salesChart = $('#sales-chart3')
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($penilaian_list) !!},
+                    datasets: [{
+                            backgroundColor: '#252626',
+                            borderColor: '#252626',
+                            data: {!! json_encode($penilaian_last_month) !!}
+                        },
+                        {
+                            backgroundColor: '#007bff',
+                            borderColor: '#007bff',
+                            data: {!! json_encode($penilaian_this_month) !!}
                         }
                     ]
                 },
@@ -138,7 +303,7 @@ to get the desired effect
                     labels: {!! json_encode($matpel) !!},
                     datasets: [{
                             type: 'line',
-                            data: {!! json_encode($matang1) !!},
+                            data: {!! json_encode($mapel_last_week) !!},
                             backgroundColor: 'transparent',
                             borderColor: '#007bff',
                             pointBorderColor: '#007bff',
@@ -149,14 +314,80 @@ to get the desired effect
                         },
                         {
                             type: 'line',
-                            data: {!! json_encode($matang1) !!},
+                            data: {!! json_encode($mapel_this_week) !!},
                             backgroundColor: 'tansparent',
-                            borderColor: '#ced4da',
-                            pointBorderColor: '#ced4da',
-                            pointBackgroundColor: '#ced4da',
+                            borderColor: '#252626',
+                            pointBorderColor: '#252626',
+                            pointBackgroundColor: '#252626',
                             fill: false
-                            // pointHoverBackgroundColor: '#ced4da',
-                            // pointHoverBorderColor    : '#ced4da'
+                            // pointHoverBackgroundColor: '#252626',
+                            // pointHoverBorderColor    : '#252626'
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: 100
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+
+            var $visitorsChart = $('#visitors-chart1')
+            var visitorsChart = new Chart($visitorsChart, {
+                data: {
+                    labels: {!! json_encode($matpel) !!},
+                    datasets: [{
+                            type: 'line',
+                            data: {!! json_encode($mapel_this_week) !!},
+                            backgroundColor: 'transparent',
+                            borderColor: '#007bff',
+                            pointBorderColor: '#007bff',
+                            pointBackgroundColor: '#007bff',
+                            fill: false
+                            // pointHoverBackgroundColor: '#007bff',
+                            // pointHoverBorderColor    : '#007bff'
+                        },
+                        {
+                            type: 'line',
+                            data: {!! json_encode($mapel_last_week) !!},
+                            backgroundColor: 'tansparent',
+                            borderColor: '#252626',
+                            pointBorderColor: '#252626',
+                            pointBackgroundColor: '#252626',
+                            fill: false
+                            // pointHoverBackgroundColor: '#252626',
+                            // pointHoverBorderColor    : '#252626'
                         }
                     ]
                 },
