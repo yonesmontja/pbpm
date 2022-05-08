@@ -33,7 +33,7 @@
                             <div class="card-header border-0">
                                 <div class="d-flex justify-content-between">
                                     <h3 class="card-title">Nilai Siswa</h3>
-                                    <a href="javascript:void(0);">View Report</a>
+                                    <a href="/nilai">View Report</a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -62,7 +62,7 @@
                                 <!-- /.d-flex -->
 
                                 <div class="position-relative mb-4">
-                                    <canvas id="visitors-chart" height="200"></canvas>
+                                    <canvas id="sales-chart3" height="200"></canvas>
                                 </div>
 
                                 <div class="d-flex flex-row justify-content-end">
@@ -83,7 +83,7 @@
                             <div class="card-header border-0">
                                 <div class="d-flex justify-content-between">
                                     <h3 class="card-title">Nilai Siswa</h3>
-                                    <a href="javascript:void(0);">View Report</a>
+                                    <a href="/nilai">View Report</a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -106,7 +106,7 @@
                                                 <i class="fas fa-arrow-up"></i> {{ $last_week_average }}%
                                             </span>
                                         @endif
-                                        <span class="text-muted">Since last week</span>
+                                        <span class="text-muted">Sejak minggu lalu</span>
                                     </p>
                                 </div>
                                 <!-- /.d-flex -->
@@ -132,7 +132,7 @@
                             <div class="card-header border-0">
                                 <div class="d-flex justify-content-between">
                                     <h3 class="card-title">Nilai Siswa</h3>
-                                    <a href="javascript:void(0);">View Report</a>
+                                    <a href="/nilai">View Report</a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -183,7 +183,7 @@
                             <div class="card-header border-0">
                                 <div class="d-flex justify-content-between">
                                     <h3 class="card-title">Nilai Siswa</h3>
-                                    <a href="javascript:void(0);">View Report</a>
+                                    <a href="/nilai">View Report</a>
                                 </div>
                             </div>
                             <div class="card-body">

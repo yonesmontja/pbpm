@@ -81,7 +81,7 @@
     'normal' => $fontDir . '/ionicons-normal_1b2b773bb3197b577cecee8d68579952',
   ),
   'source sans pro' => array(
-    'italic' => $fontDir . '/source-sans-pro-italic_120f826d42ce02c5331340b891f821ef',
+    'italic' => $fontDir . '/source-sans-pro-italic_27672a92dcedb2218abd2dadee4fe950',
     '300' => $fontDir . '/source-sans-pro-300_891cae020a7dc5d2aa8254f4fb770830',
     'normal' => $fontDir . '/source-sans-pro-normal_b93742b4fdc85f7c597b89467e1a88ee',
     'bold' => $fontDir . '/source-sans-pro-bold_0e2949c92ad09533088db418daa0361a',

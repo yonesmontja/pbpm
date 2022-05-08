@@ -191,16 +191,16 @@ to get the desired effect
             var salesChart = new Chart($salesChart, {
                 type: 'bar',
                 data: {
-                    labels: {!! json_encode($matpel) !!},
+                    labels: {!! json_encode($penilaian_list) !!},
                     datasets: [{
                             backgroundColor: '#252626',
                             borderColor: '#252626',
-                            data: {!! json_encode($mapel_last_week) !!}
+                            data: {!! json_encode($penilaian_last_week) !!}
                         },
                         {
                             backgroundColor: '#007bff',
                             borderColor: '#007bff',
-                            data: {!! json_encode($mapel_this_week) !!}
+                            data: {!! json_encode($penilaian_this_week) !!}
                         }
                     ]
                 },
@@ -246,16 +246,16 @@ to get the desired effect
             var salesChart = new Chart($salesChart, {
                 type: 'bar',
                 data: {
-                    labels: {!! json_encode($penilaian_list) !!},
+                    labels: {!! json_encode($matpel) !!},
                     datasets: [{
                             backgroundColor: '#252626',
                             borderColor: '#252626',
-                            data: {!! json_encode($penilaian_last_month) !!}
+                            data: {!! json_encode($mapel_last_week) !!}
                         },
                         {
                             backgroundColor: '#007bff',
                             borderColor: '#007bff',
-                            data: {!! json_encode($penilaian_this_month) !!}
+                            data: {!! json_encode($mapel_this_week) !!}
                         }
                     ]
                 },

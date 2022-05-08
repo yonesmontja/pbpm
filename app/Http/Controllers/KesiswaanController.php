@@ -104,7 +104,12 @@ class KesiswaanController extends Controller
                 -> select('created_at','nilai')
                 -> whereBetween('created_at',[$dateS, $dateE])
                 -> avg('nilai');
+            $penilaian_week_old = Nilai::where('penilaian_id','=',$penilaian)
+                -> select('created_at','nilai')
+                -> whereBetween('created_at',[$weekS, $weekE])
+                -> avg('nilai');
             $penilaian_last_month[] = number_format((float)$penilaian_old, 2, '.', '');
+            $penilaian_last_week[] = number_format((float)$penilaian_week_old, 2, '.', '');
         }
         //dd($penilaian_last_month);
         $TotalSpent1 = DB::table('nilai')
@@ -149,7 +154,12 @@ class KesiswaanController extends Controller
                 -> select('created_at','nilai')
                 -> whereBetween('created_at',[$dateS, $dateE])
                 -> avg('nilai');
+            $penilaian_week_old = Nilai::where('penilaian_id','=',$penilaian)
+                -> select('created_at','nilai')
+                -> whereBetween('created_at',[$weekS, $weekE])
+                -> avg('nilai');
             $penilaian_this_month[] = number_format((float)$penilaian_old, 2, '.', '');
+            $penilaian_this_week[] = number_format((float)$penilaian_week_old, 2, '.', '');
         }
         $penilaian_list = ['Tugas 1','Tugas 2','Tugas 3','Tugas 4','Tugas 5','Latihan 1','Latihan 2','Latihan 3','Latihan 4','Latihan 5','UH','PTS','PAS'];
         //dd($penilaian_this_month);
@@ -209,7 +219,9 @@ class KesiswaanController extends Controller
         return view('kesiswaan.index',[
             'penilaian_list' => $penilaian_list,
             'penilaian_this_month' => $penilaian_this_month,
+            'penilaian_this_week' => $penilaian_this_week,
             'penilaian_last_month' => $penilaian_last_month,
+            'penilaian_last_week' => $penilaian_last_week,
             'mapel_last_3week' => $mapel_last_3week,
             'mapel_last_2week' => $mapel_last_2week,
             'mapel_last_week' => $mapel_last_week,
