@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Nilai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KesiswaanController extends Controller
 {
@@ -13,7 +14,24 @@ class KesiswaanController extends Controller
     {
     	$nilai = Nilai::all();
         $user = User::all();
-        //dd($islam);
+        for($bulan=1; $bulan < 7; $bulan++){
+            $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
+            (int)$chart_nilai1[] = Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',1)->pluck('nilai')->avg();
+            (int)$chart_nilai2[] = Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',2)->pluck('nilai')->avg();
+            (int)$chart_nilai3[] = Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',3)->pluck('nilai')->avg();
+            (int)$chart_nilai4[] = Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',4)->pluck('nilai')->avg();
+            (int)$chart_nilai5[] = Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',5)->pluck('nilai')->avg();
+            (int)$chart_nilai6[] = Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',6)->pluck('nilai')->avg();
+            $jumlah_penilaian[] = $chart_penilaian->jumlah;
+        }
+        // ambil data nilai siswa bulan ini sumber https://www.codegrepper.com/code-examples/php/get+last+month+data+in+laravel
+        $this_month = Nilai::whereMonth('created_at', date('m'))
+            ->whereYear('created_at', date('Y'))
+            ->get(['nilai','created_at'])
+            ->pluck('nilai');
+        //dd(date('m'));
+        dd($this_month);
+
         $matpel = ['Agama Islam','Agama Protestan','Agama Katolik','PPKn','Bahasa Indonesia','Matematika','IPA','IPS','PJOK','SBK'];
         $islam_average = Nilai::all()->where('mapel_id',1)->pluck('nilai')->avg();
         $protestan_average = Nilai::all()->where('mapel_id',2)->pluck('nilai')->avg();

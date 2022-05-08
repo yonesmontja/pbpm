@@ -175,6 +175,7 @@
                 "responsive": true,
                 "autoWidth": false,
                 "paging": true,
+                "pagingType": "numbers",
                 "lengthChange": true,
                 "searching": true,
                 "ordering": true,
@@ -182,6 +183,7 @@
             });
             $("#example2").DataTable({
                 "paging": true,
+                "pagingType": "numbers",
                 "lengthChange": true,
                 "searching": true,
                 "ordering": true,

@@ -179,7 +179,7 @@
             <div class="card">
               <div class="card-header border-0">
                 <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Sales</h3>
+                  <h3 class="card-title">Nilai Siswa</h3>
                   <a href="javascript:void(0);">View Report</a>
                 </div>
               </div>

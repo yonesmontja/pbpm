@@ -42,12 +42,11 @@
                             </div>
                             <div class="card-header">
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <button type="button" class="btn btn-primary float btn-sm" data-toggle="modal"
                                             data-target="#importExcel">
                                             IMPORT NILAI
                                         </button>
-
                                         <!-- Import Excel -->
                                         <div class="modal fade" id="importExcel" tabindex="-1" role="dialog"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -79,16 +78,27 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                </div>
+                            </div>
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm-6">
                                         <form action="/nilai_filter" method="GET">
                                             <div class="input-group mb-3">
                                                 <input type="date" class="form-control" name="start_date">
                                                 <input type="date" class="form-control" name="end_date">
-                                                <button class="btn btn-primary" type="submit">GET</button>
+
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <button class="btn btn-primary float-right btn-sm" type="submit">FILTER</button>
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="col-sm-4">
+                                </div>
+                            </div>
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm-6">
                                         <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal"
                                             data-target="#staticBackdrop">
                                             TAMBAH NILAI
@@ -96,8 +106,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <!-- /.card-header -->
                             <div class="card-body">
                                 @if (session('sukses'))
@@ -125,10 +133,10 @@
 
                                                 <td>{{ $nilai->kompetensiinti->kompetensi_inti }}</td>
                                                 <td>{{ $nilai->mapel->nama_mapel }}</td>
-                                                <td>{{ $nilai->guru->nama_guru }}</td>
+                                                <td><a href="/guru/{{ $nilai->guru->id }}/profile">{{ $nilai->guru->nama_guru }}</a></td>
                                                 <td>{{ $nilai->penilaian->nama_tes }}</td>
-                                                <td>{{ $nilai->kelas->nama }}</td>
-                                                <td>{{ $nilai->siswa->nama_depan }} {{ $nilai->siswa->nama_belakang }}
+                                                <td><a href="/kelas/{{ $nilai->kelas->id }}/profile">{{ $nilai->kelas->nama }}</a></td>
+                                                <td><a href="/test/{{ $nilai->siswa->id }}/profile">{{ $nilai->siswa->nama_depan }} {{ $nilai->siswa->nama_belakang }}</a>
                                                 </td>
                                                 <td>{{ $nilai->nilai }}</td>
                                                 <td>

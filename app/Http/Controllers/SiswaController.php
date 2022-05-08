@@ -18,6 +18,7 @@ use App\Exports\SiswaExport;
 use App\Imports\SiswaImport;
 use Illuminate\Http\Request;
 use App\Models\Kompetensiinti;
+use App\Models\Tahunpelajaran;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Input;
@@ -270,7 +271,8 @@ class SiswaController extends Controller
                 //dd($tes1);
             }
         }
-
+        $nilai_start = Tahunpelajaran::all()->where('id','=',2)->pluck('tahun');
+        $nilai_end = Tahunpelajaran::all()->where('id','=',1)->pluck('tahun');
         $id1 = Nilai::all()->where('siswa_id',$id)->pluck('siswa_id',$id)->first();
         $mapel1 = Nilai::all()->where('siswa_id',$id)->pluck('mapel_id')->count();
         $mapel3 = Mapel::all()->pluck('nama_mapel');
@@ -303,7 +305,8 @@ class SiswaController extends Controller
 
         return view('profile.index',[
         'rombel2' => $rombel2,
-
+        'nilai_start' => $nilai_start,
+            'nilai_end' => $nilai_end,
         'average_mapel' => $average_mapel,
         'islam_average'=>$islam_average,
         'protestan_average'=>$protestan_average,

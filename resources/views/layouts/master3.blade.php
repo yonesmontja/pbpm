@@ -109,7 +109,7 @@ to get the desired effect
                     },
                     scales: {
                         yAxes: [{
-                            // display: false,
+                            display: true,
                             gridLines: {
                                 display: true,
                                 lineWidth: '4px',
@@ -118,15 +118,7 @@ to get the desired effect
                             },
                             ticks: $.extend({
                                 beginAtZero: true,
-
-                                // Include a dollar sign in the ticks
-                                callback: function(value, index, values) {
-                                    if (value >= 1000) {
-                                        value /= 1000
-                                        value += 'k'
-                                    }
-                                    return '$' + value
-                                }
+                                suggestedMax: 100,
                             }, ticksStyle)
                         }],
                         xAxes: [{
@@ -183,7 +175,7 @@ to get the desired effect
                     },
                     scales: {
                         yAxes: [{
-                            // display: false,
+                            display: true,
                             gridLines: {
                                 display: true,
                                 lineWidth: '4px',
@@ -192,13 +184,13 @@ to get the desired effect
                             },
                             ticks: $.extend({
                                 beginAtZero: true,
-                                suggestedMax: 200
+                                suggestedMax: 100
                             }, ticksStyle)
                         }],
                         xAxes: [{
                             display: true,
                             gridLines: {
-                                display: false
+                                display: true
                             },
                             ticks: ticksStyle
                         }]
