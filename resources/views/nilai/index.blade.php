@@ -244,6 +244,50 @@
                                                                 </select>
                                                             </div>
                                                         </div>
+
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label for="exampleFormControlSelect1">KELAS</label>
+                                                                <select name="kelas_id" class="form-control" id="kelas">
+                                                                    <option hidden>Pilih Kelas</option>
+                                                                    @foreach ($kelas as $key => $m)
+                                                                        <option value="{{ $m->id }}">
+                                                                            {{ $m->nama }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label for="exampleFormControlSelect1">SISWA</label>
+                                                                <select name="siswa_id" class="form-control" id="siswa">
+                                                                    <!--<option>---</option>
+                                                                                @foreach ($siswa as $key => $m)
+    <option value="{{ $m->id }}">
+                                                                                        {{ $m->nama_depan }}
+                                                                                        {{ $m->nama_belakang }}
+                                                                                    </option>
+    @endforeach -->
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label for="exampleFormControlSelect1">GURU</label>
+                                                                <select name="guru_id" class="form-control"
+                                                                    id="exampleFormControlSelect2">
+                                                                    <option>---</option>
+                                                                    @foreach ($guru as $key => $m)
+                                                                        <option value="{{ $m->id }}">
+                                                                            {{ $m->nama_guru }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
                                                         <div class="col-sm-4">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlSelect1">MAPEL</label>
@@ -267,51 +311,6 @@
                                                                     @foreach ($penilaian as $key => $m)
                                                                         <option value="{{ $m->id }}">
                                                                             {{ $m->nama_tes }}
-                                                                        </option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">GURU</label>
-                                                                <select name="guru_id" class="form-control"
-                                                                    id="exampleFormControlSelect2">
-                                                                    <option>---</option>
-                                                                    @foreach ($guru as $key => $m)
-                                                                        <option value="{{ $m->id }}">
-                                                                            {{ $m->nama_guru }}
-                                                                        </option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">KELAS</label>
-                                                                <select name="kelas_id" class="form-control"
-                                                                    id="exampleFormControlSelect2">
-                                                                    <option>---</option>
-                                                                    @foreach ($kelas as $key => $m)
-                                                                        <option value="{{ $m->id }}">
-                                                                            {{ $m->nama }}
-                                                                        </option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">SISWA</label>
-                                                                <select name="siswa_id" class="form-control"
-                                                                    id="exampleFormControlSelect2">
-                                                                    <option>---</option>
-                                                                    @foreach ($siswa as $key => $m)
-                                                                        <option value="{{ $m->id }}">
-                                                                            {{ $m->nama_depan }}
-                                                                            {{ $m->nama_belakang }}
                                                                         </option>
                                                                     @endforeach
                                                                 </select>

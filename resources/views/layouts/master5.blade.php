@@ -191,7 +191,38 @@
             });
         });
     </script>
-
+    <script>
+        $(document).ready(function() {
+            $('#kelas').on('change', function() {
+                var kelasID = $(this).val();
+                if (kelasID) {
+                    $.ajax({
+                        url: '/getSiswa/' + kelasID,
+                        type: "GET",
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            if (data) {
+                                $('#siswa').empty();
+                                $('#siswa').append('<option hidden>Pilih Siswa</option>');
+                                $.each(data, function(siswa_id, get_siswa) {
+                                    $('select[name="siswa_id"]').append(
+                                        '<option value="' + get_siswa.id + '">' + get_siswa
+                                        .nama_depan + " " + get_siswa.nama_belakang + '</option>');
+                                });
+                            } else {
+                                $('#siswa').empty();
+                            }
+                        }
+                    });
+                } else {
+                    $('#siswa').empty();
+                }
+            });
+        });
+    </script>
     @yield('footer')
 </body>
 

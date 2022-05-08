@@ -226,7 +226,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::post('/tujuan/{tujuan}/tujuanupdate',[TujuanController::class,'tujuanupdate']);
 
 	Route::get('/nilai',[NilaiController::class,'nilai']);
-    Route::post('/nilaiSub', [NilaiController::class, 'nilaiSub']);
+    Route::get('/getSiswa/{id}', [NilaiController::class, 'getSiswa']);
     Route::get('/nilai_filter', function () {
     if (request()->start_date || request()->end_date) {
         $start_date = Carbon::parse(request()->start_date)->toDateTimeString();

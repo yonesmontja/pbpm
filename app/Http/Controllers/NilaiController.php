@@ -32,7 +32,8 @@ class NilaiController extends Controller
         $kelas = Kelas::all();
         $nilai_start = Tahunpelajaran::all()->where('id','=',2)->pluck('tahun');
         $nilai_end = Tahunpelajaran::all()->where('id','=',1)->pluck('tahun');
-        $kelas_sub = Kelas::where('kelas_id',0)->get();
+        $kelas_sub = Siswa::where('kelas_id',0)->get();
+        //dd($kelas_sub);
         for($bulan=1;$bulan < 7;$bulan++){
             $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
             $jumlah_penilaian[] = $chart_penilaian->jumlah;
@@ -50,6 +51,12 @@ class NilaiController extends Controller
             'kompetensiinti' => $kompetensiinti,
             'data_nilai' => $data_nilai,
             'guru' => $guru]);
+    }
+    public function getSiswa($id)
+    {
+        $get_siswa = Siswa::where('kelas_id',$id)->get();
+        //dd($get_siswa);
+    return response()->json($get_siswa);
     }
     public function nilaicreate(Request $request)
     {
