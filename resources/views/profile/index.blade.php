@@ -166,8 +166,7 @@
                                                      </div>
                                                      <div class="col-md-3">
                                                          <h3 class="card-title">
-                                                             <a href="/siswa/{{ $siswa->id }}/export_pdf" target="_blank">EXPOR
-                                                                 PDF
+                                                             <a href="/siswa/{{ $siswa->id }}/export_pdf" target="_blank">CETAK RAPORT
                                                              </a>
                                                          </h3>
                                                      </div>

@@ -10,7 +10,7 @@
             max-width: 800px;
             margin: auto;
             padding: 10px;
-            border: 3px solid #eee;
+            border: 1px solid #eee;
             box-shadow: 0 0 10px rgba(0, 0, 0, .15);
             font-size: 16px;
             line-height: 24px;
@@ -145,69 +145,70 @@
                             <td>
                                 <table>
                                     <tr>
-                                        <td colspan="2">
+                                        <td>
                                             Nama
                                         </td>
                                         <td>
                                             :
                                         </td>
-                                        <td colspan="2">
-                                            {{ $students->nama_depan }} {{ $students->nama_belakang }}
+                                        <td>
+                                            {{ $students->nama_depan }}
                                         </td>
                                         <td></td>
                                         <td></td>
-                                        <td colspan="2">
+                                        <td>
                                             Kelas
                                         </td>
                                         <td>
                                             :
                                         </td>
-                                        <td colspan="2">
-                                            {{ $students->kelas }}
+                                        <td>
+                                            {{ $students->nama_depan }}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2">
+                                        <td>
                                             NIS
                                         </td>
                                         <td>
                                             :
                                         </td>
-                                        <td colspan="2">
-                                            {{ $students->nis }}
+                                        <td>
+                                            {{ $students->nama_depan }}
                                         </td>
                                         <td></td>
                                         <td></td>
-                                        <td colspan="2">
+                                        <td>
                                             Semester
                                         </td>
                                         <td>
                                             :
                                         </td>
-                                        <td colspan="2">
-                                            Genap
+                                        <td>
+                                            Ganjil
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2">
+                                        <td>
                                             NISN
                                         </td>
                                         <td>
                                             :
                                         </td>
-                                        <td colspan="2">
-                                            {{ $students->nisn }}
+                                        <td>
+                                            {{ $students->nama_depan }}
                                         </td>
                                         <td></td>
                                         <td></td>
-                                        <td colspan="2">
+                                        <td>
                                             Tahun Pelajaran
                                         </td>
                                         <td>
                                             :
                                         </td>
-                                        <td colspan="2">
-                                            2021/2022
+                                        <td>
+                                            2021/2022 semakin di depan dalam mempertaruhkan dunia persilatan yang maha
+                                            kuasa
                                         </td>
                                     </tr>
                                 </table>
@@ -411,21 +412,101 @@
                 <td colspan="5">Keterangan dalam Kegiatan</td>
             </tr>
             <tr class="details">
-                <td colspan="2" style="text-align: center;">Ekskul 1</td>
-                <td style="text-align: center;">#605</td>
-                <td colspan="5" style="text-align: center;">Baik</td>
+                <td colspan="2">PHBS</td>
+                <td>Nilai</td>
+                <td colspan="5">Baik</td>
             </tr>
             <tr class="details">
-                <td colspan="2" style="text-align: center;">Ekskul 2</td>
-                <td style="text-align: center;">#605</td>
-                <td colspan="5" style="text-align: center;">Baik</td>
+                <td colspan="2">Pramuka</td>
+                <td>Nilai</td>
+                <td colspan="5">Baik</td>
             </tr>
             <tr>
                 <td colspan="8">
                     <table>
                         <tr class="information">
                             <td colspan="8">
-                                D. Absensi
+                                D. Saran-saran
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="details">
+                <td colspan="8">
+                    1. Saran satu
+                    <br>2. Saran dua
+                    <br>3. Saran tiga
+                </td>
+            </tr>
+            <tr>
+                <td colspan="8">
+                    <table>
+                        <tr class="information">
+                            <td colspan="8">
+                                E. Kondisi Kesehatan
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="heading">
+                <td>No</td>
+                <td colspan="4">Aspek Fisik</td>
+                <td colspan="4">Keterangan</td>
+            </tr>
+            <tr class="details">
+                <td>1</td>
+                <td colspan="4">Pendengaran</td>
+                <td colspan="4">Baik</td>
+            </tr>
+            <tr class="details">
+                <td>2</td>
+                <td colspan="4">Penglihatan</td>
+                <td colspan="4">Baik</td>
+            </tr>
+            <tr class="details">
+                <td>3</td>
+                <td colspan="4">Gigi</td>
+                <td colspan="4">Baik</td>
+            </tr>
+            <tr>
+                <td colspan="8">
+                    <table>
+                        <tr class="information">
+                            <td colspan="8">
+                                F. Prestasi
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="heading">
+                <td>No</td>
+                <td colspan="4">Prestasi</td>
+                <td colspan="4">Keterangan</td>
+            </tr>
+            <tr class="details">
+                <td>1</td>
+                <td colspan="4">Prestasi 1</td>
+                <td colspan="4">Baik</td>
+            </tr>
+            <tr class="details">
+                <td>2</td>
+                <td colspan="4">Prestasi 2</td>
+                <td colspan="4">Baik</td>
+            </tr>
+            <tr class="details">
+                <td>3</td>
+                <td colspan="4">Prestasi 3</td>
+                <td colspan="4">Baik</td>
+            </tr>
+            <tr>
+                <td colspan="8">
+                    <table>
+                        <tr class="information">
+                            <td colspan="8">
+                                G. Kehadiran
                             </td>
                         </tr>
                     </table>
@@ -434,65 +515,26 @@
             <tr class="heading">
                 <td>No</td>
                 <td colspan="3">Ketidakhadiran</td>
-                <td colspan="4">Jumlah hari</td>
+                <td colspan="3">Jumlah</td>
             </tr>
             <tr class="details">
-                <td style="text-align: center;">1</td>
-                <td colspan="3" style="text-align: center;">Alpa</td>
-                <td colspan="4" style="text-align: center;">5</td>
+                <td>1</td>
+                <td colspan="3">Alpa</td>
+                <td colspan="3">2 hari</td>
             </tr>
             <tr class="details">
-                <td style="text-align: center;">2</td>
-                <td colspan="3" style="text-align: center;">Ijin</td>
-                <td colspan="4" style="text-align: center;">2</td>
+                <td>2</td>
+                <td colspan="3">Ijin</td>
+                <td colspan="3">4 hari</td>
             </tr>
             <tr class="details">
-                <td style="text-align: center;">3</td>
-                <td colspan="3" style="text-align: center;">Sakit</td>
-                <td colspan="4" style="text-align: center;">2</td>
-            </tr>
-            <tr>
-                <td colspan="8">
-                    <table>
-                        <tr class="information">
-                            <td colspan="8">
-                                E. Catatan Wali Kelas
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr class="details">
-                <td colspan="8" style="text-align: left;">
-                    1. Catatan 1
-                    <br>2. Catatan 2
-                    <br>3. Catatan 3
-                </td>
+                <td>3</td>
+                <td colspan="3">Sakit</td>
+                <td colspan="3">2 hari</td>
             </tr>
             <tr class="top">
                 <td colspan="8">
                     <table>
-                        <tr>
-                            <td colspan="8">
-                                <hr align="center">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="8">
-                                Berdasarkan penilaian selama semester ini, siswa dinyatakan:
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="8">
-                                Naik/Tidak Naik
-                                <br> ke kelas:
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="8">
-                                <hr align="center">
-                            </td>
-                        </tr>
                         <tr>
                             <td colspan="4">
                                 Mengetahui
@@ -502,22 +544,22 @@
                             </td>
                         </tr>
                         <tr>
-                            <td text-align="center" colspan="4">
+                            <td colspan="4">
                                 Orang tua/wali
                             </td>
-                            <td text-align="center" colspan="4">
-                                Wali kelas
+                            <td colspan="4">
+                                Guru kelas
                             </td>
                         </tr>
                         <tr>
-                            <td text-align="center" colspan="4">
+                            <td colspan="4">
                                 <br>
                                 <br>
                                 <br>
                                 <br>
                                 <br>
                             </td>
-                            <td text-align="center" colspan="4">
+                            <td colspan="4">
                                 <br>
                                 <br>
                                 <br>
@@ -526,25 +568,25 @@
                             </td>
                         </tr>
                         <tr>
-                            <td text-align="center" colspan="4">
-                                ------------------------
+                            <td colspan="4">
+                                ---------------------
                             </td>
-                            <td text-align="center" colspan="4">
+                            <td colspan="4">
                                 (Silimius Doyela)
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="8" text-align="center">
+                            <td colspan="8">
                                 Mengetahui
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="8" text-align="center">
+                            <td colspan="8">
                                 Kepala Sekolah
                             </td>
                         </tr>
                         <tr>
-                            <td text-align="center" colspan="8">
+                            <td colspan="8">
                                 <br>
                                 <br>
                                 <br>
@@ -553,9 +595,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <td text-align="center" colspan="8">
+                            <td colspan="8">
                                 (Merkianus Kasipmabin, S.Pd)
-                                <br> Nip. -------------
+                                <br>Nip. .................
                             </td>
                         </tr>
                     </table>
