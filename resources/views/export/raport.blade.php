@@ -290,62 +290,74 @@
             <tr class="details">
                 <td style="text-align: center;">1</td>
                 <td style="text-align: left;">Pendidikan Agama dan Budi Pekerti</td>
-                <td style="text-align: center;">3</td>
-                <td style="text-align: center;">4</td>
+                @if ($students->agama == 'Islam')
+                    <td style="text-align: center;">{{ $raport_pengetahuan_islam }}</td>
+                @else($students->agama == "Kristen Protestan")
+                    <td style="text-align: center;">{{ $raport_pengetahuan_protestan }}</td>
+                @else($students->agama == "Katolik")
+                    <td style="text-align: center;">{{ $raport_pengetahuan_katolik }}</td>
+                @endif
+                <td style="text-align: center;">A</td>
                 <td style="text-align: center;">Sangat Baik</td>
-                <td style="text-align: center;">6</td>
-                <td style="text-align: center;">7</td>
-                <td style="text-align: center;">Sangat Baik</td>
+                 @if ($students->agama == 'Islam')
+                    <td style="text-align: center;">{{ $raport_pengetahuan_islam }}</td>
+                @else($students->agama == "Kristen Protestan")
+                    <td style="text-align: center;">{{ $raport_pengetahuan_protestan }}</td>
+                @else($students->agama == "Katolik")
+                    <td style="text-align: center;">{{ $raport_pengetahuan_katolik }}</td>
+                @endif
+                <td style="text-align: center;">B</td>
+                <td style="text-align: center;">Baik</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">2</td>
                 <td style="text-align: left;">PPKn</td>
-                <td style="text-align: center;">3</td>
-                <td style="text-align: center;">4</td>
-                <td style="text-align: center;">5</td>
-                <td style="text-align: center;">6</td>
-                <td style="text-align: center;">7</td>
-                <td style="text-align: center;">8</td>
+                <td style="text-align: center;">{{ $raport_pengetahuan_ppkn }}</td>
+                <td style="text-align: center;">A</td>
+                <td style="text-align: center;">Sangat baik</td>
+                <td style="text-align: center;">{{ $raport_pengetahuan_ppkn }}</td>
+                <td style="text-align: center;">B</td>
+                <td style="text-align: center;">Baik</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">3</td>
                 <td style="text-align: left;">Bahasa Indonesia</td>
-                <td style="text-align: center;">3</td>
-                <td style="text-align: center;">4</td>
-                <td style="text-align: center;">5</td>
-                <td style="text-align: center;">6</td>
-                <td style="text-align: center;">7</td>
-                <td style="text-align: center;">8</td>
+                <td style="text-align: center;">{{ $raport_pengetahuan_indonesia }}</td>
+                <td style="text-align: center;">A</td>
+                <td style="text-align: center;">Sangat baik</td>
+                <td style="text-align: center;">{{ $raport_pengetahuan_indonesia }}</td>
+                <td style="text-align: center;">B</td>
+                <td style="text-align: center;">Baik</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">4</td>
                 <td style="text-align: left;">Matematika</td>
-                <td style="text-align: center;">3</td>
-                <td style="text-align: center;">4</td>
-                <td style="text-align: center;">5</td>
-                <td style="text-align: center;">6</td>
-                <td style="text-align: center;">7</td>
-                <td style="text-align: center;">8</td>
+                <td style="text-align: center;">{{ $raport_pengetahuan_matematika }}</td>
+                <td style="text-align: center;">A</td>
+                <td style="text-align: center;">Sangat Baik</td>
+                <td style="text-align: center;">{{ $raport_pengetahuan_matematika }}</td>
+                <td style="text-align: center;">C</td>
+                <td style="text-align: center;">Kurang</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">5</td>
                 <td style="text-align: left;">Ilmu Pengetahuan Alam</td>
-                <td style="text-align: center;">3</td>
-                <td style="text-align: center;">4</td>
-                <td style="text-align: center;">5</td>
-                <td style="text-align: center;">6</td>
-                <td style="text-align: center;">7</td>
-                <td style="text-align: center;">8</td>
+                <td style="text-align: center;">{{ $raport_pengetahuan_ipa }}</td>
+                <td style="text-align: center;">B</td>
+                <td style="text-align: center;">Baik</td>
+                <td style="text-align: center;">{{ $raport_pengetahuan_ipa }}</td>
+                <td style="text-align: center;">C</td>
+                <td style="text-align: center;">Kurang</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">6</td>
                 <td style="text-align: left;">Ilmu Pengetahuan Sosial</td>
-                <td style="text-align: center;">3</td>
-                <td style="text-align: center;">4</td>
-                <td style="text-align: center;">5</td>
-                <td style="text-align: center;">6</td>
-                <td style="text-align: center;">7</td>
-                <td style="text-align: center;">8</td>
+                <td style="text-align: center;">{{ $raport_pengetahuan_ips }}</td>
+                <td style="text-align: center;">B</td>
+                <td style="text-align: center;">Baik</td>
+                <td style="text-align: center;">{{ $raport_pengetahuan_ips }}</td>
+                <td style="text-align: center;">B</td>
+                <td style="text-align: center;">Baik</td>
             </tr>
             <tr class="details">
                 <td colspan="8">Kelompok B: </td>
@@ -353,22 +365,22 @@
             <tr class="details">
                 <td style="text-align: center;">1</td>
                 <td style="text-align: left;">Pendidikan Jasmani, Olahraga dan Kesehatan</td>
-                <td style="text-align: center;">3</td>
-                <td style="text-align: center;">4</td>
-                <td style="text-align: center;">5</td>
-                <td style="text-align: center;">6</td>
-                <td style="text-align: center;">7</td>
-                <td style="text-align: center;">8</td>
+                <td style="text-align: center;">{{ $raport_pengetahuan_pjok }}</td>
+                <td style="text-align: center;">A</td>
+                <td style="text-align: center;">Sangat baik</td>
+                <td style="text-align: center;">{{ $raport_pengetahuan_pjok }}</td>
+                <td style="text-align: center;">B</td>
+                <td style="text-align: center;">Baik</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">2</td>
                 <td style="text-align: left;">Seni Budaya dan Keterampilan</td>
-                <td style="text-align: center;">3</td>
-                <td style="text-align: center;">4</td>
-                <td style="text-align: center;">5</td>
-                <td style="text-align: center;">6</td>
-                <td style="text-align: center;">7</td>
-                <td style="text-align: center;">8</td>
+                <td style="text-align: center;">{{ $raport_pengetahuan_sbk }}</td>
+                <td style="text-align: center;">B</td>
+                <td style="text-align: center;">Baik</td>
+                <td style="text-align: center;">{{ $raport_pengetahuan_sbk }}</td>
+                <td style="text-align: center;">B</td>
+                <td style="text-align: center;">Baik</td>
             </tr>
             <tr class="details">
                 <td colspan="2" style="text-align: center;">Jumlah</td>
