@@ -161,8 +161,15 @@
                                          <div class="card">
                                              <div class="card-header">
                                                  <div class="row">
-                                                     <div class="col-md-6">
+                                                     <div class="col-md-3">
                                                          <h3 class="card-title">Nilai Siswa</h3>
+                                                     </div>
+                                                     <div class="col-md-3">
+                                                         <h3 class="card-title">
+                                                             <a href="/siswa/{{ $siswa->id }}/export_pdf" target="_blank">EXPOR
+                                                                 PDF
+                                                             </a>
+                                                         </h3>
                                                      </div>
                                                      <div class="col-md-2 float-right">
                                                          <div class="card-tools">

@@ -420,8 +420,19 @@ class SiswaController extends Controller
         //pkai loadHTML
         //$pdf = PDF::loadHTML('<h1>DATA SISWA</h1>');
         //pkai loadView
+        $students = Siswa::all();
         $data_siswa = Siswa::get();
-        $pdf = PDF::loadView('export.invoice',['data_siswa'=>$data_siswa]);
+        $pdf = PDF::loadView('export.invoice',['data_siswa'=>$data_siswa,'students' => $students]);
+        return $pdf->download('data_siswa_'.date('Y-m-d_H-i-s').'.pdf');
+    }
+    public function cetak_PDF($id)
+    {
+        //pkai loadHTML
+        //$pdf = PDF::loadHTML('<h1>DATA SISWA</h1>');
+        //pkai loadView
+        $students = Siswa::find($id);
+        $data_siswa = Siswa::get();
+        $pdf = PDF::loadView('export.invoice',['data_siswa'=>$data_siswa,'students' => $students]);
         return $pdf->download('data_siswa_'.date('Y-m-d_H-i-s').'.pdf');
     }
 }

@@ -46,7 +46,6 @@
                                             <a href="/siswa/export_pdf" target="_blank">EXPOR
                                                 PDF
                                             </a>
-
                                         </h3>
                                     </div>
                                     <div class="col-sm-2">
