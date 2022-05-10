@@ -125,7 +125,7 @@
                                             <th>JENIS KELAMIN</th>
                                             <th>AGAMA</th>
                                             <th>KELAS</th>
-                                            <th>STATUS</th>
+                                            <th>CETAK</th>
                                             <th>AKSI</th>
                                         </tr>
                                     </thead>
@@ -142,17 +142,10 @@
                                                 <td>{{ $siswa->jenis_kelamin }}</td>
                                                 <td>{{ $siswa->agama }}</td>
                                                 <td>{{ $siswa->kelas }}</td>
-
                                                 <td>
-                                                    @if ($siswa->status == 1)
-                                                        <a href="#" class="btn btn-success btn-sm"
-                                                            onclick="return confirm('Siswa ini sudah aktif sebagai user!')">Aktif</a>
-                                                    @endif
-                                                    @if ($siswa->status == 0)
-                                                        <a href="/test/{{ $siswa->id }}/aktivasi"
-                                                            class="btn btn-danger btn-sm"
-                                                            onclick="return confirm('Yakin mau diaktivasi?')">Non-Aktif</a>
-                                                    @endif
+                                                    <a href="/siswa/{{ $siswa->id }}/cover_pdf"
+                                                        class="btn btn-primary btn-sm">Cover
+                                                    </a>
                                                     <a href="/siswa/{{ $siswa->id }}/export_pdf"
                                                         class="btn btn-primary btn-sm">Raport
                                                     </a>
@@ -176,7 +169,7 @@
                                             <th>JENIS KELAMIN</th>
                                             <th>AGAMA</th>
                                             <th>KELAS</th>
-                                            <th>STATUS</th>
+                                            <th>CETAK</th>
                                             <th>AKSI</th>
                                         </tr>
                                     </tfoot>

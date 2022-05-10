@@ -306,7 +306,7 @@ class SiswaController extends Controller
         return view('profile.index',[
         'rombel2' => $rombel2,
         'nilai_start' => $nilai_start,
-            'nilai_end' => $nilai_end,
+        'nilai_end' => $nilai_end,
         'average_mapel' => $average_mapel,
         'islam_average'=>$islam_average,
         'protestan_average'=>$protestan_average,
@@ -427,7 +427,7 @@ class SiswaController extends Controller
     }
     public function cetak_PDF($id)
     {
-
+        // cetak_PDF
         $count_tugas1 = Nilai::all()
             ->where('siswa_id','=',$id)
             ->where('penilaian_id','=',1)
@@ -1958,8 +1958,26 @@ class SiswaController extends Controller
                 $predikat_huruf_sbk = "A";
                 $predikat_deskripsi_sbk = "Sangat Baik";
             }
+        // ---------------------------------------------
+        if($students -> kelas == "Kelas 1")
+        {
+            $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
 
-        $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
+                                +$raport_pengetahuan_indonesia
+                                +$raport_pengetahuan_matematika
+                                +$raport_pengetahuan_pjok;
+        }
+        if($students -> kelas == "Kelas 2")
+        {
+            $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
+
+                                +$raport_pengetahuan_indonesia
+                                +$raport_pengetahuan_matematika
+                                +$raport_pengetahuan_pjok;
+        }
+        if($students -> kelas == "Kelas 3")
+        {
+            $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
                                 +$raport_pengetahuan_ppkn
                                 +$raport_pengetahuan_indonesia
                                 +$raport_pengetahuan_matematika
@@ -1967,6 +1985,41 @@ class SiswaController extends Controller
                                 +$raport_pengetahuan_ips
                                 +$raport_pengetahuan_pjok
                                 +$raport_pengetahuan_sbk;
+        }
+        if($students -> kelas == "Kelas 4")
+        {
+            $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
+                                +$raport_pengetahuan_ppkn
+                                +$raport_pengetahuan_indonesia
+                                +$raport_pengetahuan_matematika
+                                +$raport_pengetahuan_ipa
+                                +$raport_pengetahuan_ips
+                                +$raport_pengetahuan_pjok
+                                +$raport_pengetahuan_sbk;
+        }
+        if($students -> kelas == "Kelas 5")
+        {
+            $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
+                                +$raport_pengetahuan_ppkn
+                                +$raport_pengetahuan_indonesia
+                                +$raport_pengetahuan_matematika
+                                +$raport_pengetahuan_ipa
+                                +$raport_pengetahuan_ips
+                                +$raport_pengetahuan_pjok
+                                +$raport_pengetahuan_sbk;
+        }
+        if($students -> kelas == "Kelas 6")
+        {
+            $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
+                                +$raport_pengetahuan_ppkn
+                                +$raport_pengetahuan_indonesia
+                                +$raport_pengetahuan_matematika
+                                +$raport_pengetahuan_ipa
+                                +$raport_pengetahuan_ips
+                                +$raport_pengetahuan_pjok
+                                +$raport_pengetahuan_sbk;
+        }
+
         $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
         $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan/8, 1, '.', '');
 
@@ -2466,7 +2519,26 @@ class SiswaController extends Controller
                 $predikat_keterampilan_deskripsi_sbk = "Sangat Baik";
             }
 
-        $jumlah_raport_keterampilan = $raport_keterampilan_agama
+        if($students -> kelas == "Kelas 1")
+        {
+            $jumlah_raport_keterampilan = $raport_keterampilan_agama
+
+                                +$raport_keterampilan_indonesia
+                                +$raport_keterampilan_matematika
+                                +$raport_keterampilan_pjok;
+
+        }
+        if($students -> kelas == "Kelas 2")
+        {
+            $jumlah_raport_keterampilan = $raport_keterampilan_agama
+
+                                +$raport_keterampilan_indonesia
+                                +$raport_keterampilan_matematika
+                                +$raport_keterampilan_pjok;
+        }
+        if($students -> kelas == "Kelas 3")
+        {
+            $jumlah_raport_keterampilan = $raport_keterampilan_agama
                                 +$raport_keterampilan_ppkn
                                 +$raport_keterampilan_indonesia
                                 +$raport_keterampilan_matematika
@@ -2474,9 +2546,46 @@ class SiswaController extends Controller
                                 +$raport_keterampilan_ips
                                 +$raport_keterampilan_pjok
                                 +$raport_keterampilan_sbk;
+        }
+        if($students -> kelas == "Kelas 4")
+        {
+            $jumlah_raport_keterampilan = $raport_keterampilan_agama
+                                +$raport_keterampilan_ppkn
+                                +$raport_keterampilan_indonesia
+                                +$raport_keterampilan_matematika
+                                +$raport_keterampilan_ipa
+                                +$raport_keterampilan_ips
+                                +$raport_keterampilan_pjok
+                                +$raport_keterampilan_sbk;
+        }
+        if($students -> kelas == "Kelas 5")
+        {
+            $jumlah_raport_keterampilan = $raport_keterampilan_agama
+                                +$raport_keterampilan_ppkn
+                                +$raport_keterampilan_indonesia
+                                +$raport_keterampilan_matematika
+                                +$raport_keterampilan_ipa
+                                +$raport_keterampilan_ips
+                                +$raport_keterampilan_pjok
+                                +$raport_keterampilan_sbk;
+        }
+        if($students -> kelas == "Kelas 6")
+        {
+            $jumlah_raport_keterampilan = $raport_keterampilan_agama
+                                +$raport_keterampilan_ppkn
+                                +$raport_keterampilan_indonesia
+                                +$raport_keterampilan_matematika
+                                +$raport_keterampilan_ipa
+                                +$raport_keterampilan_ips
+                                +$raport_keterampilan_pjok
+                                +$raport_keterampilan_sbk;
+        }
+
         $jumlah_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan, 1, '.', '');
         $ratarata_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan/8, 1, '.', '');
 
+        // -------------------------------------------------------
+        // Hitung nilai raport pengetahuan dan keterampilan
         $jumlah_raport = number_format((float)$jumlah_raport_pengetahuan+$jumlah_raport_keterampilan, 1, '.', '');
         $ratarata_raport = number_format((float)($ratarata_raport_pengetahuan+$ratarata_raport_keterampilan)/2, 1, '.', '');
         //----------------------------------------------------
@@ -2543,5 +2652,19 @@ class SiswaController extends Controller
             'students' => $students
         ]);
         return $pdf->download($kalimat1.'_'.$kalimat2.'_'.date('Y-m-d_H').'.pdf');
+    }
+    public function cover_pdf($id)
+    {
+        $siswa = Siswa::find($id);
+        $nama_depan = Siswa::where('id','=',$id)->select('nama_depan','nama_belakang')->pluck('nama_depan');
+        $nama_belakang = Siswa::where('id','=',$id)->select('nama_depan','nama_belakang')->pluck('nama_belakang');
+        $kalimat1 = $nama_depan[0];
+        $kalimat2 = $nama_belakang[0];
+        //dd($kalimat2);
+        $pdf = PDF::loadView('export.cover1',
+        [
+            'siswa' => $siswa,
+        ]);
+        return $pdf -> download($kalimat1.'_'.$kalimat2.'_'.date('Y-m-d_H').'.pdf');
     }
 }

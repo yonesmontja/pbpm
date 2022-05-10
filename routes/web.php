@@ -92,6 +92,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::post('/siswa/import_excel',[SiswaController::class,'import_excel']);
 	Route::get('/siswa/export_pdf',[SiswaController::class,'export_pdf']);
     Route::get('/siswa/{id}/export_pdf',[SiswaController::class,'cetak_pdf']);
+    Route::get('/siswa/{id}/cover_pdf',[SiswaController::class,'cover_pdf']);
 
 	Route::get('/test',[SiswaController::class,'test']);
 	Route::post('/test/testcreate',[SiswaController::class,'testcreate']);
