@@ -1973,8 +1973,6 @@ class SiswaController extends Controller
         $ratarata_raport = number_format((float)($ratarata_raport_pengetahuan+$ratarata_raport_pengetahuan)/2, 1, '.', '');
         $pdf = PDF::loadView('export.raport',
         [
-            'rata_rata_tugas_islam' =>$rata_rata_tugas_islam,
-
             'predikat_huruf_agama' =>$predikat_huruf_agama,
             'predikat_huruf_ppkn' =>$predikat_huruf_ppkn,
             'predikat_huruf_indonesia' =>$predikat_huruf_indonesia,
