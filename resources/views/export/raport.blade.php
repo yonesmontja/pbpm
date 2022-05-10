@@ -300,14 +300,14 @@
                 <td style="text-align: center;">{{ $predikat_huruf_agama }}</td>
                 <td style="text-align: center;">{{ $predikat_deskripsi_agama }}</td>
                  @if ($students->agama == 'Islam')
-                    <td style="text-align: center;">{{ $raport_pengetahuan_agama }}</td>
+                    <td style="text-align: center;">{{ $raport_keterampilan_agama }}</td>
                 @elseif($students->agama == "Kristen Protestan")
-                    <td style="text-align: center;">{{ $raport_pengetahuan_agama }}</td>
+                    <td style="text-align: center;">{{ $raport_keterampilan_agama }}</td>
                 @elseif($students->agama == "Katolik")
-                    <td style="text-align: center;">{{ $raport_pengetahuan_agama }}</td>
+                    <td style="text-align: center;">{{ $raport_keterampilan_agama }}</td>
                 @endif
-                <td style="text-align: center;">{{ $predikat_huruf_agama }}</td>
-                <td style="text-align: center;">{{ $predikat_deskripsi_agama }}</td>
+                <td style="text-align: center;">{{ $predikat_keterampilan_huruf_agama }}</td>
+                <td style="text-align: center;">{{ $predikat_keterampilan_deskripsi_agama }}</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">2</td>
@@ -315,9 +315,9 @@
                 <td style="text-align: center;">{{ $raport_pengetahuan_ppkn }}</td>
                 <td style="text-align: center;">{{ $predikat_huruf_ppkn }}</td>
                 <td style="text-align: center;">{{ $predikat_deskripsi_ppkn }}</td>
-                <td style="text-align: center;">{{ $raport_pengetahuan_ppkn }}</td>
-                <td style="text-align: center;">{{ $predikat_huruf_ppkn }}</td>
-                <td style="text-align: center;">{{ $predikat_deskripsi_ppkn }}</td>
+                <td style="text-align: center;">{{ $raport_keterampilan_ppkn }}</td>
+                <td style="text-align: center;">{{ $predikat_keterampilan_huruf_ppkn }}</td>
+                <td style="text-align: center;">{{ $predikat_keterampilan_deskripsi_ppkn }}</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">3</td>
@@ -325,9 +325,9 @@
                 <td style="text-align: center;">{{ $raport_pengetahuan_indonesia }}</td>
                 <td style="text-align: center;">{{ $predikat_huruf_indonesia }}</td>
                 <td style="text-align: center;">{{ $predikat_deskripsi_indonesia }}</td>
-                <td style="text-align: center;">{{ $raport_pengetahuan_indonesia }}</td>
-                <td style="text-align: center;">{{ $predikat_huruf_indonesia }}</td>
-                <td style="text-align: center;">{{ $predikat_deskripsi_indonesia }}</td>
+                <td style="text-align: center;">{{ $raport_keterampilan_indonesia }}</td>
+                <td style="text-align: center;">{{ $predikat_keterampilan_huruf_indonesia }}</td>
+                <td style="text-align: center;">{{ $predikat_keterampilan_deskripsi_indonesia }}</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">4</td>
@@ -335,9 +335,9 @@
                 <td style="text-align: center;">{{ $raport_pengetahuan_matematika }}</td>
                 <td style="text-align: center;">{{ $predikat_huruf_matematika }}</td>
                 <td style="text-align: center;">{{ $predikat_deskripsi_matematika }}</td>
-                <td style="text-align: center;">{{ $raport_pengetahuan_matematika }}</td>
-                <td style="text-align: center;">{{ $predikat_huruf_matematika }}</td>
-                <td style="text-align: center;">{{ $predikat_deskripsi_matematika }}</td>
+                <td style="text-align: center;">{{ $raport_keterampilan_matematika }}</td>
+                <td style="text-align: center;">{{ $predikat_keterampilan_huruf_matematika }}</td>
+                <td style="text-align: center;">{{ $predikat_keterampilan_deskripsi_matematika }}</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">5</td>
@@ -345,9 +345,9 @@
                 <td style="text-align: center;">{{ $raport_pengetahuan_ipa }}</td>
                 <td style="text-align: center;">{{ $predikat_huruf_ipa }}</td>
                 <td style="text-align: center;">{{ $predikat_deskripsi_ipa }}</td>
-                <td style="text-align: center;">{{ $raport_pengetahuan_ipa }}</td>
-                <td style="text-align: center;">{{ $predikat_huruf_ipa }}</td>
-                <td style="text-align: center;">{{ $predikat_deskripsi_ipa }}</td>
+                <td style="text-align: center;">{{ $raport_keterampilan_ipa }}</td>
+                <td style="text-align: center;">{{ $predikat_keterampilan_huruf_ipa }}</td>
+                <td style="text-align: center;">{{ $predikat_keterampilan_deskripsi_ipa }}</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">6</td>
@@ -355,9 +355,9 @@
                 <td style="text-align: center;">{{ $raport_pengetahuan_ips }}</td>
                 <td style="text-align: center;">{{ $predikat_huruf_ips }}</td>
                 <td style="text-align: center;">{{ $predikat_deskripsi_ips }}</td>
-                <td style="text-align: center;">{{ $raport_pengetahuan_ips }}</td>
-                <td style="text-align: center;">{{ $predikat_huruf_ips }}</td>
-                <td style="text-align: center;">{{ $predikat_deskripsi_ips }}</td>
+                <td style="text-align: center;">{{ $raport_keterampilan_ips }}</td>
+                <td style="text-align: center;">{{ $predikat_keterampilan_huruf_ips }}</td>
+                <td style="text-align: center;">{{ $predikat_keterampilan_deskripsi_ips }}</td>
             </tr>
             <tr class="details">
                 <td colspan="8">Kelompok B: </td>
@@ -368,9 +368,9 @@
                 <td style="text-align: center;">{{ $raport_pengetahuan_pjok }}</td>
                 <td style="text-align: center;">{{ $predikat_huruf_pjok }}</td>
                 <td style="text-align: center;">{{ $predikat_deskripsi_pjok }}</td>
-                <td style="text-align: center;">{{ $raport_pengetahuan_pjok }}</td>
-                <td style="text-align: center;">{{ $predikat_huruf_pjok }}</td>
-                <td style="text-align: center;">{{ $predikat_deskripsi_pjok }}</td>
+                <td style="text-align: center;">{{ $raport_keterampilan_pjok }}</td>
+                <td style="text-align: center;">{{ $predikat_keterampilan_huruf_pjok }}</td>
+                <td style="text-align: center;">{{ $predikat_keterampilan_deskripsi_pjok }}</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">2</td>
@@ -378,33 +378,33 @@
                 <td style="text-align: center;">{{ $raport_pengetahuan_sbk }}</td>
                 <td style="text-align: center;">{{ $predikat_huruf_sbk }}</td>
                 <td style="text-align: center;">{{ $predikat_deskripsi_sbk }}</td>
-                <td style="text-align: center;">{{ $raport_pengetahuan_sbk }}</td>
-                <td style="text-align: center;">{{ $predikat_huruf_sbk }}</td>
-                <td style="text-align: center;">{{ $predikat_deskripsi_sbk }}</td>
+                <td style="text-align: center;">{{ $raport_keterampilan_sbk }}</td>
+                <td style="text-align: center;">{{ $predikat_keterampilan_huruf_sbk }}</td>
+                <td style="text-align: center;">{{ $predikat_keterampilan_deskripsi_sbk }}</td>
             </tr>
             <tr class="details">
                 <td colspan="2" style="text-align: center;">Jumlah</td>
                 <td style="text-align: center;">{{ $jumlah_raport_pengetahuan }}</td>
-                <td colspan="2" style="text-align: center;">Enam Ratus Lima</td>
-                <td style="text-align: center;">{{ $jumlah_raport_pengetahuan }}</td>
-                <td colspan="2" style="text-align: center;">Empat ratus empat puluh sembilan</td>
+                <td colspan="2" style="text-align: left;">{{ terbilang($jumlah_raport_pengetahuan) }}</td>
+                <td style="text-align: center;">{{ $jumlah_raport_keterampilan }}</td>
+                <td colspan="2" style="text-align: left;">{{ terbilang($jumlah_raport_keterampilan) }}</td>
             </tr>
             <tr class="details">
                 <td colspan="2" style="text-align: center;">Rata-rata</td>
                 <td style="text-align: center;">{{ $ratarata_raport_pengetahuan }}</td>
-                <td colspan="2" style="text-align: center;">Enam Ratus Lima</td>
-                <td style="text-align: center;">{{ $ratarata_raport_pengetahuan }}</td>
-                <td colspan="2" style="text-align: center;">Empat ratus empat puluh sembilan</td>
+                <td colspan="2" style="text-align: left;">{{ terbilang($ratarata_raport_pengetahuan) }}</td>
+                <td style="text-align: center;">{{ $ratarata_raport_keterampilan }}</td>
+                <td colspan="2" style="text-align: left;">{{ terbilang($ratarata_raport_keterampilan) }}</td>
             </tr>
             <tr class="details">
                 <td colspan="2" style="text-align: center;">Total Nilai</td>
                 <td style="text-align: center;">{{ $jumlah_raport }}</td>
-                <td colspan="5" style="text-align: center;">Enam Ratus Lima</td>
+                <td colspan="5" style="text-align: left;">{{ terbilang($jumlah_raport) }}</td>
             </tr>
             <tr class="details">
                 <td colspan="2" style="text-align: center;">Rata-rata</td>
                 <td style="text-align: center;">{{ $ratarata_raport }}</td>
-                <td colspan="5" style="text-align: center;">Enam Ratus Lima</td>
+                <td colspan="5" style="text-align: left;">{{ terbilang($ratarata_raport) }}</td>
             </tr>
             <tr>
                 <td colspan="8">

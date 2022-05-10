@@ -219,3 +219,122 @@ function totalKelas6Percentage()
 {
     return totalKelas6()/totalSiswa()*100;
 }
+function konversi($x)
+{
+    $x = abs($x);
+    $angka = array ("","satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
+    $temp = "";
+
+    if($x < 12)
+    {
+        $temp = " ".$angka[$x];
+    }
+    elseif($x<20)
+    {
+        $temp = konversi($x - 10)." belas";
+    }
+    elseif ($x<100)
+    {
+        $temp = konversi($x/10)." puluh". konversi($x%10);
+    }
+    elseif($x<200)
+    {
+        $temp = " seratus".konversi($x-100);
+    }
+    elseif($x<1000)
+    {
+        $temp = konversi($x/100)." ratus".konversi($x%100);
+    }
+    elseif($x<2000)
+    {
+        $temp = " seribu".konversi($x-1000);
+    }
+    elseif($x<1000000)
+    {
+        $temp = konversi($x/1000)." ribu".konversi($x%1000);
+    }
+    elseif($x<1000000000)
+    {
+        $temp = konversi($x/1000000)." juta".konversi($x%1000000);
+    }
+    elseif($x<1000000000000)
+    {
+        $temp = konversi($x/1000000000)." milyar".konversi($x%1000000000);
+    }
+  return $temp;
+}
+
+function tkoma($x)
+{
+    $x = stristr($x,".");
+
+    $angka = array("nol", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan","sembilan","sepuluh", "sebelas");
+    $temp = " ";
+
+    $pjg = strlen($x);
+    $pos = 1;
+
+    while($pos < $pjg)
+    {
+        $char = substr($x, $pos, 1);
+        $pos++;
+        $temp .= " " . $angka[$char];
+    }
+    return $temp;
+}
+
+function terbilang($x, $style=4){
+    if($x<0){
+        $hasil = "minus ".trim(konversi(x));
+    }
+    else
+    {
+        $poin = trim(tkoma($x));
+        $hasil = trim(konversi($x));
+    }
+
+    switch($style)
+    {
+        case 1:
+            if ($poin)
+            {
+                $hasil = strtoupper($hasil) . ' KOMA ' . strtoupper($poin);
+            }
+            else
+            {
+                $hasil = strtoupper($hasil);
+            }
+            break;
+        case 2:
+            if($poin)
+            {
+                $hasil = strtolower($hasil) . ' koma ' . strtolower($poin);
+            }
+            else
+            {
+                $hasil = strtolower($hasil);
+            }
+            break;
+        case 3:
+            if($poin)
+            {
+                $hasil = ucwords($hasil) . ' Koma ' . ucwords($poin);
+            }
+            else
+            {
+                $hasil = ucwords($hasil);
+            }
+            break;
+        default:
+            if($poin)
+            {
+                $hasil = ucfirst($hasil) . ' koma ' . $poin;
+            }
+            else
+            {
+                $hasil = ucfirst($hasil);
+            }
+            break;
+    }
+    return $hasil;
+ }

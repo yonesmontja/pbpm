@@ -1969,8 +1969,518 @@ class SiswaController extends Controller
                                 +$raport_pengetahuan_sbk;
         $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
         $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan/8, 1, '.', '');
-        $jumlah_raport = number_format((float)$jumlah_raport_pengetahuan+$jumlah_raport_pengetahuan, 1, '.', '');
-        $ratarata_raport = number_format((float)($ratarata_raport_pengetahuan+$ratarata_raport_pengetahuan)/2, 1, '.', '');
+
+        //$jumlah_raport = number_format((float)$jumlah_raport_pengetahuan+$jumlah_raport_pengetahuan, 1, '.', '');
+        //$ratarata_raport = number_format((float)($ratarata_raport_pengetahuan+$ratarata_raport_pengetahuan)/2, 1, '.', '');
+
+        //menghitung nilai keterampilan
+        for($penilaian=18; $penilaian < 30; $penilaian++)
+        {
+            $tampung_keterampilan_islam = Nilai::all()
+            ->where('siswa_id','=',$id)
+            ->where('penilaian_id','=',$penilaian)
+            ->where('mapel_id','=',1)
+            ->pluck('nilai')->avg();
+            $nilai_keterampilan_islam[] = (int)$tampung_keterampilan_islam;
+            $tampung_keterampilan_protestan = Nilai::all()
+            ->where('siswa_id','=',$id)
+            ->where('penilaian_id','=',$penilaian)
+            ->where('mapel_id','=',2)
+            ->pluck('nilai')->avg();
+            $nilai_keterampilan_protestan[] = (int)$tampung_keterampilan_protestan;
+            $tampung_keterampilan_katolik = Nilai::all()
+            ->where('siswa_id','=',$id)
+            ->where('penilaian_id','=',$penilaian)
+            ->where('mapel_id','=',3)
+            ->pluck('nilai')->avg();
+            $nilai_keterampilan_katolik[] = (int)$tampung_keterampilan_katolik;
+            $tampung_keterampilan_ppkn = Nilai::all()
+            ->where('siswa_id','=',$id)
+            ->where('penilaian_id','=',$penilaian)
+            ->where('mapel_id','=',4)
+            ->pluck('nilai')->avg();
+            $nilai_keterampilan_ppkn[] = (int)$tampung_keterampilan_ppkn;
+            $tampung_keterampilan_indonesia = Nilai::all()
+            ->where('siswa_id','=',$id)
+            ->where('penilaian_id','=',$penilaian)
+            ->where('mapel_id','=',5)
+            ->pluck('nilai')->avg();
+            $nilai_keterampilan_indonesia[] = (int)$tampung_keterampilan_indonesia;
+            $tampung_keterampilan_matematika = Nilai::all()
+            ->where('siswa_id','=',$id)
+            ->where('penilaian_id','=',$penilaian)
+            ->where('mapel_id','=',6)
+            ->pluck('nilai')->avg();
+            $nilai_keterampilan_matematika[] = (int)$tampung_keterampilan_matematika;
+            $tampung_keterampilan_ipa = Nilai::all()
+            ->where('siswa_id','=',$id)
+            ->where('penilaian_id','=',$penilaian)
+            ->where('mapel_id','=',7)
+            ->pluck('nilai')->avg();
+            $nilai_keterampilan_ipa[] = (int)$tampung_keterampilan_ipa;
+            $tampung_keterampilan_ips = Nilai::all()
+            ->where('siswa_id','=',$id)
+            ->where('penilaian_id','=',$penilaian)
+            ->where('mapel_id','=',8)
+            ->pluck('nilai')->avg();
+            $nilai_keterampilan_ips[] = (int)$tampung_keterampilan_ips;
+            $tampung_keterampilan_pjok = Nilai::all()
+            ->where('siswa_id','=',$id)
+            ->where('penilaian_id','=',$penilaian)
+            ->where('mapel_id','=',9)
+            ->pluck('nilai')->avg();
+            $nilai_keterampilan_pjok[] = (int)$tampung_keterampilan_pjok;
+            $tampung_keterampilan_sbk = Nilai::all()
+            ->where('siswa_id','=',$id)
+            ->where('penilaian_id','=',$penilaian)
+            ->where('mapel_id','=',10)
+            ->pluck('nilai')->avg();
+            $nilai_keterampilan_sbk[] = (int)$tampung_keterampilan_sbk;
+        }
+        //dd($nilai_keterampilan_indonesia);
+        if($students -> agama == "Islam")
+        {
+            if(array_sum($nilai_keterampilan_islam) > 0)
+            {
+                for($key = 0; $key < count($nilai_keterampilan_islam); $key++)
+            {
+                if($nilai_keterampilan_islam[$key] > 0)
+                {
+                    $nilai_keterampilan_islam_yes[] = $nilai_keterampilan_islam[$key];
+                }
+            }
+            $jml_pel_keterampilan_islam    =count($nilai_keterampilan_islam_yes);
+            $sum_pel_keterampilan_islam    =array_sum($nilai_keterampilan_islam_yes);
+            $rata_rata_keterampilan_islam  =number_format((float)$sum_pel_keterampilan_islam / $jml_pel_keterampilan_islam, 2, '.', '');
+            }
+            elseif(array_sum($nilai_keterampilan_islam) == 0)
+            {
+                $rata_rata_keterampilan_islam = 0.00;
+            }
+        }
+
+        if($students -> agama == "Kristen Protestan")
+        {
+            if(array_sum($nilai_keterampilan_protestan) > 0)
+            {
+                for($key = 0; $key < count($nilai_keterampilan_protestan); $key++)
+            {
+                if($nilai_keterampilan_protestan[$key] > 0)
+                {
+                    $nilai_keterampilan_protestan_yes[] = $nilai_keterampilan_protestan[$key];
+                }
+            }
+            $jml_pel_keterampilan_protestan    =count($nilai_keterampilan_protestan_yes);
+            $sum_pel_keterampilan_protestan    =array_sum($nilai_keterampilan_protestan_yes);
+            $rata_rata_keterampilan_protestan  =number_format((float)$sum_pel_keterampilan_protestan / $jml_pel_keterampilan_protestan, 2, '.', '');
+            }
+            elseif(array_sum($nilai_keterampilan_protestan) == 0)
+            {
+                $rata_rata_keterampilan_protestan = 0.00;
+            }
+        }
+
+        if($students -> agama == "Katolik")
+        {
+            if(array_sum($nilai_keterampilan_katolik) > 0)
+            {
+                for($key = 0; $key < count($nilai_keterampilan_katolik); $key++)
+            {
+                if($nilai_keterampilan_katolik[$key] > 0)
+                {
+                    $nilai_keterampilan_katolik_yes[] = $nilai_keterampilan_katolik[$key];
+                }
+            }
+            $jml_pel_keterampilan_katolik    =count($nilai_keterampilan_katolik_yes);
+            $sum_pel_keterampilan_katolik    =array_sum($nilai_keterampilan_katolik_yes);
+            $rata_rata_keterampilan_katolik  =number_format((float)$sum_pel_keterampilan_katolik / $jml_pel_keterampilan_katolik, 2, '.', '');
+            }
+            elseif(array_sum($nilai_keterampilan_katolik) == 0)
+            {
+                $rata_rata_keterampilan_katolik = 0.00;
+            }
+        }
+
+        if(array_sum($nilai_keterampilan_ppkn) > 0)
+        {
+            for($key = 0; $key < count($nilai_keterampilan_ppkn); $key++)
+            {
+                if($nilai_keterampilan_ppkn[$key] > 0)
+                {
+                    $nilai_keterampilan_ppkn_yes[] = $nilai_keterampilan_ppkn[$key];
+                }
+            }
+        $jml_pel_keterampilan_ppkn    =count($nilai_keterampilan_ppkn_yes);
+        $sum_pel_keterampilan_ppkn    =array_sum($nilai_keterampilan_ppkn_yes);
+        $rata_rata_keterampilan_ppkn  =number_format((float)$sum_pel_keterampilan_ppkn / $jml_pel_keterampilan_ppkn, 2, '.', '');
+        }
+        elseif(array_sum($nilai_keterampilan_ppkn) == 0)
+        {
+            $rata_rata_keterampilan_ppkn = 0.00;
+        }
+        //dd($rata_rata_keterampilan_ppkn);
+        //dd("jumlah elemen array: ".array_sum($nilai_keterampilan_indonesia));
+        if(array_sum($nilai_keterampilan_indonesia) > 0)
+        {
+            for($key = 0; $key < count($nilai_keterampilan_indonesia); $key++)
+            {
+                if($nilai_keterampilan_indonesia[$key] > 0)
+                {
+                    $nilai_keterampilan_indonesia_yes[] = $nilai_keterampilan_indonesia[$key];
+                }
+            }
+        $jml_pel_keterampilan_indonesia    =count($nilai_keterampilan_indonesia_yes);
+        $sum_pel_keterampilan_indonesia    =array_sum($nilai_keterampilan_indonesia_yes);
+        $rata_rata_keterampilan_indonesia  =number_format((float)$sum_pel_keterampilan_indonesia / $jml_pel_keterampilan_indonesia, 2, '.', '');
+        }
+        elseif(array_sum($nilai_keterampilan_indonesia) == 0)
+        {
+            $rata_rata_keterampilan_indonesia = 0.00;
+        }
+        //dd($rata_rata_keterampilan_indonesia);
+        if(array_sum($nilai_keterampilan_matematika) > 0)
+        {
+            for($key = 0; $key < count($nilai_keterampilan_matematika); $key++)
+            {
+                if($nilai_keterampilan_matematika[$key] > 0)
+                {
+                    $nilai_keterampilan_matematika_yes[] = $nilai_keterampilan_matematika[$key];
+                }
+            }
+        $jml_pel_keterampilan_matematika    =count($nilai_keterampilan_matematika_yes);
+        $sum_pel_keterampilan_matematika    =array_sum($nilai_keterampilan_matematika_yes);
+        $rata_rata_keterampilan_matematika  =number_format((float)$sum_pel_keterampilan_matematika / $jml_pel_keterampilan_matematika, 2, '.', '');
+        }
+        elseif(array_sum($nilai_keterampilan_matematika) == 0)
+        {
+            $rata_rata_keterampilan_matematika = 0.00;
+        }
+
+        if(array_sum($nilai_keterampilan_ipa) > 0)
+        {
+            for($key = 0; $key < count($nilai_keterampilan_ipa); $key++)
+            {
+                if($nilai_keterampilan_ipa[$key] > 0)
+                {
+                    $nilai_keterampilan_ipa_yes[] = $nilai_keterampilan_ipa[$key];
+            }
+            }
+        $jml_pel_keterampilan_ipa    =count($nilai_keterampilan_ipa_yes);
+        $sum_pel_keterampilan_ipa    =array_sum($nilai_keterampilan_ipa_yes);
+        $rata_rata_keterampilan_ipa  =number_format((float)$sum_pel_keterampilan_ipa / $jml_pel_keterampilan_ipa, 2, '.', '');
+        }
+        elseif(array_sum($nilai_keterampilan_ipa) == 0)
+        {
+            $rata_rata_keterampilan_ipa = 0.00;
+        }
+
+        if(array_sum($nilai_keterampilan_ips) > 0)
+        {
+            for($key = 0; $key < count($nilai_keterampilan_ips); $key++)
+            {
+                if($nilai_keterampilan_ips[$key] > 0)
+                {
+                    $nilai_keterampilan_ips_yes[] = $nilai_keterampilan_ips[$key];
+                }
+            }
+        $jml_pel_keterampilan_ips    =count($nilai_keterampilan_ips_yes);
+        $sum_pel_keterampilan_ips    =array_sum($nilai_keterampilan_ips_yes);
+        $rata_rata_keterampilan_ips  =number_format((float)$sum_pel_keterampilan_ips / $jml_pel_keterampilan_ips, 2, '.', '');
+        }
+        elseif(array_sum($nilai_keterampilan_ips) == 0)
+        {
+            $rata_rata_keterampilan_ips = 0.00;
+        }
+
+        if(array_sum($nilai_keterampilan_pjok) > 0)
+        {
+            for($key = 0; $key < count($nilai_keterampilan_pjok); $key++)
+            {
+                if($nilai_keterampilan_pjok[$key] > 0)
+                {
+                    $nilai_keterampilan_pjok_yes[] = $nilai_keterampilan_pjok[$key];
+                }
+            }
+        $jml_pel_keterampilan_pjok    =count($nilai_keterampilan_pjok_yes);
+        $sum_pel_keterampilan_pjok    =array_sum($nilai_keterampilan_pjok_yes);
+        $rata_rata_keterampilan_pjok  =number_format((float)$sum_pel_keterampilan_pjok / $jml_pel_keterampilan_pjok, 2, '.', '');
+        }
+        elseif(array_sum($nilai_keterampilan_pjok) == 0)
+        {
+            $rata_rata_keterampilan_pjok = 0.00;
+        }
+
+        if(array_sum($nilai_keterampilan_sbk) > 0)
+        {
+            for($key = 0; $key < count($nilai_keterampilan_sbk); $key++)
+            {
+                if($nilai_keterampilan_sbk[$key] > 0)
+                {
+                    $nilai_keterampilan_sbk_yes[] = $nilai_keterampilan_sbk[$key];
+                }
+            }
+        $jml_pel_keterampilan_sbk    =count($nilai_keterampilan_sbk_yes);
+        $sum_pel_keterampilan_sbk    =array_sum($nilai_keterampilan_sbk_yes);
+        $rata_rata_keterampilan_sbk  =number_format((float)$sum_pel_keterampilan_sbk / $jml_pel_keterampilan_sbk, 2, '.', '');
+        }
+        elseif(array_sum($nilai_keterampilan_sbk) == 0)
+        {
+            $rata_rata_keterampilan_sbk = 0.00;
+        }
+
+        // --------------------------------------------------------------------
+        // hitung nilai raport keterampilan
+        if($students -> agama == "Islam")
+        {
+            $raport_keterampilan_islam = ((($rata_rata_keterampilan_islam
+                                +$rata_rata_keterampilan_islam+$rata_rata_keterampilan_islam)*2)
+                                +($rata_rata_keterampilan_islam*1)
+                                +($rata_rata_keterampilan_islam*1))/8;
+            $raport_keterampilan_agama = number_format((float)$raport_keterampilan_islam, 1, '.', '');
+        }
+        if($students -> agama == "Kristen Protestan")
+        {
+            $raport_keterampilan_protestan = ((($rata_rata_keterampilan_protestan
+                                +$rata_rata_keterampilan_protestan+$rata_rata_keterampilan_protestan)*2)
+                                +($rata_rata_keterampilan_protestan*1)
+                                +($rata_rata_keterampilan_protestan*1))/8;
+            $raport_keterampilan_agama = number_format((float)$raport_keterampilan_protestan, 1, '.', '');
+        }
+        if($students -> agama == "Katolik")
+        {
+            $raport_keterampilan_katolik = ((($rata_rata_keterampilan_katolik
+                                +$rata_rata_keterampilan_katolik+$rata_rata_keterampilan_katolik)*2)
+                                +($rata_rata_keterampilan_katolik*1)
+                                +($rata_rata_keterampilan_katolik*1))/8;
+            $raport_keterampilan_agama = number_format((float)$raport_keterampilan_katolik, 1, '.', '');
+        }
+        $raport_keterampilan_ppkn = ((($rata_rata_keterampilan_ppkn
+                                +$rata_rata_keterampilan_ppkn+$rata_rata_keterampilan_ppkn)*2)
+                                +($rata_rata_keterampilan_ppkn*1)
+                                +($rata_rata_keterampilan_ppkn*1))/8;
+        $raport_keterampilan_ppkn = number_format((float)$raport_keterampilan_ppkn, 1, '.', '');
+        $raport_keterampilan_indonesia = ((($rata_rata_keterampilan_indonesia
+                                +$rata_rata_keterampilan_indonesia+$rata_rata_keterampilan_indonesia)*2)
+                                +($rata_rata_keterampilan_indonesia*1)
+                                +($rata_rata_keterampilan_indonesia*1))/8;
+        $raport_keterampilan_indonesia = number_format((float)$raport_keterampilan_indonesia, 1, '.', '');
+        $raport_keterampilan_matematika = ((($rata_rata_keterampilan_matematika
+                                +$rata_rata_keterampilan_matematika+$rata_rata_keterampilan_matematika)*2)
+                                +($rata_rata_keterampilan_matematika*1)
+                                +($rata_rata_keterampilan_matematika*1))/8;
+        $raport_keterampilan_matematika = number_format((float)$raport_keterampilan_matematika, 1, '.', '');
+        $raport_keterampilan_ipa = ((($rata_rata_keterampilan_ipa
+                                +$rata_rata_keterampilan_ipa+$rata_rata_keterampilan_ipa)*2)
+                                +($rata_rata_keterampilan_ipa*1)
+                                +($rata_rata_keterampilan_ipa*1))/8;
+        $raport_keterampilan_ipa = number_format((float)$raport_keterampilan_ipa, 1, '.', '');
+        $raport_keterampilan_ips = ((($rata_rata_keterampilan_ips
+                                +$rata_rata_keterampilan_ips+$rata_rata_keterampilan_ips)*2)
+                                +($rata_rata_keterampilan_ips*1)
+                                +($rata_rata_keterampilan_ips*1))/8;
+        $raport_keterampilan_ips = number_format((float)$raport_keterampilan_ips, 1, '.', '');
+        $raport_keterampilan_pjok = ((($rata_rata_keterampilan_pjok
+                                +$rata_rata_keterampilan_pjok+$rata_rata_keterampilan_pjok)*2)
+                                +($rata_rata_keterampilan_pjok*1)
+                                +($rata_rata_keterampilan_pjok*1))/8;
+        $raport_keterampilan_pjok = number_format((float)$raport_keterampilan_pjok, 1, '.', '');
+        $raport_keterampilan_sbk = ((($rata_rata_keterampilan_sbk
+                                +$rata_rata_keterampilan_sbk+$rata_rata_keterampilan_sbk)*2)
+                                +($rata_rata_keterampilan_sbk*1)
+                                +($rata_rata_keterampilan_sbk*1))/8;
+        $raport_keterampilan_sbk = number_format((float)$raport_keterampilan_sbk, 1, '.', '');
+        //------------------------------------------------------
+        // deskripsi keterampilan agama
+        if($raport_keterampilan_agama<$kkm)
+            {
+                $predikat_keterampilan_huruf_agama = "D";
+                $predikat_keterampilan_deskripsi_agama = "Kurang";
+            }
+        elseif($raport_keterampilan_agama > $kkm && $raport_keterampilan_agama <= ($kkm+1*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_agama = "C";
+                $predikat_keterampilan_deskripsi_agama = "Cukup";
+            }
+        elseif($raport_keterampilan_agama > ($kkm+1*((100-$kkm)/3)) && $raport_keterampilan_agama <= ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_agama = "B";
+                $predikat_keterampilan_deskripsi_agama = "Baik";
+            }
+        elseif($raport_keterampilan_agama > ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_agama = "A";
+                $predikat_keterampilan_deskripsi_agama = "Sangat Baik";
+            }
+        // -------------
+        // deskripsi ppkn
+        if($raport_keterampilan_ppkn<$kkm)
+            {
+                $predikat_keterampilan_huruf_ppkn = "D";
+                $predikat_keterampilan_deskripsi_ppkn = "Kurang";
+            }
+        elseif($raport_keterampilan_ppkn > $kkm && $raport_keterampilan_ppkn <= ($kkm+1*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_ppkn = "C";
+                $predikat_keterampilan_deskripsi_ppkn = "Cukup";
+            }
+        elseif($raport_keterampilan_ppkn > ($kkm+1*((100-$kkm)/3)) && $raport_keterampilan_ppkn <= ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_ppkn = "B";
+                $predikat_keterampilan_deskripsi_ppkn = "Baik";
+            }
+        elseif($raport_keterampilan_ppkn > ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_ppkn = "A";
+                $predikat_keterampilan_deskripsi_ppkn = "Sangat Baik";
+            }
+        // -------------
+        // deskripsi indonesia
+        if($raport_keterampilan_indonesia<$kkm)
+            {
+                $predikat_keterampilan_huruf_indonesia = "D";
+                $predikat_keterampilan_deskripsi_indonesia = "Kurang";
+            }
+        elseif($raport_keterampilan_indonesia > $kkm && $raport_keterampilan_indonesia <= ($kkm+1*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_indonesia = "C";
+                $predikat_keterampilan_deskripsi_indonesia = "Cukup";
+            }
+        elseif($raport_keterampilan_indonesia > ($kkm+1*((100-$kkm)/3)) && $raport_keterampilan_indonesia <= ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_indonesia = "B";
+                $predikat_keterampilan_deskripsi_indonesia = "Baik";
+            }
+        elseif($raport_keterampilan_indonesia > ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_indonesia = "A";
+                $predikat_keterampilan_deskripsi_indonesia = "Sangat Baik";
+            }
+        // -------------
+        // deskripsi matematika
+        if($raport_keterampilan_matematika<$kkm)
+            {
+                $predikat_keterampilan_huruf_matematika = "D";
+                $predikat_keterampilan_deskripsi_matematika = "Kurang";
+            }
+        elseif($raport_keterampilan_matematika > $kkm && $raport_keterampilan_matematika <= ($kkm+1*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_matematika = "C";
+                $predikat_keterampilan_deskripsi_matematika = "Cukup";
+            }
+        elseif($raport_keterampilan_matematika > ($kkm+1*((100-$kkm)/3)) && $raport_keterampilan_matematika <= ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_matematika = "B";
+                $predikat_keterampilan_deskripsi_matematika = "Baik";
+            }
+        elseif($raport_keterampilan_matematika > ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_matematika = "A";
+                $predikat_keterampilan_deskripsi_matematika = "Sangat Baik";
+            }
+        // -------------
+        // deskripsi ipa
+        if($raport_keterampilan_ipa<$kkm)
+            {
+                $predikat_keterampilan_huruf_ipa = "D";
+                $predikat_keterampilan_deskripsi_ipa = "Kurang";
+            }
+        elseif($raport_keterampilan_ipa > $kkm && $raport_keterampilan_ipa <= ($kkm+1*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_ipa = "C";
+                $predikat_keterampilan_deskripsi_ipa = "Cukup";
+            }
+        elseif($raport_keterampilan_ipa > ($kkm+1*((100-$kkm)/3)) && $raport_keterampilan_ipa <= ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_ipa = "B";
+                $predikat_keterampilan_deskripsi_ipa = "Baik";
+            }
+        elseif($raport_keterampilan_ipa > ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_ipa = "A";
+                $predikat_keterampilan_deskripsi_ipa = "Sangat Baik";
+            }
+        // -------------
+        // deskripsi ips
+        if($raport_keterampilan_ips<$kkm)
+            {
+                $predikat_keterampilan_huruf_ips = "D";
+                $predikat_keterampilan_deskripsi_ips = "Kurang";
+            }
+        elseif($raport_keterampilan_ips > $kkm && $raport_keterampilan_ips <= ($kkm+1*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_ips = "C";
+                $predikat_keterampilan_deskripsi_ips = "Cukup";
+            }
+        elseif($raport_keterampilan_ips > ($kkm+1*((100-$kkm)/3)) && $raport_keterampilan_ips <= ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_ips = "B";
+                $predikat_keterampilan_deskripsi_ips = "Baik";
+            }
+        elseif($raport_keterampilan_ips > ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_ips = "A";
+                $predikat_keterampilan_deskripsi_ips = "Sangat Baik";
+            }
+        // -------------
+        // deskripsi pjok
+        if($raport_keterampilan_pjok<$kkm)
+            {
+                $predikat_keterampilan_huruf_pjok = "D";
+                $predikat_keterampilan_deskripsi_pjok = "Kurang";
+            }
+        elseif($raport_keterampilan_pjok > $kkm && $raport_keterampilan_pjok <= ($kkm+1*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_pjok = "C";
+                $predikat_keterampilan_deskripsi_pjok = "Cukup";
+            }
+        elseif($raport_keterampilan_pjok > ($kkm+1*((100-$kkm)/3)) && $raport_keterampilan_pjok <= ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_pjok = "B";
+                $predikat_keterampilan_deskripsi_pjok = "Baik";
+            }
+        elseif($raport_keterampilan_pjok > ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_pjok = "A";
+                $predikat_keterampilan_deskripsi_pjok = "Sangat Baik";
+            }
+        // -------------
+        // deskripsi sbk
+        if($raport_keterampilan_sbk<$kkm)
+            {
+                $predikat_keterampilan_huruf_sbk = "D";
+                $predikat_keterampilan_deskripsi_sbk = "Kurang";
+            }
+        elseif($raport_keterampilan_sbk > $kkm && $raport_keterampilan_sbk <= ($kkm+1*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_sbk = "C";
+                $predikat_keterampilan_deskripsi_sbk = "Cukup";
+            }
+        elseif($raport_keterampilan_sbk > ($kkm+1*((100-$kkm)/3)) && $raport_keterampilan_sbk <= ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_sbk = "B";
+                $predikat_keterampilan_deskripsi_sbk = "Baik";
+            }
+        elseif($raport_keterampilan_sbk > ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_keterampilan_huruf_sbk = "A";
+                $predikat_keterampilan_deskripsi_sbk = "Sangat Baik";
+            }
+
+        $jumlah_raport_keterampilan = $raport_keterampilan_agama
+                                +$raport_keterampilan_ppkn
+                                +$raport_keterampilan_indonesia
+                                +$raport_keterampilan_matematika
+                                +$raport_keterampilan_ipa
+                                +$raport_keterampilan_ips
+                                +$raport_keterampilan_pjok
+                                +$raport_keterampilan_sbk;
+        $jumlah_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan, 1, '.', '');
+        $ratarata_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan/8, 1, '.', '');
+
+        $jumlah_raport = number_format((float)$jumlah_raport_pengetahuan+$jumlah_raport_keterampilan, 1, '.', '');
+        $ratarata_raport = number_format((float)($ratarata_raport_pengetahuan+$ratarata_raport_keterampilan)/2, 1, '.', '');
+        //----------------------------------------------------
+
         $pdf = PDF::loadView('export.raport',
         [
             'predikat_huruf_agama' =>$predikat_huruf_agama,
@@ -1989,6 +2499,22 @@ class SiswaController extends Controller
             'predikat_deskripsi_ips' =>$predikat_deskripsi_ips,
             'predikat_deskripsi_pjok' =>$predikat_deskripsi_pjok,
             'predikat_deskripsi_sbk' =>$predikat_deskripsi_sbk,
+            'predikat_keterampilan_huruf_agama' =>$predikat_keterampilan_huruf_agama,
+            'predikat_keterampilan_huruf_ppkn' =>$predikat_keterampilan_huruf_ppkn,
+            'predikat_keterampilan_huruf_indonesia' =>$predikat_keterampilan_huruf_indonesia,
+            'predikat_keterampilan_huruf_matematika' =>$predikat_keterampilan_huruf_matematika,
+            'predikat_keterampilan_huruf_ipa' =>$predikat_keterampilan_huruf_ipa,
+            'predikat_keterampilan_huruf_ips' =>$predikat_keterampilan_huruf_ips,
+            'predikat_keterampilan_huruf_pjok' =>$predikat_keterampilan_huruf_pjok,
+            'predikat_keterampilan_huruf_sbk' =>$predikat_keterampilan_huruf_sbk,
+            'predikat_keterampilan_deskripsi_agama' =>$predikat_keterampilan_deskripsi_agama,
+            'predikat_keterampilan_deskripsi_ppkn' =>$predikat_keterampilan_deskripsi_ppkn,
+            'predikat_keterampilan_deskripsi_indonesia' =>$predikat_keterampilan_deskripsi_indonesia,
+            'predikat_keterampilan_deskripsi_matematika' =>$predikat_keterampilan_deskripsi_matematika,
+            'predikat_keterampilan_deskripsi_ipa' =>$predikat_keterampilan_deskripsi_ipa,
+            'predikat_keterampilan_deskripsi_ips' =>$predikat_keterampilan_deskripsi_ips,
+            'predikat_keterampilan_deskripsi_pjok' =>$predikat_keterampilan_deskripsi_pjok,
+            'predikat_keterampilan_deskripsi_sbk' =>$predikat_keterampilan_deskripsi_sbk,
             'jumlah_raport' =>$jumlah_raport,
             'ratarata_raport' =>$ratarata_raport,
             'ratarata_raport_pengetahuan' =>$ratarata_raport_pengetahuan,
@@ -2001,6 +2527,18 @@ class SiswaController extends Controller
             'raport_pengetahuan_ips'=>$raport_pengetahuan_ips,
             'raport_pengetahuan_pjok'=>$raport_pengetahuan_pjok,
             'raport_pengetahuan_sbk'=>$raport_pengetahuan_sbk,
+            'jumlah_raport_keterampilan' =>$jumlah_raport_keterampilan,
+            'ratarata_raport_keterampilan' =>$ratarata_raport_keterampilan,
+            'ratarata_raport_keterampilan' =>$ratarata_raport_keterampilan,
+            'jumlah_raport_keterampilan' =>$jumlah_raport_keterampilan,
+            'raport_keterampilan_agama'=>$raport_keterampilan_agama,
+            'raport_keterampilan_ppkn'=>$raport_keterampilan_ppkn,
+            'raport_keterampilan_indonesia'=>$raport_keterampilan_indonesia,
+            'raport_keterampilan_matematika'=>$raport_keterampilan_matematika,
+            'raport_keterampilan_ipa'=>$raport_keterampilan_ipa,
+            'raport_keterampilan_ips'=>$raport_keterampilan_ips,
+            'raport_keterampilan_pjok'=>$raport_keterampilan_pjok,
+            'raport_keterampilan_sbk'=>$raport_keterampilan_sbk,
             'data_siswa'=>$data_siswa,
             'students' => $students
         ]);
