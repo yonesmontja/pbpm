@@ -153,6 +153,9 @@
                                                             class="btn btn-danger btn-sm"
                                                             onclick="return confirm('Yakin mau diaktivasi?')">Non-Aktif</a>
                                                     @endif
+                                                    <a href="/siswa/{{ $siswa->id }}/export_pdf"
+                                                        class="btn btn-primary btn-sm">Raport
+                                                    </a>
                                                 </td>
                                                 <td>
                                                     <a href="/test/{{ $siswa->id }}/edit"
