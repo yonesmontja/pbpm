@@ -504,10 +504,12 @@ class SiswaController extends Controller
             ->pluck('nilai')->avg();
             $nilai_tugas_sbk[] = (int)$tampung_tugas_sbk;
         }
-        //dd($students -> agama == "Islam");
+        //dd($nilai_tugas_indonesia);
         if($students -> agama == "Islam")
         {
-            for($key = 0; $key < count($nilai_tugas_islam); $key++)
+            if(array_sum($nilai_tugas_islam) > 0)
+            {
+                for($key = 0; $key < count($nilai_tugas_islam); $key++)
             {
                 if($nilai_tugas_islam[$key] > 0)
                 {
@@ -517,11 +519,18 @@ class SiswaController extends Controller
             $jml_pel_tugas_islam    =count($nilai_tugas_islam_yes);
             $sum_pel_tugas_islam    =array_sum($nilai_tugas_islam_yes);
             $rata_rata_tugas_islam  =number_format((float)$sum_pel_tugas_islam / $jml_pel_tugas_islam, 2, '.', '');
+            }
+            elseif(array_sum($nilai_tugas_islam) == 0)
+            {
+                $rata_rata_tugas_islam = 0.00;
+            }
         }
 
         if($students -> agama == "Kristen Protestan")
         {
-            for($key = 0; $key < count($nilai_tugas_protestan); $key++)
+            if(array_sum($nilai_tugas_protestan) > 0)
+            {
+                for($key = 0; $key < count($nilai_tugas_protestan); $key++)
             {
                 if($nilai_tugas_protestan[$key] > 0)
                 {
@@ -531,11 +540,18 @@ class SiswaController extends Controller
             $jml_pel_tugas_protestan    =count($nilai_tugas_protestan_yes);
             $sum_pel_tugas_protestan    =array_sum($nilai_tugas_protestan_yes);
             $rata_rata_tugas_protestan  =number_format((float)$sum_pel_tugas_protestan / $jml_pel_tugas_protestan, 2, '.', '');
+            }
+            elseif(array_sum($nilai_tugas_protestan) == 0)
+            {
+                $rata_rata_tugas_protestan = 0.00;
+            }
         }
 
         if($students -> agama == "Katolik")
         {
-            for($key = 0; $key < count($nilai_tugas_katolik); $key++)
+            if(array_sum($nilai_tugas_katolik) > 0)
+            {
+                for($key = 0; $key < count($nilai_tugas_katolik); $key++)
             {
                 if($nilai_tugas_katolik[$key] > 0)
                 {
@@ -545,84 +561,139 @@ class SiswaController extends Controller
             $jml_pel_tugas_katolik    =count($nilai_tugas_katolik_yes);
             $sum_pel_tugas_katolik    =array_sum($nilai_tugas_katolik_yes);
             $rata_rata_tugas_katolik  =number_format((float)$sum_pel_tugas_katolik / $jml_pel_tugas_katolik, 2, '.', '');
-        }
-
-        for($key = 0; $key < count($nilai_tugas_ppkn); $key++)
-        {
-            if($nilai_tugas_ppkn[$key] > 0)
+            }
+            elseif(array_sum($nilai_tugas_katolik) == 0)
             {
-                $nilai_tugas_ppkn_yes[] = $nilai_tugas_ppkn[$key];
+                $rata_rata_tugas_katolik = 0.00;
             }
         }
+
+        if(array_sum($nilai_tugas_ppkn) > 0)
+        {
+            for($key = 0; $key < count($nilai_tugas_ppkn); $key++)
+            {
+                if($nilai_tugas_ppkn[$key] > 0)
+                {
+                    $nilai_tugas_ppkn_yes[] = $nilai_tugas_ppkn[$key];
+                }
+            }
         $jml_pel_tugas_ppkn    =count($nilai_tugas_ppkn_yes);
         $sum_pel_tugas_ppkn    =array_sum($nilai_tugas_ppkn_yes);
         $rata_rata_tugas_ppkn  =number_format((float)$sum_pel_tugas_ppkn / $jml_pel_tugas_ppkn, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_tugas_indonesia); $key++)
-        {
-            if($nilai_tugas_indonesia[$key] > 0)
-            {
-                $nilai_tugas_indonesia_yes[] = $nilai_tugas_indonesia[$key];
-            }
         }
+        elseif(array_sum($nilai_tugas_ppkn) == 0)
+        {
+            $rata_rata_tugas_ppkn = 0.00;
+        }
+        //dd($rata_rata_tugas_ppkn);
+        //dd("jumlah elemen array: ".array_sum($nilai_tugas_indonesia));
+        if(array_sum($nilai_tugas_indonesia) > 0)
+        {
+            for($key = 0; $key < count($nilai_tugas_indonesia); $key++)
+            {
+                if($nilai_tugas_indonesia[$key] > 0)
+                {
+                    $nilai_tugas_indonesia_yes[] = $nilai_tugas_indonesia[$key];
+                }
+            }
         $jml_pel_tugas_indonesia    =count($nilai_tugas_indonesia_yes);
         $sum_pel_tugas_indonesia    =array_sum($nilai_tugas_indonesia_yes);
         $rata_rata_tugas_indonesia  =number_format((float)$sum_pel_tugas_indonesia / $jml_pel_tugas_indonesia, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_tugas_matematika); $key++)
-        {
-            if($nilai_tugas_matematika[$key] > 0)
-            {
-                $nilai_tugas_matematika_yes[] = $nilai_tugas_matematika[$key];
-            }
         }
+        elseif(array_sum($nilai_tugas_indonesia) == 0)
+        {
+            $rata_rata_tugas_indonesia = 0.00;
+        }
+        //dd($rata_rata_tugas_indonesia);
+        if(array_sum($nilai_tugas_matematika) > 0)
+        {
+            for($key = 0; $key < count($nilai_tugas_matematika); $key++)
+            {
+                if($nilai_tugas_matematika[$key] > 0)
+                {
+                    $nilai_tugas_matematika_yes[] = $nilai_tugas_matematika[$key];
+                }
+            }
         $jml_pel_tugas_matematika    =count($nilai_tugas_matematika_yes);
         $sum_pel_tugas_matematika    =array_sum($nilai_tugas_matematika_yes);
         $rata_rata_tugas_matematika  =number_format((float)$sum_pel_tugas_matematika / $jml_pel_tugas_matematika, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_tugas_ipa); $key++)
-        {
-            if($nilai_tugas_ipa[$key] > 0)
-            {
-                $nilai_tugas_ipa_yes[] = $nilai_tugas_ipa[$key];
-            }
         }
+        elseif(array_sum($nilai_tugas_matematika) == 0)
+        {
+            $rata_rata_tugas_matematika = 0.00;
+        }
+
+        if(array_sum($nilai_tugas_ipa) > 0)
+        {
+            for($key = 0; $key < count($nilai_tugas_ipa); $key++)
+            {
+                if($nilai_tugas_ipa[$key] > 0)
+                {
+                    $nilai_tugas_ipa_yes[] = $nilai_tugas_ipa[$key];
+            }
+            }
         $jml_pel_tugas_ipa    =count($nilai_tugas_ipa_yes);
         $sum_pel_tugas_ipa    =array_sum($nilai_tugas_ipa_yes);
         $rata_rata_tugas_ipa  =number_format((float)$sum_pel_tugas_ipa / $jml_pel_tugas_ipa, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_tugas_ips); $key++)
-        {
-            if($nilai_tugas_ips[$key] > 0)
-            {
-                $nilai_tugas_ips_yes[] = $nilai_tugas_ips[$key];
-            }
         }
+        elseif(array_sum($nilai_tugas_ipa) == 0)
+        {
+            $rata_rata_tugas_ipa = 0.00;
+        }
+
+        if(array_sum($nilai_tugas_ips) > 0)
+        {
+            for($key = 0; $key < count($nilai_tugas_ips); $key++)
+            {
+                if($nilai_tugas_ips[$key] > 0)
+                {
+                    $nilai_tugas_ips_yes[] = $nilai_tugas_ips[$key];
+                }
+            }
         $jml_pel_tugas_ips    =count($nilai_tugas_ips_yes);
         $sum_pel_tugas_ips    =array_sum($nilai_tugas_ips_yes);
         $rata_rata_tugas_ips  =number_format((float)$sum_pel_tugas_ips / $jml_pel_tugas_ips, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_tugas_pjok); $key++)
-        {
-            if($nilai_tugas_pjok[$key] > 0)
-            {
-                $nilai_tugas_pjok_yes[] = $nilai_tugas_pjok[$key];
-            }
         }
+        elseif(array_sum($nilai_tugas_ips) == 0)
+        {
+            $rata_rata_tugas_ips = 0.00;
+        }
+
+        if(array_sum($nilai_tugas_pjok) > 0)
+        {
+            for($key = 0; $key < count($nilai_tugas_pjok); $key++)
+            {
+                if($nilai_tugas_pjok[$key] > 0)
+                {
+                    $nilai_tugas_pjok_yes[] = $nilai_tugas_pjok[$key];
+                }
+            }
         $jml_pel_tugas_pjok    =count($nilai_tugas_pjok_yes);
         $sum_pel_tugas_pjok    =array_sum($nilai_tugas_pjok_yes);
         $rata_rata_tugas_pjok  =number_format((float)$sum_pel_tugas_pjok / $jml_pel_tugas_pjok, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_tugas_sbk); $key++)
-        {
-            if($nilai_tugas_sbk[$key] > 0)
-            {
-                $nilai_tugas_sbk_yes[] = $nilai_tugas_sbk[$key];
-            }
         }
+        elseif(array_sum($nilai_tugas_pjok) == 0)
+        {
+            $rata_rata_tugas_pjok = 0.00;
+        }
+
+        if(array_sum($nilai_tugas_sbk) > 0)
+        {
+            for($key = 0; $key < count($nilai_tugas_sbk); $key++)
+            {
+                if($nilai_tugas_sbk[$key] > 0)
+                {
+                    $nilai_tugas_sbk_yes[] = $nilai_tugas_sbk[$key];
+                }
+            }
         $jml_pel_tugas_sbk    =count($nilai_tugas_sbk_yes);
         $sum_pel_tugas_sbk    =array_sum($nilai_tugas_sbk_yes);
         $rata_rata_tugas_sbk  =number_format((float)$sum_pel_tugas_sbk / $jml_pel_tugas_sbk, 2, '.', '');
+        }
+        elseif(array_sum($nilai_tugas_sbk) == 0)
+        {
+            $rata_rata_tugas_sbk = 0.00;
+        }
 
         // --------------------------------------------------------------------
 
@@ -693,21 +764,30 @@ class SiswaController extends Controller
 
         if($students -> agama == "Islam")
         {
-            for($key = 0; $key < count($nilai_latihan_islam); $key++)
+            if(array_sum($nilai_latihan_islam) > 0)
             {
-                if($nilai_latihan_islam[$key] > 0)
+                for($key = 0; $key < count($nilai_latihan_islam); $key++)
                 {
-                    $nilai_latihan_islam_yes[] = $nilai_latihan_islam[$key];
+                    if($nilai_latihan_islam[$key] > 0)
+                    {
+                        $nilai_latihan_islam_yes[] = $nilai_latihan_islam[$key];
+                    }
                 }
-            }
             $jml_pel_latihan_islam    =count($nilai_latihan_islam_yes);
             $sum_pel_latihan_islam    =array_sum($nilai_latihan_islam_yes);
             $rata_rata_latihan_islam  =number_format((float)$sum_pel_latihan_islam / $jml_pel_latihan_islam, 2, '.', '');
+            }
+            elseif(array_sum($nilai_latihan_islam) == 0)
+            {
+                $rata_rata_latihan_islam = 0.00;
+            }
         }
 
         if($students -> agama == "Kristen Protestan")
         {
-            for($key = 0; $key < count($nilai_latihan_protestan); $key++)
+            if(array_sum($nilai_latihan_protestan) > 0)
+            {
+                for($key = 0; $key < count($nilai_latihan_protestan); $key++)
             {
                 if($nilai_latihan_protestan[$key] > 0)
                 {
@@ -717,11 +797,18 @@ class SiswaController extends Controller
             $jml_pel_latihan_protestan    =count($nilai_latihan_protestan_yes);
             $sum_pel_latihan_protestan    =array_sum($nilai_latihan_protestan_yes);
             $rata_rata_latihan_protestan  =number_format((float)$sum_pel_latihan_protestan / $jml_pel_latihan_protestan, 2, '.', '');
+            }
+            elseif(array_sum($nilai_latihan_protestan) == 0)
+            {
+                $rata_rata_latihan_protestan = 0.00;
+            }
         }
 
         if($students -> agama == "Katolik")
         {
-            for($key = 0; $key < count($nilai_latihan_katolik); $key++)
+            if(array_sum($nilai_latihan_katolik) > 0)
+            {
+                for($key = 0; $key < count($nilai_latihan_katolik); $key++)
             {
                 if($nilai_latihan_katolik[$key] > 0)
                 {
@@ -731,84 +818,139 @@ class SiswaController extends Controller
             $jml_pel_latihan_katolik    =count($nilai_latihan_katolik_yes);
             $sum_pel_latihan_katolik    =array_sum($nilai_latihan_katolik_yes);
             $rata_rata_latihan_katolik  =number_format((float)$sum_pel_latihan_katolik / $jml_pel_latihan_katolik, 2, '.', '');
-        }
-
-        for($key = 0; $key < count($nilai_latihan_ppkn); $key++)
-        {
-            if($nilai_latihan_ppkn[$key] > 0)
+            }
+            elseif(array_sum($nilai_latihan_katolik) == 0)
             {
-                $nilai_latihan_ppkn_yes[] = $nilai_latihan_ppkn[$key];
+                $rata_rata_latihan_katolik = 0.00;
             }
         }
+
+        if(array_sum($nilai_latihan_ppkn) > 0)
+        {
+            for($key = 0; $key < count($nilai_latihan_ppkn); $key++)
+            {
+                if($nilai_latihan_ppkn[$key] > 0)
+                {
+                    $nilai_latihan_ppkn_yes[] = $nilai_latihan_ppkn[$key];
+                }
+            }
         $jml_pel_latihan_ppkn    =count($nilai_latihan_ppkn_yes);
         $sum_pel_latihan_ppkn    =array_sum($nilai_latihan_ppkn_yes);
         $rata_rata_latihan_ppkn  =number_format((float)$sum_pel_latihan_ppkn / $jml_pel_latihan_ppkn, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_latihan_indonesia); $key++)
-        {
-            if($nilai_latihan_indonesia[$key] > 0)
-            {
-                $nilai_latihan_indonesia_yes[] = $nilai_latihan_indonesia[$key];
-            }
         }
+        elseif(array_sum($nilai_latihan_ppkn) == 0)
+        {
+            $rata_rata_latihan_ppkn = 0.00;
+        }
+        //dd($rata_rata_latihan_ppkn);
+        //dd("jumlah elemen array: ".array_sum($nilai_latihan_indonesia));
+        if(array_sum($nilai_latihan_indonesia) > 0)
+        {
+            for($key = 0; $key < count($nilai_latihan_indonesia); $key++)
+            {
+                if($nilai_latihan_indonesia[$key] > 0)
+                {
+                    $nilai_latihan_indonesia_yes[] = $nilai_latihan_indonesia[$key];
+                }
+            }
         $jml_pel_latihan_indonesia    =count($nilai_latihan_indonesia_yes);
         $sum_pel_latihan_indonesia    =array_sum($nilai_latihan_indonesia_yes);
         $rata_rata_latihan_indonesia  =number_format((float)$sum_pel_latihan_indonesia / $jml_pel_latihan_indonesia, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_latihan_matematika); $key++)
-        {
-            if($nilai_latihan_matematika[$key] > 0)
-            {
-                $nilai_latihan_matematika_yes[] = $nilai_latihan_matematika[$key];
-            }
         }
+        elseif(array_sum($nilai_latihan_indonesia) == 0)
+        {
+            $rata_rata_latihan_indonesia = 0.00;
+        }
+        //dd($rata_rata_latihan_indonesia);
+        if(array_sum($nilai_latihan_matematika) > 0)
+        {
+            for($key = 0; $key < count($nilai_latihan_matematika); $key++)
+            {
+                if($nilai_latihan_matematika[$key] > 0)
+                {
+                    $nilai_latihan_matematika_yes[] = $nilai_latihan_matematika[$key];
+                }
+            }
         $jml_pel_latihan_matematika    =count($nilai_latihan_matematika_yes);
         $sum_pel_latihan_matematika    =array_sum($nilai_latihan_matematika_yes);
         $rata_rata_latihan_matematika  =number_format((float)$sum_pel_latihan_matematika / $jml_pel_latihan_matematika, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_latihan_ipa); $key++)
-        {
-            if($nilai_latihan_ipa[$key] > 0)
-            {
-                $nilai_latihan_ipa_yes[] = $nilai_latihan_ipa[$key];
-            }
         }
+        elseif(array_sum($nilai_latihan_matematika) == 0)
+        {
+            $rata_rata_latihan_matematika = 0.00;
+        }
+
+        if(array_sum($nilai_latihan_ipa) > 0)
+        {
+            for($key = 0; $key < count($nilai_latihan_ipa); $key++)
+            {
+                if($nilai_latihan_ipa[$key] > 0)
+                {
+                    $nilai_latihan_ipa_yes[] = $nilai_latihan_ipa[$key];
+            }
+            }
         $jml_pel_latihan_ipa    =count($nilai_latihan_ipa_yes);
         $sum_pel_latihan_ipa    =array_sum($nilai_latihan_ipa_yes);
         $rata_rata_latihan_ipa  =number_format((float)$sum_pel_latihan_ipa / $jml_pel_latihan_ipa, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_latihan_ips); $key++)
-        {
-            if($nilai_latihan_ips[$key] > 0)
-            {
-                $nilai_latihan_ips_yes[] = $nilai_latihan_ips[$key];
-            }
         }
+        elseif(array_sum($nilai_latihan_ipa) == 0)
+        {
+            $rata_rata_latihan_ipa = 0.00;
+        }
+
+        if(array_sum($nilai_latihan_ips) > 0)
+        {
+            for($key = 0; $key < count($nilai_latihan_ips); $key++)
+            {
+                if($nilai_latihan_ips[$key] > 0)
+                {
+                    $nilai_latihan_ips_yes[] = $nilai_latihan_ips[$key];
+                }
+            }
         $jml_pel_latihan_ips    =count($nilai_latihan_ips_yes);
         $sum_pel_latihan_ips    =array_sum($nilai_latihan_ips_yes);
         $rata_rata_latihan_ips  =number_format((float)$sum_pel_latihan_ips / $jml_pel_latihan_ips, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_latihan_pjok); $key++)
-        {
-            if($nilai_latihan_pjok[$key] > 0)
-            {
-                $nilai_latihan_pjok_yes[] = $nilai_latihan_pjok[$key];
-            }
         }
+        elseif(array_sum($nilai_latihan_ips) == 0)
+        {
+            $rata_rata_latihan_ips = 0.00;
+        }
+
+        if(array_sum($nilai_latihan_pjok) > 0)
+        {
+            for($key = 0; $key < count($nilai_latihan_pjok); $key++)
+            {
+                if($nilai_latihan_pjok[$key] > 0)
+                {
+                    $nilai_latihan_pjok_yes[] = $nilai_latihan_pjok[$key];
+                }
+            }
         $jml_pel_latihan_pjok    =count($nilai_latihan_pjok_yes);
         $sum_pel_latihan_pjok    =array_sum($nilai_latihan_pjok_yes);
         $rata_rata_latihan_pjok  =number_format((float)$sum_pel_latihan_pjok / $jml_pel_latihan_pjok, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_latihan_sbk); $key++)
-        {
-            if($nilai_latihan_sbk[$key] > 0)
-            {
-                $nilai_latihan_sbk_yes[] = $nilai_latihan_sbk[$key];
-            }
         }
+        elseif(array_sum($nilai_latihan_pjok) == 0)
+        {
+            $rata_rata_latihan_pjok = 0.00;
+        }
+
+        if(array_sum($nilai_latihan_sbk) > 0)
+        {
+            for($key = 0; $key < count($nilai_latihan_sbk); $key++)
+            {
+                if($nilai_latihan_sbk[$key] > 0)
+                {
+                    $nilai_latihan_sbk_yes[] = $nilai_latihan_sbk[$key];
+                }
+            }
         $jml_pel_latihan_sbk    =count($nilai_latihan_sbk_yes);
         $sum_pel_latihan_sbk    =array_sum($nilai_latihan_sbk_yes);
         $rata_rata_latihan_sbk  =number_format((float)$sum_pel_latihan_sbk / $jml_pel_latihan_sbk, 2, '.', '');
+        }
+        elseif(array_sum($nilai_latihan_sbk) == 0)
+        {
+            $rata_rata_latihan_sbk = 0.00;
+        }
 
         // --------------------------------------------------------------------
         //menghitung nilai ulangan harian
@@ -878,7 +1020,9 @@ class SiswaController extends Controller
 
         if($students -> agama == "Islam")
         {
-            for($key = 0; $key < count($nilai_uh_islam); $key++)
+            if(array_sum($nilai_uh_islam) > 0)
+            {
+                for($key = 0; $key < count($nilai_uh_islam); $key++)
             {
                 if($nilai_uh_islam[$key] > 0)
                 {
@@ -888,11 +1032,18 @@ class SiswaController extends Controller
             $jml_pel_uh_islam    =count($nilai_uh_islam_yes);
             $sum_pel_uh_islam    =array_sum($nilai_uh_islam_yes);
             $rata_rata_uh_islam  =number_format((float)$sum_pel_uh_islam / $jml_pel_uh_islam, 2, '.', '');
+            }
+            elseif(array_sum($nilai_uh_islam) == 0)
+            {
+                $rata_rata_uh_islam = 0.00;
+            }
         }
 
         if($students -> agama == "Kristen Protestan")
         {
-            for($key = 0; $key < count($nilai_uh_protestan); $key++)
+            if(array_sum($nilai_uh_protestan) > 0)
+            {
+                for($key = 0; $key < count($nilai_uh_protestan); $key++)
             {
                 if($nilai_uh_protestan[$key] > 0)
                 {
@@ -902,11 +1053,18 @@ class SiswaController extends Controller
             $jml_pel_uh_protestan    =count($nilai_uh_protestan_yes);
             $sum_pel_uh_protestan    =array_sum($nilai_uh_protestan_yes);
             $rata_rata_uh_protestan  =number_format((float)$sum_pel_uh_protestan / $jml_pel_uh_protestan, 2, '.', '');
+            }
+            elseif(array_sum($nilai_uh_protestan) == 0)
+            {
+                $rata_rata_uh_protestan = 0.00;
+            }
         }
 
         if($students -> agama == "Katolik")
         {
-            for($key = 0; $key < count($nilai_uh_katolik); $key++)
+            if(array_sum($nilai_uh_katolik) > 0)
+            {
+                for($key = 0; $key < count($nilai_uh_katolik); $key++)
             {
                 if($nilai_uh_katolik[$key] > 0)
                 {
@@ -917,83 +1075,139 @@ class SiswaController extends Controller
             $sum_pel_uh_katolik    =array_sum($nilai_uh_katolik_yes);
             $rata_rata_uh_katolik  =number_format((float)$sum_pel_uh_katolik / $jml_pel_uh_katolik, 2, '.', '');
             }
-
-        for($key = 0; $key < count($nilai_uh_ppkn); $key++)
-        {
-            if($nilai_uh_ppkn[$key] > 0)
+            elseif(array_sum($nilai_uh_katolik) == 0)
             {
-                $nilai_uh_ppkn_yes[] = $nilai_uh_ppkn[$key];
+                $rata_rata_uh_katolik = 0.00;
             }
         }
+
+
+            if(array_sum($nilai_uh_ppkn) > 0)
+        {
+            for($key = 0; $key < count($nilai_uh_ppkn); $key++)
+            {
+                if($nilai_uh_ppkn[$key] > 0)
+                {
+                    $nilai_uh_ppkn_yes[] = $nilai_uh_ppkn[$key];
+                }
+            }
         $jml_pel_uh_ppkn    =count($nilai_uh_ppkn_yes);
         $sum_pel_uh_ppkn    =array_sum($nilai_uh_ppkn_yes);
         $rata_rata_uh_ppkn  =number_format((float)$sum_pel_uh_ppkn / $jml_pel_uh_ppkn, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_uh_indonesia); $key++)
-        {
-            if($nilai_uh_indonesia[$key] > 0)
-            {
-                $nilai_uh_indonesia_yes[] = $nilai_uh_indonesia[$key];
-            }
         }
+        elseif(array_sum($nilai_uh_ppkn) == 0)
+        {
+            $rata_rata_uh_ppkn = 0.00;
+        }
+        //dd($rata_rata_uh_ppkn);
+        //dd("jumlah elemen array: ".array_sum($nilai_uh_indonesia));
+        if(array_sum($nilai_uh_indonesia) > 0)
+        {
+            for($key = 0; $key < count($nilai_uh_indonesia); $key++)
+            {
+                if($nilai_uh_indonesia[$key] > 0)
+                {
+                    $nilai_uh_indonesia_yes[] = $nilai_uh_indonesia[$key];
+                }
+            }
         $jml_pel_uh_indonesia    =count($nilai_uh_indonesia_yes);
         $sum_pel_uh_indonesia    =array_sum($nilai_uh_indonesia_yes);
         $rata_rata_uh_indonesia  =number_format((float)$sum_pel_uh_indonesia / $jml_pel_uh_indonesia, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_uh_matematika); $key++)
-        {
-            if($nilai_uh_matematika[$key] > 0)
-            {
-                $nilai_uh_matematika_yes[] = $nilai_uh_matematika[$key];
-            }
         }
+        elseif(array_sum($nilai_uh_indonesia) == 0)
+        {
+            $rata_rata_uh_indonesia = 0.00;
+        }
+        //dd($rata_rata_uh_indonesia);
+        if(array_sum($nilai_uh_matematika) > 0)
+        {
+            for($key = 0; $key < count($nilai_uh_matematika); $key++)
+            {
+                if($nilai_uh_matematika[$key] > 0)
+                {
+                    $nilai_uh_matematika_yes[] = $nilai_uh_matematika[$key];
+                }
+            }
         $jml_pel_uh_matematika    =count($nilai_uh_matematika_yes);
         $sum_pel_uh_matematika    =array_sum($nilai_uh_matematika_yes);
         $rata_rata_uh_matematika  =number_format((float)$sum_pel_uh_matematika / $jml_pel_uh_matematika, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_uh_ipa); $key++)
-        {
-            if($nilai_uh_ipa[$key] > 0)
-            {
-                $nilai_uh_ipa_yes[] = $nilai_uh_ipa[$key];
-            }
         }
+        elseif(array_sum($nilai_uh_matematika) == 0)
+        {
+            $rata_rata_uh_matematika = 0.00;
+        }
+
+        if(array_sum($nilai_uh_ipa) > 0)
+        {
+            for($key = 0; $key < count($nilai_uh_ipa); $key++)
+            {
+                if($nilai_uh_ipa[$key] > 0)
+                {
+                    $nilai_uh_ipa_yes[] = $nilai_uh_ipa[$key];
+            }
+            }
         $jml_pel_uh_ipa    =count($nilai_uh_ipa_yes);
         $sum_pel_uh_ipa    =array_sum($nilai_uh_ipa_yes);
         $rata_rata_uh_ipa  =number_format((float)$sum_pel_uh_ipa / $jml_pel_uh_ipa, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_uh_ips); $key++)
-        {
-            if($nilai_uh_ips[$key] > 0)
-            {
-                $nilai_uh_ips_yes[] = $nilai_uh_ips[$key];
-            }
         }
+        elseif(array_sum($nilai_uh_ipa) == 0)
+        {
+            $rata_rata_uh_ipa = 0.00;
+        }
+
+        if(array_sum($nilai_uh_ips) > 0)
+        {
+            for($key = 0; $key < count($nilai_uh_ips); $key++)
+            {
+                if($nilai_uh_ips[$key] > 0)
+                {
+                    $nilai_uh_ips_yes[] = $nilai_uh_ips[$key];
+                }
+            }
         $jml_pel_uh_ips    =count($nilai_uh_ips_yes);
         $sum_pel_uh_ips    =array_sum($nilai_uh_ips_yes);
         $rata_rata_uh_ips  =number_format((float)$sum_pel_uh_ips / $jml_pel_uh_ips, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_uh_pjok); $key++)
-        {
-            if($nilai_uh_pjok[$key] > 0)
-            {
-                $nilai_uh_pjok_yes[] = $nilai_uh_pjok[$key];
-            }
         }
+        elseif(array_sum($nilai_uh_ips) == 0)
+        {
+            $rata_rata_uh_ips = 0.00;
+        }
+
+        if(array_sum($nilai_uh_pjok) > 0)
+        {
+            for($key = 0; $key < count($nilai_uh_pjok); $key++)
+            {
+                if($nilai_uh_pjok[$key] > 0)
+                {
+                    $nilai_uh_pjok_yes[] = $nilai_uh_pjok[$key];
+                }
+            }
         $jml_pel_uh_pjok    =count($nilai_uh_pjok_yes);
         $sum_pel_uh_pjok    =array_sum($nilai_uh_pjok_yes);
         $rata_rata_uh_pjok  =number_format((float)$sum_pel_uh_pjok / $jml_pel_uh_pjok, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_uh_sbk); $key++)
-        {
-            if($nilai_uh_sbk[$key] > 0)
-            {
-                $nilai_uh_sbk_yes[] = $nilai_uh_sbk[$key];
-            }
         }
+        elseif(array_sum($nilai_uh_pjok) == 0)
+        {
+            $rata_rata_uh_pjok = 0.00;
+        }
+
+        if(array_sum($nilai_uh_sbk) > 0)
+        {
+            for($key = 0; $key < count($nilai_uh_sbk); $key++)
+            {
+                if($nilai_uh_sbk[$key] > 0)
+                {
+                    $nilai_uh_sbk_yes[] = $nilai_uh_sbk[$key];
+                }
+            }
         $jml_pel_uh_sbk    =count($nilai_uh_sbk_yes);
         $sum_pel_uh_sbk    =array_sum($nilai_uh_sbk_yes);
         $rata_rata_uh_sbk  =number_format((float)$sum_pel_uh_sbk / $jml_pel_uh_sbk, 2, '.', '');
+        }
+        elseif(array_sum($nilai_uh_sbk) == 0)
+        {
+            $rata_rata_uh_sbk = 0.00;
+        }
 
         // --------------------------------------------------------------------
         //menghitung nilai pts
@@ -1063,7 +1277,9 @@ class SiswaController extends Controller
 
         if($students -> agama == "Islam")
         {
-            for($key = 0; $key < count($nilai_pts_islam); $key++)
+            if(array_sum($nilai_pts_islam) > 0)
+            {
+                for($key = 0; $key < count($nilai_pts_islam); $key++)
             {
                 if($nilai_pts_islam[$key] > 0)
                 {
@@ -1073,11 +1289,18 @@ class SiswaController extends Controller
             $jml_pel_pts_islam    =count($nilai_pts_islam_yes);
             $sum_pel_pts_islam    =array_sum($nilai_pts_islam_yes);
             $rata_rata_pts_islam  =number_format((float)$sum_pel_pts_islam / $jml_pel_pts_islam, 2, '.', '');
+            }
+            elseif(array_sum($nilai_pts_islam) == 0)
+            {
+                $rata_rata_pts_islam = 0.00;
+            }
         }
 
         if($students -> agama == "Kristen Protestan")
         {
-            for($key = 0; $key < count($nilai_pts_protestan); $key++)
+            if(array_sum($nilai_pts_protestan) > 0)
+            {
+                for($key = 0; $key < count($nilai_pts_protestan); $key++)
             {
                 if($nilai_pts_protestan[$key] > 0)
                 {
@@ -1087,11 +1310,18 @@ class SiswaController extends Controller
             $jml_pel_pts_protestan    =count($nilai_pts_protestan_yes);
             $sum_pel_pts_protestan    =array_sum($nilai_pts_protestan_yes);
             $rata_rata_pts_protestan  =number_format((float)$sum_pel_pts_protestan / $jml_pel_pts_protestan, 2, '.', '');
+            }
+            elseif(array_sum($nilai_pts_protestan) == 0)
+            {
+                $rata_rata_pts_protestan = 0.00;
+            }
         }
 
         if($students -> agama == "Katolik")
         {
-            for($key = 0; $key < count($nilai_pts_katolik); $key++)
+            if(array_sum($nilai_pts_katolik) > 0)
+            {
+                for($key = 0; $key < count($nilai_pts_katolik); $key++)
             {
                 if($nilai_pts_katolik[$key] > 0)
                 {
@@ -1101,84 +1331,139 @@ class SiswaController extends Controller
             $jml_pel_pts_katolik    =count($nilai_pts_katolik_yes);
             $sum_pel_pts_katolik    =array_sum($nilai_pts_katolik_yes);
             $rata_rata_pts_katolik  =number_format((float)$sum_pel_pts_katolik / $jml_pel_pts_katolik, 2, '.', '');
-        }
-
-        for($key = 0; $key < count($nilai_pts_ppkn); $key++)
-        {
-            if($nilai_pts_ppkn[$key] > 0)
+            }
+            elseif(array_sum($nilai_pts_katolik) == 0)
             {
-                $nilai_pts_ppkn_yes[] = $nilai_pts_ppkn[$key];
+                $rata_rata_pts_katolik = 0.00;
             }
         }
+
+        if(array_sum($nilai_pts_ppkn) > 0)
+        {
+            for($key = 0; $key < count($nilai_pts_ppkn); $key++)
+            {
+                if($nilai_pts_ppkn[$key] > 0)
+                {
+                    $nilai_pts_ppkn_yes[] = $nilai_pts_ppkn[$key];
+                }
+            }
         $jml_pel_pts_ppkn    =count($nilai_pts_ppkn_yes);
         $sum_pel_pts_ppkn    =array_sum($nilai_pts_ppkn_yes);
         $rata_rata_pts_ppkn  =number_format((float)$sum_pel_pts_ppkn / $jml_pel_pts_ppkn, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_pts_indonesia); $key++)
-        {
-            if($nilai_pts_indonesia[$key] > 0)
-            {
-                $nilai_pts_indonesia_yes[] = $nilai_pts_indonesia[$key];
-            }
         }
+        elseif(array_sum($nilai_pts_ppkn) == 0)
+        {
+            $rata_rata_pts_ppkn = 0.00;
+        }
+        //dd($rata_rata_pts_ppkn);
+        //dd("jumlah elemen array: ".array_sum($nilai_pts_indonesia));
+        if(array_sum($nilai_pts_indonesia) > 0)
+        {
+            for($key = 0; $key < count($nilai_pts_indonesia); $key++)
+            {
+                if($nilai_pts_indonesia[$key] > 0)
+                {
+                    $nilai_pts_indonesia_yes[] = $nilai_pts_indonesia[$key];
+                }
+            }
         $jml_pel_pts_indonesia    =count($nilai_pts_indonesia_yes);
         $sum_pel_pts_indonesia    =array_sum($nilai_pts_indonesia_yes);
         $rata_rata_pts_indonesia  =number_format((float)$sum_pel_pts_indonesia / $jml_pel_pts_indonesia, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_pts_matematika); $key++)
-        {
-            if($nilai_pts_matematika[$key] > 0)
-            {
-                $nilai_pts_matematika_yes[] = $nilai_pts_matematika[$key];
-            }
         }
+        elseif(array_sum($nilai_pts_indonesia) == 0)
+        {
+            $rata_rata_pts_indonesia = 0.00;
+        }
+        //dd($rata_rata_pts_indonesia);
+        if(array_sum($nilai_pts_matematika) > 0)
+        {
+            for($key = 0; $key < count($nilai_pts_matematika); $key++)
+            {
+                if($nilai_pts_matematika[$key] > 0)
+                {
+                    $nilai_pts_matematika_yes[] = $nilai_pts_matematika[$key];
+                }
+            }
         $jml_pel_pts_matematika    =count($nilai_pts_matematika_yes);
         $sum_pel_pts_matematika    =array_sum($nilai_pts_matematika_yes);
         $rata_rata_pts_matematika  =number_format((float)$sum_pel_pts_matematika / $jml_pel_pts_matematika, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_pts_ipa); $key++)
-        {
-            if($nilai_pts_ipa[$key] > 0)
-            {
-                $nilai_pts_ipa_yes[] = $nilai_pts_ipa[$key];
-            }
         }
+        elseif(array_sum($nilai_pts_matematika) == 0)
+        {
+            $rata_rata_pts_matematika = 0.00;
+        }
+
+        if(array_sum($nilai_pts_ipa) > 0)
+        {
+            for($key = 0; $key < count($nilai_pts_ipa); $key++)
+            {
+                if($nilai_pts_ipa[$key] > 0)
+                {
+                    $nilai_pts_ipa_yes[] = $nilai_pts_ipa[$key];
+            }
+            }
         $jml_pel_pts_ipa    =count($nilai_pts_ipa_yes);
         $sum_pel_pts_ipa    =array_sum($nilai_pts_ipa_yes);
         $rata_rata_pts_ipa  =number_format((float)$sum_pel_pts_ipa / $jml_pel_pts_ipa, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_pts_ips); $key++)
-        {
-            if($nilai_pts_ips[$key] > 0)
-            {
-                $nilai_pts_ips_yes[] = $nilai_pts_ips[$key];
-            }
         }
+        elseif(array_sum($nilai_pts_ipa) == 0)
+        {
+            $rata_rata_pts_ipa = 0.00;
+        }
+
+        if(array_sum($nilai_pts_ips) > 0)
+        {
+            for($key = 0; $key < count($nilai_pts_ips); $key++)
+            {
+                if($nilai_pts_ips[$key] > 0)
+                {
+                    $nilai_pts_ips_yes[] = $nilai_pts_ips[$key];
+                }
+            }
         $jml_pel_pts_ips    =count($nilai_pts_ips_yes);
         $sum_pel_pts_ips    =array_sum($nilai_pts_ips_yes);
         $rata_rata_pts_ips  =number_format((float)$sum_pel_pts_ips / $jml_pel_pts_ips, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_pts_pjok); $key++)
-        {
-            if($nilai_pts_pjok[$key] > 0)
-            {
-                $nilai_pts_pjok_yes[] = $nilai_pts_pjok[$key];
-            }
         }
+        elseif(array_sum($nilai_pts_ips) == 0)
+        {
+            $rata_rata_pts_ips = 0.00;
+        }
+
+        if(array_sum($nilai_pts_pjok) > 0)
+        {
+            for($key = 0; $key < count($nilai_pts_pjok); $key++)
+            {
+                if($nilai_pts_pjok[$key] > 0)
+                {
+                    $nilai_pts_pjok_yes[] = $nilai_pts_pjok[$key];
+                }
+            }
         $jml_pel_pts_pjok    =count($nilai_pts_pjok_yes);
         $sum_pel_pts_pjok    =array_sum($nilai_pts_pjok_yes);
         $rata_rata_pts_pjok  =number_format((float)$sum_pel_pts_pjok / $jml_pel_pts_pjok, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_pts_sbk); $key++)
-        {
-            if($nilai_pts_sbk[$key] > 0)
-            {
-                $nilai_pts_sbk_yes[] = $nilai_pts_sbk[$key];
-            }
         }
+        elseif(array_sum($nilai_pts_pjok) == 0)
+        {
+            $rata_rata_pts_pjok = 0.00;
+        }
+
+        if(array_sum($nilai_pts_sbk) > 0)
+        {
+            for($key = 0; $key < count($nilai_pts_sbk); $key++)
+            {
+                if($nilai_pts_sbk[$key] > 0)
+                {
+                    $nilai_pts_sbk_yes[] = $nilai_pts_sbk[$key];
+                }
+            }
         $jml_pel_pts_sbk    =count($nilai_pts_sbk_yes);
         $sum_pel_pts_sbk    =array_sum($nilai_pts_sbk_yes);
         $rata_rata_pts_sbk  =number_format((float)$sum_pel_pts_sbk / $jml_pel_pts_sbk, 2, '.', '');
+        }
+        elseif(array_sum($nilai_pts_sbk) == 0)
+        {
+            $rata_rata_pts_sbk = 0.00;
+        }
 
         // --------------------------------------------------------------------
         //menghitung nilai pas
@@ -1248,7 +1533,9 @@ class SiswaController extends Controller
 
         if($students -> agama == "Islam")
         {
-            for($key = 0; $key < count($nilai_pas_islam); $key++)
+            if(array_sum($nilai_pas_islam) > 0)
+            {
+                for($key = 0; $key < count($nilai_pas_islam); $key++)
             {
                 if($nilai_pas_islam[$key] > 0)
                 {
@@ -1258,11 +1545,18 @@ class SiswaController extends Controller
             $jml_pel_pas_islam    =count($nilai_pas_islam_yes);
             $sum_pel_pas_islam    =array_sum($nilai_pas_islam_yes);
             $rata_rata_pas_islam  =number_format((float)$sum_pel_pas_islam / $jml_pel_pas_islam, 2, '.', '');
+            }
+            elseif(array_sum($nilai_pas_islam) == 0)
+            {
+                $rata_rata_pas_islam = 0.00;
+            }
         }
 
         if($students -> agama == "Kristen Protestan")
         {
-            for($key = 0; $key < count($nilai_pas_protestan); $key++)
+            if(array_sum($nilai_pas_protestan) > 0)
+            {
+                for($key = 0; $key < count($nilai_pas_protestan); $key++)
             {
                 if($nilai_pas_protestan[$key] > 0)
                 {
@@ -1272,11 +1566,18 @@ class SiswaController extends Controller
             $jml_pel_pas_protestan    =count($nilai_pas_protestan_yes);
             $sum_pel_pas_protestan    =array_sum($nilai_pas_protestan_yes);
             $rata_rata_pas_protestan  =number_format((float)$sum_pel_pas_protestan / $jml_pel_pas_protestan, 2, '.', '');
+            }
+            elseif(array_sum($nilai_pas_protestan) == 0)
+            {
+                $rata_rata_pas_protestan = 0.00;
+            }
         }
 
         if($students -> agama == "Katolik")
         {
-            for($key = 0; $key < count($nilai_pas_katolik); $key++)
+            if(array_sum($nilai_pas_katolik) > 0)
+            {
+                for($key = 0; $key < count($nilai_pas_katolik); $key++)
             {
                 if($nilai_pas_katolik[$key] > 0)
                 {
@@ -1286,136 +1587,415 @@ class SiswaController extends Controller
             $jml_pel_pas_katolik    =count($nilai_pas_katolik_yes);
             $sum_pel_pas_katolik    =array_sum($nilai_pas_katolik_yes);
             $rata_rata_pas_katolik  =number_format((float)$sum_pel_pas_katolik / $jml_pel_pas_katolik, 2, '.', '');
-        }
-
-        for($key = 0; $key < count($nilai_pas_ppkn); $key++)
-        {
-            if($nilai_pas_ppkn[$key] > 0)
+            }
+            elseif(array_sum($nilai_pas_katolik) == 0)
             {
-                $nilai_pas_ppkn_yes[] = $nilai_pas_ppkn[$key];
+                $rata_rata_pas_katolik = 0.00;
             }
         }
+
+        if(array_sum($nilai_pas_ppkn) > 0)
+        {
+            for($key = 0; $key < count($nilai_pas_ppkn); $key++)
+            {
+                if($nilai_pas_ppkn[$key] > 0)
+                {
+                    $nilai_pas_ppkn_yes[] = $nilai_pas_ppkn[$key];
+                }
+            }
         $jml_pel_pas_ppkn    =count($nilai_pas_ppkn_yes);
         $sum_pel_pas_ppkn    =array_sum($nilai_pas_ppkn_yes);
         $rata_rata_pas_ppkn  =number_format((float)$sum_pel_pas_ppkn / $jml_pel_pas_ppkn, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_pas_indonesia); $key++)
-        {
-            if($nilai_pas_indonesia[$key] > 0)
-            {
-                $nilai_pas_indonesia_yes[] = $nilai_pas_indonesia[$key];
-            }
         }
+        elseif(array_sum($nilai_pas_ppkn) == 0)
+        {
+            $rata_rata_pas_ppkn = 0.00;
+        }
+        //dd($rata_rata_pas_ppkn);
+        //dd("jumlah elemen array: ".array_sum($nilai_pas_indonesia));
+        if(array_sum($nilai_pas_indonesia) > 0)
+        {
+            for($key = 0; $key < count($nilai_pas_indonesia); $key++)
+            {
+                if($nilai_pas_indonesia[$key] > 0)
+                {
+                    $nilai_pas_indonesia_yes[] = $nilai_pas_indonesia[$key];
+                }
+            }
         $jml_pel_pas_indonesia    =count($nilai_pas_indonesia_yes);
         $sum_pel_pas_indonesia    =array_sum($nilai_pas_indonesia_yes);
         $rata_rata_pas_indonesia  =number_format((float)$sum_pel_pas_indonesia / $jml_pel_pas_indonesia, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_pas_matematika); $key++)
-        {
-            if($nilai_pas_matematika[$key] > 0)
-            {
-                $nilai_pas_matematika_yes[] = $nilai_pas_matematika[$key];
-            }
         }
+        elseif(array_sum($nilai_pas_indonesia) == 0)
+        {
+            $rata_rata_pas_indonesia = 0.00;
+        }
+        //dd($rata_rata_pas_indonesia);
+        if(array_sum($nilai_pas_matematika) > 0)
+        {
+            for($key = 0; $key < count($nilai_pas_matematika); $key++)
+            {
+                if($nilai_pas_matematika[$key] > 0)
+                {
+                    $nilai_pas_matematika_yes[] = $nilai_pas_matematika[$key];
+                }
+            }
         $jml_pel_pas_matematika    =count($nilai_pas_matematika_yes);
         $sum_pel_pas_matematika    =array_sum($nilai_pas_matematika_yes);
         $rata_rata_pas_matematika  =number_format((float)$sum_pel_pas_matematika / $jml_pel_pas_matematika, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_pas_ipa); $key++)
-        {
-            if($nilai_pas_ipa[$key] > 0)
-            {
-                $nilai_pas_ipa_yes[] = $nilai_pas_ipa[$key];
-            }
         }
+        elseif(array_sum($nilai_pas_matematika) == 0)
+        {
+            $rata_rata_pas_matematika = 0.00;
+        }
+
+        if(array_sum($nilai_pas_ipa) > 0)
+        {
+            for($key = 0; $key < count($nilai_pas_ipa); $key++)
+            {
+                if($nilai_pas_ipa[$key] > 0)
+                {
+                    $nilai_pas_ipa_yes[] = $nilai_pas_ipa[$key];
+            }
+            }
         $jml_pel_pas_ipa    =count($nilai_pas_ipa_yes);
         $sum_pel_pas_ipa    =array_sum($nilai_pas_ipa_yes);
         $rata_rata_pas_ipa  =number_format((float)$sum_pel_pas_ipa / $jml_pel_pas_ipa, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_pas_ips); $key++)
-        {
-            if($nilai_pas_ips[$key] > 0)
-            {
-                $nilai_pas_ips_yes[] = $nilai_pas_ips[$key];
-            }
         }
+        elseif(array_sum($nilai_pas_ipa) == 0)
+        {
+            $rata_rata_pas_ipa = 0.00;
+        }
+
+        if(array_sum($nilai_pas_ips) > 0)
+        {
+            for($key = 0; $key < count($nilai_pas_ips); $key++)
+            {
+                if($nilai_pas_ips[$key] > 0)
+                {
+                    $nilai_pas_ips_yes[] = $nilai_pas_ips[$key];
+                }
+            }
         $jml_pel_pas_ips    =count($nilai_pas_ips_yes);
         $sum_pel_pas_ips    =array_sum($nilai_pas_ips_yes);
         $rata_rata_pas_ips  =number_format((float)$sum_pel_pas_ips / $jml_pel_pas_ips, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_pas_pjok); $key++)
-        {
-            if($nilai_pas_pjok[$key] > 0)
-            {
-                $nilai_pas_pjok_yes[] = $nilai_pas_pjok[$key];
-            }
         }
+        elseif(array_sum($nilai_pas_ips) == 0)
+        {
+            $rata_rata_pas_ips = 0.00;
+        }
+
+        if(array_sum($nilai_pas_pjok) > 0)
+        {
+            for($key = 0; $key < count($nilai_pas_pjok); $key++)
+            {
+                if($nilai_pas_pjok[$key] > 0)
+                {
+                    $nilai_pas_pjok_yes[] = $nilai_pas_pjok[$key];
+                }
+            }
         $jml_pel_pas_pjok    =count($nilai_pas_pjok_yes);
         $sum_pel_pas_pjok    =array_sum($nilai_pas_pjok_yes);
         $rata_rata_pas_pjok  =number_format((float)$sum_pel_pas_pjok / $jml_pel_pas_pjok, 2, '.', '');
-
-        for($key = 0; $key < count($nilai_pas_sbk); $key++)
-        {
-            if($nilai_pas_sbk[$key] > 0)
-            {
-                $nilai_pas_sbk_yes[] = $nilai_pas_sbk[$key];
-            }
         }
+        elseif(array_sum($nilai_pas_pjok) == 0)
+        {
+            $rata_rata_pas_pjok = 0.00;
+        }
+
+        if(array_sum($nilai_pas_sbk) > 0)
+        {
+            for($key = 0; $key < count($nilai_pas_sbk); $key++)
+            {
+                if($nilai_pas_sbk[$key] > 0)
+                {
+                    $nilai_pas_sbk_yes[] = $nilai_pas_sbk[$key];
+                }
+            }
         $jml_pel_pas_sbk    =count($nilai_pas_sbk_yes);
         $sum_pel_pas_sbk    =array_sum($nilai_pas_sbk_yes);
         $rata_rata_pas_sbk  =number_format((float)$sum_pel_pas_sbk / $jml_pel_pas_sbk, 2, '.', '');
+        }
+        elseif(array_sum($nilai_pas_sbk) == 0)
+        {
+            $rata_rata_pas_sbk = 0.00;
+        }
 
         // --------------------------------------------------------------------
         // hitung nilai raport
-
-        $raport_pengetahuan_islam = ((($rata_rata_tugas_islam
+        if($students -> agama == "Islam")
+        {
+            $raport_pengetahuan_islam = ((($rata_rata_tugas_islam
                                 +$rata_rata_latihan_islam+$rata_rata_uh_islam)*2)
                                 +($rata_rata_pts_islam*1)
-                                +($rata_rata_pas_islam*1))/4;
-        $raport_pengetahuan_protestan = ((($rata_rata_tugas_protestan
+                                +($rata_rata_pas_islam*1))/8;
+            $raport_pengetahuan_agama = number_format((float)$raport_pengetahuan_islam, 1, '.', '');
+        }
+        if($students -> agama == "Kristen Protestan")
+        {
+            $raport_pengetahuan_protestan = ((($rata_rata_tugas_protestan
                                 +$rata_rata_latihan_protestan+$rata_rata_uh_protestan)*2)
                                 +($rata_rata_pts_protestan*1)
-                                +($rata_rata_pas_protestan*1))/4;
-        $raport_pengetahuan_katolik = ((($rata_rata_tugas_katolik
+                                +($rata_rata_pas_protestan*1))/8;
+            $raport_pengetahuan_agama = number_format((float)$raport_pengetahuan_protestan, 1, '.', '');
+        }
+        if($students -> agama == "Katolik")
+        {
+            $raport_pengetahuan_katolik = ((($rata_rata_tugas_katolik
                                 +$rata_rata_latihan_katolik+$rata_rata_uh_katolik)*2)
                                 +($rata_rata_pts_katolik*1)
-                                +($rata_rata_pas_katolik*1))/4;
+                                +($rata_rata_pas_katolik*1))/8;
+            $raport_pengetahuan_agama = number_format((float)$raport_pengetahuan_katolik, 1, '.', '');
+        }
         $raport_pengetahuan_ppkn = ((($rata_rata_tugas_ppkn
                                 +$rata_rata_latihan_ppkn+$rata_rata_uh_ppkn)*2)
                                 +($rata_rata_pts_ppkn*1)
-                                +($rata_rata_pas_ppkn*1))/4;
+                                +($rata_rata_pas_ppkn*1))/8;
+        $raport_pengetahuan_ppkn = number_format((float)$raport_pengetahuan_ppkn, 1, '.', '');
         $raport_pengetahuan_indonesia = ((($rata_rata_tugas_indonesia
                                 +$rata_rata_latihan_indonesia+$rata_rata_uh_indonesia)*2)
                                 +($rata_rata_pts_indonesia*1)
-                                +($rata_rata_pas_indonesia*1))/4;
+                                +($rata_rata_pas_indonesia*1))/8;
+        $raport_pengetahuan_indonesia = number_format((float)$raport_pengetahuan_indonesia, 1, '.', '');
         $raport_pengetahuan_matematika = ((($rata_rata_tugas_matematika
                                 +$rata_rata_latihan_matematika+$rata_rata_uh_matematika)*2)
                                 +($rata_rata_pts_matematika*1)
-                                +($rata_rata_pas_matematika*1))/4;
+                                +($rata_rata_pas_matematika*1))/8;
+        $raport_pengetahuan_matematika = number_format((float)$raport_pengetahuan_matematika, 1, '.', '');
         $raport_pengetahuan_ipa = ((($rata_rata_tugas_ipa
                                 +$rata_rata_latihan_ipa+$rata_rata_uh_ipa)*2)
                                 +($rata_rata_pts_ipa*1)
-                                +($rata_rata_pas_ipa*1))/4;
+                                +($rata_rata_pas_ipa*1))/8;
+        $raport_pengetahuan_ipa = number_format((float)$raport_pengetahuan_ipa, 1, '.', '');
         $raport_pengetahuan_ips = ((($rata_rata_tugas_ips
                                 +$rata_rata_latihan_ips+$rata_rata_uh_ips)*2)
                                 +($rata_rata_pts_ips*1)
-                                +($rata_rata_pas_ips*1))/4;
+                                +($rata_rata_pas_ips*1))/8;
+        $raport_pengetahuan_ips = number_format((float)$raport_pengetahuan_ips, 1, '.', '');
         $raport_pengetahuan_pjok = ((($rata_rata_tugas_pjok
                                 +$rata_rata_latihan_pjok+$rata_rata_uh_pjok)*2)
                                 +($rata_rata_pts_pjok*1)
-                                +($rata_rata_pas_pjok*1))/4;
+                                +($rata_rata_pas_pjok*1))/8;
+        $raport_pengetahuan_pjok = number_format((float)$raport_pengetahuan_pjok, 1, '.', '');
         $raport_pengetahuan_sbk = ((($rata_rata_tugas_sbk
                                 +$rata_rata_latihan_sbk+$rata_rata_uh_sbk)*2)
                                 +($rata_rata_pts_sbk*1)
-                                +($rata_rata_pas_sbk*1))/4;
+                                +($rata_rata_pas_sbk*1))/8;
+        $raport_pengetahuan_sbk = number_format((float)$raport_pengetahuan_sbk, 1, '.', '');
+        $kkm = 65;
+        // deskripsi agama
+        if($raport_pengetahuan_agama<$kkm)
+            {
+                $predikat_huruf_agama = "D";
+                $predikat_deskripsi_agama = "Kurang";
+            }
+        elseif($raport_pengetahuan_agama > $kkm && $raport_pengetahuan_agama <= ($kkm+1*((100-$kkm)/3)))
+            {
+                $predikat_huruf_agama = "C";
+                $predikat_deskripsi_agama = "Cukup";
+            }
+        elseif($raport_pengetahuan_agama > ($kkm+1*((100-$kkm)/3)) && $raport_pengetahuan_agama <= ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_huruf_agama = "B";
+                $predikat_deskripsi_agama = "Baik";
+            }
+        elseif($raport_pengetahuan_agama > ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_huruf_agama = "A";
+                $predikat_deskripsi_agama = "Sangat Baik";
+            }
+        // -------------
+        // deskripsi ppkn
+        if($raport_pengetahuan_ppkn<$kkm)
+            {
+                $predikat_huruf_ppkn = "D";
+                $predikat_deskripsi_ppkn = "Kurang";
+            }
+        elseif($raport_pengetahuan_ppkn > $kkm && $raport_pengetahuan_ppkn <= ($kkm+1*((100-$kkm)/3)))
+            {
+                $predikat_huruf_ppkn = "C";
+                $predikat_deskripsi_ppkn = "Cukup";
+            }
+        elseif($raport_pengetahuan_ppkn > ($kkm+1*((100-$kkm)/3)) && $raport_pengetahuan_ppkn <= ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_huruf_ppkn = "B";
+                $predikat_deskripsi_ppkn = "Baik";
+            }
+        elseif($raport_pengetahuan_ppkn > ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_huruf_ppkn = "A";
+                $predikat_deskripsi_ppkn = "Sangat Baik";
+            }
+        // -------------
+        // deskripsi indonesia
+        if($raport_pengetahuan_indonesia<$kkm)
+            {
+                $predikat_huruf_indonesia = "D";
+                $predikat_deskripsi_indonesia = "Kurang";
+            }
+        elseif($raport_pengetahuan_indonesia > $kkm && $raport_pengetahuan_indonesia <= ($kkm+1*((100-$kkm)/3)))
+            {
+                $predikat_huruf_indonesia = "C";
+                $predikat_deskripsi_indonesia = "Cukup";
+            }
+        elseif($raport_pengetahuan_indonesia > ($kkm+1*((100-$kkm)/3)) && $raport_pengetahuan_indonesia <= ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_huruf_indonesia = "B";
+                $predikat_deskripsi_indonesia = "Baik";
+            }
+        elseif($raport_pengetahuan_indonesia > ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_huruf_indonesia = "A";
+                $predikat_deskripsi_indonesia = "Sangat Baik";
+            }
+        // -------------
+        // deskripsi matematika
+        if($raport_pengetahuan_matematika<$kkm)
+            {
+                $predikat_huruf_matematika = "D";
+                $predikat_deskripsi_matematika = "Kurang";
+            }
+        elseif($raport_pengetahuan_matematika > $kkm && $raport_pengetahuan_matematika <= ($kkm+1*((100-$kkm)/3)))
+            {
+                $predikat_huruf_matematika = "C";
+                $predikat_deskripsi_matematika = "Cukup";
+            }
+        elseif($raport_pengetahuan_matematika > ($kkm+1*((100-$kkm)/3)) && $raport_pengetahuan_matematika <= ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_huruf_matematika = "B";
+                $predikat_deskripsi_matematika = "Baik";
+            }
+        elseif($raport_pengetahuan_matematika > ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_huruf_matematika = "A";
+                $predikat_deskripsi_matematika = "Sangat Baik";
+            }
+        // -------------
+        // deskripsi ipa
+        if($raport_pengetahuan_ipa<$kkm)
+            {
+                $predikat_huruf_ipa = "D";
+                $predikat_deskripsi_ipa = "Kurang";
+            }
+        elseif($raport_pengetahuan_ipa > $kkm && $raport_pengetahuan_ipa <= ($kkm+1*((100-$kkm)/3)))
+            {
+                $predikat_huruf_ipa = "C";
+                $predikat_deskripsi_ipa = "Cukup";
+            }
+        elseif($raport_pengetahuan_ipa > ($kkm+1*((100-$kkm)/3)) && $raport_pengetahuan_ipa <= ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_huruf_ipa = "B";
+                $predikat_deskripsi_ipa = "Baik";
+            }
+        elseif($raport_pengetahuan_ipa > ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_huruf_ipa = "A";
+                $predikat_deskripsi_ipa = "Sangat Baik";
+            }
+        // -------------
+        // deskripsi ips
+        if($raport_pengetahuan_ips<$kkm)
+            {
+                $predikat_huruf_ips = "D";
+                $predikat_deskripsi_ips = "Kurang";
+            }
+        elseif($raport_pengetahuan_ips > $kkm && $raport_pengetahuan_ips <= ($kkm+1*((100-$kkm)/3)))
+            {
+                $predikat_huruf_ips = "C";
+                $predikat_deskripsi_ips = "Cukup";
+            }
+        elseif($raport_pengetahuan_ips > ($kkm+1*((100-$kkm)/3)) && $raport_pengetahuan_ips <= ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_huruf_ips = "B";
+                $predikat_deskripsi_ips = "Baik";
+            }
+        elseif($raport_pengetahuan_ips > ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_huruf_ips = "A";
+                $predikat_deskripsi_ips = "Sangat Baik";
+            }
+        // -------------
+        // deskripsi pjok
+        if($raport_pengetahuan_pjok<$kkm)
+            {
+                $predikat_huruf_pjok = "D";
+                $predikat_deskripsi_pjok = "Kurang";
+            }
+        elseif($raport_pengetahuan_pjok > $kkm && $raport_pengetahuan_pjok <= ($kkm+1*((100-$kkm)/3)))
+            {
+                $predikat_huruf_pjok = "C";
+                $predikat_deskripsi_pjok = "Cukup";
+            }
+        elseif($raport_pengetahuan_pjok > ($kkm+1*((100-$kkm)/3)) && $raport_pengetahuan_pjok <= ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_huruf_pjok = "B";
+                $predikat_deskripsi_pjok = "Baik";
+            }
+        elseif($raport_pengetahuan_pjok > ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_huruf_pjok = "A";
+                $predikat_deskripsi_pjok = "Sangat Baik";
+            }
+        // -------------
+        // deskripsi sbk
+        if($raport_pengetahuan_sbk<$kkm)
+            {
+                $predikat_huruf_sbk = "D";
+                $predikat_deskripsi_sbk = "Kurang";
+            }
+        elseif($raport_pengetahuan_sbk > $kkm && $raport_pengetahuan_sbk <= ($kkm+1*((100-$kkm)/3)))
+            {
+                $predikat_huruf_sbk = "C";
+                $predikat_deskripsi_sbk = "Cukup";
+            }
+        elseif($raport_pengetahuan_sbk > ($kkm+1*((100-$kkm)/3)) && $raport_pengetahuan_sbk <= ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_huruf_sbk = "B";
+                $predikat_deskripsi_sbk = "Baik";
+            }
+        elseif($raport_pengetahuan_sbk > ($kkm+2*((100-$kkm)/3)))
+            {
+                $predikat_huruf_sbk = "A";
+                $predikat_deskripsi_sbk = "Sangat Baik";
+            }
 
-
-
+        $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
+                                +$raport_pengetahuan_ppkn
+                                +$raport_pengetahuan_indonesia
+                                +$raport_pengetahuan_matematika
+                                +$raport_pengetahuan_ipa
+                                +$raport_pengetahuan_ips
+                                +$raport_pengetahuan_pjok
+                                +$raport_pengetahuan_sbk;
+        $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
+        $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan/8, 1, '.', '');
+        $jumlah_raport = number_format((float)$jumlah_raport_pengetahuan+$jumlah_raport_pengetahuan, 1, '.', '');
+        $ratarata_raport = number_format((float)($ratarata_raport_pengetahuan+$ratarata_raport_pengetahuan)/2, 1, '.', '');
         $pdf = PDF::loadView('export.raport',
         [
-            'raport_pengetahuan_islam'=>$raport_pengetahuan_islam,
-            'raport_pengetahuan_protestan'=>$raport_pengetahuan_protestan,
-            'raport_pengetahuan_katolik'=>$raport_pengetahuan_katolik,
+            'rata_rata_tugas_islam' =>$rata_rata_tugas_islam,
+
+            'predikat_huruf_agama' =>$predikat_huruf_agama,
+            'predikat_huruf_ppkn' =>$predikat_huruf_ppkn,
+            'predikat_huruf_indonesia' =>$predikat_huruf_indonesia,
+            'predikat_huruf_matematika' =>$predikat_huruf_matematika,
+            'predikat_huruf_ipa' =>$predikat_huruf_ipa,
+            'predikat_huruf_ips' =>$predikat_huruf_ips,
+            'predikat_huruf_pjok' =>$predikat_huruf_pjok,
+            'predikat_huruf_sbk' =>$predikat_huruf_sbk,
+            'predikat_deskripsi_agama' =>$predikat_deskripsi_agama,
+            'predikat_deskripsi_ppkn' =>$predikat_deskripsi_ppkn,
+            'predikat_deskripsi_indonesia' =>$predikat_deskripsi_indonesia,
+            'predikat_deskripsi_matematika' =>$predikat_deskripsi_matematika,
+            'predikat_deskripsi_ipa' =>$predikat_deskripsi_ipa,
+            'predikat_deskripsi_ips' =>$predikat_deskripsi_ips,
+            'predikat_deskripsi_pjok' =>$predikat_deskripsi_pjok,
+            'predikat_deskripsi_sbk' =>$predikat_deskripsi_sbk,
+            'jumlah_raport' =>$jumlah_raport,
+            'ratarata_raport' =>$ratarata_raport,
+            'ratarata_raport_pengetahuan' =>$ratarata_raport_pengetahuan,
+            'jumlah_raport_pengetahuan' =>$jumlah_raport_pengetahuan,
+            'raport_pengetahuan_agama'=>$raport_pengetahuan_agama,
             'raport_pengetahuan_ppkn'=>$raport_pengetahuan_ppkn,
             'raport_pengetahuan_indonesia'=>$raport_pengetahuan_indonesia,
             'raport_pengetahuan_matematika'=>$raport_pengetahuan_matematika,

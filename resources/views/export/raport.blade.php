@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>INVOICE</title>
+    <title>RAPORT SISWA</title>
 
     <style>
         .invoice-box {
@@ -291,73 +291,73 @@
                 <td style="text-align: center;">1</td>
                 <td style="text-align: left;">Pendidikan Agama dan Budi Pekerti</td>
                 @if ($students->agama == 'Islam')
-                    <td style="text-align: center;">{{ $raport_pengetahuan_islam }}</td>
-                @else($students->agama == "Kristen Protestan")
-                    <td style="text-align: center;">{{ $raport_pengetahuan_protestan }}</td>
-                @else($students->agama == "Katolik")
-                    <td style="text-align: center;">{{ $raport_pengetahuan_katolik }}</td>
+                    <td style="text-align: center;">{{ $raport_pengetahuan_agama }}</td>
+                @elseif($students->agama == "Kristen Protestan")
+                    <td style="text-align: center;">{{ $raport_pengetahuan_agama }}</td>
+                @elseif($students->agama == "Katolik")
+                    <td style="text-align: center;">{{ $raport_pengetahuan_agama }}</td>
                 @endif
-                <td style="text-align: center;">A</td>
-                <td style="text-align: center;">Sangat Baik</td>
+                <td style="text-align: center;">{{ $predikat_huruf_agama }}</td>
+                <td style="text-align: center;">{{ $predikat_deskripsi_agama }}</td>
                  @if ($students->agama == 'Islam')
-                    <td style="text-align: center;">{{ $raport_pengetahuan_islam }}</td>
-                @else($students->agama == "Kristen Protestan")
-                    <td style="text-align: center;">{{ $raport_pengetahuan_protestan }}</td>
-                @else($students->agama == "Katolik")
-                    <td style="text-align: center;">{{ $raport_pengetahuan_katolik }}</td>
+                    <td style="text-align: center;">{{ $raport_pengetahuan_agama }}</td>
+                @elseif($students->agama == "Kristen Protestan")
+                    <td style="text-align: center;">{{ $raport_pengetahuan_agama }}</td>
+                @elseif($students->agama == "Katolik")
+                    <td style="text-align: center;">{{ $raport_pengetahuan_agama }}</td>
                 @endif
-                <td style="text-align: center;">B</td>
-                <td style="text-align: center;">Baik</td>
+                <td style="text-align: center;">{{ $predikat_huruf_agama }}</td>
+                <td style="text-align: center;">{{ $predikat_deskripsi_agama }}</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">2</td>
                 <td style="text-align: left;">PPKn</td>
                 <td style="text-align: center;">{{ $raport_pengetahuan_ppkn }}</td>
-                <td style="text-align: center;">A</td>
-                <td style="text-align: center;">Sangat baik</td>
+                <td style="text-align: center;">{{ $predikat_huruf_ppkn }}</td>
+                <td style="text-align: center;">{{ $predikat_deskripsi_ppkn }}</td>
                 <td style="text-align: center;">{{ $raport_pengetahuan_ppkn }}</td>
-                <td style="text-align: center;">B</td>
-                <td style="text-align: center;">Baik</td>
+                <td style="text-align: center;">{{ $predikat_huruf_ppkn }}</td>
+                <td style="text-align: center;">{{ $predikat_deskripsi_ppkn }}</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">3</td>
                 <td style="text-align: left;">Bahasa Indonesia</td>
                 <td style="text-align: center;">{{ $raport_pengetahuan_indonesia }}</td>
-                <td style="text-align: center;">A</td>
-                <td style="text-align: center;">Sangat baik</td>
+                <td style="text-align: center;">{{ $predikat_huruf_indonesia }}</td>
+                <td style="text-align: center;">{{ $predikat_deskripsi_indonesia }}</td>
                 <td style="text-align: center;">{{ $raport_pengetahuan_indonesia }}</td>
-                <td style="text-align: center;">B</td>
-                <td style="text-align: center;">Baik</td>
+                <td style="text-align: center;">{{ $predikat_huruf_indonesia }}</td>
+                <td style="text-align: center;">{{ $predikat_deskripsi_indonesia }}</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">4</td>
                 <td style="text-align: left;">Matematika</td>
                 <td style="text-align: center;">{{ $raport_pengetahuan_matematika }}</td>
-                <td style="text-align: center;">A</td>
-                <td style="text-align: center;">Sangat Baik</td>
+                <td style="text-align: center;">{{ $predikat_huruf_matematika }}</td>
+                <td style="text-align: center;">{{ $predikat_deskripsi_matematika }}</td>
                 <td style="text-align: center;">{{ $raport_pengetahuan_matematika }}</td>
-                <td style="text-align: center;">C</td>
-                <td style="text-align: center;">Kurang</td>
+                <td style="text-align: center;">{{ $predikat_huruf_matematika }}</td>
+                <td style="text-align: center;">{{ $predikat_deskripsi_matematika }}</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">5</td>
                 <td style="text-align: left;">Ilmu Pengetahuan Alam</td>
                 <td style="text-align: center;">{{ $raport_pengetahuan_ipa }}</td>
-                <td style="text-align: center;">B</td>
-                <td style="text-align: center;">Baik</td>
+                <td style="text-align: center;">{{ $predikat_huruf_ipa }}</td>
+                <td style="text-align: center;">{{ $predikat_deskripsi_ipa }}</td>
                 <td style="text-align: center;">{{ $raport_pengetahuan_ipa }}</td>
-                <td style="text-align: center;">C</td>
-                <td style="text-align: center;">Kurang</td>
+                <td style="text-align: center;">{{ $predikat_huruf_ipa }}</td>
+                <td style="text-align: center;">{{ $predikat_deskripsi_ipa }}</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">6</td>
                 <td style="text-align: left;">Ilmu Pengetahuan Sosial</td>
                 <td style="text-align: center;">{{ $raport_pengetahuan_ips }}</td>
-                <td style="text-align: center;">B</td>
-                <td style="text-align: center;">Baik</td>
+                <td style="text-align: center;">{{ $predikat_huruf_ips }}</td>
+                <td style="text-align: center;">{{ $predikat_deskripsi_ips }}</td>
                 <td style="text-align: center;">{{ $raport_pengetahuan_ips }}</td>
-                <td style="text-align: center;">B</td>
-                <td style="text-align: center;">Baik</td>
+                <td style="text-align: center;">{{ $predikat_huruf_ips }}</td>
+                <td style="text-align: center;">{{ $predikat_deskripsi_ips }}</td>
             </tr>
             <tr class="details">
                 <td colspan="8">Kelompok B: </td>
@@ -366,44 +366,44 @@
                 <td style="text-align: center;">1</td>
                 <td style="text-align: left;">Pendidikan Jasmani, Olahraga dan Kesehatan</td>
                 <td style="text-align: center;">{{ $raport_pengetahuan_pjok }}</td>
-                <td style="text-align: center;">A</td>
-                <td style="text-align: center;">Sangat baik</td>
+                <td style="text-align: center;">{{ $predikat_huruf_pjok }}</td>
+                <td style="text-align: center;">{{ $predikat_deskripsi_pjok }}</td>
                 <td style="text-align: center;">{{ $raport_pengetahuan_pjok }}</td>
-                <td style="text-align: center;">B</td>
-                <td style="text-align: center;">Baik</td>
+                <td style="text-align: center;">{{ $predikat_huruf_pjok }}</td>
+                <td style="text-align: center;">{{ $predikat_deskripsi_pjok }}</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">2</td>
                 <td style="text-align: left;">Seni Budaya dan Keterampilan</td>
                 <td style="text-align: center;">{{ $raport_pengetahuan_sbk }}</td>
-                <td style="text-align: center;">B</td>
-                <td style="text-align: center;">Baik</td>
+                <td style="text-align: center;">{{ $predikat_huruf_sbk }}</td>
+                <td style="text-align: center;">{{ $predikat_deskripsi_sbk }}</td>
                 <td style="text-align: center;">{{ $raport_pengetahuan_sbk }}</td>
-                <td style="text-align: center;">B</td>
-                <td style="text-align: center;">Baik</td>
+                <td style="text-align: center;">{{ $predikat_huruf_sbk }}</td>
+                <td style="text-align: center;">{{ $predikat_deskripsi_sbk }}</td>
             </tr>
             <tr class="details">
                 <td colspan="2" style="text-align: center;">Jumlah</td>
-                <td style="text-align: center;">#605</td>
+                <td style="text-align: center;">{{ $jumlah_raport_pengetahuan }}</td>
                 <td colspan="2" style="text-align: center;">Enam Ratus Lima</td>
-                <td style="text-align: center;">#449</td>
+                <td style="text-align: center;">{{ $jumlah_raport_pengetahuan }}</td>
                 <td colspan="2" style="text-align: center;">Empat ratus empat puluh sembilan</td>
             </tr>
             <tr class="details">
                 <td colspan="2" style="text-align: center;">Rata-rata</td>
-                <td style="text-align: center;">#605</td>
+                <td style="text-align: center;">{{ $ratarata_raport_pengetahuan }}</td>
                 <td colspan="2" style="text-align: center;">Enam Ratus Lima</td>
-                <td style="text-align: center;">#449</td>
+                <td style="text-align: center;">{{ $ratarata_raport_pengetahuan }}</td>
                 <td colspan="2" style="text-align: center;">Empat ratus empat puluh sembilan</td>
             </tr>
             <tr class="details">
                 <td colspan="2" style="text-align: center;">Total Nilai</td>
-                <td style="text-align: center;">#605</td>
+                <td style="text-align: center;">{{ $jumlah_raport }}</td>
                 <td colspan="5" style="text-align: center;">Enam Ratus Lima</td>
             </tr>
             <tr class="details">
                 <td colspan="2" style="text-align: center;">Rata-rata</td>
-                <td style="text-align: center;">#605</td>
+                <td style="text-align: center;">{{ $ratarata_raport }}</td>
                 <td colspan="5" style="text-align: center;">Enam Ratus Lima</td>
             </tr>
             <tr>
