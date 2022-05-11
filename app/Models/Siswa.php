@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Extra;
 use App\Models\Kelas;
 use App\Models\Nilai;
 use Illuminate\Database\Eloquent\Model;
@@ -151,9 +152,14 @@ class Siswa extends Model
         return $this->hasOne(Sikap::class);
     }
 
-    public function extra()
+    /**
+     * Get all of the extra for the Siswa
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function extra(): HasMany
     {
-        return $this->hasOne(Extra::class);
+        return $this->hasMany(Extra::class);
     }
     /**
      * Get the kelas that owns the Siswa

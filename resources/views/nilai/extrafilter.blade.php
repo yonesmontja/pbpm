@@ -1,7 +1,7 @@
 @extends('layouts.master5')
 
 @section('title')
-    <title> AdminLTE 3 | NILAI </title>
+    <title> AdminLTE 3 | EXTRA </title>
 @endsection
 
 @section('content')
@@ -12,12 +12,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>NILAI</h1>
+                        <h1>EXTRA</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                            <li class="breadcrumb-item active">NILAI</li>
+                            <li class="breadcrumb-item active">EXTRA</li>
                         </ol>
                     </div>
                 </div>
@@ -45,14 +45,14 @@
                                     <div class="col-sm-6">
                                         <button type="button" class="btn btn-primary float btn-sm" data-toggle="modal"
                                             data-target="#importExcel">
-                                            IMPORT NILAI
+                                            IMPORT DATA
                                         </button>
 
                                         <!-- Import Excel -->
                                         <div class="modal fade" id="importExcel" tabindex="-1" role="dialog"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
-                                                <form method="post" action="/nilai/import_excel"
+                                                <form method="post" action="/extra/import_excel"
                                                     enctype="multipart/form-data">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -84,11 +84,12 @@
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <form action="/nilai_filter" method="GET">
+                                        <form action="/extra_filter" method="GET">
                                             <div class="input-group mb-3">
                                                 <input type="date" class="form-control" name="start_date">
                                                 <input type="date" class="form-control" name="end_date">
-                                                <button class="btn btn-primary float-right btn-sm" type="submit">FILTER</button>
+                                                <button class="btn btn-primary float-right btn-sm"
+                                                    type="submit">FILTER</button>
                                             </div>
                                         </form>
                                     </div>
@@ -99,7 +100,7 @@
                                     <div class="col-sm-6">
                                         <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal"
                                             data-target="#staticBackdrop">
-                                            TAMBAH NILAI
+                                            TAMBAH DATA ABSEN DAN CATATAN WALI KELAS
                                         </button>
                                     </div>
                                 </div>
@@ -109,40 +110,40 @@
                             <div class="card-body">
                                 @if (session('sukses'))
                                     <div class="alert alert-success" role="alert">
-                                        Data <a href="#" class="alert-link">Nilai</a> {{ session('sukses') }}
+                                        Data <a href="#" class="alert-link">Absensi dan Catatan Wali Kelas</a> {{ session('sukses') }}
                                     </div>
                                 @endif
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>KI</th>
-                                            <th>MAPEL</th>
-                                            <th>GURU</th>
-                                            <th>PENILAIAN</th>
-                                            <th>KELAS</th>
                                             <th>SISWA</th>
-                                            <th>NILAI</th>
+                                            <th>SAKIT</th>
+                                            <th>IJIN</th>
+                                            <th>ALPA</th>
+                                            <th>KELAS</th>
+                                            <th>Catatan Wali Kelas: Sikap</th>
+                                            <th>Catatan Wali Kelas: Kehadiran</th>
+                                            <th>Catatan Wali Kelas: Motivasi</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data_nilai as $nilai)
+                                        @foreach ($data_extra as $extra)
                                             <tr>
-
-                                                <td>{{ $nilai->kompetensiinti->kompetensi_inti }}</td>
-                                                <td>{{ $nilai->mapel->nama_mapel }}</td>
-                                                <td><a href="/guru/{{ $nilai->guru->id }}/profile">{{ $nilai->guru->nama_guru }}</a></td>
-                                                <td>{{ $nilai->penilaian->nama_tes }}</td>
-                                                <td><a href="/kelas/{{ $nilai->kelas->id }}/profile">{{ $nilai->kelas->nama }}</a></td>
-                                                <td><a href="/test/{{ $nilai->siswa->id }}/profile">{{ $nilai->siswa->nama_depan }} {{ $nilai->siswa->nama_belakang }}</a>
-                                                </td>
-                                                <td>{{ $nilai->nilai }}</td>
+                                                <td><a href="/test/{{ $extra->siswa_id }}/profile">{{ $extra->siswa->nama_depan }} {{ $extra->siswa->nama_belakang }}</a></td>
+                                                <td>{{ $extra->sakit }}</td>
+                                                <td>{{ $extra->ijin }}</td>
+                                                <td>{{ $extra->alpa }}</td>
+                                                <td><a href="/kelas/{{ $extra->kelas_id }}/profile">{{ $extra->kelas->nama }}</a></td>
+                                                <td>{{ $extra->saran }}</td>
+                                                <td>{{ $extra->ekskul }}</td>
+                                                <td>{{ $extra->prestasi }}</td>
                                                 <td>
-                                                    <a href="/nilai/{{ $nilai->id }}/nilaiedit"
+                                                    <a href="/extra/{{ $extra->id }}/extraedit"
                                                         class="btn btn-warning btn-sm">Ubah
                                                     </a>
-                                                    <!--a href="/nilai/{{ $nilai->id }}/delete" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau dihapus?')" >Hapus</a-->
-                                                    <a href="/nilai/{{ $nilai->id }}/nilaidelete"
+                                                    <!--a href="/extra/{{ $extra->id }}/delete" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau dihapus?')" >Hapus</a-->
+                                                    <a href="/extra/{{ $extra->id }}/extradelete"
                                                         class="btn btn-danger btn-sm"
                                                         onclick="return confirm('Yakin mau dihapus?')">Hapus</a>
                                                 </td>
@@ -151,13 +152,14 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>KI</th>
-                                            <th>MAPEL</th>
-                                            <th>GURU</th>
-                                            <th>PENILAIAN</th>
-                                            <th>KELAS</th>
                                             <th>SISWA</th>
-                                            <th>NILAI</th>
+                                            <th>SAKIT</th>
+                                            <th>IJIN</th>
+                                            <th>ALPA</th>
+                                            <th>KELAS</th>
+                                            <th>Catatan Wali Kelas: Sikap</th>
+                                            <th>Catatan Wali Kelas: Kehadiran</th>
+                                            <th>Catatan Wali Kelas: Motivasi</th>
                                             <th></th>
                                         </tr>
                                     </tfoot>
@@ -176,76 +178,10 @@
                                             </div>
                                             <div class="modal-body">
                                                 <!-- form isian data -->
-                                                <form action="/nilai/nilaicreate" method="POST"
+                                                <form action="/extra/extracreate" method="POST"
                                                     enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <div
-                                                                class="form-group {{ $errors->has('nilai_start') ? ' has-error' : '' }}">
-                                                                <label for="exampleFormControlInput1">Mulai</label>
-                                                                <input name="nilai_start" type="text" class="form-control"
-                                                                    id="exampleFormControlInput1" placeholder="Kapan mulai?"
-                                                                    value="{{ $nilai_start[0] }}">
-                                                                @if ($errors->has('nilai_start'))
-                                                                    <span
-                                                                        class="help-block">{{ $errors->first('nilai_start') }}</span>
-                                                                @endif
-                                                            </div>
-                                                            @if ($errors->has('nilai_start'))
-                                                                <span
-                                                                    class="help-block">{{ $errors->first('nilai_start') }}</span>
-                                                            @endif
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <div
-                                                                class="form-group {{ $errors->has('nilai_end') ? ' has-error' : '' }}">
-                                                                <label for="exampleFormControlInput1">Berakhir</label>
-                                                                <input name="nilai_end" type="text" class="form-control"
-                                                                    id="exampleFormControlInput1"
-                                                                    placeholder="Kapan selesai?"
-                                                                    value="{{ $nilai_end[0] }}">
-                                                                @if ($errors->has('nilai_end'))
-                                                                    <span
-                                                                        class="help-block">{{ $errors->first('nilai_end') }}</span>
-                                                                @endif
-                                                            </div>
-                                                            @if ($errors->has('nilai_end'))
-                                                                <span
-                                                                    class="help-block">{{ $errors->first('nilai_end') }}</span>
-                                                            @endif
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">PENILAIAN</label>
-                                                                <select name="penilaian_id" class="form-control"
-                                                                    id="exampleFormControlSelect2">
-                                                                    <option>---</option>
-                                                                    @foreach ($penilaian as $key => $m)
-                                                                        <option value="{{ $m->id }}">
-                                                                            {{ $m->nama_tes }}
-                                                                        </option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">Kompetensi
-                                                                    Inti</label>
-                                                                <select name="kompetensi_inti_id" class="form-control"
-                                                                    id="exampleFormControlSelect2">
-                                                                    <option>---</option>
-                                                                    @foreach ($kompetensiinti as $key => $m)
-                                                                        <option value="{{ $m->id }}">
-                                                                            {{ $m->kompetensi_inti }}
-                                                                        </option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div>
                                                         <div class="col-sm-4">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlSelect1">KELAS</label>
@@ -263,81 +199,131 @@
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlSelect1">SISWA</label>
                                                                 <select name="siswa_id" class="form-control" id="siswa">
-                                                                    <!--<option>---</option>
-                                                                                        @foreach ($siswa as $key => $m)<option value="{{ $m->id }}">
-                                                                                                {{ $m->nama_depan }}
-                                                                                                {{ $m->nama_belakang }}</option>@endforeach -->
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label for="exampleFormControlSelect1">PENDENGARAN</label>
+                                                                <select name="pendengaran" class="form-control"
+                                                                    id="exampleFormControlSelect2">
+                                                                    <option>---</option>
+                                                                    <option value="Baik">Baik</option>
+                                                                    <option value="Baik">Cukup</option>
+                                                                    <option value="Baik">Kurang</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label for="exampleFormControlSelect1">PENGLIHATAN</label>
+                                                                <select name="penglihatan" class="form-control"
+                                                                    id="exampleFormControlSelect2">
+                                                                    <option>---</option>
+                                                                    <option value="Baik">Baik</option>
+                                                                    <option value="Baik">Cukup</option>
+                                                                    <option value="Baik">Kurang</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label for="exampleFormControlSelect1">GIGI</label>
+                                                                <select name="gigi" class="form-control"
+                                                                    id="exampleFormControlSelect2">
+                                                                    <option>---</option>
+                                                                    <option value="Baik">Baik</option>
+                                                                    <option value="Baik">Cukup</option>
+                                                                    <option value="Baik">Kurang</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">GURU</label>
-                                                                <select name="guru_id" class="form-control"
-                                                                    id="exampleFormControlSelect2">
-                                                                    <option>---</option>
-                                                                    @foreach ($guru as $key => $m)
-                                                                        <option value="{{ $m->id }}">
-                                                                            {{ $m->nama_guru }}
-                                                                        </option>
-                                                                    @endforeach
-                                                                </select>
+                                                            <div
+                                                                class="form-group {{ $errors->has('alpa') ? ' has-error' : '' }}">
+                                                                <label for="exampleFormControlInput1">ALPA</label>
+                                                                <input name="alpa" type="text" class="form-control"
+                                                                    id="exampleFormControlInput1" placeholder="alpa"
+                                                                    value="{{ old('alpa') }}">
+                                                                @if ($errors->has('alpa'))
+                                                                    <span
+                                                                        class="help-block">{{ $errors->first('alpa') }}</span>
+                                                                @endif
                                                             </div>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">MAPEL</label>
-                                                                <select name="mapel_id" class="form-control"
-                                                                    id="exampleFormControlSelect2">
-                                                                    <option>---</option>
-                                                                    @foreach ($mapel as $key => $m)
-                                                                        <option value="{{ $m->id }}">
-                                                                            {{ $m->nama_mapel }}
-                                                                        </option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
+                                                            @if ($errors->has('alpa'))
+                                                                <span
+                                                                    class="help-block">{{ $errors->first('alpa') }}</span>
+                                                            @endif
                                                         </div>
                                                         <div class="col-sm-4">
                                                             <div
-                                                                class="form-group {{ $errors->has('nilai') ? ' has-error' : '' }}">
-                                                                <label for="exampleFormControlInput1">Nilai</label>
-                                                                <input name="nilai" type="text" class="form-control"
-                                                                    id="exampleFormControlInput1" placeholder="Nilai"
-                                                                    value="{{ old('nilai') }}">
-                                                                @if ($errors->has('nilai'))
+                                                                class="form-group {{ $errors->has('ijin') ? ' has-error' : '' }}">
+                                                                <label for="exampleFormControlInput1">IJIN</label>
+                                                                <input name="ijin" type="text" class="form-control"
+                                                                    id="exampleFormControlInput1" placeholder="ijin"
+                                                                    value="{{ old('ijin') }}">
+                                                                @if ($errors->has('ijin'))
                                                                     <span
-                                                                        class="help-block">{{ $errors->first('nilai') }}</span>
+                                                                        class="help-block">{{ $errors->first('ijin') }}</span>
                                                                 @endif
                                                             </div>
-                                                            @if ($errors->has('nilai'))
+                                                            @if ($errors->has('ijin'))
                                                                 <span
-                                                                    class="help-block">{{ $errors->first('nilai') }}</span>
+                                                                    class="help-block">{{ $errors->first('ijin') }}</span>
+                                                            @endif
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div
+                                                                class="form-group {{ $errors->has('sakit') ? ' has-error' : '' }}">
+                                                                <label for="exampleFormControlInput1">SAKIT</label>
+                                                                <input name="sakit" type="text" class="form-control"
+                                                                    id="exampleFormControlInput1" placeholder="sakit"
+                                                                    value="{{ old('sakit') }}">
+                                                                @if ($errors->has('sakit'))
+                                                                    <span
+                                                                        class="help-block">{{ $errors->first('sakit') }}</span>
+                                                                @endif
+                                                            </div>
+                                                            @if ($errors->has('sakit'))
+                                                                <span
+                                                                    class="help-block">{{ $errors->first('sakit') }}</span>
                                                             @endif
                                                         </div>
                                                     </div>
                                                     <div
-                                                        class="form-group {{ $errors->has('nilai_deskripsi') ? ' has-error' : '' }}">
-                                                        <label for="exampleFormControlTextarea1">PERNYATAAN
-                                                            NILAI</label>
-                                                        <textarea name="nilai_deskripsi" class="form-control" id="exampleFormControlTextarea1" placeholder="Pernyataan nilai"
-                                                            value="{{ old('nilai_deskripsi') }}" rows="3"></textarea>
+                                                        class="form-group {{ $errors->has('saran') ? ' has-error' : '' }}">
+                                                        <label for="exampleFormControlTextarea1">Catatan Wali Kelas: Sikap</label>
+                                                        <textarea name="saran" class="form-control" id="exampleFormControlTextarea1" placeholder="catatan tentang sikap"
+                                                            value="{{ old('saran') }}" rows="3"></textarea>
                                                     </div>
-                                                    @if ($errors->has('nilai_deskripsi'))
-                                                        <span
-                                                            class="help-block">{{ $errors->first('nilai_deskripsi') }}</span>
+                                                    @if ($errors->has('saran'))
+                                                        <span class="help-block">{{ $errors->first('saran') }}</span>
                                                     @endif
                                                     <div
-                                                        class="form-group {{ $errors->has('nilai_notes') ? ' has-error' : '' }}">
-                                                        <label for="exampleFormControlTextarea1">NOTES</label>
-                                                        <textarea name="nilai_notes" class="form-control" id="exampleFormControlTextarea1" placeholder="Catatan"
-                                                            value="{{ old('nilai_notes') }}" rows="3"></textarea>
+                                                        class="form-group {{ $errors->has('ekskul') ? ' has-error' : '' }}">
+                                                        <label for="exampleFormControlTextarea1">Catatan Wali Kelas: Kehadiran</label>
+                                                        <textarea name="ekskul" class="form-control" id="exampleFormControlTextarea1" placeholder="catatan tentang kehadiran"
+                                                            value="{{ old('ekskul') }}" rows="3"></textarea>
                                                     </div>
-                                                    @if ($errors->has('nilai_notes'))
+                                                    @if ($errors->has('ekskul'))
                                                         <span
-                                                            class="help-block">{{ $errors->first('nilai_notes') }}</span>
+                                                            class="help-block">{{ $errors->first('ekskul') }}</span>
+                                                    @endif
+                                                    <div
+                                                        class="form-group {{ $errors->has('prestasi') ? ' has-error' : '' }}">
+                                                        <label for="exampleFormControlTextarea1">Catatan Wali Kelas: Motivasi</label>
+                                                        <textarea name="prestasi" class="form-control" id="exampleFormControlTextarea1" placeholder="catatan motivasi siswa (jika ada)"
+                                                            value="{{ old('prestasi') }}" rows="3"></textarea>
+                                                    </div>
+                                                    @if ($errors->has('prestasi'))
+                                                        <span
+                                                            class="help-block">{{ $errors->first('prestasi') }}</span>
                                                     @endif
                                                     <!-- akhir form isian data -->
                                             </div>

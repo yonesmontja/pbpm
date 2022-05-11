@@ -146,6 +146,9 @@
                                                     <a href="/siswa/{{ $siswa->id }}/cover_pdf"
                                                         class="btn btn-primary btn-sm">Cover
                                                     </a>
+                                                    <a href="/siswa/{{ $siswa->id }}/biodata_pdf"
+                                                        class="btn btn-primary btn-sm">Bio
+                                                    </a>
                                                     <a href="/siswa/{{ $siswa->id }}/export_pdf"
                                                         class="btn btn-primary btn-sm">Raport
                                                     </a>

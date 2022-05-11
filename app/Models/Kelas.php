@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Extra;
 use App\Models\Level;
 use App\Models\Nilai;
 use App\Models\Siswa;
@@ -32,6 +33,15 @@ class Kelas extends Model
     public function nilai(): HasMany
     {
         return $this->hasMany(Nilai::class);
+    }
+    /**
+     * Get all of the extra for the Kelas
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function extra(): HasMany
+    {
+        return $this->hasMany(Extra::class);
     }
     function avatar($real_size = false)
     {

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>RAPORT SISWA</title>
+    <title>Cover {{ $siswa->nama_depan }} {{ $siswa->nama_belakang }}</title>
 
     <style>
         .invoice-box {
@@ -69,7 +69,7 @@
             font-weight: bold;
             text-align: center;
             border: 1px solid rgb(175, 228, 244);
-            padding: 5px;
+            padding: 15px;
             vertical-align: top;
             font-size: 25px;
             line-height: 20px;
@@ -135,42 +135,47 @@
 <body>
     <div class="invoice-box">
         <table cellpadding="0" cellspacing="0">
-            <tr>
-                <table>
-                    <tr class="top">
-                        <td>
-                            <img class="logo" src="{{ asset('images/logo_dabolding.png') }}" width="610"
-                                alt="">
-                            <hr align="center">
-                        </td>
-                    </tr>
-                    <tr class="top">
-                        <td>
-                            RAPOR PESERTA DIDIK
-                            <br>
-                            <br> SEKOLAH DASAR
-                            <br>
-                            <br> (SD)
-                        </td>
-                    </tr>
-                </table>
+            <tr class="top">
+                <td colspan="8">
+                    <table>
+                        <tr>
+                            <td>
+                                RAPOR PESERTA DIDIK
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                SEKOLAH DASAR
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                (SD)
+                            </td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
-            <table>
-                <tr class="heading">
-                    <td colspan="6">
-                        <br> SD INPRES DABOLDING
-                        <br>
-                        <br> KALOMDOL - PEGUNUNGAN BINTANG - PAPUA
-                    </td>
-                </tr>
-                <tr class="heading">
-                    <td colspan="6">
-                        <br> NSS:
-                        <br>
-                        <br> NPSN: 60302160
-                    </td>
-                </tr>
-            </table>
+            <tr class="top">
+                <td colspan="8">
+                    <table>
+                        <tr class="heading">
+                            <td colspan="8">
+                                <br> SD INPRES DABOLDING
+                                <br>
+                                <br> KALOMDOL - PEGUNUNGAN BINTANG - PAPUA
+                            </td>
+                        </tr>
+                        <tr class="heading">
+                            <td colspan="8">
+                                <br> NSS:
+                                <br>
+                                <br> NPSN: 60302160
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
             <tr class="top">
                 <td colspan="8">
                     <table>
@@ -184,7 +189,8 @@
                         <tr>
                             <td>
                                 <br> {{ $siswa->nama_depan }} {{ $siswa->nama_belakang }}
-                                <br> <hr>
+                                <br>
+                                <hr>
                                 <br> No. Induk:
                                 <br> NISN:
                             </td>

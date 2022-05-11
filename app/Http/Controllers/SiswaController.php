@@ -6,6 +6,7 @@ use PDF;
 use Session;
 use App\Models\Guru;
 use App\Models\User;
+use App\Models\Extra;
 use App\Models\Kelas;
 use App\Models\Mapel;
 use App\Models\Nilai;
@@ -13,8 +14,8 @@ use App\Models\Siswa;
 use App\Models\Penilaian;
 use App\Imports\UserImport;
 use Illuminate\Support\Str;
-use App\Exports\SiswaExport;
 
+use App\Exports\SiswaExport;
 use App\Imports\SiswaImport;
 use Illuminate\Http\Request;
 use App\Models\Kompetensiinti;
@@ -2589,6 +2590,14 @@ class SiswaController extends Controller
         $jumlah_raport = number_format((float)$jumlah_raport_pengetahuan+$jumlah_raport_keterampilan, 1, '.', '');
         $ratarata_raport = number_format((float)($ratarata_raport_pengetahuan+$ratarata_raport_keterampilan)/2, 1, '.', '');
         //----------------------------------------------------
+        //input absensi
+        $sakit = Extra::all()->where('siswa_id','=',$id)->pluck('sakit')->toArray();
+        $sakit = $sakit[0];
+        $alpa = Extra::all()->where('siswa_id','=',$id)->pluck('alpa')->toArray();
+        $alpa = $alpa[0];
+        $ijin = Extra::all()->where('siswa_id','=',$id)->pluck('ijin')->toArray();
+        $ijin = $ijin[0];
+        //dd($alpa);
 
         $pdf = PDF::loadView('export.raport',
         [
@@ -2648,6 +2657,9 @@ class SiswaController extends Controller
             'raport_keterampilan_ips'=>$raport_keterampilan_ips,
             'raport_keterampilan_pjok'=>$raport_keterampilan_pjok,
             'raport_keterampilan_sbk'=>$raport_keterampilan_sbk,
+            'sakit'=>$sakit,
+            'alpa'=>$alpa,
+            'ijin'=>$ijin,
             'data_siswa'=>$data_siswa,
             'students' => $students
         ]);
@@ -2656,15 +2668,31 @@ class SiswaController extends Controller
     public function cover_pdf($id)
     {
         $siswa = Siswa::find($id);
-        $nama_depan = Siswa::where('id','=',$id)->select('nama_depan','nama_belakang')->pluck('nama_depan');
-        $nama_belakang = Siswa::where('id','=',$id)->select('nama_depan','nama_belakang')->pluck('nama_belakang');
-        $kalimat1 = $nama_depan[0];
-        $kalimat2 = $nama_belakang[0];
-        //dd($kalimat2);
-        $pdf = PDF::loadView('export.cover1',
+        $nama_depancover = Siswa::where('id','=',$id)->select('nama_depan','nama_belakang')->pluck('nama_depan');
+        $nama_belakangcover = Siswa::where('id','=',$id)->select('nama_depan','nama_belakang')->pluck('nama_belakang');
+        $kalimat1cover = $nama_depancover[0];
+        $kalimat2cover = $nama_belakangcover[0];
+        //dd($kalimat1cover);
+        $pdf = PDF::loadview('export.cover1',
         [
             'siswa' => $siswa,
         ]);
-        return $pdf -> download($kalimat1.'_'.$kalimat2.'_'.date('Y-m-d_H').'.pdf');
+        return $pdf -> download('cover_'.$kalimat1cover.'_'.$kalimat2cover.'_'.date('Y-m-d_H').'.pdf');
+
+    }
+    public function biodata_pdf($id)
+    {
+        $siswa = Siswa::find($id);
+        $nama_depancover = Siswa::where('id','=',$id)->select('nama_depan','nama_belakang')->pluck('nama_depan');
+        $nama_belakangcover = Siswa::where('id','=',$id)->select('nama_depan','nama_belakang')->pluck('nama_belakang');
+        $kalimat1cover = $nama_depancover[0];
+        $kalimat2cover = $nama_belakangcover[0];
+        //dd($kalimat1cover);
+        $pdf = PDF::loadview('export.cover2',
+        [
+            'siswa' => $siswa,
+        ]);
+        return $pdf -> download('biodata_'.$kalimat1cover.'_'.$kalimat2cover.'_'.date('Y-m-d_H').'.pdf');
+
     }
 }
