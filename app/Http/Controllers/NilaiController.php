@@ -11,6 +11,7 @@ use App\Models\Mapel;
 use App\Models\Nilai;
 use App\Models\Siswa;
 use App\Models\Penilaian;
+use App\Imports\ExtraImport;
 use App\Imports\NilaiImport;
 use Illuminate\Http\Request;
 use App\Models\Kompetensiinti;

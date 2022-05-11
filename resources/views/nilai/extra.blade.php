@@ -52,7 +52,7 @@
                                         <div class="modal fade" id="importExcel" tabindex="-1" role="dialog"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
-                                                <form method="post" action="/extra/import_excel"
+                                                <form method="post" action="/extra/import_extra_excel"
                                                     enctype="multipart/form-data">
                                                     <div class="modal-content">
                                                         <div class="modal-header">

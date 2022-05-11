@@ -7,7 +7,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
 
-class SiswaFirstSheetImport implements ToModel, WithHeadingRow, WithCalculatedFormulas
+class ExtraFirstSheetImport implements ToModel, WithHeadingRow, WithCalculatedFormulas
 {
     /**
     * @param array $row
@@ -22,9 +22,9 @@ class SiswaFirstSheetImport implements ToModel, WithHeadingRow, WithCalculatedFo
             "alpa" => $row["alpa"],
             "ijin" => $row["ijin"],
             "sakit" => $row["sakit"],
-            "saran" => $row["Catatan_Sikap"],
-            "ekskul" => $row["Catatan_Kehadiran"],
-            "prestasi" => $row["Catatan_Motivasi"],
+            "saran" => $row["saran"],
+            "ekskul" => $row["ekskul"],
+            "prestasi" => $row["prestasi"],
             "pendengaran" => $row["pendengaran"],
             "penglihatan" => $row["penglihatan"],
             "gigi" => $row["gigi"],
