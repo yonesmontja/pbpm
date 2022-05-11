@@ -18,9 +18,9 @@ class JurnalController extends Controller
     {
     	return view('jurnal.jurnalsiswa');
     }
-    public function jurnalasrama()
+    public function jurnalkelas()
     {
-    	return view('jurnal.jurnalasrama');
+    	return view('jurnal.jurnalkelas');
     }
     public function jurnalbelajar()
     {
@@ -49,7 +49,7 @@ class JurnalController extends Controller
     }
     public function jurnaledit(Journal $jurnal)
     {
-        return view('jurnal.jurnaledit',['jurnal'=>$jurnal]); 
+        return view('jurnal.jurnaledit',['jurnal'=>$jurnal]);
     }
     public function jurnalupdate(Request $request, Journal $jurnal)
     {
