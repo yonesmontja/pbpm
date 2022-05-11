@@ -130,11 +130,11 @@
                                     <tbody>
                                         @foreach ($data_extra as $extra)
                                             <tr>
-                                                <td>{{ $extra->siswa->nama_depan }} {{ $extra->siswa->nama_belakang }}</td>
+                                                <td><a href="/test/{{ $extra->siswa_id }}/profile">{{ $extra->siswa->nama_depan }} {{ $extra->siswa->nama_belakang }}</a></td>
                                                 <td>{{ $extra->sakit }}</td>
                                                 <td>{{ $extra->ijin }}</td>
                                                 <td>{{ $extra->alpa }}</td>
-                                                <td>{{ $extra->kelas->nama }}</td>
+                                                <td><a href="/kelas/{{ $extra->kelas_id }}/profile">{{ $extra->kelas->nama }}</a></td>
                                                 <td>{{ $extra->saran }}</td>
                                                 <td>{{ $extra->ekskul }}</td>
                                                 <td>{{ $extra->prestasi }}</td>

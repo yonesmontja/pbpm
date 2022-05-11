@@ -47,6 +47,7 @@ use App\Http\Controllers\WidgetController;
 use App\Http\Controllers\MailboxController;
 use App\Http\Controllers\PostingController;
 use App\Http\Controllers\SasaranController;
+use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\KalenderController;
 use App\Http\Controllers\TahunpelController;
 use App\Http\Controllers\UsertestController;
@@ -78,11 +79,13 @@ Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 Route::group(['middleware' => ['auth','checkRole:admin']], function()
 {
 
-	Route::get('/dashboard',[DashboardController::class,'index']);
+
+    Route::get('/dashboard',[DashboardController::class,'index']);
     Route::resource('posting',PostingController::class);
     Route::resource('usertest',UsertestController::class);
     Route::resource('mapel',MapelController::class);
     Route::resource('tahunpel',TahunpelController::class);
+
 	Route::get('/siswa',[SiswaController::class,'index']);
 	Route::post('/siswa/create',[SiswaController::class,'create']);
 	Route::get('/siswa/{siswa}/edit',[SiswaController::class,'edit']);
@@ -104,6 +107,13 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::post('/test/{siswa}/addnilai',[SiswaController::class,'testaddnilai']);
 	Route::get('/test/{siswa}/{idmapel}/testdeletenilai',[SiswaController::class,'testdeletenilai']);
 	Route::get('/test/{id}/aktivasi',[SiswaController::class,'testaktivasi']);
+
+    Route::get('/sekolah',[SekolahController::class,'index']);
+	Route::post('/sekolah/sekolahcreate',[SekolahController::class,'sekolahcreate']);
+	Route::get('/sekolah/{sekolah}/sekolahedit',[SekolahController::class,'sekolahedit']);
+	Route::post('/sekolah/{sekolah}/sekolahupdate',[SekolahController::class,'sekolahupdate']);
+	Route::get('/sekolah/{sekolah}/sekolahdelete',[SekolahController::class,'sekolahdelete']);
+	Route::get('/sekolah/{sekolah}/profile',[SekolahController::class,'profile']);
 
 	Route::get('/guru',[GuruController::class,'index']);
 	Route::post('/guru/gurucreate',[GuruController::class,'gurucreate']);
@@ -133,16 +143,16 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/kelas/{kelas}/kelasdelete',[KelasController::class,'kelasdelete']);
 	Route::get('/kelas/{kelas}/profile',[KelasController::class,'profile']);
 
-	Route::get('/tdu',[DashboardController::class,'index']);
-	Route::get('/kurikulum',[KurikulumController::class,'index']);
-	Route::get('/kesiswaan',[KesiswaanController::class,'index']);
+	Route::get('/tdu',[DashboardController::class,'index'])->name('tdu');
+	Route::get('/kurikulum',[KurikulumController::class,'index'])->name('kurikulum');
+	Route::get('/kesiswaan',[KesiswaanController::class,'index'])->name('kesiswaan');
 	Route::get('/widget',[WidgetController::class,'index']);
 
 	Route::get('/jurnalringkasan',[JurnalController::class,'index']);
-	Route::get('/jurnalsiswa',[JurnalController::class,'jurnalsiswa']);
-	Route::get('/jurnalasrama',[JurnalController::class,'jurnalasrama']);
-	Route::get('/jurnalbelajar',[JurnalController::class,'jurnalbelajar']);
-	Route::get('/jurnalpost',[JurnalController::class,'jurnalpost']);
+	Route::get('/jurnalsiswa',[JurnalController::class,'jurnalsiswa'])->name('jurnalsiswa');
+	Route::get('/jurnalkelas',[JurnalController::class,'jurnalkelas'])->name('jurnalkelas');
+	Route::get('/jurnalbelajar',[JurnalController::class,'jurnalbelajar'])->name('jurnalbelajar');
+	Route::get('/jurnalpost',[JurnalController::class,'jurnalpost'])->name('jurnalpost');
 	Route::post('/jurnalcreate',[JurnalController::class,'jurnalcreate']);
 	Route::get('/jurnal/{jurnal}/edit',[JurnalController::class,'jurnaledit']);
 	Route::post('/jurnal/{jurnal}/update',[JurnalController::class,'jurnalupdate']);

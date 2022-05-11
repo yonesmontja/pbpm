@@ -34,20 +34,20 @@
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/tdu" class="nav-link active">
+                <a href="/tdu" class="nav-link {{ set_active('tdu') }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>TDU</p>
                 </a>
               </li>
               @if(auth() -> user() -> role == 'admin')
               <li class="nav-item">
-                <a href="/kurikulum" class="nav-link">
+                <a href="/kurikulum" class="nav-link {{ set_active('kurikulum') }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kurikulum</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/kesiswaan" class="nav-link">
+                <a href="/kesiswaan" class="nav-link {{ set_active('kesiswaan') }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kesiswaan</p>
                 </a>
@@ -57,15 +57,7 @@
 
           </li>
           @if(auth() -> user() -> role == 'admin')
-          <li class="nav-item">
-            <a href="/widget" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Widgets
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
+
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -83,25 +75,25 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/jurnalpost" class="nav-link">
+                <a href="/jurnalpost" class="nav-link {{ set_active('jurnalpost') }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Jurnal Post</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/jurnalsiswa" class="nav-link">
+                <a href="/jurnalsiswa" class="nav-link {{ set_active('jurnalsiswa') }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Jurnal Siswa</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/jurnalasrama" class="nav-link">
+                <a href="/jurnalkelas" class="nav-link {{ set_active('jurnalkelas') }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Jurnal Asrama</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/jurnalbelajar" class="nav-link">
+                <a href="/jurnalbelajar" class="nav-link {{ set_active('jurnalbelajar') }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Jurnal Belajar</p>
                 </a>
@@ -109,13 +101,7 @@
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Grafik
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
+
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="/grafiknilai" class="nav-link">
