@@ -192,70 +192,7 @@
                                   </a>
                               </li>
                           </ul>
-                          <ul class="nav nav-treeview">
-                              <li class="nav-item">
-                                  <a href="/visi" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>VISI</p>
-                                  </a>
-                              </li>
-                          </ul>
-                          <ul class="nav nav-treeview">
-                              <li class="nav-item">
-                                  <a href="/misi" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>MISI</p>
-                                  </a>
-                              </li>
-                          </ul>
-                          <ul class="nav nav-treeview">
-                              <li class="nav-item">
-                                  <a href="/tujuan" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>TUJUAN</p>
-                                  </a>
-                              </li>
-                          </ul>
-                          <ul class="nav nav-treeview">
-                              <li class="nav-item">
-                                  <a href="/nilai" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>NILAI</p>
-                                  </a>
-                              </li>
-                          </ul>
-                          <ul class="nav nav-treeview">
-                              <li class="nav-item">
-                                  <a href="/sasaran" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>SASARAN</p>
-                                  </a>
-                              </li>
-                          </ul>
-                          <ul class="nav nav-treeview">
-                              <li class="nav-item">
-                                  <a href="/swot" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>SWOT</p>
-                                  </a>
-                              </li>
-                          </ul>
-                          <ul class="nav nav-treeview">
-                              <li class="nav-item">
-                                  <a href="/swotanalysis" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>SWOT ANALYSIS</p>
-                                  </a>
-                              </li>
-                          </ul>
-                          <ul class="nav nav-treeview">
-                              <li class="nav-item">
-                                  <a href="/langkahstrategis" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>LANGKAH STRATEGIS</p>
-                                  </a>
-                              </li>
-                          </ul>
+
                       </li>
                       <li class="nav-item has-treeview menu-open">
                           <a href="/dashboard" class="nav-link active">
@@ -275,6 +212,12 @@
                                       </p>
                                   </a>
                               </li>
+                              <li class="nav-item">
+                                  <a href="/portofolio" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Portofolio</p>
+                                  </a>
+                              </li>
                           </ul>
                       </li>
                       <li class="nav-item has-treeview">
@@ -286,12 +229,7 @@
                               </p>
                           </a>
                           <ul class="nav nav-treeview">
-                              <li class="nav-item">
-                                  <a href="/portofolio" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>Portofolio</p>
-                                  </a>
-                              </li>
+
                               <li class="nav-item">
                                   <a href="/projects" class="nav-link">
                                       <i class="far fa-circle nav-icon"></i>

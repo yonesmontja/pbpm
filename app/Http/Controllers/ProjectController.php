@@ -92,11 +92,12 @@ class ProjectController extends Controller
         $projects -> mapel_id = $request -> mapel_id;
         $projects -> kelas_id = $request -> kelas_id;
         $projects -> guru_id = $request -> guru_id;
+        $projects -> siswa_id = $request -> siswa_id;
         $projects -> penilaian_id = $request -> penilaian_id;
         $projects -> kompetensiinti_id = $request -> kompetensiinti_id;
         $projects -> save();
 
-        return redirect('/projects')->with('sukses','berhasil diinput');
+        return redirect('/projects')->with('sukses','berhasil diinput')->with('sukses','berhasil ditambahkan!');
     }
     public function projects_edit()
     {
@@ -118,6 +119,6 @@ class ProjectController extends Controller
             'psd' => $psd,
             'siswa' => $siswa,
             'guru' => $guru,
-        ]);
+        ])->with('sukses','berhasil diupdate!');
     }
 }

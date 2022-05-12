@@ -68,11 +68,11 @@
                                              <select name="status" class="form-control" id="exampleFormControlSelect2">
                                                  <option>---</option>
                                                  <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>
-                                                     Sedang berlangsung</option>
-                                                 <option value="2" {{ old('status') == '2' ? 'selected' : '' }}>
-                                                     Sukses</option>
-                                                 <option value="3" {{ old('status') == '3' ? 'selected' : '' }}>
                                                      Gagal</option>
+                                                 <option value="2" {{ old('status') == '2' ? 'selected' : '' }}>
+                                                     Sedang berlangsung</option>
+                                                 <option value="3" {{ old('status') == '3' ? 'selected' : '' }}>
+                                                     Sukses</option>
                                              </select>
                                              @if ($errors->has('status'))
                                                  <span class="help-block">{{ $errors->first('status') }}</span>

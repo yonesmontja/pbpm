@@ -110,7 +110,7 @@
                             <div class="card-body">
                                 @if (session('sukses'))
                                     <div class="alert alert-success" role="alert">
-                                        Data <a href="#" class="alert-link">Absensi dan Catatan Wali Kelas</a> {{ session('sukses') }}
+                                        Data <a href="/extra" class="alert-link">Absensi dan Catatan Wali Kelas</a> {{ session('sukses') }}
                                     </div>
                                 @endif
                                 <table id="example2" class="table table-bordered table-hover">

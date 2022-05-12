@@ -18,7 +18,60 @@ class DashboardController extends Controller
     {
     	$nilai = Nilai::all();
         $user = User::all();
-        //dd($islam);
+        $totalsiswa = Siswa::all()->count();
+        $idsiswa = Siswa::all()->pluck('id');
+        $jumlah_siswa = Nilai::all()->pluck('siswa_id');
+        //dd($jumlah_siswa);
+        $kkm = 65;
+        $kkm1 = $kkm + (100-$kkm)/3;
+        //dd($kkm1);
+        $kkm2 = $kkm1 + (100-$kkm)/3;
+        //dd($kkm2);
+        $kkm4 = $kkm - ($kkm/2);
+        $siswa_ul = Nilai::all()
+            -> where('nilai','<',$kkm)
+            -> count();
+        $siswa_h = Nilai::all()
+            -> where('nilai','>=',$kkm2)
+            -> count();
+        $siswa_p = Nilai::all()
+            -> whereBetween('nilai',[$kkm1, $kkm2])
+            -> count();
+        $siswa_l = Nilai::all()
+            -> whereBetween('nilai',[$kkm, $kkm1])
+            -> count();
+        //dd($siswa_p);
+        $high = 626;
+        $islam_tugas1 = Nilai::all()->where('siswa_id','=',$high)
+                                ->where('mapel_id','=',1)
+                                ->where('penilaian_id','=',1)
+                                ->pluck('nilai')->avg();
+        $islam_tugas[0] = number_format(($islam_tugas1), 1, '.', '');
+        $islam_tugas2 = Nilai::all()->where('siswa_id','=',$high)
+                                ->where('mapel_id','=',1)
+                                ->where('penilaian_id','=',2)
+                                ->pluck('nilai')->avg();
+
+        $islam_tugas[1] = number_format(($islam_tugas2), 1, '.', '');
+        $islam_tugas3 = Nilai::all()->where('siswa_id','=',$high)
+                                ->where('mapel_id','=',1)
+                                ->where('penilaian_id','=',2)
+                                ->pluck('nilai')->avg();
+        $islam_tugas[2] = number_format(($islam_tugas3), 1, '.', '');
+        $islam_tugas4 = Nilai::all()->where('siswa_id','=',$high)
+                                ->where('mapel_id','=',1)
+                                ->where('penilaian_id','=',2)
+                                ->pluck('nilai')->avg();
+        $islam_tugas[3] = number_format(($islam_tugas4), 1, '.', '');
+        $islam_tugas5 = Nilai::all()->where('siswa_id','=',$high)
+                                ->where('mapel_id','=',1)
+                                ->where('penilaian_id','=',2)
+                                ->pluck('nilai')->avg();
+        $islam_tugas[4] = number_format(($islam_tugas5), 1, '.', '');
+        //$islam_tugas = $islam_tugas1 + $islam_tugas2 +$islam_tugas3 +$islam_tugas4 +$islam_tugas5;
+
+
+        //dd($islam_tugas);
         $matpel = ['Agama Islam','Agama Protestan','Agama Katolik','PPKn','Bahasa Indonesia','Matematika','IPA','IPS','PJOK','SBK'];
         $islam_average = Nilai::all()->where('mapel_id',1)->pluck('nilai')->avg();
         $protestan_average = Nilai::all()->where('mapel_id',2)->pluck('nilai')->avg();
@@ -56,6 +109,10 @@ class DashboardController extends Controller
         }
         //dd($sumbuy);
         return view('dashboards.index',[
+            'siswa_h' => $siswa_h,
+            'siswa_p' => $siswa_p,
+            'siswa_l' => $siswa_l,
+            'siswa_ul' => $siswa_ul,
             'user' => $user,
             'islam_average' => $islam_average,
             'protestan_average' => $protestan_average,

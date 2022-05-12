@@ -25,6 +25,12 @@
 
          <!-- Main content -->
          <section class="content">
+             @if ($message = Session::get('sukses'))
+                 <div class="alert alert-success alert-block">
+                     <button type="button" class="close" data-dismiss="alert">×</button>
+                     <strong>{{ $message }}</strong>
+                 </div>
+             @endif
 
              <!-- Default box -->
              <div class="card">
@@ -86,28 +92,19 @@
                                          </small>
                                      </td>
                                      <td>
-                                         @foreach ($psd as $s => $t)
-                                             @if ($r->siswa->id == $t)
-                                                 <ul class="list-inline">
-                                                     <li class="list-inline-item">
-                                                         <img alt="Avatar" class="table-avatar"
-                                                             src="{{ $r->siswa->avatar() }}">
-                                                     </li>
-                                                 </ul>
-                                             @endif
-                                         @endforeach
+                                         <ul class="list-inline">
+                                             <li class="list-inline-item">
+                                                 <img alt="Avatar" class="table-avatar" src="{{ $r->siswa->avatar() }}">
+                                             </li>
+                                         </ul>
                                      </td>
                                      <td>
-                                         @foreach ($psd as $s => $t)
-                                             @if ($r->siswa->id == $t)
-                                                 <ul class="list-inline">
-                                                     <li class="list-inline-item">
-                                                         <a
-                                                             href="/test/{{ $r->siswa->id }}/profile">{{ $r->siswa->nama_depan }}</a>
-                                                     </li>
-                                                 </ul>
-                                             @endif
-                                         @endforeach
+                                         <ul class="list-inline">
+                                             <li class="list-inline-item">
+                                                 <a
+                                                     href="/test/{{ $r->siswa->id }}/profile">{{ $r->siswa->nama_depan }}</a>
+                                             </li>
+                                         </ul>
                                      </td>
                                      <td class="project_progress">
                                          <div class="progress progress-sm">
@@ -122,13 +119,13 @@
                                      </td>
                                      <td class="project-state">
                                          @if ($r->status == 1)
-                                             <span class="badge badge-success">Berhasil</span>
-                                         @endif
-                                         @if ($r->status >= 0 && $r->status < 1)
-                                             <span class="badge badge-warning">Belum selesai</span>
-                                         @endif
-                                         @if ($r->status == 0)
                                              <span class="badge badge-danger">Gagal</span>
+                                         @endif
+                                         @if ($r->status == 2)
+                                             <span class="badge badge-warning">Sedang berlangsung</span>
+                                         @endif
+                                         @if ($r->status == 3)
+                                             <span class="badge badge-success">Sukses</span>
                                          @endif
                                      </td>
                                      <td class="project-actions text-right">

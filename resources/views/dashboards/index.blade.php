@@ -36,11 +36,11 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>{{ totalSiswa() }}</h3>
-                                <p>Jumlah Siswa</p>
+                                <h3>{{ $siswa_h }}</h3>
+                                <p>Siswa High</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-bag"></i>
+                                <i class="ion ion-pie-graph"></i>
                             </div>
                             <a href="/test" class="small-box-footer">Info lebih lanjut <i
                                     class="fas fa-arrow-circle-right"></i></a>
@@ -51,11 +51,11 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>{{ totalMapel() }}</h3>
-                                <p>Jumlah Mapel</p>
+                                <h3>{{ $siswa_p }}</h3>
+                                <p>Siswa Pass</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
+                                <i class="ion ion-pie-graph"></i>
                             </div>
                             <a href="/mapel" class="small-box-footer">Info lebih lanjut <i
                                     class="fas fa-arrow-circle-right"></i></a>
@@ -66,12 +66,12 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>{{ totalKi() }}</h3>
+                                <h3>{{ $siswa_l }}</h3>
 
-                                <p>Kompetensi Inti</p>
+                                <p>Siswa Low</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-person-add"></i>
+                                <i class="ion ion-pie-graph"></i>
                             </div>
                             <a href="/kompetensiinti" class="small-box-footer">Info lebih lanjut <i
                                     class="fas fa-arrow-circle-right"></i></a>
@@ -82,9 +82,9 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>{{ totalOAP() }}</h3>
+                                <h3>{{ $siswa_ul }}</h3>
 
-                                <p>Siswa OAP</p>
+                                <p>Siswa Under Low</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
