@@ -6,6 +6,7 @@ use App\Models\Extra;
 use App\Models\Level;
 use App\Models\Nilai;
 use App\Models\Siswa;
+use App\Models\Project;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -43,6 +44,17 @@ class Kelas extends Model
     {
         return $this->hasMany(Extra::class);
     }
+
+    /**
+     * Get all of the project for the Kelas
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function project(): HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
+
     function avatar($real_size = false)
     {
         $thumbnail = $real_size ? '' : 'small_';

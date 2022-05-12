@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Nilai;
+use App\Models\Project;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -39,6 +40,16 @@ class Mapel extends Model
     public function nilai(): HasMany
     {
         return $this->hasMany(Nilai::class);
+    }
+
+    /**
+     * Get all of the project for the Mapel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function project(): HasMany
+    {
+        return $this->hasMany(Project::class);
     }
 
     function avatar($real_size = false)

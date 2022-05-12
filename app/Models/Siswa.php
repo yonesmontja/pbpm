@@ -161,6 +161,17 @@ class Siswa extends Model
     {
         return $this->hasMany(Extra::class);
     }
+
+    /**
+     * Get all of the project for the Siswa
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function project(): HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
+
     /**
      * Get the kelas that owns the Siswa
      *

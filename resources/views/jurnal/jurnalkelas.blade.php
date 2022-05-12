@@ -1,7 +1,7 @@
 @extends('layouts.boxed')
 
 @section('title')
-  <title> AdminLTE 3 | Jurnal Asrama </title>
+  <title> AdminLTE 3 | Jurnal Kelas </title>
 @endsection
 
 @section('content')
@@ -12,13 +12,13 @@
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark"> Jurnal <small>Asrama</small></h1>
+            <h1 class="m-0 text-dark"> Jurnal <small>Kelas</small></h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
               <li class="breadcrumb-item"><a href="/jurnalringkasan">Jurnal</a></li>
-              <li class="breadcrumb-item active">Asrama</li>
+              <li class="breadcrumb-item active">Kelas</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -33,26 +33,26 @@
           <div class="col-lg-6">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Jurnal Asrama</h5>
+                <h5 class="card-title">Jurnal Kelas</h5>
 
                 <p class="card-text">
-                  Jurnal Asrama menjadi bukti otentik proses pengkajian budaya papua dan modernisasi.
+                  Jurnal Kelas menjadi bukti otentik proses pengkajian budaya papua dan modernisasi.
                 </p>
 
-                <a href="#" class="card-link">Tautan Jurnal Asrama</a>
-                <a href="#" class="card-link">Detil Jurnal Asrama</a>
+                <a href="#" class="card-link">Tautan Jurnal Kelas</a>
+                <a href="#" class="card-link">Detil Jurnal Kelas</a>
               </div>
             </div>
 
             <div class="card card-primary card-outline">
               <div class="card-body">
-                <h5 class="card-title">Jurnal Asrama</h5>
+                <h5 class="card-title">Jurnal Kelas</h5>
 
                 <p class="card-text">
-                  Jurnal Asrama mendeskripsikan penguatan dan penanaman nilai-nilai kehidupan.
+                  Jurnal Kelas mendeskripsikan penguatan dan penanaman nilai-nilai kehidupan.
                 </p>
-                <a href="#" class="card-link">Tautan Jurnal Asrama</a>
-                <a href="#" class="card-link">Detil Jurnal Asrama</a>
+                <a href="#" class="card-link">Tautan Jurnal Kelas</a>
+                <a href="#" class="card-link">Detil Jurnal Kelas</a>
               </div>
             </div><!-- /.card -->
           </div>
@@ -60,7 +60,7 @@
           <div class="col-lg-6">
             <div class="card">
               <div class="card-header">
-                <h5 class="card-title m-0">Jurnal Asrama</h5>
+                <h5 class="card-title m-0">Jurnal Kelas</h5>
               </div>
               <div class="card-body">
                 <h6 class="card-title">Jurnal Baca</h6>
@@ -72,7 +72,7 @@
 
             <div class="card card-primary card-outline">
               <div class="card-header">
-                <h5 class="card-title m-0">Jurnal Asrama</h5>
+                <h5 class="card-title m-0">Jurnal Kelas</h5>
               </div>
               <div class="card-body">
                 <h6 class="card-title">Surat Keberagaman</h6>

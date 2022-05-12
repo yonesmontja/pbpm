@@ -46,6 +46,7 @@ use App\Http\Controllers\TujuanController;
 use App\Http\Controllers\WidgetController;
 use App\Http\Controllers\MailboxController;
 use App\Http\Controllers\PostingController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SasaranController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\KalenderController;
@@ -80,7 +81,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 {
 
 
-    Route::get('/dashboard',[DashboardController::class,'index']);
+    Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::resource('posting',PostingController::class);
     Route::resource('usertest',UsertestController::class);
     Route::resource('mapel',MapelController::class);
@@ -148,7 +149,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/kesiswaan',[KesiswaanController::class,'index'])->name('kesiswaan');
 	Route::get('/widget',[WidgetController::class,'index']);
 
-	Route::get('/jurnalringkasan',[JurnalController::class,'index']);
+	Route::get('/jurnalringkasan',[JurnalController::class,'index'])->name('jurnalringkasan');
 	Route::get('/jurnalsiswa',[JurnalController::class,'jurnalsiswa'])->name('jurnalsiswa');
 	Route::get('/jurnalkelas',[JurnalController::class,'jurnalkelas'])->name('jurnalkelas');
 	Route::get('/jurnalbelajar',[JurnalController::class,'jurnalbelajar'])->name('jurnalbelajar');
@@ -157,9 +158,9 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/jurnal/{jurnal}/edit',[JurnalController::class,'jurnaledit']);
 	Route::post('/jurnal/{jurnal}/update',[JurnalController::class,'jurnalupdate']);
 
-	Route::get('/grafiknilai',[GrafikController::class,'grafiknilai']);
-	Route::get('/grafikmateri',[GrafikController::class,'grafikmateri']);
-	Route::get('/grafikkompetensi',[GrafikController::class,'grafikkompetensi']);
+	Route::get('/grafiknilai',[GrafikController::class,'grafiknilai'])->name('grafiknilai');
+	Route::get('/grafikmateri',[GrafikController::class,'grafikmateri'])->name('grafikmateri');
+	Route::get('/grafikkompetensi',[GrafikController::class,'grafikkompetensi'])->name('grafikkompetensi');
 
 	Route::get('/kalender',[KalenderController::class,'kalender']);
     Route::get('full-calender',[KalenderController::class,'index']);
@@ -185,10 +186,13 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 
 	Route::get('/profile/{id}/profile',[UserController::class,'profile1']);
 	Route::get('/portofolio',[UserController::class,'portofolio']);
-	Route::get('/projects',[UserController::class,'projects']);
-	Route::get('/projects-add',[UserController::class,'projects_add']);
-	Route::get('/projects-edit',[UserController::class,'projects_edit']);
-	Route::get('/projects-detail',[UserController::class,'projects_detail']);
+
+	Route::get('/projects',[ProjectController::class,'projects']);
+	Route::get('/projects-add',[ProjectController::class,'projects_add']);
+    Route::post('/projects-create',[ProjectController::class,'projects_create']);
+	Route::get('/projects-edit',[ProjectController::class,'projects_edit']);
+	Route::get('/projects/{id}/detail',[ProjectController::class,'projects_detail']);
+    //Route::get('/getSiswa/{id}', [ProjectController::class, 'getSiswa']);
 
     Route::get('online-user',[UserController::class,'index']);
 	Route::get('/user',[UserController::class,'user']);
@@ -338,8 +342,8 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']], function()
 	Route::get('/my_profile/{id}/myprofile',[UserController::class,'my_profile']);
 });
 
-Route::get('/{slug}',[
-	'uses' => 'App\Http\Controllers\JurnalController@singlepost',
-	'as' => 'site.single.post'
-]);
+//Route::get('/{slug}',[
+//	'uses' => 'App\Http\Controllers\JurnalController@singlepost',
+//	'as' => 'site.single.post'
+//]);
 

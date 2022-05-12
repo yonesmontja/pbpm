@@ -86,13 +86,6 @@
     <script src="{{ asset('/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('/admin/dist/js/dataTables.buttons.min.js') }}"></script>
 
-    jquery.dataTables.min.js
-    dataTables.buttons.min.js
-    jszip.min.js
-    pdfmake.min.js
-    vfs_fonts.js
-    buttons.html5.min.js
-    buttons.print.min.js
     <!-- AdminLTE App -->
     <script src="{{ asset('/admin/dist/js/adminlte.min.js') }}"></script>
     <!-- AdminLTE for demo purposes -->

@@ -36,22 +36,7 @@ class UserController extends Controller
     {
     	return view('profile.ecommerce');
     }
-    public function projects()
-    {
-    	return view('profile.projects');
-    }
-    public function projects_add()
-    {
-    	return view('profile.projects-add');
-    }
-    public function projects_edit()
-    {
-    	return view('profile.projects-edit');
-    }
-    public function projects_detail()
-    {
-    	return view('profile.projects-detail');
-    }
+
     public function contacts()
     {
     	$siswa = Siswa::all();

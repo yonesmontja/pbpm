@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Nilai;
+use App\Models\Project;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -53,6 +54,17 @@ class Guru extends Model
     {
         return $this->hasMany(Nilai::class);
     }
+
+    /**
+     * Get all of the project for the Guru
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function project(): HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
+
     public function user()
     {
         return $this -> belongsTo('App\Models\User','user_id');

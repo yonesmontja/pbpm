@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Nilai;
+use App\Models\Project;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -28,6 +29,17 @@ class Kompetensiinti extends Model
     {
         return $this->hasMany(Nilai::class);
     }
+
+    /**
+     * Get all of the project for the Kompetensiinti
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function project(): HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
+
     public function level()
     {
     	return $this -> belongsTo(Level::class);
