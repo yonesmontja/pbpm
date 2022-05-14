@@ -51,14 +51,14 @@
 
                                  <h3 class="profile-username text-center"><a href="#">{{ $kelas->kelas }} </a></h3>
 
-                                 <p class="text-muted text-center">Kelas</p>
+                                 <p class="text-muted text-center">{{ $kelas->nama }}</p>
 
                                  <ul class="list-group list-group-unbordered mb-3">
                                      <li class="list-group-item">
-                                         <b>Kelas</b> <a class="float-right">{{ $kelas->count() }}</a>
+                                         <b>Jumlah siswa</b> <a class="float-right">{{ $jumlah_siswa }}</a>
                                      </li>
                                      <li class="list-group-item">
-                                         <b>Following</b> <a class="float-right">543</a>
+                                         <b>Wali Kelas</b> <a class="float-right">{{ $wali_kelas }}</a>
                                      </li>
                                      <li class="list-group-item">
                                          <b>Friends</b> <a class="float-right">13,287</a>

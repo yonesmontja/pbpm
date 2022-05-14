@@ -65,6 +65,16 @@ class Guru extends Model
         return $this->hasMany(Project::class);
     }
 
+    /**
+     * Get the kelas associated with the Guru
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function kelas(): HasOne
+    {
+        return $this->hasOne(Kelas::class);
+    }
+
     public function user()
     {
         return $this -> belongsTo('App\Models\User','user_id');

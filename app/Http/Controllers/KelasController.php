@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use App\Models\Kelas;
 use App\Models\Level;
 use App\Models\Mapel;
+use App\Models\Nilai;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -13,9 +16,28 @@ class KelasController extends Controller
     public function profile($id)
     {
     	$mapel = Mapel::all();
+
         $kelas = Kelas::find($id);
-        //dd($kelas->kelas);
-    	return view('kelas.profile',['kelas' => $kelas,'mapel'=>$mapel]);
+        $nama_kelas = Kelas::where('id','=',$id)->pluck('nama');
+        //dd($nama_kelas);
+        $nama_siswa = Siswa::where('kelas','=',$nama_kelas)->pluck('nama_depan');
+        $jumlah_siswa = Siswa::where('kelas','=',$nama_kelas)->count();
+        $id_guru = Kelas::where('id','=',$id)->pluck('guru_id')->first();
+        //dd(collect($id_guru));
+        $wali_kelas = Guru::all()->where('id','=',$id_guru)->pluck('nama_guru')->first;
+        dd($wali_kelas);
+        $rata_kelas1 = Nilai::all()->where('kelas_id','=',$id)->pluck('nilai')->avg();
+        //dd($rata_kelas1);
+        $rata_kelas = number_format((float)$rata_kelas1, 1, '.', '');
+        //dd($rata_kelas);
+    	return view('kelas.profile',[
+            'kelas' => $kelas,
+            'nama_siswa' => $nama_siswa,
+            'jumlah_siswa' => $jumlah_siswa,
+            'wali_kelas' => $wali_kelas,
+            'mapel' => $mapel,
+            'rata_kelas' => $rata_kelas
+        ]);
     }
     public function index()
     {

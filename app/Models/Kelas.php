@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Guru;
 use App\Models\Extra;
 use App\Models\Level;
 use App\Models\Nilai;
@@ -16,7 +17,7 @@ class Kelas extends Model
 {
     use HasFactory;
     protected $table = 'kelas';
-    protected $fillable=['level_id','nama','avatar'];
+    protected $fillable=['level_id','guru_id','nama','avatar'];
     /**
      * Get the level that owns the Kelas
      *
@@ -26,6 +27,17 @@ class Kelas extends Model
     {
         return $this->belongsTo(Level::class, 'level_id', 'id');
     }
+
+    /**
+     * Get the guru that owns the Kelas
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function guru(): BelongsTo
+    {
+        return $this->belongsTo(Guru::class, 'guru_id', 'id');
+    }
+
     /**
      * Get the nilai that owns the Kelas
      *
