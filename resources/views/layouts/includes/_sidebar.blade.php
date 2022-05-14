@@ -72,12 +72,7 @@
                                       <p>Ringkasan Jurnal</p>
                                   </a>
                               </li>
-                              <li class="nav-item">
-                                  <a href="/jurnalpost" class="nav-link {{ set_active('jurnalpost') }}">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>Jurnal Post</p>
-                                  </a>
-                              </li>
+
                               <li class="nav-item">
                                   <a href="/jurnalsiswa" class="nav-link {{ set_active('jurnalsiswa') }}">
                                       <i class="far fa-circle nav-icon"></i>
@@ -176,23 +171,6 @@
                                   </a>
                               </li>
                           </ul>
-                          <ul class="nav nav-treeview">
-                              <li class="nav-item">
-                                  <a href="/skl" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>Data SKL</p>
-                                  </a>
-                              </li>
-                          </ul>
-                          <ul class="nav nav-treeview">
-                              <li class="nav-item">
-                                  <a href="/kompetensiinti" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>Data KI</p>
-                                  </a>
-                              </li>
-                          </ul>
-
                       </li>
                       <li class="nav-item has-treeview menu-open">
                           <a href="/dashboard" class="nav-link active">

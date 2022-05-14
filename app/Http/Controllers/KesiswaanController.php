@@ -148,7 +148,7 @@ class KesiswaanController extends Controller
             ->avg('nilai');
             $mapel_this_week[] = number_format((float)$mapel_this_week_old, 2, '.', '');
         }
-        for($penilaian = 1; $penilaian < 14; $penilaian++)
+        for($penilaian = 1; $penilaian < 6; $penilaian++)
         {
             $penilaian_old = Nilai::where('penilaian_id','=',$penilaian)
                 -> select('created_at','nilai')
@@ -161,7 +161,7 @@ class KesiswaanController extends Controller
             $penilaian_this_month[] = number_format((float)$penilaian_old, 2, '.', '');
             $penilaian_this_week[] = number_format((float)$penilaian_week_old, 2, '.', '');
         }
-        $penilaian_list = ['Tugas 1','Tugas 2','Tugas 3','Tugas 4','Tugas 5','Latihan 1','Latihan 2','Latihan 3','Latihan 4','Latihan 5','UH','PTS','PAS'];
+        $penilaian_list = ['Tugas','Latihan','UH','PTS','PAS'];
         //dd($penilaian_this_month);
         $TotalSpent0 = DB::table('nilai')
         ->select('created_at','nilai')

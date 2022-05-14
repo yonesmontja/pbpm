@@ -99,7 +99,7 @@
                 <!-- Main row -->
                 <div class="row">
                     <!-- Left col -->
-                    <section class="col-lg-6 connectedSortable">
+                    <section class="col-lg-9 connectedSortable">
                         <!-- Custom tabs (Charts with tabs)-->
                         <div class="card">
                             <div class="card-header">
@@ -110,12 +110,10 @@
                                 <div class="card-tools">
                                     <ul class="nav nav-pills ml-auto">
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Nilai
-                                                Siswa</a>
+                                            <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Nilai Siswa</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#sales-chart" data-toggle="tab">Rata-rata
-                                                Nilai</a>
+                                            <a class="nav-link" href="#sales-chart" data-toggle="tab">Rata-rata Nilai</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -190,10 +188,8 @@
                             </div>
                             <!-- /.card-footer -->
                         </div>
-                    </section>
-                    <!-- /.Left col -->
-                    <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                    <section class="col-lg-6 connectedSortable">
+                        <!-- /.card -->
+                        <!-- BAR CHART -->
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Nilai Siswa</h3>
@@ -212,32 +208,13 @@
                                         style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                                 </div>
                             </div>
-                            <!-- /.card-body-->
-                            <div class="card-footer bg-transparent">
-                                <div class="row">
-                                    <div class="col-4 text-center">
-                                        <div id="sparkline-1"></div>
-                                        <div class="text-primary">Sikap</div>
-                                    </div>
-                                    <!-- ./col -->
-                                    <div class="col-4 text-center">
-                                        <div id="sparkline-2"></div>
-                                        <div class="text-primary">Skill</div>
-                                    </div>
-                                    <!-- ./col -->
-                                    <div class="col-4 text-center">
-                                        <div id="sparkline-3"></div>
-                                        <div class="text-primary">Pengetahuan</div>
-                                    </div>
-                                    <!-- ./col -->
-                                </div>
-                                <!-- /.row -->
-                            </div>
+                            <!-- /.card-body -->
                         </div>
                         <!-- STACKED BAR CHART -->
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Nilai Siswa</h3>
+
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                             class="fas fa-minus"></i>
@@ -254,6 +231,93 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
+                        <!-- /.card -->
+                        <!-- /.card -->
+
+                    </section>
+                    <!-- /.Left col -->
+                    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+                    <section class="col-lg-3 connectedSortable">
+                        <!-- Map card -->
+                        <div class="card bg-gradient-primary">
+                            <div class="card-header border-0">
+                                <h3 class="card-title">
+                                    <i class="fas fa-circle fa-flag mr-1"></i>
+                                    Kalender Pendidikan
+                                </h3>
+                                <!-- card tools -->
+                                <div class="card-tools">
+
+                                    <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse"
+                                        data-toggle="tooltip" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                                <!-- /.card-tools -->
+                            </div>
+                            <div class="card-body">
+                                <!-- Calendar -->
+                        <div class="card bg-gradient-success">
+                            <div class="card-header border-0">
+                                <h3 class="card-title">
+                                    <i class="far fa-calendar-alt"></i>
+                                    Kalender
+                                </h3>
+                                <!-- tools card -->
+                                <div class="card-tools">
+                                    <!-- button with a dropdown -->
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-success btn-sm dropdown-toggle"
+                                            data-toggle="dropdown" data-offset="-52">
+                                            <i class="fas fa-bars"></i></button>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a href="/load-events" class="dropdown-item">Tambah Kegiatan</a>
+                                            <a href="/incalendar" class="dropdown-item">Hapus Kegiatan</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="/kalender" class="dropdown-item">Lihat Kegiatan</a>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-success btn-sm" data-card-widget="remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                <!-- /. tools -->
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body pt-0">
+                                <!--The calendar -->
+                                <div id="calendar" style="width: 100%"></div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                            </div>
+                            <!-- /.card-body-->
+                            <div class="card-footer bg-transparent">
+                                <div class="row">
+                                    <div class="col-4 text-center">
+                                        <div id="sparkline-1"></div>
+                                        <div class="text-white">Sikap</div>
+                                    </div>
+                                    <!-- ./col -->
+                                    <div class="col-4 text-center">
+                                        <div id="sparkline-2"></div>
+                                        <div class="text-white">Skill</div>
+                                    </div>
+                                    <!-- ./col -->
+                                    <div class="col-4 text-center">
+                                        <div id="sparkline-3"></div>
+                                        <div class="text-white">Pengetahuan</div>
+                                    </div>
+                                    <!-- ./col -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                        </div>
+                        <!-- /.card -->
                     </section>
                     <!-- right col -->
                 </div>
@@ -409,9 +473,7 @@
             //-------------
             var barChartCanvas = $('#barChart').get(0).getContext('2d')
             var barChartData = {
-                labels: ['Agama Islam', 'Agama Kristen', 'Agama Katolik', 'PPKn', 'B. Indonesia', 'Matematika',
-                    'IPA', 'IPS', 'PJOK', 'SBK'
-                ],
+                labels: ['Agama Islam', 'Agama Kristen', 'Agama Katolik', 'PPKn', 'B. Indonesia', 'Matematika', 'IPA','IPS','PJOK','SBK'],
                 datasets: [{
                         label: 'Pemetaan Awal',
                         backgroundColor: 'rgba(60,141,188,0.9)',
@@ -422,16 +484,16 @@
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(60,141,188,1)',
                         data: [{!! json_encode($islam_average) !!},
-                            {!! json_encode($protestan_average) !!},
-                            {!! json_encode($katolik_average) !!},
-                            {!! json_encode($ppkn_average) !!},
-                            {!! json_encode($indonesia_average) !!},
-                            {!! json_encode($matematika_average) !!},
-                            {!! json_encode($ipa_average) !!},
-                            {!! json_encode($ips_average) !!},
-                            {!! json_encode($pjok_average) !!},
-                            {!! json_encode($sbk_average) !!},
-                        ]
+                        {!! json_encode($protestan_average) !!},
+                        {!! json_encode($katolik_average) !!},
+                        {!! json_encode($ppkn_average) !!},
+                        {!! json_encode($indonesia_average) !!},
+                        {!! json_encode($matematika_average) !!},
+                        {!! json_encode($ipa_average) !!},
+                        {!! json_encode($ips_average) !!},
+                        {!! json_encode($pjok_average) !!},
+                        {!! json_encode($sbk_average) !!},
+                    ]
                     },
                     {
                         label: 'Pemetaan Akhir',
@@ -443,16 +505,16 @@
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(220,220,220,1)',
                         data: [{!! json_encode($islam_average) !!},
-                            {!! json_encode($protestan_average) !!},
-                            {!! json_encode($katolik_average) !!},
-                            {!! json_encode($ppkn_average) !!},
-                            {!! json_encode($indonesia_average) !!},
-                            {!! json_encode($matematika_average) !!},
-                            {!! json_encode($ipa_average) !!},
-                            {!! json_encode($ips_average) !!},
-                            {!! json_encode($pjok_average) !!},
-                            {!! json_encode($sbk_average) !!},
-                        ]
+                        {!! json_encode($protestan_average) !!},
+                        {!! json_encode($katolik_average) !!},
+                        {!! json_encode($ppkn_average) !!},
+                        {!! json_encode($indonesia_average) !!},
+                        {!! json_encode($matematika_average) !!},
+                        {!! json_encode($ipa_average) !!},
+                        {!! json_encode($ips_average) !!},
+                        {!! json_encode($pjok_average) !!},
+                        {!! json_encode($sbk_average) !!},
+                    ]
                     },
                 ]
             }

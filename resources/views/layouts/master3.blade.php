@@ -304,7 +304,7 @@ to get the desired effect
                     datasets: [{
                             type: 'line',
                             data: {!! json_encode($mapel_last_week) !!},
-                            backgroundColor: 'transparent',
+                            backgroundColor: '#007bff',
                             borderColor: '#007bff',
                             pointBorderColor: '#007bff',
                             pointBackgroundColor: '#007bff',
@@ -315,7 +315,7 @@ to get the desired effect
                         {
                             type: 'line',
                             data: {!! json_encode($mapel_this_week) !!},
-                            backgroundColor: 'tansparent',
+                            backgroundColor: '#252626',
                             borderColor: '#252626',
                             pointBorderColor: '#252626',
                             pointBackgroundColor: '#252626',
@@ -370,7 +370,7 @@ to get the desired effect
                     datasets: [{
                             type: 'line',
                             data: {!! json_encode($mapel_this_week) !!},
-                            backgroundColor: 'transparent',
+                            backgroundColor: '#007bff',
                             borderColor: '#007bff',
                             pointBorderColor: '#007bff',
                             pointBackgroundColor: '#007bff',

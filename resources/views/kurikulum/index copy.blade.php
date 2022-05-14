@@ -374,7 +374,7 @@
                                 <div class="row">
                                     <div class="col-md-10">
                                         <div class="chart-responsive">
-                                            <h4 class="header-title" align="center">Jumlah Penilaian Semua Mapel per Bulan</h4>
+                                            <h4 class="header-title" align="center">Jumlah Penilaian per Bulan</h4>
                                             <canvas id="mataChart" class="chartjs" width="undefined"
                                                 height="undefined"></canvas>
                                         </div>
@@ -385,7 +385,7 @@
                         <!-- /.card -->
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Nilai Rata-rata Siswa per Kelas</h3>
+                                <h3 class="card-title">Nilai Siswa per Kelas</h3>
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                             class="fas fa-minus"></i>
@@ -519,6 +519,78 @@
                         </div>
                     </div>
                     <!-- /.col -->
+
+                    <!-- MAP & BOX PANE -->
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Pegunungan Bintang</h3>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body p-0">
+                                <div class="d-md-flex">
+                                    <div class="p-1 flex-fill" style="overflow: hidden">
+                                        <!-- Map will be created here -->
+                                        <div id="world-map-markers" style="height: 660px; overflow: hidden"
+                                            class="mapael">
+                                            <div class="map">
+                                                <svg height="2400" version="1.1" width="2400"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                    style="overflow: hidden; position: relative; top: -0.5px;"
+                                                    viewBox="0 0 959 593" preserveAspectRatio="xMinYMin">
+                                                    <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                                                        Created with Raphaël 2.3.0 and Mapael undefined
+                                                        (https://www.vincentbroute.fr/mapael/)
+                                                    </desc>
+                                                    <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                                                    </defs>
+
+                                                </svg>
+                                                <div class="mapTooltip" style="display: none;">
+                                                </div>
+                                                <div class="zoomButton zoomReset" title="Reset zoom">•</div>
+                                                <div class="zoomButton zoomIn" title="Zoom in">+</div>
+                                                <div class="zoomButton zoomOut" title="Zoom out">−</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-pane-right bg-success pt-2 pb-2 pl-4 pr-4">
+                                        <div class="description-block mb-4">
+                                            <div class="sparkbar pad" data-color="#fff">90,70,90,70,75,80,70</div>
+                                            <h5 class="description-header">8390</h5>
+                                            <span class="description-text">Sikap</span>
+                                        </div>
+                                        <!-- /.description-block -->
+                                        <div class="description-block mb-4">
+                                            <div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
+                                            <h5 class="description-header">30%</h5>
+                                            <span class="description-text">Keterampilan</span>
+                                        </div>
+                                        <!-- /.description-block -->
+                                        <div class="description-block">
+                                            <div class="sparkbar pad" data-color="#fff">90,50,90,70,61,83,63</div>
+                                            <h5 class="description-header">70%</h5>
+                                            <span class="description-text">Pengetahuan</span>
+                                        </div>
+                                        <!-- /.description-block -->
+                                    </div><!-- /.card-pane-right -->
+                                </div><!-- /.d-md-flex -->
+
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+
+                    </div>
                 </div>
             </div>
             <!-- /.row -->

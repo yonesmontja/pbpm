@@ -17,47 +17,111 @@ class DashboardController extends Controller
     public function index()
     {
     	$nilai = Nilai::all();
+
         $user = User::all();
         $totalsiswa = Siswa::all()->count();
-        $idsiswa = Siswa::all()->pluck('id');
-        $jumlah_siswa = Nilai::all()->pluck('siswa_id');
-        //dd($jumlah_siswa);
+        $idsiswa = Siswa::all()->where('kelas','=','Kelas 1');
+        //dd($idsiswa);
+        $jumlah_siswa1 = Nilai::all()->where('kelas_id','=',1)->pluck('kelas_id','siswa_id');
+        $jumlah_siswa2 = Nilai::all()->where('kelas_id','=',2)->pluck('kelas_id','siswa_id');
+        $jumlah_siswa3 = Nilai::all()->where('kelas_id','=',3)->pluck('kelas_id','siswa_id');
+        $jumlah_siswa4 = Nilai::all()->where('kelas_id','=',4)->pluck('kelas_id','siswa_id');
+        $jumlah_siswa5 = Nilai::all()->where('kelas_id','=',5)->pluck('kelas_id','siswa_id');
+        $jumlah_siswa6 = Nilai::all()->where('kelas_id','=',1);
+
+        foreach ($idsiswa as $user) {
+            $siswa_nilais_ul[] = $user->nama_depan;
+        }
+        //dd($siswa_nilais_ul);
+        //$jumlah_siswa6_array = collect($jumlah_siswa6a)->toArray();
+        //dd($jumlah_siswa6_array);
+        $nilais_ul = Nilai::pluck('nilai', 'siswa_id');
+        // kkm dan rentang nilai
         $kkm = 65;
         $kkm1 = $kkm + (100-$kkm)/3;
-        //dd($kkm1);
         $kkm2 = $kkm1 + (100-$kkm)/3;
-        //dd($kkm2);
-        $kkm4 = $kkm - ($kkm/2);
-        $siswa_ul = Nilai::all()
-            -> where('nilai','<',$kkm)
-            -> count();
-        $siswa_h = Nilai::all()
-            -> where('nilai','>=',$kkm2)
-            -> count();
-        $siswa_p = Nilai::all()
-            -> whereBetween('nilai',[$kkm1, $kkm2])
-            -> count();
-        $siswa_l = Nilai::all()
-            -> whereBetween('nilai',[$kkm, $kkm1])
-            -> count();
-        //dd($siswa_p);
-        $high = 626;
-        $islam_tugas1 = Nilai::all()->where('siswa_id','=',$high)
+        // ---------------------------------
+        $high = 457;
+        //kelas 1 437 s.d. 501
+        for($i=437; $i<= 500; $i++)
+        {
+            $islam_tugas = Nilai::all()->where('siswa_id','=',$i)
                                 ->where('mapel_id','=',1)
                                 ->where('penilaian_id','=',1)
                                 ->pluck('nilai')->avg();
-        $islam_tugas[0] = number_format(($islam_tugas1), 1, '.', '');
-        $islam_tugas2 = Nilai::all()->where('siswa_id','=',$high)
+            $islam_latihan = Nilai::all()->where('siswa_id','=',$i)
+                                ->where('mapel_id','=',1)
+                                ->where('penilaian_id','=',2)
+                                ->pluck('nilai')->avg();
+            $islam_ul = Nilai::all()->where('siswa_id','=',$i)
+                                ->where('mapel_id','=',1)
+                                ->where('penilaian_id','=',3)
+                                ->pluck('nilai')->avg();
+            $islam_ul_fix = number_format(($islam_ul), 1, '.', '');
+            $islam_latihan_fix = number_format(($islam_latihan), 1, '.', '');
+            $islam_tugas_fix = number_format(($islam_tugas), 1, '.', '');
+            $protestan_tugas = Nilai::all()->where('siswa_id','=',$i)
+                                ->where('mapel_id','=',1)
+                                ->where('penilaian_id','=',1)
+                                ->pluck('nilai')->avg();
+            $protestan_latihan = Nilai::all()->where('siswa_id','=',$i)
+                                ->where('mapel_id','=',1)
+                                ->where('penilaian_id','=',2)
+                                ->pluck('nilai')->avg();
+            $protestan_ul = Nilai::all()->where('siswa_id','=',$i)
+                                ->where('mapel_id','=',1)
+                                ->where('penilaian_id','=',3)
+                                ->pluck('nilai')->avg();
+            $protestan_ul_fix = number_format(($protestan_ul), 1, '.', '');
+            $protestan_latihan_fix = number_format(($protestan_latihan), 1, '.', '');
+            $protestan_tugas_fix = number_format(($protestan_tugas), 1, '.', '');
+
+            $islam_harian[] = number_format(($islam_ul_fix+$islam_latihan_fix+$islam_tugas_fix)/3, 1, '.', '');
+        }
+
+        foreach($islam_harian as $i)
+        {
+            if($i < $kkm)
+            {
+                $under_low[] = $i;
+            }
+        }
+        //dd(count($under_low));
+
+
+        $siswa_ul = Nilai::all()
+            -> where('penilaian_id','=',6)
+            -> where('nilai','<',$kkm)
+            -> count();
+
+        $id_siswa_ul = collect(Nilai::all()-> where('nilai','<', $kkm)) -> sortBy('siswa_id');
+        $siswa_h = Nilai::all()
+            -> where('penilaian_id','=',6)
+            -> where('nilai','>=',$kkm2)
+            -> count();
+        $siswa_p = Nilai::all()
+            -> where('penilaian_id','=',6)
+            -> whereBetween('nilai',[$kkm1, $kkm2])
+            -> count();
+        $siswa_l = Nilai::all()
+            -> where('penilaian_id','=',6)
+            -> whereBetween('nilai',[$kkm, $kkm1])
+            -> count();
+        //dd($siswa_p);
+
+        //dd(Nilai::all()->where('siswa_id','=',$high)->where('mapel_id','=',1)->where('penilaian_id','=',1));
+        $islam_latihan = Nilai::all()->where('siswa_id','=',$high)
                                 ->where('mapel_id','=',1)
                                 ->where('penilaian_id','=',2)
                                 ->pluck('nilai')->avg();
 
-        $islam_tugas[1] = number_format(($islam_tugas2), 1, '.', '');
-        $islam_tugas3 = Nilai::all()->where('siswa_id','=',$high)
+        $islam_harian[1] = number_format(($islam_latihan), 1, '.', '');
+        $islam_ul = Nilai::all()->where('siswa_id','=',$high)
                                 ->where('mapel_id','=',1)
-                                ->where('penilaian_id','=',2)
+                                ->where('penilaian_id','=',3)
                                 ->pluck('nilai')->avg();
-        $islam_tugas[2] = number_format(($islam_tugas3), 1, '.', '');
+        $islam_harian[2] = number_format(($islam_ul), 1, '.', '');
+        //dd($islam_harian);
         $islam_tugas4 = Nilai::all()->where('siswa_id','=',$high)
                                 ->where('mapel_id','=',1)
                                 ->where('penilaian_id','=',2)

@@ -32,7 +32,7 @@
                         <div class="card">
                             <div class="card-header border-0">
                                 <div class="d-flex justify-content-between">
-                                    <h3 class="card-title">Nilai Siswa</h3>
+                                    <h3 class="card-title">Grafik 1</h3>
                                     <a href="/nilai">View Report</a>
                                 </div>
                             </div>
@@ -40,7 +40,7 @@
                                 <div class="d-flex">
                                     <p class="d-flex flex-column">
                                         <span class="text-bold text-lg">{{ $last0week_average }}</span>
-                                        <span>Rata-rata Nilai</span>
+                                        <span>Nilai Rata-rata</span>
                                     </p>
                                     <p class="ml-auto d-flex flex-column text-right">
                                         @if ($last_week_average < 0)
@@ -67,12 +67,11 @@
 
                                 <div class="d-flex flex-row justify-content-end">
                                     <span class="mr-2">
-                                        <i class="fas fa-square text-gray"></i> Minggu lalu
+                                        <i class="fas fa-square text-grey"></i> Minggu lalu
                                     </span>
-
-                                    <span>
+                                    <span></span>
+                                    <span class="mr-2">
                                         <i class="fas fa-square text-primary"></i> Minggu ini
-
                                     </span>
                                 </div>
                             </div>
@@ -82,7 +81,7 @@
                         <div class="card">
                             <div class="card-header border-0">
                                 <div class="d-flex justify-content-between">
-                                    <h3 class="card-title">Nilai Siswa</h3>
+                                    <h3 class="card-title">Grafik 2</h3>
                                     <a href="/nilai">View Report</a>
                                 </div>
                             </div>
@@ -90,7 +89,7 @@
                                 <div class="d-flex">
                                     <p class="d-flex flex-column">
                                         <span class="text-bold text-lg">{{ $last0week_average }}</span>
-                                        <span>Rata-rata Nilai</span>
+                                        <span>Nilai Rata-rata</span>
                                     </p>
                                     <p class="ml-auto d-flex flex-column text-right">
                                         @if ($last_week_average < 0)
@@ -115,10 +114,10 @@
                                 </div>
                                 <div class="d-flex flex-row justify-content-end">
                                     <span class="mr-2">
-                                        <i class="fas fa-square text-gray"></i> Minggu lalu
-
+                                        <i class="fas fa-square text-grey"></i> Minggu lalu
                                     </span>
-                                    <span>
+                                    <span></span>
+                                    <span class="mr-2">
                                         <i class="fas fa-square text-primary"></i> Minggu ini
                                     </span>
                                 </div>
@@ -131,7 +130,7 @@
                         <div class="card">
                             <div class="card-header border-0">
                                 <div class="d-flex justify-content-between">
-                                    <h3 class="card-title">Nilai Siswa</h3>
+                                    <h3 class="card-title">Grafik 3</h3>
                                     <a href="/nilai">View Report</a>
                                 </div>
                             </div>
@@ -139,7 +138,7 @@
                                 <div class="d-flex">
                                     <p class="d-flex flex-column">
                                         <span class="text-bold text-lg">{{ $this_month }}</span>
-                                        <span>Rata-rata nilai siswa</span>
+                                        <span>Nilai Rata-rata siswa</span>
                                     </p>
                                     <p class="ml-auto d-flex flex-column text-right">
                                         @if ($last_average < 0)
@@ -173,7 +172,6 @@
                                     <span class="mr-2">
                                         <i class="fas fa-square text-primary"></i> Bulan ini
                                     </span>
-
                                 </div>
                             </div>
                         </div>
@@ -182,7 +180,7 @@
                         <div class="card">
                             <div class="card-header border-0">
                                 <div class="d-flex justify-content-between">
-                                    <h3 class="card-title">Nilai Siswa</h3>
+                                    <h3 class="card-title">Grafik 4</h3>
                                     <a href="/nilai">View Report</a>
                                 </div>
                             </div>
@@ -190,7 +188,7 @@
                                 <div class="d-flex">
                                     <p class="d-flex flex-column">
                                         <span class="text-bold text-lg">{{ $this_month }}</span>
-                                        <span>Rata-rata nilai siswa</span>
+                                        <span>Nilai Rata-rata siswa</span>
                                     </p>
                                     <p class="ml-auto d-flex flex-column text-right">
                                         @if ($last_average < 0)

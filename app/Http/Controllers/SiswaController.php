@@ -442,7 +442,7 @@ class SiswaController extends Controller
         //dd($kalimat);
         $data_siswa = Siswa::get();
         //menghitung nilai tugas
-        for($penilaian=1; $penilaian < 6; $penilaian++)
+        for($penilaian=1; $penilaian < 2; $penilaian++)
         {
             $tampung_tugas_islam = Nilai::all()
             ->where('siswa_id','=',$id)
@@ -699,7 +699,7 @@ class SiswaController extends Controller
         // --------------------------------------------------------------------
 
         //menghitung nilai latihan
-        for($penilaian=6; $penilaian < 11; $penilaian++)
+        for($penilaian=2; $penilaian < 3; $penilaian++)
         {
             $tampung_latihan_islam = Nilai::all()
             ->where('siswa_id','=',$id)
@@ -955,7 +955,7 @@ class SiswaController extends Controller
 
         // --------------------------------------------------------------------
         //menghitung nilai ulangan harian
-        for($penilaian=11; $penilaian < 12; $penilaian++)
+        for($penilaian=3; $penilaian < 4; $penilaian++)
         {
             $tampung_uh_islam = Nilai::all()
             ->where('siswa_id','=',$id)
@@ -1212,7 +1212,7 @@ class SiswaController extends Controller
 
         // --------------------------------------------------------------------
         //menghitung nilai pts
-        for($penilaian=12; $penilaian < 13; $penilaian++)
+        for($penilaian=4; $penilaian < 5; $penilaian++)
         {
             $tampung_pts_islam = Nilai::all()
             ->where('siswa_id','=',$id)
@@ -1468,7 +1468,7 @@ class SiswaController extends Controller
 
         // --------------------------------------------------------------------
         //menghitung nilai pas
-        for($penilaian=13; $penilaian < 14; $penilaian++)
+        for($penilaian=5; $penilaian < 6; $penilaian++)
         {
             $tampung_pas_islam = Nilai::all()
             ->where('siswa_id','=',$id)
@@ -2028,7 +2028,7 @@ class SiswaController extends Controller
         //$ratarata_raport = number_format((float)($ratarata_raport_pengetahuan+$ratarata_raport_pengetahuan)/2, 1, '.', '');
 
         //menghitung nilai keterampilan
-        for($penilaian=18; $penilaian < 30; $penilaian++)
+        for($penilaian=18; $penilaian < 22; $penilaian++)
         {
             $tampung_keterampilan_islam = Nilai::all()
             ->where('siswa_id','=',$id)
