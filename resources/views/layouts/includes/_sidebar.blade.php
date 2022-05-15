@@ -119,6 +119,23 @@
                           <a href="#" class="nav-link">
                               <i class="nav-icon fas fa-table"></i>
                               <p>
+                                  Raport
+                                  <i class="fas fa-angle-left right"></i>
+                              </p>
+                          </a>
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="/test" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Raport Siswa</p>
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                          <a href="#" class="nav-link">
+                              <i class="nav-icon fas fa-table"></i>
+                              <p>
                                   Tabel Data
                                   <i class="fas fa-angle-left right"></i>
                               </p>
@@ -128,14 +145,6 @@
                                   <a href="/kelas" class="nav-link">
                                       <i class="far fa-circle nav-icon"></i>
                                       <p>Data Kelas</p>
-                                  </a>
-                              </li>
-                          </ul>
-                          <ul class="nav nav-treeview">
-                              <li class="nav-item">
-                                  <a href="/test" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>Data Siswa</p>
                                   </a>
                               </li>
                           </ul>
@@ -202,7 +211,7 @@
                           <a href="#" class="nav-link">
                               <i class="nav-icon fas fa-book"></i>
                               <p>
-                                  Pages
+                                  Project Siswa
                                   <i class="fas fa-angle-left right"></i>
                               </p>
                           </a>
