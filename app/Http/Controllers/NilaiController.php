@@ -63,8 +63,20 @@ class NilaiController extends Controller
     public function nilaicreate(Request $request)
     {
     	\App\Models\Nilai::create($request -> all());
-    	//return $request -> all();
-    	//return redirect('/nilai')->with('sukses','berhasil diinput');
+        $nilai = Nilai::create($request -> all());
+        $id = $nilai -> id;
+        $date = now();
+        \DB::table('penilaian_siswa')->insert([
+        [
+            'siswa_id'      => $request->input('siswa_id'),
+            'penilaian_id'  => $request->input('penilaian_id'),
+            'nilai' => $request-> input('nilai'),
+            'nilai_id' => $id,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]
+        ]);
+
     	return Redirect::back()->with('sukses','berhasil diinput');
 
     }
@@ -81,6 +93,16 @@ class NilaiController extends Controller
     public function nilaiupdate(Request $request, Nilai $nilai)
     {
         $nilai ->update($request->all());
+        $date = now();
+        DB::table('penilaian_siswa')->update([
+        [
+            'siswa_id'      => $request->input('siswa_id'),
+            'penilaian_id'  => $request->input('penilaian_id'),
+            'nilai' => $request-> input('nilai'),
+
+            'updated_at' => $date
+        ]
+        ]);
         return redirect('/nilai')->with('sukses','berhasil diupdate!');
     }
     public function import_excel(Request $request)
@@ -207,5 +229,28 @@ class NilaiController extends Controller
 
         // alihkan halaman kembali
         return redirect('/extra');
+    }
+    public function audit()
+    {
+        $nilai = Nilai::all();
+        $article = Nilai::with('audits')->find(325);
+        $all = $article->audits()->with('user')->get()->toArray();
+        //dd($all);
+        //$all = $nilai -> audits;
+
+        // Get first available Article
+        //dd($article);
+
+        // Get latest Audit
+        $audit = $article->audits()->latest()->first();
+
+        var_dump($audit->getMetadata());
+        //return Nilai::with('audits')->get();
+        //dd($all);
+
+        return view('nilai.audit',[
+            'nilai' => $nilai,
+            'all' => $all,
+        ]);
     }
 }

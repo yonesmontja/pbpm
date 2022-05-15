@@ -11,12 +11,17 @@ use App\Models\Kompetensiinti;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Nilai extends Model
+class Nilai extends Model implements Auditable
 {
     use HasFactory;
+
+    use \OwenIt\Auditing\Auditable;
+
     protected $table = 'nilai';
-    protected $fillable = ['nilai_start',
+    protected $fillable = [
+    'nilai_start',
     'nilai',
     'kompetensi_inti_id',
     'mapel_id',

@@ -165,21 +165,6 @@ class SiswaController extends Controller
     {
 
         $siswa ->update($request->all());
-        //if($request->hasFile('avatar')){
-        //    $request->file('avatar')->move('/images/',$request->file('avatar')->getClientOriginalName());
-        //    $siswa->avatar= $request->file('avatar')->getClientOriginalName();
-        //    $siswa->save();
-        //}
-        if ($request->hasFile('avatar')) {
-            $siswa->delete_avatar();
-            $avatar = $request->file('avatar');
-            $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
-            $img = Image::make($avatar->path());
-            $img->resize('120', '120')
-                ->save(public_path('/images') . '/small_' . $file_name);
-            $avatar->move('/images', $file_name);
-            $siswa->avatar = $file_name;
-        }
         $siswa->nama_depan = $request->nama_depan;
         $siswa->nama_belakang = $request->nama_belakang;
         $siswa->email = $request->email;
@@ -193,12 +178,18 @@ class SiswaController extends Controller
 
     public function editnilai(Request $request)
     {
+
+
         if ($request->ajax()) {
             Nilai::find($request->pk)
                 ->update([
                     $request->name => $request->value
                 ]);
-
+            $date = now();
+            DB::table('penilaian_siswa')->where('nilai_id', Nilai::find($request -> pk)->id)->update([
+                    $request ->name => $request -> value,
+                    'updated_at' => $date,
+            ]);
             return response()->json(['success' => true]);
         }
     }

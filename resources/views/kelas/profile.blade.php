@@ -61,7 +61,7 @@
                                          <b>Wali Kelas</b> <a class="float-right">{{ $wali_kelas }}</a>
                                      </li>
                                      <li class="list-group-item">
-                                         <b>Friends</b> <a class="float-right">13,287</a>
+                                         <b>Nilai Rata-rata Kelas</b> <a class="float-right">{{ $rata_kelas }}</a>
                                      </li>
                                  </ul>
                              </div>
@@ -72,40 +72,39 @@
                          <!-- About Me Box -->
                          <div class="card card-primary">
                              <div class="card-header">
-                                 <h3 class="card-title">About Me</h3>
+                                 <h3 class="card-title">Peta Materi</h3>
                              </div>
                              <!-- /.card-header -->
                              <div class="card-body">
-                                 <strong><i class="fas fa-book mr-1"></i> Education</strong>
+                                 <strong><i class="fas fa-book mr-1"></i> Capaian</strong>
 
                                  <p class="text-muted">
-                                     B.S. in Computer Science from the University of Tennessee at Knoxville
+                                     Capaian kelas
                                  </p>
 
                                  <hr>
 
-                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Konsep PBPM</strong>
 
-                                 <p class="text-muted">Malibu, California</p>
+                                 <p class="text-muted">Expert Kampung</p>
 
                                  <hr>
 
                                  <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
 
                                  <p class="text-muted">
-                                     <span class="tag tag-danger">UI Design</span>
-                                     <span class="tag tag-success">Coding</span>
-                                     <span class="tag tag-info">Javascript</span>
-                                     <span class="tag tag-warning">PHP</span>
-                                     <span class="tag tag-primary">Node.js</span>
+                                     <span class="tag tag-danger">Peta Aset</span>
+                                     <span class="tag tag-success">Keluarga</span>
+                                     <span class="tag tag-info">Kampung</span>
+                                     <span class="tag tag-warning">Aset Alam</span>
+                                     <span class="tag tag-primary">Budaya</span>
                                  </p>
 
                                  <hr>
 
-                                 <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+                                 <strong><i class="far fa-file-alt mr-1"></i> SKL</strong>
 
-                                 <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                                     fermentum enim neque.</p>
+                                 <p class="text-muted">Mampu berimajinasi tentang Kampungnya.</p>
                              </div>
                              <!-- /.card-body -->
                          </div>
@@ -120,7 +119,7 @@
                                              data-toggle="tab">Kelas</a></li>
 
                                      <li class="nav-item"><a class="nav-link" href="#activity"
-                                             data-toggle="tab">Activity</a></li>
+                                             data-toggle="tab">Aktivitas</a></li>
                                      <li class="nav-item"><a class="nav-link" href="#timeline"
                                              data-toggle="tab">Timeline</a></li>
                                      <li class="nav-item"><a class="nav-link" href="#settings"
@@ -161,28 +160,38 @@
                                                  </div>
                                              </div>
                                              <!-- /.card-header -->
-                                             <div class="card-body p-0">
-                                                 <table class="table">
+                                             <div class="card-body">
+                                                 <table id="example2" class="table table-bordered table-hover">
                                                      <thead>
                                                          <tr>
-                                                             <th style="width: 10px">Level</th>
-                                                             <th style="width: 80px">Kelas</th>
+                                                             <th style="width: 10px">Nama</th>
+                                                             <th>ID siswa</th>
+                                                             <th>Penilaian</th>
+                                                             <th>Mapel</th>
+                                                             <th style="width: 80px">Nilai Siswa</th>
                                                              <th>Avatar</th>
-
                                                          </tr>
                                                      </thead>
                                                      <tbody>
-
-                                                         <tr>
-                                                             <td>
-                                                                 <a href="/level/{{ $kelas->level->id }}/profile">{{ $kelas->level->level }}</a>
-                                                             </td>
-                                                             <td>{{ $kelas->nama }}</td>
-                                                             <td><img class="profile-user-img img-fluid img-circle"
-                                                                     src="{{ $kelas->avatar() }}"
-                                                                     alt="User profile picture"></td>
-                                                         </tr>
-
+                                                         @foreach ($nilai_rata_siswa as $k => $ns)
+                                                             <tr>
+                                                                 <td>
+                                                                     <a href="/test/{{ $ns->siswa_id }}/profile">{{ $ns->siswa->nama_depan }}
+                                                                         {{ $ns->siswa->nama_belakang }}</a>
+                                                                 </td>
+                                                                 <td><a href="/test/{{ $ns->siswa_id }}/profile">{{ $ns->siswa_id }}
+                                                                 </td>
+                                                                 <td><a
+                                                                         href="/penilaian/{{ $ns->penilaian->id }}/profile">{{ $ns->penilaian->nama_tes }}
+                                                                 </td>
+                                                                 <td><a href="/mapel/{{ $ns->mapel->id }}">{{ $ns->mapel->nama_mapel }}
+                                                                 </td>
+                                                                 <td>{{ $ns->nilai }}</td>
+                                                                 <td><img class="profile-user-img img-fluid img-circle"
+                                                                         src="{{ $ns->siswa->avatar() }}"
+                                                                         alt="User profile picture"></td>
+                                                             </tr>
+                                                         @endforeach
                                                      </tbody>
                                                  </table>
                                              </div>
@@ -192,141 +201,61 @@
                                      <!-- /.tab-pane -->
 
                                      <div class="tab-pane" id="activity">
-                                         <!-- Post -->
-                                         <div class="post">
-                                             <div class="user-block">
-                                                 <img class="img-circle img-bordered-sm"
-                                                     src="{{ asset('/admin/dist/img/user1-128x128.jpg') }}"
-                                                     alt="user image">
-                                                 <span class="username">
-                                                     <a href="#">Jonathan Burke Jr.</a>
-                                                     <a href="#" class="float-right btn-tool"><i
-                                                             class="fas fa-times"></i></a>
-                                                 </span>
-                                                 <span class="description">Shared publicly - 7:30 PM today</span>
-                                             </div>
-                                             <!-- /.user-block -->
-                                             <p>
-                                                 Lorem ipsum represents a long-held tradition for designers,
-                                                 typographers and the like. Some people hate it and argue for
-                                                 its demise, but others ignore the hate as they create awesome
-                                                 tools to help create filler text for everyone from bacon lovers
-                                                 to Charlie Sheen fans.
-                                             </p>
-
-                                             <p>
-                                                 <a href="#" class="link-black text-sm mr-2"><i
-                                                         class="fas fa-share mr-1"></i> Share</a>
-                                                 <a href="#" class="link-black text-sm"><i
-                                                         class="far fa-thumbs-up mr-1"></i> Like</a>
-                                                 <span class="float-right">
-                                                     <a href="#" class="link-black text-sm">
-                                                         <i class="far fa-comments mr-1"></i> Comments (5)
-                                                     </a>
-                                                 </span>
-                                             </p>
-
-                                             <input class="form-control form-control-sm" type="text"
-                                                 placeholder="Type a comment">
-                                         </div>
-                                         <!-- /.post -->
-
-                                         <!-- Post -->
-                                         <div class="post clearfix">
-                                             <div class="user-block">
-                                                 <img class="img-circle img-bordered-sm"
-                                                     src="{{ asset('/admin/dist/img/user7-128x128.jpg') }}"
-                                                     alt="User Image">
-                                                 <span class="username">
-                                                     <a href="#">Sarah Ross</a>
-                                                     <a href="#" class="float-right btn-tool"><i
-                                                             class="fas fa-times"></i></a>
-                                                 </span>
-                                                 <span class="description">Sent you a message - 3 days ago</span>
-                                             </div>
-                                             <!-- /.user-block -->
-                                             <p>
-                                                 Lorem ipsum represents a long-held tradition for designers,
-                                                 typographers and the like. Some people hate it and argue for
-                                                 its demise, but others ignore the hate as they create awesome
-                                                 tools to help create filler text for everyone from bacon lovers
-                                                 to Charlie Sheen fans.
-                                             </p>
-
-                                             <form class="form-horizontal">
-                                                 <div class="input-group input-group-sm mb-0">
-                                                     <input class="form-control form-control-sm" placeholder="Response">
-                                                     <div class="input-group-append">
-                                                         <button type="submit" class="btn btn-danger">Send</button>
+                                         <div class="row">
+                                             <div class="col-sm-12">
+                                                 <div class="card">
+                                                     <div class="card-header border-0">
+                                                         <div class="d-flex justify-content-between">
+                                                             <h3 class="card-title">Grafik 2</h3>
+                                                             <a href="/nilai">View Report</a>
+                                                         </div>
+                                                     </div>
+                                                     <div class="card-body">
+                                                         <div class="d-flex">
+                                                             <p class="d-flex flex-column">
+                                                                 <span
+                                                                     class="text-bold text-lg">{{ $last0week_average }}</span>
+                                                                 <span>Nilai Rata-rata</span>
+                                                             </p>
+                                                             <p class="ml-auto d-flex flex-column text-right">
+                                                                 @if ($last_week_average < 0)
+                                                                     <span class="text-danger">
+                                                                         <i class="fas fa-arrow-down"></i>
+                                                                         {{ $last_week_average * -1 }}%
+                                                                     </span>
+                                                                 @elseif($last_week_average == 0)
+                                                                     <span class="text-info">
+                                                                         <i class="fas fa-arrow-circle-right"></i>
+                                                                         {{ $last_week_average }}%
+                                                                     </span>
+                                                                 @elseif ($last_week_average > 0)
+                                                                     <span class="text-success">
+                                                                         <i class="fas fa-arrow-up"></i>
+                                                                         {{ $last_week_average }}%
+                                                                     </span>
+                                                                 @endif
+                                                                 <span class="text-muted">Sejak minggu lalu</span>
+                                                             </p>
+                                                         </div>
+                                                         <!-- /.d-flex -->
+                                                         <div class="position-relative mb-4">
+                                                             <canvas id="sales-chart2" height="200"></canvas>
+                                                         </div>
+                                                         <div class="d-flex flex-row justify-content-end">
+                                                             <span class="mr-2">
+                                                                 <i class="fas fa-square text-grey"></i> Minggu lalu
+                                                             </span>
+                                                             <span></span>
+                                                             <span class="mr-2">
+                                                                 <i class="fas fa-square text-primary"></i> Minggu ini
+                                                             </span>
+                                                         </div>
                                                      </div>
                                                  </div>
-                                             </form>
-                                         </div>
-                                         <!-- /.post -->
-
-                                         <!-- Post -->
-                                         <div class="post">
-                                             <div class="user-block">
-                                                 <img class="img-circle img-bordered-sm"
-                                                     src="{{ asset('/admin/dist/img/user6-128x128.jpg') }}"
-                                                     alt="User Image">
-                                                 <span class="username">
-                                                     <a href="#">Adam Jones</a>
-                                                     <a href="#" class="float-right btn-tool"><i
-                                                             class="fas fa-times"></i></a>
-                                                 </span>
-                                                 <span class="description">Posted 5 photos - 5 days ago</span>
+                                                 <!-- /.card -->
                                              </div>
-                                             <!-- /.user-block -->
-                                             <div class="row mb-3">
-                                                 <div class="col-sm-6">
-                                                     <img class="img-fluid"
-                                                         src="{{ asset('/admin/dist/img/photo1.png') }}" alt="Photo">
-                                                 </div>
-                                                 <!-- /.col -->
-                                                 <div class="col-sm-6">
-                                                     <div class="row">
-                                                         <div class="col-sm-6">
-                                                             <img class="img-fluid mb-3"
-                                                                 src="{{ asset('/admin/dist/img/photo2.png') }}"
-                                                                 alt="Photo">
-                                                             <img class="img-fluid"
-                                                                 src="{{ asset('/admin/dist/img/photo3.jpg') }}"
-                                                                 alt="Photo">
-                                                         </div>
-                                                         <!-- /.col -->
-                                                         <div class="col-sm-6">
-                                                             <img class="img-fluid mb-3"
-                                                                 src="{{ asset('/admin/dist/img/photo4.jpg') }}"
-                                                                 alt="Photo">
-                                                             <img class="img-fluid"
-                                                                 src="{{ asset('/admin/dist/img/photo1.png') }}"
-                                                                 alt="Photo">
-                                                         </div>
-                                                         <!-- /.col -->
-                                                     </div>
-                                                     <!-- /.row -->
-                                                 </div>
-                                                 <!-- /.col -->
-                                             </div>
-                                             <!-- /.row -->
-
-                                             <p>
-                                                 <a href="#" class="link-black text-sm mr-2"><i
-                                                         class="fas fa-share mr-1"></i> Share</a>
-                                                 <a href="#" class="link-black text-sm"><i
-                                                         class="far fa-thumbs-up mr-1"></i> Like</a>
-                                                 <span class="float-right">
-                                                     <a href="#" class="link-black text-sm">
-                                                         <i class="far fa-comments mr-1"></i> Comments (5)
-                                                     </a>
-                                                 </span>
-                                             </p>
-
-                                             <input class="form-control form-control-sm" type="text"
-                                                 placeholder="Type a comment">
                                          </div>
-                                         <!-- /.post -->
+
                                      </div>
                                      <!-- /.tab-pane -->
                                      <div class="tab-pane" id="timeline">
@@ -500,5 +429,69 @@
          </section>
          <!-- /.content -->
      </div>
-
+ @endsection
+ @section('footer')
+     <script src="{{ asset('/admin/plugins/chart.js/Chart.min.js') }}"></script>
+     <script>
+         $(function() {
+             /*
+              * LINE CHART
+              * ----------
+              */
+             var $salesChart = $('#sales-chart2')
+             var salesChart = new Chart($salesChart, {
+                 type: 'bar',
+                 data: {
+                     labels: {!! json_encode($penilaian_list) !!},
+                     datasets: [{
+                             backgroundColor: '#252626',
+                             borderColor: '#252626',
+                             data: {!! json_encode($penilaian_last_week) !!}
+                         },
+                         {
+                             backgroundColor: '#007bff',
+                             borderColor: '#007bff',
+                             data: {!! json_encode($penilaian_this_week) !!}
+                         }
+                     ]
+                 },
+                 options: {
+                     maintainAspectRatio: false,
+                     tooltips: {
+                         mode: mode,
+                         intersect: intersect
+                     },
+                     hover: {
+                         mode: mode,
+                         intersect: intersect
+                     },
+                     legend: {
+                         display: false
+                     },
+                     scales: {
+                         yAxes: [{
+                             display: true,
+                             gridLines: {
+                                 display: true,
+                                 lineWidth: '4px',
+                                 color: 'rgba(0, 0, 0, .2)',
+                                 zeroLineColor: 'transparent'
+                             },
+                             ticks: $.extend({
+                                 beginAtZero: true,
+                                 suggestedMax: 100,
+                             }, ticksStyle)
+                         }],
+                         xAxes: [{
+                             display: true,
+                             gridLines: {
+                                 display: false
+                             },
+                             ticks: ticksStyle
+                         }]
+                     }
+                 }
+             });
+            })
+     </script>
  @endsection

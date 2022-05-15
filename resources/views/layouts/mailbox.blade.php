@@ -82,9 +82,16 @@
     <script src="{{ asset('/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('/admin/dist/js/dataTables.buttons.min.js') }}"></script>
+    <!-- FLOT CHARTS -->
+    <script src="{{ asset('/admin/plugins/flot/jquery.flot.js') }}"></script>
+    <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+    <script src="{{ asset('/admin/plugins/flot-old/jquery.flot.resize.min.js') }}"></script>
+    <!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+    <script src="{{ asset('/admin/plugins/flot-old/jquery.flot.pie.min.js') }}"></script>
+    <!-- Page script -->
     <!-- AdminLTE App -->
     <script src="{{ asset('/admin/dist/js/adminlte.min.js') }}"></script>
-
+    <script src="{{ asset('/admin/plugins/chart.js/Chart.min.js') }}"></script>
     <!-- page script -->
     <!-- Page Script -->
     <script>
@@ -285,6 +292,31 @@
             });
         }, 3000);
     </script>
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "paging": true,
+                "pagingType": "numbers",
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+            });
+            $("#example2").DataTable({
+                "paging": true,
+                "pagingType": "numbers",
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+
     @yield('footer')
 </body>
 

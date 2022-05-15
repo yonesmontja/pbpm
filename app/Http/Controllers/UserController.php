@@ -120,4 +120,15 @@ class UserController extends Controller
         $user ->delete();
         return redirect('/user')->with('sukses','berhasil dihapus!');
     }
+    function save_user(Request $request){
+      $img = time()."_".$request->photo->getClientOriginalName();
+      $hobbies = implode(',', $request->hobbies);
+      $request->photo->move(public_path('uploads'), $img);
+      DB::insert('insert into users (email, password, country, gender, hobbies, photo) values (?, ?, ?, ?, ?, ?)',
+        [$request->email,
+        $request->pwd,
+        $request->country,
+        $request->gender,
+        $hobbies,$img]);
+  }
 }

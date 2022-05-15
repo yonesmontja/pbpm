@@ -21,6 +21,7 @@
     "laravel/ui": "^3.4",
     "laravolt/indonesia": "^0.32.0",
     "maatwebsite/excel": "^3.1",
+    "owen-it/laravel-auditing": "^13.0",
     "phpoffice/phpword": "^0.18.3",
     "symfony/mailer": "^6.0",
     "zendframework/zend-escaper": "^2.6"

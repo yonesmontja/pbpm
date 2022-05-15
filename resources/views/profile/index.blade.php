@@ -238,7 +238,7 @@
                                                                      <td>
                                                                          <a href="" class="update" data-name="nilai"
                                                                              data-url="/siswa/editnilai" data-type="text"
-                                                                             data-pk="{{ $key->id }}"
+                                                                             data-pk="{{ $key -> id }}"
                                                                              data-title="Masukkan nilai">{{ $key->nilai }}</a>
                                                                      </td>
                                                                      <td>

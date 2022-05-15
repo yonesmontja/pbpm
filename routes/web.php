@@ -203,6 +203,10 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/user/{user}/edit',[UserController::class,'useredit']);
 	Route::post('/user/{user}/update',[UserController::class,'userupdate']);
     Route::get('/user/{user}/delete',[UserController::class,'userdelete']);
+    Route::get('/input_to', function () {
+        return view('user.form');
+    });
+    Route::post("save_user",[UserController::class,"save_user"]);
 
 	Route::get('/skl',[SklController::class,'skl']);
 	Route::post('/skl/sklcreate',[SklController::class,'sklcreate']);
@@ -288,6 +292,8 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/nilai/{nilai}/nilaidelete',[NilaiController::class,'nilaidelete']);
 	Route::get('/nilai/{nilai}/nilaiedit',[NilaiController::class,'nilaiedit']);
 	Route::post('/nilai/{nilai}/nilaiupdate',[NilaiController::class,'nilaiupdate']);
+
+    Route::get('/audit',[NilaiController::class,'audit']);
 
 	Route::get('/sasaran',[SasaranController::class,'sasaran']);
 	Route::post('/sasaran/sasarancreate',[SasaranController::class,'sasarancreate']);
