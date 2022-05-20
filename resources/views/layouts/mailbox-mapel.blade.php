@@ -137,6 +137,129 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('/admin/dist/js/demo.js') }}"></script>
     <script>
+        $(function() {
+            'use strict'
+
+            var ticksStyle = {
+                fontColor: '#495057',
+                fontStyle: 'bold'
+            }
+
+            var mode = 'index'
+            var intersect = true
+
+            var $salesChart = $('#sales-chart4')
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($penilaian_list) !!},
+                    datasets: [{
+                            backgroundColor: '#252626',
+                            borderColor: '#252626',
+                            data: {!! json_encode($penilaian_last_week) !!}
+                        },
+                        {
+                            backgroundColor: '#007bff',
+                            borderColor: '#007bff',
+                            data: {!! json_encode($penilaian_this_week) !!}
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: 100,
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: false
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+
+            var $salesChart = $('#sales-chart5')
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($penilaian_list) !!},
+                    datasets: [{
+                            backgroundColor: '#252626',
+                            borderColor: '#252626',
+                            data: {!! json_encode($penilaian_last_month) !!}
+                        },
+                        {
+                            backgroundColor: '#007bff',
+                            borderColor: '#007bff',
+                            data: {!! json_encode($penilaian_this_month) !!}
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: 100,
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: false
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+        })
+    </script>
+    <script>
         $(document).ready(function() {
             $('#kelas').on('change', function() {
                 var kelasID = $(this).val();

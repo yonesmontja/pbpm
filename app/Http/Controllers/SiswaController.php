@@ -1723,6 +1723,7 @@ class SiswaController extends Controller
                                 +($rata_rata_pas_islam*1))/8;
             $raport_pengetahuan_agama = number_format((float)$raport_pengetahuan_islam, 1, '.', '');
         }
+        //dd($raport_pengetahuan_islam);
         if($students -> agama == "Kristen Protestan")
         {
             $raport_pengetahuan_protestan = ((($rata_rata_tugas_protestan

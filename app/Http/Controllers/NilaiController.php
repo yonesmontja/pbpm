@@ -62,7 +62,7 @@ class NilaiController extends Controller
     }
     public function nilaicreate(Request $request)
     {
-    	\App\Models\Nilai::create($request -> all());
+    	//\App\Models\Nilai::create($request -> all());
         $nilai = Nilai::create($request -> all());
         $id = $nilai -> id;
         $date = now();

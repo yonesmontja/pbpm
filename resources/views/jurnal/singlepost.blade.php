@@ -30,7 +30,7 @@
     <div class="content">
       <div class="container">
         <div class="row">
-          <div class="col-lg-6">
+          <div class="col-lg-10">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">{!!$post->title!!}</h5>
@@ -39,46 +39,25 @@
                   {!!$post->content!!}
                 </p>
 
-                <a href="#" class="card-link">Tautan Jurnal Siswa</a>
-                <a href="#" class="card-link">Detil Jurnal Siswa</a>
+                <a href="/jurnalpost" class="card-link">Tautan Jurnal Siswa</a>
+
               </div>
             </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-body">
-                <h5 class="card-title">Jurnal Siswa</h5>
-
-                <p class="card-text">
-                  Jurnal Siswa mendeskripsikan penguatan dan penanaman nilai-nilai kehidupan.
-                </p>
-                <a href="#" class="card-link">Tautan Jurnal Siswa</a>
-                <a href="#" class="card-link">Detil Jurnal Siswa</a>
-              </div>
-            </div><!-- /.card -->
           </div>
           <!-- /.col-md-6 -->
-          <div class="col-lg-6">
+          <div class="col-lg-2">
             <div class="card">
               <div class="card-header">
-                <h5 class="card-title m-0">Jurnal Siswa</h5>
+                <h5 class="card-title m-0">Ditulis oleh: {{ $post -> user -> name }}</h5>
+                <p class="card-text">{{ $post -> created_at -> diffForHumans() }}</p>
               </div>
               <div class="card-body">
-                <h6 class="card-title">Jurnal Baca</h6>
+                <h6 class="card-title"></h6>
 
-                <p class="card-text">Imajinasi adalah modal dasar perubahan di masa depan.</p>
-                <a href="#" class="btn btn-primary">Tautan Jurnal Baca</a>
-              </div>
-            </div>
+                <p class="card-text">{{ $post -> kategori -> kategori }}</p>
 
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h5 class="card-title m-0">Jurnal Siswa</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Surat Keberagaman</h6>
-
-                <p class="card-text">Kekuatan dalam kebhinekaan.</p>
-                <a href="#" class="btn btn-primary">Tautan Jurnal Keberagaman</a>
+                <p class="card-text">Updated: {{ $post -> updated_at -> diffForHumans() }}</p>
+                <a href="/user/{{ $post -> user_id }}/profile" class="btn btn-primary">Profil Penulis</a>
               </div>
             </div>
           </div>

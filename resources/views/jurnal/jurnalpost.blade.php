@@ -55,21 +55,25 @@
                     <thead>
                     <tr>
                       <th>ID</th>
-                      <th>TITLE</th>
-                      <th>USER</th>
-                      <th>ACTIONS</th>
+                      <th>JUDUL</th>
+                      <th>PENULIS</th>
+                      <th>TANGGAL</th>
+                      <th>UPDATE</th>
+                      <th></th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($posts as $post)
                       <tr>
-                        <td>{{$post->id}}</td>
-                        <td>{{$post->title}}</td>
-                        <td>{{$post->user->name}}</td>
+                        <td>{{$post -> id}}</td>
+                        <td><a href="{{route('site.single.post',$post->slug)}}">{{$post -> title}}</td>
+                        <td><a href="/user/{{ $post -> user -> id }}/profile">{{$post -> user -> name}}</td>
+                        <td>{{ $post -> created_at -> diffForHumans() }}</td>
+                        <td>{{ $post -> updated_at -> diffForHumans() }}</td>
                         <td>
                           <a target="_blank" href="{{route('site.single.post',$post->slug)}}" class="btn btn-info btn-sm">View</a>
                           <a href="jurnal/{{$post->id}}/edit" class="btn btn-warning btn-sm">Ubah</a>
-                          <a href="#" class="btn btn-danger btn-sm delete">Hapus</a>
+                          <a href="jurnal/{{ $post->id }}/delete" class="btn btn-danger btn-sm delete">Hapus</a>
                         </td>
                       </tr>
                     @endforeach
@@ -77,9 +81,11 @@
                     <tfoot>
                     <tr>
                       <th>ID</th>
-                      <th>TITLE</th>
-                      <th>USER</th>
-                      <th>ACTIONS</th>
+                      <th>JUDUL</th>
+                      <th>PENULIS</th>
+                      <th>TANGGAL</th>
+                      <th>UPDATE</th>
+                      <th></th>
                     </tr>
                     </tfoot>
                   </table>

@@ -67,30 +67,19 @@
                           </a>
                           <ul class="nav nav-treeview">
                               <li class="nav-item">
-                                  <a href="/jurnalringkasan" class="nav-link">
+                                  <a href="/jurnalpost" class="nav-link {{ set_active('jurnalpost') }}">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Jurnal Belajar</p>
+                                  </a>
+                              </li>
+
+                              <li class="nav-item">
+                                  <a href="/jurnalringkasan" class="nav-link {{ set_active('jurnalringkasan') }}">
                                       <i class="far fa-circle nav-icon"></i>
                                       <p>Ringkasan Jurnal</p>
                                   </a>
                               </li>
 
-                              <li class="nav-item">
-                                  <a href="/jurnalsiswa" class="nav-link {{ set_active('jurnalsiswa') }}">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>Jurnal Siswa</p>
-                                  </a>
-                              </li>
-                              <li class="nav-item">
-                                  <a href="/jurnalkelas" class="nav-link {{ set_active('jurnalkelas') }}">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>Jurnal Kelas</p>
-                                  </a>
-                              </li>
-                              <li class="nav-item">
-                                  <a href="/jurnalbelajar" class="nav-link {{ set_active('jurnalbelajar') }}">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>Jurnal Belajar</p>
-                                  </a>
-                              </li>
                           </ul>
                       </li>
                       <li class="nav-item has-treeview">

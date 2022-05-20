@@ -1,4 +1,5 @@
 <?php
+use Carbon\Carbon;
 use App\Models\Guru;
 use App\Models\Mapel;
 use App\Models\Nilai;
@@ -219,6 +220,20 @@ function totalKelas6Percentage()
 {
     return totalKelas6()/totalSiswa()*100;
 }
+
+function journal_this_week()
+{
+    $dateS = Carbon::now()->startOfMonth()->subMonth(0);
+    $dateE = Carbon::now();
+    $weekS = Carbon::now()->startOfWeek()->subWeek(0);
+    $weekE = Carbon::now();
+    $journal_this_week = Journal::select('created_at','slug')
+            ->whereBetween('created_at',[$weekS,$weekE])
+            ->count('slug');
+    $jurnal = Journal::all()->count();
+    return $journal_this_week;
+}
+
 function konversi($x)
 {
     $x = abs($x);

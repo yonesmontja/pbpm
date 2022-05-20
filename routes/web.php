@@ -157,6 +157,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::post('/jurnalcreate',[JurnalController::class,'jurnalcreate']);
 	Route::get('/jurnal/{jurnal}/edit',[JurnalController::class,'jurnaledit']);
 	Route::post('/jurnal/{jurnal}/update',[JurnalController::class,'jurnalupdate']);
+	Route::get('/jurnal/{jurnal}/delete',[JurnalController::class,'jurnaldelete']);
 
 	Route::get('/grafiknilai',[GrafikController::class,'grafiknilai'])->name('grafiknilai');
 	Route::get('/grafikmateri',[GrafikController::class,'grafikmateri'])->name('grafikmateri');
@@ -348,8 +349,8 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']], function()
 	Route::get('/my_profile/{id}/myprofile',[UserController::class,'my_profile']);
 });
 
-//Route::get('/{slug}',[
-//	'uses' => 'App\Http\Controllers\JurnalController@singlepost',
-//	'as' => 'site.single.post'
-//]);
+Route::get('/{slug}',[
+	'uses' => 'App\Http\Controllers\JurnalController@singlepost',
+	'as' => 'site.single.post'
+]);
 

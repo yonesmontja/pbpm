@@ -62,11 +62,14 @@ class KelasController extends Controller
         $user = User::all();
         // hitung nilai rata-rata per mapel $chart_nilai[] untuk ditampilkan di grafik
         for($bulan=1; $bulan < 7; $bulan++){
-            $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
+            $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where kelas_id='$id' AND month(created_at)='$bulan'"))->first();
+            //$chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
             (int)$chart_nilai1[] = Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',$id)->pluck('nilai')->avg();
+            //(int)$chart_nilai1[] = Nilai::whereMonth('created_at','=',$bulan)->pluck('nilai')->avg();
 
             $jumlah_penilaian[] = $chart_penilaian->jumlah;
         }
+        //dd($chart_nilai1);
         // ambil data nilai siswa 3 bulan lalu, kemudian hitung rata-rata
         $dateS = Carbon::now()->startOfMonth()->subMonth(3);
         $dateE = Carbon::now()->startOfMonth();
@@ -149,10 +152,14 @@ class KelasController extends Controller
                 -> select('created_at','nilai')
                 -> whereBetween('created_at',[$weekS, $weekE])
                 -> avg('nilai');
+            //$penilaian_week_old = Nilai::where('penilaian_id','=',$penilaian)
+            //    -> select('created_at','nilai')
+            //    -> whereBetween('created_at',[$weekS, $weekE])
+            //    -> avg('nilai');
             $penilaian_last_month[] = number_format((float)$penilaian_old, 2, '.', '');
             $penilaian_last_week[] = number_format((float)$penilaian_week_old, 2, '.', '');
         }
-        //dd($penilaian_last_month);
+        //dd($penilaian_last_week);
         $TotalSpent1 = DB::table('nilai')->where('kelas_id','=',$id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$dateS,$dateE])
@@ -203,23 +210,36 @@ class KelasController extends Controller
             $penilaian_this_week[] = number_format((float)$penilaian_week_old, 2, '.', '');
         }
         $penilaian_list = ['Tugas','Latihan','UH','PTS','PAS'];
-        //dd($penilaian_this_month);
-        $TotalSpent0 = DB::table('nilai')->where('kelas_id','=',$id)
+        //dd($penilaian_this_week);
+        $TotalSpent0 = Nilai::where('kelas_id','=',$id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$dateS,$dateE])
         ->avg('nilai');
-        $weekSpent0 = DB::table('nilai')->where('kelas_id','=',$id)
+        $weekSpent0 = Nilai::where('kelas_id','=',$id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$weekS,$weekE])
         ->avg('nilai');
         $last0month_average = number_format((float)$TotalSpent0, 2, '.', '');
         $last0week_average = number_format((float)$weekSpent0, 2, '.', '');
-        //dd($mapel_this_week);
+        //dd($last0week_average);
 
         //$last_week_average =
-        $last_average = number_format((float)(($last0month_average - $last1month_average)/$last1month_average*100), 2, '.', '');  // Outputs in two dp
-        $last_week_average = number_format((float)(($last0week_average-$last1week_average)/$last1week_average*100), 2, '.', '');
-        //dd($last1month_average);
+        if($last1month_average > 0)
+        {
+            $last_average = number_format((float)(($last0month_average - $last1month_average)/$last1month_average*100), 2, '.', '');  // Outputs in two dp
+        }
+        if($last1week_average > 0)
+        {
+            $last_week_average = number_format((float)(($last0week_average-$last1week_average)/$last1week_average*100), 2, '.', '');
+        }
+        if($last1week_average == 0)
+        {
+            $last_week_average = 0;
+        }
+        if($last1month_average == 0)
+        {
+            $last_average = 0;
+        }
 
         $matpel = ['Agama Islam','Agama Protestan','Agama Katolik','PPKn','Bahasa Indonesia','Matematika','IPA','IPS','PJOK','SBK'];
         $islam_average = Nilai::all()->where('kelas_id','=',$id)->where('mapel_id',1)->pluck('nilai')->avg();

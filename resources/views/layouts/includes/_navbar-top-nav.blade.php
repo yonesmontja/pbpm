@@ -6,7 +6,7 @@
              style="opacity: .8">
         <span class="brand-text font-weight-light">AdminLTE 3</span>
       </a>
-      
+
       <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -18,40 +18,7 @@
             <a href="/tdu" class="nav-link">Home</a>
           </li>
           <li class="nav-item">
-            <a href="/kurikulum" class="nav-link">Kurikulum</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">PBPM</a>
-            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-              <li><a href="#" class="dropdown-item">Ikan Asin </a></li>
-              <li><a href="#" class="dropdown-item">Perkebunan Rawa</a></li>
-
-              <li class="dropdown-divider"></li>
-
-              <!-- Level two dropdown-->
-              <li class="dropdown-submenu dropdown-hover">
-                <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Top Level</a>
-                <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                  <li>
-                    <a tabindex="-1" href="#" class="dropdown-item">Biz Management</a>
-                  </li>
-
-                  <!-- Level three dropdown-->
-                  <li class="dropdown-submenu">
-                    <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Teknologi</a>
-                    <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
-                      <li><a href="#" class="dropdown-item">Pengeringan</a></li>
-                      <li><a href="#" class="dropdown-item">Penggaraman</a></li>
-                    </ul>
-                  </li>
-                  <!-- End Level three -->
-
-                  <li><a href="#" class="dropdown-item">Pasar</a></li>
-                  <li><a href="#" class="dropdown-item">Non-profit</a></li>
-                </ul>
-              </li>
-              <!-- End Level two -->
-            </ul>
+            <a href="/kurikulum" class="nav-link">Capaian Kelas</a>
           </li>
         </ul>
 
@@ -157,7 +124,7 @@
         </li>
         <li class="nav-item dropdown">
           <a href="/profile" class="nav-link" data-toggle="dropdown">
-            
+
             <!--span>{{!empty(auth()->user()) ? auth() -> user()->name: '' }}</span-->
             <span>{{auth() -> user()->name}}</span>
             <i class="icon-submenu lnr lnr-chevron-down"></i>

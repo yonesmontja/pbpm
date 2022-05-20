@@ -98,7 +98,7 @@ class KesiswaanController extends Controller
             ->avg('nilai');
             $mapel_last_week[] = number_format((float)$mapel_last_week_old, 2, '.', '');
         }
-        for($penilaian = 1; $penilaian < 14; $penilaian++)
+        for($penilaian = 1; $penilaian < 6; $penilaian++)
         {
             $penilaian_old = Nilai::where('penilaian_id','=',$penilaian)
                 -> select('created_at','nilai')
