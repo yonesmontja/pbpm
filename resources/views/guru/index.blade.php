@@ -1,9 +1,8 @@
 @extends('layouts.master5')
 
 @section('title')
-    <title> AdminLTE 3 | Guru </title>
+    <title> Guru </title>
 @endsection
-
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -23,7 +22,6 @@
                 </div>
             </div><!-- /.container-fluid -->
         </section>
-
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
@@ -37,62 +35,64 @@
                         <!-- /.card -->
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Tahun Pelajaran <a href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
+                                <h3 class="card-title">Tahun Pelajaran <a
+                                        href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-8">
-                                    <button type="button" class="btn btn-primary float-left btn-sm" data-toggle="modal"
-                                        data-target="#staticBackdrop">
-                                        Tambah Data Guru
-                                    </button>
-                                </div>
-                                <div class="col-sm-1">
-                                    <button type="button" class="btn btn-primary float-left btn-sm" data-toggle="modal"
-                                        data-target="#staticBackdrop">
-                                        AKTIVASI USER
-                                    </button>
-                                </div>
-                                <div class="col-sm-1">
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                                        data-target="#importExcel">
-                                        IMPOR EXCEL
-                                    </button>
-                                    <!-- Import Excel -->
-                                    <div class="modal fade" id="importExcel" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <form method="post" action="/guru/import_excel" enctype="multipart/form-data">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
-                                                    </div>
-                                                    <div class="modal-body">
-
-                                                        {{ csrf_field() }}
-
-                                                        <label>Pilih file excel</label>
-                                                        <div class="form-group">
-                                                            <input type="file" name="file" required="required">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <button type="button" class="btn btn-primary float-left btn-sm" data-toggle="modal"
+                                            data-target="#staticBackdrop">
+                                            Tambah Data Guru
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <button type="button" class="btn btn-primary float-left btn-sm" data-toggle="modal"
+                                            data-target="#staticBackdrop">
+                                            AKTIVASI USER
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                            data-target="#importExcel">
+                                            IMPOR EXCEL
+                                        </button>
+                                        <!-- Import Excel -->
+                                        <div class="modal fade" id="importExcel" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <form method="post" action="/guru/import_excel"
+                                                    enctype="multipart/form-data">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Import Excel
+                                                            </h5>
                                                         </div>
-
+                                                        <div class="modal-body">
+                                                            {{ csrf_field() }}
+                                                            <label>Pilih file excel</label>
+                                                            <div class="form-group">
+                                                                <input type="file" name="file" required="required">
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Import</button>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary">Import</button>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-1">
-                                    <a href="/guru/export_excel" class="btn btn-primary float-right btn-sm"
-                                        target="_blank">EXPOR EXCEL</a>
-                                </div>
-                                <div class="col-sm-1">
-                                    <a href="/guru/export_pdf" class="btn btn-primary float-right btn-sm"
-                                        target="_blank">EXPOR PDF</a>
+                                    <div class="col-sm-1">
+                                        <a href="/guru/export_excel" class="btn btn-primary float-right btn-sm"
+                                            target="_blank">EXPOR EXCEL</a>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <a href="/guru/export_pdf" class="btn btn-primary float-right btn-sm"
+                                            target="_blank">EXPOR PDF</a>
+                                    </div>
                                 </div>
                             </div>
 
@@ -109,10 +109,8 @@
                                     <thead>
                                         <tr>
                                             <th>NAMA</th>
-
                                             <th>KODE GURU</th>
                                             <th>JENIS KELAMIN</th>
-
                                             <th>ALAMAT</th>
                                             <th>STATUS</th>
                                             <th>AKSI</th>
@@ -123,12 +121,9 @@
                                             <tr>
                                                 <td><a href="/guru/{{ $guru->id }}/profile">{{ $guru->nama_guru }}</a>
                                                 </td>
-
                                                 <td>{{ $guru->kode_guru }}</td>
                                                 <td>{{ $guru->jk == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
-
                                                 <td>{{ $guru->alamat }}</td>
-
                                                 <td>
                                                     @if ($guru->status == 1)
                                                         <button href="#" type="button" class="btn btn-success btn-sm"
@@ -140,8 +135,6 @@
                                                             data-target="#modal-dialog2">Nonaktif</button>
                                                     @endif
                                                 </td>
-
-
                                                 <td>
                                                     <a href="/guru/{{ $guru->id }}/guruedit"
                                                         class="btn btn-warning btn-sm">Ubah
@@ -152,7 +145,6 @@
                                                         data-target="#modal-danger">
                                                         Hapus
                                                     </button>
-
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -160,10 +152,8 @@
                                     <tfoot>
                                         <tr>
                                             <th>NAMA</th>
-
                                             <th>KODE GURU</th>
                                             <th>JENIS KELAMIN</th>
-
                                             <th>ALAMAT</th>
                                             <th>STATUS</th>
                                             <th>AKSI</th>

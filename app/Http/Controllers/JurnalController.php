@@ -84,6 +84,24 @@ class JurnalController extends Controller
         $userjournal_this_date_2 = Journal::where('kategori_id','=',2)->orderBy('created_at','desc')->whereBetween('created_at',[$dateS,$dateE])->get()->first();
         $userjournal_this_date_3 = Journal::where('kategori_id','=',3)->orderBy('created_at','desc')->whereBetween('created_at',[$dateS,$dateE])->get()->first();
 
+        $jml_this_date_1 = 0.00;
+        $jml_this_date_2 = 0.00;
+        $jml_this_date_3 = 0.00;
+
+        if(Journal::where('kategori_id','=',1)->orderBy('created_at','desc')->whereBetween('created_at',[$dateS,$dateE]) -> count() == !null)
+        {
+            $jml_this_date_1 = Journal::where('kategori_id','=',1)->orderBy('created_at','desc')->whereBetween('created_at',[$dateS,$dateE]) -> count();
+        }
+        if(Journal::where('kategori_id','=',2)->orderBy('created_at','desc')->whereBetween('created_at',[$dateS,$dateE]) -> count() == !null)
+        {
+             $jml_this_date_2 = Journal::where('kategori_id','=',2)->orderBy('created_at','desc')->whereBetween('created_at',[$dateS,$dateE]) -> count();
+        }
+        if(Journal::where('kategori_id','=',3)->orderBy('created_at','desc')->whereBetween('created_at',[$dateS,$dateE]) -> count() == !null)
+        {
+            $jml_this_date_3 = Journal::where('kategori_id','=',3)->orderBy('created_at','desc')->whereBetween('created_at',[$dateS,$dateE]) -> count();
+        }
+        $total_jml_this_date = $jml_this_date_1+$jml_this_date_2+$jml_this_date_3;
+
         for($i = 1; $i < 4; $i++)
         {
             if(Journal::where('kategori_id','=',$i)
@@ -128,6 +146,10 @@ class JurnalController extends Controller
             'userjournal_this_date_2',
             'userjournal_this_date_3',
             'userjournal_this_date',
+            'jml_this_date_1',
+            'jml_this_date_2',
+            'jml_this_date_3',
+            'total_jml_this_date',
         ]));
     }
     public function jurnaledit(Journal $jurnal)

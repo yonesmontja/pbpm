@@ -4,7 +4,7 @@
           <a href="/tdu" class="navbar-brand">
               <img src="{{ asset('/admin/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                   class="brand-image img-circle elevation-3" style="opacity: .8">
-              <span class="brand-text font-weight-light">AdminLTE 3</span>
+              <span class="brand-text font-weight-light">SD Inpres Dabolding</span>
           </a>
 
           <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -122,32 +122,32 @@
               <li class="nav-item dropdown">
                   <a class="nav-link" data-toggle="dropdown" href="/user">
                       <i class="far fa-bell"></i>
-                      <span class="badge badge-warning navbar-badge">{{ count($userjournal_this_date) }}</span>
+                      <span class="badge badge-warning navbar-badge">{{ $total_jml_this_date }}</span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                      <span class="dropdown-header">{{ count($userjournal_this_date) }} Notifications</span>
+                      <span class="dropdown-header">{{ $total_jml_this_date }} jurnal baru</span>
 
                       <div class="dropdown-divider"></div>
                       @isset($userjournal_this_date_1)
-                          <a href="/user" class="dropdown-item">
-                              <i class="fas fa-file mr-2"></i> {{ count($userjournal_this_date_1) }} jurnal baru
+                          <a href="{{ route('site.single.post', $userjournal_this_date_1->slug) }}" class="dropdown-item">
+                              <i class="fas fa-file mr-2"></i> {{ $jml_this_date_1 }} jurnal belajar
                               <span class="float-right text-muted text-sm">{{ $userjournal_this_date_1 -> created_at -> diffForHumans() }}</span>
                           </a>
                       @endisset
                       @isset($userjournal_this_date_2)
-                          <a href="/user" class="dropdown-item">
-                              <i class="fas fa-file mr-2"></i> {{ count($userjournal_this_date_2) }} jurnal baru
+                          <a href="{{ route('site.single.post', $userjournal_this_date_2->slug) }}" class="dropdown-item">
+                              <i class="fas fa-file mr-2"></i> {{ $jml_this_date_2 }} jurnal kelas
                               <span class="float-right text-muted text-sm">{{ $userjournal_this_date_2 -> created_at -> diffForHumans() }}</span>
                           </a>
                       @endisset
                       @isset($userjournal_this_date_3)
-                          <a href="/user" class="dropdown-item">
-                              <i class="fas fa-file mr-2"></i> {{ count($userjournal_this_date_3) }} jurnal baru
-                              <span class="float-right text-muted text-sm">{{ $userjournal_this_date_3 -> created_at -> diffForHumans() }}</span>
+                          <a href="{{ route('site.single.post', $userjournal_this_date_3->slug) }}" class="dropdown-item">
+                              <i class="fas fa-file mr-2"></i> {{ $jml_this_date_3 }} jurnal siswa
+                              <span class="float-right text-muted text-sm">{{ $userjournal_this_date -> created_at -> diffForHumans() }}</span>
                           </a>
                       @endisset
                       <div class="dropdown-divider"></div>
-                      <a href="/user" class="dropdown-item dropdown-footer">See All Notifications</a>
+                      <a href="/jurnalpost" class="dropdown-item dropdown-footer">Lihat semua jurnal</a>
                   </div>
               </li>
               <li class="nav-item dropdown">

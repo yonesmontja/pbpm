@@ -1,7 +1,7 @@
 @extends('layouts.master1')
 
 @section('title')
-    <title> AdminLTE 3 | TDU </title>
+    <title> CAPAIAN SISWA </title>
 @endsection
 @section('header')
     <link rel="stylesheet" href="{{ asset('/jqvmap/css/style.css') }}">
@@ -18,7 +18,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
                             <li class="breadcrumb-item active">CAPAIAN SISWA</li>
                         </ol>
                     </div><!-- /.col -->
@@ -36,8 +36,14 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>{{ $siswa_h }}</h3>
-                                <p>Siswa High</p>
+                                <h3>{{ count($high_pemetaan_1) }} siswa</h3>
+                                <p>High</p>
+                                @if (count($high_pemetaan_1) == !null)
+                                    <h5>Nilai rata-rata: {{ number_format((float)array_sum($high_pemetaan_1)/count($high_pemetaan_1), 1, '.','') }}</h5>
+                                @endif
+                                @if (count($high_pemetaan_1) == null)
+                                    <h5>Nilai rata-rata: {{ count($high_pemetaan_1) }}</h5>
+                                @endif
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
@@ -51,30 +57,41 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>{{ $siswa_p }}</h3>
-                                <p>Siswa Pass</p>
+                                <h3>{{ count($pass_pemetaan_1) }} siswa</h3>
+                                <p>Pass</p>
+                                @if (count($pass_pemetaan_1) == !null)
+                                    <h5>Nilai rata-rata: {{ number_format((float)array_sum($pass_pemetaan_1)/count($pass_pemetaan_1), 1, '.','') }}</h5>
+                                @endif
+                                @if (count($pass_pemetaan_1) == null)
+                                    <h5>Nilai rata-rata: {{ count($pass_pemetaan_1) }}</h5>
+                                @endif
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="/mapel" class="small-box-footer">Info lebih lanjut <i
+                            <a href="/test" class="small-box-footer">Info lebih lanjut <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
-                        <div class="small-box bg-warning">
+                        <div class="small-box bg-warning text-white">
                             <div class="inner">
-                                <h3>{{ $siswa_l }}</h3>
-
-                                <p>Siswa Low</p>
+                                <h3 class="text-white">{{ count($low_pemetaan_1) }} siswa</h3>
+                                <p class="text-white">Low</p>
+                                @if (count($low_pemetaan_1) == !null)
+                                    <h5 class="text-white">Nilai rata-rata: {{ number_format((float)array_sum($low_pemetaan_1)/count($low_pemetaan_1), 1, '.','') }}</h5>
+                                @endif
+                                @if (count($low_pemetaan_1) == null)
+                                    <h5 class="text-white">Nilai rata-rata: {{ count($low_pemetaan_1) }}</h5>
+                                @endif
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="/kompetensiinti" class="small-box-footer">Info lebih lanjut <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            <a href="/test" class="small-box-footer text-white">Info lebih lanjut <i
+                                    class="text-white fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -82,14 +99,19 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>{{ $siswa_ul }}</h3>
-
-                                <p>Siswa Under Low</p>
+                                <h3>{{ count($underlow_pemetaan_1) }} siswa</h3>
+                                <p>Under Low</p>
+                                @if (count($underlow_pemetaan_1) == !null)
+                                    <h5>Nilai rata-rata: {{ number_format((float)array_sum($underlow_pemetaan_1)/count($underlow_pemetaan_1), 1, '.','') }}</h5>
+                                @endif
+                                @if (count($underlow_pemetaan_1) == null)
+                                    <h5>Nilai rata-rata: {{ count($underlow_pemetaan_1) }}</h5>
+                                @endif
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="#" class="small-box-footer">Info lebih lanjut <i
+                            <a href="/test" class="small-box-footer">Info lebih lanjut <i
                                     class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
@@ -421,20 +443,20 @@
                         pointStrokeColor: 'rgba(60,141,188,1)',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(60,141,188,1)',
-                        data: [{!! json_encode($islam_average) !!},
-                            {!! json_encode($protestan_average) !!},
-                            {!! json_encode($katolik_average) !!},
-                            {!! json_encode($ppkn_average) !!},
-                            {!! json_encode($indonesia_average) !!},
-                            {!! json_encode($matematika_average) !!},
-                            {!! json_encode($ipa_average) !!},
-                            {!! json_encode($ips_average) !!},
-                            {!! json_encode($pjok_average) !!},
-                            {!! json_encode($sbk_average) !!},
+                        data: [{!! json_encode($pemetaan_islam_average) !!},
+                            {!! json_encode($pemetaan_protestan_average) !!},
+                            {!! json_encode($pemetaan_katolik_average) !!},
+                            {!! json_encode($pemetaan_ppkn_average) !!},
+                            {!! json_encode($pemetaan_indonesia_average) !!},
+                            {!! json_encode($pemetaan_matematika_average) !!},
+                            {!! json_encode($pemetaan_ipa_average) !!},
+                            {!! json_encode($pemetaan_ips_average) !!},
+                            {!! json_encode($pemetaan_pjok_average) !!},
+                            {!! json_encode($pemetaan_sbk_average) !!},
                         ]
                     },
                     {
-                        label: 'Pemetaan Akhir',
+                        label: 'Nilai Rata-rata Saat Ini',
                         backgroundColor: 'rgba(210, 214, 222, 1)',
                         borderColor: 'rgba(210, 214, 222, 1)',
                         pointRadius: false,

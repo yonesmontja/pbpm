@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
+use App\Models\Mapel;
 use App\Models\Sekolah;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -11,8 +13,14 @@ class SekolahController extends Controller
 {
     public function profile($id)
     {
-    	$sekolah = Sekolah::find($id);
-    	return view('sekolah.profile',['sekolah' => $sekolah]);
+    	$mapel = Mapel::all();
+        $guru = Guru::all();
+        $sekolah = Sekolah::find($id);
+    	return view('sekolah.profile',[
+            'sekolah' => $sekolah,
+            'mapel' => $mapel,
+            'guru' => $guru,
+        ]);
     }
     public function index()
     {

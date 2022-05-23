@@ -39,7 +39,7 @@
     @yield('header')
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed" style="height: auto;">
     <div class="wrapper">
         <!-- Navbar -->
         @include('layouts.includes._navbar')
@@ -272,6 +272,26 @@
                 "info": true,
             });
             $("#example2").DataTable({
+                "paging": true,
+                "pagingType": "numbers",
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+            $("#example3").DataTable({
+                "paging": true,
+                "pagingType": "numbers",
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+            $("#example4").DataTable({
                 "paging": true,
                 "pagingType": "numbers",
                 "lengthChange": true,

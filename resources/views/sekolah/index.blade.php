@@ -1,7 +1,7 @@
 @extends('layouts.master5')
 
 @section('title')
-    <title> AdminLTE 3 | Sekolah </title>
+    <title> Sekolah </title>
 @endsection
 
 @section('content')
@@ -12,12 +12,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Data Sekolah</h1>
+                        <h1>Data <a href="/sekolah/{{ 1 }}/profile">Sekolah</a></h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                            <li class="breadcrumb-item active">Data Sekolah</li>
+                            <li class="breadcrumb-item active">Data <a
+                                    href="/sekolah/{{ 1 }}/profile">Sekolah</a></li>
                         </ol>
                     </div>
                 </div>
@@ -37,57 +38,62 @@
                         <!-- /.card -->
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Tahun Pelajaran <a href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
+                                <h3 class="card-title">Tahun Pelajaran <a
+                                        href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-8">
-                                    <button type="button" class="btn btn-primary float-left btn-sm" data-toggle="modal"
-                                        data-target="#staticBackdrop">
-                                        Tambah Data Sekolah
-                                    </button>
-                                </div>
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <button type="button" class="btn btn-primary float-left btn-sm" data-toggle="modal"
+                                            data-target="#staticBackdrop">
+                                            Tambah Data Sekolah
+                                        </button>
+                                    </div>
 
-                                <div class="col-sm-1">
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                                        data-target="#importExcel">
-                                        IMPOR EXCEL
-                                    </button>
-                                    <!-- Import Excel -->
-                                    <div class="modal fade" id="importExcel" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <form method="post" action="/sekolah/import_excel" enctype="multipart/form-data">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
-                                                    </div>
-                                                    <div class="modal-body">
-
-                                                        {{ csrf_field() }}
-
-                                                        <label>Pilih file excel</label>
-                                                        <div class="form-group">
-                                                            <input type="file" name="file" required="required">
+                                    <div class="col-sm-1">
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                            data-target="#importExcel">
+                                            IMPOR EXCEL
+                                        </button>
+                                        <!-- Import Excel -->
+                                        <div class="modal fade" id="importExcel" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <form method="post" action="/sekolah/import_excel"
+                                                    enctype="multipart/form-data">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Import Excel
+                                                            </h5>
                                                         </div>
+                                                        <div class="modal-body">
 
+                                                            {{ csrf_field() }}
+
+                                                            <label>Pilih file excel</label>
+                                                            <div class="form-group">
+                                                                <input type="file" name="file" required="required">
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Import</button>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary">Import</button>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-1">
-                                    <a href="/sekolah/export_excel" class="btn btn-primary float-right btn-sm"
-                                        target="_blank">EXPOR EXCEL</a>
-                                </div>
-                                <div class="col-sm-1">
-                                    <a href="/sekolah/export_pdf" class="btn btn-primary float-right btn-sm"
-                                        target="_blank">EXPOR PDF</a>
+                                    <div class="col-sm-1">
+                                        <a href="/sekolah/export_excel" class="btn btn-primary float-right btn-sm"
+                                            target="_blank">EXPOR EXCEL</a>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <a href="/sekolah/export_pdf" class="btn btn-primary float-right btn-sm"
+                                            target="_blank">EXPOR PDF</a>
+                                    </div>
                                 </div>
                             </div>
 
@@ -114,7 +120,8 @@
                                     <tbody>
                                         @foreach ($data_sekolah as $sekolah)
                                             <tr>
-                                                <td><a href="/sekolah/{{ $sekolah->id }}/profile">{{ $sekolah->nama }}</a>
+                                                <td><a
+                                                        href="/sekolah/{{ $sekolah->id }}/profile">{{ $sekolah->nama }}</a>
                                                 </td>
                                                 <td>{{ $sekolah->npsn }}</td>
                                                 <td>{{ $sekolah->nss }}</td>
@@ -124,8 +131,8 @@
                                                     <a href="/sekolah/{{ $sekolah->id }}/sekolahedit"
                                                         class="btn btn-warning btn-sm">Ubah
                                                     </a>
-                                                    <button href="/sekolah/{{ $sekolah->id }}/sekolahdelete" type="button"
-                                                        class="btn btn-danger btn-sm" data-toggle="modal"
+                                                    <button href="/sekolah/{{ $sekolah->id }}/sekolahdelete"
+                                                        type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                                         data-target="#modal-danger">
                                                         Hapus
                                                     </button>
@@ -160,15 +167,16 @@
                                             </div>
                                             <div class="modal-body">
                                                 <!-- form isian data -->
-                                                <form action="/sekolah/sekolahcreate" method="POST" enctype="multipart/form-data">
+                                                <form action="/sekolah/sekolahcreate" method="POST"
+                                                    enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     <div class="row">
                                                         <div class="col-sm-4">
                                                             <div
                                                                 class="form-group {{ $errors->has('nama_sekolah') ? ' has-error' : '' }}">
                                                                 <label for="exampleFormControlInput1">Nama sekolah</label>
-                                                                <input name="nama_sekolah" type="text" class="form-control"
-                                                                    id="exampleFormControlInput1"
+                                                                <input name="nama_sekolah" type="text"
+                                                                    class="form-control" id="exampleFormControlInput1"
                                                                     placeholder="Masukkan nama sekolah"
                                                                     value="{{ old('nama_sekolah') }}">
                                                                 @if ($errors->has('nama_sekolah'))
@@ -216,8 +224,9 @@
                                                         <div class="col-sm-4">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlInput1">KODE sekolah</label>
-                                                                <input name="kode_sekolah" type="text" class="form-control"
-                                                                    id="exampleFormControlInput3" placeholder="KODE sekolah">
+                                                                <input name="kode_sekolah" type="text"
+                                                                    class="form-control" id="exampleFormControlInput3"
+                                                                    placeholder="KODE sekolah">
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-4">
