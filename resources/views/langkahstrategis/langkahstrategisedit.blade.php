@@ -1,7 +1,7 @@
 @extends('layouts.master4')
 
 @section('title')
-  <title> AdminLTE 3 | LANGKAH STRATEGIS </title>
+  <title> SD Dabolding LANGKAH STRATEGIS </title>
 @endsection
 
 @section('content')

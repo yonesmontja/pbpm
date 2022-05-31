@@ -1,6 +1,6 @@
 @extends('layouts.master5')
 @section('title')
-    <title> AdminLTE 3 | POSTING </title>
+    <title> SD Dabolding POSTING </title>
 @endsection
 @section('content')
     <div class="content-wrapper">

@@ -1,7 +1,7 @@
 @extends('layouts.boxed')
 
 @section('title')
-  <title> AdminLTE 3 | Jurnal Kelas </title>
+  <title> SD Dabolding Jurnal Kelas </title>
 @endsection
 
 @section('content')

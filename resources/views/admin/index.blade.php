@@ -1,7 +1,7 @@
 @extends('layouts.master1')
 
 @section('title')
-    <title> AdminLTE 3 | TDU </title>
+    <title> SD Dabolding TDU </title>
 @endsection
 @section('header')
     <link rel="stylesheet" href="{{ asset('/jqvmap/css/style.css') }}">

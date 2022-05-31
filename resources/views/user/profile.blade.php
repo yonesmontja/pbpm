@@ -1,7 +1,7 @@
  @extends('layouts.mailbox')
 
 @section('title')
-  <title> AdminLTE 3 | Compose </title>
+  <title> SD Dabolding Compose </title>
 @endsection
 @section('header')
 <style type="text/css">/* Chart.js */

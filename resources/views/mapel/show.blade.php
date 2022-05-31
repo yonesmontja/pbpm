@@ -1,7 +1,7 @@
  @extends('layouts.mailbox-mapel')
 
  @section('title')
-     <title> AdminLTE 3 | Mapel </title>
+     <title> SD Dabolding Mapel </title>
  @endsection
  @section('header')
      <style type="text/css">

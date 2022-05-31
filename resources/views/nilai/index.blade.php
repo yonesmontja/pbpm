@@ -1,7 +1,7 @@
 @extends('layouts.master5')
 
 @section('title')
-    <title> AdminLTE 3 | NILAI </title>
+    <title> SD Dabolding NILAI </title>
 @endsection
 
 @section('content')

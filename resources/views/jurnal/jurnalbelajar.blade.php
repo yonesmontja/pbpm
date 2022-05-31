@@ -1,7 +1,7 @@
 @extends('layouts.collapsed')
 
 @section('title')
-    <title> AdminLTE 3 | Jurnal Belajar </title>
+    <title> SD Dabolding Jurnal Belajar </title>
 @endsection
 @section('header')
     <!-- summernote -->

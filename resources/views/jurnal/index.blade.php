@@ -1,7 +1,7 @@
 @extends('layouts.top-nav')
 
 @section('title')
-    <title> AdminLTE 3 | Jurnal </title>
+    <title> SD Dabolding Jurnal </title>
 @endsection
 
 @section('content')

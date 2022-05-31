@@ -1,7 +1,7 @@
 @extends('layouts.top-nav-sidebar')
 
 @section('title')
-  <title> AdminLTE 3 | Data Siswa </title>
+  <title> SD Dabolding Data Siswa </title>
 @endsection
 
 @section('content')

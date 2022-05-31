@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use PDF;
 use App\Models\User;
 use App\Models\Nilai;
 use App\Models\Siswa;
-use Illuminate\Support\Str;
-use App\Exports\SiswaExport;
-use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardController extends Controller
 {
@@ -18,12 +13,13 @@ class DashboardController extends Controller
     {
     	$nilai = Nilai::all();
         $user = User::all();
-        $idsiswa_1 = Siswa::all()->where('kelas','=','Kelas 1');
-        $idsiswa_2 = Siswa::all()->where('kelas','=','Kelas 2');
-        $idsiswa_3 = Siswa::all()->where('kelas','=','Kelas 3');
-        $idsiswa_4 = Siswa::all()->where('kelas','=','Kelas 4');
-        $idsiswa_5 = Siswa::all()->where('kelas','=','Kelas 5');
-        $idsiswa_6 = Siswa::all()->where('kelas','=','Kelas 6');
+        $siswaall = Siswa::all();
+        $idsiswa_1 = $siswaall->where('kelas','=','Kelas 1');
+        $idsiswa_2 = $siswaall->where('kelas','=','Kelas 2');
+        $idsiswa_3 = $siswaall->where('kelas','=','Kelas 3');
+        $idsiswa_4 = $siswaall->where('kelas','=','Kelas 4');
+        $idsiswa_5 = $siswaall->where('kelas','=','Kelas 5');
+        $idsiswa_6 = $siswaall->where('kelas','=','Kelas 6');
         foreach ($idsiswa_1 as $user) {
             $siswa_1[] = $user -> id;
         }
@@ -48,257 +44,393 @@ class DashboardController extends Controller
         $kkm1 = $kkm + (100-$kkm)/3;
         $kkm2 = $kkm1 + (100-$kkm)/3;
         // ---------------------------------
-        $high = 457;
         // Pemetaan dan nilai harian kelas 1
-        $underlow_pemetaan_1 = [];
-        $low_pemetaan_1 = [];
-        $pass_pemetaan_1 = [];
-        $high_pemetaan_1 = [];
-        for($h=0; $h< count($siswa_1); $h++)
+        $underlow_pemetaan_indonesia_1 = [];
+        $low_pemetaan_indonesia_1 = [];
+        $pass_pemetaan_indonesia_1 = [];
+        $high_pemetaan_indonesia_1 = [];
+        $underlow_pemetaan_matematika_1 = [];
+        $low_pemetaan_matematika_1 = [];
+        $pass_pemetaan_matematika_1 = [];
+        $high_pemetaan_matematika_1 = [];
+        // Pemetaan kelas 2
+        $underlow_pemetaan_indonesia_2 = [];
+        $low_pemetaan_indonesia_2 = [];
+        $pass_pemetaan_indonesia_2 = [];
+        $high_pemetaan_indonesia_2 = [];
+        $underlow_pemetaan_matematika_2 = [];
+        $low_pemetaan_matematika_2 = [];
+        $pass_pemetaan_matematika_2 = [];
+        $high_pemetaan_matematika_2 = [];
+        // Pemetaan kelas 3
+        $underlow_pemetaan_indonesia_3 = [];
+        $low_pemetaan_indonesia_3 = [];
+        $pass_pemetaan_indonesia_3 = [];
+        $high_pemetaan_indonesia_3 = [];
+        $underlow_pemetaan_matematika_3 = [];
+        $low_pemetaan_matematika_3 = [];
+        $pass_pemetaan_matematika_3 = [];
+        $high_pemetaan_matematika_3 = [];
+        // Pemetaan kelas 4
+        $underlow_pemetaan_indonesia_4 = [];
+        $low_pemetaan_indonesia_4 = [];
+        $pass_pemetaan_indonesia_4 = [];
+        $high_pemetaan_indonesia_4 = [];
+        $underlow_pemetaan_matematika_4 = [];
+        $low_pemetaan_matematika_4 = [];
+        $pass_pemetaan_matematika_4 = [];
+        $high_pemetaan_matematika_4 = [];
+        // Pemetaan kelas 5
+        $underlow_pemetaan_indonesia_5 = [];
+        $low_pemetaan_indonesia_5 = [];
+        $pass_pemetaan_indonesia_5 = [];
+        $high_pemetaan_indonesia_5 = [];
+        $underlow_pemetaan_matematika_5 = [];
+        $low_pemetaan_matematika_5 = [];
+        $pass_pemetaan_matematika_5 = [];
+        $high_pemetaan_matematika_5 = [];
+        // Pemetaan kelas 6
+        $underlow_pemetaan_indonesia_6 = [];
+        $low_pemetaan_indonesia_6 = [];
+        $pass_pemetaan_indonesia_6 = [];
+        $high_pemetaan_indonesia_6 = [];
+        $underlow_pemetaan_matematika_6 = [];
+        $low_pemetaan_matematika_6 = [];
+        $pass_pemetaan_matematika_6 = [];
+        $high_pemetaan_matematika_6 = [];
+
+        foreach($nilai->where('penilaian_id','=',6) as $m => $n)
         {
-            $i = $siswa_1[$h];
-            $islam_pemetaan_awal = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',1)
-                                ->where('penilaian_id','=',6)
-                                ->pluck('nilai')->avg();
-            $protestan_pemetaan_awal = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',2)
-                                ->where('penilaian_id','=',6)
-                                ->pluck('nilai')->avg();
-            $katolik_pemetaan_awal = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',3)
-                                ->where('penilaian_id','=',6)
-                                ->pluck('nilai')->avg();
-            $ppkn_pemetaan_awal = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',4)
-                                ->where('penilaian_id','=',6)
-                                ->pluck('nilai')->avg();
-            $indonesia_pemetaan_awal = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',5)
-                                ->where('penilaian_id','=',6)
-                                ->pluck('nilai')->avg();
-            $matematika_pemetaan_awal = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',6)
-                                ->where('penilaian_id','=',6)
-                                ->pluck('nilai')->avg();
-            $ipa_pemetaan_awal = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',7)
-                                ->where('penilaian_id','=',6)
-                                ->pluck('nilai')->avg();
-            $ips_pemetaan_awal = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',8)
-                                ->where('penilaian_id','=',6)
-                                ->pluck('nilai')->avg();
-            $rata_pemetaan_awal[$i] = number_format((float)($islam_pemetaan_awal+
-                $protestan_pemetaan_awal+
-                $katolik_pemetaan_awal+
-                $ppkn_pemetaan_awal+
-                $indonesia_pemetaan_awal+
-                $matematika_pemetaan_awal+
-                $ipa_pemetaan_awal+
-                $ips_pemetaan_awal)/6, 1, '.', '');
-            if($rata_pemetaan_awal[$i] < $kkm)
+            if($n -> mapel_id == 5 && $n -> kelas_id == 1)
             {
-                $underlow_pemetaan_1[$i] = $rata_pemetaan_awal[$i];
+                $indonesia_pemetaan_awal[$m] = $n -> nilai;
+                $rata_pemetaan_awal[$m] = number_format((float)$indonesia_pemetaan_awal[$m], 1, '.', '');
+                if($rata_pemetaan_awal[$m] < $kkm)
+                {
+                    $underlow_pemetaan_indonesia_1[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm2)
+                {
+                    $high_pemetaan_indonesia_1[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm && $rata_pemetaan_awal[$m] < $kkm1)
+                {
+                    $low_pemetaan_indonesia_1[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm1 && $rata_pemetaan_awal[$m] < $kkm2)
+                {
+                    $pass_pemetaan_indonesia_1[$m] = $rata_pemetaan_awal[$m];
+                }
             }
-            if($rata_pemetaan_awal[$i] >= $kkm2)
+            if($n -> mapel_id == 6 && $n -> kelas_id == 1)
             {
-                $high_pemetaan_1[$i] = $rata_pemetaan_awal[$i];
+                $matematika_pemetaan_awal[$m] = $n -> nilai;
+                $rata_pemetaan_awal[$m] = number_format((float)$matematika_pemetaan_awal[$m], 1, '.', '');
+                if($rata_pemetaan_awal[$m] < $kkm)
+                {
+                    $underlow_pemetaan_matematika_1[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm2)
+                {
+                    $high_pemetaan_matematika_1[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm && $rata_pemetaan_awal[$m] < $kkm1)
+                {
+                    $low_pemetaan_matematika_1[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm1 && $rata_pemetaan_awal[$m] < $kkm2)
+                {
+                    $pass_pemetaan_matematika_1[$m] = $rata_pemetaan_awal[$m];
+                }
             }
-            if($rata_pemetaan_awal[$i] >= $kkm && $rata_pemetaan_awal[$i] < $kkm1)
+            if($n -> mapel_id == 5 && $n -> kelas_id == 2)
             {
-                $low_pemetaan_1[$i] = $rata_pemetaan_awal[$i];
+                $indonesia_pemetaan_awal[$m] = $n -> nilai;
+                $rata_pemetaan_awal[$m] = number_format((float)$indonesia_pemetaan_awal[$m], 1, '.', '');
+                if($rata_pemetaan_awal[$m] < $kkm)
+                {
+                    $underlow_pemetaan_indonesia_2[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm2)
+                {
+                    $high_pemetaan_indonesia_2[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm && $rata_pemetaan_awal[$m] < $kkm1)
+                {
+                    $low_pemetaan_indonesia_2[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm1 && $rata_pemetaan_awal[$m] < $kkm2)
+                {
+                    $pass_pemetaan_indonesia_2[$m] = $rata_pemetaan_awal[$m];
+                }
             }
-            if($rata_pemetaan_awal[$i] >= $kkm1 && $rata_pemetaan_awal[$i] < $kkm2)
+            if($n -> mapel_id == 6 && $n -> kelas_id == 2)
             {
-                $pass_pemetaan_1[$i] = $rata_pemetaan_awal[$i];
+                $matematika_pemetaan_awal[$m] = $n -> nilai;
+                $rata_pemetaan_awal[$m] = number_format((float)$matematika_pemetaan_awal[$m], 1, '.', '');
+                if($rata_pemetaan_awal[$m] < $kkm)
+                {
+                    $underlow_pemetaan_matematika_2[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm2)
+                {
+                    $high_pemetaan_matematika_2[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm && $rata_pemetaan_awal[$m] < $kkm1)
+                {
+                    $low_pemetaan_matematika_2[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm1 && $rata_pemetaan_awal[$m] < $kkm2)
+                {
+                    $pass_pemetaan_matematika_2[$m] = $rata_pemetaan_awal[$m];
+                }
             }
-
-            $islam_tugas = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',1)
-                                ->where('penilaian_id','=',1)
-                                ->pluck('nilai')->avg();
-            $islam_latihan = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',1)
-                                ->where('penilaian_id','=',2)
-                                ->pluck('nilai')->avg();
-            $islam_ul = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',1)
-                                ->where('penilaian_id','=',3)
-                                ->pluck('nilai')->avg();
-            $islam_ul_fix = number_format(($islam_ul), 1, '.', '');
-            $islam_latihan_fix = number_format(($islam_latihan), 1, '.', '');
-            $islam_tugas_fix = number_format(($islam_tugas), 1, '.', '');
-            $protestan_tugas = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',2)
-                                ->where('penilaian_id','=',1)
-                                ->pluck('nilai')->avg();
-            $protestan_latihan = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',2)
-                                ->where('penilaian_id','=',2)
-                                ->pluck('nilai')->avg();
-            $protestan_ul = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',2)
-                                ->where('penilaian_id','=',3)
-                                ->pluck('nilai')->avg();
-            $protestan_ul_fix = number_format(($protestan_ul), 1, '.', '');
-            $protestan_latihan_fix = number_format(($protestan_latihan), 1, '.', '');
-            $protestan_tugas_fix = number_format(($protestan_tugas), 1, '.', '');
-            $katolik_tugas = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',3)
-                                ->where('penilaian_id','=',1)
-                                ->pluck('nilai')->avg();
-            $katolik_latihan = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',3)
-                                ->where('penilaian_id','=',2)
-                                ->pluck('nilai')->avg();
-            $katolik_ul = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',3)
-                                ->where('penilaian_id','=',3)
-                                ->pluck('nilai')->avg();
-            $katolik_ul_fix = number_format(($katolik_ul), 1, '.', '');
-            $katolik_latihan_fix = number_format(($katolik_latihan), 1, '.', '');
-            $katolik_tugas_fix = number_format(($katolik_tugas), 1, '.', '');
-            $ppkn_tugas = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',4)
-                                ->where('penilaian_id','=',1)
-                                ->pluck('nilai')->avg();
-            $ppkn_latihan = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',4)
-                                ->where('penilaian_id','=',2)
-                                ->pluck('nilai')->avg();
-            $ppkn_ul = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',4)
-                                ->where('penilaian_id','=',3)
-                                ->pluck('nilai')->avg();
-            $ppkn_ul_fix = number_format(($ppkn_ul), 1, '.', '');
-            $ppkn_latihan_fix = number_format(($ppkn_latihan), 1, '.', '');
-            $ppkn_tugas_fix = number_format(($ppkn_tugas), 1, '.', '');
-            $indonesia_tugas = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',5)
-                                ->where('penilaian_id','=',1)
-                                ->pluck('nilai')->avg();
-            $indonesia_latihan = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',5)
-                                ->where('penilaian_id','=',2)
-                                ->pluck('nilai')->avg();
-            $indonesia_ul = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',5)
-                                ->where('penilaian_id','=',3)
-                                ->pluck('nilai')->avg();
-            $indonesia_ul_fix = number_format(($indonesia_ul), 1, '.', '');
-            $indonesia_latihan_fix = number_format(($indonesia_latihan), 1, '.', '');
-            $indonesia_tugas_fix = number_format(($indonesia_tugas), 1, '.', '');
-            $matematika_tugas = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',6)
-                                ->where('penilaian_id','=',1)
-                                ->pluck('nilai')->avg();
-            $matematika_latihan = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',6)
-                                ->where('penilaian_id','=',2)
-                                ->pluck('nilai')->avg();
-            $matematika_ul = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',6)
-                                ->where('penilaian_id','=',3)
-                                ->pluck('nilai')->avg();
-            $matematika_ul_fix = number_format(($matematika_ul), 1, '.', '');
-            $matematika_latihan_fix = number_format(($matematika_latihan), 1, '.', '');
-            $matematika_tugas_fix = number_format(($matematika_tugas), 1, '.', '');
-            $ipa_tugas = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',7)
-                                ->where('penilaian_id','=',1)
-                                ->pluck('nilai')->avg();
-            $ipa_latihan = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',7)
-                                ->where('penilaian_id','=',2)
-                                ->pluck('nilai')->avg();
-            $ipa_ul = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',7)
-                                ->where('penilaian_id','=',3)
-                                ->pluck('nilai')->avg();
-            $ipa_ul_fix = number_format(($ipa_ul), 1, '.', '');
-            $ipa_latihan_fix = number_format(($ipa_latihan), 1, '.', '');
-            $ipa_tugas_fix = number_format(($ipa_tugas), 1, '.', '');
-            $ips_tugas = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',8)
-                                ->where('penilaian_id','=',1)
-                                ->pluck('nilai')->avg();
-            $ips_latihan = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',8)
-                                ->where('penilaian_id','=',2)
-                                ->pluck('nilai')->avg();
-            $ips_ul = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',8)
-                                ->where('penilaian_id','=',3)
-                                ->pluck('nilai')->avg();
-            $ips_ul_fix = number_format(($ips_ul), 1, '.', '');
-            $ips_latihan_fix = number_format(($ips_latihan), 1, '.', '');
-            $ips_tugas_fix = number_format(($ips_tugas), 1, '.', '');
-            $pjok_tugas = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',9)
-                                ->where('penilaian_id','=',1)
-                                ->pluck('nilai')->avg();
-            $pjok_latihan = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',9)
-                                ->where('penilaian_id','=',2)
-                                ->pluck('nilai')->avg();
-            $pjok_ul = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',9)
-                                ->where('penilaian_id','=',3)
-                                ->pluck('nilai')->avg();
-            $pjok_ul_fix = number_format(($pjok_ul), 1, '.', '');
-            $pjok_latihan_fix = number_format(($pjok_latihan), 1, '.', '');
-            $pjok_tugas_fix = number_format(($pjok_tugas), 1, '.', '');
-            $sbk_tugas = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',10)
-                                ->where('penilaian_id','=',1)
-                                ->pluck('nilai')->avg();
-            $sbk_latihan = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',10)
-                                ->where('penilaian_id','=',2)
-                                ->pluck('nilai')->avg();
-            $sbk_ul = Nilai::all()->where('siswa_id','=',$i)
-                                ->where('mapel_id','=',10)
-                                ->where('penilaian_id','=',3)
-                                ->pluck('nilai')->avg();
-            $sbk_ul_fix = number_format(($sbk_ul), 1, '.', '');
-            $sbk_latihan_fix = number_format(($sbk_latihan), 1, '.', '');
-            $sbk_tugas_fix = number_format(($sbk_tugas), 1, '.', '');
-
-            $islam_harian_1[$i] = number_format(($islam_ul_fix+$islam_latihan_fix+$islam_tugas_fix)/3, 1, '.', '');
-            $protestan_harian_1[$i] = number_format(($protestan_ul_fix+$protestan_latihan_fix+$protestan_tugas_fix)/3, 1, '.', '');
-            $sbk_harian_1[$i] = number_format(($sbk_ul_fix+$sbk_latihan_fix+$sbk_tugas_fix)/3, 1, '.', '');
-            $pjok_harian_1[$i] = number_format(($pjok_ul_fix+$pjok_latihan_fix+$pjok_tugas_fix)/3, 1, '.', '');
-            $ips_harian_1[$i] = number_format(($ips_ul_fix+$ips_latihan_fix+$ips_tugas_fix)/3, 1, '.', '');
-            $ipa_harian_1[$i] = number_format(($ipa_ul_fix+$ipa_latihan_fix+$ipa_tugas_fix)/3, 1, '.', '');
-            $matematika_harian_1[$i] = number_format(($matematika_ul_fix+$matematika_latihan_fix+$matematika_tugas_fix)/3, 1, '.', '');
-            $indonesia_harian_1[$i] = number_format(($indonesia_ul_fix+$indonesia_latihan_fix+$indonesia_tugas_fix)/3, 1, '.', '');
-            $ppkn_harian_1[$i] = number_format(($ppkn_ul_fix+$ppkn_latihan_fix+$ppkn_tugas_fix)/3, 1, '.', '');
-            $katolik_harian_1[$i] = number_format(($katolik_ul_fix+$katolik_latihan_fix+$katolik_tugas_fix)/3, 1, '.', '');
+            if($n -> mapel_id == 5 && $n -> kelas_id == 3)
+            {
+                $indonesia_pemetaan_awal[$m] = $n -> nilai;
+                $rata_pemetaan_awal[$m] = number_format((float)$indonesia_pemetaan_awal[$m], 1, '.', '');
+                if($rata_pemetaan_awal[$m] < $kkm)
+                {
+                    $underlow_pemetaan_indonesia_3[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm2)
+                {
+                    $high_pemetaan_indonesia_3[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm && $rata_pemetaan_awal[$m] < $kkm1)
+                {
+                    $low_pemetaan_indonesia_3[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm1 && $rata_pemetaan_awal[$m] < $kkm2)
+                {
+                    $pass_pemetaan_indonesia_3[$m] = $rata_pemetaan_awal[$m];
+                }
+            }
+            if($n -> mapel_id == 6 && $n -> kelas_id == 3)
+            {
+                $matematika_pemetaan_awal[$m] = $n -> nilai;
+                $rata_pemetaan_awal[$m] = number_format((float)$matematika_pemetaan_awal[$m], 1, '.', '');
+                if($rata_pemetaan_awal[$m] < $kkm)
+                {
+                    $underlow_pemetaan_matematika_3[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm2)
+                {
+                    $high_pemetaan_matematika_3[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm && $rata_pemetaan_awal[$m] < $kkm1)
+                {
+                    $low_pemetaan_matematika_3[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm1 && $rata_pemetaan_awal[$m] < $kkm2)
+                {
+                    $pass_pemetaan_matematika_3[$m] = $rata_pemetaan_awal[$m];
+                }
+            }
+            if($n -> mapel_id == 5 && $n -> kelas_id == 4)
+            {
+                $indonesia_pemetaan_awal[$m] = $n -> nilai;
+                $rata_pemetaan_awal[$m] = number_format((float)$indonesia_pemetaan_awal[$m], 1, '.', '');
+                if($rata_pemetaan_awal[$m] < $kkm)
+                {
+                    $underlow_pemetaan_indonesia_4[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm2)
+                {
+                    $high_pemetaan_indonesia_4[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm && $rata_pemetaan_awal[$m] < $kkm1)
+                {
+                    $low_pemetaan_indonesia_4[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm1 && $rata_pemetaan_awal[$m] < $kkm2)
+                {
+                    $pass_pemetaan_indonesia_4[$m] = $rata_pemetaan_awal[$m];
+                }
+            }
+            if($n -> mapel_id == 6 && $n -> kelas_id == 4)
+            {
+                $matematika_pemetaan_awal[$m] = $n -> nilai;
+                $rata_pemetaan_awal[$m] = number_format((float)$matematika_pemetaan_awal[$m], 1, '.', '');
+                if($rata_pemetaan_awal[$m] < $kkm)
+                {
+                    $underlow_pemetaan_matematika_4[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm2)
+                {
+                    $high_pemetaan_matematika_4[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm && $rata_pemetaan_awal[$m] < $kkm1)
+                {
+                    $low_pemetaan_matematika_4[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm1 && $rata_pemetaan_awal[$m] < $kkm2)
+                {
+                    $pass_pemetaan_matematika_4[$m] = $rata_pemetaan_awal[$m];
+                }
+            }
+            if($n -> mapel_id == 5 && $n -> kelas_id == 5)
+            {
+                $indonesia_pemetaan_awal[$m] = $n -> nilai;
+                $rata_pemetaan_awal[$m] = number_format((float)$indonesia_pemetaan_awal[$m], 1, '.', '');
+                if($rata_pemetaan_awal[$m] < $kkm)
+                {
+                    $underlow_pemetaan_indonesia_5[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm2)
+                {
+                    $high_pemetaan_indonesia_5[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm && $rata_pemetaan_awal[$m] < $kkm1)
+                {
+                    $low_pemetaan_indonesia_5[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm1 && $rata_pemetaan_awal[$m] < $kkm2)
+                {
+                    $pass_pemetaan_indonesia_5[$m] = $rata_pemetaan_awal[$m];
+                }
+            }
+            if($n -> mapel_id == 6 && $n -> kelas_id == 5)
+            {
+                $matematika_pemetaan_awal[$m] = $n -> nilai;
+                $rata_pemetaan_awal[$m] = number_format((float)$matematika_pemetaan_awal[$m], 1, '.', '');
+                if($rata_pemetaan_awal[$m] < $kkm)
+                {
+                    $underlow_pemetaan_matematika_5[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm2)
+                {
+                    $high_pemetaan_matematika_5[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm && $rata_pemetaan_awal[$m] < $kkm1)
+                {
+                    $low_pemetaan_matematika_5[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm1 && $rata_pemetaan_awal[$m] < $kkm2)
+                {
+                    $pass_pemetaan_matematika_5[$m] = $rata_pemetaan_awal[$m];
+                }
+            }
+            if($n -> mapel_id == 5 && $n -> kelas_id == 6)
+            {
+                $indonesia_pemetaan_awal[$m] = $n -> nilai;
+                $rata_pemetaan_awal[$m] = number_format((float)$indonesia_pemetaan_awal[$m], 1, '.', '');
+                if($rata_pemetaan_awal[$m] < $kkm)
+                {
+                    $underlow_pemetaan_indonesia_6[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm2)
+                {
+                    $high_pemetaan_indonesia_6[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm && $rata_pemetaan_awal[$m] < $kkm1)
+                {
+                    $low_pemetaan_indonesia_6[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm1 && $rata_pemetaan_awal[$m] < $kkm2)
+                {
+                    $pass_pemetaan_indonesia_6[$m] = $rata_pemetaan_awal[$m];
+                }
+            }
+            if($n -> mapel_id == 6 && $n -> kelas_id == 6)
+            {
+                $matematika_pemetaan_awal[$m] = $n -> nilai;
+                $rata_pemetaan_awal[$m] = number_format((float)$matematika_pemetaan_awal[$m], 1, '.', '');
+                if($rata_pemetaan_awal[$m] < $kkm)
+                {
+                    $underlow_pemetaan_matematika_6[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm2)
+                {
+                    $high_pemetaan_matematika_6[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm && $rata_pemetaan_awal[$m] < $kkm1)
+                {
+                    $low_pemetaan_matematika_6[$m] = $rata_pemetaan_awal[$m];
+                }
+                if($rata_pemetaan_awal[$m] >= $kkm1 && $rata_pemetaan_awal[$m] < $kkm2)
+                {
+                    $pass_pemetaan_matematika_6[$m] = $rata_pemetaan_awal[$m];
+                }
+            }
         }
 
-        dd($islam_harian_1);
+        $underlow_pemetaan_indonesia_total = $underlow_pemetaan_indonesia_6 +
+                                $underlow_pemetaan_indonesia_5 +
+                                $underlow_pemetaan_indonesia_4 +
+                                $underlow_pemetaan_indonesia_3 +
+                                $underlow_pemetaan_indonesia_2 +
+                                $underlow_pemetaan_indonesia_1;
+        $low_pemetaan_indonesia_total = $low_pemetaan_indonesia_6 +
+                                $low_pemetaan_indonesia_5 +
+                                $low_pemetaan_indonesia_4 +
+                                $low_pemetaan_indonesia_3 +
+                                $low_pemetaan_indonesia_2 +
+                                $low_pemetaan_indonesia_1;
+        $pass_pemetaan_indonesia_total = $pass_pemetaan_indonesia_6 +
+                                $pass_pemetaan_indonesia_5 +
+                                $pass_pemetaan_indonesia_4 +
+                                $pass_pemetaan_indonesia_3 +
+                                $pass_pemetaan_indonesia_2 +
+                                $pass_pemetaan_indonesia_1;
+        $high_pemetaan_indonesia_total = $high_pemetaan_indonesia_6 +
+                                $high_pemetaan_indonesia_5 +
+                                $high_pemetaan_indonesia_4 +
+                                $high_pemetaan_indonesia_3 +
+                                $high_pemetaan_indonesia_2 +
+                                $high_pemetaan_indonesia_1;
+
+        $underlow_pemetaan_matematika_total = $underlow_pemetaan_matematika_6 +
+                                $underlow_pemetaan_matematika_5 +
+                                $underlow_pemetaan_matematika_4 +
+                                $underlow_pemetaan_matematika_3 +
+                                $underlow_pemetaan_matematika_2 +
+                                $underlow_pemetaan_matematika_1;
+        $low_pemetaan_matematika_total =$low_pemetaan_matematika_6 +
+                            $low_pemetaan_matematika_5 +
+                            $low_pemetaan_matematika_4 +
+                            $low_pemetaan_matematika_3 +
+                            $low_pemetaan_matematika_2 +
+                            $low_pemetaan_matematika_1;
+        $pass_pemetaan_matematika_total = $pass_pemetaan_matematika_6 +
+                                $pass_pemetaan_matematika_5 +
+                                $pass_pemetaan_matematika_4 +
+                                $pass_pemetaan_matematika_3 +
+                                $pass_pemetaan_matematika_2 +
+                                $pass_pemetaan_matematika_1;
+        $high_pemetaan_matematika_total = $high_pemetaan_matematika_6 +
+                                $high_pemetaan_matematika_5 +
+                                $high_pemetaan_matematika_4 +
+                                $high_pemetaan_matematika_3 +
+                                $high_pemetaan_matematika_2 +
+                                $high_pemetaan_matematika_1;
+        //dd($underlow_pemetaan_indonesia_6);
         $matpel = ['Agama Islam','Agama Protestan','Agama Katolik','PPKn','Bahasa Indonesia','Matematika','IPA','IPS','PJOK','SBK'];
-        $islam_average = Nilai::all()->where('mapel_id',1)->pluck('nilai')->avg();
-        $protestan_average = Nilai::all()->where('mapel_id',2)->pluck('nilai')->avg();
-        $katolik_average = Nilai::all()->where('mapel_id',3)->pluck('nilai')->avg();
-        $ppkn_average = Nilai::all()->where('mapel_id',4)->pluck('nilai')->avg();
-        $indonesia_average = Nilai::all()->where('mapel_id',5)->pluck('nilai')->avg();
-        $matematika_average = Nilai::all()->where('mapel_id',6)->pluck('nilai')->avg();
-        $ipa_average = Nilai::all()->where('mapel_id',7)->pluck('nilai')->avg();
-        $ips_average = Nilai::all()->where('mapel_id',8)->pluck('nilai')->avg();
-        $pjok_average = Nilai::all()->where('mapel_id',9)->pluck('nilai')->avg();
-        $sbk_average = Nilai::all()->where('mapel_id',10)->pluck('nilai')->avg();
-        $pemetaan_islam_average = Nilai::all()->where('penilaian_id',6)->where('mapel_id',1)->pluck('nilai')->avg();
-        $pemetaan_protestan_average = Nilai::all()->where('penilaian_id',6)->where('mapel_id',2)->pluck('nilai')->avg();
-        $pemetaan_katolik_average = Nilai::all()->where('penilaian_id',6)->where('mapel_id',3)->pluck('nilai')->avg();
-        $pemetaan_ppkn_average = Nilai::all()->where('penilaian_id',6)->where('mapel_id',4)->pluck('nilai')->avg();
-        $pemetaan_indonesia_average = Nilai::all()->where('penilaian_id',6)->where('mapel_id',5)->pluck('nilai')->avg();
-        $pemetaan_matematika_average = Nilai::all()->where('penilaian_id',6)->where('mapel_id',6)->pluck('nilai')->avg();
-        $pemetaan_ipa_average = Nilai::all()->where('penilaian_id',6)->where('mapel_id',7)->pluck('nilai')->avg();
-        $pemetaan_ips_average = Nilai::all()->where('penilaian_id',6)->where('mapel_id',8)->pluck('nilai')->avg();
-        $pemetaan_pjok_average = Nilai::all()->where('penilaian_id',6)->where('mapel_id',9)->pluck('nilai')->avg();
-        $pemetaan_sbk_average = Nilai::all()->where('penilaian_id',6)->where('mapel_id',10)->pluck('nilai')->avg();
+        $matpel_pemetaan = ['Bahasa Indonesia','Matematika'];
+        $islam_average = $nilai->where('mapel_id',1)->pluck('nilai')->avg();
+        $protestan_average = $nilai->where('mapel_id',2)->pluck('nilai')->avg();
+        $katolik_average = $nilai->where('mapel_id',3)->pluck('nilai')->avg();
+        $ppkn_average = $nilai->where('mapel_id',4)->pluck('nilai')->avg();
+        $indonesia_average = $nilai->where('mapel_id',5)->pluck('nilai')->avg();
+        $matematika_average = $nilai->where('mapel_id',6)->pluck('nilai')->avg();
+        $this_month = (int)($indonesia_average + $matematika_average)/2;
+        $ipa_average = $nilai->where('mapel_id',7)->pluck('nilai')->avg();
+        $ips_average = $nilai->where('mapel_id',8)->pluck('nilai')->avg();
+        $pjok_average = $nilai->where('mapel_id',9)->pluck('nilai')->avg();
+        $sbk_average = $nilai->where('mapel_id',10)->pluck('nilai')->avg();
+        $pemetaan_islam_average = $nilai->where('penilaian_id',6)->where('mapel_id',1)->pluck('nilai')->avg();
+        $pemetaan_protestan_average = $nilai->where('penilaian_id',6)->where('mapel_id',2)->pluck('nilai')->avg();
+        $pemetaan_katolik_average = $nilai->where('penilaian_id',6)->where('mapel_id',3)->pluck('nilai')->avg();
+        $pemetaan_ppkn_average = $nilai->where('penilaian_id',6)->where('mapel_id',4)->pluck('nilai')->avg();
+        $pemetaan_indonesia_average = $nilai->where('penilaian_id',6)->where('mapel_id',5)->pluck('nilai')->avg();
+        $pemetaan_matematika_average = $nilai->where('penilaian_id',6)->where('mapel_id',6)->pluck('nilai')->avg();
+        $total_average = (($pemetaan_indonesia_average + $pemetaan_matematika_average)/2);
+        $last_average = ($this_month - $total_average);
+        //dd($last_average);
+        $pemetaan_ipa_average = $nilai->where('penilaian_id',6)->where('mapel_id',7)->pluck('nilai')->avg();
+        $pemetaan_ips_average = $nilai->where('penilaian_id',6)->where('mapel_id',8)->pluck('nilai')->avg();
+        $pemetaan_pjok_average = $nilai->where('penilaian_id',6)->where('mapel_id',9)->pluck('nilai')->avg();
+        $pemetaan_sbk_average = $nilai->where('penilaian_id',6)->where('mapel_id',10)->pluck('nilai')->avg();
         $sikap_average = (int)($islam_average+$protestan_average+$katolik_average+$ppkn_average)/4;
         $skill_average = (int)($indonesia_average+$matematika_average+$ipa_average+$ips_average)/4;
         $budaya_average = (int)($pjok_average+$sbk_average)/2;
@@ -323,8 +455,11 @@ class DashboardController extends Controller
             //$sumbux[] = $mnp->nilai;
             $sumbuy[] = $mnp -> mapel -> nama_mapel;
         }
-        //dd($sumbuy);
+        //dd(array_sum($underlow_pemetaan_indonesia_total)/count($underlow_pemetaan_indonesia_total));
+        //dd($underlow_pemetaan_indonesia_total);
         return view('dashboards.index',[
+            'this_month' => $this_month,
+            'last_average' => $last_average,
             'rata_pemetaan_awal' => $rata_pemetaan_awal,
             'user' => $user,
             'islam_average' => $islam_average,
@@ -338,10 +473,15 @@ class DashboardController extends Controller
             'pjok_average' => $pjok_average,
             'sbk_average' => $sbk_average,
 
-            'underlow_pemetaan_1' => $underlow_pemetaan_1,
-            'low_pemetaan_1' => $low_pemetaan_1,
-            'pass_pemetaan_1' => $pass_pemetaan_1,
-            'high_pemetaan_1' => $high_pemetaan_1,
+            'underlow_pemetaan_indonesia_total' => $underlow_pemetaan_indonesia_total,
+            'low_pemetaan_indonesia_total' => $low_pemetaan_indonesia_total,
+            'pass_pemetaan_indonesia_total' => $pass_pemetaan_indonesia_total,
+            'high_pemetaan_indonesia_total' => $high_pemetaan_indonesia_total,
+
+            'underlow_pemetaan_matematika_total' => $underlow_pemetaan_matematika_total,
+            'low_pemetaan_matematika_total' => $low_pemetaan_matematika_total,
+            'pass_pemetaan_matematika_total' => $pass_pemetaan_matematika_total,
+            'high_pemetaan_matematika_total' => $high_pemetaan_matematika_total,
 
             'pemetaan_islam_average' => $pemetaan_islam_average,
             'pemetaan_protestan_average' => $pemetaan_protestan_average,
@@ -358,6 +498,7 @@ class DashboardController extends Controller
             'sikap_average'=>$sikap_average,
             'matang1'=>$matang1,
             'matpel'=>$matpel,
+            'matpel_pemetaan' => $matpel_pemetaan,
             'sumbux'=>$sumbux,
             'sumbuy'=>$sumbuy]);
     }

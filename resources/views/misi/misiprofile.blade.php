@@ -1,7 +1,7 @@
 @extends('layouts.mailbox')
 
 @section('title')
-  <title> AdminLTE 3 | Visi-Misi </title>
+  <title> SD Dabolding Visi-Misi </title>
 @endsection
 @section('header')
   <!-- SweetAlert2 -->
@@ -143,7 +143,7 @@
                     </div>
                     <!-- /.post -->
                   </div>
-                  <!-- /.tab-pane -->                 
+                  <!-- /.tab-pane -->
                 </div>
                 <!-- /.tab-content -->
               </div><!-- /.card-body -->
@@ -197,7 +197,7 @@
             </select>
           </div>
           <div class="row">
-            
+
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="tahun_awal">Mulai?</label>
@@ -217,7 +217,7 @@
                   @endforeach
                 </select>
               </div>
-            </div>                         
+            </div>
           </div>
           <div class="form-group {{$errors->has('visi_misi')?' has-error' : ''}}">
             <label for="exampleFormControlInput1">Visi Misi</label>
@@ -356,7 +356,7 @@
     });
     $('.toastsDefaultSuccess').click(function() {
       $(document).Toasts('create', {
-        class: 'bg-success', 
+        class: 'bg-success',
         title: 'Toast Title',
         subtitle: 'Subtitle',
         body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
@@ -364,7 +364,7 @@
     });
     $('.toastsDefaultInfo').click(function() {
       $(document).Toasts('create', {
-        class: 'bg-info', 
+        class: 'bg-info',
         title: 'Toast Title',
         subtitle: 'Subtitle',
         body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
@@ -372,7 +372,7 @@
     });
     $('.toastsDefaultWarning').click(function() {
       $(document).Toasts('create', {
-        class: 'bg-warning', 
+        class: 'bg-warning',
         title: 'Toast Title',
         subtitle: 'Subtitle',
         body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
@@ -380,7 +380,7 @@
     });
     $('.toastsDefaultDanger').click(function() {
       $(document).Toasts('create', {
-        class: 'bg-danger', 
+        class: 'bg-danger',
         title: 'Toast Title',
         subtitle: 'Subtitle',
         body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
@@ -388,7 +388,7 @@
     });
     $('.toastsDefaultMaroon').click(function() {
       $(document).Toasts('create', {
-        class: 'bg-maroon', 
+        class: 'bg-maroon',
         title: 'Toast Title',
         subtitle: 'Subtitle',
         body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'

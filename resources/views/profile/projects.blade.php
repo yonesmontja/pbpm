@@ -1,7 +1,7 @@
  @extends('layouts.mailbox')
 
  @section('title')
-     <title> AdminLTE 3 | Projects </title>
+     <title> SD Dabolding Projects </title>
  @endsection
 
  @section('content')
@@ -52,7 +52,7 @@
                          Tambah Project Siswa
                      </a>
                  </div>
-                 <div class="card-body p-0">
+                 <div class="card-body">
                      <table id="example2" class="table table-striped projects">
                          <thead>
                              <tr>

@@ -76,6 +76,8 @@ class JurnalController extends Controller
         $dateE = Carbon::now();
         $weekS = Carbon::now()->startOfWeek()->subWeek(0);
         $weekE = Carbon::now();
+        $userjournal_this_date = [];
+        $userjournal_this_week = [];
         $userjournal_this_week_1 = Journal::where('kategori_id','=',1)->orderBy('created_at','desc')->whereBetween('created_at',[$weekS,$weekE])->get()->first();
         $userjournal_this_week_2 = Journal::where('kategori_id','=',2)->orderBy('created_at','desc')->whereBetween('created_at',[$weekS,$weekE])->get()->first();
         $userjournal_this_week_3 = Journal::where('kategori_id','=',3)->orderBy('created_at','desc')->whereBetween('created_at',[$weekS,$weekE])->get()->first();

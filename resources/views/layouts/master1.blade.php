@@ -74,9 +74,6 @@
     <!-- Sparkline -->
     <script src="{{ asset('/admin/plugins/sparklines/sparkline.js') }}"></script>
     <!-- JQVMap -->
-    <script src="{{ asset('/admin/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('/admin/plugins/jqvmap/maps/jquery.vmap.indonesia.js') }}"></script>
-    <script src="{{ asset('/admin/plugins/jqvmap/maps/jquery.vmap.asmat.js') }}"></script>
 
     <!-- jQuery Knob Chart -->
     <script src="{{ asset('/admin/plugins/jquery-knob/jquery.knob.min.js') }}"></script>

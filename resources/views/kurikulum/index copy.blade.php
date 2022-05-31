@@ -1,7 +1,7 @@
 @extends('layouts.master2')
 
 @section('title')
-    <title> AdminLTE 3 | Kurikulum </title>
+    <title> SD Dabolding Kurikulum </title>
 @endsection
 
 @section('header')

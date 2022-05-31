@@ -1,7 +1,7 @@
 @extends('layouts.master4')
 
 @section('title')
-    <title> AdminLTE 3 | Data User </title>
+    <title> SD Dabolding Data User </title>
 @endsection
 
 @section('content')

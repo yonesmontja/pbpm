@@ -1,7 +1,7 @@
 @extends('layouts.master3')
 
 @section('title')
-    <title> AdminLTE 3 | Kesiswaan </title>
+    <title> SD Dabolding Kesiswaan </title>
 @endsection
 
 @section('content3')
@@ -222,7 +222,6 @@
                                     <span class="mr-2">
                                         <i class="fas fa-square text-primary"></i> Bulan ini
                                     </span>
-
                                 </div>
                             </div>
                         </div>

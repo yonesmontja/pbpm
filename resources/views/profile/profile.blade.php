@@ -1,7 +1,7 @@
 @extends('layouts.mailbox')
 
 @section('title')
-  <title> AdminLTE 3 | Compose </title>
+  <title>  Compose </title>
 @endsection
 @section('header')
 <style type="text/css">/* Chart.js */
@@ -129,7 +129,7 @@
                 <div class="tab-content">
                   <!-- /.tab-pane -->
 
-                  <!-- /.tab-pane --> 
+                  <!-- /.tab-pane -->
 
                   <div class="tab-pane" id="activity">
                     <!-- Post -->
@@ -387,7 +387,7 @@
                         </div>
                       </div>
                     </form>
-                  </div>                 
+                  </div>
                 </div>
                 <!-- /.tab-content -->
               </div><!-- /.card-body -->

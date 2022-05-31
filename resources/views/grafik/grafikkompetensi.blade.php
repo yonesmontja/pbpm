@@ -1,7 +1,7 @@
 @extends('layouts.inline')
 
 @section('title')
-  <title> AdminLTE 3 | Grafik </title>
+  <title> SD Dabolding Grafik </title>
 @endsection
 
 @section('content')

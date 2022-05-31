@@ -4,7 +4,6 @@
     <title> CAPAIAN SISWA </title>
 @endsection
 @section('header')
-    <link rel="stylesheet" href="{{ asset('/jqvmap/css/style.css') }}">
 @endsection
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -30,19 +29,26 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                <div class="row mb-6">
+                    <div class="col-sm-6">
+                        <h5 class="m-0 text-dark">PEMETAAN AWAL BAHASA INDONESIA</h5>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>{{ count($high_pemetaan_1) }} siswa</h3>
+                                <h3>{{ count($high_pemetaan_indonesia_total) }} siswa</h3>
                                 <p>High</p>
-                                @if (count($high_pemetaan_1) == !null)
-                                    <h5>Nilai rata-rata: {{ number_format((float)array_sum($high_pemetaan_1)/count($high_pemetaan_1), 1, '.','') }}</h5>
+                                @if (count($high_pemetaan_indonesia_total) == !null)
+                                    <h5>Nilai rata-rata:
+                                        {{ number_format((float) array_sum($high_pemetaan_indonesia_total) / count($high_pemetaan_indonesia_total), 1, '.', '') }}
+                                    </h5>
                                 @endif
-                                @if (count($high_pemetaan_1) == null)
-                                    <h5>Nilai rata-rata: {{ count($high_pemetaan_1) }}</h5>
+                                @if (count($high_pemetaan_indonesia_total) == null)
+                                    <h5>Nilai rata-rata: {{ count($high_pemetaan_indonesia_total) }}</h5>
                                 @endif
                             </div>
                             <div class="icon">
@@ -57,13 +63,15 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>{{ count($pass_pemetaan_1) }} siswa</h3>
+                                <h3>{{ count($pass_pemetaan_indonesia_total) }} siswa</h3>
                                 <p>Pass</p>
-                                @if (count($pass_pemetaan_1) == !null)
-                                    <h5>Nilai rata-rata: {{ number_format((float)array_sum($pass_pemetaan_1)/count($pass_pemetaan_1), 1, '.','') }}</h5>
+                                @if (count($pass_pemetaan_indonesia_total) == !null)
+                                    <h5>Nilai rata-rata:
+                                        {{ number_format((float) array_sum($pass_pemetaan_indonesia_total) / count($pass_pemetaan_indonesia_total), 1, '.', '') }}
+                                    </h5>
                                 @endif
-                                @if (count($pass_pemetaan_1) == null)
-                                    <h5>Nilai rata-rata: {{ count($pass_pemetaan_1) }}</h5>
+                                @if (count($pass_pemetaan_indonesia_total) == null)
+                                    <h5>Nilai rata-rata: {{ count($pass_pemetaan_indonesia_total) }}</h5>
                                 @endif
                             </div>
                             <div class="icon">
@@ -78,13 +86,16 @@
                         <!-- small box -->
                         <div class="small-box bg-warning text-white">
                             <div class="inner">
-                                <h3 class="text-white">{{ count($low_pemetaan_1) }} siswa</h3>
+                                <h3 class="text-white">{{ count($low_pemetaan_indonesia_total) }} siswa</h3>
                                 <p class="text-white">Low</p>
-                                @if (count($low_pemetaan_1) == !null)
-                                    <h5 class="text-white">Nilai rata-rata: {{ number_format((float)array_sum($low_pemetaan_1)/count($low_pemetaan_1), 1, '.','') }}</h5>
+                                @if (count($low_pemetaan_indonesia_total) == !null)
+                                    <h5 class="text-white">Nilai rata-rata:
+                                        {{ number_format((float) array_sum($low_pemetaan_indonesia_total) / count($low_pemetaan_indonesia_total), 1, '.', '') }}
+                                    </h5>
                                 @endif
-                                @if (count($low_pemetaan_1) == null)
-                                    <h5 class="text-white">Nilai rata-rata: {{ count($low_pemetaan_1) }}</h5>
+                                @if (count($low_pemetaan_indonesia_total) == null)
+                                    <h5 class="text-white">Nilai rata-rata: {{ count($low_pemetaan_indonesia_total) }}
+                                    </h5>
                                 @endif
                             </div>
                             <div class="icon">
@@ -99,13 +110,117 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>{{ count($underlow_pemetaan_1) }} siswa</h3>
+                                <h3>{{ count($underlow_pemetaan_indonesia_total) }} siswa</h3>
                                 <p>Under Low</p>
-                                @if (count($underlow_pemetaan_1) == !null)
-                                    <h5>Nilai rata-rata: {{ number_format((float)array_sum($underlow_pemetaan_1)/count($underlow_pemetaan_1), 1, '.','') }}</h5>
+                                @if (count($underlow_pemetaan_indonesia_total) == !null)
+                                    <h5>Nilai rata-rata:
+                                        {{ number_format((float) array_sum($underlow_pemetaan_indonesia_total) / count($underlow_pemetaan_indonesia_total), 1, '.', '') }}
+                                    </h5>
                                 @endif
-                                @if (count($underlow_pemetaan_1) == null)
-                                    <h5>Nilai rata-rata: {{ count($underlow_pemetaan_1) }}</h5>
+                                @if (count($underlow_pemetaan_indonesia_total) == null)
+                                    <h5>Nilai rata-rata: {{ count($underlow_pemetaan_indonesia_total) }}</h5>
+                                @endif
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="/test" class="small-box-footer">Info lebih lanjut <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                </div>
+                <!-- /.row -->
+                <!-- Small boxes (Stat box) -->
+                <div class="row mb-6">
+                    <div class="col-sm-6">
+                        <h5 class="m-0 text-dark">PEMETAAN AWAL MATEMATIKA</h5>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{ count($high_pemetaan_matematika_total) }} siswa</h3>
+                                <p>High</p>
+                                @if (count($high_pemetaan_matematika_total) == !null)
+                                    <h5>Nilai rata-rata:
+                                        {{ number_format((float) array_sum($high_pemetaan_matematika_total) / count($high_pemetaan_matematika_total), 1, '.', '') }}
+                                    </h5>
+                                @endif
+                                @if (count($high_pemetaan_matematika_total) == null)
+                                    <h5>Nilai rata-rata: {{ count($high_pemetaan_matematika_total) }}</h5>
+                                @endif
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="/test" class="small-box-footer">Info lebih lanjut <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>{{ count($pass_pemetaan_matematika_total) }} siswa</h3>
+                                <p>Pass</p>
+                                @if (count($pass_pemetaan_matematika_total) == !null)
+                                    <h5>Nilai rata-rata:
+                                        {{ number_format((float) array_sum($pass_pemetaan_matematika_total) / count($pass_pemetaan_matematika_total), 1, '.', '') }}
+                                    </h5>
+                                @endif
+                                @if (count($pass_pemetaan_matematika_total) == null)
+                                    <h5>Nilai rata-rata: {{ count($pass_pemetaan_matematika_total) }}</h5>
+                                @endif
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="/test" class="small-box-footer">Info lebih lanjut <i
+                                    class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-warning text-white">
+                            <div class="inner">
+                                <h3 class="text-white">{{ count($low_pemetaan_matematika_total) }} siswa</h3>
+                                <p class="text-white">Low</p>
+                                @if (count($low_pemetaan_matematika_total) == !null)
+                                    <h5 class="text-white">Nilai rata-rata:
+                                        {{ number_format((float) array_sum($low_pemetaan_matematika_total) / count($low_pemetaan_matematika_total), 1, '.', '') }}
+                                    </h5>
+                                @endif
+                                @if (count($low_pemetaan_matematika_total) == null)
+                                    <h5 class="text-white">Nilai rata-rata:
+                                        {{ count($low_pemetaan_matematika_total) }}</h5>
+                                @endif
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="/test" class="small-box-footer text-white">Info lebih lanjut <i
+                                    class="text-white fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>{{ count($underlow_pemetaan_matematika_total) }} siswa</h3>
+                                <p>Under Low</p>
+                                @if (count($underlow_pemetaan_matematika_total) == !null)
+                                    <h5>Nilai rata-rata:
+                                        {{ number_format((float) array_sum($underlow_pemetaan_matematika_total) / count($underlow_pemetaan_matematika_total), 1, '.', '') }}
+                                    </h5>
+                                @endif
+                                @if (count($underlow_pemetaan_matematika_total) == null)
+                                    <h5>Nilai rata-rata: {{ count($underlow_pemetaan_matematika_total) }}</h5>
                                 @endif
                             </div>
                             <div class="icon">
@@ -129,6 +244,8 @@
                                     <i class="fas fa-chart-pie mr-1"></i>
                                     Nilai Siswa
                                 </h3>
+                            </div><!-- /.card-header -->
+                            <div class="card-header">
                                 <div class="card-tools">
                                     <ul class="nav nav-pills ml-auto">
                                         <li class="nav-item">
@@ -141,15 +258,48 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div><!-- /.card-header -->
+                            </div>
                             <div class="card-body">
-                                <div class="tab-content p-0">
+                                <div class="tab-content">
+                                    <div class="d-flex">
+                                    <p class="d-flex flex-column">
+                                        <span class="text-bold text-lg">{{ $this_month }}</span>
+                                        <span>Nilai Rata-rata siswa</span>
+                                    </p>
+                                    <p class="ml-auto d-flex flex-column text-right">
+                                        @if ($last_average < 0)
+                                            <span class="text-danger">
+                                                <i class="fas fa-arrow-down"></i> {{ $last_average * -1 }}%
+                                            </span>
+                                        @elseif($last_average == 0)
+                                            <span class="text-info">
+                                                <i class="fas fa-arrow-circle-right"></i> {{ $last_average }}%
+                                            </span>
+                                        @elseif ($last_average > 0)
+                                            <span class="text-success">
+                                                <i class="fas fa-arrow-up"></i> {{ $last_average }}%
+                                            </span>
+                                        @endif
+
+                                        <span class="text-muted">Sejak bulan lalu</span>
+                                    </p>
+                                </div>
+                                <!-- /.d-flex -->
                                     <!-- Morris chart - Sales -->
                                     <div class="chart tab-pane active" id="revenue-chart"
                                         style="position: relative; height: 300px;">
-                                        <canvas id="areaChart"
+                                        <canvas id="sales-chart"
                                             style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                                     </div>
+                                    <div class="d-flex flex-row justify-content-end">
+                                    <span class="mr-2">
+                                        <i class="fas fa-square text-grey"></i> Nilai pemetaan awal
+                                    </span>
+                                    <span></span>
+                                    <span class="mr-2">
+                                        <i class="fas fa-square text-primary"></i> Nilai saat ini
+                                    </span>
+                                </div>
                                     <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
                                         <canvas id="donutChart"
                                             style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
@@ -158,10 +308,10 @@
                             </div><!-- /.card-body -->
                         </div>
                         <!-- solid sales graph -->
-                        <div class="card">
+                        <div class="card card-success">
                             <div class="card-header border-0">
                                 <h3 class="card-title">
-                                    <i class="fas fa-th mr-1"></i>
+                                    <i class="fas fa-chart-pie mr-1"></i>
                                     Rata-rata Nilai Siswa
                                 </h3>
 
@@ -218,7 +368,10 @@
                     <section class="col-lg-6 connectedSortable">
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Nilai Siswa</h3>
+                                <h3 class="card-title">
+                                    <i class="fas fa-chart-pie mr-1"></i>
+                                    Rata-rata Nilai Siswa
+                                </h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
@@ -259,7 +412,10 @@
                         <!-- STACKED BAR CHART -->
                         <div class="card card-success">
                             <div class="card-header">
-                                <h3 class="card-title">Nilai Siswa</h3>
+                                <h3 class="card-title">
+                                    <i class="fas fa-chart-pie mr-1"></i>
+                                    Rata-rata Nilai Siswa
+                                </h3>
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                             class="fas fa-minus"></i>
@@ -287,7 +443,6 @@
     <!-- /.content-wrapper -->
 @endsection
 @section('footer')
-    <script src="{{ asset('/jqvmap/js/asmat-map.js') }}"></script>
     <script>
         $(function() {
             /* ChartJS
@@ -300,78 +455,66 @@
             //--------------
 
             // Get context with jQuery - using jQuery's .get() method.
-            var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
+            //var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
 
-            var areaChartData = {
-                labels: {!! json_encode($matpel) !!},
-                datasets: [{
-                        label: 'Nilai Siswa',
-                        backgroundColor: 'rgba(255, 0, 0, 0.4)',
-                        borderColor: 'rgba(60,141,188,0.8)',
-                        pointRadius: false,
-                        pointColor: '#B7E675',
-                        pointStrokeColor: 'rgba(148, 233, 78, 0.57)',
-                        pointHighlightFill: '#fff',
-                        pointHighlightStroke: 'rgba(148, 233, 78, 0.57)',
-                        data: {!! json_encode($matang1) !!}
-                    },
-                    {
-                        label: 'Nilai Siswa',
-                        backgroundColor: 'rgba(255, 0, 0, 0.4)',
-                        borderColor: 'rgba(60,141,188,0.8)',
-                        pointRadius: false,
-                        pointColor: '#B7E675',
-                        pointStrokeColor: 'rgba(148, 233, 78, 0.57)',
-                        pointHighlightFill: '#fff',
-                        pointHighlightStroke: 'rgba(148, 233, 78, 0.57)',
-                        data: {!! json_encode($matang1) !!}
-                    },
+            //var areaChartData = {
+            //    labels: {!! json_encode($matpel_pemetaan) !!},
+            //    datasets: [{
+            //            label: 'Nilai Siswa',
+            //            backgroundColor: 'rgba(255, 0, 0, 0.4)',
+            //            borderColor: 'rgba(60,141,188,0.8)',
+            //            pointRadius: false,
+            //           pointColor: '#B7E675',
+            //            pointStrokeColor: 'rgba(148, 233, 78, 0.57)',
+            //            pointHighlightFill: '#fff',
+            //            pointHighlightStroke: 'rgba(148, 233, 78, 0.57)',
+            //            data: [{!! json_encode(array_sum($underlow_pemetaan_indonesia_total)/count($underlow_pemetaan_indonesia_total)) !!},
+            //            {!! json_encode(array_sum($underlow_pemetaan_matematika_total)/count($underlow_pemetaan_matematika_total)) !!}]
+            //        },
+            //        {
+            //            label: 'Nilai Siswa',
+            //            backgroundColor: 'rgba(255, 0, 0, 0.4)',
+            //            borderColor: 'rgba(60,141,188,0.8)',
+            //            pointRadius: false,
+            //           pointColor: '#B7E675',
+            //            pointStrokeColor: 'rgba(148, 233, 78, 0.57)',
+            //            pointHighlightFill: '#fff',
+            //            pointHighlightStroke: 'rgba(148, 233, 78, 0.57)',
+            //            data: [{!! json_encode(array_sum($underlow_pemetaan_indonesia_total)/count($underlow_pemetaan_indonesia_total)) !!},
+            //            {!! json_encode(array_sum($underlow_pemetaan_matematika_total)/count($underlow_pemetaan_matematika_total)) !!}]
+            //        },
 
-                ]
-            }
+            //    ]
+            //}
 
-            var areaChartOptions = {
-                maintainAspectRatio: false,
-                responsive: true,
-                legend: {
-                    display: false
-                },
-                scales: {
-                    xAxes: [{
-                        gridLines: {
-                            display: false,
-                        }
-                    }],
-                    yAxes: [{
-                        gridLines: {
-                            display: false,
-                        }
-                    }]
-                }
-            }
+            //var areaChartOptions = {
+            //    maintainAspectRatio: false,
+            //    responsive: true,
+            //    legend: {
+            //        display: false
+            //    },
+            //    scales: {
+            //        xAxes: [{
+            //            gridLines: {
+            //                display: false,
+            //            }
+            //        }],
+            //        yAxes: [{
+            //            gridLines: {
+            //                display: false,
+            //            }
+            //        }]
+            //    }
+            //}
 
             // This will get the first returned node in the jQuery collection.
-            var areaChart = new Chart(areaChartCanvas, {
-                type: 'line',
-                data: areaChartData,
-                options: areaChartOptions
-            })
+            //var areaChart = new Chart(areaChartCanvas, {
+            //    type: 'line',
+            //    data: areaChartData,
+            //    options: areaChartOptions
+            //})
 
-            //-------------
-            //- LINE CHART -
-            //--------------
-            var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
-            var lineChartOptions = jQuery.extend(true, {}, areaChartOptions)
-            var lineChartData = jQuery.extend(true, {}, areaChartData)
-            lineChartData.datasets[0].fill = false;
-            lineChartData.datasets[1].fill = false;
-            lineChartOptions.datasetFill = false
 
-            var lineChart = new Chart(lineChartCanvas, {
-                type: 'line',
-                data: lineChartData,
-                options: lineChartOptions
-            })
 
             //-------------
             //- DONUT CHART -
@@ -431,8 +574,7 @@
             //-------------
             var barChartCanvas = $('#barChart').get(0).getContext('2d')
             var barChartData = {
-                labels: ['Agama Islam', 'Agama Kristen', 'Agama Katolik', 'PPKn', 'B. Indonesia', 'Matematika',
-                    'IPA', 'IPS', 'PJOK', 'SBK'
+                labels: ['B. Indonesia', 'Matematika'
                 ],
                 datasets: [{
                         label: 'Pemetaan Awal',
@@ -443,16 +585,9 @@
                         pointStrokeColor: 'rgba(60,141,188,1)',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(60,141,188,1)',
-                        data: [{!! json_encode($pemetaan_islam_average) !!},
-                            {!! json_encode($pemetaan_protestan_average) !!},
-                            {!! json_encode($pemetaan_katolik_average) !!},
-                            {!! json_encode($pemetaan_ppkn_average) !!},
-                            {!! json_encode($pemetaan_indonesia_average) !!},
-                            {!! json_encode($pemetaan_matematika_average) !!},
-                            {!! json_encode($pemetaan_ipa_average) !!},
-                            {!! json_encode($pemetaan_ips_average) !!},
-                            {!! json_encode($pemetaan_pjok_average) !!},
-                            {!! json_encode($pemetaan_sbk_average) !!},
+                        data: [
+                            {!! json_encode(array_sum($underlow_pemetaan_indonesia_total)/count($underlow_pemetaan_indonesia_total)) !!},
+                        {!! json_encode(array_sum($underlow_pemetaan_matematika_total)/count($underlow_pemetaan_matematika_total)) !!}
                         ]
                     },
                     {
@@ -464,16 +599,9 @@
                         pointStrokeColor: '#c1c7d1',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(220,220,220,1)',
-                        data: [{!! json_encode($islam_average) !!},
-                            {!! json_encode($protestan_average) !!},
-                            {!! json_encode($katolik_average) !!},
-                            {!! json_encode($ppkn_average) !!},
+                        data: [
                             {!! json_encode($indonesia_average) !!},
-                            {!! json_encode($matematika_average) !!},
-                            {!! json_encode($ipa_average) !!},
-                            {!! json_encode($ips_average) !!},
-                            {!! json_encode($pjok_average) !!},
-                            {!! json_encode($sbk_average) !!},
+                            {!! json_encode($matematika_average) !!}
                         ]
                     },
                 ]
@@ -496,6 +624,89 @@
                 data: barChartData,
                 options: barChartOptions
             })
+
+            'use strict'
+
+            var ticksStyle = {
+                fontColor: '#495057',
+                fontStyle: 'bold'
+            }
+            var mode = 'index'
+            var intersect = true
+            var $salesChart = $('#sales-chart')
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($matpel_pemetaan) !!},
+                    datasets: [{
+                            backgroundColor: '#252626',
+                            borderColor: '#252626',
+                            data: [ {!! json_encode(array_sum($underlow_pemetaan_indonesia_total)/count($underlow_pemetaan_indonesia_total)) !!},
+                        {!! json_encode(array_sum($underlow_pemetaan_matematika_total)/count($underlow_pemetaan_matematika_total)) !!}]
+                        },
+                        {
+                            backgroundColor: '#007bff',
+                            borderColor: '#007bff',
+                            data: [
+                            {!! json_encode($indonesia_average) !!},
+                            {!! json_encode($matematika_average) !!}
+                        ]
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: 100,
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: false
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+             //-------------
+            //- LINE CHART -
+            //--------------
+            var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
+            var lineChartOptions = jQuery.extend(true, {}, barChartOptions)
+            var lineChartData = jQuery.extend(true, {}, barChartData)
+            lineChartData.datasets[0].fill = false;
+            lineChartData.datasets[1].fill = false;
+            lineChartOptions.datasetFill = false
+
+            var lineChart = new Chart(lineChartCanvas, {
+                type: 'line',
+                data: lineChartData,
+                options: lineChartOptions
+            })
+
             // Sparkline charts
             var sparkline1 = new Sparkline($('#sparkline-1')[0], {
                 width: 80,

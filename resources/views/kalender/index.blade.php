@@ -1,7 +1,7 @@
 @extends('layouts.calendar')
 
 @section('title')
-    <title> AdminLTE 3 | Kalender </title>
+    <title> SD Dabolding Kalender </title>
 @endsection
 
 @section('content')

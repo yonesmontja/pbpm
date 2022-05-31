@@ -1,7 +1,7 @@
 @extends('layouts.master5')
 
 @section('title')
-    <title> AdminLTE 3 | Test </title>
+    <title> SD Dabolding Test </title>
 @endsection
 
 @section('content')
@@ -37,13 +37,16 @@
                         <!-- /.card -->
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Tahun Pelajaran <a href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
+                                <h3 class="card-title">Tahun Pelajaran <a
+                                        href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
                             </div>
-                            <div class="col-12">
-                                <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal"
-                                    data-target="#staticBackdrop">
-                                    Tambah Data user
-                                </button>
+                            <div class="card-header">
+                                <div class="col-12">
+                                    <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal"
+                                        data-target="#staticBackdrop">
+                                        Tambah Data user
+                                    </button>
+                                </div>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">

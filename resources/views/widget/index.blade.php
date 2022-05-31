@@ -1,7 +1,7 @@
 @extends('layouts.master1')
 
 @section('title')
-  <title> AdminLTE 3 | Widget </title>
+  <title> SD Dabolding Widget </title>
 @endsection
 
 @section('content')

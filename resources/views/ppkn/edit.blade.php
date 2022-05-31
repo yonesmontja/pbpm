@@ -1,7 +1,7 @@
 @extends('layouts.master4')
 
 @section('title')
-  <title> AdminLTE 3 | PPKn </title>
+  <title> SD Dabolding PPKn </title>
 @endsection
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('layouts.master5')
 
 @section('title')
-  <title> AdminLTE 3 | KI </title>
+  <title> SD Dabolding KI </title>
 @endsection
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('layouts.master4')
 
 @section('title')
-  <title> AdminLTE 3 | SWOT </title>
+  <title>  SWOT </title>
 @endsection
 
 @section('content')

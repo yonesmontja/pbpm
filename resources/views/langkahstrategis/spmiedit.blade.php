@@ -1,7 +1,7 @@
 @extends('layouts.master4')
 
 @section('title')
-<title> AdminLTE 3 | SPMI </title>
+<title> SD Dabolding SPMI </title>
 @endsection
 
 @section('content')
@@ -55,13 +55,13 @@
 								<div class="form-group">
 									<label for="formGroupExampleInput2">Akhir tahun ajaran?</label>
 									<input name="spmi_end" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Kapan selesai?" value="{{$spmi->spmi_end}}">
-								</div>            			
+								</div>
 							</div>
 							<div class="col-sm-4">
 								<div class="form-group">
 									<label for="formGroupExampleInput3">Waktu Pelaksanaan</label>
 									<input name="waktu" type="text" class="form-control" id="formGroupExampleInput3" placeholder="Waktu pelaksanaan?" value="{{$spmi->waktu}}">
-								</div>            			
+								</div>
 							</div>
 						</div>
 						<div class="row">
@@ -71,7 +71,7 @@
 										<label for="exampleFormControlTextarea1">Tahapan</label>
 										<textarea name="tahapan" class="form-control" id="exampleFormControlTextarea1" rows="5" >{{$spmi->tahapan}}</textarea>
 									</div>
-								</div>           			
+								</div>
 							</div>
 							<div class="col-sm-4">
 								<div class="form-group">
@@ -79,7 +79,7 @@
 										<label for="exampleFormControlTextarea1">Kegiatan</label>
 										<textarea name="kegiatan" class="form-control" id="exampleFormControlTextarea1" rows="5" >{{$spmi->kegiatan}}</textarea>
 									</div>
-								</div>           			
+								</div>
 							</div>
 							<div class="col-sm-4">
 								<div class="form-group">
@@ -87,7 +87,7 @@
 										<label for="exampleFormControlTextarea1">Output</label>
 										<textarea name="output" class="form-control" id="exampleFormControlTextarea1" rows="5" >{{$spmi->output}}</textarea>
 									</div>
-								</div>           			
+								</div>
 							</div>
 						</div>
 						<div class="row">
@@ -97,7 +97,7 @@
 										<label for="exampleFormControlTextarea1">Pihak yg terlibat</label>
 										<textarea name="pihak_terlibat" class="form-control" id="exampleFormControlTextarea1" rows="3" >{{$spmi->pihak_terlibat}}</textarea>
 									</div>
-								</div>								
+								</div>
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group">
@@ -105,7 +105,7 @@
 										<label for="exampleFormControlTextarea1">Catatan</label>
 										<textarea name="catatan" class="form-control" id="exampleFormControlTextarea2" rows="3" >{{$spmi->catatan}}</textarea>
 									</div>
-								</div>								
+								</div>
 							</div>
 						</div>
 					</div>

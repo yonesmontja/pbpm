@@ -1,7 +1,7 @@
  @extends('layouts.mailbox')
 
 @section('title')
-  <title> AdminLTE 3 | Portofolio </title>
+  <title> SD Dabolding Portofolio </title>
 @endsection
 
 @section('content')

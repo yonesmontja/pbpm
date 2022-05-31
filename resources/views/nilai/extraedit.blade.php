@@ -1,7 +1,7 @@
 @extends('layouts.master4')
 
 @section('title')
-    <title> AdminLTE 3 | ABSEN-CATATAN WALI KELAS </title>
+    <title> SD Dabolding ABSEN-CATATAN WALI KELAS </title>
 @endsection
 
 @section('content')

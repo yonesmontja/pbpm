@@ -1,7 +1,7 @@
  @extends('layouts.mailbox-kelas')
 
  @section('title')
-     <title> AdminLTE 3 | Compose </title>
+     <title> SD Dabolding Compose </title>
  @endsection
  @section('header')
 
