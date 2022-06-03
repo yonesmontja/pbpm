@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Nilai;
 use App\Models\Siswa;
@@ -17,10 +18,14 @@ class KurikulumController extends Controller
         $user = User::all();
         $siswa = Siswa::all();
         // collection nilai semua kelas
-        $data_nilai = Nilai::all()->pluck('created_at');
-        //dd($data_nilai);
+        $data_nilai = $nilai->where('penilaian_id',1)->where('kelas_id',1);
+        foreach($data_nilai as $d)
+        {
+            $data_nilai1[][][][] = [$d -> siswa -> id, $d -> siswa -> nama_depan, $d -> nilai, $d -> created_at -> month];
+        }
+        //dd($data_nilai1);
         // nilai kelas 1
-        $kelas1 = Nilai::all()->where('kelas_id','=',1)->pluck('nilai');
+        $kelas1 = $nilai->where('kelas_id','=',1)->pluck('nilai','created_at');
         $nilai_kelas1 = [];
         foreach($kelas1 as $k)
         {
@@ -74,7 +79,7 @@ class KurikulumController extends Controller
         $kelas_average[3] = (int)$kls4_average;
         $kelas_average[4] = (int)$kls5_average;
         $kelas_average[5] = (int)$kls6_average;
-
+        //dd($nilai_kelas1);
         $label = ['Jan','Feb','Mar','Apr','Mei','Jun'];
         for($bulan=1;$bulan < 7;$bulan++){
             $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
