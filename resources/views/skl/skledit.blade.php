@@ -1,7 +1,7 @@
 @extends('layouts.master4')
 
 @section('title')
-  <title>  Data skl </title>
+  <title> SD Dabolding Data skl </title>
 @endsection
 
 @section('content')

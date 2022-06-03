@@ -1,7 +1,7 @@
 @extends('layouts.master4')
 
 @section('title')
-  <title>  VISI </title>
+  <title> SD Dabolding VISI </title>
 @endsection
 
 @section('content')

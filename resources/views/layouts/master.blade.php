@@ -40,7 +40,7 @@
     <div class="clearfix"></div>
     <footer>
       <div class="container-fluid">
-        <p class="copyright">Created by <i class="fa fa-love"></i><a href="/adminklo/grafi_2.html">ALIRENA | 2020</a>
+        <p class="copyright">Created by <i class="fa fa-love"></i><a href="/adminklo/grafi_2.html">ALIRENA | {{ date('Y') }}</a>
 </p>
       </div>
     </footer>
@@ -60,6 +60,6 @@
     @endif
   </script>
   @yield('footer')
-  
+
   </body>
 </html>

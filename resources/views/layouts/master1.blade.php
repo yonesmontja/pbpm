@@ -71,10 +71,6 @@
     <script src="{{ asset('/admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- ChartJS -->
     <script src="{{ asset('/admin/plugins/chart.js/Chart.min.js') }}"></script>
-    <!-- Sparkline -->
-    <script src="{{ asset('/admin/plugins/sparklines/sparkline.js') }}"></script>
-    <!-- JQVMap -->
-
     <!-- jQuery Knob Chart -->
     <script src="{{ asset('/admin/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
     <!-- daterangepicker -->

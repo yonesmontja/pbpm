@@ -168,7 +168,7 @@
                           <i class="lnr lnr-exit"></i> <span>Logout</span>
                       </a>
                       <div class="dropdown-divider"></div>
-                      <a href="#" class="dropdown-item dropdown-footer">ALIRENA | 2020</a>
+                      <a href="#" class="dropdown-item dropdown-footer">ALIRENA | {{ date('Y') }}</a>
                   </div>
               </li>
 

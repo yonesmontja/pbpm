@@ -1,3 +1,3 @@
 @foreach ($all as $a => $b )
-    {{ $b }}
+    {!! json_encode($b) !!}
 @endforeach

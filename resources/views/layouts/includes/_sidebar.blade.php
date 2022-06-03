@@ -194,52 +194,33 @@
                                       <p>Portofolio</p>
                                   </a>
                               </li>
+                              <li class="nav-item">
+                                  <a href="/projects" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Project Siswa</p>
+                                  </a>
+                              </li>
                           </ul>
                       </li>
                       <li class="nav-item has-treeview">
                           <a href="#" class="nav-link">
                               <i class="nav-icon fas fa-book"></i>
                               <p>
-                                  Project Siswa
+                                  Kontak & Pengumuman
                                   <i class="fas fa-angle-left right"></i>
                               </p>
                           </a>
                           <ul class="nav nav-treeview">
-
-                              <li class="nav-item">
-                                  <a href="/projects" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>Projects</p>
-                                  </a>
-                              </li>
-                              <li class="nav-item">
-                                  <a href="/projects-add" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>Project Add</p>
-                                  </a>
-                              </li>
-                              <li class="nav-item">
-                                  <a href="/projects-edit" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>Project Edit</p>
-                                  </a>
-                              </li>
-                              <li class="nav-item">
-                                  <a href="projects-detail" class="nav-link">
-                                      <i class="far fa-circle nav-icon"></i>
-                                      <p>Project Detail</p>
-                                  </a>
-                              </li>
                               <li class="nav-item">
                                   <a href="/contacts" class="nav-link">
                                       <i class="far fa-circle nav-icon"></i>
-                                      <p>Contacts</p>
+                                      <p>Kontak Siswa</p>
                                   </a>
                               </li>
                               <li class="nav-item">
                                   <a href="/posting" class="nav-link">
                                       <i class="far fa-circle nav-icon"></i>
-                                      <p>Posting</p>
+                                      <p>Pengumuman</p>
                                   </a>
                               </li>
                           </ul>

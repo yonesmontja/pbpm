@@ -26,47 +26,47 @@ class KurikulumController extends Controller
         {
             $nilai_kelas1[] = $k;
         }
-         $kls1_average = Nilai::all()->where('kelas_id','=',1)->pluck('nilai')->avg();
+         $kls1_average = $nilai->where('kelas_id','=',1)->pluck('nilai')->avg();
         // nilai kelas 2
-        $kelas2 = Nilai::all()->where('kelas_id','=',2)->pluck('nilai');
+        $kelas2 = $nilai->where('kelas_id','=',2)->pluck('nilai');
         $nilai_kelas2 = [];
         foreach($kelas2 as $k)
         {
             $nilai_kelas2[] = $k;
         }
-         $kls2_average = Nilai::all()->where('kelas_id','=',2)->pluck('nilai')->avg();
+         $kls2_average = $nilai->where('kelas_id','=',2)->pluck('nilai')->avg();
         // nilai kelas 3
-        $kelas3 = Nilai::all()->where('kelas_id','=',3)->pluck('nilai');
+        $kelas3 = $nilai->where('kelas_id','=',3)->pluck('nilai');
         $nilai_kelas3 = [];
         foreach($kelas3 as $k)
         {
             $nilai_kelas3[] = $k;
         }
-         $kls3_average = Nilai::all()->where('kelas_id','=',3)->pluck('nilai')->avg();
+         $kls3_average = $nilai->where('kelas_id','=',3)->pluck('nilai')->avg();
         // nilai kelas 4
-        $kelas4 = Nilai::all()->where('kelas_id','=',4)->pluck('nilai');
+        $kelas4 = $nilai->where('kelas_id','=',4)->pluck('nilai');
         $nilai_kelas4 = [];
         foreach($kelas4 as $k)
         {
             $nilai_kelas4[] = $k;
         }
-         $kls4_average = Nilai::all()->where('kelas_id','=',4)->pluck('nilai')->avg();
+         $kls4_average = $nilai->where('kelas_id','=',4)->pluck('nilai')->avg();
         // nilai kelas 5
-        $kelas5 = Nilai::all()->where('kelas_id','=',5)->pluck('nilai');
+        $kelas5 = $nilai->where('kelas_id','=',5)->pluck('nilai');
         $nilai_kelas5 = [];
         foreach($kelas5 as $k)
         {
             $nilai_kelas5[] = $k;
         }
-         $kls5_average = Nilai::all()->where('kelas_id','=',5)->pluck('nilai')->avg();
+        $kls5_average = $nilai->where('kelas_id','=',5)->pluck('nilai')->avg();
         // nilai kelas 6
-        $kelas6 = Nilai::all()->where('kelas_id','=',6)->pluck('nilai');
+        $kelas6 = $nilai->where('kelas_id','=',6)->pluck('nilai');
         $nilai_kelas6 = [];
         foreach($kelas6 as $k)
         {
             $nilai_kelas6[] = $k;
         }
-        $kls6_average = Nilai::all()->where('kelas_id','=',6)->pluck('nilai')->avg();
+        $kls6_average = $nilai->where('kelas_id','=',6)->pluck('nilai')->avg();
 
         $kelas_average[0] = (int)$kls1_average;
         $kelas_average[1] = (int)$kls2_average;
@@ -78,26 +78,26 @@ class KurikulumController extends Controller
         $label = ['Jan','Feb','Mar','Apr','Mei','Jun'];
         for($bulan=1;$bulan < 7;$bulan++){
             $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
-            (int)$chart_nilai1[] = Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',1)->pluck('nilai')->avg();
-            (int)$chart_nilai2[] = Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',2)->pluck('nilai')->avg();
-            (int)$chart_nilai3[] = Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',3)->pluck('nilai')->avg();
-            (int)$chart_nilai4[] = Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',4)->pluck('nilai')->avg();
-            (int)$chart_nilai5[] = Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',5)->pluck('nilai')->avg();
-            (int)$chart_nilai6[] = Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',6)->pluck('nilai')->avg();
+            (int)$chart_nilai1[] = number_format(Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',1)->pluck('nilai')->avg(), 1, '.', '');
+            (int)$chart_nilai2[] = number_format(Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',2)->pluck('nilai')->avg(), 1, '.', '');
+            (int)$chart_nilai3[] = number_format(Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',3)->pluck('nilai')->avg(), 1, '.', '');
+            (int)$chart_nilai4[] = number_format(Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',4)->pluck('nilai')->avg(), 1, '.', '');
+            (int)$chart_nilai5[] = number_format(Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',5)->pluck('nilai')->avg(), 1, '.', '');
+            (int)$chart_nilai6[] = number_format(Nilai::whereMonth('created_at','=',$bulan)->where('kelas_id','=',6)->pluck('nilai')->avg(), 1, '.', '');
             $jumlah_penilaian[] = $chart_penilaian->jumlah;
         }
         //dd($chart_nilai5);
         $matpel = ['Agama Islam','Agama Protestan','Agama Katolik','PPKn','Bahasa Indonesia','Matematika','IPA','IPS','PJOK','SBK'];
-        $islam_average = Nilai::all()->where('mapel_id',1)->pluck('nilai')->avg();
-        $protestan_average = Nilai::all()->where('mapel_id',2)->pluck('nilai')->avg();
-        $katolik_average = Nilai::all()->where('mapel_id',3)->pluck('nilai')->avg();
-        $ppkn_average = Nilai::all()->where('mapel_id',4)->pluck('nilai')->avg();
-        $indonesia_average = Nilai::all()->where('mapel_id',5)->pluck('nilai')->avg();
-        $matematika_average = Nilai::all()->where('mapel_id',6)->pluck('nilai')->avg();
-        $ipa_average = Nilai::all()->where('mapel_id',7)->pluck('nilai')->avg();
-        $ips_average = Nilai::all()->where('mapel_id',8)->pluck('nilai')->avg();
-        $pjok_average = Nilai::all()->where('mapel_id',9)->pluck('nilai')->avg();
-        $sbk_average = Nilai::all()->where('mapel_id',10)->pluck('nilai')->avg();
+        $islam_average = $nilai->where('mapel_id',1)->pluck('nilai')->avg();
+        $protestan_average = $nilai->where('mapel_id',2)->pluck('nilai')->avg();
+        $katolik_average = $nilai->where('mapel_id',3)->pluck('nilai')->avg();
+        $ppkn_average = $nilai->where('mapel_id',4)->pluck('nilai')->avg();
+        $indonesia_average = $nilai->where('mapel_id',5)->pluck('nilai')->avg();
+        $matematika_average = $nilai->where('mapel_id',6)->pluck('nilai')->avg();
+        $ipa_average = $nilai->where('mapel_id',7)->pluck('nilai')->avg();
+        $ips_average = $nilai->where('mapel_id',8)->pluck('nilai')->avg();
+        $pjok_average = $nilai->where('mapel_id',9)->pluck('nilai')->avg();
+        $sbk_average = $nilai->where('mapel_id',10)->pluck('nilai')->avg();
         $sikap_average = (int)($islam_average+$protestan_average+$katolik_average+$ppkn_average)/4;
         $skill_average = (int)($indonesia_average+$matematika_average+$ipa_average+$ips_average)/4;
         $budaya_average = (int)($pjok_average+$sbk_average)/2;

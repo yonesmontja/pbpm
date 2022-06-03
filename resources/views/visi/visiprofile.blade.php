@@ -1,7 +1,7 @@
 @extends('layouts.mailbox')
 
 @section('title')
-  <title>  Visi-Misi </title>
+  <title> SD Dabolding Visi-Misi </title>
 @endsection
 @section('header')
   <!-- SweetAlert2 -->

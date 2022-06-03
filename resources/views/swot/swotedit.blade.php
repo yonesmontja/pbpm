@@ -1,7 +1,7 @@
 @extends('layouts.master4')
 
 @section('title')
-  <title>  SWOT </title>
+  <title> SD Dabolding SWOT </title>
 @endsection
 
 @section('content')

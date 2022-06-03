@@ -32,6 +32,7 @@ use App\Http\Controllers\PpknController;
 use App\Http\Controllers\SwotController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VisiController;
+use App\Http\Controllers\AuditController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LevelController;
@@ -348,6 +349,9 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']], function()
 	Route::get('/dashboard',[DashboardController::class,'index']);
 	Route::get('/my_profile/{id}/myprofile',[UserController::class,'my_profile']);
 });
+
+Route::get('audits', [AuditController::class,'index'])
+    ->middleware('auth', \App\Http\Middleware\AllowOnlyAdmin::class);
 
 Route::get('/{slug}',[
 	'uses' => 'App\Http\Controllers\JurnalController@singlepost',

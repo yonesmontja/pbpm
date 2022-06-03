@@ -221,9 +221,10 @@
                                                 </div>
                                             </div>
                                             <!-- Sales Chart Canvas -->
-                                            <canvas id="salesChart" height="180"
-                                                style="height: 180px; display: block; width: 1044px;" width="1044"
-                                                class="chartjs-render-monitor"></canvas>
+                                            <canvas id="salesChart" height="350"
+                                                style="height: 350px; display: block; width: 1044px;" width="1044"
+                                                class="chartjs-render-monitor">
+                                            </canvas>
                                         </div>
                                         <!-- /.chart-responsive -->
                                     </div>
@@ -307,8 +308,8 @@
                                     <div class="col-sm-3 col-6">
                                         <div class="description-block border-right">
                                             <span class="description-percentage text-success"><i
-                                                    class="fas fa-caret-up"></i> {{ totalKelas6Percentage() }}%</span>
-                                            <h5 class="description-header">{{ totalKelas6() }}</h5>
+                                                    class="fas fa-caret-up"></i> {{ number_format(totalKelas6Percentage(), 1, '.', '') }}%</span>
+                                            <h5 class="description-header">{{ number_format(totalKelas6(), 1, '.', '') }}</h5>
                                             <span class="description-text">Skill Kelas 6</span>
                                         </div>
                                         <!-- /.description-block -->
@@ -317,8 +318,8 @@
                                     <div class="col-sm-3 col-6">
                                         <div class="description-block border-right">
                                             <span class="description-percentage text-warning"><i
-                                                    class="fas fa-caret-left"></i> {{ totalKelas5Percentage() }}%</span>
-                                            <h5 class="description-header">{{ totalKelas5() }}</h5>
+                                                    class="fas fa-caret-left"></i> {{ number_format(totalKelas5Percentage(), 1, '.', '') }}%</span>
+                                            <h5 class="description-header">{{ number_format(totalKelas5(), 1, '.', '') }}</h5>
                                             <span class="description-text">Skill Kelas 5</span>
                                         </div>
                                         <!-- /.description-block -->
@@ -327,8 +328,8 @@
                                     <div class="col-sm-3 col-6">
                                         <div class="description-block border-right">
                                             <span class="description-percentage text-success"><i
-                                                    class="fas fa-caret-up"></i> {{ totalKelas4Percentage() }}%</span>
-                                            <h5 class="description-header">{{ totalKelas4() }}</h5>
+                                                    class="fas fa-caret-up"></i> {{ number_format(totalKelas4Percentage(), 1, '.', '') }}%</span>
+                                            <h5 class="description-header">{{ number_format(totalKelas4(), 1, '.', '') }}</h5>
                                             <span class="description-text">Skill Kelas 4</span>
                                         </div>
                                         <!-- /.description-block -->
@@ -338,9 +339,9 @@
                                         <div class="description-block">
                                             <span class="description-percentage text-danger"><i
                                                     class="fas fa-caret-down"></i>
-                                                {{ totalKelas4Percentage() + totalKelas5Percentage() + totalKelas6Percentage() }}%</span>
+                                                {{ number_format(totalKelas4Percentage() + totalKelas5Percentage() + totalKelas6Percentage(), 1, '.', '') }}%</span>
                                             <h5 class="description-header">
-                                                {{ totalKelas4() + totalKelas5() + totalKelas6() }}</h5>
+                                                {{ number_format(totalKelas4() + totalKelas5() + totalKelas6(), 1, '.', '') }}</h5>
                                             <span class="description-text">Kelas 4+5+6</span>
                                         </div>
                                         <!-- /.description-block -->

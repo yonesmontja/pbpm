@@ -244,6 +244,13 @@
                                     <i class="fas fa-chart-pie mr-1"></i>
                                     Nilai Siswa
                                 </h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                            class="fas fa-times"></i></button>
+                                </div>
                             </div><!-- /.card-header -->
                             <div class="card-header">
                                 <div class="card-tools">
@@ -253,126 +260,75 @@
                                                 Siswa</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#sales-chart" data-toggle="tab">Rata-rata
-                                                Nilai</a>
+                                            <a class="nav-link" href="#donut-chart" data-toggle="tab">Pemetaan Awal</a>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="tab-content">
-                                    <div class="d-flex">
-                                    <p class="d-flex flex-column">
-                                        <span class="text-bold text-lg">{{ $this_month }}</span>
-                                        <span>Nilai Rata-rata siswa</span>
-                                    </p>
-                                    <p class="ml-auto d-flex flex-column text-right">
-                                        @if ($last_average < 0)
-                                            <span class="text-danger">
-                                                <i class="fas fa-arrow-down"></i> {{ $last_average * -1 }}%
-                                            </span>
-                                        @elseif($last_average == 0)
-                                            <span class="text-info">
-                                                <i class="fas fa-arrow-circle-right"></i> {{ $last_average }}%
-                                            </span>
-                                        @elseif ($last_average > 0)
-                                            <span class="text-success">
-                                                <i class="fas fa-arrow-up"></i> {{ $last_average }}%
-                                            </span>
-                                        @endif
-
-                                        <span class="text-muted">Sejak bulan lalu</span>
-                                    </p>
-                                </div>
-                                <!-- /.d-flex -->
                                     <!-- Morris chart - Sales -->
                                     <div class="chart tab-pane active" id="revenue-chart"
-                                        style="position: relative; height: 300px;">
+                                        style="position: relative; height: 350px;">
+                                        <div class="d-flex">
+                                            <p class="d-flex flex-column">
+                                                <span class="text-bold text-lg">{{ $this_month }}</span>
+                                                <span>Nilai saat ini</span>
+                                            </p>
+                                            <p class="ml-auto d-flex flex-column text-right">
+                                                @if ($last_average < 0)
+                                                    <span class="text-danger">
+                                                        <i class="fas fa-arrow-down"></i> {{ $last_average * -1 }}%
+                                                    </span>
+                                                @elseif($last_average == 0)
+                                                    <span class="text-info">
+                                                        <i class="fas fa-arrow-circle-right"></i> {{ $last_average }}%
+                                                    </span>
+                                                @elseif ($last_average > 0)
+                                                    <span class="text-success">
+                                                        <i class="fas fa-arrow-up"></i> {{ $last_average }}%
+                                                    </span>
+                                                @endif
+                                                <span class="text-muted">dibandingkan Pemetaan Awal</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.d-flex -->
                                         <canvas id="sales-chart"
-                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;">
+                                        </canvas>
                                     </div>
-                                    <div class="d-flex flex-row justify-content-end">
-                                    <span class="mr-2">
-                                        <i class="fas fa-square text-grey"></i> Nilai pemetaan awal
-                                    </span>
-                                    <span></span>
-                                    <span class="mr-2">
-                                        <i class="fas fa-square text-primary"></i> Nilai saat ini
-                                    </span>
-                                </div>
-                                    <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                                        <canvas id="donutChart"
-                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                    <div class="chart tab-pane" id="donut-chart"
+                                        style="position: relative; height: 350px;">
+                                        <div class="d-flex">
+                                            <p class="d-flex flex-column">
+                                                <span class="text-bold text-lg">{{ number_format((float) $pemetaan_indonesia_total, 1, '.', '') }}</span>
+                                                <span class="text-bold text-lg">Nilai Bahasa Indonesia</span>
+                                            </p>
+                                            <p class="ml-auto d-flex flex-column text-right">
+                                                    <span class="text-bold text-lg">
+                                                        {{ number_format((float) $pemetaan_matematika_total, 1, '.', '') }}
+                                                    </span>
+                                                <span class="text-bold text-lg">Nilai Matematika</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.d-flex -->
+                                        <canvas id="sales-chart1"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;">
+                                        </canvas>
                                     </div>
                                 </div>
                             </div><!-- /.card-body -->
-                        </div>
-                        <!-- solid sales graph -->
-                        <div class="card card-success">
-                            <div class="card-header border-0">
-                                <h3 class="card-title">
-                                    <i class="fas fa-chart-pie mr-1"></i>
-                                    Rata-rata Nilai Siswa
-                                </h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn bg-info btn-sm" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn bg-info btn-sm" data-card-widget="remove">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="chart">
-                                    <canvas id="lineChart"
-                                        style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer bg-transparent">
-                                <div class="row">
-                                    <div class="col-4 text-center">
-                                        <input type="text" class="knob" data-readonly="true"
-                                            value="{{ $sikap_average }}" data-width="60" data-height="60"
-                                            data-fgColor="#39CCCC">
-
-                                        <div class="text-dark">Sikap</div>
-                                    </div>
-                                    <!-- ./col -->
-                                    <div class="col-4 text-center">
-                                        <input type="text" class="knob" data-readonly="true"
-                                            value="{{ $skill_average }}" data-width="60" data-height="60"
-                                            data-fgColor="#39CCCC">
-
-                                        <div class="text-dark">Skill</div>
-                                    </div>
-                                    <!-- ./col -->
-                                    <div class="col-4 text-center">
-                                        <input type="text" class="knob" data-readonly="true"
-                                            value="{{ $budaya_average }}" data-width="60" data-height="60"
-                                            data-fgColor="#39CCCC">
-
-                                        <div class="text-dark">SBK</div>
-                                    </div>
-                                    <!-- ./col -->
-                                </div>
-                                <!-- /.row -->
-                            </div>
-                            <!-- /.card-footer -->
                         </div>
                     </section>
                     <!-- /.Left col -->
                     <!-- right col (We are only adding the ID to make the widgets sortable)-->
                     <section class="col-lg-6 connectedSortable">
-                        <div class="card card-success">
+                        <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">
                                     <i class="fas fa-chart-pie mr-1"></i>
-                                    Rata-rata Nilai Siswa
+                                    Nilai Siswa
                                 </h3>
-
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                             class="fas fa-minus"></i>
@@ -382,39 +338,26 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="chart">
+                                <div class="chart" style="position: relative; height: 400px;">
                                     <canvas id="barChart"
-                                        style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                                        style="min-height: 250px; height: 400px; max-height: 400px; max-width: 100%;"></canvas>
                                 </div>
                             </div>
                             <!-- /.card-body-->
-                            <div class="card-footer bg-transparent">
-                                <div class="row">
-                                    <div class="col-4 text-center">
-                                        <div id="sparkline-1"></div>
-                                        <div class="text-primary">Sikap</div>
-                                    </div>
-                                    <!-- ./col -->
-                                    <div class="col-4 text-center">
-                                        <div id="sparkline-2"></div>
-                                        <div class="text-primary">Skill</div>
-                                    </div>
-                                    <!-- ./col -->
-                                    <div class="col-4 text-center">
-                                        <div id="sparkline-3"></div>
-                                        <div class="text-primary">Pengetahuan</div>
-                                    </div>
-                                    <!-- ./col -->
-                                </div>
-                                <!-- /.row -->
-                            </div>
+
                         </div>
-                        <!-- STACKED BAR CHART -->
-                        <div class="card card-success">
+                    </section>
+                    <!-- right col -->
+                </div>
+                <div class="row">
+                    <!-- Left col -->
+                    <section class="col-lg-6 connectedSortable">
+                        <!-- Custom tabs (Charts with tabs)-->
+                        <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">
                                     <i class="fas fa-chart-pie mr-1"></i>
-                                    Rata-rata Nilai Siswa
+                                    Nilai Siswa
                                 </h3>
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
@@ -423,15 +366,454 @@
                                     <button type="button" class="btn btn-tool" data-card-widget="remove"><i
                                             class="fas fa-times"></i></button>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="chart">
-                                    <canvas id="stackedBarChart"
-                                        style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                            </div><!-- /.card-header -->
+                            <div class="card-header">
+                                <div class="card-tools">
+                                    <ul class="nav nav-pills ml-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#kelas-1" data-toggle="tab">Kelas 1</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#donut-kelas-1" data-toggle="tab">Jumlah Siswa</a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                            <!-- /.card-body -->
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <!-- Morris chart - Sales -->
+                                    <div class="chart tab-pane active" id="kelas-1"
+                                        style="position: relative; height: 350px;">
+                                        <div class="d-flex">
+                                            <p class="d-flex flex-column">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_indonesia_1 + $rata_low_pemetaan_indonesia_1 + $rata_pass_pemetaan_indonesia_1 + $rata_high_pemetaan_indonesia_1) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Bahasa Indonesia</span>
+                                            </p>
+                                            <p class="ml-auto d-flex flex-column text-right">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_matematika_1 + $rata_low_pemetaan_matematika_1 + $rata_pass_pemetaan_matematika_1 + $rata_high_pemetaan_matematika_1) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Matematika</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.d-flex -->
+                                        <canvas id="chart-kelas-1"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;">
+                                        </canvas>
+
+                                    </div>
+                                    <div class="chart tab-pane" id="donut-kelas-1"
+                                        style="position: relative; height: 350px;">
+                                        <div class="d-flex">
+                                            <p class="d-flex flex-column">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_indonesia_1 + $rata_low_pemetaan_indonesia_1 + $rata_pass_pemetaan_indonesia_1 + $rata_high_pemetaan_indonesia_1) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Bahasa Indonesia</span>
+                                            </p>
+                                            <p class="ml-auto d-flex flex-column text-right">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_matematika_1 + $rata_low_pemetaan_matematika_1 + $rata_pass_pemetaan_matematika_1 + $rata_high_pemetaan_matematika_1) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Matematika</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.d-flex -->
+                                        <canvas id="donut-chart-kelas-1"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;">
+                                        </canvas>
+                                    </div>
+                                </div>
+                            </div><!-- /.card-body -->
                         </div>
+                        <!-- solid sales graph -->
+                    </section>
+                    <!-- /.Left col -->
+                    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+                    <section class="col-lg-6 connectedSortable">
+                        <!-- Custom tabs (Charts with tabs)-->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-chart-pie mr-1"></i>
+                                    Nilai Siswa
+                                </h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                            class="fas fa-times"></i></button>
+                                </div>
+                            </div><!-- /.card-header -->
+                            <div class="card-header">
+                                <div class="card-tools">
+                                    <ul class="nav nav-pills ml-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#kelas-2" data-toggle="tab">Kelas 2</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#donut-kelas-2" data-toggle="tab">Jumlah Siswa</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <!-- Morris chart - Sales -->
+                                    <div class="chart tab-pane active" id="kelas-2"
+                                        style="position: relative; height: 350px;">
+                                        <div class="d-flex">
+                                            <p class="d-flex flex-column">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_indonesia_2 + $rata_low_pemetaan_indonesia_2 + $rata_pass_pemetaan_indonesia_2 + $rata_high_pemetaan_indonesia_2) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Bahasa Indonesia</span>
+                                            </p>
+                                            <p class="ml-auto d-flex flex-column text-right">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_matematika_2 + $rata_low_pemetaan_matematika_2 + $rata_pass_pemetaan_matematika_2 + $rata_high_pemetaan_matematika_2) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Matematika</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.d-flex -->
+                                        <canvas id="chart-kelas-2"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;">
+                                        </canvas>
+
+                                    </div>
+                                    <div class="chart tab-pane" id="donut-kelas-2"
+                                        style="position: relative; height: 350px;">
+                                        <div class="d-flex">
+                                            <p class="d-flex flex-column">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_indonesia_2 + $rata_low_pemetaan_indonesia_2 + $rata_pass_pemetaan_indonesia_2 + $rata_high_pemetaan_indonesia_2) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Bahasa Indonesia</span>
+                                            </p>
+                                            <p class="ml-auto d-flex flex-column text-right">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_matematika_2 + $rata_low_pemetaan_matematika_2 + $rata_pass_pemetaan_matematika_2 + $rata_high_pemetaan_matematika_2) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Matematika</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.d-flex -->
+                                        <canvas id="donut-chart-kelas-2"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;">
+                                        </canvas>
+                                    </div>
+                                </div>
+                            </div><!-- /.card-body -->
+                        </div>
+                        <!-- solid sales graph -->
+                    </section>
+                    <!-- right col -->
+                </div>
+                <div class="row">
+                    <!-- Left col -->
+                    <section class="col-lg-6 connectedSortable">
+                        <!-- Custom tabs (Charts with tabs)-->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-chart-pie mr-1"></i>
+                                    Nilai Siswa
+                                </h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                            class="fas fa-times"></i></button>
+                                </div>
+                            </div><!-- /.card-header -->
+                            <div class="card-header">
+                                <div class="card-tools">
+                                    <ul class="nav nav-pills ml-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#kelas-3" data-toggle="tab">Kelas 3</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#donut-kelas-3" data-toggle="tab">Jumlah Siswa</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <!-- Morris chart - Sales -->
+                                    <div class="chart tab-pane active" id="kelas-3"
+                                        style="position: relative; height: 350px;">
+                                        <div class="d-flex">
+                                            <p class="d-flex flex-column">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_indonesia_3 + $rata_low_pemetaan_indonesia_3 + $rata_pass_pemetaan_indonesia_3 + $rata_high_pemetaan_indonesia_3) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Bahasa Indonesia</span>
+                                            </p>
+                                            <p class="ml-auto d-flex flex-column text-right">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_matematika_3 + $rata_low_pemetaan_matematika_3 + $rata_pass_pemetaan_matematika_3 + $rata_high_pemetaan_matematika_3) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Matematika</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.d-flex -->
+                                        <canvas id="chart-kelas-3"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;">
+                                        </canvas>
+
+                                    </div>
+                                    <div class="chart tab-pane" id="donut-kelas-3"
+                                        style="position: relative; height: 350px;">
+                                        <div class="d-flex">
+                                            <p class="d-flex flex-column">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_indonesia_3 + $rata_low_pemetaan_indonesia_3 + $rata_pass_pemetaan_indonesia_3 + $rata_high_pemetaan_indonesia_3) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Bahasa Indonesia</span>
+                                            </p>
+                                            <p class="ml-auto d-flex flex-column text-right">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_matematika_3 + $rata_low_pemetaan_matematika_3 + $rata_pass_pemetaan_matematika_3 + $rata_high_pemetaan_matematika_3) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Matematika</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.d-flex -->
+                                        <canvas id="donut-chart-kelas-3"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;">
+                                        </canvas>
+                                    </div>
+                                </div>
+                            </div><!-- /.card-body -->
+                        </div>
+                        <!-- solid sales graph -->
+                    </section>
+                    <!-- /.Left col -->
+                    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+                    <section class="col-lg-6 connectedSortable">
+                        <!-- Custom tabs (Charts with tabs)-->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-chart-pie mr-1"></i>
+                                    Nilai Siswa
+                                </h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                            class="fas fa-times"></i></button>
+                                </div>
+                            </div><!-- /.card-header -->
+                            <div class="card-header">
+                                <div class="card-tools">
+                                    <ul class="nav nav-pills ml-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#kelas-4" data-toggle="tab">Kelas 4</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#donut-kelas-4" data-toggle="tab">Jumlah Siswa</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <!-- Morris chart - Sales -->
+                                    <div class="chart tab-pane active" id="kelas-4"
+                                        style="position: relative; height: 350px;">
+                                        <div class="d-flex">
+                                            <p class="d-flex flex-column">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_indonesia_4 + $rata_low_pemetaan_indonesia_4 + $rata_pass_pemetaan_indonesia_4 + $rata_high_pemetaan_indonesia_4) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Bahasa Indonesia</span>
+                                            </p>
+                                            <p class="ml-auto d-flex flex-column text-right">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_matematika_4 + $rata_low_pemetaan_matematika_4 + $rata_pass_pemetaan_matematika_4 + $rata_high_pemetaan_matematika_4) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Matematika</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.d-flex -->
+                                        <canvas id="chart-kelas-4"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;">
+                                        </canvas>
+
+                                    </div>
+                                    <div class="chart tab-pane" id="donut-kelas-4"
+                                        style="position: relative; height: 350px;">
+                                        <div class="d-flex">
+                                            <p class="d-flex flex-column">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_indonesia_4 + $rata_low_pemetaan_indonesia_4 + $rata_pass_pemetaan_indonesia_4 + $rata_high_pemetaan_indonesia_4) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Bahasa Indonesia</span>
+                                            </p>
+                                            <p class="ml-auto d-flex flex-column text-right">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_matematika_4 + $rata_low_pemetaan_matematika_4 + $rata_pass_pemetaan_matematika_4 + $rata_high_pemetaan_matematika_4) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Matematika</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.d-flex -->
+                                        <canvas id="donut-chart-kelas-4"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;">
+                                        </canvas>
+                                    </div>
+                                </div>
+                            </div><!-- /.card-body -->
+                        </div>
+                        <!-- solid sales graph -->
+                    </section>
+                    <!-- right col -->
+                </div>
+                <div class="row">
+                    <!-- Left col -->
+                    <section class="col-lg-6 connectedSortable">
+                        <!-- Custom tabs (Charts with tabs)-->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-chart-pie mr-1"></i>
+                                    Nilai Siswa
+                                </h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                            class="fas fa-times"></i></button>
+                                </div>
+                            </div><!-- /.card-header -->
+                            <div class="card-header">
+                                <div class="card-tools">
+                                    <ul class="nav nav-pills ml-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#kelas-5" data-toggle="tab">Kelas 5</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#donut-kelas-5" data-toggle="tab">Jumlah Siswa</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <!-- Morris chart - Sales -->
+                                    <div class="chart tab-pane active" id="kelas-5"
+                                        style="position: relative; height: 350px;">
+                                        <div class="d-flex">
+                                            <p class="d-flex flex-column">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_indonesia_5 + $rata_low_pemetaan_indonesia_5 + $rata_pass_pemetaan_indonesia_5 + $rata_high_pemetaan_indonesia_5) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Bahasa Indonesia</span>
+                                            </p>
+                                            <p class="ml-auto d-flex flex-column text-right">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_matematika_5 + $rata_low_pemetaan_matematika_5 + $rata_pass_pemetaan_matematika_5 + $rata_high_pemetaan_matematika_5) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Matematika</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.d-flex -->
+                                        <canvas id="chart-kelas-5"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;">
+                                        </canvas>
+
+                                    </div>
+                                    <div class="chart tab-pane" id="donut-kelas-5"
+                                        style="position: relative; height: 350px;">
+                                        <div class="d-flex">
+                                            <p class="d-flex flex-column">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_indonesia_5 + $rata_low_pemetaan_indonesia_5 + $rata_pass_pemetaan_indonesia_5 + $rata_high_pemetaan_indonesia_5) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Bahasa Indonesia</span>
+                                            </p>
+                                            <p class="ml-auto d-flex flex-column text-right">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_matematika_5 + $rata_low_pemetaan_matematika_5 + $rata_pass_pemetaan_matematika_5 + $rata_high_pemetaan_matematika_5) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Matematika</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.d-flex -->
+                                        <canvas id="donut-chart-kelas-5"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;">
+                                        </canvas>
+                                    </div>
+                                </div>
+                            </div><!-- /.card-body -->
+                        </div>
+                        <!-- solid sales graph -->
+                    </section>
+                    <!-- /.Left col -->
+                    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+                    <section class="col-lg-6 connectedSortable">
+                        <!-- Custom tabs (Charts with tabs)-->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-chart-pie mr-1"></i>
+                                    Nilai Siswa
+                                </h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                            class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                            class="fas fa-times"></i></button>
+                                </div>
+                            </div><!-- /.card-header -->
+                            <div class="card-header">
+                                <div class="card-tools">
+                                    <ul class="nav nav-pills ml-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#kelas-6" data-toggle="tab">Kelas 6</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#donut-kelas-6" data-toggle="tab">Jumlah Siswa</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <!-- Morris chart - Sales -->
+                                    <div class="chart tab-pane active" id="kelas-6"
+                                        style="position: relative; height: 350px;">
+                                        <div class="d-flex">
+                                            <p class="d-flex flex-column">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_indonesia_6 + $rata_low_pemetaan_indonesia_6 + $rata_pass_pemetaan_indonesia_6 + $rata_high_pemetaan_indonesia_6) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Bahasa Indonesia</span>
+                                            </p>
+                                            <p class="ml-auto d-flex flex-column text-right">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_matematika_6 + $rata_low_pemetaan_matematika_6 + $rata_pass_pemetaan_matematika_6 + $rata_high_pemetaan_matematika_6) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Matematika</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.d-flex -->
+                                        <canvas id="chart-kelas-6"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;">
+                                        </canvas>
+
+                                    </div>
+                                    <div class="chart tab-pane" id="donut-kelas-6"
+                                        style="position: relative; height: 350px;">
+                                        <div class="d-flex">
+                                            <p class="d-flex flex-column">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_indonesia_6 + $rata_low_pemetaan_indonesia_6 + $rata_pass_pemetaan_indonesia_6 + $rata_high_pemetaan_indonesia_6) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Bahasa Indonesia</span>
+                                            </p>
+                                            <p class="ml-auto d-flex flex-column text-right">
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format(($rata_underlow_pemetaan_matematika_6 + $rata_low_pemetaan_matematika_6 + $rata_pass_pemetaan_matematika_6 + $rata_high_pemetaan_matematika_6) / 4, 1, '.', '') }}</span>
+                                                <span>Nilai rata-rata Matematika</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.d-flex -->
+                                        <canvas id="donut-chart-kelas-6"
+                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;">
+                                        </canvas>
+                                    </div>
+                                </div>
+                            </div><!-- /.card-body -->
+                        </div>
+                        <!-- solid sales graph -->
                     </section>
                     <!-- right col -->
                 </div>
@@ -451,133 +833,14 @@
              */
 
             //--------------
-            //- AREA CHART -
-            //--------------
-
-            // Get context with jQuery - using jQuery's .get() method.
-            //var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
-
-            //var areaChartData = {
-            //    labels: {!! json_encode($matpel_pemetaan) !!},
-            //    datasets: [{
-            //            label: 'Nilai Siswa',
-            //            backgroundColor: 'rgba(255, 0, 0, 0.4)',
-            //            borderColor: 'rgba(60,141,188,0.8)',
-            //            pointRadius: false,
-            //           pointColor: '#B7E675',
-            //            pointStrokeColor: 'rgba(148, 233, 78, 0.57)',
-            //            pointHighlightFill: '#fff',
-            //            pointHighlightStroke: 'rgba(148, 233, 78, 0.57)',
-            //            data: [{!! json_encode(array_sum($underlow_pemetaan_indonesia_total)/count($underlow_pemetaan_indonesia_total)) !!},
-            //            {!! json_encode(array_sum($underlow_pemetaan_matematika_total)/count($underlow_pemetaan_matematika_total)) !!}]
-            //        },
-            //        {
-            //            label: 'Nilai Siswa',
-            //            backgroundColor: 'rgba(255, 0, 0, 0.4)',
-            //            borderColor: 'rgba(60,141,188,0.8)',
-            //            pointRadius: false,
-            //           pointColor: '#B7E675',
-            //            pointStrokeColor: 'rgba(148, 233, 78, 0.57)',
-            //            pointHighlightFill: '#fff',
-            //            pointHighlightStroke: 'rgba(148, 233, 78, 0.57)',
-            //            data: [{!! json_encode(array_sum($underlow_pemetaan_indonesia_total)/count($underlow_pemetaan_indonesia_total)) !!},
-            //            {!! json_encode(array_sum($underlow_pemetaan_matematika_total)/count($underlow_pemetaan_matematika_total)) !!}]
-            //        },
-
-            //    ]
-            //}
-
-            //var areaChartOptions = {
-            //    maintainAspectRatio: false,
-            //    responsive: true,
-            //    legend: {
-            //        display: false
-            //    },
-            //    scales: {
-            //        xAxes: [{
-            //            gridLines: {
-            //                display: false,
-            //            }
-            //        }],
-            //        yAxes: [{
-            //            gridLines: {
-            //                display: false,
-            //            }
-            //        }]
-            //    }
-            //}
-
-            // This will get the first returned node in the jQuery collection.
-            //var areaChart = new Chart(areaChartCanvas, {
-            //    type: 'line',
-            //    data: areaChartData,
-            //    options: areaChartOptions
-            //})
-
-
-
-            //-------------
-            //- DONUT CHART -
-            //-------------
-            // Get context with jQuery - using jQuery's .get() method.
-            var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
-            var donutData = {
-                labels: {!! json_encode($matpel) !!},
-                datasets: [{
-                    data: {!! json_encode($matang1) !!},
-                    backgroundColor: [
-                        '#f56954',
-                        '#00a65a',
-                        '#f39c12',
-                        '#00c0ef',
-                        '#3c8dbc',
-                        '#1F8708',
-                        '#325E3E',
-                        '#C064DE',
-                        '#d2d6de',
-                        '#40CC19'
-                    ],
-                }]
-            }
-            var donutOptions = {
-                maintainAspectRatio: false,
-                responsive: true,
-            }
-            //Create pie or douhnut chart
-            // You can switch between pie and douhnut using the method below.
-            var donutChart = new Chart(donutChartCanvas, {
-                type: 'doughnut',
-                data: donutData,
-                options: donutOptions
-            })
-
-            //-------------
-            //- PIE CHART -
-            //-------------
-            // Get context with jQuery - using jQuery's .get() method.
-            //var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-            //var pieData = donutData;
-            //var pieOptions = {
-            //    maintainAspectRatio: false,
-            //    responsive: true,
-            //}
-            //Create pie or douhnut chart
-            // You can switch between pie and douhnut using the method below.
-            /*var pieChart = new Chart(pieChartCanvas, {
-                type: 'pie',
-                data: pieData,
-                options: pieOptions
-            })
-            */
             //-------------
             //- BAR CHART -
             //-------------
             var barChartCanvas = $('#barChart').get(0).getContext('2d')
             var barChartData = {
-                labels: ['B. Indonesia', 'Matematika'
-                ],
+                labels: ['B. Indonesia', 'Matematika'],
                 datasets: [{
-                        label: 'Pemetaan Awal',
+                        label: 'Nilai Rata-rata',
                         backgroundColor: 'rgba(60,141,188,0.9)',
                         borderColor: 'rgba(60,141,188,0.8)',
                         pointRadius: false,
@@ -585,13 +848,14 @@
                         pointStrokeColor: 'rgba(60,141,188,1)',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(60,141,188,1)',
-                        data: [
-                            {!! json_encode(array_sum($underlow_pemetaan_indonesia_total)/count($underlow_pemetaan_indonesia_total)) !!},
-                        {!! json_encode(array_sum($underlow_pemetaan_matematika_total)/count($underlow_pemetaan_matematika_total)) !!}
+                        data:
+                        [
+                            {!! json_encode(number_format((float) $pemetaan_indonesia_total, 1, '.', '')) !!},
+                            {!! json_encode(number_format((float) $pemetaan_matematika_total, 1, '.', '')) !!}
                         ]
                     },
                     {
-                        label: 'Nilai Rata-rata Saat Ini',
+                        label: 'Standard Deviasi',
                         backgroundColor: 'rgba(210, 214, 222, 1)',
                         borderColor: 'rgba(210, 214, 222, 1)',
                         pointRadius: false,
@@ -599,9 +863,10 @@
                         pointStrokeColor: '#c1c7d1',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(220,220,220,1)',
-                        data: [
-                            {!! json_encode($indonesia_average) !!},
-                            {!! json_encode($matematika_average) !!}
+                        data:
+                        [
+                            {!! json_encode(number_format((float)Stand_Deviation($std_dev_pemetaan_indonesia_total), 1, '.', '')) !!},
+                            {!! json_encode(number_format((float)Stand_Deviation($std_dev_pemetaan_matematika_total), 1, '.', '')) !!}
                         ]
                     },
                 ]
@@ -625,8 +890,8 @@
                 options: barChartOptions
             })
 
+            //--------------
             'use strict'
-
             var ticksStyle = {
                 fontColor: '#495057',
                 fontStyle: 'bold'
@@ -639,22 +904,26 @@
                 data: {
                     labels: {!! json_encode($matpel_pemetaan) !!},
                     datasets: [{
+                            label: ' Pemetaan Awal',
                             backgroundColor: '#252626',
                             borderColor: '#252626',
-                            data: [ {!! json_encode(array_sum($underlow_pemetaan_indonesia_total)/count($underlow_pemetaan_indonesia_total)) !!},
-                        {!! json_encode(array_sum($underlow_pemetaan_matematika_total)/count($underlow_pemetaan_matematika_total)) !!}]
+                            data: [{!! json_encode(number_format((float) $pemetaan_indonesia_total, 1, '.', '')) !!},
+                                {!! json_encode(number_format((float) $pemetaan_matematika_total, 1, '.', '')) !!}
+                            ]
                         },
                         {
+                            label: ' Nilai saat ini',
                             backgroundColor: '#007bff',
                             borderColor: '#007bff',
                             data: [
-                            {!! json_encode($indonesia_average) !!},
-                            {!! json_encode($matematika_average) !!}
-                        ]
+                                {!! json_encode(number_format((float) $indonesia_average, 1, '.', '')) !!},
+                                {!! json_encode(number_format((float) $matematika_average, 1, '.', '')) !!}
+                            ]
                         }
                     ]
                 },
                 options: {
+                    responsive: true,
                     maintainAspectRatio: false,
                     tooltips: {
                         mode: mode,
@@ -665,7 +934,7 @@
                         intersect: intersect
                     },
                     legend: {
-                        display: false
+                        display: true
                     },
                     scales: {
                         yAxes: [{
@@ -684,76 +953,1063 @@
                         xAxes: [{
                             display: true,
                             gridLines: {
-                                display: false
+                                display: true
                             },
                             ticks: ticksStyle
                         }]
                     }
                 }
             })
-             //-------------
-            //- LINE CHART -
-            //--------------
-            var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
-            var lineChartOptions = jQuery.extend(true, {}, barChartOptions)
-            var lineChartData = jQuery.extend(true, {}, barChartData)
-            lineChartData.datasets[0].fill = false;
-            lineChartData.datasets[1].fill = false;
-            lineChartOptions.datasetFill = false
 
-            var lineChart = new Chart(lineChartCanvas, {
-                type: 'line',
-                data: lineChartData,
-                options: lineChartOptions
+            var $salesChart = $('#sales-chart1')
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($matpel_pemetaan) !!},
+                    datasets:
+                    [
+                        {
+                            label: ' Underlow',
+                            backgroundColor: '#eb4034',
+                            borderColor: '#eb4034',
+                            data: [{!! json_encode(number_format(array_sum($underlow_pemetaan_indonesia_total) / count($underlow_pemetaan_indonesia_total), 1, '.', '')) !!},
+                                {!! json_encode(number_format(array_sum($underlow_pemetaan_matematika_total) / count($underlow_pemetaan_matematika_total), 1, '.', '')) !!}
+                            ]
+                        },
+                        {
+                            label: ' Low',
+                            backgroundColor: '#ebeb34',
+                            borderColor: '#ebeb34',
+                            data: [{!! json_encode(number_format(array_sum($low_pemetaan_indonesia_total) / count($low_pemetaan_indonesia_total), 1, '.', '')) !!},
+                                {!! json_encode(number_format(array_sum($low_pemetaan_matematika_total) / count($low_pemetaan_matematika_total), 1, '.', '')) !!}
+                            ]
+                        },
+                        {
+                            label: ' Pass',
+                            backgroundColor: '#34eb77',
+                            borderColor: '#34eb77',
+                            data: [{!! json_encode(number_format(array_sum($pass_pemetaan_indonesia_total) / count($pass_pemetaan_indonesia_total), 1, '.', '')) !!},
+                                {!! json_encode(number_format(array_sum($pass_pemetaan_matematika_total) / count($pass_pemetaan_matematika_total), 1, '.', '')) !!}
+                            ]
+                        },
+                        {
+                            label: ' High',
+                            backgroundColor: '#347aeb',
+                            borderColor: '#347aeb',
+                            data: [{!! json_encode(number_format(array_sum($high_pemetaan_indonesia_total) / count($high_pemetaan_indonesia_total), 1, '.', '')) !!},
+                                {!! json_encode(number_format(array_sum($high_pemetaan_matematika_total) / count($high_pemetaan_matematika_total), 1, '.', '')) !!}
+                            ]
+                        },
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: true
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: 100,
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
             })
 
-            // Sparkline charts
-            var sparkline1 = new Sparkline($('#sparkline-1')[0], {
-                width: 80,
-                height: 50,
-                lineColor: '#92c1dc',
-                endColor: '#ebf4f9',
-            });
-            var sparkline2 = new Sparkline($('#sparkline-2')[0], {
-                width: 80,
-                height: 50,
-                lineColor: '#92c1dc',
-                endColor: '#ebf4f9',
-            });
-            var sparkline3 = new Sparkline($('#sparkline-3')[0], {
-                width: 80,
-                height: 50,
-                lineColor: '#92c1dc',
-                endColor: '#ebf4f9',
-            });
-
-            sparkline1.draw({!! json_encode($matang1) !!});
-            sparkline2.draw({!! json_encode($matang1) !!});
-            sparkline3.draw({!! json_encode($matang1) !!});
-
-            //---------------------
-            //- STACKED BAR CHART -
-            //---------------------
-            var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
-            var stackedBarChartData = jQuery.extend(true, {}, barChartData)
-
-            var stackedBarChartOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    xAxes: [{
-                        stacked: true,
-                    }],
-                    yAxes: [{
-                        stacked: true
-                    }]
-                }
-            }
-
-            var stackedBarChart = new Chart(stackedBarChartCanvas, {
+            var $salesChart = $('#chart-kelas-1')
+            var salesChart = new Chart($salesChart, {
                 type: 'bar',
-                data: stackedBarChartData,
-                options: stackedBarChartOptions
+                data: {
+                    labels: {!! json_encode($matpel_pemetaan) !!},
+                    datasets: [{
+                            label: " Underlow",
+                            backgroundColor: '#eb4034',
+                            borderColor: '#eb4034',
+                            data: [
+                                {!! json_encode($rata_underlow_pemetaan_indonesia_1) !!},
+                                {!! json_encode($rata_underlow_pemetaan_matematika_1) !!}
+                            ]
+                        },
+                        {
+                            label: " Low",
+                            backgroundColor: '#ebeb34',
+                            borderColor: '#ebeb34',
+                            data: [
+                                {!! json_encode($rata_low_pemetaan_indonesia_1) !!},
+                                {!! json_encode($rata_low_pemetaan_matematika_1) !!}
+                            ]
+                        },
+                        {
+                            label: " Pass",
+                            backgroundColor: '#34eb77',
+                            borderColor: '#34eb77',
+                            data: [
+                                {!! json_encode($rata_pass_pemetaan_indonesia_1) !!},
+                                {!! json_encode($rata_pass_pemetaan_matematika_1) !!}
+                            ]
+                        },
+                        {
+                            label: " High",
+                            backgroundColor: '#347aeb',
+                            borderColor: '#347aeb',
+                            data: [
+                                {!! json_encode($rata_high_pemetaan_indonesia_1) !!},
+                                {!! json_encode($rata_high_pemetaan_matematika_1) !!}
+                            ]
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: true
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: 100,
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+
+            var $salesChart = $('#donut-chart-kelas-1')
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($matpel_pemetaan) !!},
+                    datasets: [{
+                            label: " Underlow",
+                            backgroundColor: '#eb4034',
+                            borderColor: '#eb4034',
+                            data: [
+                                {!! json_encode(count($siswa_rata_underlow_pemetaan_indonesia_1)) !!},
+                                {!! json_encode(count($siswa_rata_underlow_pemetaan_matematika_1)) !!}
+                            ]
+                        },
+                        {
+                            label: " Low",
+                            backgroundColor: '#ebeb34',
+                            borderColor: '#ebeb34',
+                            data: [
+                                {!! json_encode(count($siswa_rata_low_pemetaan_indonesia_1)) !!},
+                                {!! json_encode(count($siswa_rata_low_pemetaan_matematika_1)) !!}
+                            ]
+                        },
+                        {
+                            label: " Pass",
+                            backgroundColor: '#34eb77',
+                            borderColor: '#34eb77',
+                            data: [
+                                {!! json_encode(count($siswa_rata_pass_pemetaan_indonesia_1)) !!},
+                                {!! json_encode(count($siswa_rata_pass_pemetaan_matematika_1)) !!}
+                            ]
+                        },
+                        {
+                            label: " High",
+                            backgroundColor: '#347aeb',
+                            borderColor: '#347aeb',
+                            data: [
+                                {!! json_encode(count($siswa_rata_high_pemetaan_indonesia_1)) !!},
+                                {!! json_encode(count($siswa_rata_high_pemetaan_matematika_1)) !!}
+                            ]
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: true
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: {!! json_encode(max($data_1)) !!},
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+
+            var $salesChart = $('#chart-kelas-2')
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($matpel_pemetaan) !!},
+                    datasets: [{
+                            label: " Underlow",
+                            backgroundColor: '#eb4034',
+                            borderColor: '#eb4034',
+                            data: [
+                                {!! json_encode($rata_underlow_pemetaan_indonesia_2) !!},
+                                {!! json_encode($rata_underlow_pemetaan_matematika_2) !!}
+                            ]
+                        },
+                        {
+                            label: " Low",
+                            backgroundColor: '#ebeb34',
+                            borderColor: '#ebeb34',
+                            data: [
+                                {!! json_encode($rata_low_pemetaan_indonesia_2) !!},
+                                {!! json_encode($rata_low_pemetaan_matematika_2) !!}
+                            ]
+                        },
+                        {
+                            label: " Pass",
+                            backgroundColor: '#34eb77',
+                            borderColor: '#34eb77',
+                            data: [
+                                {!! json_encode($rata_pass_pemetaan_indonesia_2) !!},
+                                {!! json_encode($rata_pass_pemetaan_matematika_2) !!}
+                            ]
+                        },
+                        {
+                            label: " High",
+                            backgroundColor: '#347aeb',
+                            borderColor: '#347aeb',
+                            data: [
+                                {!! json_encode($rata_high_pemetaan_indonesia_2) !!},
+                                {!! json_encode($rata_high_pemetaan_matematika_2) !!}
+                            ]
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: true
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: 100,
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+
+            var $salesChart = $('#donut-chart-kelas-2')
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($matpel_pemetaan) !!},
+                    datasets: [{
+                            label: " Underlow",
+                            backgroundColor: '#eb4034',
+                            borderColor: '#eb4034',
+                            data: [
+                                {!! json_encode(count($siswa_rata_underlow_pemetaan_indonesia_2)) !!},
+                                {!! json_encode(count($siswa_rata_underlow_pemetaan_matematika_2)) !!}
+                            ]
+                        },
+                        {
+                            label: " Low",
+                            backgroundColor: '#ebeb34',
+                            borderColor: '#ebeb34',
+                            data: [
+                                {!! json_encode(count($siswa_rata_low_pemetaan_indonesia_2)) !!},
+                                {!! json_encode(count($siswa_rata_low_pemetaan_matematika_2)) !!}
+                            ]
+                        },
+                        {
+                            label: " Pass",
+                            backgroundColor: '#34eb77',
+                            borderColor: '#34eb77',
+                            data: [
+                                {!! json_encode(count($siswa_rata_pass_pemetaan_indonesia_2)) !!},
+                                {!! json_encode(count($siswa_rata_pass_pemetaan_matematika_2)) !!}
+                            ]
+                        },
+                        {
+                            label: " High",
+                            backgroundColor: '#347aeb',
+                            borderColor: '#347aeb',
+                            data: [
+                                {!! json_encode(count($siswa_rata_high_pemetaan_indonesia_2)) !!},
+                                {!! json_encode(count($siswa_rata_high_pemetaan_matematika_2)) !!}
+                            ]
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: true
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: {!! json_encode(max($data_2)) !!},
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+
+            var $salesChart = $('#chart-kelas-3')
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($matpel_pemetaan) !!},
+                    datasets: [{
+                            label: " Underlow",
+                            backgroundColor: '#eb4034',
+                            borderColor: '#eb4034',
+                            data: [
+                                {!! json_encode($rata_underlow_pemetaan_indonesia_3) !!},
+                                {!! json_encode($rata_underlow_pemetaan_matematika_3) !!}
+                            ]
+                        },
+                        {
+                            label: " Low",
+                            backgroundColor: '#ebeb34',
+                            borderColor: '#ebeb34',
+                            data: [
+                                {!! json_encode($rata_low_pemetaan_indonesia_3) !!},
+                                {!! json_encode($rata_low_pemetaan_matematika_3) !!}
+                            ]
+                        },
+                        {
+                            label: " Pass",
+                            backgroundColor: '#34eb77',
+                            borderColor: '#34eb77',
+                            data: [
+                                {!! json_encode($rata_pass_pemetaan_indonesia_3) !!},
+                                {!! json_encode($rata_pass_pemetaan_matematika_3) !!}
+                            ]
+                        },
+                        {
+                            label: " High",
+                            backgroundColor: '#347aeb',
+                            borderColor: '#347aeb',
+                            data: [
+                                {!! json_encode($rata_high_pemetaan_indonesia_3) !!},
+                                {!! json_encode($rata_high_pemetaan_matematika_3) !!}
+                            ]
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: true
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: 100,
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+
+            var $salesChart = $('#donut-chart-kelas-3')
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($matpel_pemetaan) !!},
+                    datasets: [{
+                            label: " Underlow",
+                            backgroundColor: '#eb4034',
+                            borderColor: '#eb4034',
+                            data: [
+                                {!! json_encode(count($siswa_rata_underlow_pemetaan_indonesia_3)) !!},
+                                {!! json_encode(count($siswa_rata_underlow_pemetaan_matematika_3)) !!}
+                            ]
+                        },
+                        {
+                            label: " Low",
+                            backgroundColor: '#ebeb34',
+                            borderColor: '#ebeb34',
+                            data: [
+                                {!! json_encode(count($siswa_rata_low_pemetaan_indonesia_3)) !!},
+                                {!! json_encode(count($siswa_rata_low_pemetaan_matematika_3)) !!}
+                            ]
+                        },
+                        {
+                            label: " Pass",
+                            backgroundColor: '#34eb77',
+                            borderColor: '#34eb77',
+                            data: [
+                                {!! json_encode(count($siswa_rata_pass_pemetaan_indonesia_3)) !!},
+                                {!! json_encode(count($siswa_rata_pass_pemetaan_matematika_3)) !!}
+                            ]
+                        },
+                        {
+                            label: " High",
+                            backgroundColor: '#347aeb',
+                            borderColor: '#347aeb',
+                            data: [
+                                {!! json_encode(count($siswa_rata_high_pemetaan_indonesia_3)) !!},
+                                {!! json_encode(count($siswa_rata_high_pemetaan_matematika_3)) !!}
+                            ]
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: true
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: {!! json_encode(max($data_3)) !!},
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+
+            var $salesChart = $('#chart-kelas-4')
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($matpel_pemetaan) !!},
+                    datasets: [{
+                            label: " Underlow",
+                            backgroundColor: '#eb4034',
+                            borderColor: '#eb4034',
+                            data: [
+                                {!! json_encode($rata_underlow_pemetaan_indonesia_4) !!},
+                                {!! json_encode($rata_underlow_pemetaan_matematika_4) !!}
+                            ]
+                        },
+                        {
+                            label: " Low",
+                            backgroundColor: '#ebeb34',
+                            borderColor: '#ebeb34',
+                            data: [
+                                {!! json_encode($rata_low_pemetaan_indonesia_4) !!},
+                                {!! json_encode($rata_low_pemetaan_matematika_4) !!}
+                            ]
+                        },
+                        {
+                            label: " Pass",
+                            backgroundColor: '#34eb77',
+                            borderColor: '#34eb77',
+                            data: [
+                                {!! json_encode($rata_pass_pemetaan_indonesia_4) !!},
+                                {!! json_encode($rata_pass_pemetaan_matematika_4) !!}
+                            ]
+                        },
+                        {
+                            label: " High",
+                            backgroundColor: '#347aeb',
+                            borderColor: '#347aeb',
+                            data: [
+                                {!! json_encode($rata_high_pemetaan_indonesia_4) !!},
+                                {!! json_encode($rata_high_pemetaan_matematika_4) !!}
+                            ]
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: true
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: 100,
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+
+            var $salesChart = $('#donut-chart-kelas-4')
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($matpel_pemetaan) !!},
+                    datasets: [{
+                            label: " Underlow",
+                            backgroundColor: '#eb4034',
+                            borderColor: '#eb4034',
+                            data: [
+                                {!! json_encode(count($siswa_rata_underlow_pemetaan_indonesia_4)) !!},
+                                {!! json_encode(count($siswa_rata_underlow_pemetaan_matematika_4)) !!}
+                            ]
+                        },
+                        {
+                            label: " Low",
+                            backgroundColor: '#ebeb34',
+                            borderColor: '#ebeb34',
+                            data: [
+                                {!! json_encode(count($siswa_rata_low_pemetaan_indonesia_4)) !!},
+                                {!! json_encode(count($siswa_rata_low_pemetaan_matematika_4)) !!}
+                            ]
+                        },
+                        {
+                            label: " Pass",
+                            backgroundColor: '#34eb77',
+                            borderColor: '#34eb77',
+                            data: [
+                                {!! json_encode(count($siswa_rata_pass_pemetaan_indonesia_4)) !!},
+                                {!! json_encode(count($siswa_rata_pass_pemetaan_matematika_4)) !!}
+                            ]
+                        },
+                        {
+                            label: " High",
+                            backgroundColor: '#347aeb',
+                            borderColor: '#347aeb',
+                            data: [
+                                {!! json_encode(count($siswa_rata_high_pemetaan_indonesia_4)) !!},
+                                {!! json_encode(count($siswa_rata_high_pemetaan_matematika_4)) !!}
+                            ]
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: true
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: {!! json_encode(max($data_4)) !!},
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+
+            var $salesChart = $('#chart-kelas-5')
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($matpel_pemetaan) !!},
+                    datasets: [{
+                            label: " Underlow",
+                            backgroundColor: '#eb4034',
+                            borderColor: '#eb4034',
+                            data: [
+                                {!! json_encode($rata_underlow_pemetaan_indonesia_5) !!},
+                                {!! json_encode($rata_underlow_pemetaan_matematika_5) !!}
+                            ]
+                        },
+                        {
+                            label: " Low",
+                            backgroundColor: '#ebeb34',
+                            borderColor: '#ebeb34',
+                            data: [
+                                {!! json_encode($rata_low_pemetaan_indonesia_5) !!},
+                                {!! json_encode($rata_low_pemetaan_matematika_5) !!}
+                            ]
+                        },
+                        {
+                            label: " Pass",
+                            backgroundColor: '#34eb77',
+                            borderColor: '#34eb77',
+                            data: [
+                                {!! json_encode($rata_pass_pemetaan_indonesia_5) !!},
+                                {!! json_encode($rata_pass_pemetaan_matematika_5) !!}
+                            ]
+                        },
+                        {
+                            label: " High",
+                            backgroundColor: '#347aeb',
+                            borderColor: '#347aeb',
+                            data: [
+                                {!! json_encode($rata_high_pemetaan_indonesia_5) !!},
+                                {!! json_encode($rata_high_pemetaan_matematika_5) !!}
+                            ]
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: true
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: 100,
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+
+            var $salesChart = $('#donut-chart-kelas-5')
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($matpel_pemetaan) !!},
+                    datasets: [{
+                            label: " Underlow",
+                            backgroundColor: '#eb4034',
+                            borderColor: '#eb4034',
+                            data: [
+                                {!! json_encode(count($siswa_rata_underlow_pemetaan_indonesia_5)) !!},
+                                {!! json_encode(count($siswa_rata_underlow_pemetaan_matematika_5)) !!}
+                            ]
+                        },
+                        {
+                            label: " Low",
+                            backgroundColor: '#ebeb34',
+                            borderColor: '#ebeb34',
+                            data: [
+                                {!! json_encode(count($siswa_rata_low_pemetaan_indonesia_5)) !!},
+                                {!! json_encode(count($siswa_rata_low_pemetaan_matematika_5)) !!}
+                            ]
+                        },
+                        {
+                            label: " Pass",
+                            backgroundColor: '#34eb77',
+                            borderColor: '#34eb77',
+                            data: [
+                                {!! json_encode(count($siswa_rata_pass_pemetaan_indonesia_5)) !!},
+                                {!! json_encode(count($siswa_rata_pass_pemetaan_matematika_5)) !!}
+                            ]
+                        },
+                        {
+                            label: " High",
+                            backgroundColor: '#347aeb',
+                            borderColor: '#347aeb',
+                            data: [
+                                {!! json_encode(count($siswa_rata_high_pemetaan_indonesia_5)) !!},
+                                {!! json_encode(count($siswa_rata_high_pemetaan_matematika_5)) !!}
+                            ]
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: true
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: {!! json_encode(max($data_5)) !!},
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+
+            var $salesChart = $('#chart-kelas-6')
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($matpel_pemetaan) !!},
+                    datasets: [{
+                            label: " Underlow",
+                            backgroundColor: '#eb4034',
+                            borderColor: '#eb4034',
+                            data: [
+                                {!! json_encode($rata_underlow_pemetaan_indonesia_6) !!},
+                                {!! json_encode($rata_underlow_pemetaan_matematika_6) !!}
+                            ]
+                        },
+                        {
+                            label: " Low",
+                            backgroundColor: '#ebeb34',
+                            borderColor: '#ebeb34',
+                            data: [
+                                {!! json_encode($rata_low_pemetaan_indonesia_6) !!},
+                                {!! json_encode($rata_low_pemetaan_matematika_6) !!}
+                            ]
+                        },
+                        {
+                            label: " Pass",
+                            backgroundColor: '#34eb77',
+                            borderColor: '#34eb77',
+                            data: [
+                                {!! json_encode($rata_pass_pemetaan_indonesia_6) !!},
+                                {!! json_encode($rata_pass_pemetaan_matematika_6) !!}
+                            ]
+                        },
+                        {
+                            label: " High",
+                            backgroundColor: '#347aeb',
+                            borderColor: '#347aeb',
+                            data: [
+                                {!! json_encode($rata_high_pemetaan_indonesia_6) !!},
+                                {!! json_encode($rata_high_pemetaan_matematika_6) !!}
+                            ]
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: true
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: 100,
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
+            })
+
+            var $salesChart = $('#donut-chart-kelas-6')
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($matpel_pemetaan) !!},
+                    datasets: [{
+                            label: " Underlow",
+                            backgroundColor: '#eb4034',
+                            borderColor: '#eb4034',
+                            data: [
+                                {!! json_encode(count($siswa_rata_underlow_pemetaan_indonesia_6)) !!},
+                                {!! json_encode(count($siswa_rata_underlow_pemetaan_matematika_6)) !!}
+                            ]
+                        },
+                        {
+                            label: " Low",
+                            backgroundColor: '#ebeb34',
+                            borderColor: '#ebeb34',
+                            data: [
+                                {!! json_encode(count($siswa_rata_low_pemetaan_indonesia_6)) !!},
+                                {!! json_encode(count($siswa_rata_low_pemetaan_matematika_6)) !!}
+                            ]
+                        },
+                        {
+                            label: " Pass",
+                            backgroundColor: '#34eb77',
+                            borderColor: '#34eb77',
+                            data: [
+                                {!! json_encode(count($siswa_rata_pass_pemetaan_indonesia_6)) !!},
+                                {!! json_encode(count($siswa_rata_pass_pemetaan_matematika_6)) !!}
+                            ]
+                        },
+                        {
+                            label: " High",
+                            backgroundColor: '#347aeb',
+                            borderColor: '#347aeb',
+                            data: [
+                                {!! json_encode(count($siswa_rata_high_pemetaan_indonesia_6)) !!},
+                                {!! json_encode(count($siswa_rata_high_pemetaan_matematika_6)) !!}
+                            ]
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect
+                    },
+                    legend: {
+                        display: true
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                                lineWidth: '4px',
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: $.extend({
+                                beginAtZero: true,
+                                suggestedMax: {!! json_encode(max($data_6)) !!},
+                            }, ticksStyle)
+                        }],
+                        xAxes: [{
+                            display: true,
+                            gridLines: {
+                                display: true,
+                            },
+                            ticks: ticksStyle
+                        }]
+                    }
+                }
             })
         })
     </script>
