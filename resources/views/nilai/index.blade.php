@@ -130,7 +130,7 @@
                                             <tr>
 
                                                 <td>{{ $nilai->kompetensiinti->kompetensi_inti }}</td>
-                                                <td><a href="/nilai/{{ $nilai->mapel->id }}/profile">{{ $nilai->mapel->nama_mapel }}</td>
+                                                <td><a href="/mapel/{{ $nilai->mapel->id }}/profile">{{ $nilai->mapel->nama_mapel }}</td>
                                                 <td><a href="/guru/{{ $nilai->guru->id }}/profile">{{ $nilai->guru->nama_guru }}</a></td>
                                                 <td><a href="/penilaian/{{ $nilai->penilaian->id }}/profile">{{ $nilai->penilaian->nama_tes }}</td>
                                                 <td><a href="/kelas/{{ $nilai->kelas->id }}/profile">{{ $nilai->kelas->nama }}</a></td>
