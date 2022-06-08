@@ -58,8 +58,8 @@ class JurnalController extends Controller
         $file_name = rand(1000, 9999) . $thumbnail->getClientOriginalName();
         $img = Image::make($thumbnail->path());
         $img->resize('120', '120')
-            ->save(public_path('/images') . '/small_' . $file_name);
-        $thumbnail->move('/images', $file_name);
+            ->save(public_path('images') . '/small_' . $file_name);
+        $thumbnail->move('images', $file_name);
         $post = new Journal();
         $post -> title = $request -> title;
         $post -> content = $request -> content;
