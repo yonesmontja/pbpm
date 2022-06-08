@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use PDF;
 use Session;
+use Carbon\Carbon;
 use App\Models\Guru;
 use App\Models\User;
 use App\Models\Extra;
@@ -11,10 +12,12 @@ use App\Models\Kelas;
 use App\Models\Mapel;
 use App\Models\Nilai;
 use App\Models\Siswa;
+use App\Models\Sekolah;
+use App\Models\Tahunpel;
+
 use App\Models\Penilaian;
 use App\Imports\UserImport;
 use Illuminate\Support\Str;
-
 use App\Exports\SiswaExport;
 use App\Imports\SiswaImport;
 use Illuminate\Http\Request;
@@ -430,8 +433,36 @@ class SiswaController extends Controller
         $nama_belakang = Siswa::where('id','=',$id)->select('nama_depan','nama_belakang')->pluck('nama_belakang');
         $kalimat1 = $nama_depan[0];
         $kalimat2 = $nama_belakang[0];
-        //dd($kalimat);
+        $kelas = Kelas::find($students -> kelas_id);
+        //dd($kelas -> guru -> nama_guru);
         $data_siswa = Siswa::get();
+
+        if($students -> kelas_id == 1)
+        {
+            $wali_kelas = $kelas -> guru -> nama_guru;
+        }
+        if($students -> kelas_id == 2)
+        {
+            $wali_kelas = $kelas -> guru -> nama_guru;
+        }
+        if($students -> kelas_id == 3)
+        {
+            $wali_kelas = $kelas -> guru -> nama_guru;
+        }
+        if($students -> kelas_id == 4)
+        {
+            $wali_kelas = $kelas -> guru -> nama_guru;
+        }
+        if($students -> kelas_id == 5)
+        {
+            $wali_kelas = $kelas -> guru -> nama_guru;
+        }
+        if($students -> kelas_id == 6)
+        {
+            $wali_kelas = $kelas -> guru -> nama_guru;
+        }
+
+        //dd($wali_kelas);
         //menghitung nilai tugas
         for($penilaian=1; $penilaian < 2; $penilaian++)
         {
@@ -2589,10 +2620,42 @@ class SiswaController extends Controller
         $alpa1 = $alpa[0];
         $ijin = Extra::all()->where('siswa_id','=',$id)->pluck('ijin');
         $ijin1 = $ijin[0];
-        //dd($alpa1);
+        //data sekolah
+        $kepsek = Sekolah::all();
+        foreach ($kepsek as $k)
+        {
+            $kepala = $k -> kepsek;
+            $nip = $k -> nip_kepsek;
+            $kecamatan = $k -> kecamatan;
+        }
+        $tahunpel = Tahunpel::all()->where('aktif','Y');
+        foreach($tahunpel as $thn)
+        {
+            $semester_aktif = $thn -> semester;
+            $kepsek_aktif = $thn -> nama_kepsek;
+            $nip_kepsek = $thn -> kode_kepsek;
+            $tanggal_raport = Carbon::parse($thn ->tgl_raport) ->isoFormat('D MMMM Y');
+            $tanggal_raport_kls6 = $thn -> tgl_raport_kelas3;
+            $tahun_pelajaran = $thn -> thn_pel;
+            $tahun_aktif = $thn -> tahun;
+        }
+        //dd($semester_aktif);
+        //-----------------------------------
+
 
         $pdf = PDF::loadView('export.raport1',
         [
+            'wali_kelas' => $wali_kelas,
+            'semester_aktif' => $semester_aktif,
+            'kepsek_aktif' => $kepsek_aktif,
+            'nip_kepsek' => $nip_kepsek,
+            'tanggal_raport' => $tanggal_raport,
+            'tanggal_raport_kls6' => $tanggal_raport_kls6,
+            'tahun_pelajaran' => $tahun_pelajaran,
+            'tahun_aktif' => $tahun_aktif,
+            'kecamatan' => $kecamatan,
+            'kepala' => $kepala,
+            'nip' => $nip,
             'predikat_huruf_agama' =>$predikat_huruf_agama,
             'predikat_huruf_ppkn' =>$predikat_huruf_ppkn,
             'predikat_huruf_indonesia' =>$predikat_huruf_indonesia,

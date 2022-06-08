@@ -52,6 +52,12 @@
                                       <p>CAPAIAN BELAJAR</p>
                                   </a>
                               </li>
+                              <li class="nav-item">
+                                  <a href="/sekolah" class="nav-link {{ set_active('sekolah') }}">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>SEKOLAH</p>
+                                  </a>
+                              </li>
                           @endif
                       </ul>
                   </li>

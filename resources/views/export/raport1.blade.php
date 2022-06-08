@@ -186,7 +186,7 @@
                                             :
                                         </td>
                                         <td colspan="2">
-                                            Genap
+                                            {{ $semester_aktif }}
                                         </td>
                                     </tr>
                                     <tr>
@@ -208,7 +208,7 @@
                                             :
                                         </td>
                                         <td colspan="2">
-                                            2021/2022
+                                            {{ thnPel() }}
                                         </td>
                                     </tr>
                                 </table>
@@ -474,7 +474,7 @@
                                 Mengetahui
                             </td>
                             <td colspan="4">
-                                Kalomdol, 17 Juni 2022
+                                {{ $kecamatan }}, {{ $tanggal_raport }}
                             </td>
                         </tr>
                         <tr>
@@ -503,10 +503,12 @@
                         </tr>
                         <tr>
                             <td text-align="center" colspan="4">
-                                ------------------------
+                                <br>
+                                <br>----------------------------------------
                             </td>
                             <td text-align="center" colspan="4">
-                                (Silimius Doyela)
+                                <br>({{ $wali_kelas }})
+                                <br>----------------------------------------
                             </td>
                         </tr>
                         <tr>
@@ -530,8 +532,8 @@
                         </tr>
                         <tr>
                             <td text-align="center" colspan="8">
-                                (Merkianus Kasipmabin, S.Pd)
-                                <br> Nip. -------------
+                                <u>({{ $kepala }})</u>
+                                <br> Nip. {{ $nip }}
                             </td>
                         </tr>
                     </table>
@@ -608,7 +610,7 @@
                                             :
                                         </td>
                                         <td colspan="2">
-                                            Genap
+                                            {{ $semester_aktif }}
                                         </td>
                                     </tr>
                                     <tr>
@@ -630,7 +632,7 @@
                                             :
                                         </td>
                                         <td colspan="2">
-                                            2021/2022
+                                            {{ thnPel() }}
                                         </td>
                                     </tr>
                                 </table>
@@ -933,7 +935,7 @@
                                 Mengetahui
                             </td>
                             <td colspan="4">
-                                Kalomdol, 17 Juni 2022
+                                {{ $kecamatan }}, {{ $tanggal_raport }}
                             </td>
                         </tr>
                         <tr>
@@ -965,7 +967,7 @@
                                 ------------------------
                             </td>
                             <td text-align="center" colspan="4">
-                                (Silimius Doyela)
+                                ({{ $wali_kelas }})
                             </td>
                         </tr>
                         <tr>
@@ -989,8 +991,8 @@
                         </tr>
                         <tr>
                             <td text-align="center" colspan="8">
-                                (Merkianus Kasipmabin, S.Pd)
-                                <br> Nip. -------------
+                                ({{ $kepala }})
+                                <br> Nip. {{ $nip }}
                             </td>
                         </tr>
                     </table>

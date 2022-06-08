@@ -386,4 +386,3 @@ function set_active($uri, $output = "active")
         }
         return (float)sqrt($variance/$num_of_elements);
     }
-
