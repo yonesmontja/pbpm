@@ -415,17 +415,17 @@
             <tr class="details">
                 <td style="text-align: center;">1</td>
                 <td colspan="3" style="text-align: center;">Alpa</td>
-                <td colspan="4" style="text-align: center;">{{ $alpa }}</td>
+                <td colspan="4" style="text-align: center;">{{ $alpa1 }}</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">2</td>
                 <td colspan="3" style="text-align: center;">Ijin</td>
-                <td colspan="4" style="text-align: center;">{{ $ijin }}</td>
+                <td colspan="4" style="text-align: center;">{{ $ijin1 }}</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">3</td>
                 <td colspan="3" style="text-align: center;">Sakit</td>
-                <td colspan="4" style="text-align: center;">{{ $sakit }}</td>
+                <td colspan="4" style="text-align: center;">{{ $sakit1 }}</td>
             </tr>
             <tr>
                 <td colspan="8">
@@ -440,7 +440,7 @@
             </tr>
             <tr class="details">
                 <td colspan="8" style="text-align: left;">
-                    <br>1.
+                    <br>1. sf
                     <br>2. Catatan 2
                     <br>3. Catatan 3
                 </td>

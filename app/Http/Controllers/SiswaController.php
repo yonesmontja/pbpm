@@ -2583,13 +2583,13 @@ class SiswaController extends Controller
         $ratarata_raport = number_format((float)($ratarata_raport_pengetahuan+$ratarata_raport_keterampilan)/2, 1, '.', '');
         //----------------------------------------------------
         //input absensi
-        $sakit = Extra::all()->where('siswa_id','=',$id)->pluck('sakit')->toArray();
-        $sakit = $sakit[0];
-        $alpa = Extra::all()->where('siswa_id','=',$id)->pluck('alpa')->toArray();
-        $alpa = $alpa[0];
-        $ijin = Extra::all()->where('siswa_id','=',$id)->pluck('ijin')->toArray();
-        $ijin = $ijin[0];
-        //dd($alpa);
+        $sakit = Extra::all()->where('siswa_id','=',$id)->pluck('sakit');
+        $sakit1 = $sakit[0];
+        $alpa = Extra::all()->where('siswa_id','=',$id)->pluck('alpa');
+        $alpa1 = $alpa[0];
+        $ijin = Extra::all()->where('siswa_id','=',$id)->pluck('ijin');
+        $ijin1 = $ijin[0];
+        //dd($alpa1);
 
         $pdf = PDF::loadView('export.raport',
         [
@@ -2649,9 +2649,9 @@ class SiswaController extends Controller
             'raport_keterampilan_ips'=>$raport_keterampilan_ips,
             'raport_keterampilan_pjok'=>$raport_keterampilan_pjok,
             'raport_keterampilan_sbk'=>$raport_keterampilan_sbk,
-            'sakit'=>$sakit,
-            'alpa'=>$alpa,
-            'ijin'=>$ijin,
+            'sakit1'=>$sakit1,
+            'alpa1'=>$alpa1,
+            'ijin1'=>$ijin1,
             'data_siswa'=>$data_siswa,
             'students' => $students
         ]);
