@@ -409,7 +409,7 @@
             </tr>
             <tr class="heading">
                 <td>No</td>
-                <td colspan="3">Ketidakhadiran</td>
+                <td colspan="3"></td>
                 <td colspan="4">Jumlah hari</td>
             </tr>
             <tr class="details">
@@ -874,17 +874,17 @@
             <tr class="details">
                 <td style="text-align: center;">1</td>
                 <td colspan="3" style="text-align: center;">Alpa</td>
-                <td colspan="4" style="text-align: center;">5</td>
+                <td colspan="4" style="text-align: center;">{{ $alpa1 }}</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">2</td>
                 <td colspan="3" style="text-align: center;">Ijin</td>
-                <td colspan="4" style="text-align: center;">2</td>
+                <td colspan="4" style="text-align: center;">{{ $ijin1 }}</td>
             </tr>
             <tr class="details">
                 <td style="text-align: center;">3</td>
                 <td colspan="3" style="text-align: center;">Sakit</td>
-                <td colspan="4" style="text-align: center;">2</td>
+                <td colspan="4" style="text-align: center;">{{ $sakit1 }}</td>
             </tr>
             <tr>
                 <td colspan="8">

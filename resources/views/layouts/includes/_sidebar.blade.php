@@ -119,6 +119,12 @@
                                       <p>Raport Siswa</p>
                                   </a>
                               </li>
+                              <li class="nav-item">
+                                  <a href="/extra" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Absensi & Catatan</p>
+                                  </a>
+                              </li>
                           </ul>
                       </li>
                       <li class="nav-item has-treeview">

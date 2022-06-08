@@ -2591,7 +2591,7 @@ class SiswaController extends Controller
         $ijin1 = $ijin[0];
         //dd($alpa1);
 
-        $pdf = PDF::loadView('export.raport',
+        $pdf = PDF::loadView('export.raport1',
         [
             'predikat_huruf_agama' =>$predikat_huruf_agama,
             'predikat_huruf_ppkn' =>$predikat_huruf_ppkn,
