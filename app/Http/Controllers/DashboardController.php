@@ -1550,7 +1550,7 @@ class DashboardController extends Controller
 
             'this_month' => $this_month,
             'last_average' => $last_average,
-            'rata_pemetaan_awal' => $rata_pemetaan_awal,
+
             'user' => $user,
             'islam_average' => $islam_average,
             'protestan_average' => $protestan_average,
