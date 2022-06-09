@@ -1454,20 +1454,46 @@ class DashboardController extends Controller
         $pemetaan_indonesia_average = $nilai->where('penilaian_id',6)->where('mapel_id',5)->pluck('nilai')->avg();
         $pemetaan_matematika_average = $nilai->where('penilaian_id',6)->where('mapel_id',6)->pluck('nilai')->avg();
 
-        $pemetaan_matematika_total = array_sum($high_pemetaan_matematika_total +
+        if(count($high_pemetaan_matematika_total +
+                                     $pass_pemetaan_matematika_total +
+                                     $low_pemetaan_matematika_total +
+                                     $underlow_pemetaan_matematika_total) ==! 0)
+        {
+            $pemetaan_matematika_total = array_sum($high_pemetaan_matematika_total +
                                      $pass_pemetaan_matematika_total +
                                      $low_pemetaan_matematika_total +
                                      $underlow_pemetaan_matematika_total)/count($high_pemetaan_matematika_total +
                                      $pass_pemetaan_matematika_total +
                                      $low_pemetaan_matematika_total +
                                      $underlow_pemetaan_matematika_total);
-        $pemetaan_indonesia_total = array_sum($high_pemetaan_indonesia_total +
+        }
+        if(count($high_pemetaan_matematika_total +
+                                     $pass_pemetaan_matematika_total +
+                                     $low_pemetaan_matematika_total +
+                                     $underlow_pemetaan_matematika_total) == 0)
+        {
+            $pemetaan_matematika_total = 0.0;
+        }
+        if(count($high_pemetaan_indonesia_total +
+                                     $pass_pemetaan_indonesia_total +
+                                     $low_pemetaan_indonesia_total +
+                                     $underlow_pemetaan_indonesia_total) ==! 0)
+        {
+            $pemetaan_indonesia_total = array_sum($high_pemetaan_indonesia_total +
                                      $pass_pemetaan_indonesia_total +
                                      $low_pemetaan_indonesia_total +
                                      $underlow_pemetaan_indonesia_total)/count($high_pemetaan_indonesia_total +
                                      $pass_pemetaan_indonesia_total +
                                      $low_pemetaan_indonesia_total +
                                      $underlow_pemetaan_indonesia_total);
+        }
+        if(count($high_pemetaan_indonesia_total +
+                                     $pass_pemetaan_indonesia_total +
+                                     $low_pemetaan_indonesia_total +
+                                     $underlow_pemetaan_indonesia_total) == 0)
+        {
+            $pemetaan_indonesia_total = 0.0;
+        }
         $this_month = number_format(($indonesia_average + $matematika_average)/2, 1, '.', '');
         $total_average = number_format((float)($pemetaan_indonesia_total + $pemetaan_matematika_total)/2, 1,'.','');
         $last_average = number_format(($this_month - $total_average), 1, '.', '');
