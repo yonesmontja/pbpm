@@ -972,32 +972,40 @@
                             label: ' Underlow',
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data: [{!! json_encode(number_format(array_sum($underlow_pemetaan_indonesia_total) / count($underlow_pemetaan_indonesia_total), 1, '.', '')) !!},
-                                {!! json_encode(number_format(array_sum($underlow_pemetaan_matematika_total) / count($underlow_pemetaan_matematika_total), 1, '.', '')) !!}
+                            data:
+                            [
+                                {!! json_encode($ulpit) !!},
+                                {!! json_encode($ulpmt) !!}
                             ]
                         },
                         {
                             label: ' Low',
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data: [{!! json_encode(number_format(array_sum($low_pemetaan_indonesia_total) / count($low_pemetaan_indonesia_total), 1, '.', '')) !!},
-                                {!! json_encode(number_format(array_sum($low_pemetaan_matematika_total) / count($low_pemetaan_matematika_total), 1, '.', '')) !!}
+                            data:
+                            [
+                                {!! json_encode($lpit) !!},
+                                {!! json_encode($lpmt) !!}
                             ]
                         },
                         {
                             label: ' Pass',
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data: [{!! json_encode(number_format(array_sum($pass_pemetaan_indonesia_total) / count($pass_pemetaan_indonesia_total), 1, '.', '')) !!},
-                                {!! json_encode(number_format(array_sum($pass_pemetaan_matematika_total) / count($pass_pemetaan_matematika_total), 1, '.', '')) !!}
+                            data:
+                            [
+                                {!! json_encode($ppit) !!},
+                                {!! json_encode($ppmt) !!}
                             ]
                         },
                         {
                             label: ' High',
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data: [{!! json_encode(number_format(array_sum($high_pemetaan_indonesia_total) / count($high_pemetaan_indonesia_total), 1, '.', '')) !!},
-                                {!! json_encode(number_format(array_sum($high_pemetaan_matematika_total) / count($high_pemetaan_matematika_total), 1, '.', '')) !!}
+                            data:
+                            [
+                                {!! json_encode($hpit) !!},
+                                {!! json_encode($hpmt) !!}
                             ]
                         },
                     ]
@@ -1049,7 +1057,8 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_underlow_pemetaan_indonesia_1) !!},
                                 {!! json_encode($rata_underlow_pemetaan_matematika_1) !!}
                             ]
@@ -1058,7 +1067,8 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_low_pemetaan_indonesia_1) !!},
                                 {!! json_encode($rata_low_pemetaan_matematika_1) !!}
                             ]
@@ -1067,7 +1077,8 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_pass_pemetaan_indonesia_1) !!},
                                 {!! json_encode($rata_pass_pemetaan_matematika_1) !!}
                             ]
@@ -1076,7 +1087,8 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_high_pemetaan_indonesia_1) !!},
                                 {!! json_encode($rata_high_pemetaan_matematika_1) !!}
                             ]
@@ -1130,7 +1142,8 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_indonesia_1)) !!},
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_matematika_1)) !!}
                             ]
@@ -1139,7 +1152,8 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_low_pemetaan_indonesia_1)) !!},
                                 {!! json_encode(count($siswa_rata_low_pemetaan_matematika_1)) !!}
                             ]
@@ -1148,7 +1162,8 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_indonesia_1)) !!},
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_matematika_1)) !!}
                             ]
@@ -1157,7 +1172,8 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_high_pemetaan_indonesia_1)) !!},
                                 {!! json_encode(count($siswa_rata_high_pemetaan_matematika_1)) !!}
                             ]
@@ -1211,7 +1227,8 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_underlow_pemetaan_indonesia_2) !!},
                                 {!! json_encode($rata_underlow_pemetaan_matematika_2) !!}
                             ]
@@ -1220,7 +1237,8 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_low_pemetaan_indonesia_2) !!},
                                 {!! json_encode($rata_low_pemetaan_matematika_2) !!}
                             ]
@@ -1229,7 +1247,8 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_pass_pemetaan_indonesia_2) !!},
                                 {!! json_encode($rata_pass_pemetaan_matematika_2) !!}
                             ]
@@ -1238,7 +1257,8 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_high_pemetaan_indonesia_2) !!},
                                 {!! json_encode($rata_high_pemetaan_matematika_2) !!}
                             ]
@@ -1292,7 +1312,8 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_indonesia_2)) !!},
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_matematika_2)) !!}
                             ]
@@ -1301,7 +1322,8 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_low_pemetaan_indonesia_2)) !!},
                                 {!! json_encode(count($siswa_rata_low_pemetaan_matematika_2)) !!}
                             ]
@@ -1310,7 +1332,8 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_indonesia_2)) !!},
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_matematika_2)) !!}
                             ]
@@ -1319,7 +1342,8 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_high_pemetaan_indonesia_2)) !!},
                                 {!! json_encode(count($siswa_rata_high_pemetaan_matematika_2)) !!}
                             ]
@@ -1373,7 +1397,8 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_underlow_pemetaan_indonesia_3) !!},
                                 {!! json_encode($rata_underlow_pemetaan_matematika_3) !!}
                             ]
@@ -1382,7 +1407,8 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_low_pemetaan_indonesia_3) !!},
                                 {!! json_encode($rata_low_pemetaan_matematika_3) !!}
                             ]
@@ -1391,7 +1417,8 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_pass_pemetaan_indonesia_3) !!},
                                 {!! json_encode($rata_pass_pemetaan_matematika_3) !!}
                             ]
@@ -1400,7 +1427,8 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_high_pemetaan_indonesia_3) !!},
                                 {!! json_encode($rata_high_pemetaan_matematika_3) !!}
                             ]
@@ -1454,7 +1482,8 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_indonesia_3)) !!},
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_matematika_3)) !!}
                             ]
@@ -1463,7 +1492,8 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_low_pemetaan_indonesia_3)) !!},
                                 {!! json_encode(count($siswa_rata_low_pemetaan_matematika_3)) !!}
                             ]
@@ -1472,7 +1502,8 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_indonesia_3)) !!},
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_matematika_3)) !!}
                             ]
@@ -1481,7 +1512,8 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_high_pemetaan_indonesia_3)) !!},
                                 {!! json_encode(count($siswa_rata_high_pemetaan_matematika_3)) !!}
                             ]
@@ -1535,7 +1567,8 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_underlow_pemetaan_indonesia_4) !!},
                                 {!! json_encode($rata_underlow_pemetaan_matematika_4) !!}
                             ]
@@ -1544,7 +1577,8 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_low_pemetaan_indonesia_4) !!},
                                 {!! json_encode($rata_low_pemetaan_matematika_4) !!}
                             ]
@@ -1553,7 +1587,8 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_pass_pemetaan_indonesia_4) !!},
                                 {!! json_encode($rata_pass_pemetaan_matematika_4) !!}
                             ]
@@ -1562,7 +1597,8 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_high_pemetaan_indonesia_4) !!},
                                 {!! json_encode($rata_high_pemetaan_matematika_4) !!}
                             ]
@@ -1616,7 +1652,8 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_indonesia_4)) !!},
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_matematika_4)) !!}
                             ]
@@ -1625,7 +1662,8 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_low_pemetaan_indonesia_4)) !!},
                                 {!! json_encode(count($siswa_rata_low_pemetaan_matematika_4)) !!}
                             ]
@@ -1634,7 +1672,8 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_indonesia_4)) !!},
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_matematika_4)) !!}
                             ]
@@ -1643,7 +1682,8 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_high_pemetaan_indonesia_4)) !!},
                                 {!! json_encode(count($siswa_rata_high_pemetaan_matematika_4)) !!}
                             ]
@@ -1697,7 +1737,8 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_underlow_pemetaan_indonesia_5) !!},
                                 {!! json_encode($rata_underlow_pemetaan_matematika_5) !!}
                             ]
@@ -1706,7 +1747,8 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_low_pemetaan_indonesia_5) !!},
                                 {!! json_encode($rata_low_pemetaan_matematika_5) !!}
                             ]
@@ -1715,7 +1757,8 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_pass_pemetaan_indonesia_5) !!},
                                 {!! json_encode($rata_pass_pemetaan_matematika_5) !!}
                             ]
@@ -1724,7 +1767,8 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_high_pemetaan_indonesia_5) !!},
                                 {!! json_encode($rata_high_pemetaan_matematika_5) !!}
                             ]
@@ -1778,7 +1822,8 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_indonesia_5)) !!},
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_matematika_5)) !!}
                             ]
@@ -1787,7 +1832,8 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_low_pemetaan_indonesia_5)) !!},
                                 {!! json_encode(count($siswa_rata_low_pemetaan_matematika_5)) !!}
                             ]
@@ -1796,7 +1842,8 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_indonesia_5)) !!},
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_matematika_5)) !!}
                             ]
@@ -1805,7 +1852,8 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_high_pemetaan_indonesia_5)) !!},
                                 {!! json_encode(count($siswa_rata_high_pemetaan_matematika_5)) !!}
                             ]
@@ -1859,7 +1907,8 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_underlow_pemetaan_indonesia_6) !!},
                                 {!! json_encode($rata_underlow_pemetaan_matematika_6) !!}
                             ]
@@ -1868,7 +1917,8 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_low_pemetaan_indonesia_6) !!},
                                 {!! json_encode($rata_low_pemetaan_matematika_6) !!}
                             ]
@@ -1877,7 +1927,8 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_pass_pemetaan_indonesia_6) !!},
                                 {!! json_encode($rata_pass_pemetaan_matematika_6) !!}
                             ]
@@ -1886,7 +1937,8 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode($rata_high_pemetaan_indonesia_6) !!},
                                 {!! json_encode($rata_high_pemetaan_matematika_6) !!}
                             ]
@@ -1940,7 +1992,8 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_indonesia_6)) !!},
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_matematika_6)) !!}
                             ]
@@ -1949,7 +2002,8 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_low_pemetaan_indonesia_6)) !!},
                                 {!! json_encode(count($siswa_rata_low_pemetaan_matematika_6)) !!}
                             ]
@@ -1958,7 +2012,8 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_indonesia_6)) !!},
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_matematika_6)) !!}
                             ]
@@ -1967,7 +2022,8 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data: [
+                            data:
+                            [
                                 {!! json_encode(count($siswa_rata_high_pemetaan_indonesia_6)) !!},
                                 {!! json_encode(count($siswa_rata_high_pemetaan_matematika_6)) !!}
                             ]

@@ -1537,6 +1537,74 @@ class DashboardController extends Controller
         }
         //dd(array_sum($underlow_pemetaan_indonesia_total)/count($underlow_pemetaan_indonesia_total));
         //dd($underlow_pemetaan_indonesia_total);
+        if($high_pemetaan_indonesia_total ==! 0)
+        {
+            $hpit = number_format(array_sum($high_pemetaan_indonesia_total) / count($high_pemetaan_indonesia_total), 1, '.', '');
+        }
+        if($high_pemetaan_indonesia_total == 0)
+        {
+            $hpit = 0;
+        }
+        if($high_pemetaan_matematika_total ==! 0)
+        {
+            $hpmt = number_format(array_sum($high_pemetaan_matematika_total) / count($high_pemetaan_matematika_total), 1, '.', '');
+        }
+        if($high_pemetaan_matematika_total == 0)
+        {
+            $hpmt = 0;
+        }
+
+        if($pass_pemetaan_indonesia_total ==! 0)
+        {
+            $ppit = number_format(array_sum($pass_pemetaan_indonesia_total) / count($pass_pemetaan_indonesia_total), 1, '.', '');
+        }
+        if($pass_pemetaan_indonesia_total == 0)
+        {
+            $ppit = 0;
+        }
+        if($pass_pemetaan_matematika_total ==! 0)
+        {
+            $ppmt = number_format(array_sum($pass_pemetaan_matematika_total) / count($pass_pemetaan_matematika_total), 1, '.', '');
+        }
+        if($pass_pemetaan_matematika_total == 0)
+        {
+            $ppmt = 0;
+        }
+
+        if($low_pemetaan_indonesia_total ==! 0)
+        {
+            $lpit = number_format(array_sum($low_pemetaan_indonesia_total) / count($low_pemetaan_indonesia_total), 1, '.', '');
+        }
+        if($low_pemetaan_indonesia_total == 0)
+        {
+            $lpit = 0;
+        }
+        if($low_pemetaan_matematika_total ==! 0)
+        {
+            $lpmt = number_format(array_sum($low_pemetaan_matematika_total) / count($low_pemetaan_matematika_total), 1, '.', '');
+        }
+        if($low_pemetaan_matematika_total == 0)
+        {
+            $lpmt = 0;
+        }
+
+        if($underlow_pemetaan_indonesia_total ==! 0)
+        {
+            $ulpit = number_format(array_sum($underlow_pemetaan_indonesia_total) / count($underlow_pemetaan_indonesia_total), 1, '.', '');
+        }
+        if($underlow_pemetaan_indonesia_total == 0)
+        {
+            $ulpit = 0;
+        }
+        if($underlow_pemetaan_matematika_total ==! 0)
+        {
+            $ulpmt = number_format(array_sum($underlow_pemetaan_matematika_total) / count($underlow_pemetaan_matematika_total), 1, '.', '');
+        }
+        if($underlow_pemetaan_matematika_total == 0)
+        {
+            $ulpmt = 0;
+        }
+
         return view('dashboards.index',[
             'data_6' => $data_6,
             'data_5' => $data_5,
@@ -1544,6 +1612,15 @@ class DashboardController extends Controller
             'data_3' => $data_3,
             'data_2' => $data_2,
             'data_1' => $data_1,
+
+            'hpit' => $hpit,
+            'hpmt' => $hpmt,
+            'ppmt' => $ppmt,
+            'ppit' => $ppit,
+            'lpit' => $lpit,
+            'lpmt' => $lpmt,
+            'ulpmt' => $ulpmt,
+            'ulpit' => $ulpit,
 
             'std_dev_pemetaan_matematika_total' => $std_dev_pemetaan_matematika_total,
             'std_dev_pemetaan_indonesia_total' => $std_dev_pemetaan_indonesia_total,
