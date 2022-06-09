@@ -23,7 +23,8 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            
+            'role' => 'admin',
+            'avatar' => 'default.jpg',
             'name' => 'admin',
             'email' => 'admin.admin@gmail.com',
             'email_verified_at' => now(),
