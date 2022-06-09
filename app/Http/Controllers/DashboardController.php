@@ -1535,8 +1535,16 @@ class DashboardController extends Controller
             //$sumbux[] = $mnp->nilai;
             $sumbuy[] = $mnp -> mapel -> nama_mapel;
         }
-        //dd(array_sum($underlow_pemetaan_indonesia_total)/count($underlow_pemetaan_indonesia_total));
-        //dd($underlow_pemetaan_indonesia_total);
+        // inisiasi
+        $hpit = 0;
+        $hpmt = 0;
+        $ppit = 0;
+        $ppmt = 0;
+        $lpit = 0;
+        $lpmt = 0;
+        $ulpit = 0;
+        $ulpmt = 0;
+
         if($high_pemetaan_indonesia_total ==! 0)
         {
             $hpit = number_format(array_sum($high_pemetaan_indonesia_total) / count($high_pemetaan_indonesia_total), 1, '.', '');
@@ -1545,6 +1553,7 @@ class DashboardController extends Controller
         {
             $hpit = 0;
         }
+        //dd($hpit);
         if($high_pemetaan_matematika_total ==! 0)
         {
             $hpmt = number_format(array_sum($high_pemetaan_matematika_total) / count($high_pemetaan_matematika_total), 1, '.', '');
