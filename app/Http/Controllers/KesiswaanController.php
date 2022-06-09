@@ -176,8 +176,23 @@ class KesiswaanController extends Controller
         //dd($mapel_this_week);
 
         //$last_week_average =
-        $last_average = number_format((float)(($last0month_average - $last1month_average)/$last1month_average*100), 2, '.', '');  // Outputs in two dp
-        $last_week_average = number_format((float)(($last0week_average-$last1week_average)/$last1week_average*100), 2, '.', '');
+        if($last1month_average ==! 0)
+        {
+            $last_average = number_format((float)(($last0month_average - $last1month_average)/$last1month_average*100), 2, '.', '');  // Outputs in two dp
+        }
+        if($last1month_average == 0)
+        {
+            $last_average = 0;
+        }
+        if($last1week_average ==! 0)
+        {
+            $last_week_average = number_format((float)(($last0week_average-$last1week_average)/$last1week_average*100), 2, '.', '');  // Outputs in two dp
+        }
+        if($last1week_average == 0)
+        {
+            $last_week_average = 0;
+        }
+
         //dd($last1month_average);
 
         $matpel = ['Agama Islam','Agama Protestan','Agama Katolik','PPKn','Bahasa Indonesia','Matematika','IPA','IPS','PJOK','SBK'];
