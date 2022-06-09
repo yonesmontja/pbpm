@@ -384,5 +384,12 @@ function set_active($uri, $output = "active")
                         // all numbers and means.
             $variance += pow(($i - $average), 2);
         }
-        return (float)sqrt($variance/$num_of_elements);
+        if($num_of_elements ==! 0)
+        {
+            return (float)sqrt($variance/$num_of_elements);
+        }
+        if($num_of_elements == 0)
+        {
+            return 0;
+        }
     }
