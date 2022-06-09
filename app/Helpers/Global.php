@@ -375,14 +375,29 @@ function set_active($uri, $output = "active")
 
         $variance = 0.0;
 
-                // calculating mean using array_sum() method
-        $average = array_sum($arr)/$num_of_elements;
+        // calculating mean using array_sum() method
 
-        foreach($arr as $i)
+        if($num_of_elements ==! 0)
         {
-            // sum of squares of differences between
-                        // all numbers and means.
-            $variance += pow(($i - $average), 2);
+            $average = array_sum($arr)/$num_of_elements;
+        }
+        if($num_of_elements == 0)
+        {
+            $average = 0;
+        }
+
+        if($num_of_elements ==! 0)
+        {
+            foreach($arr as $i)
+                {
+                    // sum of squares of differences between
+                    // all numbers and means.
+                    $variance += pow(($i - $average), 2);
+                }
+        }
+        if($num_of_elements == 0)
+        {
+            $variance = 0;
         }
         if($num_of_elements ==! 0)
         {
