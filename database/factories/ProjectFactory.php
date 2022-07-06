@@ -20,12 +20,12 @@ class ProjectFactory extends Factory
             'status' => '1',
             'progress' => '45',
             'tanggal' => $this ->faker->date('Y-m-d', 'now'),
-            'siswa_id' => '622',
-            'kelas_id' => '5',
-            'penilaian_id' => '23',
+            'siswa_id' => '1',
+            'kelas_id' => '1',
+            'penilaian_id' => '1',
             'guru_id' => '1',
-            'kompetensiinti_id' => '2',
-            'mapel_id' => '3',
+            'kompetensiinti_id' => '1',
+            'mapel_id' => '1',
         ];
     }
 }

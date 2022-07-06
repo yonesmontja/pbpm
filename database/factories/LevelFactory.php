@@ -17,6 +17,7 @@ class LevelFactory extends Factory
     {
         return [
             'level' => $this -> faker -> word,
+            'avatar' => 'photo.png'
         ];
     }
 }

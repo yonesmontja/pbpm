@@ -50,17 +50,17 @@ class SiswaFactory extends Factory
             'nik' =>$this -> faker->randomNumber($nbDigits = NULL, $strict = false),
             'nama_ibu' => $this -> faker ->firstNameFemale,
             'pekerjaan_ayah' => $this -> faker -> jobTitle,
-            'pekerjaan_ibu' => $this -> faker -> jobTitle,	
+            'pekerjaan_ibu' => $this -> faker -> jobTitle,
             'alamat_ortu' => $this -> faker -> address,
             'nama_wali' =>$this -> faker ->name,
             'pekerjaan_wali' =>$this -> faker ->jobTitle,
             'alamat_wali' => $this -> faker -> address,
-            'role' => $role,	
+            'role' => $role,
             'siswaOAP' => $OAP,
             'distrik' => $this -> faker -> city,
             'email' => $this->faker->unique()->safeEmail,
             'password' => bcrypt('rahasia'), // password adalah rahasia
-            
+            'avatar' => 'default.jpg',
         ];
     }
 }

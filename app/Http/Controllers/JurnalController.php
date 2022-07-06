@@ -54,12 +54,11 @@ class JurnalController extends Controller
             'title' => 'required',
             'thumbnail' => 'mimes:jpeg,jpg,png',
         ]);
-        $thumbnail = $request->file('thumbnail');
-        $file_name = rand(1000, 9999) . $thumbnail->getClientOriginalName();
-        $img = Image::make($thumbnail->path());
-        $img->resize('120', '120')
-            ->save(public_path('images') . '/small_' . $file_name);
-        $thumbnail->move('images', $file_name);
+        $thumbnail = $request->file('thumbnail')->move(public_path('storage\jurnal'),$request->file('thumbnail')->getClientOriginalName().".".$request->file('thumbnail')->getClientOriginalExtension());
+        $file_name = rand(1000, 9999) . $request->file('thumbnail')->getClientOriginalName();
+        $img = Image::make($thumbnail);
+        $img->resize('120', '120')->save(public_path('storage\jurnal') . '\small_' . $file_name);
+        $thumbnail->move(public_path('storage\jurnal'), $file_name);
         $post = new Journal();
         $post -> title = $request -> title;
         $post -> content = $request -> content;
@@ -169,12 +168,15 @@ class JurnalController extends Controller
         $jurnal ->update($request->all());
         if ($request->hasFile('thumbnail')) {
             $jurnal->delete_avatar();
-            $thumbnail = $request->file('thumbnail');
-            $file_name = rand(1000, 9999) . $thumbnail->getClientOriginalName();
-            $img = Image::make($thumbnail->path());
-            $img->resize('120', '120')
-                ->save(public_path('/images') . '/small_' . $file_name);
-            $thumbnail->move('/images', $file_name);
+            $thumbnail = $request->file('thumbnail')->move(public_path('storage\jurnal'),$request->file('thumbnail')->getClientOriginalName().".".$request->file('thumbnail')->getClientOriginalExtension());
+            //dd($thumbnail);
+            $file_name = rand(1000, 9999) . $request->file('thumbnail')->getClientOriginalName();
+            //dd($file_name);
+            $img = Image::make($thumbnail);
+            //dd($img);
+            $img->resize('120', '120')->save(public_path('storage\jurnal') . '\small_' . $file_name);
+            //dd($img);
+            $thumbnail->move(public_path('storage\jurnal'), $file_name);
             $jurnal->thumbnail = $file_name;
         }
         $input = $request->all();

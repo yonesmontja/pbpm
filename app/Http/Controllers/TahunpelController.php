@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Tahunpel;
 use Illuminate\Http\Request;
 
@@ -19,10 +20,17 @@ class TahunpelController extends Controller
         //
         $data['title'] = 'Tahun pelajaran';
         //dd($data['q']);
-
+        if(!empty(Tahunpel::find(1)->thn_pel))
+        {
+            $data['tp1'] =  Tahunpel::find(1)->thn_pel;
+        }
+        else
+        {
+            $data['tp1'] = Carbon::now() -> year;
+        }
         $data['tahunpel'] = Tahunpel::all();
         $data['tp'] = Tahunpel::find(1);
-        $data['tp1'] =  Tahunpel::find(1)->thn_pel;
+
         //$data['tp'] = Tahunpel::where(id,thn_pel)->get();
         //dd($data);
         return view('tahunpel.index', $data);

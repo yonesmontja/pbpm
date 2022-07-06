@@ -13,6 +13,7 @@ use App\Models\Penilaian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class PenilaianController extends Controller
 {
@@ -57,43 +58,16 @@ class PenilaianController extends Controller
         //foreach($nilai -)
         $mapel = Mapel::all();
 
-        $nama_kelas = Kelas::where('id','=',$id)->pluck('nama');
-        $id_guru = Kelas::where('id','=',$id)->pluck('guru_id')->first();
-        $nama_siswa = Siswa::where('kelas','=',$nama_kelas)->pluck('id');
+
         //dd($nama_siswa);
-        $jumlah_siswa = Siswa::where('kelas','=',$nama_kelas)->count();
-        $wali_kelas = Guru::all()->where('id','=',$id_guru)->pluck('nama_guru')->first();
+
+
         $nilai_rata_siswa = Nilai::all()->where('penilaian_id','=',$id);
         //hitung nilai rata-rata kelas untuk semua mapel
         $rata_kelas1 = Nilai::all()->where('penilaian_id','=',$id)->pluck('nilai')->avg();
         $rata_kelas = number_format((float)$rata_kelas1, 1, '.', '');
         //-----------------------------------------------
-        //hitung nilai terbawah
-        $kkm = 65;
-        $low_ul = [];
-        $low_l = [];
-        $low_p = [];
-        $low_h = [];
-        for($i = 0; $i < $jumlah_siswa; $i++)
-        {
-            $low[] = Nilai::all()->where('penilaian_id','=',$id)->where('siswa_id','=',$nama_siswa[$i])->avg('nilai');
-            if($low[$i] < $kkm)
-            {
-                $low_ul[] = number_format((float)$low[$i], 1, '.', '');
-            }
-            if($low[$i] > $kkm && $low[$i] <= $kkm+(100-$kkm)/3)
-            {
-                $low_l[] = number_format((float)$low[$i], 1, '.', '');
-            }
-            if($low[$i] > $kkm+(100-$kkm)/3 && $low[$i] <= $kkm+2*(100-$kkm)/3)
-            {
-                $low_p[] = number_format((float)$low[$i], 1, '.', '');
-            }
-            if($low[$i] > $kkm+2*(100-$kkm)/3)
-            {
-                $low_p[] = number_format((float)$low[$i], 1, '.', '');
-            }
-        }
+
 
         //$nilai = Nilai::all();
         $user = User::all();
@@ -322,15 +296,10 @@ class PenilaianController extends Controller
             'penilaian1' => $penilaian1,
             'nilai' => $nilai,
             'mapel'=>$mapel,
-            'low_ul' => $low_ul,
-            'low_l' => $low_l,
-            'low_p' => $low_p,
-            'low_h' => $low_h,
+
             'jml_kelas_penilaian' => $jml_kelas_penilaian,
             'nilai_rata_siswa' => $nilai_rata_siswa,
-            'nama_siswa' => $nama_siswa,
-            'jumlah_siswa' => $jumlah_siswa,
-            'wali_kelas' => $wali_kelas,
+
             'mapel' => $mapel,
             'rata_kelas' => $rata_kelas,
             'penilaian_list' => $penilaian_list,
@@ -393,14 +362,12 @@ class PenilaianController extends Controller
             'semester' => 'required',
             'avatar' => 'mimes:jpeg,jpg,png',
         ]);
-        $avatar = $request->file('avatar');
-        $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
-        $img = Image::make($avatar->path());
-        $img->resize('120', '120')
-            ->save(public_path('/images') . '/small_' . $file_name);
-
-        $avatar->move('/images', $file_name);
-        //insert ke tabel Users
+        $avatar = $request->file('avatar')->move(public_path('storage\penilaian'),$request->file('avatar')->getClientOriginalName().".".$request->file('avatar')->getClientOriginalExtension());
+        $file_name = rand(1000, 9999) . $request->file('avatar')->getClientOriginalName();
+        $img = Image::make($avatar);
+        $img->resize('120', '120')->save(public_path('storage\penilaian') . '\small_' . $file_name);
+        $avatar->move(public_path('storage\penilaian'), $file_name);
+        //insert ke tabel penilaian
         $penilaian = new Penilaian();
         $penilaian -> nama_tes = $request -> nama_tes;
         $penilaian -> kode = $request -> kode;
@@ -417,25 +384,33 @@ class PenilaianController extends Controller
     }
     public function penilaianupdate(Request $request, Penilaian $penilaian)
     {
-        $penilaian ->update($request->all());
-        if ($request->hasFile('avatar')) {
+        $this->validate($request, [
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+        ]);
+
+        if ($request->hasFile('avatar'))
+        {
             $penilaian->delete_avatar();
-            $avatar = $request->file('avatar');
-            $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
-            $img = Image::make($avatar->path());
-            $img->resize('120', '120')
-                ->save(public_path('/images') . '/small_' . $file_name);
-            $avatar->move('/images', $file_name);
+            $avatar = $request->file('avatar')->move(public_path('storage\penilaian'),$request->file('avatar')->getClientOriginalName().".".$request->file('avatar')->getClientOriginalExtension());
+            //dd($avatar);
+            $file_name = rand(1000, 9999) . $request->file('avatar')->getClientOriginalName();
+            //dd($file_name);
+            $img = Image::make($avatar);
+            //dd($img);
+            $img->resize('120', '120')->save(public_path('storage\penilaian') . '\small_' . $file_name);
+            //dd($img);
+            $avatar->move(public_path('storage\penilaian'), $file_name);
             $penilaian->avatar = $file_name;
+        }
+        else
+        {
+            $file_name = 'default.jpg';
         }
 
         $input = $request->all();
-
-
         $penilaian -> nama_tes = $input['nama_tes'];
         $penilaian -> kode = $input['kode'];
         $penilaian -> semester = $input['semester'];
-
         $penilaian -> avatar = $file_name;
 
         $penilaian->save();

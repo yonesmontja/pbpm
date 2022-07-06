@@ -176,15 +176,18 @@ class KesiswaanController extends Controller
         //dd($mapel_this_week);
 
         //$last_week_average =
-        if(!empty($last1month_average))
+        //dd($last1month_average);
+        if($last1month_average != 0)
         {
             $last_average = number_format((float)(($last0month_average - $last1month_average)/$last1month_average*100), 2, '.', '');  // Outputs in two dp
         }
+        //dd($last_average);
         if($last1month_average == 0)
         {
             $last_average = 0;
         }
-        if(!empty($last1week_average))
+        //dd($last_average);
+        if($last1week_average != 0)
         {
             $last_week_average = number_format((float)(($last0week_average-$last1week_average)/$last1week_average*100), 2, '.', '');  // Outputs in two dp
         }

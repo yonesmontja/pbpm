@@ -63,13 +63,11 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'avatar' => 'mimes:jpeg,jpg,png',
         ]);
-        $avatar = $request->file('avatar');
-        $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
-        $img = Image::make($avatar->path());
-        $img->resize('120', '120')
-            ->save(public_path('/images') . '/small_' . $file_name);
-
-        $avatar->move('/images', $file_name);
+        $avatar = $request->file('avatar')->move(public_path('storage\users'),$request->file('avatar')->getClientOriginalName().".".$request->file('avatar')->getClientOriginalExtension());
+        $file_name = rand(1000, 9999) . $request->file('avatar')->getClientOriginalName();
+        $img = Image::make($avatar);
+        $img->resize('120', '120')->save(public_path('storage\users') . '\small_' . $file_name);
+        $avatar->move(public_path('storage\users'), $file_name);
         //insert ke tabel Users
         $user = new User();
         $user -> role = $request -> role;
@@ -101,12 +99,15 @@ class UserController extends Controller
         //$user ->update($request->all());
         if ($request->hasFile('avatar')) {
             $user->delete_avatar();
-            $avatar = $request->file('avatar');
-            $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
-            $img = Image::make($avatar->path());
-            $img->resize('120', '120')
-                ->save(public_path('/images') . '/small_' . $file_name);
-            $avatar->move('/images', $file_name);
+            $avatar = $request->file('avatar')->move(public_path('storage\users'),$request->file('avatar')->getClientOriginalName().".".$request->file('avatar')->getClientOriginalExtension());
+            //dd($avatar);
+            $file_name = rand(1000, 9999) . $request->file('avatar')->getClientOriginalName();
+            //dd($file_name);
+            $img = Image::make($avatar);
+            //dd($img);
+            $img->resize('120', '120')->save(public_path('storage\users') . '\small_' . $file_name);
+            //dd($img);
+            $avatar->move(public_path('storage\users'), $file_name);
             $user->avatar = $file_name;
         }
         $user->name = $request->name;

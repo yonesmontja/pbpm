@@ -58,7 +58,14 @@ function totalOAP()
 }
 function thnPel()
 {
-    $tp = Tahunpel::first()->thn_pel;
+    if(!empty(Tahunpel::first()->thn_pel))
+    {
+        $tp = Tahunpel::first()->thn_pel;
+    }
+    else
+    {
+        $tp = Carbon::now() -> year;
+    }
     return $tp;
 }
 function totalAgats()

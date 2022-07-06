@@ -40,61 +40,59 @@
                                 <h3 class="card-title">Tahun Pelajaran <a
                                         href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-8">
-                                    <button type="button" class="btn btn-primary float-left btn-sm" data-toggle="modal"
-                                        data-target="#staticBackdrop">
-                                        Tambah Data Penilaian
-                                    </button>
-                                </div>
-                                <div class="col-sm-1">
-                                    <button type="button" class="btn btn-primary float-left btn-sm" data-toggle="modal"
-                                        data-target="#staticBackdrop">
-                                        AKTIVASI USER
-                                    </button>
-                                </div>
-                                <div class="col-sm-1">
-                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                                        data-target="#importExcel">
-                                        IMPOR EXCEL
-                                    </button>
-                                    <!-- Import Excel -->
-                                    <div class="modal fade" id="importExcel" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <form method="post" action="/penilaian/import_excel"
-                                                enctype="multipart/form-data">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
-                                                    </div>
-                                                    <div class="modal-body">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <button type="button" class="btn btn-primary float-left btn-sm" data-toggle="modal"
+                                            data-target="#staticBackdrop">
+                                            Tambah Data Penilaian
+                                        </button>
+                                    </div>
 
-                                                        {{ csrf_field() }}
-
-                                                        <label>Pilih file excel</label>
-                                                        <div class="form-group">
-                                                            <input type="file" name="file" required="required">
+                                    <div class="col-sm-1">
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                            data-target="#importExcel">
+                                            IMPOR EXCEL
+                                        </button>
+                                        <!-- Import Excel -->
+                                        <div class="modal fade" id="importExcel" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <form method="post" action="/penilaian/import_excel"
+                                                    enctype="multipart/form-data">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Import Excel
+                                                            </h5>
                                                         </div>
+                                                        <div class="modal-body">
 
+                                                            {{ csrf_field() }}
+
+                                                            <label>Pilih file excel</label>
+                                                            <div class="form-group">
+                                                                <input type="file" name="file" required="required">
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Import</button>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary">Import</button>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-1">
-                                    <a href="/penilaian/export_excel" class="btn btn-primary float-right btn-sm"
-                                        target="_blank">EXPOR EXCEL</a>
-                                </div>
-                                <div class="col-sm-1">
-                                    <a href="/penilaian/export_pdf" class="btn btn-primary float-right btn-sm"
-                                        target="_blank">EXPOR PDF</a>
+                                    <div class="col-sm-1">
+                                        <a href="/penilaian/export_excel" class="btn btn-primary float-right btn-sm"
+                                            target="_blank">EXPOR EXCEL</a>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <a href="/penilaian/export_pdf" class="btn btn-primary float-right btn-sm"
+                                            target="_blank">EXPOR PDF</a>
+                                    </div>
                                 </div>
                             </div>
 

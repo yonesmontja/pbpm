@@ -150,8 +150,8 @@
                         </div>
                       </div>
                       <!-- /.card-header -->
-                      <div class="card-body p-0">
-                        <table class="table">
+                      <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
                           <thead>
                             <tr>
                               <th style="width: 10px">Kode Mapel</th>

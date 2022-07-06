@@ -20,6 +20,7 @@ class KelasController extends Controller
     {
     	$mapel = Mapel::all();
         $kelas = Kelas::find($id);
+        //dd($kelas);
         $nama_kelas = Kelas::where('id','=',$id)->pluck('nama');
         $id_guru = Kelas::where('id','=',$id)->pluck('guru_id')->first();
         $nama_siswa = Siswa::where('kelas','=',$nama_kelas)->pluck('id');
@@ -350,12 +351,11 @@ class KelasController extends Controller
         $kelas ->update($request->all());
         if ($request->hasFile('avatar')) {
             $kelas->delete_avatar();
-            $avatar = $request->file('avatar');
-            $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
-            $img = Image::make($avatar->path());
-            $img->resize('120', '120')
-                ->save(public_path('/images') . '/small_' . $file_name);
-            $avatar->move('/images', $file_name);
+            $avatar = $request->file('avatar')->move(public_path('storage\kelas'),$request->file('avatar')->getClientOriginalName().".".$request->file('avatar')->getClientOriginalExtension());
+            $file_name = rand(1000, 9999) . $request->file('avatar')->getClientOriginalName();
+            $img = Image::make($avatar);
+            $img->resize('120', '120')->save(public_path('storage\kelas') . '\small_' . $file_name);
+            $avatar->move(public_path('storage\kelas'), $file_name);
             $kelas->avatar = $file_name;
         }
         $input = $request->all();
@@ -370,13 +370,11 @@ class KelasController extends Controller
             'nama' => 'required',
             'avatar' => 'mimes:jpeg,jpg,png',
         ]);
-        $avatar = $request->file('avatar');
-        $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
-        $img = Image::make($avatar->path());
-        $img->resize('120', '120')
-            ->save(public_path('/images') . '/small_' . $file_name);
-        $avatar->move('/images', $file_name);
-
+        $avatar = $request->file('avatar')->move(public_path('storage\kelas'),$request->file('avatar')->getClientOriginalName().".".$request->file('avatar')->getClientOriginalExtension());
+        $file_name = rand(1000, 9999) . $request->file('avatar')->getClientOriginalName();
+        $img = Image::make($avatar);
+        $img->resize('120', '120')->save(public_path('storage\kelas') . '\small_' . $file_name);
+        $avatar->move(public_path('storage\kelas'), $file_name);
         $kelas = new Kelas();
         $kelas -> nama = $request -> nama;
         $kelas -> level_id = $request -> level_id;

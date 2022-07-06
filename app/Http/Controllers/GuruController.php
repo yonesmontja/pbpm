@@ -14,6 +14,7 @@ class GuruController extends Controller
     public function profile($id)
     {
     	$guru = Guru::find($id);
+        //dd($guru -> mapel);
     	return view('guru.profile',['guru' => $guru]);
     }
     public function index()
@@ -33,13 +34,11 @@ class GuruController extends Controller
             'alamat' => 'required',
             'avatar' => 'mimes:jpeg,jpg,png',
         ]);
-        $avatar = $request->file('avatar');
-        $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
-        $img = Image::make($avatar->path());
-        $img->resize('120', '120')
-            ->save(public_path('/images') . '/small_' . $file_name);
-
-        $avatar->move('/images', $file_name);
+        $avatar = $request->file('avatar')->move(public_path('storage\guru'),$request->file('avatar')->getClientOriginalName().".".$request->file('avatar')->getClientOriginalExtension());
+        $file_name = rand(1000, 9999) . $request->file('avatar')->getClientOriginalName();
+        $img = Image::make($avatar);
+        $img->resize('120', '120')->save(public_path('storage\guru') . '\small_' . $file_name);
+        $avatar->move(public_path('storage\guru'), $file_name);
         //insert ke tabel Users
         $user = new User();
         $user -> role = 'guru';
@@ -47,6 +46,7 @@ class GuruController extends Controller
         $user -> email = $request -> email;
         $user -> password = bcrypt('rahasia');
         $user -> remember_token = Str::random(60);
+        $user -> avatar = $file_name;
         $user -> save();
         //insert ke tabel Guru
         $input = $request->all();
@@ -83,12 +83,12 @@ class GuruController extends Controller
         //}
         if ($request->hasFile('avatar')) {
             $guru->delete_avatar();
-            $avatar = $request->file('avatar');
-            $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
-            $img = Image::make($avatar->path());
-            $img->resize('120', '120')
-                ->save(public_path('/images') . '/small_' . $file_name);
-            $avatar->move('/images', $file_name);
+            $avatar = $request->file('avatar')->move(public_path('storage\guru'),$request->file('avatar')->getClientOriginalName().".".$request->file('avatar')->getClientOriginalExtension());
+
+            $file_name = rand(1000, 9999) . $request->file('avatar')->getClientOriginalName();
+            $img = Image::make($avatar);
+            $img->resize('120', '120')->save(public_path('storage\guru') . '\small_' . $file_name);
+            $avatar->move(public_path('storage\guru'), $file_name);
             $guru->avatar = $file_name;
         }
         //$user = new User();

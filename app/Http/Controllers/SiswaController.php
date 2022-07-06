@@ -2051,7 +2051,7 @@ class SiswaController extends Controller
         //$ratarata_raport = number_format((float)($ratarata_raport_pengetahuan+$ratarata_raport_pengetahuan)/2, 1, '.', '');
 
         //menghitung nilai keterampilan
-        for($penilaian=18; $penilaian < 22; $penilaian++)
+        for($penilaian=6; $penilaian < 10; $penilaian++)
         {
             $tampung_keterampilan_islam = Nilai::all()
             ->where('siswa_id','=',$id)

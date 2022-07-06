@@ -58,14 +58,11 @@ class MapelController extends Controller
             'nama_mapel' => 'required',
             'kode' => 'required',
         ]);
-        $avatar = $request->file('avatar');
-        $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
-
-        $img = Image::make($avatar->path());
-        $img->resize('120', '120')
-            ->save(public_path('/images') . '/small_' . $file_name);
-
-        $avatar->move('/images', $file_name);
+        $avatar = $request->file('avatar')->move(public_path('storage\mapel'),$request->file('avatar')->getClientOriginalName().".".$request->file('avatar')->getClientOriginalExtension());
+        $file_name = rand(1000, 9999) . $request->file('avatar')->getClientOriginalName();
+        $img = Image::make($avatar);
+        $img->resize('120', '120')->save(public_path('storage\mapel') . '\small_' . $file_name);
+        $avatar->move(public_path('storage\mapel'), $file_name);
         //insert ke tabel Mapel
         $mapel = new Mapel();
         $mapel -> kode = $request -> kode;
@@ -110,8 +107,7 @@ class MapelController extends Controller
                              Nilai::where('mapel_id','=',$mapel->id)->where('penilaian_id','=',21)->pluck('penilaian_id','mapel_id')->count();
         $jml_siswa_penilaian = Nilai::where('mapel_id','=',$mapel->id)->select('siswa_id','penilaian_id')->pluck('penilaian_id','siswa_id')->count();
 
-        $nama_kelas = Kelas::where('id','=',$mapel->id)->pluck('nama');
-        $jumlah_siswa = Siswa::where('kelas','=',$nama_kelas)->count();
+
         //hitung nilai rata-rata kelas untuk semua mapel
         $rata_kelas1 = Nilai::all()->where('penilaian_id','=',$mapel->id)->pluck('nilai')->avg();
         $rata_kelas = number_format((float)$rata_kelas1, 1, '.', '');
@@ -305,14 +301,9 @@ class MapelController extends Controller
         return view('mapel.show', [
             'data' => $data,
             'penilaian1' => $penilaian1,
-
             'mapel'=>$mapel,
-
             'jml_kelas_penilaian' => $jml_kelas_penilaian,
-
             'nilai' => $nilai,
-            'jumlah_siswa' => $jumlah_siswa,
-
             'mapel1' => $mapel1,
             'rata_kelas' => $rata_kelas,
             'penilaian_list' => $penilaian_list,
@@ -378,12 +369,15 @@ class MapelController extends Controller
         //$usertest ->update($request->all());
         if ($request->hasFile('avatar')) {
             $mapel->delete_avatar();
-            $avatar = $request->file('avatar');
-            $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
-            $img = Image::make($avatar->path());
-            $img->resize('120', '120')
-                ->save(public_path('/images') . '/small_' . $file_name);
-            $avatar->move('/images', $file_name);
+            $avatar = $request->file('avatar')->move(public_path('storage\mapel'),$request->file('avatar')->getClientOriginalName().".".$request->file('avatar')->getClientOriginalExtension());
+            //dd($avatar);
+            $file_name = rand(1000, 9999) . $request->file('avatar')->getClientOriginalName();
+            //dd($file_name);
+            $img = Image::make($avatar);
+            //dd($img);
+            $img->resize('120', '120')->save(public_path('storage\mapel') . '\small_' . $file_name);
+            //dd($img);
+            $avatar->move(public_path('storage\mapel'), $file_name);
             $mapel->avatar = $file_name;
         }
         $mapel->nama_mapel = $request->nama_mapel;

@@ -25,7 +25,8 @@ class PenilaianFactory extends Factory
         return [
             'nama_tes' => $this->faker->name,
             'kode' => $this -> faker ->word,
-            'semester' => 'ganjil'
+            'semester' => 'ganjil',
+            'avatar' => 'default.jpg',
         ];
     }
 }

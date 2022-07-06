@@ -27,18 +27,21 @@ class Guru extends Model
     {
         $thumbnail = $real_size ? '' : 'small_';
 
-        if ($this->avatar && file_exists(public_path('images/' . $thumbnail . $this->avatar)))
-            return asset('images/' . $thumbnail  . $this->avatar);
+        if ($this->avatar && file_exists(public_path('storage/guru/' . $thumbnail . $this->avatar)))
+            return asset('storage/guru/' . $thumbnail  . $this->avatar);
         else
             return asset('no_avatar.png');
     }
-
     function delete_avatar()
     {
-        if ($this->avatar && file_exists(public_path('images/' . $this->avatar)))
-            unlink(public_path('images/' . $this->avatar));
-        if ($this->avatar && file_exists(public_path('images/small_' . $this->avatar)))
-            unlink(public_path('images/small_' . $this->avatar));
+        if ($this->avatar && file_exists(public_path('storage/guru/' . $this->avatar)))
+        {
+            unlink(public_path('storage/guru/' . $this->avatar));
+        }
+        if ($this->avatar && file_exists(public_path('storage/guru/small_' . $this->avatar)))
+        {
+            unlink(public_path('storage/guru/small_' . $this->avatar));
+        }
     }
     public function mapel()
     {
