@@ -37,7 +37,8 @@
                         <!-- /.card -->
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Tahun Pelajaran <a href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
+                                <h3 class="card-title">Tahun Pelajaran <a
+                                        href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
                             </div>
                             <div class="card-header">
                                 <div class="row">
@@ -57,10 +58,9 @@
                                     <div class="col-sm-2">
                                     </div>
                                     <div class="col-sm-2">
-                                        <h3 class="card-title" data-toggle="modal"
-                                            data-target="#importExcel">
+                                        <h3 class="card-title" data-toggle="modal" data-target="#importExcel">
                                             <a href="#">
-                                            IMPOR EXCEL</a>
+                                                IMPOR EXCEL</a>
                                         </h3>
                                         <!-- Import Excel -->
                                         <div class="modal fade" id="importExcel" tabindex="-1" role="dialog"
@@ -94,14 +94,13 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
-                                        <h3 class="card-title" data-toggle="modal"
-                                            data-target="#staticBackdrop">
+                                        <h3 class="card-title" data-toggle="modal" data-target="#staticBackdrop">
                                             <a href="#">AKTIVASI USER</a>
                                         </h3>
                                     </div>
                                     <div class="col-sm-2">
-                                        <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal"
-                                            data-target="#staticBackdrop">
+                                        <button type="button" class="btn btn-primary float-right btn-sm"
+                                            data-toggle="modal" data-target="#staticBackdrop">
                                             Tambah Data Siswa
                                         </button>
                                     </div>
@@ -159,9 +158,76 @@
                                                     </a>
                                                     <a href="/test/{{ $siswa->id }}/delete"
                                                         class="btn btn-danger btn-sm"
-                                                        onclick="return confirm('Yakin mau dihapus?')">Hapus</a>
+                                                        onclick="return confirm('Yakin mau dihapus?')">Hapus
+                                                    </a>
+                                                    @if ($siswa->user_id == null)
+                                                        <a href="/test/{{ $siswa->id }}/aktivasi"
+                                                            class="btn btn-primary btn-sm" data-toggle="modal"
+                                                            data-target="#modal-dialog2{{ $siswa->id }}">Aktivasi
+                                                        </a>
+                                                    @else
+                                                        <button type="button"
+                                                            class="btn btn-default btn-sm disabled">User Aktif</button>
+                                                    @endif
                                                 </td>
                                             </tr>
+                                            <!-- Modal aktivasi -->
+                                            <div class="modal fade" id="modalAktivasi{{ $siswa->id }}" tabindex="-1"
+                                                aria-labelledby="modalAktivasi" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <h4 class="text-center">Apakah anda yakin aktivasi user atas
+                                                                nama siswa ini? :
+                                                                <span>{{ $siswa->nama_depan }}</span>
+                                                            </h4>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <form action="/test/{{ $siswa->id }}/aktivasi"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('post')
+                                                                <button type="button"
+                                                                    class="btn btn-primary">Aktivasi</button>
+                                                            </form>
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Tidak Jadi</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" id="modal-dialog2{{ $siswa->id }}">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content bg-danger">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Aktivasi</h4>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Anda yakin mengaktifkan user atas nama siswa: </p>
+                                                            <p>{{ $siswa->nama_depan }}
+                                                                {{ $siswa->nama_belakang }} &hellip;?</p>
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default">
+                                                                <a href="/test/{{ $siswa->id }}/aktivasi">Aktivasi
+                                                                </a>
+                                                            </button>
+                                                            <button type="button" class="btn btn-default"
+                                                                data-dismiss="modal">
+                                                                Close
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.modal-content -->
+                                                </div>
+                                                <!-- /.modal-dialog -->
+                                            </div>
+                                            <!-- /.modal -->
                                         @endforeach
                                     </tbody>
                                     <tfoot>
@@ -192,15 +258,16 @@
                                             </div>
                                             <div class="modal-body">
                                                 <!-- form isian data -->
-                                                <form action="/test/testcreate" method="POST" enctype="multipart/form-data">
+                                                <form action="/test/testcreate" method="POST"
+                                                    enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <div
                                                                 class="form-group {{ $errors->has('nama_depan') ? ' has-error' : '' }}">
                                                                 <label for="exampleFormControlInput1">Nama Depan</label>
-                                                                <input name="nama_depan" type="text" class="form-control"
-                                                                    id="exampleFormControlInput1"
+                                                                <input name="nama_depan" type="text"
+                                                                    class="form-control" id="exampleFormControlInput1"
                                                                     placeholder="Masukkan nama depan"
                                                                     value="{{ old('nama_depan') }}">
                                                                 @if ($errors->has('nama_depan'))
@@ -250,7 +317,8 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm-4">
-                                                            <div class="form-group {{ $errors->has('kelas_id') ? ' has-error' : '' }}">
+                                                            <div
+                                                                class="form-group {{ $errors->has('kelas_id') ? ' has-error' : '' }}">
                                                                 <label for="exampleFormControlSelect1">KELAS</label>
                                                                 <select name="kelas_id" class="form-control"
                                                                     id="exampleFormControlSelect2">
@@ -270,7 +338,8 @@
                                                         <div class="col-sm-4">
                                                             <div
                                                                 class="form-group {{ $errors->has('jenis_kelamin') ? ' has-error' : '' }}">
-                                                                <label for="exampleFormControlSelect1">Jenis Kelamin</label>
+                                                                <label for="exampleFormControlSelect1">Jenis
+                                                                    Kelamin</label>
                                                                 <select name="jenis_kelamin" class="form-control"
                                                                     id="exampleFormControlSelect1">
                                                                     <option>---</option>
@@ -324,7 +393,8 @@
                                                                     file</label>
                                                             </div>
                                                             <div>
-                                                                <img class="img-preview img-fluid mb-3 col-sm-2" alt="">
+                                                                <img class="img-preview img-fluid mb-3 col-sm-2"
+                                                                    alt="">
                                                             </div>
 
                                                         </div>
@@ -383,30 +453,4 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
-    <div class="modal fade" id="modal-dialog2">
-        <div class="modal-dialog">
-            <div class="modal-content bg-danger">
-                <div class="modal-header">
-                    <h4 class="modal-title">Aktivasi</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Anda yakin mengaktifkan user atas nama siswa ini&hellip;?</p>
-
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-default"><a
-                            href="/test/{{ $siswa->id }}/aktivasi">Aktivasi</a></button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-
 @endsection

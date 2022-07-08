@@ -79,7 +79,7 @@ class User extends Authenticatable
     }
     public function siswa()
     {
-        return $this -> belongsTo(Siswa::class);
+        return $this -> hasOne(Siswa::class);
     }
     public function guru()
     {

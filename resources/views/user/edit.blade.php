@@ -52,7 +52,7 @@
                             <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label for="formGroupExampleInput">Email</label>
                                 <input name="email" type="email" class="form-control" id="formGroupExampleInput"
-                                    placeholder="Masukkan Email" value="{{ old('email') }}">
+                                    placeholder="" value="{{ $user->email }}">
                                 @if ($errors->has('email'))
                                     <span class="help-block">{{ $errors->first('email') }}</span>
                                 @endif

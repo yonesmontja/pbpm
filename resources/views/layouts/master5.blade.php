@@ -40,6 +40,10 @@
     <link rel="stylesheet" href="{{ asset('/admin/dist/css/adminlte.min.css') }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="{{ asset('/admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="{{ asset('/admin/plugins/toastr/toastr.min.css') }}">
     @yield('header')
 </head>
 
@@ -85,7 +89,10 @@
     <script src="{{ asset('/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('/admin/dist/js/dataTables.buttons.min.js') }}"></script>
-
+    <!-- SweetAlert2 -->
+    <script src="{{ asset('/admin/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+    <!-- Toastr -->
+    <script src="{{ asset('/admin/plugins/toastr/toastr.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('/admin/dist/js/adminlte.min.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
@@ -252,6 +259,19 @@
                 imgPreview.src = OFREevent.target.result;
             }
         }
+    </script>
+    <script type="text/javascript">
+        $(function() {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                    $('.toastrDefaultSuccess').click(function() {
+                        toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+                    });
+                })
     </script>
     @yield('footer')
 </body>

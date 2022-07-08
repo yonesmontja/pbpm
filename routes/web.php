@@ -80,8 +80,6 @@ Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 Route::group(['middleware' => ['auth','checkRole:admin']], function()
 {
-
-
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::resource('posting',PostingController::class);
     Route::resource('usertest',UsertestController::class);
@@ -347,7 +345,10 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 Route::group(['middleware' => ['auth','checkRole:admin,siswa']], function()
 {
 	Route::get('/dashboard',[DashboardController::class,'index']);
+    Route::get('/user/{id}/profile',[UserController::class,'userprofile']);
 	Route::get('/my_profile/{id}/myprofile',[UserController::class,'my_profile']);
+    Route::get('/user/{user}/edit',[UserController::class,'useredit']);
+	Route::post('/user/{user}/update',[UserController::class,'userupdate']);
 });
 
 Route::get('audits', [AuditController::class,'index'])

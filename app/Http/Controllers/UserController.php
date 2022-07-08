@@ -113,7 +113,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
-        return redirect('/user')->with('sukses','berhasil diupdate!');
+        return view('profile.my_profile',['user' => $user])->with('sukses','berhasil diupdate!');
     }
     public function userdelete(User $user)
     {

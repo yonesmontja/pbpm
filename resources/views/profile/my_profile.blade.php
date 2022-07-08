@@ -52,19 +52,19 @@
                        alt="User profile picture">
                 </div>
 
-                <h3 class="profile-username text-center"><a href="#">{{$user -> name}}</a></h3>
+                <h3 class="profile-username text-center"><a href="#">{{$user -> siswa -> nama_depan}} {{$user -> siswa -> nama_belakang}}</a></h3>
 
-                <p class="text-muted text-center">{{ $user -> role }}</p>
+                <p class="text-muted text-center">{{ $user -> name }}</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
                     <b>Email</b> <a class="float-right">{{$user->email}}</a>
                   </li>
                   <li class="list-group-item">
-                    <b>Following</b> <a class="float-right">543</a>
+                    <b>Kelas</b> <a class="float-right">{{ $user -> siswa -> kelas }}</a>
                   </li>
                   <li class="list-group-item">
-                    <b>Friends</b> <a class="float-right">13,287</a>
+                    <b>Jenis Kelamin</b> <a class="float-right">{{ $user -> siswa -> jenis_kelamin }}</a>
                   </li>
                 </ul>
 
@@ -77,39 +77,33 @@
             <!-- About Me Box -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">About Me</h3>
+                <h3 class="card-title">Data Diri Siswa</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <strong><i class="fas fa-book mr-1"></i> Education</strong>
+                <strong><i class="fas fa-book mr-1"></i> Tempat Lahir</strong>
 
                 <p class="text-muted">
-                  B.S. in Computer Science from the University of Tennessee at Knoxville
+                  {{ $user -> siswa -> tempat_lahir }}
                 </p>
 
                 <hr>
 
-                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+                <strong><i class="fas fa-map-marker-alt mr-1"></i> Tanggal Lahir</strong>
 
-                <p class="text-muted">Malibu, California</p>
-
-                <hr>
-
-                <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
-
-                <p class="text-muted">
-                  <span class="tag tag-danger">UI Design</span>
-                  <span class="tag tag-success">Coding</span>
-                  <span class="tag tag-info">Javascript</span>
-                  <span class="tag tag-warning">PHP</span>
-                  <span class="tag tag-primary">Node.js</span>
-                </p>
+                <p class="text-muted">{{ $user -> siswa -> tgl_lahir }}</p>
 
                 <hr>
 
-                <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+                <strong><i class="fas fa-pencil-alt mr-1"></i> Agama</strong>
 
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                <p class="text-muted">{{ $user -> siswa -> agama }}</p>
+
+                <hr>
+
+                <strong><i class="far fa-file-alt mr-1"></i> Alamat</strong>
+
+                <p class="text-muted">{{ $user -> siswa -> alamat }}</p>
               </div>
               <!-- /.card-body -->
             </div>
