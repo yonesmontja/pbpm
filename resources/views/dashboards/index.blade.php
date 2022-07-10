@@ -40,7 +40,7 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>{{ count($high_pemetaan_indonesia_total) }} siswa</h3>
+                                <h4>{{ count($high_pemetaan_indonesia_total) }} siswa</h4>
                                 <p>High</p>
                                 @if (count($high_pemetaan_indonesia_total) == !null)
                                     <h5>Nilai rata-rata:

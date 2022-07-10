@@ -25,20 +25,39 @@
                   <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                   <li class="nav-item has-treeview menu-open">
-                      <a href="/dashboard" class="nav-link active">
-                          <i class="nav-icon fas fa-tachometer-alt"></i>
-                          <p>
-                              DASHBOARD
-                              <i class="right fas fa-angle-left"></i>
-                          </p>
-                      </a>
+                      @if (auth()->user()->role == 'siswa')
+                          <a href="/dashboard_siswa" class="nav-link active">
+                              <i class="nav-icon fas fa-tachometer-alt"></i>
+                              <p>
+                                  DASHBOARD
+                                  <i class="right fas fa-angle-left"></i>
+                              </p>
+                          </a>
+                      @else
+                          <a href="/dashboard" class="nav-link active">
+                              <i class="nav-icon fas fa-tachometer-alt"></i>
+                              <p>
+                                  DASHBOARD
+                                  <i class="right fas fa-angle-left"></i>
+                              </p>
+                          </a>
+                      @endif
                       <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                              <a href="/tdu" class="nav-link {{ set_active('tdu') }}">
-                                  <i class="far fa-circle nav-icon"></i>
-                                  <p>CAPAIAN SISWA</p>
-                              </a>
-                          </li>
+                          @if (auth()->user()->role == 'siswa')
+                              <li class="nav-item">
+                                  <a href="/dashboard_siswa" class="nav-link {{ set_active('dashboard_siswa') }}">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>CAPAIAN SISWA</p>
+                                  </a>
+                              </li>
+                          @else
+                              <li class="nav-item">
+                                  <a href="/tdu" class="nav-link {{ set_active('tdu') }}">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>CAPAIAN SISWA</p>
+                                  </a>
+                              </li>
+                          @endif
                           @if (auth()->user()->role == 'admin')
                               <li class="nav-item">
                                   <a href="/kurikulum" class="nav-link {{ set_active('kurikulum') }}">

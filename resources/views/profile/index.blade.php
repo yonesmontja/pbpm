@@ -50,7 +50,6 @@
              left: 0;
              top: 0
          }
-
      </style>
      <link href="{{ asset('bootstrap3-editable/css/bootstrap-editable.css') }}" rel="stylesheet">
  @endsection
@@ -65,7 +64,11 @@
                      </div>
                      <div class="col-sm-6">
                          <ol class="breadcrumb float-sm-right">
-                             <li class="breadcrumb-item"><a href="/tdu">Home</a></li>
+                             @if (auth()->user()->role == 'siswa')
+                                 <li class="breadcrumb-item"><a href="/dashboard_siswa">Home</a></li>
+                             @else
+                                 <li class="breadcrumb-item"><a href="/tdu">Home</a></li>
+                             @endif
                              <li class="breadcrumb-item active">Profil Siswa</li>
                          </ol>
                      </div>
@@ -102,16 +105,21 @@
                                          <b>Penilaian</b> <a class="float-right">{{ $mapel1 }}</a>
                                      </li>
                                      <li class="list-group-item">
-                                         <b>Total Nilai Semua Penilaian</b> <a
-                                             class="float-right">{{ $matpel }}</a>
+                                         <b>Total Nilai Semua Penilaian</b> <a class="float-right">{{ $matpel }}</a>
                                      </li>
                                      <li class="list-group-item">
-                                         <b>Rata-rata Semua Penilaian</b> <a
-                                             class="float-right">{{ (int) $average }}</a>
+                                         <b>Rata-rata Semua Penilaian</b> <a class="float-right">{{ (int) $average }}</a>
                                      </li>
                                  </ul>
-                                 <a href="/test/{{ $siswa->id }}/edit" class="btn btn-primary btn-block"><b>Ubah
-                                         Profil</b></a>
+                                 @if (auth()->user()->role == 'siswa')
+                                     <a href="/dashboard_siswa" class="btn btn-primary btn-block">
+                                         <b>Capaian Siswa</b>
+                                     </a>
+                                 @else
+                                     <a href="/test/{{ $siswa->id }}/edit" class="btn btn-primary btn-block">
+                                         <b>Ubah Profil</b>
+                                     </a>
+                                 @endif
                              </div>
                              <!-- /.card-body -->
                          </div>
@@ -145,12 +153,12 @@
                          <div class="card">
                              <div class="card-header p-2">
                                  <ul class="nav nav-pills">
-                                     <li class="nav-item"><a class="nav-link active" href="#nilai"
-                                             data-toggle="tab">Tabel Nilai</a></li>
-                                     <li class="nav-item"><a class="nav-link" href="#grafiknilai"
-                                             data-toggle="tab">Grafik Nilai</a></li>
-                                     <li class="nav-item"><a class="nav-link" href="#activity"
-                                             data-toggle="tab">Nilai Rata-Rata Mapel</a></li>
+                                     <li class="nav-item"><a class="nav-link active" href="#nilai" data-toggle="tab">Tabel
+                                             Nilai</a></li>
+                                     <li class="nav-item"><a class="nav-link" href="#grafiknilai" data-toggle="tab">Grafik
+                                             Nilai</a></li>
+                                     <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Nilai
+                                             Rata-Rata Mapel</a></li>
 
                                  </ul>
                              </div><!-- /.card-header -->
@@ -166,18 +174,27 @@
                                                      </div>
                                                      <div class="col-md-3">
                                                          <h3 class="card-title">
-                                                             <a href="/siswa/{{ $siswa->id }}/export_pdf" target="_blank">CETAK RAPORT
-                                                             </a>
+                                                             @if (auth()->user()->role == 'siswa')
+                                                                 <a href="#" target="_blank">CETAK RAPORT
+                                                                 </a>
+                                                             @else
+                                                                 <a href="/siswa/{{ $siswa->id }}/export_pdf"
+                                                                     target="_blank">CETAK RAPORT
+                                                                 </a>
+                                                             @endif
                                                          </h3>
                                                      </div>
-                                                     <div class="col-md-2 float-right">
-                                                         <div class="card-tools">
-                                                             <button type="button" class="btn btn-primary float-right"
-                                                                 data-toggle="modal" data-target="#exampleModal">
-                                                                 Tambah Nilai
-                                                             </button>
+                                                     @if (auth()->user()->role == 'siswa')
+                                                     @else
+                                                         <div class="col-md-2 float-right">
+                                                             <div class="card-tools">
+                                                                 <button type="button" class="btn btn-primary float-right"
+                                                                     data-toggle="modal" data-target="#exampleModal">
+                                                                     Tambah Nilai
+                                                                 </button>
+                                                             </div>
                                                          </div>
-                                                     </div>
+                                                     @endif
                                                      <div class="col-md-4">
                                                          <div class="card-tools">
                                                              <ul class="pagination pagination-sm float-right">
@@ -217,39 +234,73 @@
                                                                  <tr>
                                                                      <td>{{ $key->mapel->kode }}</td>
                                                                      <td>
-                                                                         <a
-                                                                             href="/mapel/{{ $key->mapel_id }}">{{ $key->mapel->nama_mapel }}</a>
+                                                                         @if (auth()->user()->role == 'siswa')
+                                                                             <a
+                                                                                 href="#">{{ $key->mapel->nama_mapel }}</a>
+                                                                         @else
+                                                                             <a
+                                                                                 href="/mapel/{{ $key->mapel_id }}">{{ $key->mapel->nama_mapel }}</a>
+                                                                         @endif
                                                                      </td>
                                                                      <td>{{ $key->mapel->semester }}</td>
                                                                      <td>
-                                                                         <a
-                                                                             href="/penilaian/{{ $key->penilaian_id }}/profile">
+                                                                         @if (auth()->user()->role == 'siswa')
+                                                                             <a href="#">
 
-                                                                             {{ $key->penilaian->nama_tes }}
-                                                                         </a>
+                                                                                 {{ $key->penilaian->nama_tes }}
+                                                                             </a>
+                                                                         @else
+                                                                             <a
+                                                                                 href="/penilaian/{{ $key->penilaian_id }}/profile">
+
+                                                                                 {{ $key->penilaian->nama_tes }}
+                                                                             </a>
+                                                                         @endif
                                                                      </td>
                                                                      <td>
-                                                                         <div class="progress progress-xs">
-                                                                             <div class="progress-bar progress-bar-danger"
-                                                                                 style="width: {{ $key->nilai }}%">
+                                                                         @if (auth()->user()->role == 'siswa')
+                                                                             <div class="progress progress-xs">
+                                                                                 <div class="progress-bar progress-bar-danger"
+                                                                                     style="width: {{ $key->nilai }}%">
+                                                                                 </div>
                                                                              </div>
-                                                                         </div>
+                                                                         @else
+                                                                             <div class="progress progress-xs">
+                                                                                 <div class="progress-bar progress-bar-danger"
+                                                                                     style="width: {{ $key->nilai }}%">
+                                                                                 </div>
+                                                                             </div>
+                                                                         @endif
                                                                      </td>
                                                                      <td>
-                                                                         <a href="" class="update" data-name="nilai"
-                                                                             data-url="/siswa/editnilai" data-type="text"
-                                                                             data-pk="{{ $key -> id }}"
-                                                                             data-title="Masukkan nilai">{{ $key->nilai }}</a>
+                                                                         @if (auth()->user()->role == 'siswa')
+                                                                             {{ $key->nilai }}
+                                                                         @else
+                                                                             <a href="" class="update"
+                                                                                 data-name="nilai"
+                                                                                 data-url="/siswa/editnilai"
+                                                                                 data-type="text"
+                                                                                 data-pk="{{ $key->id }}"
+                                                                                 data-title="Masukkan nilai">{{ $key->nilai }}</a>
+                                                                         @endif
                                                                      </td>
                                                                      <td>
-                                                                         <a href="/guru/{{ $key->guru_id }}/profile">
+                                                                         @if (auth()->user()->role == 'siswa')
                                                                              {{ $key->guru->nama_guru }}
-                                                                         </a>
+                                                                         @else
+                                                                             <a
+                                                                                 href="/guru/{{ $key->guru_id }}/profile">
+                                                                                 {{ $key->guru->nama_guru }}
+                                                                             </a>
+                                                                         @endif
                                                                      </td>
                                                                      <td>
-                                                                         <a href="/test/{{ $siswa->id }}/{{ $key->id }}/testdeletenilai"
-                                                                             class="btn btn-danger btn-sm"
-                                                                             onclick="return confirm('Yakin mau dihapus?')">Hapus</a>
+                                                                         @if (auth()->user()->role == 'siswa')
+                                                                         @else
+                                                                             <a href="/test/{{ $siswa->id }}/{{ $key->id }}/testdeletenilai"
+                                                                                 class="btn btn-danger btn-sm"
+                                                                                 onclick="return confirm('Yakin mau dihapus?')">Hapus</a>
+                                                                         @endif
                                                                      </td>
                                                                  </tr>
                                                              @endif
@@ -268,14 +319,18 @@
                                                      <div class="col-md-6">
                                                          <h3 class="card-title">Grafik Nilai</h3>
                                                      </div>
-                                                     <div class="col-md-2 float-right">
-                                                         <div class="card-tools">
-                                                             <button type="button" class="btn btn-primary float-right"
-                                                                 data-toggle="modal" data-target="#exampleModal">
-                                                                 Tambah Nilai
-                                                             </button>
+                                                     @if (auth()->user()->role == 'siswa')
+                                                     @else
+                                                         <div class="col-md-2 float-right">
+                                                             <div class="card-tools">
+                                                                 <button type="button"
+                                                                     class="btn btn-primary float-right"
+                                                                     data-toggle="modal" data-target="#exampleModal">
+                                                                     Tambah Nilai
+                                                                 </button>
+                                                             </div>
                                                          </div>
-                                                     </div>
+                                                     @endif
                                                      <div class="col-md-4">
                                                          <div class="card-tools">
                                                              <ul class="pagination pagination-sm float-right">
@@ -370,7 +425,11 @@
                                                          <h3 class="card-title">Rata-rata Mapel</h3>
                                                      </div>
                                                      <div class="col-md-4">
-                                                         <h3 class="card-title">{{ $average_mapel }}</h3>
+                                                         <h3 class="card-title">
+                                                            <a href="#" class="btn btn-primary">
+                                                                {{ $average_mapel }}
+                                                            </a>
+                                                        </h3>
                                                      </div>
                                                      <div class="col-md-4">
                                                          <div class="card-tools">
@@ -404,8 +463,12 @@
                                                          @foreach ($mapel3 as $key8 => $m)
                                                              <tr>
                                                                  <td>
-                                                                     <a
-                                                                         href="/mapel/{{ $key8 + 1 }}">{{ $m }}</a>
+                                                                     @if (auth()->user()->role == 'siswa')
+                                                                         {{ $m }}
+                                                                     @else
+                                                                         <a
+                                                                             href="/mapel/{{ $key8 + 1 }}">{{ $m }}</a>
+                                                                     @endif
                                                                  </td>
                                                                  @foreach ($matang1 as $key9 => $n)
                                                                      @if ($key9 == $key8)
@@ -570,8 +633,8 @@
                              <div class="col-sm-4">
                                  <div class="form-group {{ $errors->has('nilai') ? ' has-error' : '' }}">
                                      <label for="exampleFormControlInput1">Nilai</label>
-                                     <input name="nilai" type="text" class="form-control" id="exampleFormControlInput1"
-                                         placeholder="Nilai" value="{{ old('nilai') }}">
+                                     <input name="nilai" type="text" class="form-control"
+                                         id="exampleFormControlInput1" placeholder="Nilai" value="{{ old('nilai') }}">
                                      @if ($errors->has('nilai'))
                                          <span class="help-block">{{ $errors->first('nilai') }}</span>
                                      @endif
@@ -583,8 +646,8 @@
                          </div>
                          <div class="form-group {{ $errors->has('nilai_deskripsi') ? ' has-error' : '' }}">
                              <label for="exampleFormControlTextarea1">INDIKATOR KOMPETENSI</label>
-                             <textarea name="nilai_deskripsi" class="form-control" id="exampleFormControlTextarea1" placeholder="Pernyataan nilai"
-                                 value="{{ old('nilai_deskripsi') }}" rows="3"></textarea>
+                             <textarea name="nilai_deskripsi" class="form-control" id="exampleFormControlTextarea1"
+                                 placeholder="Pernyataan nilai" value="{{ old('nilai_deskripsi') }}" rows="3"></textarea>
                          </div>
                          @if ($errors->has('nilai_deskripsi'))
                              <span class="help-block">{{ $errors->first('nilai_deskripsi') }}</span>

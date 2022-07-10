@@ -1836,4 +1836,16 @@ class DashboardController extends Controller
             'sumbux'=>$sumbux,
             'sumbuy'=>$sumbuy]);
     }
+    public function dashboard_siswa()
+    {
+        // kkm dan rentang nilai
+        $kkm = 65;
+        $kkm1 = $kkm + (100-$kkm)/3;
+        $kkm2 = $kkm1 + (100-$kkm)/3;
+        return view('dashboards.dashboard_siswa',[
+            'kkm' => $kkm,
+            'kkm1' => $kkm1,
+            'kkm2' => $kkm2,
+        ]);
+    }
 }

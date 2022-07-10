@@ -73,10 +73,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+Route::get('/dashboard_siswa',[DashboardController::class,'dashboard_siswa'])->name('dashboard_siswa');
+Route::get('/dashboard_guru',[DashboardController::class,'dashboard_guru'])->name('dashboard_guru');
 Route::get('/login',[AuthController::class,'login'])->name('login');
 Route::get('/postlogin',[AuthController::class,'postlogin'])->name('postlogin');
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+Route::get('/reset',[AuthController::class,'reset'])->name('reset');
 
 Route::group(['middleware' => ['auth','checkRole:admin']], function()
 {
@@ -349,6 +351,7 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']], function()
 	Route::get('/my_profile/{id}/myprofile',[UserController::class,'my_profile']);
     Route::get('/user/{user}/edit',[UserController::class,'useredit']);
 	Route::post('/user/{user}/update',[UserController::class,'userupdate']);
+    Route::get('/test/{siswa}/profile',[SiswaController::class,'testprofile']);
 });
 
 Route::get('audits', [AuditController::class,'index'])

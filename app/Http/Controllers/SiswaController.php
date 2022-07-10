@@ -205,6 +205,11 @@ class SiswaController extends Controller
     }
     public function testprofile($id, Request $request)
     {
+        // kkm dan rentang nilai
+        $kkm = 65;
+        $kkm1 = $kkm + (100-$kkm)/3;
+        $kkm2 = $kkm1 + (100-$kkm)/3;
+
         $siswa = \App\Models\Siswa::find($id);
         $rombel = $siswa -> kelas_id;
         //dd($rombel);
@@ -299,6 +304,9 @@ class SiswaController extends Controller
                     ->join('mapel_siswa', 'mapel_siswa.siswa_id', '=', 'penilaian_siswa.siswa_id');
 
         return view('profile.index',[
+        'kkm' => $kkm,
+        'kkm1' => $kkm1,
+        'kkm2' => $kkm2,
         'rombel2' => $rombel2,
         'nilai_start' => $nilai_start,
         'nilai_end' => $nilai_end,
