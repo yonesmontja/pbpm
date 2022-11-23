@@ -20,7 +20,8 @@ class UserController extends Controller
     public function userprofile($id)
     {
         $user = \App\Models\User::find($id);
-        //dd($user);
+
+        //dd($user->siswa());
         //$siswa = \App\Models\Siswa::all();
         //dd($siswa);
         return view('user.profile',['user' => $user]);

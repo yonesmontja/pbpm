@@ -51,6 +51,7 @@ class SiswaController extends Controller
     {
 
         $siswa ->update($request->all());
+        //dd($siswa);
         //if($request->hasFile('avatar')){
         //    $request->file('avatar')->move('images/',$request->file('avatar')->getClientOriginalName());
         //    $siswa->avatar= $request->file('avatar')->getClientOriginalName();
@@ -168,6 +169,16 @@ class SiswaController extends Controller
     {
 
         $siswa ->update($request->all());
+        if ($request->hasFile('avatar')) {
+            $siswa->delete_avatar();
+            $avatar = $request->file('avatar');
+            $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
+            $img = Image::make($avatar->path());
+            $img->resize('120', '120')
+                ->save(public_path('/images') . '/small_' . $file_name);
+            $avatar->move('/images', $file_name);
+            $siswa->avatar = $file_name;
+        }
         $siswa->nama_depan = $request->nama_depan;
         $siswa->nama_belakang = $request->nama_belakang;
         $siswa->email = $request->email;
@@ -209,7 +220,7 @@ class SiswaController extends Controller
         $kkm = 65;
         $kkm1 = $kkm + (100-$kkm)/3;
         $kkm2 = $kkm1 + (100-$kkm)/3;
-
+        $user = User::find($id);
         $siswa = \App\Models\Siswa::find($id);
         $rombel = $siswa -> kelas_id;
         //dd($rombel);
@@ -304,6 +315,7 @@ class SiswaController extends Controller
                     ->join('mapel_siswa', 'mapel_siswa.siswa_id', '=', 'penilaian_siswa.siswa_id');
 
         return view('profile.index',[
+            'user' => $user,
         'kkm' => $kkm,
         'kkm1' => $kkm1,
         'kkm2' => $kkm2,
@@ -535,7 +547,8 @@ class SiswaController extends Controller
             ->pluck('nilai')->avg();
             $nilai_tugas_sbk[] = (int)$tampung_tugas_sbk;
         }
-        //dd($nilai_tugas_indonesia);
+        //dd(array_sum($nilai_tugas_protestan));
+        //dd($nilai_tugas_protestan);
         if($students -> agama == "Islam")
         {
             if(array_sum($nilai_tugas_islam) > 0)
@@ -1113,7 +1126,7 @@ class SiswaController extends Controller
         }
 
 
-            if(array_sum($nilai_uh_ppkn) > 0)
+        if(array_sum($nilai_uh_ppkn) > 0)
         {
             for($key = 0; $key < count($nilai_uh_ppkn); $key++)
             {
@@ -1603,7 +1616,7 @@ class SiswaController extends Controller
                 $rata_rata_pas_protestan = 0.00;
             }
         }
-
+        dd($rata_rata_pas_protestan);
         if($students -> agama == "Katolik")
         {
             if(array_sum($nilai_pas_katolik) > 0)
@@ -1765,12 +1778,13 @@ class SiswaController extends Controller
         //dd($raport_pengetahuan_islam);
         if($students -> agama == "Kristen Protestan")
         {
-            $raport_pengetahuan_protestan = ((($rata_rata_tugas_protestan
+            $raport_pengetahuan_protestan = ((($nilai_tugas_protestan
                                 +$rata_rata_latihan_protestan+$rata_rata_uh_protestan)*2)
                                 +($rata_rata_pts_protestan*1)
                                 +($rata_rata_pas_protestan*1))/8;
             $raport_pengetahuan_agama = number_format((float)$raport_pengetahuan_protestan, 1, '.', '');
         }
+        //dd($rata_rata_tugas_protestan);
         if($students -> agama == "Katolik")
         {
             $raport_pengetahuan_katolik = ((($rata_rata_tugas_katolik
@@ -1819,7 +1833,7 @@ class SiswaController extends Controller
         if($raport_pengetahuan_agama<$kkm)
             {
                 $predikat_huruf_agama = "D";
-                $predikat_deskripsi_agama = "Kurang";
+                $predikat_deskripsi_agama = "Memiliki kemampuan yang kurang dalam Memiliki kemampuan yang kurang dalam Memiliki kemampuan yang kurang dalam Memiliki kemampuan yang kurang dalam Memiliki kemampuan yang kurang dalam ";
             }
         elseif($raport_pengetahuan_agama > $kkm && $raport_pengetahuan_agama <= ($kkm+1*((100-$kkm)/3)))
             {
@@ -2379,7 +2393,7 @@ class SiswaController extends Controller
         if($raport_keterampilan_agama<$kkm)
             {
                 $predikat_keterampilan_huruf_agama = "D";
-                $predikat_keterampilan_deskripsi_agama = "Kurang";
+                $predikat_keterampilan_deskripsi_agama = "Memiliki kemampuan yang kurang dalam Memiliki kemampuan yang kurang dalam Memiliki kemampuan yang kurang dalam Memiliki kemampuan yang kurang dalam ";
             }
         elseif($raport_keterampilan_agama > $kkm && $raport_keterampilan_agama <= ($kkm+1*((100-$kkm)/3)))
             {

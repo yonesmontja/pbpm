@@ -57,7 +57,7 @@ class Siswa extends Model
     	{
     		return asset('/images/default.jpg');
     	}
-    	return asset('/images/'.$this->avatar);
+    	return asset('images/'.$this->avatar);
     }
     function avatar($real_size = false)
     {

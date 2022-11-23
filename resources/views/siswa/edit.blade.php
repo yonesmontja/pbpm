@@ -118,7 +118,7 @@
             </div><!-- /.container-fluid -->
         </section>
     </div>
-<script>
+    <script>
         function previewImage() {
             const image = document.querySelector('#avatar');
             const imgPreview = document.querySelector('.img-preview');
