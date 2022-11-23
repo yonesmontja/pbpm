@@ -549,7 +549,7 @@ class SiswaController extends Controller
         }
         //dd(array_sum($nilai_tugas_protestan));
         //dd($nilai_tugas_protestan);
-        if($students -> agama == "Islam")
+        if($students -> agama == "Islam" || $students -> agama == "islam")
         {
             if(array_sum($nilai_tugas_islam) > 0)
             {
@@ -570,7 +570,7 @@ class SiswaController extends Controller
             }
         }
 
-        if($students -> agama == "Kristen Protestan")
+        if($students -> agama == "Kristen Protestan" || $students -> agama == "kristen protestan")
         {
             if(array_sum($nilai_tugas_protestan) > 0)
             {
@@ -591,7 +591,7 @@ class SiswaController extends Controller
             }
         }
 
-        if($students -> agama == "Katolik")
+        if($students -> agama == "Katolik" || $students -> agama == "katolik")
         {
             if(array_sum($nilai_tugas_katolik) > 0)
             {
@@ -806,7 +806,7 @@ class SiswaController extends Controller
             $nilai_latihan_sbk[] = (int)$tampung_latihan_sbk;
         }
 
-        if($students -> agama == "Islam")
+        if($students -> agama == "Islam" || $students -> agama == "islam")
         {
             if(array_sum($nilai_latihan_islam) > 0)
             {
@@ -827,7 +827,7 @@ class SiswaController extends Controller
             }
         }
 
-        if($students -> agama == "Kristen Protestan")
+        if($students -> agama == "Kristen Protestan" || $students -> agama == "kristen protestan")
         {
             if(array_sum($nilai_latihan_protestan) > 0)
             {
@@ -848,7 +848,7 @@ class SiswaController extends Controller
             }
         }
 
-        if($students -> agama == "Katolik")
+        if($students -> agama == "Katolik" || $students -> agama == "katolik")
         {
             if(array_sum($nilai_latihan_katolik) > 0)
             {
@@ -1062,7 +1062,7 @@ class SiswaController extends Controller
             $nilai_uh_sbk[] = (int)$tampung_uh_sbk;
         }
 
-        if($students -> agama == "Islam")
+        if($students -> agama == "Islam" || $students -> agama == "islam")
         {
             if(array_sum($nilai_uh_islam) > 0)
             {
@@ -1083,7 +1083,7 @@ class SiswaController extends Controller
             }
         }
 
-        if($students -> agama == "Kristen Protestan")
+        if($students -> agama == "Kristen Protestan" || $students -> agama == "kristen protestan")
         {
             if(array_sum($nilai_uh_protestan) > 0)
             {
@@ -1104,7 +1104,7 @@ class SiswaController extends Controller
             }
         }
 
-        if($students -> agama == "Katolik")
+        if($students -> agama == "Katolik" || $students -> agama == "katolik")
         {
             if(array_sum($nilai_uh_katolik) > 0)
             {
@@ -1319,7 +1319,7 @@ class SiswaController extends Controller
             $nilai_pts_sbk[] = (int)$tampung_pts_sbk;
         }
 
-        if($students -> agama == "Islam")
+        if($students -> agama == "Islam" || $students -> agama == "islam")
         {
             if(array_sum($nilai_pts_islam) > 0)
             {
@@ -1340,7 +1340,7 @@ class SiswaController extends Controller
             }
         }
 
-        if($students -> agama == "Kristen Protestan")
+        if($students -> agama == "Kristen Protestan" || $students -> agama == "kristen protestan")
         {
             if(array_sum($nilai_pts_protestan) > 0)
             {
@@ -1361,7 +1361,7 @@ class SiswaController extends Controller
             }
         }
 
-        if($students -> agama == "Katolik")
+        if($students -> agama == "Katolik" || $students -> agama == "katolik")
         {
             if(array_sum($nilai_pts_katolik) > 0)
             {
@@ -1575,7 +1575,7 @@ class SiswaController extends Controller
             $nilai_pas_sbk[] = (int)$tampung_pas_sbk;
         }
 
-        if($students -> agama == "Islam")
+        if($students -> agama == "Islam" || $students -> agama == "islam")
         {
             if(array_sum($nilai_pas_islam) > 0)
             {
@@ -1596,28 +1596,28 @@ class SiswaController extends Controller
             }
         }
 
-        if($students -> agama == "Kristen Protestan")
+        if($students -> agama == "Kristen Protestan" || $students -> agama == "kristen protestan")
         {
             if(array_sum($nilai_pas_protestan) > 0)
             {
                 for($key = 0; $key < count($nilai_pas_protestan); $key++)
-            {
-                if($nilai_pas_protestan[$key] > 0)
                 {
-                    $nilai_pas_protestan_yes[] = $nilai_pas_protestan[$key];
+                    if($nilai_pas_protestan[$key] > 0)
+                    {
+                        $nilai_pas_protestan_yes[] = $nilai_pas_protestan[$key];
+                    }
                 }
-            }
-            $jml_pel_pas_protestan    =count($nilai_pas_protestan_yes);
-            $sum_pel_pas_protestan    =array_sum($nilai_pas_protestan_yes);
-            $rata_rata_pas_protestan  =number_format((float)$sum_pel_pas_protestan / $jml_pel_pas_protestan, 2, '.', '');
+                $jml_pel_pas_protestan    =count($nilai_pas_protestan_yes);
+                $sum_pel_pas_protestan    =array_sum($nilai_pas_protestan_yes);
+                $rata_rata_pas_protestan  =number_format((float)$sum_pel_pas_protestan / $jml_pel_pas_protestan, 2, '.', '');
             }
             elseif(array_sum($nilai_pas_protestan) == 0)
             {
                 $rata_rata_pas_protestan = 0.00;
             }
         }
-        dd($rata_rata_pas_protestan);
-        if($students -> agama == "Katolik")
+        //dd($rata_rata_pas_protestan);
+        if($students -> agama == "Katolik" || $students -> agama == "katolik")
         {
             if(array_sum($nilai_pas_katolik) > 0)
             {
@@ -1767,7 +1767,7 @@ class SiswaController extends Controller
 
         // --------------------------------------------------------------------
         // hitung nilai raport
-        if($students -> agama == "Islam")
+        if($students -> agama == "Islam" || $students -> agama == "islam")
         {
             $raport_pengetahuan_islam = ((($rata_rata_tugas_islam
                                 +$rata_rata_latihan_islam+$rata_rata_uh_islam)*2)
@@ -1776,16 +1776,16 @@ class SiswaController extends Controller
             $raport_pengetahuan_agama = number_format((float)$raport_pengetahuan_islam, 1, '.', '');
         }
         //dd($raport_pengetahuan_islam);
-        if($students -> agama == "Kristen Protestan")
+        if($students -> agama == "Kristen Protestan" || $students -> agama == "kristen protestan")
         {
-            $raport_pengetahuan_protestan = ((($nilai_tugas_protestan
+            $raport_pengetahuan_protestan = ((($rata_rata_tugas_protestan
                                 +$rata_rata_latihan_protestan+$rata_rata_uh_protestan)*2)
                                 +($rata_rata_pts_protestan*1)
                                 +($rata_rata_pas_protestan*1))/8;
             $raport_pengetahuan_agama = number_format((float)$raport_pengetahuan_protestan, 1, '.', '');
         }
         //dd($rata_rata_tugas_protestan);
-        if($students -> agama == "Katolik")
+        if($students -> agama == "Katolik" || $students -> agama == "katolik")
         {
             $raport_pengetahuan_katolik = ((($rata_rata_tugas_katolik
                                 +$rata_rata_latihan_katolik+$rata_rata_uh_katolik)*2)
@@ -2137,7 +2137,7 @@ class SiswaController extends Controller
             $nilai_keterampilan_sbk[] = (int)$tampung_keterampilan_sbk;
         }
         //dd($nilai_keterampilan_indonesia);
-        if($students -> agama == "Islam")
+        if($students -> agama == "Islam" || $students -> agama == "islam")
         {
             if(array_sum($nilai_keterampilan_islam) > 0)
             {
@@ -2158,7 +2158,7 @@ class SiswaController extends Controller
             }
         }
 
-        if($students -> agama == "Kristen Protestan")
+        if($students -> agama == "Kristen Protestan" || $students -> agama == "kristen protestan")
         {
             if(array_sum($nilai_keterampilan_protestan) > 0)
             {
@@ -2179,7 +2179,7 @@ class SiswaController extends Controller
             }
         }
 
-        if($students -> agama == "Katolik")
+        if($students -> agama == "Katolik" || $students -> agama == "katolik")
         {
             if(array_sum($nilai_keterampilan_katolik) > 0)
             {
@@ -2329,7 +2329,7 @@ class SiswaController extends Controller
 
         // --------------------------------------------------------------------
         // hitung nilai raport keterampilan
-        if($students -> agama == "Islam")
+        if($students -> agama == "Islam" || $students -> agama == "islam")
         {
             $raport_keterampilan_islam = ((($rata_rata_keterampilan_islam
                                 +$rata_rata_keterampilan_islam+$rata_rata_keterampilan_islam)*2)
@@ -2337,7 +2337,7 @@ class SiswaController extends Controller
                                 +($rata_rata_keterampilan_islam*1))/8;
             $raport_keterampilan_agama = number_format((float)$raport_keterampilan_islam, 1, '.', '');
         }
-        if($students -> agama == "Kristen Protestan")
+        if($students -> agama == "Kristen Protestan" || $students -> agama == "kristen protestan")
         {
             $raport_keterampilan_protestan = ((($rata_rata_keterampilan_protestan
                                 +$rata_rata_keterampilan_protestan+$rata_rata_keterampilan_protestan)*2)
@@ -2345,7 +2345,7 @@ class SiswaController extends Controller
                                 +($rata_rata_keterampilan_protestan*1))/8;
             $raport_keterampilan_agama = number_format((float)$raport_keterampilan_protestan, 1, '.', '');
         }
-        if($students -> agama == "Katolik")
+        if($students -> agama == "Katolik" || $students -> agama == "katolik")
         {
             $raport_keterampilan_katolik = ((($rata_rata_keterampilan_katolik
                                 +$rata_rata_keterampilan_katolik+$rata_rata_keterampilan_katolik)*2)
