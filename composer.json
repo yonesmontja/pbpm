@@ -21,6 +21,7 @@
     "laravel/ui": "^3.4",
     "laravolt/indonesia": "^0.32.0",
     "maatwebsite/excel": "^3.1",
+    "nwidart/laravel-modules": "8",
     "owen-it/laravel-auditing": "^13.0",
     "phpoffice/phpword": "^0.18.3",
     "symfony/mailer": "^6.0",
@@ -46,6 +47,7 @@
   "autoload": {
     "psr-4": {
       "App\\": "app/",
+      "Modules\\": "Modules/",
       "Database\\Factories\\": "database/factories/",
       "Database\\Seeders\\": "database/seeders/"
     },

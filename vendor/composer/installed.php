@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '4a914ee94f9c3df60e04c36d929f366b0475ede5',
+        'reference' => '9841101f61ab85aadd6d46e123141a3f35241590',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -519,7 +519,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '4a914ee94f9c3df60e04c36d929f366b0475ede5',
+            'reference' => '9841101f61ab85aadd6d46e123141a3f35241590',
             'dev_requirement' => false,
         ),
         'laravel/serializable-closure' => array(
@@ -718,12 +718,12 @@
             'dev_requirement' => true,
         ),
         'nwidart/laravel-modules' => array(
-            'pretty_version' => 'v9.0.6',
-            'version' => '9.0.6.0',
+            'pretty_version' => '8.0.0',
+            'version' => '8.0.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../nwidart/laravel-modules',
             'aliases' => array(),
-            'reference' => 'a31b003b9e1dd100d2bcf7da7e036a758d33986d',
+            'reference' => '7983e41c3832a13e521aa915532efdc7b67563af',
             'dev_requirement' => false,
         ),
         'opis/closure' => array(

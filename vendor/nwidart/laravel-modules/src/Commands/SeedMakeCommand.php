@@ -12,8 +12,7 @@ use Symfony\Component\Console\Input\InputOption;
 
 class SeedMakeCommand extends GeneratorCommand
 {
-    use ModuleCommandTrait;
-    use CanClearModulesCache;
+    use ModuleCommandTrait, CanClearModulesCache;
 
     protected $argumentName = 'name';
 
@@ -107,7 +106,7 @@ class SeedMakeCommand extends GeneratorCommand
      *
      * @return string
      */
-    public function getDefaultNamespace(): string
+    public function getDefaultNamespace() : string
     {
         $module = $this->laravel['modules'];
 

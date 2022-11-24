@@ -25,17 +25,25 @@ class DisableCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle(): int
+    public function handle() : int
     {
-        $this->components->info('Disabling module ...');
-
-        if ($name = $this->argument('module') ) {
-            $this->disable($name);
-
-            return 0;
+        /**
+         * check if user entred an argument
+         */
+        if ($this->argument('module') === null) {
+            $this->disableAll();
         }
 
-        $this->disableAll();
+        /** @var Module $module */
+        $module = $this->laravel['modules']->findOrFail($this->argument('module'));
+
+        if ($module->isEnabled()) {
+            $module->disable();
+
+            $this->info("Module [{$module}] disabled successful.");
+        } else {
+            $this->comment("Module [{$module}] has already disabled.");
+        }
 
         return 0;
     }
@@ -51,32 +59,14 @@ class DisableCommand extends Command
         $modules = $this->laravel['modules']->all();
 
         foreach ($modules as $module) {
-            $this->disable($module);
+            if ($module->isEnabled()) {
+                $module->disable();
+
+                $this->info("Module [{$module}] disabled successful.");
+            } else {
+                $this->comment("Module [{$module}] has already disabled.");
+            }
         }
-    }
-
-    /**
-     * disable
-     *
-     * @param string $name
-     * @return void
-     */
-    public function disable($name)
-    {
-        if ($name instanceof Module) {
-            $module = $name;
-        }else {
-            $module = $this->laravel['modules']->findOrFail($name);
-        }
-
-        if ($module->isEnabled()) {
-            $module->disable();
-
-            $this->components->info("Module [{$module}] disabled successful.");
-        } else {
-            $this->components->warn("Module [{$module}] has already disabled.");
-        }
-
     }
 
     /**

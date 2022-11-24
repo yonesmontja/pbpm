@@ -127,6 +127,7 @@ class ComposerStaticInit3138ba957d040e3c4b33038701880e47
         array (
             'MyCLabs\\Enum\\' => 13,
             'Monolog\\' => 8,
+            'Modules\\' => 8,
             'Matrix\\' => 7,
             'Maatwebsite\\Excel\\' => 18,
         ),
@@ -428,6 +429,10 @@ class ComposerStaticInit3138ba957d040e3c4b33038701880e47
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Modules\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules',
         ),
         'Matrix\\' => 
         array (
@@ -4617,8 +4622,6 @@ class ComposerStaticInit3138ba957d040e3c4b33038701880e47
         'Nwidart\\Modules\\Activators\\FileActivator' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Activators/FileActivator.php',
         'Nwidart\\Modules\\Collection' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Collection.php',
         'Nwidart\\Modules\\Commands\\CommandMakeCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/CommandMakeCommand.php',
-        'Nwidart\\Modules\\Commands\\ComponentClassMakeCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/ComponentClassMakeCommand.php',
-        'Nwidart\\Modules\\Commands\\ComponentViewMakeCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/ComponentViewMakeCommand.php',
         'Nwidart\\Modules\\Commands\\ControllerMakeCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/ControllerMakeCommand.php',
         'Nwidart\\Modules\\Commands\\DisableCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/DisableCommand.php',
         'Nwidart\\Modules\\Commands\\DumpCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/DumpCommand.php',
@@ -4634,14 +4637,12 @@ class ComposerStaticInit3138ba957d040e3c4b33038701880e47
         'Nwidart\\Modules\\Commands\\MailMakeCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/MailMakeCommand.php',
         'Nwidart\\Modules\\Commands\\MiddlewareMakeCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/MiddlewareMakeCommand.php',
         'Nwidart\\Modules\\Commands\\MigrateCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/MigrateCommand.php',
-        'Nwidart\\Modules\\Commands\\MigrateFreshCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/MigrateFreshCommand.php',
         'Nwidart\\Modules\\Commands\\MigrateRefreshCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/MigrateRefreshCommand.php',
         'Nwidart\\Modules\\Commands\\MigrateResetCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/MigrateResetCommand.php',
         'Nwidart\\Modules\\Commands\\MigrateRollbackCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/MigrateRollbackCommand.php',
         'Nwidart\\Modules\\Commands\\MigrateStatusCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/MigrateStatusCommand.php',
         'Nwidart\\Modules\\Commands\\MigrationMakeCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/MigrationMakeCommand.php',
         'Nwidart\\Modules\\Commands\\ModelMakeCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/ModelMakeCommand.php',
-        'Nwidart\\Modules\\Commands\\ModelShowCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/ModelShowCommand.php',
         'Nwidart\\Modules\\Commands\\ModuleDeleteCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/ModuleDeleteCommand.php',
         'Nwidart\\Modules\\Commands\\ModuleMakeCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/ModuleMakeCommand.php',
         'Nwidart\\Modules\\Commands\\NotificationMakeCommand' => __DIR__ . '/..' . '/nwidart/laravel-modules/src/Commands/NotificationMakeCommand.php',

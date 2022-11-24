@@ -42,14 +42,6 @@ class ModuleGenerator extends Generator
     protected $console;
 
     /**
-     * The laravel component Factory instance.
-     *
-     * @var \Illuminate\Console\View\Components\Factory
-     */
-    protected $component;
-
-
-    /**
      * The activator instance
      *
      * @var ActivatorInterface
@@ -71,11 +63,11 @@ class ModuleGenerator extends Generator
     protected $force = false;
 
     /**
-     * set default module type.
+     * Generate a plain module.
      *
-     * @var string
+     * @var bool
      */
-    protected $type = 'web';
+    protected $plain = false;
 
     /**
      * Enables the module.
@@ -109,15 +101,15 @@ class ModuleGenerator extends Generator
     }
 
     /**
-     * Set type.
+     * Set plain flag.
      *
-     * @param string $type
+     * @param bool $plain
      *
      * @return $this
      */
-    public function setType($type)
+    public function setPlain($plain)
     {
-        $this->type = $type;
+        $this->plain = $plain;
 
         return $this;
     }
@@ -233,23 +225,6 @@ class ModuleGenerator extends Generator
     }
 
     /**
-     * @return \Illuminate\Console\View\Components\Factory
-     */
-    public function getComponent(): \Illuminate\Console\View\Components\Factory
-    {
-        return $this->component;
-    }
-
-    /**
-     * @param \Illuminate\Console\View\Components\Factory $component
-     */
-    public function setComponent(\Illuminate\Console\View\Components\Factory $component): self
-    {
-        $this->component = $component;
-        return $this;
-    }
-
-    /**
      * Get the module instance.
      *
      * @return \Nwidart\Modules\Module
@@ -310,7 +285,7 @@ class ModuleGenerator extends Generator
     /**
      * Generate the module.
      */
-    public function generate(): int
+    public function generate() : int
     {
         $name = $this->getName();
 
@@ -318,31 +293,28 @@ class ModuleGenerator extends Generator
             if ($this->force) {
                 $this->module->delete($name);
             } else {
-                $this->component->error("Module [{$name}] already exists!");
+                $this->console->error("Module [{$name}] already exist!");
 
                 return E_ERROR;
             }
         }
-        $this->component->info("Creating module: [$name]");
 
         $this->generateFolders();
 
         $this->generateModuleJsonFile();
 
-        if ($this->type !== 'plain') {
+        if ($this->plain !== true) {
             $this->generateFiles();
             $this->generateResources();
         }
 
-        if ($this->type === 'plain') {
+        if ($this->plain === true) {
             $this->cleanModuleJsonFile();
         }
 
         $this->activator->setActiveByName($name, $this->isActive);
 
-        $this->console->newLine(1);
-
-        $this->component->info("Module [{$name}] created successfully.");
+        $this->console->info("Module [{$name}] created successfully.");
 
         return 0;
     }
@@ -386,13 +358,13 @@ class ModuleGenerator extends Generator
         foreach ($this->getFiles() as $stub => $file) {
             $path = $this->module->getModulePath($this->getName()) . $file;
 
-            $this->component->task("Generating file {$path}",function () use ($stub, $path) {
-                if (!$this->filesystem->isDirectory($dir = dirname($path))) {
-                    $this->filesystem->makeDirectory($dir, 0775, true);
-                }
+            if (!$this->filesystem->isDirectory($dir = dirname($path))) {
+                $this->filesystem->makeDirectory($dir, 0775, true);
+            }
 
-                $this->filesystem->put($path, $this->getStubContents($stub));
-            });
+            $this->filesystem->put($path, $this->getStubContents($stub));
+
+            $this->console->info("Created : {$path}");
         }
     }
 
@@ -421,11 +393,10 @@ class ModuleGenerator extends Generator
         }
 
         if (GenerateConfigReader::read('controller')->generate() === true) {
-            $options = $this->type=='api' ? ['--api'=>true] : [];
             $this->console->call('module:make-controller', [
                 'controller' => $this->getName() . 'Controller',
                 'module' => $this->getName(),
-            ]+$options);
+            ]);
         }
     }
 
@@ -495,13 +466,13 @@ class ModuleGenerator extends Generator
     {
         $path = $this->module->getModulePath($this->getName()) . 'module.json';
 
-        $this->component->task("Generating file $path",function () use ($path) {
-            if (!$this->filesystem->isDirectory($dir = dirname($path))) {
-                $this->filesystem->makeDirectory($dir, 0775, true);
-            }
+        if (!$this->filesystem->isDirectory($dir = dirname($path))) {
+            $this->filesystem->makeDirectory($dir, 0775, true);
+        }
 
-            $this->filesystem->put($path, $this->getStubContents('json'));
-        });
+        $this->filesystem->put($path, $this->getStubContents('json'));
+
+        $this->console->info("Created : {$path}");
     }
 
     /**

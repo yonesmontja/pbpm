@@ -41,7 +41,7 @@ class FactoryMakeCommand extends GeneratorCommand
     protected function getArguments()
     {
         return [
-            ['name', InputArgument::REQUIRED, 'The name of the model.'],
+            ['name', InputArgument::REQUIRED, 'The name of the factory.'],
             ['module', InputArgument::OPTIONAL, 'The name of module will be used.'],
         ];
     }
@@ -51,13 +51,7 @@ class FactoryMakeCommand extends GeneratorCommand
      */
     protected function getTemplateContents()
     {
-        $module = $this->laravel['modules']->findOrFail($this->getModuleName());
-
-        return (new Stub('/factory.stub', [
-            'NAMESPACE' => $this->getClassNamespace($module),
-            'NAME' => $this->getModelName(),
-            'MODEL_NAMESPACE' => $this->getModelNamespace(),
-        ]))->render();
+        return (new Stub('/factory.stub'))->render();
     }
 
     /**
@@ -77,40 +71,6 @@ class FactoryMakeCommand extends GeneratorCommand
      */
     private function getFileName()
     {
-        return Str::studly($this->argument('name')) . 'Factory.php';
-    }
-
-    /**
-     * @return mixed|string
-     */
-    private function getModelName()
-    {
-        return Str::studly($this->argument('name'));
-    }
-
-    /**
-     * Get default namespace.
-     *
-     * @return string
-     */
-    public function getDefaultNamespace(): string
-    {
-        $module = $this->laravel['modules'];
-
-        return $module->config('paths.generator.factory.namespace') ?: $module->config('paths.generator.factory.path');
-    }
-
-    /**
-     * Get model namespace.
-     *
-     * @return string
-     */
-    public function getModelNamespace(): string
-    {
-        $path = $this->laravel['modules']->config('paths.generator.model.path', 'Entities');
-
-        $path = str_replace('/', '\\', $path);
-
-        return $this->laravel['modules']->config('namespace') . '\\' . $this->laravel['modules']->findOrFail($this->getModuleName()) . '\\' . $path;
+        return Str::studly($this->argument('name')) . '.php';
     }
 }

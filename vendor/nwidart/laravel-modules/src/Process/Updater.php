@@ -23,16 +23,6 @@ class Updater extends Runner
     }
 
     /**
-     * Check if composer should output anything.
-     *
-     * @return string
-     */
-    private function isComposerSilenced()
-    {
-        return config('modules.composer.composer-output') === false ? ' --quiet' : '';
-    }
-
-    /**
      * @param Module $module
      */
     private function installRequires(Module $module)
@@ -45,7 +35,7 @@ class Updater extends Runner
         }
 
         if (!empty($concatenatedPackages)) {
-            $this->run("composer require {$concatenatedPackages}{$this->isComposerSilenced()}");
+            $this->run("composer require {$concatenatedPackages}");
         }
     }
 
@@ -62,7 +52,7 @@ class Updater extends Runner
         }
 
         if (!empty($concatenatedPackages)) {
-            $this->run("composer require --dev {$concatenatedPackages}{$this->isComposerSilenced()}");
+            $this->run("composer require --dev {$concatenatedPackages}");
         }
     }
 
@@ -78,7 +68,6 @@ class Updater extends Runner
         foreach ($scripts as $key => $script) {
             if (array_key_exists($key, $composer['scripts'])) {
                 $composer['scripts'][$key] = array_unique(array_merge($composer['scripts'][$key], $script));
-
                 continue;
             }
             $composer['scripts'] = array_merge($composer['scripts'], [$key => $script]);

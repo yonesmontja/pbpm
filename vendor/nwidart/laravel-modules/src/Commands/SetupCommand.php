@@ -23,7 +23,7 @@ class SetupCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle(): int
+    public function handle() : int
     {
         $code = $this->generateModulesFolder();
 
@@ -62,17 +62,17 @@ class SetupCommand extends Command
      * @param $error
      * @return int
      */
-    protected function generateDirectory($dir, $success, $error): int
+    protected function generateDirectory($dir, $success, $error) : int
     {
         if (!$this->laravel['files']->isDirectory($dir)) {
             $this->laravel['files']->makeDirectory($dir, 0755, true, true);
 
-            $this->components->info($success);
+            $this->info($success);
 
             return 0;
         }
 
-        $this->components->error($error);
+        $this->error($error);
 
         return E_ERROR;
     }

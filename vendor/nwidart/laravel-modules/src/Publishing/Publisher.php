@@ -185,11 +185,10 @@ abstract class Publisher implements PublisherInterface
 
         if ($this->getFilesystem()->copyDirectory($sourcePath, $destinationPath)) {
             if ($this->showMessage === true) {
-                $this->console->components->task($this->module->getStudlyName(), fn() => true);
+                $this->console->line("<info>Published</info>: {$this->module->getStudlyName()}");
             }
         } else {
-            $this->console->components->task($this->module->getStudlyName(), fn() => false);
-            $this->console->components->error($this->error);
+            $this->console->error($this->error);
         }
     }
 }

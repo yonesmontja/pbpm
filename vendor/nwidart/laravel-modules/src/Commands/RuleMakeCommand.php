@@ -33,7 +33,7 @@ class RuleMakeCommand extends GeneratorCommand
      */
     protected $description = 'Create a new validation rule for the specified module.';
 
-    public function getDefaultNamespace(): string
+    public function getDefaultNamespace() : string
     {
         $module = $this->laravel['modules'];
 
@@ -62,7 +62,7 @@ class RuleMakeCommand extends GeneratorCommand
 
         return (new Stub('/rule.stub', [
             'NAMESPACE' => $this->getClassNamespace($module),
-            'CLASS'     => $this->getFileName(),
+            'CLASS'     => $this->getClass(),
         ]))->render();
     }
 

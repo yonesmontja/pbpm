@@ -3,69 +3,114 @@
 namespace Nwidart\Modules\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Nwidart\Modules\Commands;
+use Nwidart\Modules\Commands\CommandMakeCommand;
+use Nwidart\Modules\Commands\ControllerMakeCommand;
+use Nwidart\Modules\Commands\DisableCommand;
+use Nwidart\Modules\Commands\DumpCommand;
+use Nwidart\Modules\Commands\EnableCommand;
+use Nwidart\Modules\Commands\EventMakeCommand;
+use Nwidart\Modules\Commands\FactoryMakeCommand;
+use Nwidart\Modules\Commands\InstallCommand;
+use Nwidart\Modules\Commands\JobMakeCommand;
+use Nwidart\Modules\Commands\LaravelModulesV6Migrator;
+use Nwidart\Modules\Commands\ListCommand;
+use Nwidart\Modules\Commands\ListenerMakeCommand;
+use Nwidart\Modules\Commands\MailMakeCommand;
+use Nwidart\Modules\Commands\MiddlewareMakeCommand;
+use Nwidart\Modules\Commands\MigrateCommand;
+use Nwidart\Modules\Commands\MigrateRefreshCommand;
+use Nwidart\Modules\Commands\MigrateResetCommand;
+use Nwidart\Modules\Commands\MigrateRollbackCommand;
+use Nwidart\Modules\Commands\MigrateStatusCommand;
+use Nwidart\Modules\Commands\MigrationMakeCommand;
+use Nwidart\Modules\Commands\ModelMakeCommand;
+use Nwidart\Modules\Commands\ModuleDeleteCommand;
+use Nwidart\Modules\Commands\ModuleMakeCommand;
+use Nwidart\Modules\Commands\NotificationMakeCommand;
+use Nwidart\Modules\Commands\PolicyMakeCommand;
+use Nwidart\Modules\Commands\ProviderMakeCommand;
+use Nwidart\Modules\Commands\PublishCommand;
+use Nwidart\Modules\Commands\PublishConfigurationCommand;
+use Nwidart\Modules\Commands\PublishMigrationCommand;
+use Nwidart\Modules\Commands\PublishTranslationCommand;
+use Nwidart\Modules\Commands\RequestMakeCommand;
+use Nwidart\Modules\Commands\ResourceMakeCommand;
+use Nwidart\Modules\Commands\RouteProviderMakeCommand;
+use Nwidart\Modules\Commands\RuleMakeCommand;
+use Nwidart\Modules\Commands\SeedCommand;
+use Nwidart\Modules\Commands\SeedMakeCommand;
+use Nwidart\Modules\Commands\SetupCommand;
+use Nwidart\Modules\Commands\TestMakeCommand;
+use Nwidart\Modules\Commands\UnUseCommand;
+use Nwidart\Modules\Commands\UpdateCommand;
+use Nwidart\Modules\Commands\UseCommand;
 
 class ConsoleServiceProvider extends ServiceProvider
 {
     /**
      * The available commands
+     *
      * @var array
      */
     protected $commands = [
-        Commands\CommandMakeCommand::class,
-        Commands\ControllerMakeCommand::class,
-        Commands\DisableCommand::class,
-        Commands\DumpCommand::class,
-        Commands\EnableCommand::class,
-        Commands\EventMakeCommand::class,
-        Commands\JobMakeCommand::class,
-        Commands\ListenerMakeCommand::class,
-        Commands\MailMakeCommand::class,
-        Commands\MiddlewareMakeCommand::class,
-        Commands\NotificationMakeCommand::class,
-        Commands\ProviderMakeCommand::class,
-        Commands\RouteProviderMakeCommand::class,
-        Commands\InstallCommand::class,
-        Commands\ListCommand::class,
-        Commands\ModuleDeleteCommand::class,
-        Commands\ModuleMakeCommand::class,
-        Commands\FactoryMakeCommand::class,
-        Commands\PolicyMakeCommand::class,
-        Commands\RequestMakeCommand::class,
-        Commands\RuleMakeCommand::class,
-        Commands\MigrateCommand::class,
-        Commands\MigrateRefreshCommand::class,
-        Commands\MigrateResetCommand::class,
-        Commands\MigrateFreshCommand::class,
-        Commands\MigrateRollbackCommand::class,
-        Commands\MigrateStatusCommand::class,
-        Commands\MigrationMakeCommand::class,
-        Commands\ModelMakeCommand::class,
-        Commands\ModelShowCommand::class,
-        Commands\PublishCommand::class,
-        Commands\PublishConfigurationCommand::class,
-        Commands\PublishMigrationCommand::class,
-        Commands\PublishTranslationCommand::class,
-        Commands\SeedCommand::class,
-        Commands\SeedMakeCommand::class,
-        Commands\SetupCommand::class,
-        Commands\UnUseCommand::class,
-        Commands\UpdateCommand::class,
-        Commands\UseCommand::class,
-        Commands\ResourceMakeCommand::class,
-        Commands\TestMakeCommand::class,
-        Commands\LaravelModulesV6Migrator::class,
-        Commands\ComponentClassMakeCommand::class,
-        Commands\ComponentViewMakeCommand::class,
+        CommandMakeCommand::class,
+        ControllerMakeCommand::class,
+        DisableCommand::class,
+        DumpCommand::class,
+        EnableCommand::class,
+        EventMakeCommand::class,
+        JobMakeCommand::class,
+        ListenerMakeCommand::class,
+        MailMakeCommand::class,
+        MiddlewareMakeCommand::class,
+        NotificationMakeCommand::class,
+        ProviderMakeCommand::class,
+        RouteProviderMakeCommand::class,
+        InstallCommand::class,
+        ListCommand::class,
+        ModuleDeleteCommand::class,
+        ModuleMakeCommand::class,
+        FactoryMakeCommand::class,
+        PolicyMakeCommand::class,
+        RequestMakeCommand::class,
+        RuleMakeCommand::class,
+        MigrateCommand::class,
+        MigrateRefreshCommand::class,
+        MigrateResetCommand::class,
+        MigrateRollbackCommand::class,
+        MigrateStatusCommand::class,
+        MigrationMakeCommand::class,
+        ModelMakeCommand::class,
+        PublishCommand::class,
+        PublishConfigurationCommand::class,
+        PublishMigrationCommand::class,
+        PublishTranslationCommand::class,
+        SeedCommand::class,
+        SeedMakeCommand::class,
+        SetupCommand::class,
+        UnUseCommand::class,
+        UpdateCommand::class,
+        UseCommand::class,
+        ResourceMakeCommand::class,
+        TestMakeCommand::class,
+        LaravelModulesV6Migrator::class,
     ];
 
-    public function register(): void
+    /**
+     * Register the commands.
+     */
+    public function register()
     {
-        $this->commands(config('modules.commands', $this->commands));
+        $this->commands($this->commands);
     }
 
-    public function provides(): array
+    /**
+     * @return array
+     */
+    public function provides()
     {
-        return $this->commands;
+        $provides = $this->commands;
+
+        return $provides;
     }
 }

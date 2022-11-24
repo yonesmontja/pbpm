@@ -26,10 +26,8 @@ class PublishMigrationCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle(): int
+    public function handle() : int
     {
-        $this->components->info('publishing module migrations...');
-
         if ($name = $this->argument('module')) {
             $module = $this->laravel['modules']->findOrFail($name);
 

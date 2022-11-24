@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputArgument;
 class $CLASS$ extends Command
 {
     /**
-     * The name and signature of the console command.
+     * The console command name.
      *
      * @var string
      */
