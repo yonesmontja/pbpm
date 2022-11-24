@@ -7,7 +7,9 @@ use Doctrine\DBAL\Driver\IBMDB2;
 use Doctrine\DBAL\Driver\Mysqli;
 use Doctrine\DBAL\Driver\OCI8;
 use Doctrine\DBAL\Driver\PDO;
+use Doctrine\DBAL\Driver\SQLite3;
 use Doctrine\DBAL\Driver\SQLSrv;
+use Doctrine\Deprecations\Deprecation;
 
 use function array_keys;
 use function array_merge;
@@ -87,14 +89,17 @@ final class DriverManager
         'pdo_sqlsrv'         => PDO\SQLSrv\Driver::class,
         'mysqli'             => Mysqli\Driver::class,
         'sqlsrv'             => SQLSrv\Driver::class,
+        'sqlite3'            => SQLite3\Driver::class,
     ];
 
     /**
      * List of URL schemes from a database URL and their mappings to driver.
      *
+     * @deprecated Use actual driver names instead.
+     *
      * @var string[]
      */
-    private static $driverSchemeAliases = [
+    private static array $driverSchemeAliases = [
         'db2'        => 'ibm_db2',
         'mssql'      => 'pdo_sqlsrv',
         'mysql'      => 'pdo_mysql',
@@ -184,15 +189,9 @@ final class DriverManager
         ?EventManager $eventManager = null
     ): Connection {
         // create default config and event manager, if not set
-        if ($config === null) {
-            $config = new Configuration();
-        }
-
-        if ($eventManager === null) {
-            $eventManager = new EventManager();
-        }
-
-        $params = self::parseDatabaseUrl($params);
+        $config       ??= new Configuration();
+        $eventManager ??= new EventManager();
+        $params         = self::parseDatabaseUrl($params);
 
         // URL support for PrimaryReplicaConnection
         if (isset($params['primary'])) {
@@ -457,11 +456,25 @@ final class DriverManager
             // URL schemes must not contain underscores, but dashes are ok
             $driver = str_replace('-', '_', $scheme);
 
-            // The requested driver from the URL scheme takes precedence over the
-            // default driver from the connection parameters. If the driver is
-            // an alias (e.g. "postgres"), map it to the actual name ("pdo-pgsql").
+            // If the driver is an alias (e.g. "postgres"), map it to the actual name ("pdo-pgsql").
             // Otherwise, let checkParams decide later if the driver exists.
-            $params['driver'] = self::$driverSchemeAliases[$driver] ?? $driver;
+            if (isset(self::$driverSchemeAliases[$driver])) {
+                $actualDriver = self::$driverSchemeAliases[$driver];
+
+                Deprecation::trigger(
+                    'doctrine/dbal',
+                    'https://github.com/doctrine/dbal/pull/5697',
+                    'Relying on driver name aliases is deprecated. Use %s instead of %s.',
+                    str_replace('_', '-', $actualDriver),
+                    $driver,
+                );
+
+                $driver = $actualDriver;
+            }
+
+            // The requested driver from the URL scheme takes precedence over the
+            // default driver from the connection parameters.
+            $params['driver'] = $driver;
 
             return $params;
         }

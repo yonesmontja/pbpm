@@ -103,6 +103,17 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'nwidart/laravel-modules' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Nwidart\\Modules\\LaravelModulesServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Module' => 'Nwidart\\Modules\\Facades\\Module',
+    ),
+  ),
   'owen-it/laravel-auditing' => 
   array (
     'providers' => 

@@ -2,18 +2,17 @@
 
 namespace Doctrine\DBAL\Platforms;
 
+use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\Column;
 use Doctrine\DBAL\Schema\ColumnDiff;
 use Doctrine\DBAL\Schema\ForeignKeyConstraint;
 use Doctrine\DBAL\Schema\Identifier;
 use Doctrine\DBAL\Schema\Index;
+use Doctrine\DBAL\Schema\PostgreSQLSchemaManager;
 use Doctrine\DBAL\Schema\Sequence;
 use Doctrine\DBAL\Schema\TableDiff;
-use Doctrine\DBAL\Types\BigIntType;
 use Doctrine\DBAL\Types\BinaryType;
 use Doctrine\DBAL\Types\BlobType;
-use Doctrine\DBAL\Types\IntegerType;
-use Doctrine\DBAL\Types\Type;
 use Doctrine\Deprecations\Deprecation;
 use UnexpectedValueException;
 
@@ -39,11 +38,10 @@ use function trim;
  */
 class PostgreSQLPlatform extends AbstractPlatform
 {
-    /** @var bool */
-    private $useBooleanTrueFalseStrings = true;
+    private bool $useBooleanTrueFalseStrings = true;
 
     /** @var string[][] PostgreSQL booleans literals */
-    private $booleanLiterals = [
+    private array $booleanLiterals = [
         'true' => [
             't',
             'true',
@@ -99,7 +97,7 @@ class PostgreSQLPlatform extends AbstractPlatform
         Deprecation::trigger(
             'doctrine/dbal',
             'https://github.com/doctrine/dbal/pull/4753',
-            'PostgreSQLPlatform::getNowExpression() is deprecated. Generate dates within the application.'
+            'PostgreSQLPlatform::getNowExpression() is deprecated. Generate dates within the application.',
         );
 
         return 'LOCALTIMESTAMP(0)';
@@ -172,9 +170,18 @@ class PostgreSQLPlatform extends AbstractPlatform
 
     /**
      * {@inheritdoc}
+     *
+     * @deprecated
      */
     public function getDefaultSchemaName()
     {
+        Deprecation::trigger(
+            'doctrine/dbal',
+            'https://github.com/doctrine/dbal/pull/5513',
+            '%s is deprecated.',
+            __METHOD__,
+        );
+
         return 'public';
     }
 
@@ -188,6 +195,8 @@ class PostgreSQLPlatform extends AbstractPlatform
 
     /**
      * {@inheritdoc}
+     *
+     * @internal The method should be only used from within the {@see AbstractPlatform} class hierarchy.
      */
     public function supportsPartialIndexes()
     {
@@ -196,22 +205,42 @@ class PostgreSQLPlatform extends AbstractPlatform
 
     /**
      * {@inheritdoc}
+     *
+     * @deprecated
      */
     public function usesSequenceEmulatedIdentityColumns()
     {
+        Deprecation::trigger(
+            'doctrine/dbal',
+            'https://github.com/doctrine/dbal/pull/5513',
+            '%s is deprecated.',
+            __METHOD__,
+        );
+
         return true;
     }
 
     /**
      * {@inheritdoc}
+     *
+     * @deprecated
      */
     public function getIdentitySequenceName($tableName, $columnName)
     {
+        Deprecation::triggerIfCalledFromOutside(
+            'doctrine/dbal',
+            'https://github.com/doctrine/dbal/pull/5513',
+            '%s is deprecated.',
+            __METHOD__,
+        );
+
         return $tableName . '_' . $columnName . '_seq';
     }
 
     /**
      * {@inheritDoc}
+     *
+     * @internal The method should be only used from within the {@see AbstractPlatform} class hierarchy.
      */
     public function supportsCommentOnStatement()
     {
@@ -220,14 +249,25 @@ class PostgreSQLPlatform extends AbstractPlatform
 
     /**
      * {@inheritDoc}
+     *
+     * @deprecated
      */
     public function hasNativeGuidType()
     {
+        Deprecation::triggerIfCalledFromOutside(
+            'doctrine/dbal',
+            'https://github.com/doctrine/dbal/pull/5509',
+            '%s is deprecated.',
+            __METHOD__,
+        );
+
         return true;
     }
 
     /**
      * {@inheritDoc}
+     *
+     * @internal The method should be only used from within the {@see AbstractSchemaManager} class hierarchy.
      */
     public function getListDatabasesSQL()
     {
@@ -245,7 +285,7 @@ class PostgreSQLPlatform extends AbstractPlatform
             'doctrine/dbal',
             'https://github.com/doctrine/dbal/issues/4503',
             'PostgreSQLPlatform::getListNamespacesSQL() is deprecated,'
-                . ' use PostgreSQLSchemaManager::listSchemaNames() instead.'
+                . ' use PostgreSQLSchemaManager::listSchemaNames() instead.',
         );
 
         return "SELECT schema_name AS nspname
@@ -256,17 +296,24 @@ class PostgreSQLPlatform extends AbstractPlatform
 
     /**
      * {@inheritDoc}
+     *
+     * @internal The method should be only used from within the {@see AbstractSchemaManager} class hierarchy.
      */
     public function getListSequencesSQL($database)
     {
-        return "SELECT sequence_name AS relname,
-                       sequence_schema AS schemaname
+        return 'SELECT sequence_name AS relname,
+                       sequence_schema AS schemaname,
+                       minimum_value AS min_value,
+                       increment AS increment_by
                 FROM   information_schema.sequences
-                WHERE  sequence_schema NOT LIKE 'pg\_%'
+                WHERE  sequence_catalog = ' . $this->quoteStringLiteral($database) . "
+                AND    sequence_schema NOT LIKE 'pg\_%'
                 AND    sequence_schema != 'information_schema'";
     }
 
     /**
+     * @deprecated The SQL used for schema introspection is an implementation detail and should not be relied upon.
+     *
      * {@inheritDoc}
      */
     public function getListTablesSQL()
@@ -283,6 +330,8 @@ class PostgreSQLPlatform extends AbstractPlatform
 
     /**
      * {@inheritDoc}
+     *
+     * @internal The method should be only used from within the {@see AbstractSchemaManager} class hierarchy.
      */
     public function getListViewsSQL($database)
     {
@@ -294,6 +343,8 @@ class PostgreSQLPlatform extends AbstractPlatform
     }
 
     /**
+     * @deprecated The SQL used for schema introspection is an implementation detail and should not be relied upon.
+     *
      * @param string      $table
      * @param string|null $database
      *
@@ -313,6 +364,8 @@ class PostgreSQLPlatform extends AbstractPlatform
     }
 
     /**
+     * @deprecated
+     *
      * {@inheritDoc}
      */
     public function getListTableConstraintsSQL($table)
@@ -335,11 +388,13 @@ WHERE oid IN (
     )
 SQL
             ,
-            $table
+            $table,
         );
     }
 
     /**
+     * @deprecated The SQL used for schema introspection is an implementation detail and should not be relied upon.
+     *
      * {@inheritDoc}
      *
      * @link http://ezcomponents.org/docs/api/trunk/DatabaseSchema/ezcDbSchemaPgsqlReader.html
@@ -381,11 +436,13 @@ SQL
             $classAlias,
             $table,
             $namespaceAlias,
-            $schema
+            $schema,
         );
     }
 
     /**
+     * @deprecated The SQL used for schema introspection is an implementation detail and should not be relied upon.
+     *
      * {@inheritDoc}
      */
     public function getListTableColumnsSQL($table, $database = null)
@@ -425,6 +482,8 @@ SQL
 
     /**
      * {@inheritDoc}
+     *
+     * @internal The method should be only used from within the {@see AbstractPlatform} class hierarchy.
      */
     public function getAdvancedForeignKeyOptionsSQL(ForeignKeyConstraint $foreignKey)
     {
@@ -463,37 +522,45 @@ SQL
         $commentsSQL = [];
         $columnSql   = [];
 
-        foreach ($diff->addedColumns as $column) {
-            if ($this->onSchemaAlterTableAddColumn($column, $diff, $columnSql)) {
+        $table = $diff->getOldTable() ?? $diff->getName($this);
+
+        $tableNameSQL = $table->getQuotedName($this);
+
+        foreach ($diff->getAddedColumns() as $addedColumn) {
+            if ($this->onSchemaAlterTableAddColumn($addedColumn, $diff, $columnSql)) {
                 continue;
             }
 
-            $query = 'ADD ' . $this->getColumnDeclarationSQL($column->getQuotedName($this), $column->toArray());
-            $sql[] = 'ALTER TABLE ' . $diff->getName($this)->getQuotedName($this) . ' ' . $query;
+            $query = 'ADD ' . $this->getColumnDeclarationSQL(
+                $addedColumn->getQuotedName($this),
+                $addedColumn->toArray(),
+            );
 
-            $comment = $this->getColumnComment($column);
+            $sql[] = 'ALTER TABLE ' . $tableNameSQL . ' ' . $query;
+
+            $comment = $this->getColumnComment($addedColumn);
 
             if ($comment === null || $comment === '') {
                 continue;
             }
 
             $commentsSQL[] = $this->getCommentOnColumnSQL(
-                $diff->getName($this)->getQuotedName($this),
-                $column->getQuotedName($this),
-                $comment
+                $tableNameSQL,
+                $addedColumn->getQuotedName($this),
+                $comment,
             );
         }
 
-        foreach ($diff->removedColumns as $column) {
-            if ($this->onSchemaAlterTableRemoveColumn($column, $diff, $columnSql)) {
+        foreach ($diff->getDroppedColumns() as $droppedColumn) {
+            if ($this->onSchemaAlterTableRemoveColumn($droppedColumn, $diff, $columnSql)) {
                 continue;
             }
 
-            $query = 'DROP ' . $column->getQuotedName($this);
-            $sql[] = 'ALTER TABLE ' . $diff->getName($this)->getQuotedName($this) . ' ' . $query;
+            $query = 'DROP ' . $droppedColumn->getQuotedName($this);
+            $sql[] = 'ALTER TABLE ' . $tableNameSQL . ' ' . $query;
         }
 
-        foreach ($diff->changedColumns as $columnDiff) {
+        foreach ($diff->getModifiedColumns() as $columnDiff) {
             if ($this->onSchemaAlterTableChangeColumn($columnDiff, $diff, $columnSql)) {
                 continue;
             }
@@ -502,88 +569,94 @@ SQL
                 continue;
             }
 
-            $oldColumnName = $columnDiff->getOldColumnName()->getQuotedName($this);
-            $column        = $columnDiff->column;
+            $oldColumn = $columnDiff->getOldColumn() ?? $columnDiff->getOldColumnName();
+            $newColumn = $columnDiff->getNewColumn();
+
+            $oldColumnName = $oldColumn->getQuotedName($this);
 
             if (
-                $columnDiff->hasChanged('type')
-                || $columnDiff->hasChanged('precision')
-                || $columnDiff->hasChanged('scale')
-                || $columnDiff->hasChanged('fixed')
+                $columnDiff->hasTypeChanged()
+                || $columnDiff->hasPrecisionChanged()
+                || $columnDiff->hasScaleChanged()
+                || $columnDiff->hasFixedChanged()
             ) {
-                $type = $column->getType();
+                $type = $newColumn->getType();
 
                 // SERIAL/BIGSERIAL are not "real" types and we can't alter a column to that type
-                $columnDefinition                  = $column->toArray();
+                $columnDefinition                  = $newColumn->toArray();
                 $columnDefinition['autoincrement'] = false;
 
                 // here was a server version check before, but DBAL API does not support this anymore.
                 $query = 'ALTER ' . $oldColumnName . ' TYPE ' . $type->getSQLDeclaration($columnDefinition, $this);
-                $sql[] = 'ALTER TABLE ' . $diff->getName($this)->getQuotedName($this) . ' ' . $query;
+                $sql[] = 'ALTER TABLE ' . $tableNameSQL . ' ' . $query;
             }
 
-            if ($columnDiff->hasChanged('default') || $this->typeChangeBreaksDefaultValue($columnDiff)) {
-                $defaultClause = $column->getDefault() === null
+            if ($columnDiff->hasDefaultChanged()) {
+                $defaultClause = $newColumn->getDefault() === null
                     ? ' DROP DEFAULT'
-                    : ' SET' . $this->getDefaultValueDeclarationSQL($column->toArray());
-                $query         = 'ALTER ' . $oldColumnName . $defaultClause;
-                $sql[]         = 'ALTER TABLE ' . $diff->getName($this)->getQuotedName($this) . ' ' . $query;
+                    : ' SET' . $this->getDefaultValueDeclarationSQL($newColumn->toArray());
+
+                $query = 'ALTER ' . $oldColumnName . $defaultClause;
+                $sql[] = 'ALTER TABLE ' . $tableNameSQL . ' ' . $query;
             }
 
-            if ($columnDiff->hasChanged('notnull')) {
-                $query = 'ALTER ' . $oldColumnName . ' ' . ($column->getNotnull() ? 'SET' : 'DROP') . ' NOT NULL';
-                $sql[] = 'ALTER TABLE ' . $diff->getName($this)->getQuotedName($this) . ' ' . $query;
+            if ($columnDiff->hasNotNullChanged()) {
+                $query = 'ALTER ' . $oldColumnName . ' ' . ($newColumn->getNotnull() ? 'SET' : 'DROP') . ' NOT NULL';
+                $sql[] = 'ALTER TABLE ' . $tableNameSQL . ' ' . $query;
             }
 
-            if ($columnDiff->hasChanged('autoincrement')) {
-                if ($column->getAutoincrement()) {
+            if ($columnDiff->hasAutoIncrementChanged()) {
+                if ($newColumn->getAutoincrement()) {
                     // add autoincrement
-                    $seqName = $this->getIdentitySequenceName($diff->name, $oldColumnName);
+                    $seqName = $this->getIdentitySequenceName(
+                        $table->getName(),
+                        $oldColumnName,
+                    );
 
                     $sql[] = 'CREATE SEQUENCE ' . $seqName;
                     $sql[] = "SELECT setval('" . $seqName . "', (SELECT MAX(" . $oldColumnName . ') FROM '
-                        . $diff->getName($this)->getQuotedName($this) . '))';
+                        . $tableNameSQL . '))';
                     $query = 'ALTER ' . $oldColumnName . " SET DEFAULT nextval('" . $seqName . "')";
-                    $sql[] = 'ALTER TABLE ' . $diff->getName($this)->getQuotedName($this) . ' ' . $query;
                 } else {
                     // Drop autoincrement, but do NOT drop the sequence. It might be re-used by other tables or have
                     $query = 'ALTER ' . $oldColumnName . ' DROP DEFAULT';
-                    $sql[] = 'ALTER TABLE ' . $diff->getName($this)->getQuotedName($this) . ' ' . $query;
                 }
+
+                $sql[] = 'ALTER TABLE ' . $tableNameSQL . ' ' . $query;
             }
 
-            $newComment = $this->getColumnComment($column);
             $oldComment = $this->getOldColumnComment($columnDiff);
+            $newComment = $this->getColumnComment($newColumn);
 
             if (
-                $columnDiff->hasChanged('comment')
-                || ($columnDiff->fromColumn !== null && $oldComment !== $newComment)
+                $columnDiff->hasCommentChanged()
+                || ($columnDiff->getOldColumn() !== null && $oldComment !== $newComment)
             ) {
                 $commentsSQL[] = $this->getCommentOnColumnSQL(
-                    $diff->getName($this)->getQuotedName($this),
-                    $column->getQuotedName($this),
-                    $newComment
+                    $tableNameSQL,
+                    $newColumn->getQuotedName($this),
+                    $newComment,
                 );
             }
 
-            if (! $columnDiff->hasChanged('length')) {
+            if (! $columnDiff->hasLengthChanged()) {
                 continue;
             }
 
             $query = 'ALTER ' . $oldColumnName . ' TYPE '
-                . $column->getType()->getSQLDeclaration($column->toArray(), $this);
-            $sql[] = 'ALTER TABLE ' . $diff->getName($this)->getQuotedName($this) . ' ' . $query;
+                . $newColumn->getType()->getSQLDeclaration($newColumn->toArray(), $this);
+            $sql[] = 'ALTER TABLE ' . $tableNameSQL . ' ' . $query;
         }
 
-        foreach ($diff->renamedColumns as $oldColumnName => $column) {
+        foreach ($diff->getRenamedColumns() as $oldColumnName => $column) {
             if ($this->onSchemaAlterTableRenameColumn($oldColumnName, $column, $diff, $columnSql)) {
                 continue;
             }
 
             $oldColumnName = new Identifier($oldColumnName);
 
-            $sql[] = 'ALTER TABLE ' . $diff->getName($this)->getQuotedName($this) .
-                ' RENAME COLUMN ' . $oldColumnName->getQuotedName($this) . ' TO ' . $column->getQuotedName($this);
+            $sql[] = 'ALTER TABLE ' . $tableNameSQL . ' RENAME COLUMN ' . $oldColumnName->getQuotedName($this)
+                . ' TO ' . $column->getQuotedName($this);
         }
 
         $tableSql = [];
@@ -594,17 +667,24 @@ SQL
             $newName = $diff->getNewName();
 
             if ($newName !== false) {
+                Deprecation::trigger(
+                    'doctrine/dbal',
+                    'https://github.com/doctrine/dbal/pull/5663',
+                    'Generation of "rename table" SQL using %s is deprecated. Use getRenameTableSQL() instead.',
+                    __METHOD__,
+                );
+
                 $sql[] = sprintf(
                     'ALTER TABLE %s RENAME TO %s',
-                    $diff->getName($this)->getQuotedName($this),
-                    $newName->getQuotedName($this)
+                    $tableNameSQL,
+                    $newName->getQuotedName($this),
                 );
             }
 
             $sql = array_merge(
                 $this->getPreAlterTableIndexForeignKeySQL($diff),
                 $sql,
-                $this->getPostAlterTableIndexForeignKeySQL($diff)
+                $this->getPostAlterTableIndexForeignKeySQL($diff),
             );
         }
 
@@ -622,25 +702,25 @@ SQL
      */
     private function isUnchangedBinaryColumn(ColumnDiff $columnDiff): bool
     {
-        $columnType = $columnDiff->column->getType();
+        $newColumnType = $columnDiff->getNewColumn()->getType();
 
-        if (! $columnType instanceof BinaryType && ! $columnType instanceof BlobType) {
+        if (! $newColumnType instanceof BinaryType && ! $newColumnType instanceof BlobType) {
             return false;
         }
 
-        $fromColumn = $columnDiff->fromColumn instanceof Column ? $columnDiff->fromColumn : null;
+        $oldColumn = $columnDiff->getOldColumn() instanceof Column ? $columnDiff->getOldColumn() : null;
 
-        if ($fromColumn !== null) {
-            $fromColumnType = $fromColumn->getType();
+        if ($oldColumn !== null) {
+            $oldColumnType = $oldColumn->getType();
 
-            if (! $fromColumnType instanceof BinaryType && ! $fromColumnType instanceof BlobType) {
+            if (! $oldColumnType instanceof BinaryType && ! $oldColumnType instanceof BlobType) {
                 return false;
             }
 
             return count(array_diff($columnDiff->changedProperties, ['type', 'length', 'fixed'])) === 0;
         }
 
-        if ($columnDiff->hasChanged('type')) {
+        if ($columnDiff->hasTypeChanged()) {
             return false;
         }
 
@@ -662,6 +742,8 @@ SQL
 
     /**
      * {@inheritdoc}
+     *
+     * @internal The method should be only used from within the {@see AbstractPlatform} class hierarchy.
      */
     public function getCommentOnColumnSQL($tableName, $columnName, $comment)
     {
@@ -673,7 +755,7 @@ SQL
             'COMMENT ON COLUMN %s.%s IS %s',
             $tableName->getQuotedName($this),
             $columnName->getQuotedName($this),
-            $comment
+            $comment,
         );
     }
 
@@ -756,7 +838,7 @@ SQL
         }
 
         if (isset($options['foreignKeys'])) {
-            foreach ((array) $options['foreignKeys'] as $definition) {
+            foreach ($options['foreignKeys'] as $definition) {
                 $sql[] = $this->getCreateForeignKeySQL($definition, $name);
             }
         }
@@ -803,7 +885,7 @@ SQL
             return $callback(true);
         }
 
-        throw new UnexpectedValueException("Unrecognized boolean literal '${value}'");
+        throw new UnexpectedValueException(sprintf("Unrecognized boolean literal '%s'", $value));
     }
 
     /**
@@ -844,16 +926,14 @@ SQL
 
         return $this->doConvertBooleans(
             $item,
-            /**
-             * @param mixed $value
-             */
+            /** @param mixed $value */
             static function ($value) {
                 if ($value === null) {
                     return 'NULL';
                 }
 
                 return $value === true ? 'true' : 'false';
-            }
+            },
         );
     }
 
@@ -868,12 +948,10 @@ SQL
 
         return $this->doConvertBooleans(
             $item,
-            /**
-             * @param mixed $value
-             */
+            /** @param mixed $value */
             static function ($value): ?int {
                 return $value === null ? null : (int) $value;
-            }
+            },
         );
     }
 
@@ -1031,7 +1109,7 @@ SQL
         Deprecation::triggerIfCalledFromOutside(
             'doctrine/dbal',
             'https://github.com/doctrine/dbal/issues/4749',
-            'PostgreSQLPlatform::getName() is deprecated. Identify platforms by their class.'
+            'PostgreSQLPlatform::getName() is deprecated. Identify platforms by their class.',
         );
 
         return 'postgresql';
@@ -1128,9 +1206,17 @@ SQL
 
     /**
      * {@inheritDoc}
+     *
+     * @deprecated
      */
     public function getVarcharMaxLength()
     {
+        Deprecation::triggerIfCalledFromOutside(
+            'doctrine/dbal',
+            'https://github.com/doctrine/dbal/issues/3263',
+            'PostgreSQLPlatform::getVarcharMaxLength() is deprecated.',
+        );
+
         return 65535;
     }
 
@@ -1139,22 +1225,45 @@ SQL
      */
     public function getBinaryMaxLength()
     {
+        Deprecation::triggerIfCalledFromOutside(
+            'doctrine/dbal',
+            'https://github.com/doctrine/dbal/issues/3263',
+            'PostgreSQLPlatform::getBinaryMaxLength() is deprecated.',
+        );
+
         return 0;
     }
 
     /**
      * {@inheritdoc}
+     *
+     * @deprecated
      */
     public function getBinaryDefaultLength()
     {
+        Deprecation::trigger(
+            'doctrine/dbal',
+            'https://github.com/doctrine/dbal/issues/3263',
+            'Relying on the default binary column length is deprecated, specify the length explicitly.',
+        );
+
         return 0;
     }
 
     /**
      * {@inheritdoc}
+     *
+     * @deprecated
      */
     public function hasNativeJsonType()
     {
+        Deprecation::triggerIfCalledFromOutside(
+            'doctrine/dbal',
+            'https://github.com/doctrine/dbal/pull/5509',
+            '%s is deprecated.',
+            __METHOD__,
+        );
+
         return true;
     }
 
@@ -1169,7 +1278,7 @@ SQL
             'doctrine/dbal',
             'https://github.com/doctrine/dbal/issues/4510',
             'PostgreSQLPlatform::getReservedKeywordsClass() is deprecated,'
-                . ' use PostgreSQLPlatform::createReservedKeywordsList() instead.'
+                . ' use PostgreSQLPlatform::createReservedKeywordsList() instead.',
         );
 
         return Keywords\PostgreSQL94Keywords::class;
@@ -1185,10 +1294,12 @@ SQL
 
     /**
      * {@inheritdoc}
+     *
+     * @internal The method should be only used from within the {@see AbstractPlatform} class hierarchy.
      */
     public function getDefaultValueDeclarationSQL($column)
     {
-        if ($this->isSerialColumn($column)) {
+        if (isset($column['autoincrement']) && $column['autoincrement'] === true) {
             return '';
         }
 
@@ -1197,18 +1308,12 @@ SQL
 
     /**
      * {@inheritdoc}
+     *
+     * @internal The method should be only used from within the {@see AbstractPlatform} class hierarchy.
      */
     public function supportsColumnCollation()
     {
         return true;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getColumnCollationDeclarationSQL($collation)
-    {
-        return 'COLLATE ' . $this->quoteSingleIdentifier($collation);
     }
 
     /**
@@ -1223,43 +1328,18 @@ SQL
         return 'JSON';
     }
 
-    /**
-     * @param mixed[] $column
-     */
-    private function isSerialColumn(array $column): bool
-    {
-        return isset($column['type'], $column['autoincrement'])
-            && $column['autoincrement'] === true
-            && $this->isNumericType($column['type']);
-    }
-
-    /**
-     * Check whether the type of a column is changed in a way that invalidates the default value for the column
-     */
-    private function typeChangeBreaksDefaultValue(ColumnDiff $columnDiff): bool
-    {
-        if ($columnDiff->fromColumn === null) {
-            return $columnDiff->hasChanged('type');
-        }
-
-        $oldTypeIsNumeric = $this->isNumericType($columnDiff->fromColumn->getType());
-        $newTypeIsNumeric = $this->isNumericType($columnDiff->column->getType());
-
-        // default should not be changed when switching between numeric types and the default comes from a sequence
-        return $columnDiff->hasChanged('type')
-            && ! ($oldTypeIsNumeric && $newTypeIsNumeric && $columnDiff->column->getAutoincrement());
-    }
-
-    private function isNumericType(Type $type): bool
-    {
-        return $type instanceof IntegerType || $type instanceof BigIntType;
-    }
-
     private function getOldColumnComment(ColumnDiff $columnDiff): ?string
     {
-        return $columnDiff->fromColumn !== null ? $this->getColumnComment($columnDiff->fromColumn) : null;
+        $oldColumn = $columnDiff->getOldColumn();
+
+        if ($oldColumn !== null) {
+            return $this->getColumnComment($oldColumn);
+        }
+
+        return null;
     }
 
+    /** @deprecated The SQL used for schema introspection is an implementation detail and should not be relied upon. */
     public function getListTableMetadataSQL(string $table, ?string $schema = null): string
     {
         if ($schema !== null) {
@@ -1271,7 +1351,12 @@ SQL
 SELECT obj_description(%s::regclass) AS table_comment;
 SQL
             ,
-            $this->quoteStringLiteral($table)
+            $this->quoteStringLiteral($table),
         );
+    }
+
+    public function createSchemaManager(Connection $connection): PostgreSQLSchemaManager
+    {
+        return new PostgreSQLSchemaManager($connection, $this);
     }
 }
