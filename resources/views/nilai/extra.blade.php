@@ -121,9 +121,9 @@
                                             <th>IJIN</th>
                                             <th>ALPA</th>
                                             <th>KELAS</th>
-                                            <th>Catatan Wali Kelas: Sikap</th>
-                                            <th>Catatan Wali Kelas: Kehadiran</th>
-                                            <th>Catatan Wali Kelas: Motivasi</th>
+                                            <th>Catatan: Sikap</th>
+                                            <th>Catatan: Kehadiran</th>
+                                            <th>Catatan: Motivasi</th>
                                             <th></th>
                                         </tr>
                                     </thead>

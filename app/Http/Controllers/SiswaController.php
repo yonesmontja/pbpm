@@ -12,13 +12,15 @@ use App\Models\Kelas;
 use App\Models\Mapel;
 use App\Models\Nilai;
 use App\Models\Siswa;
-use App\Models\Sekolah;
-use App\Models\Tahunpel;
 
+use App\Models\Sekolah;
+
+use App\Models\Tahunpel;
 use App\Models\Penilaian;
 use App\Imports\UserImport;
 use Illuminate\Support\Str;
 use App\Exports\SiswaExport;
+
 use App\Imports\SiswaImport;
 use Illuminate\Http\Request;
 use App\Models\Kompetensiinti;
@@ -282,8 +284,8 @@ class SiswaController extends Controller
                 //dd($tes1);
             }
         }
-        $nilai_start = Tahunpelajaran::all()->where('id','=',2)->pluck('tahun');
-        $nilai_end = Tahunpelajaran::all()->where('id','=',1)->pluck('tahun');
+        $nilai_start = Tahunpel::all()->where('id', '=', 2)->pluck('tahun');
+        $nilai_end = Tahunpel::all()->where('id', '=', 1)->pluck('tahun');
         $id1 = Nilai::all()->where('siswa_id',$id)->pluck('siswa_id',$id)->first();
         $mapel1 = Nilai::all()->where('siswa_id',$id)->pluck('mapel_id')->count();
         $mapel3 = Mapel::all()->pluck('nama_mapel');
@@ -455,7 +457,8 @@ class SiswaController extends Controller
         $kalimat1 = $nama_depan[0];
         $kalimat2 = $nama_belakang[0];
         $kelas = Kelas::find($students -> kelas_id);
-        //dd($kelas -> guru -> nama_guru);
+        $semester = Tahunpelajaran::all()->pluck('semester');
+        //dd($semester);
         $data_siswa = Siswa::get();
 
         if($students -> kelas_id == 1)
@@ -2803,8 +2806,8 @@ class SiswaController extends Controller
             $nip = $k -> nip_kepsek;
             $kecamatan = $k -> kecamatan;
         }
-        $tahunpel = Tahunpel::all()->where('aktif','Y');
-        foreach($tahunpel as $thn)
+        $tahunpel = Tahunpel::all()->where('aktif', 'Y');
+        foreach ($tahunpel as $thn)
         {
             $semester_aktif = $thn -> semester;
             $kepsek_aktif = $thn -> nama_kepsek;
@@ -2829,6 +2832,7 @@ class SiswaController extends Controller
             'kecamatan' => $kecamatan,
             'kepala' => $kepala,
             'nip' => $nip,
+                'semester' => $semester,
                 'predikathuruf' => $predikathuruf,
                 'predikathuruf_bi' => $predikathuruf_bi,
                 'predikathuruf_math' => $predikathuruf_math,
