@@ -58,9 +58,9 @@ function totalOAP()
 }
 function thnPel()
 {
-    if(!empty(Tahunpel::first()->thn_pel))
+    if (!empty(Tahunpel::where('aktif', 'Y')->first()->thn_pel))
     {
-        $tp = Tahunpel::first()->thn_pel;
+        $tp = Tahunpel::where('aktif', 'Y')->first()->thn_pel;
     }
     else
     {

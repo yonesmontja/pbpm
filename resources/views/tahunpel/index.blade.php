@@ -137,7 +137,7 @@
                                                                 <label for="exampleFormControlInput1">TP</label>
                                                                 <input name="thn_pel" type="text" class="form-control"
                                                                     id="exampleFormControlInput1"
-                                                                    placeholder="Masukkan nama user"
+                                                                    placeholder="Masukkan tahun pelajaran"
                                                                     value="{{ old('thn_pel') }}">
                                                                 @if ($errors->has('thn_pel'))
                                                                     <span

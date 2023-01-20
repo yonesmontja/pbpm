@@ -20,9 +20,9 @@ class TahunpelController extends Controller
         //
         $data['title'] = 'Tahun pelajaran';
         //dd($data['q']);
-        if(!empty(Tahunpel::find(1)->thn_pel))
+        if (!empty(Tahunpel::where('aktif', 'Y')->first()))
         {
-            $data['tp1'] =  Tahunpel::find(1)->thn_pel;
+            $data['tp1'] =  Tahunpel::where('aktif', 'Y')->first()->thn_pel;
         }
         else
         {
@@ -33,6 +33,7 @@ class TahunpelController extends Controller
 
         //$data['tp'] = Tahunpel::where(id,thn_pel)->get();
         //dd($data);
+
         return view('tahunpel.index', $data);
     }
 
