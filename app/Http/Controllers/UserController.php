@@ -14,21 +14,21 @@ class UserController extends Controller
     //
     public function profile1($siswa)
     {
-    	//$user = \App\Models\User::find($id);
+    	//$user = User::find($id);
         return view('profile.profile',['user' => $siswa]);
     }
     public function userprofile($id)
     {
-        $user = \App\Models\User::find($id);
-
+        $user = User::find($id);
+        //dd($user->role);
         //dd($user->siswa());
-        //$siswa = \App\Models\Siswa::all();
+        //$siswa = Siswa::all();
         //dd($siswa);
         return view('user.profile',['user' => $user]);
     }
     public function my_profile($id)
     {
-        $user = \App\Models\User::find($id);
+        $user = User::find($id);
 
         return view('profile.my_profile',['user' => $user]);
     }
@@ -53,7 +53,7 @@ class UserController extends Controller
     }
     public function user()
     {
-        $data_user = \App\Models\User::all();
+        $data_user = User::all();
         return view('user.index',['data_user' => $data_user]);
     }
     public function create(Request $request)

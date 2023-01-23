@@ -180,7 +180,7 @@
                                                     enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     <div class="row">
-                                                        <div class="col-sm-4">
+                                                        <div class="col-sm-3">
                                                             <div
                                                                 class="form-group {{ $errors->has('nilai_start') ? ' has-error' : '' }}">
                                                                 <label for="exampleFormControlInput1">Mulai</label>
@@ -197,7 +197,7 @@
                                                                     class="help-block">{{ $errors->first('nilai_start') }}</span>
                                                             @endif
                                                         </div>
-                                                        <div class="col-sm-4">
+                                                        <div class="col-sm-3">
                                                             <div
                                                                 class="form-group {{ $errors->has('nilai_end') ? ' has-error' : '' }}">
                                                                 <label for="exampleFormControlInput1">Berakhir</label>
@@ -215,7 +215,7 @@
                                                                     class="help-block">{{ $errors->first('nilai_end') }}</span>
                                                             @endif
                                                         </div>
-                                                        <div class="col-sm-4">
+                                                        <div class="col-sm-3">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlSelect1">PENILAIAN</label>
                                                                 <select name="penilaian_id" class="form-control"
@@ -224,6 +224,20 @@
                                                                     @foreach ($penilaian as $key => $m)
                                                                         <option value="{{ $m->id }}">
                                                                             {{ $m->nama_tes }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleFormControlSelect1">TP</label>
+                                                                <select name="tahunpel_id" class="form-control"
+                                                                    id="exampleFormControlSelect2">
+                                                                    <option>---</option>
+                                                                    @foreach ($tahunpel as $key => $m)
+                                                                        <option value="{{ $m->id }}">
+                                                                            {{ $m->thn_pel }} - {{ $m->semester }}
                                                                         </option>
                                                                     @endforeach
                                                                 </select>

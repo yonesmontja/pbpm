@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Nilai;
 use App\Models\Siswa;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -159,7 +160,7 @@ class DashboardController extends Controller
         $siswa_pass_pemetaan_matematika_6 = [];
         $siswa_high_pemetaan_matematika_6 = [];
 
-        foreach($nilai->where('penilaian_id','=',6) as $m => $n)
+        foreach ($nilai->where('penilaian_id', '=', 6) as $m => $n)
         {
             if($n -> mapel_id == 5 && $n -> kelas_id == 1)
             {
@@ -1839,6 +1840,12 @@ class DashboardController extends Controller
     public function dashboard_siswa()
     {
         // kkm dan rentang nilai
+        // Retrieve the currently authenticated user...
+        $user = Auth::user();
+        // Retrieve the currently authenticated user's ID...
+        $id = Auth::id();
+        $user1 = User::find($id);
+        //dd($user1->siswa->nama_depan);
         $kkm = 65;
         $kkm1 = $kkm + (100-$kkm)/3;
         $kkm2 = $kkm1 + (100-$kkm)/3;
@@ -1846,6 +1853,9 @@ class DashboardController extends Controller
             'kkm' => $kkm,
             'kkm1' => $kkm1,
             'kkm2' => $kkm2,
+            'user' => $user,
+            'user1' => $user1,
+            'id' => $id,
         ]);
     }
 }

@@ -65,7 +65,7 @@
                                     <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                                         <label for="formGroupExampleInput">Email</label>
                                         <input name="email" type="email" class="form-control" id="formGroupExampleInput"
-                                            placeholder="Masukkan Email" value="{{ old('email') }}">
+                                            placeholder="Masukkan Email" value="{{ $siswa->email }}">
                                         @if ($errors->has('email'))
                                             <span class="help-block">{{ $errors->first('email') }}</span>
                                         @endif
@@ -75,12 +75,25 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">KELAS</label>
                                         <select name="kelas_id" class="form-control" id="exampleFormControlSelect2">
-                                            <option>---</option>
-                                            @foreach ($kelas as $key => $m)
-                                                <option value="{{ $m->id }}">
-                                                    {{ $m->nama }}
-                                                </option>
-                                            @endforeach
+                                            <option value="1" @if ($siswa->kelas_id == 1) selected @endif>
+                                                Kelas 1
+                                            </option>
+                                            <option value="2" @if ($siswa->kelas_id == 2) selected @endif>
+                                                Kelas 2
+                                            </option>
+                                            <option value="3" @if ($siswa->kelas_id == 3) selected @endif>
+                                                Kelas 3
+                                            </option>
+                                            <option value="4" @if ($siswa->kelas_id == 4) selected @endif>
+                                                Kelas 4
+                                            </option>
+                                            <option value="5" @if ($siswa->kelas_id == 5) selected @endif>
+                                                Kelas 5
+                                            </option>
+                                            <option value="6" @if ($siswa->kelas_id == 6) selected @endif>
+                                                Kelas 6
+                                            </option>
+
                                         </select>
                                     </div>
                                 </div>

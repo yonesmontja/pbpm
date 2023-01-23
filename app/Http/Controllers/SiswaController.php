@@ -229,6 +229,7 @@ class SiswaController extends Controller
         $siswa1 = \App\Models\Siswa::all();
         $matapelajaran = \App\Models\Mapel::all();
         $penilaian = \App\Models\Penilaian::all();
+        $tahunpel = Tahunpel::all();
         $nilai = Nilai::all();
         $data_nilai = Nilai::all();
         $kompetensiinti = Kompetensiinti::all();
@@ -284,6 +285,7 @@ class SiswaController extends Controller
                 //dd($tes1);
             }
         }
+        //dd($tes1);
         $nilai_start = Tahunpel::all()->where('id', '=', 2)->pluck('tahun');
         $nilai_end = Tahunpel::all()->where('id', '=', 1)->pluck('tahun');
         $id1 = Nilai::all()->where('siswa_id',$id)->pluck('siswa_id',$id)->first();
@@ -315,7 +317,7 @@ class SiswaController extends Controller
         $average_mapel = collect($matang1)->avg();
         $data2 = DB::table('penilaian_siswa')
                     ->join('mapel_siswa', 'mapel_siswa.siswa_id', '=', 'penilaian_siswa.siswa_id');
-
+        //dd($data2);
         return view('profile.index',[
             'user' => $user,
         'kkm' => $kkm,
@@ -354,6 +356,7 @@ class SiswaController extends Controller
         'tescategories1' => $tescategories1,
         'data2'=>$data2,
         'penilaian'=>$penilaian,
+            'tahunpel' => $tahunpel,
         'matpel'=>$matpel,
         'average'=> $average,
         'siswa'=> $siswa,

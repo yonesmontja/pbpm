@@ -29,6 +29,7 @@ class Nilai extends Model implements Auditable
     'penilaian_id',
     'guru_id',
     'siswa_id',
+        'tahunpel_id',
     'nilai_end',
     'nilai_deskripsi',
     'nilai_notes'];
@@ -89,4 +90,15 @@ class Nilai extends Model implements Auditable
     {
         return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
     }
+
+    /**
+     * Get the tahunpel that owns the Nilai
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function tahunpel(): BelongsTo
+    {
+        return $this->belongsTo(Tahunpel::class, 'tahunpel_id', 'id');
+    }
+
 }

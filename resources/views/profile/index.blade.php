@@ -288,8 +288,7 @@
                                                                          @if (auth()->user()->role == 'siswa')
                                                                              {{ $key->guru->nama_guru }}
                                                                          @else
-                                                                             <a
-                                                                                 href="/guru/{{ $key->guru_id }}/profile">
+                                                                             <a href="/guru/{{ $key->guru_id }}/profile">
                                                                                  {{ $key->guru->nama_guru }}
                                                                              </a>
                                                                          @endif
@@ -426,10 +425,10 @@
                                                      </div>
                                                      <div class="col-md-4">
                                                          <h3 class="card-title">
-                                                            <a href="#" class="btn btn-primary">
-                                                                {{ $average_mapel }}
-                                                            </a>
-                                                        </h3>
+                                                             <a href="#" class="btn btn-primary">
+                                                                 {{ $average_mapel }}
+                                                             </a>
+                                                         </h3>
                                                      </div>
                                                      <div class="col-md-4">
                                                          <div class="card-tools">
@@ -563,7 +562,19 @@
                                      </select>
                                  </div>
                              </div>
-
+                             <div class="col-sm-4">
+                                 <div class="form-group">
+                                     <label for="exampleFormControlSelect1">THN PELAJARAN</label>
+                                     <select name="tahunpel_id" class="form-control" id="exampleFormControlSelect2">
+                                         <option>---</option>
+                                         @foreach ($tahunpel as $key => $m)
+                                             <option value="{{ $m->id }}">
+                                                 {{ $m->thn_pel }} - {{ $m->semester }}
+                                             </option>
+                                         @endforeach
+                                     </select>
+                                 </div>
+                             </div>
                          </div>
                          <div class="row">
                              <div class="col-sm-4">
@@ -660,7 +671,6 @@
                          @if ($errors->has('nilai_notes'))
                              <span class="help-block">{{ $errors->first('nilai_notes') }}</span>
                          @endif
-
                          <!-- akhir form isian data -->
                  </div>
                  <div class="modal-footer">

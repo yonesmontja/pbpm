@@ -10,6 +10,7 @@ use App\Models\Kelas;
 use App\Models\Mapel;
 use App\Models\Nilai;
 use App\Models\Siswa;
+use App\Models\Tahunpel;
 use App\Models\Penilaian;
 use App\Imports\ExtraImport;
 use App\Imports\NilaiImport;
@@ -35,6 +36,7 @@ class NilaiController extends Controller
         $nilai_start = Tahunpelajaran::all()->where('id','=',2)->pluck('tahun');
         $nilai_end = Tahunpelajaran::all()->where('id','=',1)->pluck('tahun');
         $kelas_sub = Siswa::where('kelas_id',0)->get();
+        $tahunpel = Tahunpel::all();
         //dd($kelas_sub);
         for($bulan=1;$bulan < 7;$bulan++){
             $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
@@ -46,6 +48,7 @@ class NilaiController extends Controller
             'kelas_sub' => $kelas_sub,
             'nilai_start' => $nilai_start,
             'nilai_end' => $nilai_end,
+            'tahunpel' => $tahunpel,
             'kelas' => $kelas,
             'penilaian' => $penilaian,
             'siswa' => $siswa,
@@ -66,17 +69,15 @@ class NilaiController extends Controller
         $nilai = Nilai::create($request -> all());
         $id = $nilai -> id;
         $date = now();
-        \DB::table('penilaian_siswa')->insert([
-        [
+        DB::table('penilaian_siswa')->insert([
             'siswa_id'      => $request->input('siswa_id'),
             'penilaian_id'  => $request->input('penilaian_id'),
             'nilai' => $request-> input('nilai'),
             'nilai_id' => $id,
             'created_at' => $date,
             'updated_at' => $date
-        ]
         ]);
-
+        //dd($nilai);
     	return Redirect::back()->with('sukses','berhasil diinput');
 
     }
@@ -88,21 +89,66 @@ class NilaiController extends Controller
     }
     public function nilaiedit(Nilai $nilai)
     {
-        return view('nilai.nilaiedit',['nilai'=>$nilai]);
+        $tahunpel = Tahunpel::all();
+        $tahunpel1 = Tahunpel::where('id', $nilai->tahunpel_id)->pluck('thn_pel');
+        $data_nilai = Nilai::all();
+        $kompetensiinti = Kompetensiinti::where('id', $nilai->kompetensi_inti_id)->pluck('kompetensi_inti');
+        $mapel1 = Mapel::where('id', $nilai->mapel_id)->get();
+        $mapel = Mapel::all();
+        //dd($mapel);
+        $siswa1 = Siswa::where('id', $nilai->siswa_id)->pluck('nama_depan');
+        $siswa2 = Siswa::where('id', $nilai->siswa_id)->pluck('nama_belakang');
+        $siswa = Siswa::all();
+        //dd($siswa);
+        $penilaian = Penilaian::where('id', $nilai->penilaian_id)->pluck('nama_tes');
+        $guru1 = Guru::where('id', $nilai->guru_id)->pluck('nama_guru');
+        $guru = Guru::all();
+        //dd($guru1[0]);
+        $kelas = Kelas::where('id', $nilai->kelas_id)->pluck('nama');
+        $nilai_start = Tahunpelajaran::all()->where('id', '=', 2)->pluck('tahun');
+        $nilai_end = Tahunpelajaran::all()->where('id', '=', 1)->pluck('tahun');
+        //dd($siswa->kelas->nama_depan);
+        return view('nilai.nilaiedit', [
+            'nilai' => $nilai,
+            'tahunpel' => $tahunpel,
+            'tahunpel1' => $tahunpel1,
+            'nilai_start' => $nilai_start,
+            'nilai_end' => $nilai_end,
+            'kelas' => $kelas,
+            'guru' => $guru,
+            'guru1' => $guru1,
+            'penilaian' => $penilaian,
+            'siswa' => $siswa,
+            'siswa1' => $siswa1,
+            'siswa2' => $siswa2,
+            'mapel' => $mapel,
+            'mapel1' => $mapel1,
+            'kompetensiinti' => $kompetensiinti,
+            'data_nilai' => $data_nilai
+        ]);
     }
     public function nilaiupdate(Request $request, Nilai $nilai)
     {
         $nilai ->update($request->all());
         $date = now();
-        DB::table('penilaian_siswa')->update([
-        [
-            'siswa_id'      => $request->input('siswa_id'),
-            'penilaian_id'  => $request->input('penilaian_id'),
-            'nilai' => $request-> input('nilai'),
-
+        //$siswa = Siswa::find($nilai->siswa_id)->penilaian()->updateExixtingPivot();
+        if ('siswa_id' == $nilai->siswa_id)
+            DB::table('penilaian_siswa')->where('siswa_id', $nilai->siswa_id)->update([
+                'siswa_id'      => $request->input('siswa_id'),
+                'penilaian_id'  => $request->input('penilaian_id'),
+            'nilai' => $request->input('nilai'),
             'updated_at' => $date
-        ]
         ]);
+        if ('siswa_id' != $nilai->siswa_id)
+            DB::table('penilaian_siswa')->insert([
+                'siswa_id'      => $request->input('siswa_id'),
+                'penilaian_id'  => $request->input('penilaian_id'),
+                'nilai' => $request->input('nilai'),
+                'nilai_id' => $nilai->id,
+                'created_at' => $date,
+                'updated_at' => $date
+            ]);
+
         return redirect('/nilai')->with('sukses','berhasil diupdate!');
     }
     public function import_excel(Request $request)
@@ -115,18 +161,36 @@ class NilaiController extends Controller
 
         // menangkap file excel
         $file = $request->file('file');
-
+        //dd($file);
         // membuat nama file unik
         $nama_file = rand().$file->getClientOriginalName();
-
+        //dd($nama_file);
         // upload ke folder file_nilai di dalam folder public
         $file->move('file_nilai',$nama_file);
 
 
         // import data
-        Excel::import(new NilaiImport, public_path('/file_nilai/'.$nama_file));
-
+        Excel::import(new NilaiImport, public_path('/file_nilai/' . $nama_file));
+        //Excel::import(new NilaiImport, $request->file('file'));
+        $date = now();
+        //dd($date);
         $siswa = Nilai::all();
+        //DB::beginTransaction();
+        // do all your updates here
+        foreach ($siswa as $s) {
+            DB::table('penilaian_siswa')
+            ->where('nilai_id', '=', $s->id)
+            ->insert([
+                'siswa_id'      => $s->siswa_id,
+                'penilaian_id'  => $s->penilaian_id,
+                'nilai' => $s->nilai,
+                'nilai_id' => $s->id,
+                'created_at' => $date,
+                'updated_at' => $date
+            ]);
+        }
+        // when done commit
+        //DB::commit();
 
         if($request->hasFile('avatar')){
             $request->file('avatar')->move('images/',$request->file('avatar')->getClientOriginalName());

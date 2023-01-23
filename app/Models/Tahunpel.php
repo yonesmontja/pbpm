@@ -20,4 +20,14 @@ class Tahunpel extends Model
         'tgl_raport',
         'tgl_raport_kelas3'
     ];
+
+    /**
+     * Get all of the nilai for the Tahunpel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function nilai(): HasMany
+    {
+        return $this->hasMany(Nilai::class);
+    }
 }

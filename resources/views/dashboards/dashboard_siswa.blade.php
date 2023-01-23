@@ -69,14 +69,18 @@
                                              <img class="profile-user-img img-fluid img-circle"
                                                  src="{{ auth()->user()->avatar() }}" alt="User profile picture">
                                          </div>
-                                         <h3 class="profile-username text-center"><a
-                                                 href="#">{{ auth()->user()->siswa->nama_depan }}
-                                                 {{ auth()->user()->siswa->nama_belakang }}</a></h3>
+                                         @if (auth()->user()->role == 'siswa')
+                                             <h3 class="profile-username text-center"><a
+                                                     href="#">{{ $user1->siswa->nama_depan }}
+                                                     {{ $user1->siswa->nama_belakang }}</a></h3>
+                                             <h5 class="text-center"><a href="/test/{{ auth()->user()->siswa->id }}/profile"
+                                                     class="btn btn-primary btn-lg btn-flat">
+                                                     Lihat Nilai
+                                                 </a></h5>
+                                         @else
+                                         @endif
 
-                                         <h5 class="text-center"><a href="/test/{{ auth()->user()->siswa->id }}/profile"
-                                             class="btn btn-primary btn-lg btn-flat">
-                                             Lihat Nilai
-                                         </a></h5>
+
                                      </div>
                                      <!-- /.card-body -->
                                  </div>
