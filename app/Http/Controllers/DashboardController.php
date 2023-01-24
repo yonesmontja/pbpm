@@ -21,6 +21,7 @@ class DashboardController extends Controller
         $idsiswa_4 = $siswaall->where('kelas','=','Kelas 4');
         $idsiswa_5 = $siswaall->where('kelas','=','Kelas 5');
         $idsiswa_6 = $siswaall->where('kelas','=','Kelas 6');
+        // menampung id siswa per kelas
         foreach ($idsiswa_1 as $user) {
             $siswa_1[] = $user -> id;
         }
@@ -39,13 +40,13 @@ class DashboardController extends Controller
         foreach ($idsiswa_6 as $user) {
             $siswa_6[] = $user -> id;
         }
-
+        //dd($siswa_6);
         // kkm dan rentang nilai
         $kkm = 65;
         $kkm1 = $kkm + (100-$kkm)/3;
         $kkm2 = $kkm1 + (100-$kkm)/3;
         // ---------------------------------
-        // Pemetaan dan nilai harian kelas 1
+        // Pemetaan kelas 1
         $underlow_pemetaan_indonesia_1 = [];
         $low_pemetaan_indonesia_1 = [];
         $pass_pemetaan_indonesia_1 = [];
@@ -463,6 +464,7 @@ class DashboardController extends Controller
                 }
             }
         }
+        //dd($siswa_low_pemetaan_indonesia_1);
         // kelas 1 -----------------------
         if(count($siswa_high_pemetaan_matematika_1) == null)
         {
