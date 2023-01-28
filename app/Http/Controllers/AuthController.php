@@ -33,15 +33,15 @@ class AuthController extends Controller
     	//{
     	//	return redirect('/dashboard_siswa');
     	//}
-    	if(Auth::attempt(['email' => $email,'password' => $password,'role' => $role_admin]))
-    	{
+    	//if(Auth::attempt(['email' => $email,'password' => $password,'role' => $role_admin]))
+    	//{
     		return redirect('/dashboard');
-    	}
+    	//}
     	//if(Auth::attempt(['email' => $email,'password' => $password,'role' => $role_guru]))
     	//{
     	//	return redirect('/dashboard');
     	//}
-    	return redirect('/login');
+    	//return redirect('/login');
     }
     public function logout()
     {
