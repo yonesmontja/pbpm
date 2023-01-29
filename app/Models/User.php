@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
         'role',
         'avatar',
+        'last_seen',
     ];
 
     /**
@@ -54,11 +55,31 @@ class User extends Authenticatable
         {
             return asset('images/default.jpg');
         }
-        return asset('images/'.$this->avatar);
+        return asset('storage/images/'.$this->avatar);
+    }
+    function avatar($real_size = false)
+    {
+        $thumbnail = $real_size ? '' : 'small_';
+
+        if ($this->avatar && file_exists(public_path('storage/users/' . $thumbnail . $this->avatar)))
+            return asset('storage/users/' . $thumbnail  . $this->avatar);
+        else
+            return asset('no_avatar.png');
+    }
+    function delete_avatar()
+    {
+        if ($this->avatar && file_exists(public_path('storage/users/' . $this->avatar)))
+        {
+            unlink(public_path('storage/users/' . $this->avatar));
+        }
+        if ($this->avatar && file_exists(public_path('storage/users/small_' . $this->avatar)))
+        {
+            unlink(public_path('storage/users/small_' . $this->avatar));
+        }
     }
     public function siswa()
     {
-        return $this -> belongsTo(Siswa::class);
+        return $this -> hasOne(Siswa::class);
     }
     public function guru()
     {

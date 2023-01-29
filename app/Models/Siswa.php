@@ -2,17 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Extra;
+use App\Models\Kelas;
+use App\Models\Nilai;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Siswa extends Model
 {
     use HasFactory;
 
     protected $table = 'siswa';
-    protected $fillable = 
+    protected $fillable =
     [
-        'nama_depan',
+    'nama_depan',
     'nama_belakang',
     'nis',
     'jenis_kelamin',
@@ -20,6 +24,7 @@ class Siswa extends Model
     'alamat',
     'avatar',
     'user_id',
+    'kelas_id',
     'nisn',
     'kelas',
     'tempat_lahir',
@@ -50,13 +55,45 @@ class Siswa extends Model
     {
     	if(!$this -> avatar)
     	{
-    		return asset('images/default.jpg');
+    		return asset('/images/default.jpg');
     	}
     	return asset('images/'.$this->avatar);
     }
+    function avatar($real_size = false)
+    {
+        $thumbnail = $real_size ? '' : 'small_';
+
+        if ($this->avatar && file_exists(public_path('images/' . $thumbnail . $this->avatar)))
+            return asset('images/' . $thumbnail  . $this->avatar);
+        else
+            return asset('no_avatar.png');
+    }
+
+    function delete_avatar()
+    {
+        if ($this->avatar && file_exists(public_path('images/' . $this->avatar)))
+            unlink(public_path('images/' . $this->avatar));
+        if ($this->avatar && file_exists(public_path('images/small_' . $this->avatar)))
+            unlink(public_path('images/small_' . $this->avatar));
+    }
+
+    /**
+     * Get all of the nilai for the Siswa
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function nilai(): HasMany
+    {
+        return $this->hasMany(Nilai::class);
+    }
+
     public function mapel()
     {
         return $this -> belongsToMany(Mapel::class)->withPivot(['nilai'])->withTimeStamps();
+    }
+    public function penilaian()
+    {
+        return $this -> belongsToMany(Penilaian::class,'penilaian_siswa', 'siswa_id', 'penilaian_id')->withPivot(['nilai'])->withTimeStamps();
     }
     public function user()
     {
@@ -66,7 +103,7 @@ class Siswa extends Model
     {
         return $this->hasOne(Keimanan::class);
     }
-    
+
     public function ppkn()
     {
         return $this->hasOne('App\Models\Ppkn','nis','nis');
@@ -115,9 +152,34 @@ class Siswa extends Model
         return $this->hasOne(Sikap::class);
     }
 
-    public function extra()
+    /**
+     * Get all of the extra for the Siswa
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function extra(): HasMany
     {
-        return $this->hasOne(Extra::class);
+        return $this->hasMany(Extra::class);
+    }
+
+    /**
+     * Get all of the project for the Siswa
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function project(): HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    /**
+     * Get the kelas that owns the Siswa
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function kelas(): BelongsTo
+    {
+        return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
     }
 
 }

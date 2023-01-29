@@ -189,7 +189,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::post('/langkahstrategis/langkahstrategiscreate',[LangkahstrategisController::class,'langkahstrategiscreate']);
 	Route::get('/langkahstrategis/{langkahstrategis}/langkahstrategisdelete',[LangkahstrategisController::class,'langkahstrategisdelete']);
 	Route::get('/langkahstrategis/{langkahstrategis}/langkahstrategisedit',[LangkahstrategisController::class,'langkahstrategisedit']);
-	Route::post('/langkahstrategis/{langkahstrategis}/langkahstrategisupdate',[LangkahstrategisController::class,'langkahstrategisupdate']);	
+	Route::post('/langkahstrategis/{langkahstrategis}/langkahstrategisupdate',[LangkahstrategisController::class,'langkahstrategisupdate']);
 
 	Route::get('dependent-dropdown', 'DependentDropdownController@index')
     ->name('dependent-dropdown.index');
@@ -218,9 +218,3 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']], function()
 {
 	Route::get('/dashboard',[DashboardController::class,'index']);
 });
-
-Route::get('/{slug}',[
-	'uses' => 'App\Http\Controllers\JurnalController@singlepost',
-	'as' => 'site.single.post'
-]);
-
