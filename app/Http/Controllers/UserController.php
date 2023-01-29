@@ -106,9 +106,9 @@ class UserController extends Controller
             //dd($file_name);
             $img = Image::make($avatar);
             //dd($img);
-            $img->resize('120', '120')->save('/home/sdinpre2/pbpm.sdinpresdabolding.sch.id/storage/users' . 'small_' . $file_name);
+            $img->resize('120', '120')->save('/home/sdinpre2/pbpm.sdinpresdabolding.sch.id/storage/users/' . 'small_' . $file_name);
             //dd($img);
-            $avatar->move('/home/sdinpre2/pbpm.sdinpresdabolding.sch.id/storage/users', $file_name);
+            $avatar->move('/home/sdinpre2/pbpm.sdinpresdabolding.sch.id/storage/users/', $file_name);
             $user->avatar = $file_name;
         }
         $user->name = $request->name;
