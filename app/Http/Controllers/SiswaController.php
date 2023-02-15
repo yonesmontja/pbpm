@@ -206,6 +206,10 @@ class SiswaController extends Controller
                     $request ->name => $request -> value,
                     'updated_at' => $date,
             ]);
+            DB::table('mapel_siswa')->where('nilai_id', Nilai::find($request->pk)->id)->update([
+                $request->name => $request->value,
+                'updated_at' => $date,
+            ]);
             return response()->json(['success' => true]);
         }
     }
