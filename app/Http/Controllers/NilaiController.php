@@ -12,6 +12,7 @@ use App\Models\Nilai;
 use App\Models\Siswa;
 use App\Models\Tahunpel;
 use App\Models\Penilaian;
+use App\Exports\NilaiExport;
 use App\Imports\ExtraImport;
 use App\Imports\NilaiImport;
 use Illuminate\Http\Request;
@@ -196,6 +197,16 @@ class NilaiController extends Controller
                 'created_at' => $date,
                 'updated_at' => $date
             ]);
+            DB::table('mapel_siswa')
+            ->where('nilai_id', '=', $s->id)
+            ->insert([
+                'siswa_id'      => $s->siswa_id,
+                'mapel_id'  => $s->mapel_id,
+                'nilai' => $s->nilai,
+                'nilai_id' => $s->id,
+                'created_at' => $date,
+                'updated_at' => $date
+            ]);
         }
         // when done commit
         //DB::commit();
@@ -215,7 +226,8 @@ class NilaiController extends Controller
     public function export_excel()
     {
 
-        return Excel::download(new NilaiExport, 'template_import_nilai.xlsx');
+        return Excel::download(new NilaiExport, 'export_nilai.xlsx');
+
     }
     public function extra()
     {

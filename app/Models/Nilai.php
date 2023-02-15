@@ -22,17 +22,17 @@ class Nilai extends Model implements Auditable
     protected $table = 'nilai';
     protected $fillable = [
         'nilai_start',
-        'nilai',
+        'nilai_end',
+        'nilai_deskripsi',
+        'nilai_notes',
         'kompetensi_inti_id',
         'mapel_id',
-        'kelas_id',
         'penilaian_id',
         'guru_id',
         'siswa_id',
-        'tahunpel_id',
-        'nilai_end',
-        'nilai_deskripsi',
-        'nilai_notes'
+        'kelas_id',
+        'nilai',
+        'tahunpel_id'
     ];
 
     /**

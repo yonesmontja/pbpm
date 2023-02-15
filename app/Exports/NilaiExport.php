@@ -7,30 +7,30 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class NilaiExport implements FromCollection
+class NilaiExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
     /**
      * @return \Illuminate\Support\Collection
      */
     public function collection()
     {
-        return Nilai::all();
+        return Nilai::select('nilai_start', 'nilai_end', 'nilai_deskripsi', 'nilai_notes', 'kompetensi_inti_id', 'mapel_id', 'penilaian_id', 'guru_id', 'siswa_id', 'kelas_id', 'nilai', 'tahunpel_id')->get();
     }
     public function headings(): array
     {
         return [
             'nilai_start',
-            'nilai',
-            'kompetensi_inti_id',
-            'mapel_id',
-            'kelas_id',
-            'penilaian_id',
-            'guru_id',
-            'siswa_id',
-            'tahunpel_id',
             'nilai_end',
-            'nilai_deskripsi',
-            'nilai_notes'
+            'indikator_kompetensi',
+            'deskripsi_capaian',
+            'kompetensi_inti',
+            'mapel',
+            'penilaian',
+            'guru',
+            'siswa_id',
+            'kelas_id',
+            'nilai',
+            'tahunpel_id'
         ];
     }
 }

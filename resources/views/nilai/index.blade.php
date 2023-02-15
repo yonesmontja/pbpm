@@ -79,6 +79,10 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-sm-6">
+                                        <a href="/nilai/export_excel" class="btn btn-primary float btn-sm" target="_blank">EXPORT EXCEL</a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-header">
@@ -88,7 +92,8 @@
                                             <div class="input-group mb-3">
                                                 <input type="date" class="form-control" name="start_date">
                                                 <input type="date" class="form-control" name="end_date">
-                                                <button class="btn btn-primary float-right btn-sm" type="submit">FILTER</button>
+                                                <button class="btn btn-primary float-right btn-sm"
+                                                    type="submit">FILTER</button>
                                             </div>
                                         </form>
                                     </div>
@@ -97,8 +102,8 @@
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal"
-                                            data-target="#staticBackdrop">
+                                        <button type="button" class="btn btn-primary float-right btn-sm"
+                                            data-toggle="modal" data-target="#staticBackdrop">
                                             TAMBAH NILAI
                                         </button>
                                     </div>
@@ -130,11 +135,18 @@
                                             <tr>
 
                                                 <td>{{ $nilai->kompetensiinti->kompetensi_inti }}</td>
-                                                <td><a href="/mapel/{{ $nilai->mapel->id }}">{{ $nilai->mapel->nama_mapel }}</td>
-                                                <td><a href="/guru/{{ $nilai->guru->id }}/profile">{{ $nilai->guru->nama_guru }}</a></td>
-                                                <td><a href="/penilaian/{{ $nilai->penilaian->id }}/profile">{{ $nilai->penilaian->nama_tes }}</td>
-                                                <td><a href="/kelas/{{ $nilai->kelas->id }}/profile">{{ $nilai->kelas->nama }}</a></td>
-                                                <td><a href="/test/{{ $nilai->siswa->id }}/profile">{{ $nilai->siswa->nama_depan }} {{ $nilai->siswa->nama_belakang }}</a>
+                                                <td><a href="/mapel/{{ $nilai->mapel->id }}">{{ $nilai->mapel->nama_mapel }}
+                                                </td>
+                                                <td><a
+                                                        href="/guru/{{ $nilai->guru->id }}/profile">{{ $nilai->guru->nama_guru }}</a>
+                                                </td>
+                                                <td><a href="/penilaian/{{ $nilai->penilaian->id }}/profile">{{ $nilai->penilaian->nama_tes }}
+                                                </td>
+                                                <td><a
+                                                        href="/kelas/{{ $nilai->kelas->id }}/profile">{{ $nilai->kelas->nama }}</a>
+                                                </td>
+                                                <td><a href="/test/{{ $nilai->siswa->id }}/profile">{{ $nilai->siswa->nama_depan }}
+                                                        {{ $nilai->siswa->nama_belakang }}</a>
                                                 </td>
                                                 <td>{{ $nilai->nilai }}</td>
                                                 <td>
@@ -184,8 +196,9 @@
                                                             <div
                                                                 class="form-group {{ $errors->has('nilai_start') ? ' has-error' : '' }}">
                                                                 <label for="exampleFormControlInput1">Mulai</label>
-                                                                <input name="nilai_start" type="text" class="form-control"
-                                                                    id="exampleFormControlInput1" placeholder="Kapan mulai?"
+                                                                <input name="nilai_start" type="text"
+                                                                    class="form-control" id="exampleFormControlInput1"
+                                                                    placeholder="Kapan mulai?"
                                                                     value="{{ $nilai_start[0] }}">
                                                                 @if ($errors->has('nilai_start'))
                                                                     <span
@@ -201,8 +214,8 @@
                                                             <div
                                                                 class="form-group {{ $errors->has('nilai_end') ? ' has-error' : '' }}">
                                                                 <label for="exampleFormControlInput1">Berakhir</label>
-                                                                <input name="nilai_end" type="text" class="form-control"
-                                                                    id="exampleFormControlInput1"
+                                                                <input name="nilai_end" type="text"
+                                                                    class="form-control" id="exampleFormControlInput1"
                                                                     placeholder="Kapan selesai?"
                                                                     value="{{ $nilai_end[0] }}">
                                                                 @if ($errors->has('nilai_end'))
@@ -263,7 +276,8 @@
                                                         <div class="col-sm-4">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlSelect1">KELAS</label>
-                                                                <select name="kelas_id" class="form-control" id="kelas">
+                                                                <select name="kelas_id" class="form-control"
+                                                                    id="kelas">
                                                                     <option hidden>Pilih Kelas</option>
                                                                     @foreach ($kelas as $key => $m)
                                                                         <option value="{{ $m->id }}">
@@ -276,11 +290,14 @@
                                                         <div class="col-sm-4">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlSelect1">SISWA</label>
-                                                                <select name="siswa_id" class="form-control" id="siswa">
+                                                                <select name="siswa_id" class="form-control"
+                                                                    id="siswa">
                                                                     <!--<option>---</option>
-                                                                                        @foreach ($siswa as $key => $m)<option value="{{ $m->id }}">
-                                                                                                {{ $m->nama_depan }}
-                                                                                                {{ $m->nama_belakang }}</option>@endforeach -->
+                                                                                            @foreach ($siswa as $key => $m)
+    <option value="{{ $m->id }}">
+                                                                                                    {{ $m->nama_depan }}
+                                                                                                    {{ $m->nama_belakang }}</option>
+    @endforeach -->
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -336,8 +353,8 @@
                                                         class="form-group {{ $errors->has('nilai_deskripsi') ? ' has-error' : '' }}">
                                                         <label for="exampleFormControlTextarea1">PERNYATAAN
                                                             NILAI</label>
-                                                        <textarea name="nilai_deskripsi" class="form-control" id="exampleFormControlTextarea1" placeholder="Pernyataan nilai"
-                                                            value="{{ old('nilai_deskripsi') }}" rows="3"></textarea>
+                                                        <textarea name="nilai_deskripsi" class="form-control" id="exampleFormControlTextarea1"
+                                                            placeholder="Pernyataan nilai" value="{{ old('nilai_deskripsi') }}" rows="3"></textarea>
                                                     </div>
                                                     @if ($errors->has('nilai_deskripsi'))
                                                         <span
