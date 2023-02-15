@@ -212,6 +212,11 @@ class NilaiController extends Controller
         // alihkan halaman kembali
         return redirect('/nilai');
     }
+    public function export_excel()
+    {
+
+        return Excel::download(new NilaiExport, 'template_import_nilai.xlsx');
+    }
     public function extra()
     {
     	$data_extra = Extra::all();

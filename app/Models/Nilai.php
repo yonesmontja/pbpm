@@ -21,18 +21,19 @@ class Nilai extends Model implements Auditable
 
     protected $table = 'nilai';
     protected $fillable = [
-    'nilai_start',
-    'nilai',
-    'kompetensi_inti_id',
-    'mapel_id',
-    'kelas_id',
-    'penilaian_id',
-    'guru_id',
-    'siswa_id',
+        'nilai_start',
+        'nilai',
+        'kompetensi_inti_id',
+        'mapel_id',
+        'kelas_id',
+        'penilaian_id',
+        'guru_id',
+        'siswa_id',
         'tahunpel_id',
-    'nilai_end',
-    'nilai_deskripsi',
-    'nilai_notes'];
+        'nilai_end',
+        'nilai_deskripsi',
+        'nilai_notes'
+    ];
 
     /**
      * Get the kompetensiinti that owns the Nilai
@@ -52,11 +53,11 @@ class Nilai extends Model implements Auditable
     {
         return $this->belongsTo(Mapel::class, 'mapel_id', 'id');
     }
-/**
- * Get the penilaian that owns the Nilai
- *
- * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
- */
+    /**
+     * Get the penilaian that owns the Nilai
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function penilaian(): BelongsTo
     {
         return $this->belongsTo(Penilaian::class, 'penilaian_id', 'id');
@@ -100,5 +101,4 @@ class Nilai extends Model implements Auditable
     {
         return $this->belongsTo(Tahunpel::class, 'tahunpel_id', 'id');
     }
-
 }

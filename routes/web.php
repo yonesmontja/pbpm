@@ -290,6 +290,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
         return view('nilai.filter', compact('data','mapel','siswa','penilaian','guru','kelas','kompetensiinti'));
     });
     Route::post('/nilai/import_excel',[NilaiController::class,'import_excel']);
+    Route::post('/nilai/export_excel', [NilaiController::class, 'export_excel']);
 	Route::post('/nilai/nilaicreate',[NilaiController::class,'nilaicreate']);
 	Route::get('/nilai/{nilai}/nilaidelete',[NilaiController::class,'nilaidelete']);
 	Route::get('/nilai/{nilai}/nilaiedit',[NilaiController::class,'nilaiedit']);
