@@ -56,11 +56,11 @@
           <li><a class="nav-link scrollto" href="#gallery">Program</a></li>
           <li><a class="nav-link scrollto" href="#team">Tim Guru</a></li>
           <li><a class="nav-link scrollto" href="#pricing">Kurikulum</a></li>
-          <li class="dropdown"><a href="#"><span>Login</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="/login"><span>Login</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">Admin</a></li>
-              <li><a href="#">Siswa</a></li>
-              <li><a href="#">Guru</a></li>
+              <li><a href="/login">Admin</a></li>
+              <li><a href="/login">Siswa</a></li>
+              <li><a href="/login">Guru</a></li>
 
             </ul>
           </li>
