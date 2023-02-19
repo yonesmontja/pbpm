@@ -79,9 +79,51 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <!-- Export Excel -->
                                     <div class="col-sm-6">
-                                        <a href="/nilai/export_excel" class="btn btn-primary float btn-sm" target="_blank">EXPORT EXCEL</a>
+                                        <a href="/nilai/export_excel" class="btn btn-primary float btn-sm"
+                                            target="_blank">EXPORT NILAI</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="card-header">
+                                <div class="row">
+                                    <!-- Download Excel -->
+                                    <div class="col-sm-4">
+                                        <a href="{{ URL::to('/') }}/file_nilai/nilai_kelas1_form.xlsx" target="_blank">
+                                            <button class="btn"><i class="fa fa-download"></i> Form Nilai Kls 1</button>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <a href="{{ URL::to('/') }}/file_nilai/nilai_kelas2_form.xlsx" target="_blank">
+                                            <button class="btn"><i class="fa fa-download"></i> Form Nilai Kls 2</button>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <a href="{{ URL::to('/') }}/file_nilai/nilai_kelas3_form.xlsx" target="_blank">
+                                            <button class="btn"><i class="fa fa-download"></i> Form Nilai Kls 3</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-header">
+                                <div class="row">
+                                    <!-- Download Excel -->
+                                    <div class="col-sm-4">
+                                        <a href="{{ URL::to('/') }}/file_nilai/nilai_kelas4_form.xlsx" target="_blank">
+                                            <button class="btn"><i class="fa fa-download"></i> Form Nilai Kls 4</button>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <a href="{{ URL::to('/') }}/file_nilai/nilai_kelas5_form.xlsx" target="_blank">
+                                            <button class="btn"><i class="fa fa-download"></i> Form Nilai Kls 5</button>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <a href="{{ URL::to('/') }}/file_nilai/nilai_kelas6_form.xlsx" target="_blank">
+                                            <button class="btn"><i class="fa fa-download"></i> Form Nilai Kls 6</button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -293,10 +335,10 @@
                                                                 <select name="siswa_id" class="form-control"
                                                                     id="siswa">
                                                                     <!--<option>---</option>
-                                                                                            @foreach ($siswa as $key => $m)
+                                                                                                    @foreach ($siswa as $key => $m)
     <option value="{{ $m->id }}">
-                                                                                                    {{ $m->nama_depan }}
-                                                                                                    {{ $m->nama_belakang }}</option>
+                                                                                                            {{ $m->nama_depan }}
+                                                                                                            {{ $m->nama_belakang }}</option>
     @endforeach -->
                                                                 </select>
                                                             </div>

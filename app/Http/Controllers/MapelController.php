@@ -88,6 +88,7 @@ class MapelController extends Controller
     {
         $mapel1 = Mapel::find($mapel->id);
         $penilaian1 = Penilaian::find($mapel->id);
+
         $jml_kelas_penilaian = Nilai::where('mapel_id','=',$mapel->id)->where('kelas_id','=',1)->pluck('mapel_id','kelas_id')->count()+
                              Nilai::where('mapel_id','=',$mapel->id)->where('kelas_id','=',2)->pluck('mapel_id','kelas_id')->count()+
                              Nilai::where('mapel_id','=',$mapel->id)->where('kelas_id','=',3)->pluck('mapel_id','kelas_id')->count()+
@@ -113,8 +114,9 @@ class MapelController extends Controller
         $rata_kelas = number_format((float)$rata_kelas1, 1, '.', '');
         //-----------------------------------------------
 
-
         $nilai = Nilai::all()->where('mapel_id','=',$mapel->id);
+        $nilai1 = Nilai::all()->where('mapel_id', '=', $mapel->id)->where('penilaian_id', '=', 6)->avg('nilai');
+        //dd($nilai1);
         $user = User::all();
         // hitung nilai rata-rata per mapel $chart_nilai[] untuk ditampilkan di grafik
         for($bulan=1; $bulan < 7; $bulan++){
@@ -304,6 +306,7 @@ class MapelController extends Controller
             'mapel'=>$mapel,
             'jml_kelas_penilaian' => $jml_kelas_penilaian,
             'nilai' => $nilai,
+            'nilai1' => $nilai1,
             'mapel1' => $mapel1,
             'rata_kelas' => $rata_kelas,
             'penilaian_list' => $penilaian_list,
