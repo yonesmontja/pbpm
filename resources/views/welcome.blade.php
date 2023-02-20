@@ -667,8 +667,8 @@
             <div class="container">
 
                 <div class="section-title" data-aos="fade-up">
-                    <h2>Pricing</h2>
-                    <p>Check our Pricing</p>
+                    <h2>Kurikulum</h2>
+                    <p>Pengkajian Budaya Papua dan Modernisasi</p>
                 </div>
 
                 <div class="row" data-aos="fade-left">
