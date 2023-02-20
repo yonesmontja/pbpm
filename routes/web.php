@@ -27,6 +27,7 @@ use App\Http\Controllers\SklController;
 use App\Http\Controllers\TduController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\HeroController;
 use App\Http\Controllers\MisiController;
 use App\Http\Controllers\PpknController;
 use App\Http\Controllers\SwotController;
@@ -65,9 +66,7 @@ use App\Http\Controllers\KompetensidasarController;
 use App\Http\Controllers\LangkahstrategisController;
 use App\Http\Controllers\DependentDropdownController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HeroController::class, 'index']);
 
 Auth::routes();
 
