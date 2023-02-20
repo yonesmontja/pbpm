@@ -583,8 +583,8 @@
             <div class="container">
 
                 <div class="section-title" data-aos="fade-up">
-                    <h2>Team</h2>
-                    <p>Our Great Team</p>
+                    <h2>Guru</h2>
+                    <p>Tim Guru Hebat</p>
                 </div>
 
                 <div class="row" data-aos="fade-left">
@@ -594,8 +594,8 @@
                             <div class="pic"><img src="{{ asset('/frontend2/assets/img/team/team-1.jpg') }}"
                                     class="img-fluid" alt=""></div>
                             <div class="member-info">
-                                <h4>Walter White</h4>
-                                <span>Chief Executive Officer</span>
+                                <h4>Chandra Kirana, S.Pd</h4>
+                                <span>Kelas 6</span>
                                 <div class="social">
                                     <a href=""><i class="bi bi-twitter"></i></a>
                                     <a href=""><i class="bi bi-facebook"></i></a>
@@ -611,8 +611,8 @@
                             <div class="pic"><img src="{{ asset('/frontend2/assets/img/team/team-2.jpg') }}"
                                     class="img-fluid" alt=""></div>
                             <div class="member-info">
-                                <h4>Sarah Jhonson</h4>
-                                <span>Product Manager</span>
+                                <h4>Maria Sura Wuwur</h4>
+                                <span>Kelas 2</span>
                                 <div class="social">
                                     <a href=""><i class="bi bi-twitter"></i></a>
                                     <a href=""><i class="bi bi-facebook"></i></a>
@@ -628,8 +628,8 @@
                             <div class="pic"><img src="{{ asset('/frontend2/assets/img/team/team-3.jpg') }}"
                                     class="img-fluid" alt=""></div>
                             <div class="member-info">
-                                <h4>William Anderson</h4>
-                                <span>CTO</span>
+                                <h4>Merkianus Kasipmabin, S.Pd</h4>
+                                <span>Kepala Sekolah</span>
                                 <div class="social">
                                     <a href=""><i class="bi bi-twitter"></i></a>
                                     <a href=""><i class="bi bi-facebook"></i></a>
@@ -645,8 +645,8 @@
                             <div class="pic"><img src="{{ asset('/frontend2/assets/img/team/team-4.jpg') }}"
                                     class="img-fluid" alt=""></div>
                             <div class="member-info">
-                                <h4>Amanda Jepson</h4>
-                                <span>Accountant</span>
+                                <h4>Yulita Bamulki</h4>
+                                <span>Kelas 1</span>
                                 <div class="social">
                                     <a href=""><i class="bi bi-twitter"></i></a>
                                     <a href=""><i class="bi bi-facebook"></i></a>
@@ -675,69 +675,65 @@
 
                     <div class="col-lg-3 col-md-6">
                         <div class="box" data-aos="zoom-in" data-aos-delay="100">
-                            <h3>Free</h3>
-                            <h4><sup>$</sup>0<span> / month</span></h4>
+                            <h3>Kelas 1-2</h3>
+                            <h4><sup>*</sup>Expert<span> Keluarga </span></h4>
                             <ul>
-                                <li>Aida dere</li>
-                                <li>Nec feugiat nisl</li>
-                                <li>Nulla at volutpat dola</li>
-                                <li class="na">Pharetra massa</li>
-                                <li class="na">Massa ultricies mi</li>
+                                <li>Citra Allah</li>
+                                <li>Expert Keluarga</li>
+                                <li>Expert Tempat Tinggal</li>
+
                             </ul>
                             <div class="btn-wrap">
-                                <a href="#" class="btn-buy">Buy Now</a>
+                                <a href="#" class="btn-buy">Expert Keluarga</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
                         <div class="box featured" data-aos="zoom-in" data-aos-delay="200">
-                            <h3>Business</h3>
-                            <h4><sup>$</sup>19<span> / month</span></h4>
+                            <h3>Kelas 3-4</h3>
+                            <h4><sup>*</sup>Expert<span> Lingkungan </span></h4>
                             <ul>
-                                <li>Aida dere</li>
-                                <li>Nec feugiat nisl</li>
-                                <li>Nulla at volutpat dola</li>
-                                <li>Pharetra massa</li>
-                                <li class="na">Massa ultricies mi</li>
+                                <li>Lingkungan Tempat Tinggal</li>
+                                <li>Kampung Halaman</li>
+                                <li>Sumber Daya Alam</li>
+
                             </ul>
                             <div class="btn-wrap">
-                                <a href="#" class="btn-buy">Buy Now</a>
+                                <a href="#" class="btn-buy">Expert Lingkungan</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
                         <div class="box" data-aos="zoom-in" data-aos-delay="300">
-                            <h3>Developer</h3>
-                            <h4><sup>$</sup>29<span> / month</span></h4>
+                            <h3>Kelas 5-6</h3>
+                            <h4><sup>*</sup>Expert<span> Kampung </span></h4>
                             <ul>
-                                <li>Aida dere</li>
-                                <li>Nec feugiat nisl</li>
-                                <li>Nulla at volutpat dola</li>
-                                <li>Pharetra massa</li>
-                                <li>Massa ultricies mi</li>
+                                <li>Story Telling</li>
+                                <li>Sosial-Budaya</li>
+                                <li>#CeritaMasaDepan</li>
+
                             </ul>
                             <div class="btn-wrap">
-                                <a href="#" class="btn-buy">Buy Now</a>
+                                <a href="#" class="btn-buy">Expert Kampung</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
                         <div class="box" data-aos="zoom-in" data-aos-delay="400">
-                            <span class="advanced">Advanced</span>
-                            <h3>Ultimate</h3>
-                            <h4><sup>$</sup>49<span> / month</span></h4>
+                            <span class="advanced">PBPM</span>
+                            <h3>Akselerasi</h3>
+                            <h4><sup>*</sup>Normal<span> Akademis</span></h4>
                             <ul>
-                                <li>Aida dere</li>
-                                <li>Nec feugiat nisl</li>
-                                <li>Nulla at volutpat dola</li>
-                                <li>Pharetra massa</li>
-                                <li>Massa ultricies mi</li>
+                                <li>Matematika</li>
+                                <li>Bahasa Indonesia</li>
+                                <li>Komputer</li>
+
                             </ul>
                             <div class="btn-wrap">
-                                <a href="#" class="btn-buy">Buy Now</a>
+                                <a href="#" class="btn-buy">Akselerasi</a>
                             </div>
                         </div>
                     </div>
