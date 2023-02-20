@@ -657,6 +657,7 @@ class ComposerStaticInit3138ba957d040e3c4b33038701880e47
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Exports\\NilaiExport' => __DIR__ . '/../..' . '/app/Exports/NilaiExport.php',
         'App\\Exports\\SiswaExport' => __DIR__ . '/../..' . '/app/Exports/SiswaExport.php',
         'App\\Http\\Controllers\\ApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/ApiController.php',
         'App\\Http\\Controllers\\AuditController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuditController.php',
@@ -749,6 +750,7 @@ class ComposerStaticInit3138ba957d040e3c4b33038701880e47
         'App\\Models\\Extra' => __DIR__ . '/../..' . '/app/Models/Extra.php',
         'App\\Models\\FastEvent' => __DIR__ . '/../..' . '/app/Models/FastEvent.php',
         'App\\Models\\Guru' => __DIR__ . '/../..' . '/app/Models/Guru.php',
+        'App\\Models\\Hero' => __DIR__ . '/../..' . '/app/Models/Hero.php',
         'App\\Models\\Ikanasin' => __DIR__ . '/../..' . '/app/Models/Ikanasin.php',
         'App\\Models\\Ipa' => __DIR__ . '/../..' . '/app/Models/Ipa.php',
         'App\\Models\\Ips' => __DIR__ . '/../..' . '/app/Models/Ips.php',

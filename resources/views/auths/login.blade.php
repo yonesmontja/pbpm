@@ -21,7 +21,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b> SD INPRES DABOLDING</a>
+    <a href="/"><b>Admin</b> SD INPRES DABOLDING</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -63,7 +63,7 @@
         </div>
       </form>
       <p class="mb-0">
-        <a href="#" class="text-center">ALIRENA | {{ date('Y') }}</a>
+        <a href="/" class="text-center">ALIRENA | {{ date('Y') }}</a>
       </p>
     </div>
     <!-- /.login-card-body -->

@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{asset('/frontend2/assets/img/favicon.png')}}" rel="icon">
+  <link href="{{ asset('/frontend2/assets/img/favicon.png') }}" rel="icon">
   <link href="{{ asset('/frontend2/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -117,7 +117,7 @@
 
         <div class="row">
           <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch" data-aos="fade-right">
-            <a href="https://www.youtube.com/watch?v=StpBR2W8G5A" class="glightbox play-btn mb-4"></a>
+            <a href="https://www.youtube.com/watch?v=e7VjVK3PD7w" class="glightbox play-btn mb-4"></a>
           </div>
 
           <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5" data-aos="fade-left">
@@ -127,24 +127,25 @@
             <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
               <div class="icon"><i class="bx bx-fingerprint"></i></div>
               <h4 class="title"><a href="">Pilar Misi Karakter Unggul dan Pendidikan Berbasis Budaya</a></h4>
-              <p class="description">Meningkatkan keimanan, budi pekerti yang luhur dalam penghayatan terhadap agama yang dianut</p>
-              <p class="description">Mengembangkan pembelajaran yang aktif, kreatif, dan inovatif</p>
-              <p class="description">Melaksanakan pembelajaran terpadu yang memiliki konteks budaya dan lingkungan</p>
-              <p class="description">Mengembangkan kemampuan berpikir kritis dan imajinatif</p>
+              <p class="description"> (1) Meningkatkan keimanan, budi pekerti yang luhur dalam penghayatan terhadap agama yang dianut,
+              (2) Mengembangkan pembelajaran yang aktif, kreatif, dan inovatif,
+              (3) Melaksanakan pembelajaran terpadu yang memiliki konteks budaya dan lingkungan,
+              (4) Mengembangkan kemampuan berpikir kritis dan imajinatif</p>
             </div>
 
             <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">
               <div class="icon"><i class="bx bx-gift"></i></div>
               <h4 class="title"><a href="">Pilar Misi SDM Unggul & SarPras</a></h4>
-              <p class="description">Menghadirkan sekolah unggul dan memiliki tenaga pendidik yang berkemampuan dalam literasi dan numerasi</p>
-              <p class="description">Mempersiapkan sumber daya manusia yang bermutu dalam era modern dan digitalisasi</p>
-              <p class="description">Menyediakan sarana prasarana yang diperlukan dalam pelayanan pendidikan</p>
+              <p class="description">(5) Menghadirkan sekolah unggul dan memiliki tenaga pendidik yang berkemampuan dalam literasi dan numerasi,
+                (6) Mempersiapkan sumber daya manusia yang bermutu dalam era modern dan digitalisasi, (7)
+                Mempersiapkan sumber daya manusia yang bermutu dalam era modern dan digitalisasi, (8) Mempersiapkan sumber daya manusia yang bermutu dalam era modern dan digitalisasi, (9) Menyediakan sarana prasarana yang diperlukan dalam pelayanan pendidikan
+              </p>
             </div>
 
             <div class="icon-box" data-aos="zoom-in" data-aos-delay="300">
               <div class="icon"><i class="bx bx-atom"></i></div>
               <h4 class="title"><a href="">Pilar Misi Mitra Pendidik</a></h4>
-              <p class="description">Membangun kerja sama dengan masyarakat dalam pelaksanaan program sekolah</p>
+              <p class="description">(10) Membangun kerja sama dengan masyarakat dalam pelaksanaan program sekolah</p>
             </div>
 
           </div>
