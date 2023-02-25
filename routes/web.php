@@ -139,10 +139,8 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/kelas/{kelas}/kelasdelete',[KelasController::class,'kelasdelete']);
 	Route::get('/kelas/{kelas}/profile',[KelasController::class,'profile']);
 
-	Route::get('/tdu',[DashboardController::class,'index'])->name('tdu');
-	Route::get('/kurikulum',[KurikulumController::class,'index'])->name('kurikulum');
-	Route::get('/kesiswaan',[KesiswaanController::class,'index'])->name('kesiswaan');
-	Route::get('/widget',[WidgetController::class,'index']);
+
+
 
 	Route::get('/jurnalringkasan',[JurnalController::class,'index'])->name('jurnalringkasan');
 	Route::get('/jurnalsiswa',[JurnalController::class,'jurnalsiswa'])->name('jurnalsiswa');
@@ -265,30 +263,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
         return view('nilai.extrafilter', compact('data_extra','mapel','siswa','penilaian','guru','kelas','kompetensiinti'));
     });
 
-    Route::get('/nilai',[NilaiController::class,'nilai']);
-    Route::get('/getSiswa/{id}', [NilaiController::class, 'getSiswa']);
-    Route::get('/nilai_filter', function () {
-        if (request()->start_date || request()->end_date) {
-            $start_date = Carbon::parse(request()->start_date)->toDateTimeString();
-            $end_date = Carbon::parse(request()->end_date)->toDateTimeString();
-            $data = App\Models\Nilai::whereBetween('created_at',[$start_date,$end_date])->get();
-        } else {
-            $data = App\Models\Nilai::latest()->get();
-        }
-        $kompetensiinti = Kompetensiinti::all();
-            $mapel = Mapel::all();
-            $siswa = Siswa::all();
-            $penilaian = Penilaian::all();
-            $guru = Guru::all();
-            $kelas = Kelas::all();
-        return view('nilai.filter', compact('data','mapel','siswa','penilaian','guru','kelas','kompetensiinti'));
-    });
-    Route::post('/nilai/import_excel',[NilaiController::class,'import_excel']);
-    Route::get('/nilai/export_excel', [NilaiController::class, 'export_excel']);
-	Route::post('/nilai/nilaicreate',[NilaiController::class,'nilaicreate']);
-	Route::get('/nilai/{nilai}/nilaidelete',[NilaiController::class,'nilaidelete']);
-	Route::get('/nilai/{nilai}/nilaiedit',[NilaiController::class,'nilaiedit']);
-	Route::post('/nilai/{nilai}/nilaiupdate',[NilaiController::class,'nilaiupdate']);
+
 
     Route::get('/audit',[NilaiController::class,'audit']);
 
@@ -355,6 +330,36 @@ Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
     Route::post('/test/{siswa}/addnilai', [SiswaController::class, 'testaddnilai']);
     Route::get('/test/{siswa}/{idmapel}/testdeletenilai', [SiswaController::class, 'testdeletenilai']);
     Route::get('/test/{id}/aktivasi', [SiswaController::class, 'testaktivasi']);
+
+    Route::get('/tdu', [DashboardController::class, 'index'])->name('tdu');
+    Route::get('/kurikulum', [KurikulumController::class, 'index'])->name('kurikulum');
+    Route::get('/kesiswaan', [KesiswaanController::class, 'index'])->name('kesiswaan');
+    Route::get('/widget', [WidgetController::class, 'index']);
+
+    Route::get('/nilai', [NilaiController::class, 'nilai']);
+    Route::get('/getSiswa/{id}', [NilaiController::class, 'getSiswa']);
+    Route::get('/nilai_filter', function () {
+        if (request()->start_date || request()->end_date) {
+            $start_date = Carbon::parse(request()->start_date)->toDateTimeString();
+            $end_date = Carbon::parse(request()->end_date)->toDateTimeString();
+            $data = App\Models\Nilai::whereBetween('created_at', [$start_date, $end_date])->get();
+        } else {
+            $data = App\Models\Nilai::latest()->get();
+        }
+        $kompetensiinti = Kompetensiinti::all();
+        $mapel = Mapel::all();
+        $siswa = Siswa::all();
+        $penilaian = Penilaian::all();
+        $guru = Guru::all();
+        $kelas = Kelas::all();
+        return view('nilai.filter', compact('data', 'mapel', 'siswa', 'penilaian', 'guru', 'kelas', 'kompetensiinti'));
+    });
+    Route::post('/nilai/import_excel', [NilaiController::class, 'import_excel']);
+    Route::get('/nilai/export_excel', [NilaiController::class, 'export_excel']);
+    Route::post('/nilai/nilaicreate', [NilaiController::class, 'nilaicreate']);
+    Route::get('/nilai/{nilai}/nilaidelete', [NilaiController::class, 'nilaidelete']);
+    Route::get('/nilai/{nilai}/nilaiedit', [NilaiController::class, 'nilaiedit']);
+    Route::post('/nilai/{nilai}/nilaiupdate', [NilaiController::class, 'nilaiupdate']);
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:admin,siswa,guru']], function ()

@@ -95,7 +95,7 @@
                                     <img class="profile-user-img img-fluid img-circle" src="{{ $user->avatar() }}"
                                         alt="User profile picture">
                                 </div>
-                                @if ($user->role == 'admin')
+                                @if ($user->role == 'admin' || $user -> role == 'guru')
                                     <h3 class="profile-username text-center"><a href="#">{{ $user->name }} </a></h3>
                                 @else
                                     <h3 class="profile-username text-center"><a
@@ -110,14 +110,14 @@
                                         <b>Email</b> <a class="float-right">{{ $user->email }}</a>
                                     </li>
                                     <li class="list-group-item">
-                                        @if ($user->role == 'admin')
+                                        @if ($user->role == 'admin' || $user -> role == 'guru')
                                             <b>Role</b> <a class="float-right">{{ $user->role }}</a>
                                         @else
                                             <b>Kelas</b> <a class="float-right">{{ $user->siswa->kelas }}</a>
                                         @endif
                                     </li>
                                     <li class="list-group-item">
-                                        @if ($user -> role == 'admin')
+                                        @if ($user -> role == 'admin' || $user -> role == 'guru')
                                             ---
                                         @else
                                             <b>Jenis Kelamin</b> <a
@@ -142,7 +142,7 @@
                             <div class="card-body">
                                 <strong><i class="fas fa-book mr-1"></i> Tempat Lahir</strong>
 
-                                @if ($user -> role == 'admin')
+                                @if ($user -> role == 'admin' || $user -> role == 'guru')
                                     ---
                                 @else
                                     <p class="text-muted">
@@ -152,7 +152,7 @@
 
                                 <hr>
 
-                                @if ($user -> role == 'admin')
+                                @if ($user -> role == 'admin' || $user -> role == 'guru')
                                     ---
                                 @else
                                     <strong><i class="fas fa-map-marker-alt mr-1"></i> Tanggal Lahir</strong>
@@ -162,7 +162,7 @@
 
                                 <hr>
 
-                                @if ($user -> role == 'admin')
+                                @if ($user -> role == 'admin' || $user -> role == 'guru')
 
                                 @else
                                     <strong><i class="fas fa-pencil-alt mr-1"></i> Agama</strong>
@@ -172,7 +172,7 @@
 
                                 <hr>
 
-                                @if ($user -> role == 'admin')
+                                @if ($user -> role == 'admin' || $user -> role == 'guru')
 
                                 @else
                                     <strong><i class="far fa-file-alt mr-1"></i> Alamat</strong>
