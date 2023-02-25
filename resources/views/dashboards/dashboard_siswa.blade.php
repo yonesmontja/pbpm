@@ -15,6 +15,7 @@
                              <h1>Dashboard Siswa</h1>
                          @else
                              <h1>Dashboard</h1>
+                         @endif
                      </div>
                      <div class="col-sm-6">
                          <ol class="breadcrumb float-sm-right">
@@ -23,6 +24,7 @@
                                  <li class="breadcrumb-item active">Dashboard Siswa</li>
                              @else
                                  <li class="breadcrumb-item active">Dashboard</li>
+                             @endif
                          </ol>
                      </div>
                  </div>
@@ -83,7 +85,7 @@
                                                      class="btn btn-primary btn-lg btn-flat">
                                                      Lihat Nilai
                                                  </a></h5>
-                                         @else
+
                                          @endif
 
 

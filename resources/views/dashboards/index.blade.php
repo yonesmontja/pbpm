@@ -2067,7 +2067,6 @@
                     }
                 }
             })
-        })
+        });
     </script>
-
 @endsection
