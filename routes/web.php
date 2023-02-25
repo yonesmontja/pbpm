@@ -81,6 +81,9 @@ Route::get('/reset',[AuthController::class,'reset'])->name('reset');
 
 Route::group(['middleware' => ['auth','checkRole:admin']], function()
 {
+    Route::get('/hero', [HeroController::class, 'hero']);
+    Route::post('/hero/herocreate', [HeroController::class, 'herocreate']);
+
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::resource('posting',PostingController::class);
     Route::resource('usertest',UsertestController::class);
@@ -99,15 +102,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
     Route::get('/siswa/{id}/cover_pdf',[SiswaController::class,'cover_pdf']);
     Route::get('/siswa/{id}/biodata_pdf',[SiswaController::class,'biodata_pdf']);
 
-	Route::get('/test',[SiswaController::class,'test']);
-	Route::post('/test/testcreate',[SiswaController::class,'testcreate']);
-	Route::get('/test/{siswa}/edit',[SiswaController::class,'testedit']);
-	Route::post('/test/{siswa}/update',[SiswaController::class,'testupdate']);
-	Route::get('/test/{siswa}/delete',[SiswaController::class,'testdelete']);
-	Route::get('/test/{siswa}/profile',[SiswaController::class,'testprofile']);
-	Route::post('/test/{siswa}/addnilai',[SiswaController::class,'testaddnilai']);
-	Route::get('/test/{siswa}/{idmapel}/testdeletenilai',[SiswaController::class,'testdeletenilai']);
-	Route::get('/test/{id}/aktivasi',[SiswaController::class,'testaktivasi']);
+
 
     Route::get('/sekolah',[SekolahController::class,'index']);
 	Route::post('/sekolah/sekolahcreate',[SekolahController::class,'sekolahcreate']);
@@ -342,6 +337,24 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 		Route::delete('/{id}/delete', [PpknController::class,'delete'])->name('ppkn.destroy');
 	});
 
+});
+
+Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/user/{id}/profile', [UserController::class, 'userprofile']);
+    Route::get('/my_profile/{id}/myprofile', [UserController::class, 'my_profile']);
+    Route::get('/user/{user}/edit', [UserController::class, 'useredit']);
+    Route::post('/user/{user}/update', [UserController::class, 'userupdate']);
+    Route::get('/test/{siswa}/profile', [SiswaController::class, 'testprofile']);
+    Route::get('/test', [SiswaController::class, 'test']);
+    Route::post('/test/testcreate', [SiswaController::class, 'testcreate']);
+    Route::get('/test/{siswa}/edit', [SiswaController::class, 'testedit']);
+    Route::post('/test/{siswa}/update', [SiswaController::class, 'testupdate']);
+    Route::get('/test/{siswa}/delete', [SiswaController::class, 'testdelete']);
+    Route::get('/test/{siswa}/profile', [SiswaController::class, 'testprofile']);
+    Route::post('/test/{siswa}/addnilai', [SiswaController::class, 'testaddnilai']);
+    Route::get('/test/{siswa}/{idmapel}/testdeletenilai', [SiswaController::class, 'testdeletenilai']);
+    Route::get('/test/{id}/aktivasi', [SiswaController::class, 'testaktivasi']);
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:admin,siswa,guru']], function ()

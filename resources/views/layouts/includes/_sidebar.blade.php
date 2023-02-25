@@ -257,6 +257,138 @@
                           </ul>
                       </li>
                   @endif
+                  @if (auth()->user()->role == 'guru')
+                      <li class="nav-item has-treeview">
+                          <a href="#" class="nav-link">
+                              <i class="nav-icon fas fa-copy"></i>
+                              <p>
+                                  Jurnal
+                                  <i class="fas fa-angle-left right"></i>
+                                  <span class="badge badge-info right">{{ totalJournal() }}</span>
+                              </p>
+                          </a>
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="/jurnalpost" class="nav-link {{ set_active('jurnalpost') }}">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Jurnal Belajar</p>
+                                  </a>
+                              </li>
+
+                              <li class="nav-item">
+                                  <a href="/jurnalringkasan" class="nav-link {{ set_active('jurnalringkasan') }}">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Ringkasan Jurnal</p>
+                                  </a>
+                              </li>
+
+                          </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="/grafiknilai" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Grafik Nilai</p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="/grafikmateri" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Grafik Materi</p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="/grafikkompetensi" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Grafik Kompetensi</p>
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                          <a href="#" class="nav-link">
+                              <i class="nav-icon fas fa-table"></i>
+                              <p>
+                                  Raport
+                                  <i class="fas fa-angle-left right"></i>
+                              </p>
+                          </a>
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="/test" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Raport Siswa</p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="/extra" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Absensi & Catatan</p>
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                          <a href="#" class="nav-link">
+                              <i class="nav-icon fas fa-table"></i>
+                              <p>
+                                  Tabel Data
+                                  <i class="fas fa-angle-left right"></i>
+                              </p>
+                          </a>
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="/mapel" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Data Mapel</p>
+                                  </a>
+                              </li>
+                          </ul>
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="/nilai" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Data Nilai</p>
+                                  </a>
+                              </li>
+                          </ul>
+
+                      </li>
+                      <li class="nav-item has-treeview menu-open">
+                          <a href="/dashboard" class="nav-link active">
+                              <i class="nav-icon fas fa-tachometer-alt"></i>
+                              <p>
+                                  PBPM
+                                  <i class="right fas fa-angle-left"></i>
+                              </p>
+                          </a>
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="/kalender" class="nav-link">
+                                      <i class="nav-icon far fa-calendar-alt"></i>
+                                      <p>
+                                          Kalender
+                                          <span class="badge badge-info right">2</span>
+                                      </p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="/portofolio" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Portofolio</p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="/projects" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Project Siswa</p>
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
+
+                  @endif
               </ul>
           </nav>
           <!-- /.sidebar-menu -->

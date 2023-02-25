@@ -2799,12 +2799,31 @@ class SiswaController extends Controller
         $ratarata_raport = number_format((float)($ratarata_raport_pengetahuan+$ratarata_raport_keterampilan)/2, 1, '.', '');
         //----------------------------------------------------
         //input absensi
-        $sakit = Extra::all()->where('siswa_id','=',$id)->pluck('sakit');
-        $sakit1 = $sakit[0];
-        $alpa = Extra::all()->where('siswa_id','=',$id)->pluck('alpa');
-        $alpa1 = $alpa[0];
-        $ijin = Extra::all()->where('siswa_id','=',$id)->pluck('ijin');
-        $ijin1 = $ijin[0];
+        //dd(Extra::all()->where('siswa_id', '=', $id)->pluck('sakit'));
+        //dd(Extra::all()->where('siswa_id', '=', $id)->pluck('sakit')->isEmpty());
+        if (Extra::all()->where('siswa_id', '=', $id)->pluck('sakit')->isEmpty()) {
+            $sakit1 = 0;
+        } else {
+
+            $sakit = Extra::all()->where('siswa_id', '=', $id)->pluck('sakit');
+            $sakit1 = $sakit[0];
+        }
+
+        if (Extra::all()->where('siswa_id', '=', $id)->pluck('alpa')->isEmpty()) {
+            $alpa1 = 0;
+        } else {
+
+            $alpa = Extra::all()->where('siswa_id', '=', $id)->pluck('alpa');
+            $alpa1 = $alpa[0];
+        }
+
+        if (Extra::all()->where('siswa_id', '=', $id)->pluck('ijin')->isEmpty()) {
+            $ijin1 = 0;
+        } else {
+
+            $ijin = Extra::all()->where('siswa_id', '=', $id)->pluck('ijin');
+            $ijin1 = $ijin[0];
+        }
         //data sekolah
         $kepsek = Sekolah::all();
         foreach ($kepsek as $k)
