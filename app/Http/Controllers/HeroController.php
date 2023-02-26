@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use App\Models\Hero;
 use App\Models\Misi;
 use App\Models\Visi;
@@ -16,8 +17,9 @@ class HeroController extends Controller
     {
         $visi = Visi::all();
         $misi = Misi::all();
+        $guru = Guru::all();
         //dd($visi);
-        return view('welcome', ['visi' => $visi, 'misi' => $misi]);
+        return view('welcome', ['visi' => $visi, 'misi' => $misi, 'guru' => $guru]);
     }
 
     public function hero()

@@ -65,7 +65,7 @@
 
                         </ul>
                     </li>
-                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -343,7 +343,7 @@
 
                 <div class="row content">
                     <div class="col-md-4" data-aos="fade-right">
-                        <img src="{{ asset('/frontend2/assets/img/details-3.png') }}" class="img-fluid"
+                        <img src="{{ asset('/frontend2/assets/img/details-7.jpg') }}" class="img-fluid"
                             alt="">
                     </div>
                     <div class="col-md-8 pt-5" data-aos="fade-up">
@@ -366,7 +366,7 @@
 
                 <div class="row content">
                     <div class="col-md-4 order-1 order-md-2" data-aos="fade-left">
-                        <img src="{{ asset('/frontend2/assets/img/details-4.png') }}" class="img-fluid"
+                        <img src="{{ asset('/frontend2/assets/img/details-8.jpg') }}" class="img-fluid"
                             alt="">
                     </div>
                     <div class="col-md-8 pt-5 order-2 order-md-1" data-aos="fade-up">
@@ -589,73 +589,26 @@
 
                 <div class="row" data-aos="fade-left">
 
-                    <div class="col-lg-3 col-md-6">
-                        <div class="member" data-aos="zoom-in" data-aos-delay="100">
-                            <div class="pic"><img src="{{ asset('/frontend2/assets/img/team/team-1.jpg') }}"
-                                    class="img-fluid" alt=""></div>
-                            <div class="member-info">
-                                <h4>Chandra Kirana, S.Pd</h4>
-                                <span>Kelas 6</span>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
+                    @foreach ($guru as $g)
+                        <div class="col-lg-3 col-md-6">
+                            <div class="member" data-aos="zoom-in" data-aos-delay="100">
+                                <div class="pic"><img src="{{ $g -> avatar() }}"
+                                        class="img-fluid" alt=""></div>
+                                <div class="member-info">
+                                    <h4>{{ $g -> nama_guru }}</h4>
+                                    <span>Jumlah mapel: {{ $g -> mapel -> count() }}</span>
+                                    <div class="social">
+                                        <a href=""><i class="bi bi-twitter"></i></a>
+                                        <a href=""><i class="bi bi-facebook"></i></a>
+                                        <a href=""><i class="bi bi-instagram"></i></a>
+                                        <a href=""><i class="bi bi-linkedin"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
 
-                    <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-                        <div class="member" data-aos="zoom-in" data-aos-delay="200">
-                            <div class="pic"><img src="{{ asset('/frontend2/assets/img/team/team-2.jpg') }}"
-                                    class="img-fluid" alt=""></div>
-                            <div class="member-info">
-                                <h4>Maria Sura Wuwur</h4>
-                                <span>Kelas 2</span>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-                        <div class="member" data-aos="zoom-in" data-aos-delay="300">
-                            <div class="pic"><img src="{{ asset('/frontend2/assets/img/team/team-3.jpg') }}"
-                                    class="img-fluid" alt=""></div>
-                            <div class="member-info">
-                                <h4>Merkianus Kasipmabin, S.Pd</h4>
-                                <span>Kepala Sekolah</span>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-                        <div class="member" data-aos="zoom-in" data-aos-delay="400">
-                            <div class="pic"><img src="{{ asset('/frontend2/assets/img/team/team-4.jpg') }}"
-                                    class="img-fluid" alt=""></div>
-                            <div class="member-info">
-                                <h4>Yulita Bamulki</h4>
-                                <span>Kelas 1</span>
-                                <div class="social">
-                                    <a href=""><i class="bi bi-twitter"></i></a>
-                                    <a href=""><i class="bi bi-facebook"></i></a>
-                                    <a href=""><i class="bi bi-instagram"></i></a>
-                                    <a href=""><i class="bi bi-linkedin"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
 
@@ -674,7 +627,7 @@
                 <div class="row" data-aos="fade-left">
 
                     <div class="col-lg-3 col-md-6">
-                        <div class="box" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="box featured" data-aos="zoom-in" data-aos-delay="100">
                             <h3>Kelas 1-2</h3>
                             <h4><sup>*</sup>Expert<span> Keluarga </span></h4>
                             <ul>
@@ -706,7 +659,7 @@
                     </div>
 
                     <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
-                        <div class="box" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="box featured" data-aos="zoom-in" data-aos-delay="300">
                             <h3>Kelas 5-6</h3>
                             <h4><sup>*</sup>Expert<span> Kampung </span></h4>
                             <ul>
@@ -722,7 +675,7 @@
                     </div>
 
                     <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
-                        <div class="box" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="box featured" data-aos="zoom-in" data-aos-delay="400">
                             <span class="advanced">PBPM</span>
                             <h3>Akselerasi</h3>
                             <h4><sup>*</sup>Normal<span> Akademis</span></h4>
@@ -744,152 +697,12 @@
         </section><!-- End Pricing Section -->
 
         <!-- ======= Contact Section ======= -->
-        <section id="contact" class="contact">
-            <div class="container">
 
-                <div class="section-title" data-aos="fade-up">
-                    <h2>Contact</h2>
-                    <p>Contact Us</p>
-                </div>
-
-                <div class="row">
-
-                    <div class="col-lg-4" data-aos="fade-right" data-aos-delay="100">
-                        <div class="info">
-                            <div class="address">
-                                <i class="bi bi-geo-alt"></i>
-                                <h4>Location:</h4>
-                                <p>A108 Adam Street, New York, NY 535022</p>
-                            </div>
-
-                            <div class="email">
-                                <i class="bi bi-envelope"></i>
-                                <h4>Email:</h4>
-                                <p>info@example.com</p>
-                            </div>
-
-                            <div class="phone">
-                                <i class="bi bi-phone"></i>
-                                <h4>Call:</h4>
-                                <p>+1 5589 55488 55s</p>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-8 mt-5 mt-lg-0" data-aos="fade-left" data-aos-delay="200">
-
-                        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                            <div class="row">
-                                <div class="col-md-6 form-group">
-                                    <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Your Name" required>
-                                </div>
-                                <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="Your Email" required>
-                                </div>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input type="text" class="form-control" name="subject" id="subject"
-                                    placeholder="Subject" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                            </div>
-                            <div class="my-3">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div>
-                            </div>
-                            <div class="text-center"><button type="submit">Send Message</button></div>
-                        </form>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </section><!-- End Contact Section -->
 
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
-    <footer id="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="footer-info">
-                            <h3>Bootslander</h3>
-                            <p class="pb-3"><em>Qui repudiandae et eum dolores alias sed ea. Qui suscipit veniam
-                                    excepturi quod.</em></p>
-                            <p>
-                                A108 Adam Street <br>
-                                NY 535022, USA<br><br>
-                                <strong>Phone:</strong> +1 5589 55488 55<br>
-                                <strong>Email:</strong> info@example.com<br>
-                            </p>
-                            <div class="social-links mt-3">
-                                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-2 col-md-6 footer-links">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-2 col-md-6 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 footer-newsletter">
-                        <h4>Our Newsletter</h4>
-                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                        <form action="" method="post">
-                            <input type="email" name="email"><input type="submit" value="Subscribe">
-                        </form>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="copyright">
-                &copy; Copyright <strong><span>Bootslander</span></strong>. All Rights Reserved
-            </div>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bootslander-free-bootstrap-landing-page-template/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
-        </div>
-    </footer><!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
