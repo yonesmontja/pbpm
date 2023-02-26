@@ -489,30 +489,29 @@
         <!-- ======= Testimonials Section ======= -->
         <section id="testimonials" class="testimonials">
             <div class="container">
+                @foreach ($testimony as $t)
+                    <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+                        <div class="swiper-wrapper">
 
-                <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-                    <div class="swiper-wrapper">
 
-                        @foreach ($testimony as $t)
                             <div class="swiper-slide">
                                 <div class="testimonial-item">
-                                    <img src="{{ $t -> image() }}"
-                                        class="testimonial-img" alt="">
-                                    <h3>{{ $t -> nama }}</h3>
-                                    <h4>{{ $t -> pekerjaan }}</h4>
+                                    <img src="{{ $t->image() }}" class="testimonial-img" alt="">
+                                    <h3>{{ $t->nama }}</h3>
+                                    <h4>{{ $t->pekerjaan }}</h4>
                                     <p>
                                         <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        {{ $t -> komentar }}
+                                        {{ $t->komentar }}
                                         <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                                     </p>
                                 </div>
                             </div><!-- End testimonial item -->
-                        @endforeach
 
+
+                        </div>
+                        <div class="swiper-pagination"></div>
                     </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-
+                @endforeach
             </div>
         </section><!-- End Testimonials Section -->
 
