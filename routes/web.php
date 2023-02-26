@@ -59,6 +59,7 @@ use App\Http\Controllers\FastEventController;
 use App\Http\Controllers\KesiswaanController;
 use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\PenilaianController;
+use App\Http\Controllers\TestimonyController;
 use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\SwotanalysisController;
 use App\Http\Controllers\KompetensiintiController;
@@ -83,6 +84,9 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 {
     Route::get('/hero', [HeroController::class, 'hero']);
     Route::post('/hero/herocreate', [HeroController::class, 'herocreate']);
+
+    Route::get('/testimony', [TestimonyController::class, 'testimony']);
+    Route::post('/testimony/testimonycreate', [TestimonyController::class, 'testimonycreate']);
 
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::resource('posting',PostingController::class);

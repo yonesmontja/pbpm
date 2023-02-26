@@ -6,6 +6,7 @@ use App\Models\Guru;
 use App\Models\Hero;
 use App\Models\Misi;
 use App\Models\Visi;
+use App\Models\Testimony;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
@@ -18,8 +19,12 @@ class HeroController extends Controller
         $visi = Visi::all();
         $misi = Misi::all();
         $guru = Guru::all();
+        $testimony = Testimony::all();
         //dd($visi);
-        return view('welcome', ['visi' => $visi, 'misi' => $misi, 'guru' => $guru]);
+        return view('welcome', [
+            'visi' => $visi, 'misi' => $misi, 'guru' => $guru,
+            'testimony' => $testimony,
+        ]);
     }
 
     public function hero()

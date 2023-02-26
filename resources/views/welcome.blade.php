@@ -493,83 +493,21 @@
                 <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
                     <div class="swiper-wrapper">
 
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="{{ asset('/frontend2/assets/img/testimonials/testimonials-1.jpg') }}"
-                                    class="testimonial-img" alt="">
-                                <h3>Bpk. Yance</h3>
-                                <h4>Tokoh Masyarakat &amp; Kepala Dinas Tata Kota</h4>
-                                <p>
-                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                    Sekolah ini sudah kondusif. Mari orang tua bawa anak-anaknya bersekolah.
-                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="{{ asset('/frontend2/assets/img/testimonials/testimonials-2.jpg') }}"
-                                    class="testimonial-img" alt="">
-                                <h3>Sara Wilsson</h3>
-                                <h4>Designer</h4>
-                                <p>
-                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                    Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid
-                                    cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet
-                                    legam anim culpa.
-                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="{{ asset('/frontend2/assets/img/testimonials/testimonials-3.jpg') }}"
-                                    class="testimonial-img" alt="">
-                                <h3>Jena Karlis</h3>
-                                <h4>Store Owner</h4>
-                                <p>
-                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                    Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem
-                                    veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint
-                                    minim.
-                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="{{ asset('/frontend2/assets/img/testimonials/testimonials-4.jpg') }}"
-                                    class="testimonial-img" alt="">
-                                <h3>Matt Brandon</h3>
-                                <h4>Freelancer</h4>
-                                <p>
-                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                    Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim
-                                    fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem
-                                    dolore labore illum veniam.
-                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="{{ asset('/frontend2/assets/img/testimonials/testimonials-5.jpg') }}"
-                                    class="testimonial-img" alt="">
-                                <h3>John Larson</h3>
-                                <h4>Entrepreneur</h4>
-                                <p>
-                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                    Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster
-                                    veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam
-                                    culpa fore nisi cillum quid.
-                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
+                        @foreach ($testimony as $t)
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <img src="{{ $t -> image() }}"
+                                        class="testimonial-img" alt="">
+                                    <h3>{{ $t -> nama }}</h3>
+                                    <h4>{{ $t -> pekerjaan }}</h4>
+                                    <p>
+                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                        {{ $t -> komentar }}
+                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                    </p>
+                                </div>
+                            </div><!-- End testimonial item -->
+                        @endforeach
 
                     </div>
                     <div class="swiper-pagination"></div>
@@ -592,11 +530,11 @@
                     @foreach ($guru as $g)
                         <div class="col-lg-3 col-md-6">
                             <div class="member" data-aos="zoom-in" data-aos-delay="100">
-                                <div class="pic"><img src="{{ $g -> avatar() }}"
-                                        class="img-fluid" alt=""></div>
+                                <div class="pic"><img src="{{ $g->avatar() }}" class="img-fluid"
+                                        alt=""></div>
                                 <div class="member-info">
-                                    <h4>{{ $g -> nama_guru }}</h4>
-                                    <span>Jumlah mapel: {{ $g -> mapel -> count() }}</span>
+                                    <h4>{{ $g->nama_guru }}</h4>
+                                    <span>Jumlah mapel: {{ $g->mapel->count() }}</span>
                                     <div class="social">
                                         <a href=""><i class="bi bi-twitter"></i></a>
                                         <a href=""><i class="bi bi-facebook"></i></a>
