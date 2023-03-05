@@ -1,4 +1,4 @@
-@extends('layouts.master5')
+@extends('layouts.master6')
 
 @section('title')
     <title> Rombel </title>
@@ -78,11 +78,11 @@
                                                     </td>
                                                     <td><a href="/guru/{{ $h->guru->id }}/profile">{{ $h->guru->nama_guru }}
                                                     </td>
-                                                    <td>{{ $h->tahunpel->thn_pel }} {{ $h->tahunpel->semester }}</td>
+                                                    <td><a href="#">{{ $h->tahunpel->thn_pel }} {{ $h->tahunpel->semester }}</a></td>
                                                     <td>
                                                         <ul>
                                                             @foreach ($h->siswa as $s)
-                                                                <li>{{ $s->nama_depan }} {{ $s->nama_belakang }}</li>
+                                                                <li><a href="/test/{{ $s -> id }}/profile">{{ $s->nama_depan }} {{ $s->nama_belakang }}</a></li>
                                                             @endforeach
                                                         </ul>
                                                     </td>
@@ -148,7 +148,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-sm-8">
+                                                            <div class="col-sm-4">
                                                                 <div class="form-group">
                                                                     <label for="exampleFormControlSelect1">Siswa</label>
                                                                     <select name="siswa_id" class="form-control"
@@ -157,6 +157,34 @@
                                                                         @foreach ($siswa as $key => $m)
                                                                             <option value="{{ $m->id }}">
                                                                                 {{ $m->nama_depan }} {{ $m->nama_belakang }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label for="exampleFormControlSelect1">Nama Depan</label>
+                                                                    <select name="nama_depan" class="form-control"
+                                                                        id="nama_depan">
+                                                                        <option hidden>Pilih siswa</option>
+                                                                        @foreach ($siswa as $key => $m)
+                                                                            <option value="{{ $m->nama_depan }}">
+                                                                                {{ $m->nama_depan }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label for="exampleFormControlSelect1">Nama Belakang</label>
+                                                                    <select name="nama_belakang" class="form-control"
+                                                                        id="nama_belakang">
+                                                                        <option hidden>Pilih siswa</option>
+                                                                        @foreach ($siswa as $key => $m)
+                                                                            <option value="{{ $m->nama_belakang }}">
+                                                                                {{ $m->nama_belakang }}
                                                                             </option>
                                                                         @endforeach
                                                                     </select>

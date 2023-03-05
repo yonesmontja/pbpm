@@ -349,6 +349,9 @@ Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
 
     Route::get('/nilai', [NilaiController::class, 'nilai']);
     Route::get('/getSiswa/{id}', [NilaiController::class, 'getSiswa']);
+    Route::get('/getNamaSiswa/{id}', [NilaiController::class, 'getNamaSiswa']);
+    Route::get('/getNamaDepan/{id}', [NilaiController::class, 'getNamaDepan']);
+    Route::get('/getNamaBelakang/{id}', [NilaiController::class, 'getNamaBelakang']);
     Route::get('/nilai_filter', function () {
         if (request()->start_date || request()->end_date) {
             $start_date = Carbon::parse(request()->start_date)->toDateTimeString();

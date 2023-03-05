@@ -166,7 +166,9 @@
                                             <th>MAPEL</th>
                                             <th>GURU</th>
                                             <th>PENILAIAN</th>
+                                            <th>ROMBEL</th>
                                             <th>KELAS</th>
+
                                             <th>SISWA</th>
                                             <th>NILAI</th>
                                             <th></th>
@@ -183,6 +185,8 @@
                                                         href="/guru/{{ $nilai->guru->id }}/profile">{{ $nilai->guru->nama_guru }}</a>
                                                 </td>
                                                 <td><a href="/penilaian/{{ $nilai->penilaian->id }}/profile">{{ $nilai->penilaian->nama_tes }}
+                                                </td>
+                                                <td><a href="#">{{ $nilai->rombel->rombel }}</a>
                                                 </td>
                                                 <td><a
                                                         href="/kelas/{{ $nilai->kelas->id }}/profile">{{ $nilai->kelas->nama }}</a>
@@ -209,7 +213,9 @@
                                             <th>MAPEL</th>
                                             <th>GURU</th>
                                             <th>PENILAIAN</th>
+                                            <th>ROMBEL</th>
                                             <th>KELAS</th>
+
                                             <th>SISWA</th>
                                             <th>NILAI</th>
                                             <th></th>
@@ -300,10 +306,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-sm-4">
+                                                        <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">Kompetensi
-                                                                    Inti</label>
+                                                                <label for="exampleFormControlSelect1">KInti</label>
                                                                 <select name="kompetensi_inti_id" class="form-control"
                                                                     id="exampleFormControlSelect2">
                                                                     <option>---</option>
@@ -315,7 +320,8 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-4">
+
+                                                        <div class="col-sm-3">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlSelect1">KELAS</label>
                                                                 <select name="kelas_id" class="form-control"
@@ -329,17 +335,31 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-4">
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleFormControlSelect1">ROMBEL</label>
+                                                                <select name="rombel_id" class="form-control"
+                                                                    id="rombel">
+                                                                    <option hidden>Pilih rombel</option>
+                                                                    @foreach ($rombel as $key => $m)
+                                                                        <option value="{{ $m->id }}">
+                                                                            {{ $m->rombel }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlSelect1">SISWA</label>
                                                                 <select name="siswa_id" class="form-control"
                                                                     id="siswa">
                                                                     <!--<option>---</option>
-                                                                                                    @foreach ($siswa as $key => $m)
-    <option value="{{ $m->id }}">
-                                                                                                            {{ $m->nama_depan }}
-                                                                                                            {{ $m->nama_belakang }}</option>
-    @endforeach -->
+                                                                    @foreach ($siswa as $key => $m)
+                                                                        <option value="{{ $m->id }}">
+                                                                            {{ $m->nama_depan }}
+                                                                            {{ $m->nama_belakang }}</option>
+                                                                    @endforeach-->
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -404,8 +424,8 @@
                                                     <div
                                                         class="form-group {{ $errors->has('nilai_notes') ? ' has-error' : '' }}">
                                                         <label for="exampleFormControlTextarea1">INDIKATOR</label>
-                                                        <textarea name="nilai_notes" class="form-control" id="exampleFormControlTextarea1" placeholder="Indikator Capaian Kompetensi"
-                                                            value="{{ old('nilai_notes') }}" rows="3"></textarea>
+                                                        <textarea name="nilai_notes" class="form-control" id="exampleFormControlTextarea1"
+                                                            placeholder="Indikator Capaian Kompetensi" value="{{ old('nilai_notes') }}" rows="3"></textarea>
                                                     </div>
                                                     @if ($errors->has('nilai_notes'))
                                                         <span

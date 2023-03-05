@@ -65,10 +65,12 @@ class RombelController extends Controller
         DB::table('rombel_siswa')->insert([
             'siswa_id'      => $request->input('siswa_id'),
             'rombel_id'  => $request->input('rombel_id'),
-
+            'nama_depan' => $request->input('nama_depan'),
+            'nama_belakang' => $request->input('nama_belakang'),
             'created_at' => $date,
             'updated_at' => $date
         ]);
+        //dd($request->input('nama_depan'));
         return Redirect::back()->with('sukses', 'berhasil diinput');
     }
 }

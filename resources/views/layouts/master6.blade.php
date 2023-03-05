@@ -20,8 +20,7 @@
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="{{ asset('/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- Bootstrap Color Picker -->
-    <link rel="stylesheet"
-        href="{{ asset('/admin/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/admin/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet"
         href="{{ asset('/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
@@ -209,11 +208,79 @@
 
     <script>
         $(document).ready(function() {
-            $('#rombel').on('change', function() {
+            $('#siswa').on('change', function() {
                 var kelasID = $(this).val();
                 if (kelasID) {
                     $.ajax({
-                        url: '/getSiswa/' + kelasID,
+                        url: '/getNamaDepan/' + kelasID,
+                        type: "GET",
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            if (data) {
+                                $('#nama_depan').empty();
+
+                                $.each(data, function(nama_depan, get_siswa) {
+                                    $('select[name="nama_depan"]').append(
+                                        '<option value="' + get_siswa.nama_depan +
+                                        '">' +
+                                        get_siswa
+                                        .nama_depan + '</option>');
+                                });
+                            } else {
+                                $('#nama_depan').empty();
+                            }
+                        }
+                    });
+                } else {
+                    $('#siswa').empty();
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#siswa').on('change', function() {
+                var kelasID = $(this).val();
+                if (kelasID) {
+                    $.ajax({
+                        url: '/getNamaBelakang/' + kelasID,
+                        type: "GET",
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            if (data) {
+                                $('#nama_belakang').empty();
+
+                                $.each(data, function(nama_belakang, get_siswa) {
+                                    $('select[name="nama_belakang"]').append(
+                                        '<option value="' + get_siswa.nama_belakang +
+                                        '">' +
+                                        get_siswa
+                                        .nama_belakang + '</option>');
+                                });
+                            } else {
+                                $('#nama_belakang').empty();
+                            }
+                        }
+                    });
+                } else {
+                    $('#siswa').empty();
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#kelas').on('change', function() {
+                var kelasID = $(this).val();
+                if (kelasID) {
+                    $.ajax({
+                        url: '/getNamaSiswa/' + kelasID,
                         type: "GET",
                         data: {
                             "_token": "{{ csrf_token() }}"
@@ -225,7 +292,7 @@
                                 $('#siswa').append('<option hidden>Pilih Siswa</option>');
                                 $.each(data, function(siswa_id, get_siswa) {
                                     $('select[name="siswa_id"]').append(
-                                        '<option value="' + get_siswa.siswa_id + '">' +
+                                        '<option value="' + get_siswa.id + '">' +
                                         get_siswa
                                         .nama_depan + " " + get_siswa
                                         .nama_belakang + '</option>');
@@ -241,7 +308,6 @@
             });
         });
     </script>
-
     <script>
         window.setTimeout(function() {
             $(".alert").fadeTo(500, 0).slideUp(500, function() {
@@ -263,16 +329,16 @@
     </script>
     <script type="text/javascript">
         $(function() {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000
-                    });
-                    $('.toastrDefaultSuccess').click(function() {
-                        toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-                    });
-                })
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            $('.toastrDefaultSuccess').click(function() {
+                toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+            });
+        })
     </script>
     @yield('footer')
 </body>

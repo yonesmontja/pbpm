@@ -98,7 +98,7 @@ class Siswa extends Model
     }
     public function rombel()
     {
-        return $this->belongsToMany(Rombel::class, 'rombel_siswa', 'siswa_id', 'rombel_id')->withTimeStamps();
+        return $this->belongsToMany(Rombel::class, 'rombel_siswa', 'siswa_id', 'rombel_id')->withPivot(['nama_depan', 'nama_belakang'])->withTimeStamps();
     }
     public function user()
     {

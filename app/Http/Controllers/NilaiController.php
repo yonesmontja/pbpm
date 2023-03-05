@@ -10,6 +10,7 @@ use App\Models\Kelas;
 use App\Models\Mapel;
 use App\Models\Nilai;
 use App\Models\Siswa;
+use App\Models\Rombel;
 use App\Models\Tahunpel;
 use App\Models\Penilaian;
 use App\Exports\NilaiExport;
@@ -38,6 +39,7 @@ class NilaiController extends Controller
         $nilai_end = Tahunpelajaran::all()->where('id','=',1)->pluck('tahun');
         $kelas_sub = Siswa::where('kelas_id',0)->get();
         $tahunpel = Tahunpel::all();
+        $rombel = Rombel::all();
         //dd($kelas_sub);
         for($bulan=1;$bulan < 7;$bulan++){
             $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
@@ -45,6 +47,7 @@ class NilaiController extends Controller
         }
         //dd($jumlah_penilaian);
     	return view('nilai.index',[
+            'rombel' => $rombel,
             'jumlah_penilaian' => $jumlah_penilaian,
             'kelas_sub' => $kelas_sub,
             'nilai_start' => $nilai_start,
@@ -60,14 +63,37 @@ class NilaiController extends Controller
     }
     public function getSiswa($id)
     {
-        $get_siswa = Siswa::where('kelas_id',$id)->get();
+        //$get_siswa = Siswa::where('kelas_id',$id)->get();
+        $get_siswa = DB::table('rombel_siswa')->where('rombel_id', $id)->get();
         //dd($get_siswa);
-    return response()->json($get_siswa);
+        return response()->json($get_siswa);
+    }
+    public function getNamaSiswa($id)
+    {
+        $get_siswa = Siswa::where('kelas_id',$id)->get();
+        //$get_siswa = DB::table('rombel_siswa')->where('rombel_id', $id)->get();
+        //dd($get_siswa);
+        return response()->json($get_siswa);
+    }
+    public function getNamaDepan($id)
+    {
+        $get_siswa = Siswa::where('id', $id)->get();
+        //$get_siswa = DB::table('rombel_siswa')->where('rombel_id', $id)->get();
+        //dd($get_siswa);
+        return response()->json($get_siswa);
+    }
+    public function getNamaBelakang($id)
+    {
+        $get_siswa = Siswa::where('id', $id)->get();
+        //$get_siswa = DB::table('rombel_siswa')->where('rombel_id', $id)->get();
+        //dd($get_siswa);
+        return response()->json($get_siswa);
     }
     public function nilaicreate(Request $request)
     {
     	//\App\Models\Nilai::create($request -> all());
         $nilai = Nilai::create($request -> all());
+        //dd($nilai);
         $id = $nilai -> id;
         $date = now();
         DB::table('penilaian_siswa')->insert([

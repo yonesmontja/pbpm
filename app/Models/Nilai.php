@@ -6,12 +6,13 @@ use App\Models\Guru;
 use App\Models\Kelas;
 use App\Models\Mapel;
 use App\Models\Siswa;
+use App\Models\Rombel;
 use App\Models\Penilaian;
 use App\Models\Kompetensiinti;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use OwenIt\Auditing\Contracts\Auditable;
 
 class Nilai extends Model implements Auditable
 {
@@ -32,7 +33,8 @@ class Nilai extends Model implements Auditable
         'siswa_id',
         'kelas_id',
         'nilai',
-        'tahunpel_id'
+        'tahunpel_id',
+        'rombel_id'
     ];
 
     /**
@@ -91,7 +93,15 @@ class Nilai extends Model implements Auditable
     {
         return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
     }
-
+    /**
+     * Get the rombel that owns the Nilai
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function rombel(): BelongsTo
+    {
+        return $this->belongsTo(Rombel::class, 'rombel_id', 'id');
+    }
     /**
      * Get the tahunpel that owns the Nilai
      *

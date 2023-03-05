@@ -4,9 +4,11 @@ namespace App\Models;
 
 use App\Models\Guru;
 use App\Models\Kelas;
+use App\Models\Nilai;
 use App\Models\Siswa;
 use App\Models\Tahunpel;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -46,6 +48,10 @@ class Rombel extends Model
     }
     public function siswa()
     {
-        return $this->belongsToMany(Siswa::class, 'rombel_siswa', 'rombel_id', 'siswa_id')->withTimeStamps();
+        return $this->belongsToMany(Siswa::class, 'rombel_siswa', 'rombel_id', 'siswa_id')->withPivot(['nama_depan', 'nama_belakang'])->withTimeStamps();
+    }
+    public function nilai(): HasMany
+    {
+        return $this->hasMany(Nilai::class);
     }
 }
