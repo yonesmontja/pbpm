@@ -393,10 +393,9 @@
                                                     </div>
                                                     <div
                                                         class="form-group {{ $errors->has('nilai_deskripsi') ? ' has-error' : '' }}">
-                                                        <label for="exampleFormControlTextarea1">PERNYATAAN
-                                                            NILAI</label>
+                                                        <label for="exampleFormControlTextarea1">MATERI</label>
                                                         <textarea name="nilai_deskripsi" class="form-control" id="exampleFormControlTextarea1"
-                                                            placeholder="Pernyataan nilai" value="{{ old('nilai_deskripsi') }}" rows="3"></textarea>
+                                                            placeholder="Materi ajar/Sub materi ajar" value="{{ old('nilai_deskripsi') }}" rows="3"></textarea>
                                                     </div>
                                                     @if ($errors->has('nilai_deskripsi'))
                                                         <span
@@ -404,8 +403,8 @@
                                                     @endif
                                                     <div
                                                         class="form-group {{ $errors->has('nilai_notes') ? ' has-error' : '' }}">
-                                                        <label for="exampleFormControlTextarea1">NOTES</label>
-                                                        <textarea name="nilai_notes" class="form-control" id="exampleFormControlTextarea1" placeholder="Catatan"
+                                                        <label for="exampleFormControlTextarea1">INDIKATOR</label>
+                                                        <textarea name="nilai_notes" class="form-control" id="exampleFormControlTextarea1" placeholder="Indikator Capaian Kompetensi"
                                                             value="{{ old('nilai_notes') }}" rows="3"></textarea>
                                                     </div>
                                                     @if ($errors->has('nilai_notes'))

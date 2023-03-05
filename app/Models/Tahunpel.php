@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Rombel;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tahunpel extends Model
 {
@@ -29,5 +30,15 @@ class Tahunpel extends Model
     public function nilai(): HasMany
     {
         return $this->hasMany(Nilai::class);
+    }
+
+    /**
+     * Get all of the project for the Rombel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function rombel(): HasMany
+    {
+        return $this->hasMany(Rombel::class);
     }
 }

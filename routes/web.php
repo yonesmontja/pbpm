@@ -44,6 +44,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\GrafikController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\JurnalController;
+use App\Http\Controllers\RombelController;
 use App\Http\Controllers\TujuanController;
 use App\Http\Controllers\WidgetController;
 use App\Http\Controllers\MailboxController;
@@ -84,6 +85,11 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 {
     Route::get('/hero', [HeroController::class, 'hero']);
     Route::post('/hero/herocreate', [HeroController::class, 'herocreate']);
+
+    Route::get('/rombel', [RombelController::class, 'index']);
+    Route::post('/rombel/rombelcreate', [RombelController::class, 'rombelcreate']);
+
+    Route::get('/rombel_siswa', [RombelController::class, 'rombel_siswa']);
 
     Route::get('/testimony', [TestimonyController::class, 'testimony']);
     Route::post('/testimony/testimonycreate', [TestimonyController::class, 'testimonycreate']);

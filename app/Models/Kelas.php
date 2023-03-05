@@ -7,6 +7,7 @@ use App\Models\Extra;
 use App\Models\Level;
 use App\Models\Nilai;
 use App\Models\Siswa;
+use App\Models\Rombel;
 use App\Models\Project;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -95,5 +96,15 @@ class Kelas extends Model
     public function siswa(): HasMany
     {
         return $this->hasMany(Siswa::class);
+    }
+
+    /**
+     * Get all of the project for the Rombel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function rombel(): HasMany
+    {
+        return $this->hasMany(Rombel::class);
     }
 }

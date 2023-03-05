@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Extra;
 use App\Models\Kelas;
 use App\Models\Nilai;
+use App\Models\Rombel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -94,6 +95,10 @@ class Siswa extends Model
     public function penilaian()
     {
         return $this -> belongsToMany(Penilaian::class,'penilaian_siswa', 'siswa_id', 'penilaian_id')->withPivot(['nilai'])->withTimeStamps();
+    }
+    public function rombel()
+    {
+        return $this->belongsToMany(Rombel::class, 'rombel_siswa', 'siswa_id', 'rombel_id')->withTimeStamps();
     }
     public function user()
     {

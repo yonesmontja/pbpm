@@ -186,6 +186,7 @@ class NilaiController extends Controller
         $siswa = Nilai::all();
         //DB::beginTransaction();
         // do all your updates here
+        //dd($siswa);
         foreach ($siswa as $s) {
             DB::table('penilaian_siswa')
             ->where('nilai_id', '=', $s->id)

@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Kelas;
+use App\Models\Mapel;
 use App\Models\Nilai;
+use App\Models\Rombel;
 use App\Models\Project;
+use App\Models\Penilaian;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -67,6 +71,17 @@ class Guru extends Model
     {
         return $this->hasMany(Project::class);
     }
+
+    /**
+     * Get all of the project for the Rombel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function rombel(): HasMany
+    {
+        return $this->hasMany(Rombel::class);
+    }
+
 
     /**
      * Get the kelas associated with the Guru
