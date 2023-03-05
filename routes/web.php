@@ -90,6 +90,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
     Route::post('/rombel/rombelcreate', [RombelController::class, 'rombelcreate']);
 
     Route::get('/rombel_siswa', [RombelController::class, 'rombel_siswa']);
+    Route::post('/rombel/rombelsiswacreate', [RombelController::class, 'rombelsiswacreate']);
 
     Route::get('/testimony', [TestimonyController::class, 'testimony']);
     Route::post('/testimony/testimonycreate', [TestimonyController::class, 'testimonycreate']);
