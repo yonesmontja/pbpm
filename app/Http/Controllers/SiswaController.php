@@ -13,14 +13,15 @@ use App\Models\Mapel;
 use App\Models\Nilai;
 use App\Models\Siswa;
 
-use App\Models\Sekolah;
+use App\Models\Rombel;
 
+use App\Models\Sekolah;
 use App\Models\Tahunpel;
 use App\Models\Penilaian;
 use App\Imports\UserImport;
 use Illuminate\Support\Str;
-use App\Exports\SiswaExport;
 
+use App\Exports\SiswaExport;
 use App\Imports\SiswaImport;
 use Illuminate\Http\Request;
 use App\Models\Kompetensiinti;
@@ -227,12 +228,12 @@ class SiswaController extends Controller
         $kkm1 = $kkm + (100-$kkm)/3;
         $kkm2 = $kkm1 + (100-$kkm)/3;
         $user = User::find($id);
-        $siswa = \App\Models\Siswa::find($id);
-        $rombel = $siswa -> kelas_id;
-        //dd($rombel);
-        $siswa1 = \App\Models\Siswa::all();
-        $matapelajaran = \App\Models\Mapel::all();
-        $penilaian = \App\Models\Penilaian::all();
+        $siswa = Siswa::find($id);
+        $rombel = DB::table('rombel_siswa')->where('siswa_id', $id)->pluck('rombel_id')->first();
+
+        $siswa1 = Siswa::all();
+        $matapelajaran = Mapel::all();
+        $penilaian = Penilaian::all();
         $tahunpel = Tahunpel::all();
         $nilai = Nilai::all();
         $data_nilai = Nilai::all();
@@ -240,8 +241,9 @@ class SiswaController extends Controller
         $mapel = Mapel::all();
         $guru = Guru::all();
         $kelas = Kelas::all();
-        $rombel1 = Kelas::find($rombel);
-        $rombel2 = $rombel1 -> nama;
+        $rombel1 = Rombel::find($rombel);
+        //dd($rombel1);
+        $rombel2 = $rombel1->rombel;
 
         // data untuk Chart.js
         $categories = [];
