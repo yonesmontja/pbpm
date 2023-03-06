@@ -196,7 +196,7 @@
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('nilai_deskripsi') ? ' has-error' : '' }}">
-                                <label for="exampleFormControlTextarea1">INDIKATOR KOMPETENSI</label>
+                                <label for="exampleFormControlTextarea1">Materi</label>
                                 <textarea name="nilai_deskripsi" class="form-control" id="exampleFormControlTextarea1"
                                     placeholder="{{ $nilai->nilai_deskripsi }}" value="{{ $nilai->nilai_deskripsi }}" rows="3">{{ $nilai->nilai_deskripsi }}</textarea>
                             </div>
@@ -204,7 +204,7 @@
                                 <span class="help-block">{{ $errors->first('nilai_deskripsi') }}</span>
                             @endif
                             <div class="form-group {{ $errors->has('nilai_notes') ? ' has-error' : '' }}">
-                                <label for="exampleFormControlTextarea1">DESKRIPSI</label>
+                                <label for="exampleFormControlTextarea1">Indikator Capaian</label>
                                 <textarea name="nilai_notes" class="form-control" id="exampleFormControlTextarea1"
                                     placeholder="{{ $nilai->nilai_notes }}" value="{{ $nilai->nilai_notes }}" rows="3">{{ $nilai->nilai_notes }}</textarea>
                             </div>

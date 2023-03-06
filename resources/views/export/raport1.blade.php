@@ -117,7 +117,7 @@
 </head>
 
 <body>
-    @if ($students->kelas == 'Kelas 1' || $students->kelas == 'Kelas 2')
+    @if ($rombel_kelas_raport == 1 || $rombel_kelas_raport == 2)
         <div class="invoice-box">
             <table cellpadding="0" cellspacing="0">
                 <tr class="top">
@@ -163,7 +163,7 @@
                                                 :
                                             </td>
                                             <td colspan="2">
-                                                {{ $students->kelas }}
+                                                {{ $nama_rombel }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -551,10 +551,10 @@
             </table>
         </div>
     @endif
-    @if ($students->kelas == 'Kelas 3' ||
-        $students->kelas == 'Kelas 4' ||
-        $students->kelas == 'Kelas 5' ||
-        $students->kelas == 'Kelas 6')
+    @if ($rombel_kelas_raport == 3 ||
+        $rombel_kelas_raport == 4 ||
+        $rombel_kelas_raport == 5 ||
+        $rombel_kelas_raport == 6)
         <div class="invoice-box">
             <table cellpadding="0" cellspacing="0">
                 <tr class="top">
@@ -600,7 +600,7 @@
                                                 :
                                             </td>
                                             <td colspan="2">
-                                                {{ $students->kelas }}
+                                                {{ $nama_rombel }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -727,26 +727,27 @@
                 <tr class="details">
                     <td style="text-align: center;">1</td>
                     <td style="text-align: left;">Pendidikan Agama dan Budi Pekerti</td>
-                    @if ($students->agama == 'Islam')
+                    @if ($students->agama == 'islam')
                         <td style="text-align: center;">{{ $raport_pengetahuan_agama }}</td>
-                    @elseif($students->agama == 'Kristen Protestan')
+                    @elseif($students->agama == 'kristen protestan')
                         <td style="text-align: center;">{{ $raport_pengetahuan_agama }}</td>
-                    @elseif($students->agama == 'Katolik')
+                    @elseif($students->agama == 'katolik')
                         <td style="text-align: center;">{{ $raport_pengetahuan_agama }}</td>
                     @endif
                     <td style="text-align: center;">{{ $predikat_huruf_agama }}</td>
                     <td style="text-align: left;">Memiliki kemampuan <strong> {{ $predikat_huruf_agama1 }} </strong>
                         {{ $predikat_deskripsi_agama }}</td>
-                    @if ($students->agama == 'Islam')
+
+                    @if ($students->agama == 'islam')
                         <td style="text-align: center;">{{ $raport_keterampilan_agama }}</td>
-                    @elseif($students->agama == 'Kristen Protestan')
+                    @elseif($students->agama == 'kristen protestan')
                         <td style="text-align: center;">{{ $raport_keterampilan_agama }}</td>
-                    @elseif($students->agama == 'Katolik')
-                        <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikat_huruf_agama1 }}
-                            </strong> {{ $raport_keterampilan_agama }}</td>
+                    @elseif($students->agama == 'katolik')
+                        <td style="text-align: center;">{{ $raport_keterampilan_agama }}</td>
                     @endif
                     <td style="text-align: center;">{{ $predikat_keterampilan_huruf_agama }}</td>
-                    <td style="text-align: center;">{{ $predikat_keterampilan_deskripsi_agama }}</td>
+                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikat_huruf_agama1 }} </strong>
+                        {{ $predikat_keterampilan_deskripsi_agama }}</td>
                 </tr>
                 <tr class="details">
                     <td style="text-align: center;">2</td>

@@ -461,6 +461,10 @@ class SiswaController extends Controller
             ->where('mapel_id','=',1)
             ->pluck('nilai')->avg();
         $students = Siswa::find($id);
+        $rombel = DB::table('rombel_siswa')->where('siswa_id', '=', $id)->pluck('rombel_id')->first();
+        $nama_rombel = Rombel::find($rombel)->rombel;
+        $rombel_kelas = DB::table('rombel_siswa')->where('siswa_id', '=', $id)->pluck('rombel_id')->first();
+        $rombel_kelas_raport = Rombel::find($rombel_kelas)->kelas_id;
         $nama_depan = Siswa::where('id','=',$id)->select('nama_depan','nama_belakang')->pluck('nama_depan');
         $nama_belakang = Siswa::where('id','=',$id)->select('nama_depan','nama_belakang')->pluck('nama_belakang');
         $kalimat1 = $nama_depan[0];
@@ -2849,6 +2853,8 @@ class SiswaController extends Controller
         //-----------------------------------
         $pdf = PDF::loadView('export.raport1',
         [
+                'rombel_kelas_raport' => $rombel_kelas_raport,
+                'nama_rombel' => $nama_rombel,
             'wali_kelas' => $wali_kelas,
             'semester_aktif' => $semester_aktif,
             'kepsek_aktif' => $kepsek_aktif,
