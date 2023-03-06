@@ -521,7 +521,7 @@
                      <form action="/nilai/nilaicreate" method="POST" enctype="multipart/form-data">
                          {{ csrf_field() }}
                          <div class="row">
-                             <div class="col-sm-4">
+                             <div class="col-sm-3">
                                  <div class="form-group {{ $errors->has('nilai_start') ? ' has-error' : '' }}">
                                      <label for="exampleFormControlInput1">Mulai</label>
                                      <input name="nilai_start" type="text" class="form-control"
@@ -535,7 +535,7 @@
                                      <span class="help-block">{{ $errors->first('nilai_start') }}</span>
                                  @endif
                              </div>
-                             <div class="col-sm-4">
+                             <div class="col-sm-3">
                                  <div class="form-group {{ $errors->has('nilai_end') ? ' has-error' : '' }}">
                                      <label for="exampleFormControlInput1">Berakhir</label>
                                      <input name="nilai_end" type="text" class="form-control"
@@ -549,7 +549,7 @@
                                      <span class="help-block">{{ $errors->first('nilai_end') }}</span>
                                  @endif
                              </div>
-                             <div class="col-sm-4">
+                             <div class="col-sm-3">
                                  <div class="form-group">
                                      <label for="exampleFormControlSelect1">PENILAIAN</label>
                                      <select name="penilaian_id" class="form-control" id="exampleFormControlSelect2">
@@ -562,9 +562,9 @@
                                      </select>
                                  </div>
                              </div>
-                             <div class="col-sm-4">
+                             <div class="col-sm-3">
                                  <div class="form-group">
-                                     <label for="exampleFormControlSelect1">THN PELAJARAN</label>
+                                     <label for="exampleFormControlSelect1">TP</label>
                                      <select name="tahunpel_id" class="form-control" id="exampleFormControlSelect2">
                                          <option>---</option>
                                          @foreach ($tahunpel as $key => $m)
@@ -577,10 +577,9 @@
                              </div>
                          </div>
                          <div class="row">
-                             <div class="col-sm-4">
+                             <div class="col-sm-3">
                                  <div class="form-group">
-                                     <label for="exampleFormControlSelect1">Kompetensi
-                                         Inti</label>
+                                     <label for="exampleFormControlSelect1">KInti</label>
                                      <select name="kompetensi_inti_id" class="form-control"
                                          id="exampleFormControlSelect2">
                                          <option>---</option>
@@ -592,7 +591,7 @@
                                      </select>
                                  </div>
                              </div>
-                             <div class="col-sm-4">
+                             <div class="col-sm-3">
                                  <div class="form-group">
                                      <label for="exampleFormControlSelect1">KELAS</label>
                                      <select name="kelas_id" class="form-control" id="kelas">
@@ -605,7 +604,20 @@
                                      </select>
                                  </div>
                              </div>
-                             <div class="col-sm-4">
+                             <div class="col-sm-3">
+                                 <div class="form-group">
+                                     <label for="exampleFormControlSelect1">ROMBEL</label>
+                                     <select name="rombel_id" class="form-control" id="rombel">
+                                         <option hidden>Pilih rombel</option>
+                                         @foreach ($rombel3 as $key => $m)
+                                             <option value="{{ $m->id }}">
+                                                 {{ $m->rombel }}
+                                             </option>
+                                         @endforeach
+                                     </select>
+                                 </div>
+                             </div>
+                             <div class="col-sm-3">
                                  <div class="form-group">
                                      <label for="exampleFormControlSelect1">SISWA</label>
                                      <select name="siswa_id" class="form-control" id="siswa">
@@ -656,16 +668,16 @@
                              </div>
                          </div>
                          <div class="form-group {{ $errors->has('nilai_deskripsi') ? ' has-error' : '' }}">
-                             <label for="exampleFormControlTextarea1">INDIKATOR KOMPETENSI</label>
+                             <label for="exampleFormControlTextarea1">MATERI</label>
                              <textarea name="nilai_deskripsi" class="form-control" id="exampleFormControlTextarea1"
-                                 placeholder="Pernyataan nilai" value="{{ old('nilai_deskripsi') }}" rows="3"></textarea>
+                                 placeholder="Materi ajar/Sub Materi" value="{{ old('nilai_deskripsi') }}" rows="3"></textarea>
                          </div>
                          @if ($errors->has('nilai_deskripsi'))
                              <span class="help-block">{{ $errors->first('nilai_deskripsi') }}</span>
                          @endif
                          <div class="form-group {{ $errors->has('nilai_notes') ? ' has-error' : '' }}">
-                             <label for="exampleFormControlTextarea1">DESKRIPSI</label>
-                             <textarea name="nilai_notes" class="form-control" id="exampleFormControlTextarea1" placeholder="Catatan"
+                             <label for="exampleFormControlTextarea1">INDIKATOR</label>
+                             <textarea name="nilai_notes" class="form-control" id="exampleFormControlTextarea1" placeholder="Indikator Capaian Kompetensi"
                                  value="{{ old('nilai_notes') }}" rows="3"></textarea>
                          </div>
                          @if ($errors->has('nilai_notes'))

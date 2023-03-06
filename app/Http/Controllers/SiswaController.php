@@ -241,6 +241,7 @@ class SiswaController extends Controller
         $mapel = Mapel::all();
         $guru = Guru::all();
         $kelas = Kelas::all();
+        $rombel3 = Rombel::all();
         $rombel1 = Rombel::find($rombel);
         //dd($rombel1);
         $rombel2 = $rombel1->rombel;
@@ -330,6 +331,8 @@ class SiswaController extends Controller
         'kkm1' => $kkm1,
         'kkm2' => $kkm2,
         'rombel2' => $rombel2,
+            'rombel3' => $rombel3,
+            'rombel1' => $rombel1,
         'nilai_start' => $nilai_start,
         'nilai_end' => $nilai_end,
         'average_mapel' => $average_mapel,
@@ -462,6 +465,8 @@ class SiswaController extends Controller
             ->pluck('nilai')->avg();
         $students = Siswa::find($id);
         $rombel = DB::table('rombel_siswa')->where('siswa_id', '=', $id)->pluck('rombel_id')->first();
+        $rombel1 = Rombel::find($rombel);
+        //dd($rombel1->guru->nama_guru);
         $nama_rombel = Rombel::find($rombel)->rombel;
         $rombel_kelas = DB::table('rombel_siswa')->where('siswa_id', '=', $id)->pluck('rombel_id')->first();
         $rombel_kelas_raport = Rombel::find($rombel_kelas)->kelas_id;
@@ -473,30 +478,40 @@ class SiswaController extends Controller
         $semester = Tahunpelajaran::all()->pluck('semester');
         //dd($semester);
         $data_siswa = Siswa::get();
-
-        if($students -> kelas_id == 1)
+        // wali kelas di raport
+        if ($rombel == 1)
         {
-            $wali_kelas = $kelas -> guru -> nama_guru;
+            $wali_kelas = $rombel1->guru->nama_guru;
         }
-        if($students -> kelas_id == 2)
+        if (
+            $rombel == 2
+        )
         {
-            $wali_kelas = $kelas -> guru -> nama_guru;
+            $wali_kelas = $rombel1->guru->nama_guru;
         }
-        if($students -> kelas_id == 3)
+        if (
+            $rombel == 3
+        )
         {
-            $wali_kelas = $kelas -> guru -> nama_guru;
+            $wali_kelas = $rombel1->guru->nama_guru;
         }
-        if($students -> kelas_id == 4)
+        if (
+            $rombel == 4
+        )
         {
-            $wali_kelas = $kelas -> guru -> nama_guru;
+            $wali_kelas = $rombel1->guru->nama_guru;
         }
-        if($students -> kelas_id == 5)
+        if (
+            $rombel == 5
+        )
         {
-            $wali_kelas = $kelas -> guru -> nama_guru;
+            $wali_kelas = $rombel1->guru->nama_guru;
         }
-        if($students -> kelas_id == 6)
+        if (
+            $rombel == 6
+        )
         {
-            $wali_kelas = $kelas -> guru -> nama_guru;
+            $wali_kelas = $rombel1->guru->nama_guru;
         }
 
         //dd($wali_kelas);
@@ -1851,12 +1866,12 @@ class SiswaController extends Controller
             ->where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 2)
-            ->pluck('nilai_deskripsi')->toArray();
+        ->pluck('nilai_notes')->toArray();
         $predikat_keterampilan = Nilai::all()
         ->where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 19)
         ->where('mapel_id', '=', 2)
-        ->pluck('nilai_deskripsi')->toArray();
+        ->pluck('nilai_notes')->toArray();
         //dd(implode($predikat));
         if($raport_pengetahuan_agama<$kkm)
             {
@@ -1888,12 +1903,12 @@ class SiswaController extends Controller
         ->where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 5)
         ->where('mapel_id', '=', 4)
-        ->pluck('nilai_deskripsi')->toArray();
+        ->pluck('nilai_notes')->toArray();
         $predikat_keterampilan_ppkn = Nilai::all()
         ->where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 19)
         ->where('mapel_id', '=', 4)
-        ->pluck('nilai_deskripsi')->toArray();
+        ->pluck('nilai_notes')->toArray();
         //dd(implode($predikat));
         if($raport_pengetahuan_ppkn<$kkm)
             {
@@ -1925,13 +1940,13 @@ class SiswaController extends Controller
         ->where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 5)
         ->where('mapel_id', '=', 5)
-        ->pluck('nilai_deskripsi')->toArray();
+        ->pluck('nilai_notes')->toArray();
         $predikat_keterampilan_bi = Nilai::all()
         ->where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 19)
         ->where('mapel_id', '=', 5)
-        ->pluck('nilai_deskripsi')->toArray();
-        //dd(implode($predikat));
+        ->pluck('nilai_notes')->toArray();
+        //dd(implode($predikat_keterampilan_bi));
         if($raport_pengetahuan_indonesia<$kkm)
             {
             $predikat_huruf_bi = "kurang";
@@ -1962,12 +1977,12 @@ class SiswaController extends Controller
         ->where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 5)
         ->where('mapel_id', '=', 6)
-        ->pluck('nilai_deskripsi')->toArray();
+        ->pluck('nilai_notes')->toArray();
         $predikat_keterampilan_math = Nilai::all()
         ->where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 19)
         ->where('mapel_id', '=', 6)
-        ->pluck('nilai_deskripsi')->toArray();
+        ->pluck('nilai_notes')->toArray();
         //dd(implode($predikat));
         if($raport_pengetahuan_matematika<$kkm)
             {
@@ -1999,12 +2014,12 @@ class SiswaController extends Controller
         ->where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 5)
         ->where('mapel_id', '=', 7)
-        ->pluck('nilai_deskripsi')->toArray();
+            ->pluck('nilai_notes')->toArray();
         $predikat_keterampilan_ipa = Nilai::all()
         ->where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 19)
         ->where('mapel_id', '=', 7)
-        ->pluck('nilai_deskripsi')->toArray();
+        ->pluck('nilai_notes')->toArray();
         //dd(implode($predikat));
         if($raport_pengetahuan_ipa<$kkm)
             {
@@ -2036,12 +2051,12 @@ class SiswaController extends Controller
         ->where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 5)
         ->where('mapel_id', '=', 8)
-        ->pluck('nilai_deskripsi')->toArray();
+            ->pluck('nilai_notes')->toArray();
         $predikat_keterampilan_ips = Nilai::all()
         ->where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 19)
         ->where('mapel_id', '=', 8)
-        ->pluck('nilai_deskripsi')->toArray();
+        ->pluck('nilai_notes')->toArray();
         //dd(implode($predikat));
         if($raport_pengetahuan_ips<$kkm)
             {
@@ -2073,12 +2088,12 @@ class SiswaController extends Controller
         ->where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 5)
         ->where('mapel_id', '=', 9)
-        ->pluck('nilai_deskripsi')->toArray();
+        ->pluck('nilai_notes')->toArray();
         $predikat_keterampilan_pjok = Nilai::all()
         ->where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 19)
         ->where('mapel_id', '=', 9)
-        ->pluck('nilai_deskripsi')->toArray();
+        ->pluck('nilai_notes')->toArray();
         //dd(implode($predikat));
         if($raport_pengetahuan_pjok<$kkm)
             {
@@ -2110,12 +2125,12 @@ class SiswaController extends Controller
         ->where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 5)
         ->where('mapel_id', '=', 10)
-        ->pluck('nilai_deskripsi')->toArray();
+            ->pluck('nilai_notes')->toArray();
         $predikat_keterampilan_sbk = Nilai::all()
         ->where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 19)
         ->where('mapel_id', '=', 10)
-        ->pluck('nilai_deskripsi')->toArray();
+        ->pluck('nilai_notes')->toArray();
         //dd(implode($predikat));
         if($raport_pengetahuan_sbk<$kkm)
             {
@@ -2210,7 +2225,11 @@ class SiswaController extends Controller
         //$ratarata_raport = number_format((float)($ratarata_raport_pengetahuan+$ratarata_raport_pengetahuan)/2, 1, '.', '');
 
         //menghitung nilai keterampilan
-        for($penilaian=6; $penilaian < 10; $penilaian++)
+        for (
+            $penilaian = 18;
+            $penilaian < 22;
+            $penilaian++
+        )
         {
             $tampung_keterampilan_islam = Nilai::all()
             ->where('siswa_id','=',$id)
@@ -2355,7 +2374,7 @@ class SiswaController extends Controller
             $rata_rata_keterampilan_ppkn = 0.00;
         }
         //dd($rata_rata_keterampilan_ppkn);
-        //dd("jumlah elemen array: ".array_sum($nilai_keterampilan_indonesia));
+        //dd("jumlah elemen array: " . array_sum($nilai_keterampilan_indonesia));
         if(array_sum($nilai_keterampilan_indonesia) > 0)
         {
             for($key = 0; $key < count($nilai_keterampilan_indonesia); $key++)
@@ -2525,6 +2544,7 @@ class SiswaController extends Controller
                                 +($rata_rata_keterampilan_sbk*1)
                                 +($rata_rata_keterampilan_sbk*1))/8;
         $raport_keterampilan_sbk = number_format((float)$raport_keterampilan_sbk, 1, '.', '');
+        //dd($raport_keterampilan_indonesia);
         //------------------------------------------------------
         // deskripsi keterampilan agama
         if($raport_keterampilan_agama<$kkm)
@@ -2532,8 +2552,7 @@ class SiswaController extends Controller
             $predikathuruf = "kurang";
                 $predikat_keterampilan_huruf_agama = "D";
             $predikat_keterampilan_deskripsi_agama = " dalam " . implode($predikat_keterampilan);
-            }
-        elseif($raport_keterampilan_agama > $kkm && $raport_keterampilan_agama <= ($kkm+1*((100-$kkm)/3)))
+        } elseif ($raport_keterampilan_agama >= $kkm && $raport_keterampilan_agama <= ($kkm + 1 * ((100 - $kkm) / 3)))
             {
             $predikathuruf = "cukup";
                 $predikat_keterampilan_huruf_agama = "C";
@@ -2558,8 +2577,7 @@ class SiswaController extends Controller
             $predikathuruf_ppkn = "kurang";
                 $predikat_keterampilan_huruf_ppkn = "D";
             $predikat_keterampilan_deskripsi_ppkn = " dalam " . implode($predikat_keterampilan_ppkn);
-            }
-        elseif($raport_keterampilan_ppkn > $kkm && $raport_keterampilan_ppkn <= ($kkm+1*((100-$kkm)/3)))
+        } elseif ($raport_keterampilan_ppkn >= $kkm && $raport_keterampilan_ppkn <= ($kkm + 1 * ((100 - $kkm) / 3)))
             {
             $predikathuruf_ppkn = "cukup";
                 $predikat_keterampilan_huruf_ppkn = "C";
@@ -2584,8 +2602,7 @@ class SiswaController extends Controller
             $predikathuruf_bi = "kurang";
                 $predikat_keterampilan_huruf_indonesia = "D";
             $predikat_keterampilan_deskripsi_indonesia = " dalam " . implode($predikat_keterampilan_bi);
-            }
-        elseif($raport_keterampilan_indonesia > $kkm && $raport_keterampilan_indonesia <= ($kkm+1*((100-$kkm)/3)))
+        } elseif ($raport_keterampilan_indonesia >= $kkm && $raport_keterampilan_indonesia <= ($kkm + 1 * ((100 - $kkm) / 3)))
             {
             $predikathuruf_bi = "cukup";
                 $predikat_keterampilan_huruf_indonesia = "C";
@@ -2610,8 +2627,7 @@ class SiswaController extends Controller
             $predikathuruf_math = "kurang";
                 $predikat_keterampilan_huruf_matematika = "D";
             $predikat_keterampilan_deskripsi_matematika = " dalam " . implode($predikat_keterampilan_math);
-            }
-        elseif($raport_keterampilan_matematika > $kkm && $raport_keterampilan_matematika <= ($kkm+1*((100-$kkm)/3)))
+        } elseif ($raport_keterampilan_matematika >= $kkm && $raport_keterampilan_matematika <= ($kkm + 1 * ((100 - $kkm) / 3)))
             {
             $predikathuruf_math = "cukup";
                 $predikat_keterampilan_huruf_matematika = "C";
@@ -2636,8 +2652,7 @@ class SiswaController extends Controller
             $predikathuruf_ipa = "kurang";
                 $predikat_keterampilan_huruf_ipa = "D";
             $predikat_keterampilan_deskripsi_ipa = " dalam " . implode($predikat_keterampilan_ipa);
-            }
-        elseif($raport_keterampilan_ipa > $kkm && $raport_keterampilan_ipa <= ($kkm+1*((100-$kkm)/3)))
+        } elseif ($raport_keterampilan_ipa >= $kkm && $raport_keterampilan_ipa <= ($kkm + 1 * ((100 - $kkm) / 3)))
             {
             $predikathuruf_ipa = "cukup";
                 $predikat_keterampilan_huruf_ipa = "C";
@@ -2662,8 +2677,7 @@ class SiswaController extends Controller
             $predikathuruf_ips = "kurang";
                 $predikat_keterampilan_huruf_ips = "D";
             $predikat_keterampilan_deskripsi_ips = " dalam " . implode($predikat_keterampilan_ips);
-            }
-        elseif($raport_keterampilan_ips > $kkm && $raport_keterampilan_ips <= ($kkm+1*((100-$kkm)/3)))
+        } elseif ($raport_keterampilan_ips >= $kkm && $raport_keterampilan_ips <= ($kkm + 1 * ((100 - $kkm) / 3)))
             {
             $predikathuruf_ips = "cukup";
                 $predikat_keterampilan_huruf_ips = "C";
@@ -2688,8 +2702,7 @@ class SiswaController extends Controller
             $predikathuruf_pjok = "kurang";
                 $predikat_keterampilan_huruf_pjok = "D";
             $predikat_keterampilan_deskripsi_pjok = " dalam " . implode($predikat_keterampilan_pjok);
-            }
-        elseif($raport_keterampilan_pjok > $kkm && $raport_keterampilan_pjok <= ($kkm+1*((100-$kkm)/3)))
+        } elseif ($raport_keterampilan_pjok >= $kkm && $raport_keterampilan_pjok <= ($kkm + 1 * ((100 - $kkm) / 3)))
             {
             $predikathuruf_pjok = "cukup";
                 $predikat_keterampilan_huruf_pjok = "C";
@@ -2714,8 +2727,7 @@ class SiswaController extends Controller
             $predikathuruf_sbk = "kurang";
                 $predikat_keterampilan_huruf_sbk = "D";
             $predikat_keterampilan_deskripsi_sbk = " dalam " . implode($predikat_keterampilan_sbk);
-            }
-        elseif($raport_keterampilan_sbk > $kkm && $raport_keterampilan_sbk <= ($kkm+1*((100-$kkm)/3)))
+        } elseif ($raport_keterampilan_sbk >= $kkm && $raport_keterampilan_sbk <= ($kkm + 1 * ((100 - $kkm) / 3)))
             {
             $predikathuruf_sbk = "cukup";
                 $predikat_keterampilan_huruf_sbk = "C";
@@ -2733,8 +2745,8 @@ class SiswaController extends Controller
                 $predikat_keterampilan_huruf_sbk = "A";
             $predikat_keterampilan_deskripsi_sbk = " dalam " . implode($predikat_keterampilan_sbk);
             }
-
-        if($students -> kelas == "Kelas 1")
+        // beda bentuk raport untuk kelas 1, 2 dan 3, 4, 5, dan 6
+        if ($rombel == 1)
         {
             $jumlah_raport_keterampilan = $raport_keterampilan_agama
 
@@ -2743,7 +2755,9 @@ class SiswaController extends Controller
                                 +$raport_keterampilan_pjok;
 
         }
-        if($students -> kelas == "Kelas 2")
+        if (
+            $rombel == 2
+        )
         {
             $jumlah_raport_keterampilan = $raport_keterampilan_agama
 
@@ -2751,7 +2765,9 @@ class SiswaController extends Controller
                                 +$raport_keterampilan_matematika
                                 +$raport_keterampilan_pjok;
         }
-        if($students -> kelas == "Kelas 3")
+        if (
+            $rombel == 3
+        )
         {
             $jumlah_raport_keterampilan = $raport_keterampilan_agama
                                 +$raport_keterampilan_ppkn
@@ -2762,7 +2778,9 @@ class SiswaController extends Controller
                                 +$raport_keterampilan_pjok
                                 +$raport_keterampilan_sbk;
         }
-        if($students -> kelas == "Kelas 4")
+        if (
+            $rombel == 4
+        )
         {
             $jumlah_raport_keterampilan = $raport_keterampilan_agama
                                 +$raport_keterampilan_ppkn
@@ -2773,7 +2791,9 @@ class SiswaController extends Controller
                                 +$raport_keterampilan_pjok
                                 +$raport_keterampilan_sbk;
         }
-        if($students -> kelas == "Kelas 5")
+        if (
+            $rombel == 5
+        )
         {
             $jumlah_raport_keterampilan = $raport_keterampilan_agama
                                 +$raport_keterampilan_ppkn
@@ -2784,7 +2804,9 @@ class SiswaController extends Controller
                                 +$raport_keterampilan_pjok
                                 +$raport_keterampilan_sbk;
         }
-        if($students -> kelas == "Kelas 6")
+        if (
+            $rombel == 6
+        )
         {
             $jumlah_raport_keterampilan = $raport_keterampilan_agama
                                 +$raport_keterampilan_ppkn
@@ -2855,6 +2877,7 @@ class SiswaController extends Controller
         [
                 'rombel_kelas_raport' => $rombel_kelas_raport,
                 'nama_rombel' => $nama_rombel,
+                'rombel1' => $rombel1,
             'wali_kelas' => $wali_kelas,
             'semester_aktif' => $semester_aktif,
             'kepsek_aktif' => $kepsek_aktif,

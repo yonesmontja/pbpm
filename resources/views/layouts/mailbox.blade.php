@@ -138,7 +138,8 @@
     <script src="{{ asset('/admin/dist/js/demo.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('#kelas').on('change', function() {
+            $(document).ready(function() {
+            $('#rombel').on('change', function() {
                 var kelasID = $(this).val();
                 if (kelasID) {
                     $.ajax({
@@ -154,7 +155,7 @@
                                 $('#siswa').append('<option hidden>Pilih Siswa</option>');
                                 $.each(data, function(siswa_id, get_siswa) {
                                     $('select[name="siswa_id"]').append(
-                                        '<option value="' + get_siswa.id + '">' +
+                                        '<option value="' + get_siswa.siswa_id + '">' +
                                         get_siswa
                                         .nama_depan + " " + get_siswa
                                         .nama_belakang + '</option>');
@@ -168,6 +169,7 @@
                     $('#siswa').empty();
                 }
             });
+        });
         });
     </script>
     <script>
