@@ -2159,7 +2159,7 @@ class SiswaController extends Controller
             $predikat_deskripsi_sbk = " dalam | " . implode(" | ", $predikat_pengetahuan_sbk);
             }
         // ---------------------------------------------
-        if($students -> kelas == "Kelas 1")
+        if ($rombel == 1)
         {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
 
@@ -2167,7 +2167,7 @@ class SiswaController extends Controller
                                 +$raport_pengetahuan_matematika
                                 +$raport_pengetahuan_pjok;
         }
-        if($students -> kelas == "Kelas 2")
+        if ($rombel == 2)
         {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
 
@@ -2175,7 +2175,7 @@ class SiswaController extends Controller
                                 +$raport_pengetahuan_matematika
                                 +$raport_pengetahuan_pjok;
         }
-        if($students -> kelas == "Kelas 3")
+        if ($rombel == 3)
         {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
                                 +$raport_pengetahuan_ppkn
@@ -2186,7 +2186,7 @@ class SiswaController extends Controller
                                 +$raport_pengetahuan_pjok
                                 +$raport_pengetahuan_sbk;
         }
-        if($students -> kelas == "Kelas 4")
+        if ($rombel == 4)
         {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
                                 +$raport_pengetahuan_ppkn
@@ -2197,7 +2197,7 @@ class SiswaController extends Controller
                                 +$raport_pengetahuan_pjok
                                 +$raport_pengetahuan_sbk;
         }
-        if($students -> kelas == "Kelas 5")
+        if ($rombel == 5)
         {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
                                 +$raport_pengetahuan_ppkn
@@ -2208,7 +2208,7 @@ class SiswaController extends Controller
                                 +$raport_pengetahuan_pjok
                                 +$raport_pengetahuan_sbk;
         }
-        if($students -> kelas == "Kelas 6")
+        if ($rombel == 6)
         {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
                                 +$raport_pengetahuan_ppkn
