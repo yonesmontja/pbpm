@@ -746,7 +746,7 @@
                         <td style="text-align: center;">{{ $raport_keterampilan_agama }}</td>
                     @endif
                     <td style="text-align: center;">{{ $predikat_keterampilan_huruf_agama }}</td>
-                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikat_huruf_agama1 }} </strong>
+                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikathuruf }} </strong>
                         {{ $predikat_keterampilan_deskripsi_agama }}</td>
                 </tr>
                 <tr class="details">
@@ -758,7 +758,7 @@
                         {{ $predikat_deskripsi_ppkn }}</td>
                     <td style="text-align: center;">{{ $raport_keterampilan_ppkn }}</td>
                     <td style="text-align: center;">{{ $predikat_keterampilan_huruf_ppkn }}</td>
-                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikat_huruf_ppkn1 }} </strong>
+                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikathuruf_ppkn }} </strong>
                         {{ $predikat_keterampilan_deskripsi_ppkn }}</td>
                 </tr>
                 <tr class="details">
@@ -770,7 +770,7 @@
                         {{ $predikat_deskripsi_indonesia }}</td>
                     <td style="text-align: center;">{{ $raport_keterampilan_indonesia }}</td>
                     <td style="text-align: center;">{{ $predikat_keterampilan_huruf_indonesia }}</td>
-                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikat_huruf_bi }} </strong>
+                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikathuruf_bi }} </strong>
                         {{ $predikat_keterampilan_deskripsi_indonesia }}</td>
                 </tr>
                 <tr class="details">
@@ -782,7 +782,7 @@
                         {{ $predikat_deskripsi_matematika }}</td>
                     <td style="text-align: center;">{{ $raport_keterampilan_matematika }}</td>
                     <td style="text-align: center;">{{ $predikat_keterampilan_huruf_matematika }}</td>
-                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikat_huruf_math }} </strong>
+                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikathuruf_math }} </strong>
                         {{ $predikat_keterampilan_deskripsi_matematika }}</td>
                 </tr>
                 <tr class="details">
@@ -794,7 +794,7 @@
                         {{ $predikat_deskripsi_ipa }}</td>
                     <td style="text-align: center;">{{ $raport_keterampilan_ipa }}</td>
                     <td style="text-align: center;">{{ $predikat_keterampilan_huruf_ipa }}</td>
-                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikat_huruf_ipa1 }} </strong>
+                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikathuruf_ipa }} </strong>
                         {{ $predikat_keterampilan_deskripsi_ipa }}</td>
                 </tr>
                 <tr class="details">
@@ -806,7 +806,7 @@
                         {{ $predikat_deskripsi_ips }}</td>
                     <td style="text-align: center;">{{ $raport_keterampilan_ips }}</td>
                     <td style="text-align: center;">{{ $predikat_keterampilan_huruf_ips }}</td>
-                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikat_huruf_ips1 }} </strong>
+                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikathuruf_ips }} </strong>
                         {{ $predikat_keterampilan_deskripsi_ips }}</td>
                 </tr>
                 <tr class="details">
@@ -821,7 +821,7 @@
                         {{ $predikat_deskripsi_pjok }}</td>
                     <td style="text-align: center;">{{ $raport_keterampilan_pjok }}</td>
                     <td style="text-align: center;">{{ $predikat_keterampilan_huruf_pjok }}</td>
-                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikat_huruf_pjok1 }}
+                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikathuruf_pjok }}
                         </strong> {{ $predikat_keterampilan_deskripsi_pjok }}</td>
                 </tr>
                 <tr class="details">
@@ -833,7 +833,7 @@
                         {{ $predikat_deskripsi_sbk }}</td>
                     <td style="text-align: center;">{{ $raport_keterampilan_sbk }}</td>
                     <td style="text-align: center;">{{ $predikat_keterampilan_huruf_sbk }}</td>
-                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikat_huruf_sbk1 }} </strong>
+                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikathuruf_sbk }} </strong>
                         {{ $predikat_keterampilan_deskripsi_sbk }}</td>
                 </tr>
                 <tr class="details">
