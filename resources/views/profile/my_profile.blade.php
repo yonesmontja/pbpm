@@ -95,8 +95,9 @@
                                     <img class="profile-user-img img-fluid img-circle" src="{{ $user->avatar() }}"
                                         alt="User profile picture">
                                 </div>
-                                @if ($user->role == 'admin' || $user -> role == 'guru')
-                                    <h3 class="profile-username text-center"><a href="#">{{ $user->name }} </a></h3>
+                                @if ($user->role == 'admin' || $user->role == 'guru')
+                                    <h3 class="profile-username text-center"><a
+                                            href="/guru/{{ $guru }}/profile">{{ $nama_guru }} </a></h3>
                                 @else
                                     <h3 class="profile-username text-center"><a
                                             href="#">{{ $user->siswa->nama_depan }}
@@ -110,18 +111,18 @@
                                         <b>Email</b> <a class="float-right">{{ $user->email }}</a>
                                     </li>
                                     <li class="list-group-item">
-                                        @if ($user->role == 'admin' || $user -> role == 'guru')
+                                        @if ($user->role == 'admin' || $user->role == 'guru')
                                             <b>Role</b> <a class="float-right">{{ $user->role }}</a>
                                         @else
                                             <b>Kelas</b> <a class="float-right">{{ $user->siswa->kelas }}</a>
                                         @endif
                                     </li>
                                     <li class="list-group-item">
-                                        @if ($user -> role == 'admin' || $user -> role == 'guru')
+                                        @if ($user->role == 'admin' || $user->role == 'guru')
                                             ---
                                         @else
                                             <b>Jenis Kelamin</b> <a
-                                            class="float-right">{{ $user->siswa->jenis_kelamin }}</a>
+                                                class="float-right">{{ $user->siswa->jenis_kelamin }}</a>
                                         @endif
                                     </li>
                                 </ul>
@@ -136,48 +137,50 @@
                         <!-- About Me Box -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Data Diri Siswa</h3>
+                                @if ($user->role == 'guru')
+                                    <h3 class="card-title">Data Diri</h3>
+                                @else
+                                    <h3 class="card-title">Data Diri Siswa</h3>
+                                @endif
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <strong><i class="fas fa-book mr-1"></i> Tempat Lahir</strong>
 
-                                @if ($user -> role == 'admin' || $user -> role == 'guru')
+                                @if ($user->role == 'admin' || $user->role == 'guru')
                                     ---
                                 @else
                                     <p class="text-muted">
-                                    {{ $user->siswa->tempat_lahir }}
-                                </p>
+                                        {{ $user->siswa->tempat_lahir }}
+                                    </p>
                                 @endif
 
                                 <hr>
 
-                                @if ($user -> role == 'admin' || $user -> role == 'guru')
+                                @if ($user->role == 'admin' || $user->role == 'guru')
                                     ---
                                 @else
                                     <strong><i class="fas fa-map-marker-alt mr-1"></i> Tanggal Lahir</strong>
 
-                                <p class="text-muted">{{ $user->siswa->tgl_lahir }}</p>
+                                    <p class="text-muted">{{ $user->siswa->tgl_lahir }}</p>
                                 @endif
 
                                 <hr>
 
-                                @if ($user -> role == 'admin' || $user -> role == 'guru')
-
+                                @if ($user->role == 'admin' || $user->role == 'guru')
                                 @else
                                     <strong><i class="fas fa-pencil-alt mr-1"></i> Agama</strong>
 
-                                <p class="text-muted">{{ $user->siswa->agama }}</p>
+                                    <p class="text-muted">{{ $user->siswa->agama }}</p>
                                 @endif
 
                                 <hr>
 
-                                @if ($user -> role == 'admin' || $user -> role == 'guru')
-
+                                @if ($user->role == 'admin' || $user->role == 'guru')
                                 @else
                                     <strong><i class="far fa-file-alt mr-1"></i> Alamat</strong>
 
-                                <p class="text-muted">{{ $user->siswa->alamat }}</p>
+                                    <p class="text-muted">{{ $user->siswa->alamat }}</p>
                                 @endif
                             </div>
                             <!-- /.card-body -->

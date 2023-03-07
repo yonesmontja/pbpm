@@ -127,7 +127,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/guru/{guru}/guruedit',[GuruController::class,'guruedit']);
 	Route::post('/guru/{guru}/guruupdate',[GuruController::class,'guruupdate']);
 	Route::get('/guru/{guru}/gurudelete',[GuruController::class,'gurudelete']);
-	Route::get('/guru/{guru}/profile',[GuruController::class,'profile']);
+
 
 	Route::get('/penilaian',[PenilaianController::class,'index']);
 	Route::post('/penilaian/penilaiancreate',[PenilaianController::class,'penilaiancreate']);
@@ -326,6 +326,9 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
+
+    Route::get('/guru/{guru}/profile', [GuruController::class, 'profile']);
+
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/user/{id}/profile', [UserController::class, 'userprofile']);
     Route::get('/my_profile/{id}/myprofile', [UserController::class, 'my_profile']);

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use App\Models\User;
-use App\Models\Siswa;
 
+use App\Models\Siswa;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -29,8 +30,18 @@ class UserController extends Controller
     public function my_profile($id)
     {
         $user = User::find($id);
+        $guru = Guru::where('user_id', $id)->pluck('id')->first();
+        $nama_guru = Guru::where('user_id', $id)->pluck('nama_guru')->first();
+        $siswa = Siswa::where('user_id', $id)->pluck('id')->first();
+        //dd($guru);
+        //dd($user->guru());
 
-        return view('profile.my_profile',['user' => $user]);
+        return view('profile.my_profile', [
+            'user' => $user,
+            'guru' => $guru,
+            'nama_guru' => $nama_guru,
+            'siswa' => $siswa,
+        ]);
     }
 
     public function portofolio()

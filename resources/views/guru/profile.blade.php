@@ -62,7 +62,7 @@
                     <b>Wali Kelas dari</b> <a class="float-right">{{ $wali_kelas }}</a>
                   </li>
                   <li class="list-group-item">
-                    <b>Friends</b> <a class="float-right">13,287</a>
+                    <b>Jumlah Siswa Wali</b> <a class="float-right">{{ $murid_wali }}</a>
                   </li>
                 </ul>
               </div>
