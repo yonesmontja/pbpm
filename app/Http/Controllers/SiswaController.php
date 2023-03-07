@@ -35,7 +35,7 @@ class SiswaController extends Controller
 {
     public function index(Siswa $data_siswa)
     {
-    	$data_siswa = \App\Models\Siswa::all();
+        $data_siswa = Siswa::orderBy('nama_depan')->get();
     	return view('siswa.index',['data_siswa' => $data_siswa]);
     }
 
@@ -74,8 +74,8 @@ class SiswaController extends Controller
     }
     public function test(Siswa $data_siswa)
     {
-        $data_siswa = \App\Models\Siswa::all();
-        $user_id = \App\Models\Siswa::all();
+        $data_siswa = Siswa::orderBy('nama_depan')->get();
+        $user_id = Siswa::orderBy('nama_depan')->get();
         $kelas = Kelas::all();
         //dd('$data_siswa');
         return view('siswa.test',['kelas' => $kelas,'data_siswa' => $data_siswa,'user_id'=> $user_id]);

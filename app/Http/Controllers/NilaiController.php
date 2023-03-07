@@ -70,7 +70,7 @@ class NilaiController extends Controller
     }
     public function getNamaSiswa($id)
     {
-        $get_siswa = Siswa::where('kelas_id',$id)->get();
+        $get_siswa = Siswa::where('kelas_id', $id)->orderBy('nama_depan')->get();
         //$get_siswa = DB::table('rombel_siswa')->where('rombel_id', $id)->get();
         //dd($get_siswa);
         return response()->json($get_siswa);
