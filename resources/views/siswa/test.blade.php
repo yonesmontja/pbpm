@@ -129,7 +129,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data_siswa as $siswa)
+                                        @foreach ($tampung as $siswa)
                                             <tr>
                                                 <td><a
                                                         href="/test/{{ $siswa->id }}/profile">{{ $siswa->nama_depan }}</a>
@@ -140,7 +140,9 @@
                                                 <td>{{ $siswa->nis }}</td>
                                                 <td>{{ $siswa->jenis_kelamin }}</td>
                                                 <td>{{ $siswa->agama }}</td>
-                                                <td>{{ $siswa->kelas }}</td>
+                                                @foreach ( $siswa -> rombel as $r )
+                                                    <td>{{ $r->rombel }}</td>
+                                                @endforeach
                                                 <td>
                                                     <a href="/siswa/{{ $siswa->id }}/cover_pdf"
                                                         class="btn btn-primary btn-sm">Cover

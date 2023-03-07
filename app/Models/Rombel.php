@@ -48,7 +48,7 @@ class Rombel extends Model
     }
     public function siswa()
     {
-        return $this->belongsToMany(Siswa::class, 'rombel_siswa', 'rombel_id', 'siswa_id')->withPivot(['nama_depan', 'nama_belakang'])->withTimeStamps();
+        return $this->belongsToMany(Siswa::class, 'rombel_siswa', 'rombel_id', 'siswa_id')->withPivot(['nama_depan', 'nama_belakang', 'tahunpelajaran_id'])->withTimeStamps();
     }
     public function nilai(): HasMany
     {
