@@ -59,7 +59,7 @@
                     <b>Mapel</b> <a class="float-right">{{$guru->mapel->count()}}</a>
                   </li>
                   <li class="list-group-item">
-                    <b>Following</b> <a class="float-right">543</a>
+                    <b>Wali Kelas dari</b> <a class="float-right">{{ $wali_kelas }}</a>
                   </li>
                   <li class="list-group-item">
                     <b>Friends</b> <a class="float-right">13,287</a>
