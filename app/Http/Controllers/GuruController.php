@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Guru;
 use App\Models\User;
+use App\Models\Rombel;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -14,12 +15,17 @@ class GuruController extends Controller
     public function profile($id)
     {
     	$guru = Guru::find($id);
+        $wali_kelas = Rombel::where('guru_id', $id)->pluck('rombel')->first();
+        //dd($wali_kelas);
         //dd($guru -> mapel);
-    	return view('guru.profile',['guru' => $guru]);
+        return view('guru.profile', [
+            'guru' => $guru,
+            'wali_kelas' => $wali_kelas,
+        ]);
     }
     public function index()
     {
-    	$data_guru = \App\Models\Guru::all();
+        $data_guru = Guru::all();
     	return view('guru.index',['data_guru' => $data_guru]);
     }
     public function gurucreate(Request $request)
