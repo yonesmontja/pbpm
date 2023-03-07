@@ -731,7 +731,7 @@
                         <td style="text-align: center;">{{ $raport_pengetahuan_agama }}</td>
                     @elseif($students->agama == 'Kristen Protestan' || $students->agama == 'kristen protestan')
                         <td style="text-align: center;">{{ $raport_pengetahuan_agama }}</td>
-                    @elseif($students->agama == 'katolik')
+                    @elseif($students->agama == 'Katolik' || $students->agama == 'katolik')
                         <td style="text-align: center;">{{ $raport_pengetahuan_agama }}</td>
                     @endif
                     <td style="text-align: center;">{{ $predikat_huruf_agama }}</td>
@@ -742,7 +742,7 @@
                         <td style="text-align: center;">{{ $raport_keterampilan_agama }}</td>
                     @elseif($students->agama == 'Kristen Protestan' || $students->agama == 'kristen protestan')
                         <td style="text-align: center;">{{ $raport_keterampilan_agama }}</td>
-                    @elseif($students->agama == 'katolik')
+                    @elseif($students->agama == 'Katolik' || $students->agama == 'katolik')
                         <td style="text-align: center;">{{ $raport_keterampilan_agama }}</td>
                     @endif
                     <td style="text-align: center;">{{ $predikat_keterampilan_huruf_agama }}</td>
