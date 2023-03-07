@@ -93,12 +93,12 @@ class GuruController extends Controller
         //}
         if ($request->hasFile('avatar')) {
             $guru->delete_avatar();
-            $avatar = $request->file('avatar')->move(public_path('images/guru/'), $request->file('avatar')->getClientOriginalName() . "." . $request->file('avatar')->getClientOriginalExtension());
+            $avatar = $request->file('avatar')->move(public_path('storage/images/guru/'), $request->file('avatar')->getClientOriginalName() . "." . $request->file('avatar')->getClientOriginalExtension());
 
             $file_name = rand(1000, 9999) . $request->file('avatar')->getClientOriginalName();
             $img = Image::make($avatar);
-            $img->resize('120', '120')->save(public_path('images/guru') . '/small_' . $file_name);
-            $avatar->move(public_path('images/guru'), $file_name);
+            $img->resize('120', '120')->save(public_path('storage/images/guru') . '/small_' . $file_name);
+            $avatar->move(public_path('storage/images/guru'), $file_name);
             $guru->avatar = $file_name;
         }
         //$user = new User();
