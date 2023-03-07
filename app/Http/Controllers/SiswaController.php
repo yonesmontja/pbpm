@@ -84,26 +84,14 @@ class SiswaController extends Controller
         //dd($rombel1);
         $satu = Siswa::find(502);
         $rombel = $satu->nama_depan;
-        //dd($rombel);
-        $dua = Rombel::find(6);
-        $siswa_dua = $satu->rombel;
-        //dd($siswa_dua);
+        // mengambil data siswa yang sudah memiliki rombel
+        // simpan di variabel $tampung dan $tampung2
         foreach ($rombel1 as $r => $s) {
             $tampung[] = Siswa::find($s);
         }
-        //dd($tampung);
-
         foreach ($tampung as $t) {
             $tampung2[] = $t->rombel();
         }
-
-
-        //dd($tampung2);
-        //foreach ($tampung as $t) {
-        //    $tampung2[] = $t->nama_depan;
-        //}
-        //dd($tampung2);
-        //dd('$data_siswa');
         return view('siswa.test', [
             'kelas' => $kelas,
             'data_siswa' => $data_siswa,
