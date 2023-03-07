@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Rombel;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 
 class GuruController extends Controller
@@ -16,11 +17,14 @@ class GuruController extends Controller
     {
     	$guru = Guru::find($id);
         $wali_kelas = Rombel::where('guru_id', $id)->pluck('rombel')->first();
-        //dd($wali_kelas);
+        $rombel = Rombel::where('guru_id', $id)->pluck('id')->first();
+        $murid_wali = DB::table('rombel_siswa')->where('rombel_id', $rombel)->count();
+        //dd($murid_wali);
         //dd($guru -> mapel);
         return view('guru.profile', [
             'guru' => $guru,
             'wali_kelas' => $wali_kelas,
+            'murid_wali' => $murid_wali,
         ]);
     }
     public function index()
