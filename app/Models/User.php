@@ -61,8 +61,8 @@ class User extends Authenticatable
     {
         $thumbnail = $real_size ? '' : 'small_';
 
-        if ($this->avatar && file_exists('/home/sdinpre2/pbpm.sdinpresdabolding.sch.id/storage/users/' . $thumbnail . $this->avatar))
-            return asset('storage/users/' . $thumbnail  . $this->avatar);
+        if ($this->avatar && file_exists('images/users/' . $thumbnail . $this->avatar))
+            return asset('images/users/' . $thumbnail  . $this->avatar);
         else
             return asset('no_avatar.png');
     }

@@ -200,8 +200,8 @@ class SiswaController extends Controller
             $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
             $img = Image::make($avatar->path());
             $img->resize('120', '120')
-                ->save(public_path('/images') . '/small_' . $file_name);
-            $avatar->move('/images', $file_name);
+                ->save(public_path('/images/siswa') . '/small_' . $file_name);
+            $avatar->move('/images/siswa', $file_name);
             $siswa->avatar = $file_name;
         }
         $siswa->nama_depan = $request->nama_depan;

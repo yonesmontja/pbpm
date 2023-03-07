@@ -111,15 +111,15 @@ class UserController extends Controller
         //$user ->update($request->all());
         if ($request->hasFile('avatar')) {
             $user->delete_avatar();
-            $avatar = $request->file('avatar')->move('/home/sdinpre2/pbpm.sdinpresdabolding.sch.id/storage/users', $request->file('avatar')->getClientOriginalName() . "." . $request->file('avatar')->getClientOriginalExtension());
+            $avatar = $request->file('avatar')->move('images/users/', $request->file('avatar')->getClientOriginalName() . "." . $request->file('avatar')->getClientOriginalExtension());
             //dd($avatar);
             $file_name = rand(1000, 9999) . $request->file('avatar')->getClientOriginalName();
             //dd($file_name);
             $img = Image::make($avatar);
             //dd($img);
-            $img->resize('120', '120')->save('/home/sdinpre2/pbpm.sdinpresdabolding.sch.id/storage/users/' . 'small_' . $file_name);
+            $img->resize('120', '120')->save('images/users/' . 'small_' . $file_name);
             //dd($img);
-            $avatar->move('/home/sdinpre2/pbpm.sdinpresdabolding.sch.id/storage/users/', $file_name);
+            $avatar->move('images/users/', $file_name);
             $user->avatar = $file_name;
         }
         $user->name = $request->name;
