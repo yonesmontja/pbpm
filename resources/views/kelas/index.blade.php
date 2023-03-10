@@ -68,7 +68,7 @@
                                         <tr>
                                             <th>LEVEL</th>
                                             <th>KELAS</th>
-                                            <th></th>
+                                            <th>ROMBEL</th>
                                             <th>AKSI</th>
                                         </tr>
                                     </thead>
@@ -82,8 +82,10 @@
                                                 <td><a href="/kelas/{{ $kelas->id }}/profile">{{ $kelas->nama }}</a>
                                                 </td>
                                                 <td>
-                                                    <img class="profile-user-img img-fluid img-circle"
-                                                        src="{{ $kelas->avatar() }}" alt="User profile picture">
+                                                    @foreach ($kelas->rombel as $r)
+                                                        <li><a
+                                                            href="/rombel/{{ $r->id }}/profile">{{ $r->rombel }}</a></li>
+                                                    @endforeach
                                                 </td>
                                                 <td>
                                                     <a href="/kelas/{{ $kelas->id }}/kelasedit"
@@ -102,7 +104,7 @@
                                         <tr>
                                             <th>LEVEL</th>
                                             <th>KELAS</th>
-                                            <th></th>
+                                            <th>ROMBEL</th>
                                             <th>AKSI</th>
                                         </tr>
                                     </tfoot>
@@ -165,13 +167,13 @@
                                                                     file</label>
                                                             </div>
                                                             <div>
-                                                                <img class="img-preview img-fluid mb-3 col-sm-2" alt="">
+                                                                <img class="img-preview img-fluid mb-3 col-sm-2"
+                                                                    alt="">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     @if ($errors->has('avatar'))
-                                                        <span
-                                                            class="help-block">{{ $errors->first('avatar') }}</span>
+                                                        <span class="help-block">{{ $errors->first('avatar') }}</span>
                                                     @endif
                                                     <!-- akhir form isian data -->
                                             </div>

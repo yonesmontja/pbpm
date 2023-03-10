@@ -6,8 +6,10 @@ use App\Models\Guru;
 use App\Models\User;
 
 use App\Models\Siswa;
+use App\Models\Rombel;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
@@ -15,8 +17,8 @@ class UserController extends Controller
     //
     public function profile1($siswa)
     {
-    	//$user = User::find($id);
-        return view('profile.profile',['user' => $siswa]);
+        //$user = User::find($id);
+        return view('profile.profile', ['user' => $siswa]);
     }
     public function userprofile($id)
     {
@@ -25,7 +27,7 @@ class UserController extends Controller
         //dd($user->siswa());
         //$siswa = Siswa::all();
         //dd($siswa);
-        return view('user.profile',['user' => $user]);
+        return view('user.profile', ['user' => $user]);
     }
     public function my_profile($id)
     {
@@ -46,30 +48,47 @@ class UserController extends Controller
 
     public function portofolio()
     {
-    	return view('profile.ecommerce');
+        return view('profile.ecommerce');
     }
 
     public function contacts()
     {
-    	$siswa = Siswa::all();
-        return view('profile.contacts',['siswa' => $siswa]);
+        $siswa = Siswa::all();
+        $rombel = Rombel::all();
+        //$rombel1 = DB::table('rombel_siswa')->pluck('siswa_id')->toArray();
+        $siswa_rombel = DB::table('rombel_siswa')->paginate(10)->pluck('siswa_id')->toArray();
+        $data = DB::table('rombel_siswa')->paginate(10);
+        foreach ($siswa_rombel as $n => $m) {
+            $rombel_siswa[] = $siswa->find($m);
+        }
+        //dd($rombel_siswa);
+        return view(
+            'profile.contacts',
+            [
+                'siswa' => $siswa,
+                'rombel' => $rombel,
+                'siswa_rombel' => $siswa_rombel,
+                'rombel_siswa' => $rombel_siswa,
+                'data' => $data,
+            ]
+        );
     }
     public function index(Request $request)
     {
         $data_user = User::select("*")
-                        ->whereNotNull('last_seen')
-                        ->orderBy('last_seen','DESC')
-                        ->paginate(10);
-        return view('user.online',compact('data_user'));
+            ->whereNotNull('last_seen')
+        ->orderBy('last_seen', 'DESC')
+            ->paginate(10);
+        return view('user.online', compact('data_user'));
     }
     public function user()
     {
         $data_user = User::all();
-        return view('user.index',['data_user' => $data_user]);
+        return view('user.index', ['data_user' => $data_user]);
     }
     public function create(Request $request)
     {
-        $this -> validate($request,[
+        $this->validate($request, [
             'name' => 'required|min:3',
             'role' => 'required',
             'email' => 'required|email|unique:users',
@@ -82,26 +101,26 @@ class UserController extends Controller
         $avatar->move('/home/sdinpre2/pbpm.sdinpresdabolding.sch.id/storage/users', $file_name);
         //insert ke tabel Users
         $user = new User();
-        $user -> role = $request -> role;
-        $user -> name = $request -> name;
-        $user -> email = $request -> email;
-        $user -> avatar = $file_name;
-        $user -> password = bcrypt('rahasia');
-        $user -> remember_token = Str::random(60);
+        $user->role = $request->role;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->avatar = $file_name;
+        $user->password = bcrypt('rahasia');
+        $user->remember_token = Str::random(60);
         //        if($request->hasFile('avatar')){
         //    $request->file('avatar')->move('/storage/images',$request->file('avatar')->getClientOriginalName());
         //    $user->avatar= $request->file('avatar')->getClientOriginalName();
         //    $user->save();
         //}
-        $user -> save();
+        $user->save();
 
         //return $request -> all();
 
-        return redirect('/user')->with('sukses','berhasil diinput');
+        return redirect('/user')->with('sukses', 'berhasil diinput');
     }
     public function useredit(User $user)
     {
-        return view('user/edit',['user'=>$user]);
+        return view('user/edit', ['user' => $user]);
     }
     public function userupdate(Request $request, User $user)
     {
@@ -125,23 +144,28 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
-        return view('profile.my_profile',['user' => $user])->with('sukses','berhasil diupdate!');
+        return view('profile.my_profile', ['user' => $user])->with('sukses', 'berhasil diupdate!');
     }
     public function userdelete(User $user)
     {
-        $user ->delete_avatar();
-        $user ->delete();
-        return redirect('/user')->with('sukses','berhasil dihapus!');
+        $user->delete_avatar();
+        $user->delete();
+        return redirect('/user')->with('sukses', 'berhasil dihapus!');
     }
-    function save_user(Request $request){
-      $img = time()."_".$request->photo->getClientOriginalName();
-      $hobbies = implode(',', $request->hobbies);
-      $request->photo->move(public_path('uploads'), $img);
-      DB::insert('insert into users (email, password, country, gender, hobbies, photo) values (?, ?, ?, ?, ?, ?)',
-        [$request->email,
-        $request->pwd,
-        $request->country,
-        $request->gender,
-        $hobbies,$img]);
-  }
+    function save_user(Request $request)
+    {
+        $img = time() . "_" . $request->photo->getClientOriginalName();
+        $hobbies = implode(',', $request->hobbies);
+        $request->photo->move(public_path('uploads'), $img);
+        DB::insert(
+            'insert into users (email, password, country, gender, hobbies, photo) values (?, ?, ?, ?, ?, ?)',
+            [
+                $request->email,
+                $request->pwd,
+                $request->country,
+                $request->gender,
+                $hobbies, $img
+            ]
+        );
+    }
 }

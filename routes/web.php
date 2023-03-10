@@ -88,6 +88,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 
     Route::get('/rombel', [RombelController::class, 'index']);
     Route::post('/rombel/rombelcreate', [RombelController::class, 'rombelcreate']);
+    Route::get('/rombel/{rombel}/profile', [RombelController::class, 'rombelprofile']);
 
     Route::get('/rombel_siswa', [RombelController::class, 'rombel_siswa']);
     Route::post('/rombel/rombelsiswacreate', [RombelController::class, 'rombelsiswacreate']);

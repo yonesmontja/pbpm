@@ -10,6 +10,7 @@ use App\Models\Level;
 use App\Models\Mapel;
 use App\Models\Nilai;
 use App\Models\Siswa;
+use App\Models\Rombel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
@@ -339,7 +340,12 @@ class KelasController extends Controller
     {
     	$level = Level::all();
         $kelas1 = Kelas::all();
-    	return view('kelas.index',['kelas1' => $kelas1,'level' => $level]);
+        $rombel = Rombel::all();
+        return view('kelas.index', [
+            'kelas1' => $kelas1,
+            'level' => $level,
+            'rombel' => $rombel,
+        ]);
     }
      public function kelasedit(Kelas $kelas)
     {
