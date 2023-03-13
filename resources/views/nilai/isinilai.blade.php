@@ -1,4 +1,4 @@
-@extends('layouts.master5')
+@extends('layouts.master5-isinilai')
 
 @section('title')
     <title> SD Dabolding NILAI </title>

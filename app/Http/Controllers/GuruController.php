@@ -334,13 +334,8 @@ class GuruController extends Controller
     }
     public function guruupdate(Request $request, Guru $guru)
     {
-
         $guru ->update($request->all());
-        //if($request->hasFile('avatar')){
-        //    $request->file('avatar')->move('/images/',$request->file('avatar')->getClientOriginalName());
-        //    $guru->avatar= $request->file('avatar')->getClientOriginalName();
-        //    $guru->save();
-        //}
+
         if ($request->hasFile('avatar')) {
             $guru->delete_avatar();
             $avatar = $request->file('avatar')->move('images/guru/', $request->file('avatar')->getClientOriginalName() . "." . $request->file('avatar')->getClientOriginalExtension());

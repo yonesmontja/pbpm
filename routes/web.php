@@ -335,13 +335,13 @@ Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
     Route::get('/my_profile/{id}/myprofile', [UserController::class, 'my_profile']);
     Route::get('/user/{user}/edit', [UserController::class, 'useredit']);
     Route::post('/user/{user}/update', [UserController::class, 'userupdate']);
-    Route::get('/test/{siswa}/profile', [SiswaController::class, 'testprofile']);
+    Route::get('/test/{siswa}/profile', [SiswaController::class, 'testprofile'])->name('testsiswaprofile');
+    //Route::get('/test/{siswa}/profile', [SiswaController::class, 'testprofile']);
     Route::get('/test', [SiswaController::class, 'test']);
     Route::post('/test/testcreate', [SiswaController::class, 'testcreate']);
     Route::get('/test/{siswa}/edit', [SiswaController::class, 'testedit']);
     Route::post('/test/{siswa}/update', [SiswaController::class, 'testupdate']);
     Route::get('/test/{siswa}/delete', [SiswaController::class, 'testdelete']);
-    Route::get('/test/{siswa}/profile', [SiswaController::class, 'testprofile']);
     Route::post('/test/{siswa}/addnilai', [SiswaController::class, 'testaddnilai']);
     Route::get('/test/{siswa}/{idmapel}/testdeletenilai', [SiswaController::class, 'testdeletenilai']);
     Route::get('/test/{id}/aktivasi', [SiswaController::class, 'testaktivasi']);
@@ -388,7 +388,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin,siswa,guru']], function 
 	Route::get('/my_profile/{id}/myprofile',[UserController::class,'my_profile']);
     Route::get('/user/{user}/edit',[UserController::class,'useredit']);
 	Route::post('/user/{user}/update',[UserController::class,'userupdate']);
-    Route::get('/test/{siswa}/profile',[SiswaController::class,'testprofile']);
+    Route::get('/test/{siswa}/profile', [SiswaController::class, 'testprofile'])->name('testsiswaprofile');
 });
 
 Route::get('audits', [AuditController::class,'index'])

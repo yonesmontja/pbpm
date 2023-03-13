@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Redirect;
 
 class SiswaController extends Controller
 {
@@ -82,8 +83,7 @@ class SiswaController extends Controller
         $data_siswa1 = $data_siswa->pluck('id')->toArray();
         //dd($data_siswa1);
         //dd($rombel1);
-        $satu = Siswa::find(502);
-        $rombel = $satu->nama_depan;
+        $guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
         // mengambil data siswa yang sudah memiliki rombel
         // simpan di variabel $tampung dan $tampung2
         foreach ($rombel1 as $r => $s) {
@@ -100,6 +100,7 @@ class SiswaController extends Controller
             'rombel' => $rombel,
             'rombel1' => $rombel1,
             'tampung2' => $tampung2,
+            'guru' => $guru,
         ]);
     }
     public function testcreate(Request $request)
@@ -188,20 +189,26 @@ class SiswaController extends Controller
     public function testedit(Siswa $siswa)
     {
         $kelas = Kelas::all();
-        return view('siswa/testedit', ['kelas' => $kelas, 'siswa' => $siswa]);
+        $guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
+        return view('siswa/testedit', [
+            'kelas' => $kelas,
+            'siswa' => $siswa,
+            'guru' => $guru,
+        ]);
     }
     public function testupdate(Request $request, Siswa $siswa)
     {
-
+        $siswa_id = $siswa->id;
+        //dd($siswa_id);
         $siswa->update($request->all());
         if ($request->hasFile('avatar')) {
             $siswa->delete_avatar();
-            $avatar = $request->file('avatar');
-            $file_name = rand(1000, 9999) . $avatar->getClientOriginalName();
-            $img = Image::make($avatar->path());
-            $img->resize('120', '120')
-                ->save(public_path('/images/siswa') . '/small_' . $file_name);
-            $avatar->move('/images/siswa', $file_name);
+            $avatar = $request->file('avatar')->move('images/siswa/', $request->file('avatar')->getClientOriginalName() . "." . $request->file('avatar')->getClientOriginalExtension());
+
+            $file_name = rand(1000, 9999) . $request->file('avatar')->getClientOriginalName();
+            $img = Image::make($avatar);
+            $img->resize('120', '120')->save('images/siswa' . '/small_' . $file_name);
+            $avatar->move('images/siswa', $file_name);
             $siswa->avatar = $file_name;
         }
         $siswa->nama_depan = $request->nama_depan;
@@ -212,7 +219,12 @@ class SiswaController extends Controller
         $siswa->alamat = $request->alamat;
         $siswa->kelas_id = $request->kelas_id;
         $siswa->save();
-        return redirect('/test')->with('sukses', 'berhasil diupdate!');
+        if (auth()->user()->role == 'admin') {
+            return redirect('/test')->with('sukses', 'berhasil diupdate!');
+        }
+        if (auth()->user()->role == 'guru') {
+            return Redirect::route('testsiswaprofile', ['siswa' => $siswa_id])->with('sukses', 'berhasil diupdate!');
+        }
     }
 
     public function editnilai(Request $request)
@@ -322,7 +334,8 @@ class SiswaController extends Controller
         $nilai_end = Tahunpel::all()->where('id', '=', 1)->pluck('tahun');
         $id1 = Nilai::all()->where('siswa_id', $id)->pluck('siswa_id', $id)->first();
         $mapel1 = Nilai::all()->where('siswa_id', $id)->pluck('mapel_id')->count();
-        $mapel3 = Mapel::all()->pluck('nama_mapel');
+
+        //dd($mapel3);
         $islam_average = Nilai::all()->where('siswa_id', $id)->where('mapel_id', 1)->pluck('nilai')->avg();
         $protestan_average = Nilai::all()->where('siswa_id', $id)->where('mapel_id', 2)->pluck('nilai')->avg();
         $katolik_average = Nilai::all()->where('siswa_id', $id)->where('mapel_id', 3)->pluck('nilai')->avg();
@@ -333,16 +346,49 @@ class SiswaController extends Controller
         $ips_average = Nilai::all()->where('siswa_id', $id)->where('mapel_id', 8)->pluck('nilai')->avg();
         $pjok_average = Nilai::all()->where('siswa_id', $id)->where('mapel_id', 9)->pluck('nilai')->avg();
         $sbk_average = Nilai::all()->where('siswa_id', $id)->where('mapel_id', 10)->pluck('nilai')->avg();
-        $matang1[0] = (int)$islam_average;
-        $matang1[1] = (int)$protestan_average;
-        $matang1[2] = (int)$katolik_average;
-        $matang1[3] = (int)$ppkn_average;
-        $matang1[4] = (int)$indonesia_average;
-        $matang1[5] = (int)$matematika_average;
-        $matang1[6] = (int)$ipa_average;
-        $matang1[7] = (int)$ips_average;
-        $matang1[8] = (int)$pjok_average;
-        $matang1[9] = (int)$sbk_average;
+        if ($siswa->agama == 'islam' || $siswa->agama == "Islam") {
+            $agama_average = (int)$islam_average;
+            $mapel3[0] = "Agama Islam";
+            $mapel3[1] = "PPKn";
+            $mapel3[2] = "B.Indonesia";
+            $mapel3[3] = "Matematika";
+            $mapel3[4] = "IPA";
+            $mapel3[5] = "IPS";
+            $mapel3[6] = "PJOK";
+            $mapel3[7] = "SBK";
+        }
+        if (
+            $siswa->agama == 'katolik' || $siswa->agama == "Katolik"
+        ) {
+            $agama_average = (int)$katolik_average;
+            $mapel3[0] = "Agama Katolik";
+            $mapel3[1] = "PPKn";
+            $mapel3[2] = "B.Indonesia";
+            $mapel3[3] = "Matematika";
+            $mapel3[4] = "IPA";
+            $mapel3[5] = "IPS";
+            $mapel3[6] = "PJOK";
+            $mapel3[7] = "SBK";
+        }
+        if ($siswa->agama == 'kristen protestan' || $siswa->agama == "Kristen Protestan") {
+            $agama_average = (int)$protestan_average;
+            $mapel3[0] = "Agama Kristen";
+            $mapel3[1] = "PPKn";
+            $mapel3[2] = "B.Indonesia";
+            $mapel3[3] = "Matematika";
+            $mapel3[4] = "IPA";
+            $mapel3[5] = "IPS";
+            $mapel3[6] = "PJOK";
+            $mapel3[7] = "SBK";
+        }
+        $matang1[0] = (int)$agama_average;
+        $matang1[1] = (int)$ppkn_average;
+        $matang1[2] = (int)$indonesia_average;
+        $matang1[3] = (int)$matematika_average;
+        $matang1[4] = (int)$ipa_average;
+        $matang1[5] = (int)$ips_average;
+        $matang1[6] = (int)$pjok_average;
+        $matang1[7] = (int)$sbk_average;
         $tescategories1 = collect($tescategories);
         $matpel = collect($data7)->sum();
         $average = collect($data7)->avg();
@@ -1768,7 +1814,7 @@ class SiswaController extends Controller
         //dd($predikat_huruf_bi);
         // deskripsi matematika
         $predikat_pengetahuan_math = Nilai::all()
-        ->where('siswa_id', '=', $id)
+            ->where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 6)
             ->pluck('nilai_notes')->toArray();
@@ -1939,116 +1985,116 @@ class SiswaController extends Controller
         ) {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
 
-            + $raport_pengetahuan_indonesia
-            + $raport_pengetahuan_matematika
+                + $raport_pengetahuan_indonesia
+                + $raport_pengetahuan_matematika
 
-            + $raport_pengetahuan_pjok;
+                + $raport_pengetahuan_pjok;
         }
         if (
             $rombel == 4
         ) {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
 
-            + $raport_pengetahuan_indonesia
-            + $raport_pengetahuan_matematika
+                + $raport_pengetahuan_indonesia
+                + $raport_pengetahuan_matematika
 
-            + $raport_pengetahuan_pjok;
+                + $raport_pengetahuan_pjok;
         }
         if (
             $rombel == 5
         ) {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
-            + $raport_pengetahuan_ppkn
-            + $raport_pengetahuan_indonesia
-            + $raport_pengetahuan_matematika
-            + $raport_pengetahuan_ipa
-            + $raport_pengetahuan_ips
-            + $raport_pengetahuan_pjok
-            + $raport_pengetahuan_sbk;
+                + $raport_pengetahuan_ppkn
+                + $raport_pengetahuan_indonesia
+                + $raport_pengetahuan_matematika
+                + $raport_pengetahuan_ipa
+                + $raport_pengetahuan_ips
+                + $raport_pengetahuan_pjok
+                + $raport_pengetahuan_sbk;
         }
         if (
             $rombel == 6
         ) {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
-            + $raport_pengetahuan_ppkn
-            + $raport_pengetahuan_indonesia
-            + $raport_pengetahuan_matematika
-            + $raport_pengetahuan_ipa
-            + $raport_pengetahuan_ips
-            + $raport_pengetahuan_pjok
-            + $raport_pengetahuan_sbk;
+                + $raport_pengetahuan_ppkn
+                + $raport_pengetahuan_indonesia
+                + $raport_pengetahuan_matematika
+                + $raport_pengetahuan_ipa
+                + $raport_pengetahuan_ips
+                + $raport_pengetahuan_pjok
+                + $raport_pengetahuan_sbk;
         }
         if (
             $rombel == 7
         ) {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
-            + $raport_pengetahuan_ppkn
-            + $raport_pengetahuan_indonesia
-            + $raport_pengetahuan_matematika
-            + $raport_pengetahuan_ipa
-            + $raport_pengetahuan_ips
-            + $raport_pengetahuan_pjok
-            + $raport_pengetahuan_sbk;
+                + $raport_pengetahuan_ppkn
+                + $raport_pengetahuan_indonesia
+                + $raport_pengetahuan_matematika
+                + $raport_pengetahuan_ipa
+                + $raport_pengetahuan_ips
+                + $raport_pengetahuan_pjok
+                + $raport_pengetahuan_sbk;
         }
         if (
             $rombel == 8
         ) {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
-            + $raport_pengetahuan_ppkn
-            + $raport_pengetahuan_indonesia
-            + $raport_pengetahuan_matematika
-            + $raport_pengetahuan_ipa
-            + $raport_pengetahuan_ips
-            + $raport_pengetahuan_pjok
-            + $raport_pengetahuan_sbk;
+                + $raport_pengetahuan_ppkn
+                + $raport_pengetahuan_indonesia
+                + $raport_pengetahuan_matematika
+                + $raport_pengetahuan_ipa
+                + $raport_pengetahuan_ips
+                + $raport_pengetahuan_pjok
+                + $raport_pengetahuan_sbk;
         }
         if (
             $rombel == 9
         ) {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
-            + $raport_pengetahuan_ppkn
-            + $raport_pengetahuan_indonesia
-            + $raport_pengetahuan_matematika
-            + $raport_pengetahuan_ipa
-            + $raport_pengetahuan_ips
-            + $raport_pengetahuan_pjok
-            + $raport_pengetahuan_sbk;
+                + $raport_pengetahuan_ppkn
+                + $raport_pengetahuan_indonesia
+                + $raport_pengetahuan_matematika
+                + $raport_pengetahuan_ipa
+                + $raport_pengetahuan_ips
+                + $raport_pengetahuan_pjok
+                + $raport_pengetahuan_sbk;
         }
         if (
             $rombel == 10
         ) {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
-            + $raport_pengetahuan_ppkn
-            + $raport_pengetahuan_indonesia
-            + $raport_pengetahuan_matematika
-            + $raport_pengetahuan_ipa
-            + $raport_pengetahuan_ips
-            + $raport_pengetahuan_pjok
-            + $raport_pengetahuan_sbk;
+                + $raport_pengetahuan_ppkn
+                + $raport_pengetahuan_indonesia
+                + $raport_pengetahuan_matematika
+                + $raport_pengetahuan_ipa
+                + $raport_pengetahuan_ips
+                + $raport_pengetahuan_pjok
+                + $raport_pengetahuan_sbk;
         }
         if (
             $rombel == 11
         ) {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
-            + $raport_pengetahuan_ppkn
-            + $raport_pengetahuan_indonesia
-            + $raport_pengetahuan_matematika
-            + $raport_pengetahuan_ipa
-            + $raport_pengetahuan_ips
-            + $raport_pengetahuan_pjok
-            + $raport_pengetahuan_sbk;
+                + $raport_pengetahuan_ppkn
+                + $raport_pengetahuan_indonesia
+                + $raport_pengetahuan_matematika
+                + $raport_pengetahuan_ipa
+                + $raport_pengetahuan_ips
+                + $raport_pengetahuan_pjok
+                + $raport_pengetahuan_sbk;
         }
         if (
             $rombel == 12
         ) {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
-            + $raport_pengetahuan_ppkn
-            + $raport_pengetahuan_indonesia
-            + $raport_pengetahuan_matematika
-            + $raport_pengetahuan_ipa
-            + $raport_pengetahuan_ips
-            + $raport_pengetahuan_pjok
-            + $raport_pengetahuan_sbk;
+                + $raport_pengetahuan_ppkn
+                + $raport_pengetahuan_indonesia
+                + $raport_pengetahuan_matematika
+                + $raport_pengetahuan_ipa
+                + $raport_pengetahuan_ips
+                + $raport_pengetahuan_pjok
+                + $raport_pengetahuan_sbk;
         }
         $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
         $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 8, 1, '.', '');
@@ -2503,78 +2549,78 @@ class SiswaController extends Controller
         ) {
             $jumlah_raport_keterampilan = $raport_keterampilan_agama
 
-            + $raport_keterampilan_indonesia
-            + $raport_keterampilan_matematika
-            + $raport_keterampilan_pjok;
+                + $raport_keterampilan_indonesia
+                + $raport_keterampilan_matematika
+                + $raport_keterampilan_pjok;
         }
         if (
             $rombel == 4
         ) {
             $jumlah_raport_keterampilan = $raport_keterampilan_agama
 
-            + $raport_keterampilan_indonesia
-            + $raport_keterampilan_matematika
-            + $raport_keterampilan_pjok;
+                + $raport_keterampilan_indonesia
+                + $raport_keterampilan_matematika
+                + $raport_keterampilan_pjok;
         }
         if (
             $rombel == 5
         ) {
             $jumlah_raport_keterampilan = $raport_keterampilan_agama
-            + $raport_keterampilan_ppkn
-            + $raport_keterampilan_indonesia
-            + $raport_keterampilan_matematika
-            + $raport_keterampilan_ipa
-            + $raport_keterampilan_ips
-            + $raport_keterampilan_pjok
-            + $raport_keterampilan_sbk;
+                + $raport_keterampilan_ppkn
+                + $raport_keterampilan_indonesia
+                + $raport_keterampilan_matematika
+                + $raport_keterampilan_ipa
+                + $raport_keterampilan_ips
+                + $raport_keterampilan_pjok
+                + $raport_keterampilan_sbk;
         }
         if (
             $rombel == 6
         ) {
             $jumlah_raport_keterampilan = $raport_keterampilan_agama
-            + $raport_keterampilan_ppkn
-            + $raport_keterampilan_indonesia
-            + $raport_keterampilan_matematika
-            + $raport_keterampilan_ipa
-            + $raport_keterampilan_ips
-            + $raport_keterampilan_pjok
-            + $raport_keterampilan_sbk;
+                + $raport_keterampilan_ppkn
+                + $raport_keterampilan_indonesia
+                + $raport_keterampilan_matematika
+                + $raport_keterampilan_ipa
+                + $raport_keterampilan_ips
+                + $raport_keterampilan_pjok
+                + $raport_keterampilan_sbk;
         }
         if (
             $rombel == 7
         ) {
             $jumlah_raport_keterampilan = $raport_keterampilan_agama
-            + $raport_keterampilan_ppkn
-            + $raport_keterampilan_indonesia
-            + $raport_keterampilan_matematika
-            + $raport_keterampilan_ipa
-            + $raport_keterampilan_ips
-            + $raport_keterampilan_pjok
-            + $raport_keterampilan_sbk;
+                + $raport_keterampilan_ppkn
+                + $raport_keterampilan_indonesia
+                + $raport_keterampilan_matematika
+                + $raport_keterampilan_ipa
+                + $raport_keterampilan_ips
+                + $raport_keterampilan_pjok
+                + $raport_keterampilan_sbk;
         }
         if (
             $rombel == 8
         ) {
             $jumlah_raport_keterampilan = $raport_keterampilan_agama
-            + $raport_keterampilan_ppkn
-            + $raport_keterampilan_indonesia
-            + $raport_keterampilan_matematika
-            + $raport_keterampilan_ipa
-            + $raport_keterampilan_ips
-            + $raport_keterampilan_pjok
-            + $raport_keterampilan_sbk;
+                + $raport_keterampilan_ppkn
+                + $raport_keterampilan_indonesia
+                + $raport_keterampilan_matematika
+                + $raport_keterampilan_ipa
+                + $raport_keterampilan_ips
+                + $raport_keterampilan_pjok
+                + $raport_keterampilan_sbk;
         }
         if (
             $rombel == 9
         ) {
             $jumlah_raport_keterampilan = $raport_keterampilan_agama
-            + $raport_keterampilan_ppkn
-            + $raport_keterampilan_indonesia
-            + $raport_keterampilan_matematika
-            + $raport_keterampilan_ipa
-            + $raport_keterampilan_ips
-            + $raport_keterampilan_pjok
-            + $raport_keterampilan_sbk;
+                + $raport_keterampilan_ppkn
+                + $raport_keterampilan_indonesia
+                + $raport_keterampilan_matematika
+                + $raport_keterampilan_ipa
+                + $raport_keterampilan_ips
+                + $raport_keterampilan_pjok
+                + $raport_keterampilan_sbk;
         }
         if (
             $rombel == 10

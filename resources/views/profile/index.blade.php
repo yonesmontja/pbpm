@@ -1,7 +1,7 @@
  @extends('layouts.mailbox-profile-guru')
 
  @section('title')
-     <title> SD Dabolding Compose </title>
+     <title> Profil </title>
  @endsection
  @section('header')
      <style type="text/css">
@@ -117,7 +117,7 @@
                                      </a>
                                  @else
                                      <a href="/test/{{ $siswa->id }}/edit" class="btn btn-primary btn-block">
-                                         <b>Ubah Profil</b>
+                                         <b>Ubah Foto</b>
                                      </a>
                                  @endif
                              </div>
@@ -127,7 +127,7 @@
                          <!-- About Me Box -->
                          <div class="card card-primary">
                              <div class="card-header">
-                                 <h3 class="card-title">Tentang saya</h3>
+                                 <h3 class="card-title">Biodata Siswa</h3>
                              </div>
                              <!-- /.card-header -->
                              <div class="card-body">
