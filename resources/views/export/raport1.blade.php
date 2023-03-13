@@ -125,7 +125,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <img class="logo" src="{{ public_path('images/logo_dabolding.png') }}" width="610"
+                                    <img class="logo" src="{{ asset('images/logo_dabolding.png') }}" width="610"
                                         alt="">
                                     <hr align="center">
                                 </td>
@@ -562,7 +562,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <img class="logo" src="{{ public_path('images/logo_dabolding.png') }}"
+                                    <img class="logo" src="{{ asset('images/logo_dabolding.png') }}"
                                         width="610" alt="">
                                     <hr align="center">
                                 </td>
@@ -727,7 +727,7 @@
                 <tr class="details">
                     <td style="text-align: center;">1</td>
                     <td style="text-align: left;">Pendidikan Agama dan Budi Pekerti</td>
-                    @if ($students->agama == 'islam')
+                    @if ($students->agama == 'islam' || $students->agama == 'Islam')
                         <td style="text-align: center;">{{ $raport_pengetahuan_agama }}</td>
                     @elseif($students->agama == 'Kristen Protestan' || $students->agama == 'kristen protestan')
                         <td style="text-align: center;">{{ $raport_pengetahuan_agama }}</td>
@@ -738,7 +738,7 @@
                     <td style="text-align: left;">Memiliki kemampuan <strong> {{ $predikat_huruf_agama1 }} </strong>
                         {{ $predikat_deskripsi_agama }}</td>
 
-                    @if ($students->agama == 'islam')
+                    @if ($students->agama == 'islam' || $students->agama == 'Islam')
                         <td style="text-align: center;">{{ $raport_keterampilan_agama }}</td>
                     @elseif($students->agama == 'Kristen Protestan' || $students->agama == 'kristen protestan')
                         <td style="text-align: center;">{{ $raport_keterampilan_agama }}</td>

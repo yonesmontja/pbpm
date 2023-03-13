@@ -8,6 +8,10 @@
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="/dashboard_siswa" class="nav-link">Home</a>
             </li>
+        @elseif (auth()->user()->role == 'guru')
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="/dashboard_guru" class="nav-link">Home</a>
+            </li>
         @else
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="/tdu" class="nav-link">Home</a>

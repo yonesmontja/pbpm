@@ -16,8 +16,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                            <li class="breadcrumb-item active">NILAI</li>
+                            <li class="breadcrumb-item"><a href="/dashboard_guru">Home</a></li>
+                            <li class="breadcrumb-item active">ISI NILAI</li>
                         </ol>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Tahun Pelajaran <a
-                                        href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
+                                        href="/dashboard_guru">{{ thnPel() }}</a></h3>
                             </div>
                             <div class="card-header">
                                 <div class="row">
@@ -63,7 +63,7 @@
 
                                                             {{ csrf_field() }}
 
-                                                            <label>Pilih file excel</label>
+                                                            <label>Pilih file nilai siswa</label>
                                                             <div class="form-group">
                                                                 <input type="file" name="file" required="required">
                                                             </div>
@@ -72,7 +72,7 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-primary">Import</button>
+                                                            <button type="submit" class="btn btn-primary">Import Nilai</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -156,7 +156,7 @@
                             <div class="card-body">
                                 @if (session('sukses'))
                                     <div class="alert alert-success" role="alert">
-                                        Data <a href="#" class="alert-link">Nilai</a> {{ session('sukses') }}
+                                        Data <a href="/dashboard_guru" class="alert-link">Nilai</a> {{ session('sukses') }}
                                     </div>
                                 @endif
                                 <table id="example2" class="table table-bordered table-hover">
@@ -184,7 +184,7 @@
                                                 </td>
                                                 <td><a href="/penilaian/{{ $nilai->penilaian->id }}/profile">{{ $nilai->penilaian->nama_tes }}
                                                 </td>
-                                                <td><a href="#">{{ $nilai->rombel->rombel }}</a>
+                                                <td><a href="/rombel/{{ $nilai->rombel->id }}">{{ $nilai->rombel->rombel }}</a>
                                                 </td>
                                                 <td><a
                                                         href="/kelas/{{ $nilai->kelas->id }}/profile">{{ $nilai->kelas->nama }}</a>
@@ -213,7 +213,6 @@
                                             <th>PENILAIAN</th>
                                             <th>ROMBEL</th>
                                             <th>KELAS</th>
-
                                             <th>SISWA</th>
                                             <th>NILAI</th>
                                             <th></th>
@@ -318,18 +317,14 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlSelect1">KELAS</label>
                                                                 <select name="kelas_id" class="form-control"
                                                                     id="kelas">
-                                                                    <option hidden>Pilih Kelas</option>
-                                                                    @foreach ($kelas as $key => $m)
-                                                                        <option value="{{ $m->id }}">
-                                                                            {{ $m->nama }}
-                                                                        </option>
-                                                                    @endforeach
+                                                                    <option value="{{ $kelas_rombel }}">
+                                                                        {{ $nama_rombel }}
+                                                                    </option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -339,11 +334,9 @@
                                                                 <select name="rombel_id" class="form-control"
                                                                     id="rombel">
                                                                     <option hidden>Pilih rombel</option>
-                                                                    @foreach ($rombel as $key => $m)
-                                                                        <option value="{{ $m->id }}">
-                                                                            {{ $m->rombel }}
-                                                                        </option>
-                                                                    @endforeach
+                                                                    <option value="{{ $guru_rombel }}">
+                                                                        {{ $nama_rombel }}
+                                                                    </option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -353,11 +346,11 @@
                                                                 <select name="siswa_id" class="form-control"
                                                                     id="siswa">
                                                                     <!--<option>---</option>
-                                                                    @foreach ($siswa as $key => $m)
-                                                                        <option value="{{ $m->id }}">
-                                                                            {{ $m->nama_depan }}
-                                                                            {{ $m->nama_belakang }}</option>
-                                                                    @endforeach-->
+                                                                            @foreach ($siswa as $key => $m)
+    <option value="{{ $m->id }}">
+                                                                                    {{ $m->nama_depan }}
+                                                                                    {{ $m->nama_belakang }}</option>
+    @endforeach-->
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -368,12 +361,10 @@
                                                                 <label for="exampleFormControlSelect1">GURU</label>
                                                                 <select name="guru_id" class="form-control"
                                                                     id="exampleFormControlSelect2">
-                                                                    <option>---</option>
-                                                                    @foreach ($guru as $key => $m)
-                                                                        <option value="{{ $m->id }}">
-                                                                            {{ $m->nama_guru }}
-                                                                        </option>
-                                                                    @endforeach
+                                                                    <option value="{{ $guru->id }}">
+                                                                        {{ $guru->nama_guru }}
+                                                                    </option>
+
                                                                 </select>
                                                             </div>
                                                         </div>

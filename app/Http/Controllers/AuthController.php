@@ -36,7 +36,7 @@ class AuthController extends Controller
     		return redirect('/dashboard');
         }
         if (Auth::attempt(['email' => $email, 'password' => $password, 'role' => $role_guru])) {
-            return redirect('/dashboard');
+            return redirect('/dashboard_guru');
         }
         return redirect('/login');
     }

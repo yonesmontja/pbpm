@@ -1,10 +1,57 @@
- @extends('layouts.mailbox-kelas')
+ @extends('layouts.mailbox-mapel')
 
  @section('title')
-     <title> SD Dabolding Compose </title>
+     <title> SD Dabolding Mapel </title>
  @endsection
  @section('header')
+     <style type="text/css">
+         /* Chart.js */
+         @keyframes chartjs-render-animation {
+             from {
+                 opacity: .99
+             }
 
+             to {
+                 opacity: 1
+             }
+         }
+
+         .chartjs-render-monitor {
+             animation: chartjs-render-animation 1ms
+         }
+
+         .chartjs-size-monitor,
+         .chartjs-size-monitor-expand,
+         .chartjs-size-monitor-shrink {
+             position: absolute;
+             direction: ltr;
+             left: 0;
+             top: 0;
+             right: 0;
+             bottom: 0;
+             overflow: hidden;
+             pointer-events: none;
+             visibility: hidden;
+             z-index: -1
+         }
+
+         .chartjs-size-monitor-expand>div {
+             position: absolute;
+             width: 1000000px;
+             height: 1000000px;
+             left: 0;
+             top: 0
+         }
+
+         .chartjs-size-monitor-shrink>div {
+             position: absolute;
+             width: 200%;
+             height: 200%;
+             left: 0;
+             top: 0
+         }
+     </style>
+ @endsection
  @section('content')
      <div class="content-wrapper">
          <!-- Content Header (Page header) -->
@@ -12,12 +59,12 @@
              <div class="container-fluid">
                  <div class="row mb-2">
                      <div class="col-sm-6">
-                         <h1>Profile</h1>
+                         <h1>Kelas</h1>
                      </div>
                      <div class="col-sm-6">
                          <ol class="breadcrumb float-sm-right">
                              <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                             <li class="breadcrumb-item active">Profile Kelas</li>
+                             <li class="breadcrumb-item active">Kelas</li>
                          </ol>
                      </div>
                  </div>
@@ -45,21 +92,27 @@
                          <div class="card card-primary card-outline">
                              <div class="card-body box-profile">
                                  <div class="text-center">
-                                     <img class="profile-user-img img-fluid img-circle" src="{{ $kelas->avatar() }}"
-                                         alt="User profile picture">
+                                     <img class="profile-user-img img-fluid img-circle"
+                                         src="{{ asset('images/admin-2.jpg') }}" alt="User profile picture">
                                  </div>
-                                 <h3 class="profile-username text-center"><a href="#">{{ $nama_rombel }} </a></h3>
+
+                                 <h3 class="profile-username text-center"><a href="#">{{ $rombel2 }}</a></h3>
+
+                                 <p class="text-muted text-center">Kelas {{ $rombel3 }}</p>
+
                                  <ul class="list-group list-group-unbordered mb-3">
+
                                      <li class="list-group-item">
-                                         <b>Jumlah siswa</b> <a class="float-right">{{ $jumlah_siswa }}</a>
+                                         <b>Wali Kelas </b> <a class="float-right">{{ $rombel4->guru->nama_guru }}</a>
                                      </li>
                                      <li class="list-group-item">
-                                         <b>Wali Kelas</b> <a class="float-right">{{ $wali_kelas }}</a>
-                                     </li>
-                                     <li class="list-group-item">
-                                         <b>Nilai Rata-rata Kelas</b> <a class="float-right">{{ $rata_rombel }}</a>
+                                         <b>Jumlah Siswa </b> <a class="float-right">{{ $jumlah_siswa }}</a>
                                      </li>
                                  </ul>
+
+                                 <a href="/rombel/{{ $rombel }}/profile" class="btn btn-primary btn-block"><b>Ubah
+                                         data
+                                         rombel</b></a>
                              </div>
                              <!-- /.card-body -->
                          </div>
@@ -68,39 +121,33 @@
                          <!-- About Me Box -->
                          <div class="card card-primary">
                              <div class="card-header">
-                                 <h3 class="card-title">Peta Materi</h3>
+                                 <h3 class="card-title">Skill Kelas</h3>
                              </div>
                              <!-- /.card-header -->
                              <div class="card-body">
-                                 <strong><i class="fas fa-book mr-1"></i> Capaian</strong>
-
+                                 <strong><i class="fas fa-book mr-1"></i> Skill-Mapel</strong>
                                  <p class="text-muted">
-                                     Capaian kelas
+                                     #
                                  </p>
-
                                  <hr>
-
-                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Konsep PBPM</strong>
-
-                                 <p class="text-muted">Expert Kampung</p>
-
+                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Penilaian Sikap?</strong>
+                                 <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                     fermentum enim neque.</p>
                                  <hr>
-
                                  <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
-
                                  <p class="text-muted">
-                                     <span class="tag tag-danger">Peta Aset</span>
-                                     <span class="tag tag-success">Keluarga</span>
-                                     <span class="tag tag-info">Kampung</span>
-                                     <span class="tag tag-warning">Aset Alam</span>
-                                     <span class="tag tag-primary">Budaya</span>
+                                     <span class="tag tag-danger">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                         Etiam
+                                         fermentum enim neque.</span>
+
                                  </p>
 
                                  <hr>
 
-                                 <strong><i class="far fa-file-alt mr-1"></i> SKL</strong>
+                                 <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
 
-                                 <p class="text-muted">Mampu berimajinasi tentang Kampungnya.</p>
+                                 <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                     fermentum enim neque.</p>
                              </div>
                              <!-- /.card-body -->
                          </div>
@@ -111,15 +158,15 @@
                          <div class="card">
                              <div class="card-header p-2">
                                  <ul class="nav nav-pills">
-                                     <li class="nav-item"><a class="nav-link active" href="#nilai"
-                                             data-toggle="tab">Nilai</a></li>
-
+                                     <li class="nav-item"><a class="nav-link active" href="#nilai" data-toggle="tab">Mapel
+                                             penilaian</a></li>
                                      <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Nilai
                                              Mingguan</a></li>
                                      <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Nilai
                                              Bulanan</a></li>
-                                     <li class="nav-item"><a class="nav-link" href="#timeline"
-                                             data-toggle="tab">Jurnal Penilaian Kelas</a></li>
+                                     <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Jurnal
+                                             Penilaian Kelas</a></li>
+                                 </ul>
                                  </ul>
                              </div><!-- /.card-header -->
                              <div class="card-body">
@@ -130,29 +177,14 @@
                                              <div class="card-header">
                                                  <div class="row">
                                                      <div class="col-md-6">
-                                                         <h3 class="card-title">Kelas</h3>
+                                                         <h3 class="card-title">Mapel penilaian</h3>
                                                      </div>
                                                      <div class="col-md-2 float-right">
                                                          <h3 class="card-title">TA <a
                                                                  href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a>
                                                          </h3>
                                                      </div>
-                                                     <div class="col-md-4">
-                                                         <div class="card-tools">
-                                                             <ul class="pagination pagination-sm float-right">
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">«</a></li>
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">1</a></li>
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">2</a></li>
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">3</a></li>
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">»</a></li>
-                                                             </ul>
-                                                         </div>
-                                                     </div>
+
                                                  </div>
                                              </div>
                                              <!-- /.card-header -->
@@ -160,32 +192,29 @@
                                                  <table id="example2" class="table table-bordered table-hover">
                                                      <thead>
                                                          <tr>
-                                                             <th style="width: 10px">Nama</th>
-                                                             <th>ID siswa</th>
+                                                             <th style="width: 10px">NIS</th>
+                                                             <th>Nama</th>
                                                              <th>Penilaian</th>
-                                                             <th>Mapel</th>
-                                                             <th style="width: 80px">Nilai Siswa</th>
-                                                             <th>Foto</th>
+                                                             <th>Kelas</th>
+                                                             <th>Tanggal</th>
+                                                             <th>Nilai</th>
                                                          </tr>
                                                      </thead>
                                                      <tbody>
-                                                         @foreach ($nilai_rata_siswa as $k => $ns)
+                                                         @foreach ($nilai as $siswa1)
                                                              <tr>
-                                                                 <td>
-                                                                     <a href="/test/{{ $ns->siswa_id }}/profile">{{ $ns->siswa->nama_depan }}
-                                                                         {{ $ns->siswa->nama_belakang }}</a>
+                                                                 <td><a href="/test/{{ $siswa1->siswa->id }}/profile">{{ $siswa1->siswa->nis }}
                                                                  </td>
-                                                                 <td><a href="/test/{{ $ns->siswa_id }}/profile">{{ $ns->siswa_id }}
+                                                                 <td><a href="/test/{{ $siswa1->siswa->id }}/profile">{{ $siswa1->siswa->nama_depan }}
+                                                                         {{ $siswa1->siswa->nama_belakang }}
                                                                  </td>
                                                                  <td><a
-                                                                         href="/penilaian/{{ $ns->penilaian->id }}/profile">{{ $ns->penilaian->nama_tes }}
+                                                                         href="/penilaian/{{ $siswa1->penilaian->id }}/profile">{{ $siswa1->penilaian->nama_tes }}
                                                                  </td>
-                                                                 <td><a href="/mapel/{{ $ns->mapel->id }}">{{ $ns->mapel->nama_mapel }}
+                                                                 <td><a href="/kelas/{{ $siswa1->kelas_id }}/profile">{{ $siswa1->kelas_id }}
                                                                  </td>
-                                                                 <td>{{ $ns->nilai }}</td>
-                                                                 <td><img class="profile-user-img img-fluid img-circle"
-                                                                         src="{{ $ns->siswa->avatar() }}"
-                                                                         alt="User profile picture"></td>
+                                                                 <td>{{ $siswa1->created_at->format('d M Y') }}</td>
+                                                                 <td>{{ $siswa1->nilai }}</td>
                                                              </tr>
                                                          @endforeach
                                                      </tbody>
@@ -250,8 +279,6 @@
                                              </div>
                                          </div>
                                          <!-- /.card -->
-
-
                                      </div>
                                      <!-- /.tab-pane -->
                                      <div class="tab-pane" id="timeline">
@@ -276,12 +303,13 @@
                                                              nilai <a
                                                                  href="/mapel/{{ $n->mapel->id }}">{{ $n->mapel->nama_mapel }}</a>
                                                              dari <a
-                                                                 href="/test/{{ $n->siswa->id }}/profile">{{ $n->siswa->nama_depan }}
+                                                                 href="/test/{{ $siswa1->id }}/profile">{{ $n->siswa->nama_depan }}
                                                                  {{ $n->siswa->nama_belakang }}</a></h3>
                                                          <h3 class="timeline-header">Penilaian dilakukan tanggal: ---</h3>
                                                          <div class="timeline-body">
                                                              <li>Materi: {{ $n->nilai_deskripsi }}</li>
                                                              <li>Indikator: {{ $n->nilai_notes }}</li>
+                                                             <li>Nilai: {{ $n->nilai }}</li>
                                                          </div>
                                                          <div class="timeline-footer">
                                                              <a href="#"
@@ -312,20 +340,20 @@
                                                          <span>Nilai Rata-rata Kelas Bulan Ini</span>
                                                      </p>
                                                      <p class="ml-auto d-flex flex-column text-right">
-                                                         @if ($last_week_average < 0)
+                                                         @if ($last_average < 0)
                                                              <span class="text-danger">
                                                                  <i class="fas fa-arrow-down"></i>
-                                                                 {{ $last_week_average * -1 }}%
+                                                                 {{ $last_average * -1 }}%
                                                              </span>
-                                                         @elseif($last_week_average == 0)
+                                                         @elseif($last_average == 0)
                                                              <span class="text-info">
                                                                  <i class="fas fa-arrow-circle-right"></i>
-                                                                 {{ $last_week_average }}%
+                                                                 {{ $last_average }}%
                                                              </span>
-                                                         @elseif ($last_week_average > 0)
+                                                         @elseif ($last_average > 0)
                                                              <span class="text-success">
                                                                  <i class="fas fa-arrow-up"></i>
-                                                                 {{ $last_week_average }}%
+                                                                 {{ $last_average }}%
                                                              </span>
                                                          @endif
                                                          <span class="text-muted">Sejak bulan lalu</span>

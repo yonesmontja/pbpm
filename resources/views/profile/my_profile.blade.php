@@ -95,7 +95,10 @@
                                     <img class="profile-user-img img-fluid img-circle" src="{{ $user->avatar() }}"
                                         alt="User profile picture">
                                 </div>
-                                @if ($user->role == 'admin' || $user->role == 'guru')
+                                @if ($user->role == 'admin')
+                                    <h3 class="profile-username text-center"><a
+                                            href="/user/{{ $user }}/profile">{{ $name }} </a></h3>
+                                @elseif ($user->role == 'guru')
                                     <h3 class="profile-username text-center"><a
                                             href="/guru/{{ $guru }}/profile">{{ $nama_guru }} </a></h3>
                                 @else

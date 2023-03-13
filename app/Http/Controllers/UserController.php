@@ -32,6 +32,7 @@ class UserController extends Controller
     public function my_profile($id)
     {
         $user = User::find($id);
+        //dd($user);
         $guru = Guru::where('user_id', $id)->pluck('id')->first();
         $nama_guru = Guru::where('user_id', $id)->pluck('nama_guru')->first();
         $siswa = Siswa::where('user_id', $id)->pluck('id')->first();
@@ -94,11 +95,11 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'avatar' => 'mimes:jpeg,jpg,png',
         ]);
-        $avatar = $request->file('avatar')->move('/home/sdinpre2/pbpm.sdinpresdabolding.sch.id/storage/users', $request->file('avatar')->getClientOriginalName() . "." . $request->file('avatar')->getClientOriginalExtension());
+        $avatar = $request->file('avatar')->move('images/users', $request->file('avatar')->getClientOriginalName() . "." . $request->file('avatar')->getClientOriginalExtension());
         $file_name = rand(1000, 9999) . $request->file('avatar')->getClientOriginalName();
         $img = Image::make($avatar);
-        $img->resize('120', '120')->save('/home/sdinpre2/pbpm.sdinpresdabolding.sch.id/storage/users' . '\small_' . $file_name);
-        $avatar->move('/home/sdinpre2/pbpm.sdinpresdabolding.sch.id/storage/users', $file_name);
+        $img->resize('120', '120')->save('images/users' . '/small_' . $file_name);
+        $avatar->move('images/users', $file_name);
         //insert ke tabel Users
         $user = new User();
         $user->role = $request->role;
@@ -144,7 +145,19 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
-        return view('profile.my_profile', ['user' => $user])->with('sukses', 'berhasil diupdate!');
+        //$user = User::find($id);
+        //dd($user);
+        $guru = Guru::where('user_id', $user->id)->pluck('id')->first();
+        $nama_guru = Guru::where('user_id', $user->id)->pluck('nama_guru')->first();
+        $siswa = Siswa::where('user_id', $user->id)->pluck('id')->first();
+        //dd($guru);
+        //dd($user->guru());
+        return view('profile.my_profile', [
+            'user' => $user,
+            'guru' => $guru,
+            'nama_guru' => $nama_guru,
+            'siswa' => $siswa,
+        ])->with('sukses', 'berhasil diupdate!');
     }
     public function userdelete(User $user)
     {

@@ -2,9 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use App\Models\User;
+use App\Models\Kelas;
+use App\Models\Mapel;
 use App\Models\Nilai;
 use App\Models\Siswa;
+use App\Models\Rombel;
+use App\Models\Tahunpel;
+use App\Models\Penilaian;
+use App\Models\Kompetensiinti;
+use App\Models\Tahunpelajaran;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -14,6 +23,8 @@ class DashboardController extends Controller
     {
     	$nilai = Nilai::all();
         $user = User::all();
+        $id = Auth::id();
+        $guru = Guru::where('user_id', '=', $id)->pluck('id')->first();
         $siswaall = Siswa::all();
         $idsiswa_1 = $siswaall->where('kelas','=','Kelas 1');
         $idsiswa_2 = $siswaall->where('kelas','=','Kelas 2');
@@ -1625,6 +1636,8 @@ class DashboardController extends Controller
             'data_2' => $data_2,
             'data_1' => $data_1,
 
+            'guru' => $guru,
+
             'hpit' => $hpit,
             'hpmt' => $hpmt,
             'ppmt' => $ppmt,
@@ -1858,6 +1871,76 @@ class DashboardController extends Controller
             'user' => $user,
             'user1' => $user1,
             'id' => $id,
+        ]);
+    }
+    public function dashboard_guru()
+    {
+        // kkm dan rentang nilai
+        // Retrieve the currently authenticated user...
+        $user = Auth::user();
+        // Retrieve the currently authenticated user's ID...
+        $id = Auth::id();
+        //dd($id);
+        $user1 = User::find($id)->pluck('id');
+
+        //dd($user1);
+        $guru = Guru::where('user_id', '=', $id)->pluck('id')->first();
+        $nama_guru = Guru::where('user_id', '=', $id)->pluck('nama_guru')->first();
+        //dd($nama_guru);
+        $kkm = 65;
+        $kkm1 = $kkm + (100 - $kkm) / 3;
+        $kkm2 = $kkm1 + (100 - $kkm) / 3;
+        $data_nilai = Nilai::all()->where('guru_id', '=', $guru)->count();
+
+        $kompetensiinti = Kompetensiinti::all();
+        $mapel = Mapel::all();
+        $siswa = Siswa::all();
+        $penilaian = Penilaian::all();
+
+        $nama_rombel = Rombel::where('guru_id', '=', $guru)->pluck('rombel')->first();
+        $guru_rombel = Rombel::where('guru_id', '=', $guru)->pluck('id')->first();
+        $kelas_rombel = Rombel::where('guru_id', '=', $guru)->pluck('kelas_id')->first();
+        //dd($kelas_rombel);
+        //dd($guru_rombel);
+        $rombel = DB::table('rombel_siswa')->where('rombel_id', '=', $guru_rombel)->pluck('rombel_id')->first();
+        //dd($guru);
+        $kelas = Kelas::where('guru_id', '=', $guru)->pluck('nama');
+
+        //dd($kelas);
+        $nilai_start = Tahunpelajaran::all()->where('id', '=', 2)->pluck('tahun');
+        $nilai_end = Tahunpelajaran::all()->where('id', '=', 1)->pluck('tahun');
+        $kelas_sub = Siswa::where('kelas_id', 0)->get();
+        $tahunpel = Tahunpel::all();
+        //$rombel = Rombel::all();
+        //dd($kelas_sub);
+        for ($bulan = 1; $bulan < 7; $bulan++) {
+            $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
+            $jumlah_penilaian[] = $chart_penilaian->jumlah;
+        }
+        return view('dashboards.dashboard_guru', [
+            'kkm' => $kkm,
+            'kkm1' => $kkm1,
+            'kkm2' => $kkm2,
+            'user' => $user,
+            'user1' => $user1,
+            'id' => $id,
+            'rombel' => $rombel,
+            'nama_rombel' => $nama_rombel,
+            'guru_rombel' => $guru_rombel,
+            'kelas_rombel' => $kelas_rombel,
+            'jumlah_penilaian' => $jumlah_penilaian,
+            'kelas_sub' => $kelas_sub,
+            'nilai_start' => $nilai_start,
+            'nilai_end' => $nilai_end,
+            'tahunpel' => $tahunpel,
+            'kelas' => $kelas,
+            'penilaian' => $penilaian,
+            'siswa' => $siswa,
+            'mapel' => $mapel,
+            'kompetensiinti' => $kompetensiinti,
+            'data_nilai' => $data_nilai,
+            'guru' => $guru,
+            'nama_guru' => $nama_guru
         ]);
     }
 }

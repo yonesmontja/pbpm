@@ -1,4 +1,4 @@
- @extends('layouts.mailbox')
+ @extends('layouts.mailbox-profile-guru')
 
  @section('title')
      <title> SD Dabolding Compose </title>

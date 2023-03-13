@@ -84,7 +84,7 @@
                                                 <td>
                                                     @foreach ($kelas->rombel as $r)
                                                         <li><a
-                                                            href="/rombel/{{ $r->id }}/profile">{{ $r->rombel }}</a></li>
+                                                            href="/rombel/{{ $r->id }}">{{ $r->rombel }}</a></li>
                                                     @endforeach
                                                 </td>
                                                 <td>

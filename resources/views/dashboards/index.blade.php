@@ -17,8 +17,17 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                            <li class="breadcrumb-item active">CAPAIAN SISWA</li>
+                            @if (auth()->user()->role == 'siswa')
+                                <li class="breadcrumb-item"><a href="/dashboard_siswa">Home</a></li>
+                                <li class="breadcrumb-item active">CAPAIAN SISWA</li>
+                            @elseif(auth()->user()->role == 'guru')
+                                <li class="breadcrumb-item"><a href="/dashboard_guru">Home</a></li>
+                                <li class="breadcrumb-item active">CAPAIAN SISWA</li>
+                            @else
+                                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                                <li class="breadcrumb-item active">CAPAIAN SISWA</li>
+                            @endif
+
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -54,8 +63,13 @@
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="/test" class="small-box-footer">Info lebih lanjut <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            @if (auth()->user()->role == 'admin')
+                                <a href="/test" class="small-box-footer">Info lebih lanjut <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            @else
+                                <a href="/dashboard_guru" class="small-box-footer">Info lebih lanjut <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            @endif
                         </div>
                     </div>
                     <!-- ./col -->
@@ -77,8 +91,13 @@
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="/test" class="small-box-footer">Info lebih lanjut <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            @if (auth()->user()->role == 'admin')
+                                <a href="/test" class="small-box-footer">Info lebih lanjut <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            @else
+                                <a href="/dashboard_guru" class="small-box-footer">Info lebih lanjut <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            @endif
                         </div>
                     </div>
                     <!-- ./col -->
@@ -101,8 +120,13 @@
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="/test" class="small-box-footer text-white">Info lebih lanjut <i
-                                    class="text-white fas fa-arrow-circle-right"></i></a>
+                            @if (auth()->user()->role == 'admin')
+                                <a href="/test" class="small-box-footer">Info lebih lanjut <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            @else
+                                <a href="/dashboard_guru" class="small-box-footer">Info lebih lanjut <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            @endif
                         </div>
                     </div>
                     <!-- ./col -->
@@ -124,8 +148,13 @@
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="/test" class="small-box-footer">Info lebih lanjut <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            @if (auth()->user()->role == 'admin')
+                                <a href="/test" class="small-box-footer">Info lebih lanjut <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            @else
+                                <a href="/dashboard_guru" class="small-box-footer">Info lebih lanjut <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            @endif
                         </div>
                     </div>
                     <!-- ./col -->
@@ -156,8 +185,13 @@
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="/test" class="small-box-footer">Info lebih lanjut <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            @if (auth()->user()->role == 'admin')
+                                <a href="/test" class="small-box-footer">Info lebih lanjut <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            @else
+                                <a href="/dashboard_guru" class="small-box-footer">Info lebih lanjut <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            @endif
                         </div>
                     </div>
                     <!-- ./col -->
@@ -179,8 +213,13 @@
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="/test" class="small-box-footer">Info lebih lanjut <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            @if (auth()->user()->role == 'admin')
+                                <a href="/test" class="small-box-footer">Info lebih lanjut <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            @else
+                                <a href="/dashboard_guru" class="small-box-footer">Info lebih lanjut <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            @endif
                         </div>
                     </div>
                     <!-- ./col -->
@@ -203,8 +242,13 @@
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="/test" class="small-box-footer text-white">Info lebih lanjut <i
-                                    class="text-white fas fa-arrow-circle-right"></i></a>
+                            @if (auth()->user()->role == 'admin')
+                                <a href="/test" class="small-box-footer">Info lebih lanjut <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            @else
+                                <a href="/dashboard_guru" class="small-box-footer">Info lebih lanjut <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            @endif
                         </div>
                     </div>
                     <!-- ./col -->
@@ -226,8 +270,13 @@
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="/test" class="small-box-footer">Info lebih lanjut <i
-                                    class="fas fa-arrow-circle-right"></i></a>
+                            @if (auth()->user()->role == 'admin')
+                                <a href="/test" class="small-box-footer">Info lebih lanjut <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            @else
+                                <a href="/dashboard_guru" class="small-box-footer">Info lebih lanjut <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            @endif
                         </div>
                     </div>
                     <!-- ./col -->
@@ -301,13 +350,14 @@
                                         style="position: relative; height: 350px;">
                                         <div class="d-flex">
                                             <p class="d-flex flex-column">
-                                                <span class="text-bold text-lg">{{ number_format((float) $pemetaan_indonesia_total, 1, '.', '') }}</span>
+                                                <span
+                                                    class="text-bold text-lg">{{ number_format((float) $pemetaan_indonesia_total, 1, '.', '') }}</span>
                                                 <span class="text-bold text-lg">Nilai Bahasa Indonesia</span>
                                             </p>
                                             <p class="ml-auto d-flex flex-column text-right">
-                                                    <span class="text-bold text-lg">
-                                                        {{ number_format((float) $pemetaan_matematika_total, 1, '.', '') }}
-                                                    </span>
+                                                <span class="text-bold text-lg">
+                                                    {{ number_format((float) $pemetaan_matematika_total, 1, '.', '') }}
+                                                </span>
                                                 <span class="text-bold text-lg">Nilai Matematika</span>
                                             </p>
                                         </div>
@@ -848,8 +898,7 @@
                         pointStrokeColor: 'rgba(60,141,188,1)',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(60,141,188,1)',
-                        data:
-                        [
+                        data: [
                             {!! json_encode(number_format((float) $pemetaan_indonesia_total, 1, '.', '')) !!},
                             {!! json_encode(number_format((float) $pemetaan_matematika_total, 1, '.', '')) !!}
                         ]
@@ -863,10 +912,9 @@
                         pointStrokeColor: '#c1c7d1',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(220,220,220,1)',
-                        data:
-                        [
-                            {!! json_encode(number_format((float)Stand_Deviation($std_dev_pemetaan_indonesia_total), 1, '.', '')) !!},
-                            {!! json_encode(number_format((float)Stand_Deviation($std_dev_pemetaan_matematika_total), 1, '.', '')) !!}
+                        data: [
+                            {!! json_encode(number_format((float) Stand_Deviation($std_dev_pemetaan_indonesia_total), 1, '.', '')) !!},
+                            {!! json_encode(number_format((float) Stand_Deviation($std_dev_pemetaan_matematika_total), 1, '.', '')) !!}
                         ]
                     },
                 ]
@@ -966,14 +1014,11 @@
                 type: 'bar',
                 data: {
                     labels: {!! json_encode($matpel_pemetaan) !!},
-                    datasets:
-                    [
-                        {
+                    datasets: [{
                             label: ' Underlow',
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($ulpit) !!},
                                 {!! json_encode($ulpmt) !!}
                             ]
@@ -982,8 +1027,7 @@
                             label: ' Low',
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($lpit) !!},
                                 {!! json_encode($lpmt) !!}
                             ]
@@ -992,8 +1036,7 @@
                             label: ' Pass',
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($ppit) !!},
                                 {!! json_encode($ppmt) !!}
                             ]
@@ -1002,8 +1045,7 @@
                             label: ' High',
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($hpit) !!},
                                 {!! json_encode($hpmt) !!}
                             ]
@@ -1057,8 +1099,7 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_underlow_pemetaan_indonesia_1) !!},
                                 {!! json_encode($rata_underlow_pemetaan_matematika_1) !!}
                             ]
@@ -1067,8 +1108,7 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_low_pemetaan_indonesia_1) !!},
                                 {!! json_encode($rata_low_pemetaan_matematika_1) !!}
                             ]
@@ -1077,8 +1117,7 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_pass_pemetaan_indonesia_1) !!},
                                 {!! json_encode($rata_pass_pemetaan_matematika_1) !!}
                             ]
@@ -1087,8 +1126,7 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_high_pemetaan_indonesia_1) !!},
                                 {!! json_encode($rata_high_pemetaan_matematika_1) !!}
                             ]
@@ -1142,8 +1180,7 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_indonesia_1)) !!},
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_matematika_1)) !!}
                             ]
@@ -1152,8 +1189,7 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_low_pemetaan_indonesia_1)) !!},
                                 {!! json_encode(count($siswa_rata_low_pemetaan_matematika_1)) !!}
                             ]
@@ -1162,8 +1198,7 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_indonesia_1)) !!},
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_matematika_1)) !!}
                             ]
@@ -1172,8 +1207,7 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_high_pemetaan_indonesia_1)) !!},
                                 {!! json_encode(count($siswa_rata_high_pemetaan_matematika_1)) !!}
                             ]
@@ -1227,8 +1261,7 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_underlow_pemetaan_indonesia_2) !!},
                                 {!! json_encode($rata_underlow_pemetaan_matematika_2) !!}
                             ]
@@ -1237,8 +1270,7 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_low_pemetaan_indonesia_2) !!},
                                 {!! json_encode($rata_low_pemetaan_matematika_2) !!}
                             ]
@@ -1247,8 +1279,7 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_pass_pemetaan_indonesia_2) !!},
                                 {!! json_encode($rata_pass_pemetaan_matematika_2) !!}
                             ]
@@ -1257,8 +1288,7 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_high_pemetaan_indonesia_2) !!},
                                 {!! json_encode($rata_high_pemetaan_matematika_2) !!}
                             ]
@@ -1312,8 +1342,7 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_indonesia_2)) !!},
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_matematika_2)) !!}
                             ]
@@ -1322,8 +1351,7 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_low_pemetaan_indonesia_2)) !!},
                                 {!! json_encode(count($siswa_rata_low_pemetaan_matematika_2)) !!}
                             ]
@@ -1332,8 +1360,7 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_indonesia_2)) !!},
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_matematika_2)) !!}
                             ]
@@ -1342,8 +1369,7 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_high_pemetaan_indonesia_2)) !!},
                                 {!! json_encode(count($siswa_rata_high_pemetaan_matematika_2)) !!}
                             ]
@@ -1397,8 +1423,7 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_underlow_pemetaan_indonesia_3) !!},
                                 {!! json_encode($rata_underlow_pemetaan_matematika_3) !!}
                             ]
@@ -1407,8 +1432,7 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_low_pemetaan_indonesia_3) !!},
                                 {!! json_encode($rata_low_pemetaan_matematika_3) !!}
                             ]
@@ -1417,8 +1441,7 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_pass_pemetaan_indonesia_3) !!},
                                 {!! json_encode($rata_pass_pemetaan_matematika_3) !!}
                             ]
@@ -1427,8 +1450,7 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_high_pemetaan_indonesia_3) !!},
                                 {!! json_encode($rata_high_pemetaan_matematika_3) !!}
                             ]
@@ -1482,8 +1504,7 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_indonesia_3)) !!},
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_matematika_3)) !!}
                             ]
@@ -1492,8 +1513,7 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_low_pemetaan_indonesia_3)) !!},
                                 {!! json_encode(count($siswa_rata_low_pemetaan_matematika_3)) !!}
                             ]
@@ -1502,8 +1522,7 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_indonesia_3)) !!},
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_matematika_3)) !!}
                             ]
@@ -1512,8 +1531,7 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_high_pemetaan_indonesia_3)) !!},
                                 {!! json_encode(count($siswa_rata_high_pemetaan_matematika_3)) !!}
                             ]
@@ -1567,8 +1585,7 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_underlow_pemetaan_indonesia_4) !!},
                                 {!! json_encode($rata_underlow_pemetaan_matematika_4) !!}
                             ]
@@ -1577,8 +1594,7 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_low_pemetaan_indonesia_4) !!},
                                 {!! json_encode($rata_low_pemetaan_matematika_4) !!}
                             ]
@@ -1587,8 +1603,7 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_pass_pemetaan_indonesia_4) !!},
                                 {!! json_encode($rata_pass_pemetaan_matematika_4) !!}
                             ]
@@ -1597,8 +1612,7 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_high_pemetaan_indonesia_4) !!},
                                 {!! json_encode($rata_high_pemetaan_matematika_4) !!}
                             ]
@@ -1652,8 +1666,7 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_indonesia_4)) !!},
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_matematika_4)) !!}
                             ]
@@ -1662,8 +1675,7 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_low_pemetaan_indonesia_4)) !!},
                                 {!! json_encode(count($siswa_rata_low_pemetaan_matematika_4)) !!}
                             ]
@@ -1672,8 +1684,7 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_indonesia_4)) !!},
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_matematika_4)) !!}
                             ]
@@ -1682,8 +1693,7 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_high_pemetaan_indonesia_4)) !!},
                                 {!! json_encode(count($siswa_rata_high_pemetaan_matematika_4)) !!}
                             ]
@@ -1737,8 +1747,7 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_underlow_pemetaan_indonesia_5) !!},
                                 {!! json_encode($rata_underlow_pemetaan_matematika_5) !!}
                             ]
@@ -1747,8 +1756,7 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_low_pemetaan_indonesia_5) !!},
                                 {!! json_encode($rata_low_pemetaan_matematika_5) !!}
                             ]
@@ -1757,8 +1765,7 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_pass_pemetaan_indonesia_5) !!},
                                 {!! json_encode($rata_pass_pemetaan_matematika_5) !!}
                             ]
@@ -1767,8 +1774,7 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_high_pemetaan_indonesia_5) !!},
                                 {!! json_encode($rata_high_pemetaan_matematika_5) !!}
                             ]
@@ -1822,8 +1828,7 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_indonesia_5)) !!},
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_matematika_5)) !!}
                             ]
@@ -1832,8 +1837,7 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_low_pemetaan_indonesia_5)) !!},
                                 {!! json_encode(count($siswa_rata_low_pemetaan_matematika_5)) !!}
                             ]
@@ -1842,8 +1846,7 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_indonesia_5)) !!},
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_matematika_5)) !!}
                             ]
@@ -1852,8 +1855,7 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_high_pemetaan_indonesia_5)) !!},
                                 {!! json_encode(count($siswa_rata_high_pemetaan_matematika_5)) !!}
                             ]
@@ -1907,8 +1909,7 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_underlow_pemetaan_indonesia_6) !!},
                                 {!! json_encode($rata_underlow_pemetaan_matematika_6) !!}
                             ]
@@ -1917,8 +1918,7 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_low_pemetaan_indonesia_6) !!},
                                 {!! json_encode($rata_low_pemetaan_matematika_6) !!}
                             ]
@@ -1927,8 +1927,7 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_pass_pemetaan_indonesia_6) !!},
                                 {!! json_encode($rata_pass_pemetaan_matematika_6) !!}
                             ]
@@ -1937,8 +1936,7 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode($rata_high_pemetaan_indonesia_6) !!},
                                 {!! json_encode($rata_high_pemetaan_matematika_6) !!}
                             ]
@@ -1992,8 +1990,7 @@
                             label: " Underlow",
                             backgroundColor: '#eb4034',
                             borderColor: '#eb4034',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_indonesia_6)) !!},
                                 {!! json_encode(count($siswa_rata_underlow_pemetaan_matematika_6)) !!}
                             ]
@@ -2002,8 +1999,7 @@
                             label: " Low",
                             backgroundColor: '#ebeb34',
                             borderColor: '#ebeb34',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_low_pemetaan_indonesia_6)) !!},
                                 {!! json_encode(count($siswa_rata_low_pemetaan_matematika_6)) !!}
                             ]
@@ -2012,8 +2008,7 @@
                             label: " Pass",
                             backgroundColor: '#34eb77',
                             borderColor: '#34eb77',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_indonesia_6)) !!},
                                 {!! json_encode(count($siswa_rata_pass_pemetaan_matematika_6)) !!}
                             ]
@@ -2022,8 +2017,7 @@
                             label: " High",
                             backgroundColor: '#347aeb',
                             borderColor: '#347aeb',
-                            data:
-                            [
+                            data: [
                                 {!! json_encode(count($siswa_rata_high_pemetaan_indonesia_6)) !!},
                                 {!! json_encode(count($siswa_rata_high_pemetaan_matematika_6)) !!}
                             ]

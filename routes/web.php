@@ -85,11 +85,11 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 {
     Route::get('/hero', [HeroController::class, 'hero']);
     Route::post('/hero/herocreate', [HeroController::class, 'herocreate']);
-
+    Route::get('/nilai', [NilaiController::class, 'nilai']);
     Route::get('/rombel', [RombelController::class, 'index']);
     Route::post('/rombel/rombelcreate', [RombelController::class, 'rombelcreate']);
     Route::get('/rombel/{rombel}/profile', [RombelController::class, 'rombelprofile']);
-
+    Route::get('/rombel/{rombel}', [RombelController::class, 'show']);
     Route::get('/rombel_siswa', [RombelController::class, 'rombel_siswa']);
     Route::post('/rombel/rombelsiswacreate', [RombelController::class, 'rombelsiswacreate']);
 
@@ -351,7 +351,8 @@ Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
     Route::get('/kesiswaan', [KesiswaanController::class, 'index'])->name('kesiswaan');
     Route::get('/widget', [WidgetController::class, 'index']);
 
-    Route::get('/nilai', [NilaiController::class, 'nilai']);
+
+    Route::get('/isinilai/{id}', [NilaiController::class, 'isinilai']);
     Route::get('/getSiswa/{id}', [NilaiController::class, 'getSiswa']);
     Route::get('/getNamaSiswa/{id}', [NilaiController::class, 'getNamaSiswa']);
     Route::get('/getNamaDepan/{id}', [NilaiController::class, 'getNamaDepan']);
