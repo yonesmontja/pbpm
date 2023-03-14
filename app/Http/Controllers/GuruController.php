@@ -19,16 +19,13 @@ class GuruController extends Controller
     //
     public function profile($id)
     {
-    	$guru = Guru::find($id);
-        //dd($guru->id);
+        $guru = Guru::find($id);
         // nama kelas rombel dari si wali kelas yg profilenya ditampilkan
         $wali_kelas = Rombel::where('guru_id', $id)->pluck('rombel')->first();
         //id dari guru yang menjadi wali kelas dari rombel ini
         $rombel = Rombel::where('guru_id', $id)->pluck('id')->first();
         //hitung jumlah siswa dari rombel ini
         $murid_wali = DB::table('rombel_siswa')->where('rombel_id', $rombel)->count();
-        //dd($murid_wali);
-        //dd($guru -> mapel);
 
         $penilaian1 = Penilaian::find($id);
 

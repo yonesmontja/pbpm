@@ -352,7 +352,7 @@ Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
     Route::get('/widget', [WidgetController::class, 'index']);
 
 
-    Route::get('/isinilai/{id}', [NilaiController::class, 'isinilai']);
+    Route::get('/isinilai/{id}', [NilaiController::class, 'isinilai'])->name('isinilai');
     Route::get('/getSiswa/{id}', [NilaiController::class, 'getSiswa']);
     Route::get('/getNamaSiswa/{id}', [NilaiController::class, 'getNamaSiswa']);
     Route::get('/getNamaDepan/{id}', [NilaiController::class, 'getNamaDepan']);

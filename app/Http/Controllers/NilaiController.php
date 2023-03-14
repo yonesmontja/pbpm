@@ -294,9 +294,14 @@ class NilaiController extends Controller
 
         // notifikasi dengan session
         Session::flash('sukses','Berhasil Diimport!');
-
+        //dd(auth()->user()->role);
         // alihkan halaman kembali
-        return redirect('/nilai');
+        if (auth()->user()->role == 'admin') {
+            return redirect('/nilai');
+        }
+        if (auth()->user()->role == 'guru') {
+            return Redirect::back()->with('sukses', 'berhasil diinput');
+        }
     }
     public function export_excel()
     {

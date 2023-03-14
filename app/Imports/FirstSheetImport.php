@@ -19,8 +19,8 @@ class FirstSheetImport implements ToModel, WithHeadingRow
             //
             'nilai_start' => $row['nilai_start'],
             'nilai_end' => $row['nilai_end'],
-            'nilai_deskripsi' => $row['indikator_kompetensi'],
-            'nilai_notes' => $row['deskripsi_capaian'],
+            'nilai_deskripsi' => $row['materi'],
+            'nilai_notes' => $row['indikator_kompetensi'],
             'kompetensi_inti_id' => $row['kompetensi_inti'],
             'mapel_id' => $row['mapel'],
             'penilaian_id' => $row['penilaian'],
