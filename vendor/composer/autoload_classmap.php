@@ -92,6 +92,8 @@ return array(
     'App\\Imports\\NilaiImport' => $baseDir . '/app/Imports/NilaiImport.php',
     'App\\Imports\\PenjasImport' => $baseDir . '/app/Imports/PenjasImport.php',
     'App\\Imports\\PpknImport' => $baseDir . '/app/Imports/PpknImport.php',
+    'App\\Imports\\RombelFirstSheetImport' => $baseDir . '/app/Imports/RombelFirstSheetImport.php',
+    'App\\Imports\\RombelImport' => $baseDir . '/app/Imports/RombelImport.php',
     'App\\Imports\\SbkImport' => $baseDir . '/app/Imports/SbkImport.php',
     'App\\Imports\\SikapImport' => $baseDir . '/app/Imports/SikapImport.php',
     'App\\Imports\\SiswaFirstSheetImport' => $baseDir . '/app/Imports/SiswaFirstSheetImport.php',

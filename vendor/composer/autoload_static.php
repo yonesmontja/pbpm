@@ -741,6 +741,8 @@ class ComposerStaticInit3138ba957d040e3c4b33038701880e47
         'App\\Imports\\NilaiImport' => __DIR__ . '/../..' . '/app/Imports/NilaiImport.php',
         'App\\Imports\\PenjasImport' => __DIR__ . '/../..' . '/app/Imports/PenjasImport.php',
         'App\\Imports\\PpknImport' => __DIR__ . '/../..' . '/app/Imports/PpknImport.php',
+        'App\\Imports\\RombelFirstSheetImport' => __DIR__ . '/../..' . '/app/Imports/RombelFirstSheetImport.php',
+        'App\\Imports\\RombelImport' => __DIR__ . '/../..' . '/app/Imports/RombelImport.php',
         'App\\Imports\\SbkImport' => __DIR__ . '/../..' . '/app/Imports/SbkImport.php',
         'App\\Imports\\SikapImport' => __DIR__ . '/../..' . '/app/Imports/SikapImport.php',
         'App\\Imports\\SiswaFirstSheetImport' => __DIR__ . '/../..' . '/app/Imports/SiswaFirstSheetImport.php',
