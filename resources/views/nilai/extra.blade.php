@@ -16,7 +16,11 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                            @if (auth()->user()->role == 'admin')
+                                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                            @elseif (auth()->user()->role == 'guru')
+                                <li class="breadcrumb-item"><a href="/dashboard_guru">Home</a></li>
+                            @endif
                             <li class="breadcrumb-item active">ABSENSI & CATATAN</li>
                         </ol>
                     </div>
@@ -37,8 +41,13 @@
                         <!-- /.card -->
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Tahun Pelajaran <a
+                                @if (auth()->user()->role == 'admin')
+                                    <h3 class="card-title">Tahun Pelajaran <a
                                         href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
+                                @elseif(auth()->user->role == 'guru')
+                                    <h3 class="card-title">Tahun Pelajaran <a
+                                        href="/dashboard_guru">{{ thnPel() }}</a></h3>
+                                @endif
                             </div>
                             <div class="card-header">
                                 <div class="row">
