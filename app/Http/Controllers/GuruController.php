@@ -26,7 +26,10 @@ class GuruController extends Controller
         $rombel = Rombel::where('guru_id', $id)->pluck('id')->first();
         //hitung jumlah siswa dari rombel ini
         $murid_wali = DB::table('rombel_siswa')->where('rombel_id', $rombel)->count();
-
+        // menghitung jumlah mapel yang diampu oleh guru. Berdasarkan nilai yang sudah masuk.
+        $jml_mapel_guru = Nilai::where('guru_id', '=', $id)->pluck('guru_id', 'mapel_id')->count();
+        $nama_mapel_guru = Nilai::where('guru_id', '=', $id)->pluck('guru_id', 'mapel_id')->toArray();
+        //dd($nama_mapel_guru);
         $penilaian1 = Penilaian::find($id);
 
         $jml_kelas_penilaian = Nilai::where('guru_id', '=', $id)->where('rombel_id', '=', 1)->pluck('guru_id', 'rombel_id')->count() +
@@ -243,6 +246,7 @@ class GuruController extends Controller
             'jml_kelas_penilaian' => $jml_kelas_penilaian,
             'nilai' => $nilai,
             'nilai1' => $nilai1,
+            'jml_mapel_guru' => $jml_mapel_guru,
 
             'rata_kelas' => $rata_kelas,
             'penilaian_list' => $penilaian_list,

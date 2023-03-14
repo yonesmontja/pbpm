@@ -121,7 +121,19 @@ class UserController extends Controller
     }
     public function useredit(User $user)
     {
-        return view('user/edit', ['user' => $user]);
+        $id_user = $user->id;
+        if (auth()->user()->role == 'guru') {
+            $guru = Guru::where('user_id', '=', $id_user)->pluck('id')->first();
+        }
+        if (auth()->user()->role == 'admin') {
+            $guru = auth()->user()->id;
+        }
+
+        //dd($guru);
+        return view('user/edit', [
+            'user' => $user,
+            'guru' => $guru,
+        ]);
     }
     public function userupdate(Request $request, User $user)
     {

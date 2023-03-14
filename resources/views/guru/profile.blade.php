@@ -56,7 +56,7 @@
 
                                  <ul class="list-group list-group-unbordered mb-3">
                                      <li class="list-group-item">
-                                         <b>Mapel</b> <a class="float-right">{{ $guru->mapel->count() }}</a>
+                                         <b>Mapel</b> <a class="float-right">{{ $jml_mapel_guru }}</a>
                                      </li>
                                      <li class="list-group-item">
                                          <b>Wali Kelas dari</b> <a class="float-right">{{ $wali_kelas }}</a>

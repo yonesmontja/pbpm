@@ -63,7 +63,11 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                            @if (auth()->user()->role == 'admin')
+                                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                            @elseif (auth()->user()->role == 'guru')
+                                <li class="breadcrumb-item"><a href="/dashboard_guru">Home</a></li>
+                            @endif
                             <li class="breadcrumb-item active">User Profile</li>
                         </ol>
                     </div>
