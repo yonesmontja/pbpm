@@ -252,28 +252,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/tujuan/{tujuan}/tujuanedit',[TujuanController::class,'tujuanedit']);
 	Route::post('/tujuan/{tujuan}/tujuanupdate',[TujuanController::class,'tujuanupdate']);
 
-    Route::post('/extra/import_extra_excel',[NilaiController::class,'import_extra_excel']);
-	Route::get('/extra',[NilaiController::class,'extra']);
-    Route::post('/extra/extracreate',[NilaiController::class,'extracreate']);
-    Route::get('/extra/{extra}/extradelete',[NilaiController::class,'extradelete']);
-	Route::get('/extra/{extra}/extraedit',[NilaiController::class,'extraedit']);
-	Route::post('/extra/{extra}/extraupdate',[NilaiController::class,'extraupdate']);
-    Route::get('/extra_filter', function () {
-        if (request()->start_date || request()->end_date) {
-            $start_date = Carbon::parse(request()->start_date)->toDateTimeString();
-            $end_date = Carbon::parse(request()->end_date)->toDateTimeString();
-            $data_extra = App\Models\Extra::whereBetween('created_at',[$start_date,$end_date])->get();
-        } else {
-            $data_extra = App\Models\Extra::latest()->get();
-        }
-        $kompetensiinti = Kompetensiinti::all();
-            $mapel = Mapel::all();
-            $siswa = Siswa::all();
-            $penilaian = Penilaian::all();
-            $guru = Guru::all();
-            $kelas = Kelas::all();
-        return view('nilai.extrafilter', compact('data_extra','mapel','siswa','penilaian','guru','kelas','kompetensiinti'));
-    });
+
 
 
 
@@ -327,6 +306,29 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
+
+    Route::post('/extra/import_extra_excel', [NilaiController::class, 'import_extra_excel']);
+    Route::get('/extra', [NilaiController::class, 'extra']);
+    Route::post('/extra/extracreate', [NilaiController::class, 'extracreate']);
+    Route::get('/extra/{extra}/extradelete', [NilaiController::class, 'extradelete']);
+    Route::get('/extra/{extra}/extraedit', [NilaiController::class, 'extraedit']);
+    Route::post('/extra/{extra}/extraupdate', [NilaiController::class, 'extraupdate']);
+    Route::get('/extra_filter', function () {
+        if (request()->start_date || request()->end_date) {
+            $start_date = Carbon::parse(request()->start_date)->toDateTimeString();
+            $end_date = Carbon::parse(request()->end_date)->toDateTimeString();
+            $data_extra = App\Models\Extra::whereBetween('created_at', [$start_date, $end_date])->get();
+        } else {
+            $data_extra = App\Models\Extra::latest()->get();
+        }
+        $kompetensiinti = Kompetensiinti::all();
+        $mapel = Mapel::all();
+        $siswa = Siswa::all();
+        $penilaian = Penilaian::all();
+        $guru = Guru::all();
+        $kelas = Kelas::all();
+        return view('nilai.extrafilter', compact('data_extra', 'mapel', 'siswa', 'penilaian', 'guru', 'kelas', 'kompetensiinti'));
+    });
 
     Route::get('/guru/{guru}/profile', [GuruController::class, 'profile']);
 
