@@ -312,6 +312,7 @@ class NilaiController extends Controller
     public function extra()
     {
     	$data_extra = Extra::all();
+        $rombel = Rombel::all();
         $kompetensiinti = Kompetensiinti::all();
         $mapel = Mapel::all();
         $siswa = Siswa::all();
@@ -328,11 +329,13 @@ class NilaiController extends Controller
         $id_guru = Guru::where('user_id', '=', $id_user)->pluck('id')->first();
         // lalu tampilkan data siswa rombel yang memiliki guru_id == $id_guru
         $rombel2 = Rombel::where('guru_id', '=', $id_guru)->pluck('id')->first();
+        //dd($rombel2);
         $rombel3 = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->pluck('siswa_id')->toArray();
         foreach ($rombel3 as $z => $zefa) {
-            $tampung3[] = Extra::find($zefa);
+            $tampung3[] = Siswa::find($zefa);
         }
-        //dd($tampung3);
+        $tampung4 = Extra::all()->where('rombel_id', '=', $rombel2);
+        //dd($tampung4);
         for($bulan=1;$bulan < 7;$bulan++){
             $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
             $jumlah_penilaian[] = $chart_penilaian->jumlah;
@@ -350,12 +353,13 @@ class NilaiController extends Controller
             'kompetensiinti' => $kompetensiinti,
             'data_extra' => $data_extra,
             'guru' => $guru,
-            'tampung3' => $tampung3
+            'tampung4' => $tampung4,
+            'rombel' => $rombel,
         ]);
     }
     public function extracreate(Request $request)
     {
-    	\App\Models\Extra::create($request -> all());
+        Extra::create($request->all());
     	//return $request -> all();
     	//return redirect('/nilai')->with('sukses','berhasil diinput');
     	return Redirect::back()->with('sukses','berhasil diinput');

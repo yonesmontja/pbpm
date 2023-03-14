@@ -13,7 +13,7 @@ class Extra extends Model
     use HasFactory;
     protected $table = 'extra';
 
-    protected $fillable = ['kelas_id','siswa_id', 'saran', 'ekskul', 'tinggi_sem1', 'tinggi_sem2', 'berat_sem1, berat_sem2', 'pendengaran', 'penglihatan', 'gigi', 'prestasi', 'jenis_prestasi', 'sakit', 'ijin', 'alpa'];
+    protected $fillable = ['kelas_id', 'siswa_id', 'saran', 'ekskul', 'tinggi_sem1', 'tinggi_sem2', 'berat_sem1, berat_sem2', 'pendengaran', 'penglihatan', 'gigi', 'prestasi', 'jenis_prestasi', 'sakit', 'ijin', 'alpa', 'rombel_id'];
 
     /**
      * Get the siswa that owns the Extra

@@ -165,7 +165,7 @@
                                             @endforeach
                                         @endif
                                         @if (auth()->user()->role == 'guru')
-                                            @foreach ($tampung3 as $extra)
+                                            @foreach ($tampung4 as $extra)
                                                 <tr>
                                                     <td><a href="/test/{{ $extra->siswa_id }}/profile">{{ $extra->siswa->nama_depan }}
                                                             {{ $extra->siswa->nama_belakang }}</a></td>
@@ -234,6 +234,22 @@
                                                                             {{ $m->nama }}
                                                                         </option>
                                                                     @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label for="exampleFormControlSelect1">ROMBEL</label>
+                                                                <select name="rombel_id" class="form-control"
+                                                                    id="rombel">
+                                                                    <option hidden>Pilih rombel</option>
+                                                                    @if (auth()->user()->role == 'admin')
+                                                                        @foreach ($rombel as $key => $r)
+                                                                            <option value="{{ $r -> id }}">
+                                                                                {{ $r->rombel }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    @endif
                                                                 </select>
                                                             </div>
                                                         </div>
