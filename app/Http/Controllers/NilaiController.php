@@ -374,7 +374,12 @@ class NilaiController extends Controller
     public function extraedit(Extra $extra)
     {
 
-        return view('nilai.extraedit',['extra'=>$extra]);
+        $id_guru = auth()->user()->id;
+        $guru = Guru::where('user_id', '=', $id_guru)->pluck('id')->first();
+        return view('nilai.extraedit', [
+            'extra' => $extra,
+            'guru' => $guru
+        ]);
     }
     public function extraupdate(Request $request, extra $extra)
     {
