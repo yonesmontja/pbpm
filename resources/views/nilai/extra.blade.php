@@ -44,7 +44,7 @@
                                 @if (auth()->user()->role == 'admin')
                                     <h3 class="card-title">Tahun Pelajaran <a
                                         href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
-                                @elseif(auth()->user->role == 'guru')
+                                @elseif(auth()->user()->role == 'guru')
                                     <h3 class="card-title">Tahun Pelajaran <a
                                         href="/dashboard_guru">{{ thnPel() }}</a></h3>
                                 @endif
