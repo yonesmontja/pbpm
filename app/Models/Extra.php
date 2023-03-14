@@ -33,4 +33,8 @@ class Extra extends Model
     {
         return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
     }
+    public function rombel(): BelongsTo
+    {
+        return $this->belongsTo(Rombel::class, 'rombel_id', 'id');
+    }
 }

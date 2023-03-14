@@ -321,7 +321,18 @@ class NilaiController extends Controller
         $nilai_start = Tahunpelajaran::all()->where('id','=',2)->pluck('tahun');
         $nilai_end = Tahunpelajaran::all()->where('id','=',1)->pluck('tahun');
         $kelas_sub = Siswa::where('kelas_id',0)->get();
-        //dd($kelas_sub);
+        // mengambil data siswa yang sudah memiliki rombel dan menampilkannya sesuai user()->role == guru
+        // langkah pertama ambil id user yg role == guru dan sedang buka route /test
+        $id_user = auth()->user()->id;
+        // lalu cari id guru dengan user_id == $id_user
+        $id_guru = Guru::where('user_id', '=', $id_user)->pluck('id')->first();
+        // lalu tampilkan data siswa rombel yang memiliki guru_id == $id_guru
+        $rombel2 = Rombel::where('guru_id', '=', $id_guru)->pluck('id')->first();
+        $rombel3 = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->pluck('siswa_id')->toArray();
+        foreach ($rombel3 as $z => $zefa) {
+            $tampung3[] = Extra::find($zefa);
+        }
+        //dd($tampung3);
         for($bulan=1;$bulan < 7;$bulan++){
             $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
             $jumlah_penilaian[] = $chart_penilaian->jumlah;
@@ -338,7 +349,9 @@ class NilaiController extends Controller
             'mapel' => $mapel,
             'kompetensiinti' => $kompetensiinti,
             'data_extra' => $data_extra,
-            'guru' => $guru]);
+            'guru' => $guru,
+            'tampung3' => $tampung3
+        ]);
     }
     public function extracreate(Request $request)
     {

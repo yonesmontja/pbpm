@@ -92,6 +92,7 @@ class SiswaController extends Controller
         foreach ($rombel3 as $z => $zefa) {
             $tampung3[] = Siswa::find($zefa);
         }
+        //dd($tampung3);
         $guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
         // mengambil data siswa yang sudah memiliki rombel
         // simpan di variabel $tampung dan $tampung2

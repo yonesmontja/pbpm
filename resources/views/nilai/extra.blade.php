@@ -43,10 +43,10 @@
                             <div class="card-header">
                                 @if (auth()->user()->role == 'admin')
                                     <h3 class="card-title">Tahun Pelajaran <a
-                                        href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
+                                            href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
                                 @elseif(auth()->user()->role == 'guru')
-                                    <h3 class="card-title">Tahun Pelajaran <a
-                                        href="/dashboard_guru">{{ thnPel() }}</a></h3>
+                                    <h3 class="card-title">Tahun Pelajaran <a href="/dashboard_guru">{{ thnPel() }}</a>
+                                    </h3>
                                 @endif
                             </div>
                             <div class="card-header">
@@ -107,8 +107,8 @@
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal"
-                                            data-target="#staticBackdrop">
+                                        <button type="button" class="btn btn-primary float-right btn-sm"
+                                            data-toggle="modal" data-target="#staticBackdrop">
                                             TAMBAH DATA ABSEN DAN CATATAN WALI KELAS
                                         </button>
                                     </div>
@@ -119,7 +119,8 @@
                             <div class="card-body">
                                 @if (session('sukses'))
                                     <div class="alert alert-success" role="alert">
-                                        Data <a href="/extra" class="alert-link">Absensi dan Catatan Wali Kelas</a> {{ session('sukses') }}
+                                        Data <a href="/extra" class="alert-link">Absensi dan Catatan Wali Kelas</a>
+                                        {{ session('sukses') }}
                                     </div>
                                 @endif
                                 <table id="example2" class="table table-bordered table-hover">
@@ -137,27 +138,58 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data_extra as $extra)
-                                            <tr>
-                                                <td><a href="/test/{{ $extra->siswa_id }}/profile">{{ $extra->siswa->nama_depan }} {{ $extra->siswa->nama_belakang }}</a></td>
-                                                <td>{{ $extra->sakit }}</td>
-                                                <td>{{ $extra->ijin }}</td>
-                                                <td>{{ $extra->alpa }}</td>
-                                                <td><a href="/kelas/{{ $extra->kelas_id }}/profile">{{ $extra->kelas->nama }}</a></td>
-                                                <td>{{ $extra->saran }}</td>
-                                                <td>{{ $extra->ekskul }}</td>
-                                                <td>{{ $extra->prestasi }}</td>
-                                                <td>
-                                                    <a href="/extra/{{ $extra->id }}/extraedit"
-                                                        class="btn btn-warning btn-sm">Ubah
-                                                    </a>
-                                                    <!--a href="/extra/{{ $extra->id }}/delete" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau dihapus?')" >Hapus</a-->
-                                                    <a href="/extra/{{ $extra->id }}/extradelete"
-                                                        class="btn btn-danger btn-sm"
-                                                        onclick="return confirm('Yakin mau dihapus?')">Hapus</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                        @if (auth()->user()->role == 'admin')
+                                            @foreach ($data_extra as $extra)
+                                                <tr>
+                                                    <td><a href="/test/{{ $extra->siswa_id }}/profile">{{ $extra->siswa->nama_depan }}
+                                                            {{ $extra->siswa->nama_belakang }}</a></td>
+                                                    <td>{{ $extra->sakit }}</td>
+                                                    <td>{{ $extra->ijin }}</td>
+                                                    <td>{{ $extra->alpa }}</td>
+                                                    <td><a
+                                                            href="/kelas/{{ $extra->kelas_id }}/profile">{{ $extra->kelas->nama }}</a>
+                                                    </td>
+                                                    <td>{{ $extra->saran }}</td>
+                                                    <td>{{ $extra->ekskul }}</td>
+                                                    <td>{{ $extra->prestasi }}</td>
+                                                    <td>
+                                                        <a href="/extra/{{ $extra->id }}/extraedit"
+                                                            class="btn btn-warning btn-sm">Ubah
+                                                        </a>
+                                                        <!--a href="/extra/{{ $extra->id }}/delete" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau dihapus?')" >Hapus</a-->
+                                                        <a href="/extra/{{ $extra->id }}/extradelete"
+                                                            class="btn btn-danger btn-sm"
+                                                            onclick="return confirm('Yakin mau dihapus?')">Hapus</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
+                                        @if (auth()->user()->role == 'guru')
+                                            @foreach ($tampung3 as $extra)
+                                                <tr>
+                                                    <td><a href="/test/{{ $extra->siswa_id }}/profile">{{ $extra->siswa->nama_depan }}
+                                                            {{ $extra->siswa->nama_belakang }}</a></td>
+                                                    <td>{{ $extra->sakit }}</td>
+                                                    <td>{{ $extra->ijin }}</td>
+                                                    <td>{{ $extra->alpa }}</td>
+                                                    <td><a
+                                                            href="/kelas/{{ $extra->kelas_id }}/profile">{{ $extra->kelas->nama }}</a>
+                                                    </td>
+                                                    <td>{{ $extra->saran }}</td>
+                                                    <td>{{ $extra->ekskul }}</td>
+                                                    <td>{{ $extra->prestasi }}</td>
+                                                    <td>
+                                                        <a href="/extra/{{ $extra->id }}/extraedit"
+                                                            class="btn btn-warning btn-sm">Ubah
+                                                        </a>
+                                                        <!--a href="/extra/{{ $extra->id }}/delete" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau dihapus?')" >Hapus</a-->
+                                                        <a href="/extra/{{ $extra->id }}/extradelete"
+                                                            class="btn btn-danger btn-sm"
+                                                            onclick="return confirm('Yakin mau dihapus?')">Hapus</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @endif
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -194,7 +226,8 @@
                                                         <div class="col-sm-4">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlSelect1">KELAS</label>
-                                                                <select name="kelas_id" class="form-control" id="kelas">
+                                                                <select name="kelas_id" class="form-control"
+                                                                    id="kelas">
                                                                     <option hidden>Pilih Kelas</option>
                                                                     @foreach ($kelas as $key => $m)
                                                                         <option value="{{ $m->id }}">
@@ -207,7 +240,8 @@
                                                         <div class="col-sm-4">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlSelect1">SISWA</label>
-                                                                <select name="siswa_id" class="form-control" id="siswa">
+                                                                <select name="siswa_id" class="form-control"
+                                                                    id="siswa">
 
                                                                 </select>
                                                             </div>
@@ -307,7 +341,8 @@
                                                     </div>
                                                     <div
                                                         class="form-group {{ $errors->has('saran') ? ' has-error' : '' }}">
-                                                        <label for="exampleFormControlTextarea1">Catatan Wali Kelas: Sikap</label>
+                                                        <label for="exampleFormControlTextarea1">Catatan Wali Kelas:
+                                                            Sikap</label>
                                                         <textarea name="saran" class="form-control" id="exampleFormControlTextarea1" placeholder="catatan tentang sikap"
                                                             value="{{ old('saran') }}" rows="3"></textarea>
                                                     </div>
@@ -316,23 +351,23 @@
                                                     @endif
                                                     <div
                                                         class="form-group {{ $errors->has('ekskul') ? ' has-error' : '' }}">
-                                                        <label for="exampleFormControlTextarea1">Catatan Wali Kelas: Kehadiran</label>
-                                                        <textarea name="ekskul" class="form-control" id="exampleFormControlTextarea1" placeholder="catatan tentang kehadiran"
-                                                            value="{{ old('ekskul') }}" rows="3"></textarea>
+                                                        <label for="exampleFormControlTextarea1">Catatan Wali Kelas:
+                                                            Kehadiran</label>
+                                                        <textarea name="ekskul" class="form-control" id="exampleFormControlTextarea1"
+                                                            placeholder="catatan tentang kehadiran" value="{{ old('ekskul') }}" rows="3"></textarea>
                                                     </div>
                                                     @if ($errors->has('ekskul'))
-                                                        <span
-                                                            class="help-block">{{ $errors->first('ekskul') }}</span>
+                                                        <span class="help-block">{{ $errors->first('ekskul') }}</span>
                                                     @endif
                                                     <div
                                                         class="form-group {{ $errors->has('prestasi') ? ' has-error' : '' }}">
-                                                        <label for="exampleFormControlTextarea1">Catatan Wali Kelas: Motivasi</label>
-                                                        <textarea name="prestasi" class="form-control" id="exampleFormControlTextarea1" placeholder="catatan motivasi siswa (jika ada)"
-                                                            value="{{ old('prestasi') }}" rows="3"></textarea>
+                                                        <label for="exampleFormControlTextarea1">Catatan Wali Kelas:
+                                                            Motivasi</label>
+                                                        <textarea name="prestasi" class="form-control" id="exampleFormControlTextarea1"
+                                                            placeholder="catatan motivasi siswa (jika ada)" value="{{ old('prestasi') }}" rows="3"></textarea>
                                                     </div>
                                                     @if ($errors->has('prestasi'))
-                                                        <span
-                                                            class="help-block">{{ $errors->first('prestasi') }}</span>
+                                                        <span class="help-block">{{ $errors->first('prestasi') }}</span>
                                                     @endif
                                                     <!-- akhir form isian data -->
                                             </div>

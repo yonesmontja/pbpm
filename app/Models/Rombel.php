@@ -54,4 +54,8 @@ class Rombel extends Model
     {
         return $this->hasMany(Nilai::class);
     }
+    public function extra(): HasMany
+    {
+        return $this->hasMany(Extra::class);
+    }
 }
