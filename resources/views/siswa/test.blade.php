@@ -42,68 +42,78 @@
                             </div>
                             <div class="card-header">
                                 <div class="row">
+                                    @if (auth()->user()->role == 'admin')
+                                        <div class="col-sm-2">
+                                            <h3 class="card-title">
+                                                <a href="/siswa/export_pdf" target="_blank">EXPOR
+                                                    PDF
+                                                </a>
+                                            </h3>
+                                        </div>
+                                    @endif
+                                    @if (auth()->user()->role == 'admin')
+                                        <div class="col-sm-2">
+                                            <h3 class="card-title">
+                                                <a href="/siswa/export_excel" target="_blank">EXPOR EXCEL
+                                                </a>
+                                            </h3>
+                                        </div>
+                                    @endif
                                     <div class="col-sm-2">
-                                        <h3 class="card-title">
-                                            <a href="/siswa/export_pdf" target="_blank">EXPOR
-                                                PDF
-                                            </a>
-                                        </h3>
                                     </div>
-                                    <div class="col-sm-2">
-                                        <h3 class="card-title">
-                                            <a href="/siswa/export_excel" target="_blank">EXPOR EXCEL
-                                            </a>
-                                        </h3>
-                                    </div>
-                                    <div class="col-sm-2">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <h3 class="card-title" data-toggle="modal" data-target="#importExcel">
-                                            <a href="#">
-                                                IMPOR EXCEL</a>
-                                        </h3>
-                                        <!-- Import Excel -->
-                                        <div class="modal fade" id="importExcel" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <form method="post" action="/siswa/import_excel"
-                                                    enctype="multipart/form-data">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Import Excel
-                                                            </h5>
-                                                        </div>
-                                                        <div class="modal-body">
-
-                                                            {{ csrf_field() }}
-
-                                                            <label>Pilih file excel</label>
-                                                            <div class="form-group">
-                                                                <input type="file" name="file" required="required">
+                                    @if (auth()->user()->role == 'admin')
+                                        <div class="col-sm-2">
+                                            <h3 class="card-title" data-toggle="modal" data-target="#importExcel">
+                                                <a href="#">
+                                                    IMPOR EXCEL</a>
+                                            </h3>
+                                            <!-- Import Excel -->
+                                            <div class="modal fade" id="importExcel" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <form method="post" action="/siswa/import_excel"
+                                                        enctype="multipart/form-data">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Import Excel
+                                                                </h5>
                                                             </div>
+                                                            <div class="modal-body">
 
+                                                                {{ csrf_field() }}
+
+                                                                <label>Pilih file excel</label>
+                                                                <div class="form-group">
+                                                                    <input type="file" name="file"
+                                                                        required="required">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Close</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-primary">Import</button>
+                                                            </div>
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-primary">Import</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <h3 class="card-title" data-toggle="modal" data-target="#staticBackdrop">
-                                            <a href="#">AKTIVASI USER</a>
-                                        </h3>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <button type="button" class="btn btn-primary float-right btn-sm"
-                                            data-toggle="modal" data-target="#staticBackdrop">
-                                            Tambah Data Siswa
-                                        </button>
-                                    </div>
+                                    @endif
+                                    @if (auth()->user()->role == 'admin')
+                                        <div class="col-sm-2">
+                                            <h3 class="card-title" data-toggle="modal" data-target="#staticBackdrop">
+                                                <a href="#">AKTIVASI USER</a>
+                                            </h3>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button type="button" class="btn btn-primary float-right btn-sm"
+                                                data-toggle="modal" data-target="#staticBackdrop">
+                                                Tambah Data Siswa
+                                            </button>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <!-- /.card-header -->
@@ -125,112 +135,205 @@
                                             <th>AGAMA</th>
                                             <th>KELAS</th>
                                             <th>CETAK</th>
-                                            <th>AKSI</th>
+                                            @if (auth()->user()->role == 'admin')
+                                                <th>AKSI</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($tampung as $siswa)
-                                            <tr>
-                                                <td><a
-                                                        href="/test/{{ $siswa->id }}/profile">{{ $siswa->nama_depan }}</a>
-                                                </td>
-                                                <td><a
-                                                        href="/test/{{ $siswa->id }}/profile">{{ $siswa->nama_belakang }}</a>
-                                                </td>
-                                                <td>{{ $siswa->nis }}</td>
-                                                <td>{{ $siswa->jenis_kelamin }}</td>
-                                                <td>{{ $siswa->agama }}</td>
-                                                @foreach ( $siswa -> rombel as $r )
-                                                    <td>{{ $r->rombel }}</td>
-                                                @endforeach
-                                                <td>
-                                                    <a href="/siswa/{{ $siswa->id }}/cover_pdf"
-                                                        class="btn btn-primary btn-sm">Cover
-                                                    </a>
-                                                    <a href="/siswa/{{ $siswa->id }}/biodata_pdf"
-                                                        class="btn btn-primary btn-sm">Bio
-                                                    </a>
-                                                    <a href="/siswa/{{ $siswa->id }}/export_pdf"
-                                                        class="btn btn-primary btn-sm">Raport
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href="/test/{{ $siswa->id }}/edit"
-                                                        class="btn btn-warning btn-sm">Ubah
-                                                    </a>
-                                                    <a href="/test/{{ $siswa->id }}/delete"
-                                                        class="btn btn-danger btn-sm"
-                                                        onclick="return confirm('Yakin mau dihapus?')">Hapus
-                                                    </a>
-                                                    @if ($siswa->user_id == null)
-                                                        <a href="/test/{{ $siswa->id }}/aktivasi"
-                                                            class="btn btn-primary btn-sm" data-toggle="modal"
-                                                            data-target="#modal-dialog2{{ $siswa->id }}">Aktivasi
+                                        @if (auth()->user()->role == 'admin')
+                                            @foreach ($tampung as $siswa)
+                                                <tr>
+                                                    <td><a
+                                                            href="/test/{{ $siswa->id }}/profile">{{ $siswa->nama_depan }}</a>
+                                                    </td>
+                                                    <td><a
+                                                            href="/test/{{ $siswa->id }}/profile">{{ $siswa->nama_belakang }}</a>
+                                                    </td>
+                                                    <td>{{ $siswa->nis }}</td>
+                                                    <td>{{ $siswa->jenis_kelamin }}</td>
+                                                    <td>{{ $siswa->agama }}</td>
+                                                    @foreach ($siswa->rombel as $r)
+                                                        <td>{{ $r->rombel }}</td>
+                                                    @endforeach
+                                                    <td>
+                                                        <a href="/siswa/{{ $siswa->id }}/cover_pdf"
+                                                            class="btn btn-primary btn-sm">Cover
                                                         </a>
-                                                    @else
-                                                        <button type="button"
-                                                            class="btn btn-default btn-sm disabled">User Aktif</button>
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                            <!-- Modal aktivasi -->
-                                            <div class="modal fade" id="modalAktivasi{{ $siswa->id }}" tabindex="-1"
-                                                aria-labelledby="modalAktivasi" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body">
-                                                            <h4 class="text-center">Apakah anda yakin aktivasi user atas
-                                                                nama siswa ini? :
-                                                                <span>{{ $siswa->nama_depan }}</span>
-                                                            </h4>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <form action="/test/{{ $siswa->id }}/aktivasi"
-                                                                method="post">
-                                                                @csrf
-                                                                @method('post')
-                                                                <button type="button"
-                                                                    class="btn btn-primary">Aktivasi</button>
-                                                            </form>
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">Tidak Jadi</button>
+                                                        <a href="/siswa/{{ $siswa->id }}/biodata_pdf"
+                                                            class="btn btn-primary btn-sm">Bio
+                                                        </a>
+                                                        <a href="/siswa/{{ $siswa->id }}/export_pdf"
+                                                            class="btn btn-primary btn-sm">Raport
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="/test/{{ $siswa->id }}/edit"
+                                                            class="btn btn-warning btn-sm">Ubah
+                                                        </a>
+                                                        <a href="/test/{{ $siswa->id }}/delete"
+                                                            class="btn btn-danger btn-sm"
+                                                            onclick="return confirm('Yakin mau dihapus?')">Hapus
+                                                        </a>
+                                                        @if ($siswa->user_id == null)
+                                                            <a href="/test/{{ $siswa->id }}/aktivasi"
+                                                                class="btn btn-primary btn-sm" data-toggle="modal"
+                                                                data-target="#modal-dialog2{{ $siswa->id }}">Aktivasi
+                                                            </a>
+                                                        @else
+                                                            <button type="button"
+                                                                class="btn btn-default btn-sm disabled">User Aktif</button>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                <!-- Modal aktivasi -->
+                                                <div class="modal fade" id="modalAktivasi{{ $siswa->id }}"
+                                                    tabindex="-1" aria-labelledby="modalAktivasi" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <h4 class="text-center">Apakah anda yakin aktivasi user
+                                                                    atas
+                                                                    nama siswa ini? :
+                                                                    <span>{{ $siswa->nama_depan }}</span>
+                                                                </h4>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <form action="/test/{{ $siswa->id }}/aktivasi"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    @method('post')
+                                                                    <button type="button"
+                                                                        class="btn btn-primary">Aktivasi</button>
+                                                                </form>
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Tidak Jadi</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="modal fade" id="modal-dialog2{{ $siswa->id }}">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content bg-danger">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Aktivasi</h4>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>Anda yakin mengaktifkan user atas nama siswa: </p>
-                                                            <p>{{ $siswa->nama_depan }}
-                                                                {{ $siswa->nama_belakang }} &hellip;?</p>
+                                                <div class="modal fade" id="modal-dialog2{{ $siswa->id }}">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content bg-danger">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">Aktivasi</h4>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Anda yakin mengaktifkan user atas nama siswa: </p>
+                                                                <p>{{ $siswa->nama_depan }}
+                                                                    {{ $siswa->nama_belakang }} &hellip;?</p>
 
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default">
+                                                                    <a href="/test/{{ $siswa->id }}/aktivasi">Aktivasi
+                                                                    </a>
+                                                                </button>
+                                                                <button type="button" class="btn btn-default"
+                                                                    data-dismiss="modal">
+                                                                    Close
+                                                                </button>
+                                                            </div>
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default">
-                                                                <a href="/test/{{ $siswa->id }}/aktivasi">Aktivasi
-                                                                </a>
-                                                            </button>
-                                                            <button type="button" class="btn btn-default"
-                                                                data-dismiss="modal">
-                                                                Close
-                                                            </button>
+                                                        <!-- /.modal-content -->
+                                                    </div>
+                                                    <!-- /.modal-dialog -->
+                                                </div>
+                                                <!-- /.modal -->
+                                            @endforeach
+                                        @endif
+                                        @if (auth()->user()->role == 'guru')
+                                            @foreach ($tampung3 as $siswa)
+                                                <tr>
+                                                    <td><a
+                                                            href="/test/{{ $siswa->id }}/profile">{{ $siswa->nama_depan }}</a>
+                                                    </td>
+                                                    <td><a
+                                                            href="/test/{{ $siswa->id }}/profile">{{ $siswa->nama_belakang }}</a>
+                                                    </td>
+                                                    <td>{{ $siswa->nis }}</td>
+                                                    <td>{{ $siswa->jenis_kelamin }}</td>
+                                                    <td>{{ $siswa->agama }}</td>
+                                                    @foreach ($siswa->rombel as $r)
+                                                        <td>{{ $r->rombel }}</td>
+                                                    @endforeach
+                                                    <td>
+                                                        <a href="/siswa/{{ $siswa->id }}/cover_pdf"
+                                                            class="btn btn-primary btn-sm">Cover
+                                                        </a>
+                                                        <a href="/siswa/{{ $siswa->id }}/biodata_pdf"
+                                                            class="btn btn-primary btn-sm">Bio
+                                                        </a>
+                                                        <a href="/siswa/{{ $siswa->id }}/export_pdf"
+                                                            class="btn btn-primary btn-sm">Raport
+                                                        </a>
+                                                    </td>
+
+                                                </tr>
+                                                <!-- Modal aktivasi -->
+                                                <div class="modal fade" id="modalAktivasi{{ $siswa->id }}"
+                                                    tabindex="-1" aria-labelledby="modalAktivasi" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <h4 class="text-center">Apakah anda yakin aktivasi user
+                                                                    atas
+                                                                    nama siswa ini? :
+                                                                    <span>{{ $siswa->nama_depan }}</span>
+                                                                </h4>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <form action="/test/{{ $siswa->id }}/aktivasi"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    @method('post')
+                                                                    <button type="button"
+                                                                        class="btn btn-primary">Aktivasi</button>
+                                                                </form>
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Tidak Jadi</button>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <!-- /.modal-content -->
                                                 </div>
-                                                <!-- /.modal-dialog -->
-                                            </div>
-                                            <!-- /.modal -->
-                                        @endforeach
+                                                <div class="modal fade" id="modal-dialog2{{ $siswa->id }}">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content bg-danger">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">Aktivasi</h4>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Anda yakin mengaktifkan user atas nama siswa: </p>
+                                                                <p>{{ $siswa->nama_depan }}
+                                                                    {{ $siswa->nama_belakang }} &hellip;?</p>
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default">
+                                                                    <a href="/test/{{ $siswa->id }}/aktivasi">Aktivasi
+                                                                    </a>
+                                                                </button>
+                                                                <button type="button" class="btn btn-default"
+                                                                    data-dismiss="modal">
+                                                                    Close
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.modal-content -->
+                                                    </div>
+                                                    <!-- /.modal-dialog -->
+                                                </div>
+                                                <!-- /.modal -->
+                                            @endforeach
+                                        @endif
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -241,7 +344,9 @@
                                             <th>AGAMA</th>
                                             <th>KELAS</th>
                                             <th>CETAK</th>
-                                            <th>AKSI</th>
+                                            @if (auth()->user()->role == 'admin')
+                                                <th>AKSI</th>
+                                            @endif
                                         </tr>
                                     </tfoot>
                                 </table>
