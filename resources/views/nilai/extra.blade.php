@@ -228,31 +228,56 @@
                                                                 <label for="exampleFormControlSelect1">KELAS</label>
                                                                 <select name="kelas_id" class="form-control"
                                                                     id="kelas">
-                                                                    <option hidden>Pilih Kelas</option>
-                                                                    @foreach ($kelas as $key => $m)
-                                                                        <option value="{{ $m->id }}">
-                                                                            {{ $m->nama }}
-                                                                        </option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">ROMBEL</label>
-                                                                <select name="rombel_id" class="form-control"
-                                                                    id="rombel">
-                                                                    <option hidden>Pilih rombel</option>
                                                                     @if (auth()->user()->role == 'admin')
-                                                                        @foreach ($rombel as $key => $r)
-                                                                            <option value="{{ $r -> id }}">
-                                                                                {{ $r->rombel }}
+                                                                        <option hidden>Pilih Kelas</option>
+                                                                        @foreach ($kelas as $key => $m)
+                                                                            <option value="{{ $m->id }}">
+                                                                                {{ $m->nama }}
                                                                             </option>
                                                                         @endforeach
+                                                                    @endif
+                                                                    @if (auth()->user()->role == 'guru')
+                                                                        <option value="{{ $rombel_kelas }}">
+                                                                            {{ $nama_rombel_kelas }}
+                                                                        </option>
                                                                     @endif
                                                                 </select>
                                                             </div>
                                                         </div>
+                                                        @if (auth()->user()->role == 'admin')
+                                                            <div class="col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label for="exampleFormControlSelect1">ROMBEL</label>
+                                                                    <select name="rombel_id" class="form-control"
+                                                                        id="rombel">
+                                                                        <option hidden>Pilih rombel</option>
+                                                                        @if (auth()->user()->role == 'admin')
+                                                                            @foreach ($rombel as $key => $r)
+                                                                                <option value="{{ $r->id }}">
+                                                                                    {{ $r->rombel }}
+                                                                                </option>
+                                                                            @endforeach
+                                                                        @endif
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                        @if (auth()->user()->role == 'guru')
+                                                            <div class="col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label for="exampleFormControlSelect1">ROMBEL</label>
+                                                                    <select name="rombel_id" class="form-control"
+                                                                        id="rombel">
+                                                                        <option hidden>Pilih rombel</option>
+                                                                        @if (auth()->user()->role == 'guru')
+                                                                            <option value="{{ $rombel2 }}">
+                                                                                {{ $nama_rombel2 }}
+                                                                            </option>
+                                                                        @endif
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        @endif
                                                         <div class="col-sm-4">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlSelect1">SISWA</label>

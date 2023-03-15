@@ -317,7 +317,7 @@ class NilaiController extends Controller
         $mapel = Mapel::all();
         $siswa = Siswa::all();
         $penilaian = Penilaian::all();
-        $guru = Guru::all();
+
         $kelas = Kelas::all();
         $nilai_start = Tahunpelajaran::all()->where('id','=',2)->pluck('tahun');
         $nilai_end = Tahunpelajaran::all()->where('id','=',1)->pluck('tahun');
@@ -329,7 +329,11 @@ class NilaiController extends Controller
         $id_guru = Guru::where('user_id', '=', $id_user)->pluck('id')->first();
         // lalu tampilkan data siswa rombel yang memiliki guru_id == $id_guru
         $rombel2 = Rombel::where('guru_id', '=', $id_guru)->pluck('id')->first();
-        //dd($rombel2);
+        $nama_rombel2 = Rombel::where('guru_id', '=', $id_guru)->pluck('rombel')->first();
+        $rombel_kelas
+            = Rombel::where('guru_id', '=', $id_guru)->pluck('kelas_id')->first();
+        $nama_rombel_kelas = Kelas::where('id', '=', $rombel_kelas)->pluck('nama')->first();
+        $guru = $id_guru;
         $rombel3 = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->pluck('siswa_id')->toArray();
         foreach ($rombel3 as $z => $zefa) {
             $tampung3[] = Siswa::find($zefa);
@@ -355,6 +359,10 @@ class NilaiController extends Controller
             'guru' => $guru,
             'tampung4' => $tampung4,
             'rombel' => $rombel,
+            'rombel2' => $rombel2,
+            'nama_rombel2' => $nama_rombel2,
+            'rombel_kelas' => $rombel_kelas,
+            'nama_rombel_kelas' => $nama_rombel_kelas,
         ]);
     }
     public function extracreate(Request $request)
