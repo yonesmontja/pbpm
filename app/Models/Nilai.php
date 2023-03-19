@@ -33,6 +33,7 @@ class Nilai extends Model implements Auditable
         'siswa_id',
         'kelas_id',
         'nilai',
+        'tanggal',
         'tahunpel_id',
         'rombel_id'
     ];

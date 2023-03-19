@@ -28,25 +28,25 @@ class NilaiController extends Controller
     //
     public function nilai()
     {
-    	$data_nilai = Nilai::all();
+        $data_nilai = Nilai::all();
         $kompetensiinti = Kompetensiinti::all();
         $mapel = Mapel::all();
         $siswa = Siswa::all();
         $penilaian = Penilaian::all();
         $guru = Guru::all();
         $kelas = Kelas::all();
-        $nilai_start = Tahunpelajaran::all()->where('id','=',2)->pluck('tahun');
-        $nilai_end = Tahunpelajaran::all()->where('id','=',1)->pluck('tahun');
-        $kelas_sub = Siswa::where('kelas_id',0)->get();
+        $nilai_start = Tahunpelajaran::all()->where('id', '=', 2)->pluck('tahun');
+        $nilai_end = Tahunpelajaran::all()->where('id', '=', 1)->pluck('tahun');
+        $kelas_sub = Siswa::where('kelas_id', 0)->get();
         $tahunpel = Tahunpel::all();
         $rombel = Rombel::all();
         //dd($kelas_sub);
-        for($bulan=1;$bulan < 7;$bulan++){
+        for ($bulan = 1; $bulan < 7; $bulan++) {
             $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
             $jumlah_penilaian[] = $chart_penilaian->jumlah;
         }
         //dd($jumlah_penilaian);
-    	return view('nilai.index',[
+        return view('nilai.index', [
             'rombel' => $rombel,
             'jumlah_penilaian' => $jumlah_penilaian,
             'kelas_sub' => $kelas_sub,
@@ -59,7 +59,8 @@ class NilaiController extends Controller
             'mapel' => $mapel,
             'kompetensiinti' => $kompetensiinti,
             'data_nilai' => $data_nilai,
-            'guru' => $guru]);
+            'guru' => $guru
+        ]);
     }
     public function isinilai($id)
     {
@@ -139,15 +140,36 @@ class NilaiController extends Controller
     }
     public function nilaicreate(Request $request)
     {
-    	//\App\Models\Nilai::create($request -> all());
-        $nilai = Nilai::create($request -> all());
+        //$nilai = Nilai::create($request->all());
         //dd($nilai);
-        $id = $nilai -> id;
+        if ($request->tanggal == '0000-00-00') {
+            $tanggal = null;
+        } else {
+            $tanggal = Carbon::createFromFormat('Y-m-d', $request->tanggal);
+        }
+
+        Nilai::create([
+            'nilai' => $request->nilai,
+            'tanggal' => $tanggal,
+            'nilai_start' => $request->nilai_start,
+            'nilai_end' => $request->nilai_end,
+            'nilai_deskripsi' => $request->nilai_deskripsi,
+            'nilai_notes' => $request->nilai_notes,
+            'kompetensi_inti_id' => $request->kompetensi_inti_id,
+            'mapel_id' => $request->mapel_id,
+            'penilaian_id' => $request->penilaian_id,
+            'guru_id' => $request->guru_id,
+            'siswa_id' => $request->siswa_id,
+            'kelas_id' => $request->kelas_id,
+            'tahunpel_id' => $request->tahunpel_id,
+            'rombel_id' => $request->rombel_id
+        ]);
+        $id = $nilai->id;
         $date = now();
         DB::table('penilaian_siswa')->insert([
             'siswa_id'      => $request->input('siswa_id'),
             'penilaian_id'  => $request->input('penilaian_id'),
-            'nilai' => $request-> input('nilai'),
+            'nilai' => $request->input('nilai'),
             'nilai_id' => $id,
             'created_at' => $date,
             'updated_at' => $date
@@ -161,14 +183,16 @@ class NilaiController extends Controller
             'updated_at' => $date
         ]);
         //dd($nilai);
-    	return Redirect::back()->with('sukses','berhasil diinput');
-
+        return Redirect::back()->with(
+            'sukses',
+            'berhasil diinput'
+        );
     }
     public function nilaidelete($id)
     {
         $nilai = \App\Models\Nilai::find($id);
-        $nilai ->delete();
-        return redirect('/nilai')->with('sukses','berhasil dihapus!');
+        $nilai->delete();
+        return redirect('/nilai')->with('sukses', 'berhasil dihapus!');
     }
     public function nilaiedit(Nilai $nilai)
     {
@@ -212,7 +236,7 @@ class NilaiController extends Controller
     }
     public function nilaiupdate(Request $request, Nilai $nilai)
     {
-        $nilai ->update($request->all());
+        $nilai->update($request->all());
         $date = now();
         //$siswa = Siswa::find($nilai->siswa_id)->penilaian()->updateExixtingPivot();
         if ('siswa_id' == $nilai->siswa_id)
@@ -232,7 +256,7 @@ class NilaiController extends Controller
                 'updated_at' => $date
             ]);
 
-        return redirect('/nilai')->with('sukses','berhasil diupdate!');
+        return redirect('/nilai')->with('sukses', 'berhasil diupdate!');
     }
     public function import_excel(Request $request)
     {
@@ -246,10 +270,10 @@ class NilaiController extends Controller
         $file = $request->file('file');
         //dd($file);
         // membuat nama file unik
-        $nama_file = rand().$file->getClientOriginalName();
+        $nama_file = rand() . $file->getClientOriginalName();
         //dd($nama_file);
         // upload ke folder file_nilai di dalam folder public
-        $file->move('file_nilai',$nama_file);
+        $file->move('file_nilai', $nama_file);
 
 
         // import data
@@ -264,36 +288,36 @@ class NilaiController extends Controller
         foreach ($siswa as $s) {
             DB::table('penilaian_siswa')
             ->where('nilai_id', '=', $s->id)
-            ->insert([
-                'siswa_id'      => $s->siswa_id,
-                'penilaian_id'  => $s->penilaian_id,
-                'nilai' => $s->nilai,
-                'nilai_id' => $s->id,
-                'created_at' => $date,
-                'updated_at' => $date
-            ]);
+                ->insert([
+                    'siswa_id'      => $s->siswa_id,
+                    'penilaian_id'  => $s->penilaian_id,
+                    'nilai' => $s->nilai,
+                    'nilai_id' => $s->id,
+                    'created_at' => $date,
+                    'updated_at' => $date
+                ]);
             DB::table('mapel_siswa')
             ->where('nilai_id', '=', $s->id)
-            ->insert([
-                'siswa_id'      => $s->siswa_id,
-                'mapel_id'  => $s->mapel_id,
-                'nilai' => $s->nilai,
-                'nilai_id' => $s->id,
-                'created_at' => $date,
-                'updated_at' => $date
-            ]);
+                ->insert([
+                    'siswa_id'      => $s->siswa_id,
+                    'mapel_id'  => $s->mapel_id,
+                    'nilai' => $s->nilai,
+                    'nilai_id' => $s->id,
+                    'created_at' => $date,
+                    'updated_at' => $date
+                ]);
         }
         // when done commit
         //DB::commit();
 
-        if($request->hasFile('avatar')){
-            $request->file('avatar')->move('images/',$request->file('avatar')->getClientOriginalName());
-            $siswa->avatar= $request->file('avatar')->getClientOriginalName();
+        if ($request->hasFile('avatar')) {
+            $request->file('avatar')->move('images/', $request->file('avatar')->getClientOriginalName());
+            $siswa->avatar = $request->file('avatar')->getClientOriginalName();
             $siswa->save();
         }
 
         // notifikasi dengan session
-        Session::flash('sukses','Berhasil Diimport!');
+        Session::flash('sukses', 'Berhasil Diimport!');
         //dd(auth()->user()->role);
         // alihkan halaman kembali
         if (auth()->user()->role == 'admin') {
@@ -307,11 +331,10 @@ class NilaiController extends Controller
     {
 
         return Excel::download(new NilaiExport, 'export_nilai.xlsx');
-
     }
     public function extra()
     {
-    	$data_extra = Extra::all();
+        $data_extra = Extra::all();
         $rombel = Rombel::all();
         $kompetensiinti = Kompetensiinti::all();
         $mapel = Mapel::all();
@@ -319,9 +342,9 @@ class NilaiController extends Controller
         $penilaian = Penilaian::all();
 
         $kelas = Kelas::all();
-        $nilai_start = Tahunpelajaran::all()->where('id','=',2)->pluck('tahun');
-        $nilai_end = Tahunpelajaran::all()->where('id','=',1)->pluck('tahun');
-        $kelas_sub = Siswa::where('kelas_id',0)->get();
+        $nilai_start = Tahunpelajaran::all()->where('id', '=', 2)->pluck('tahun');
+        $nilai_end = Tahunpelajaran::all()->where('id', '=', 1)->pluck('tahun');
+        $kelas_sub = Siswa::where('kelas_id', 0)->get();
         // mengambil data siswa yang sudah memiliki rombel dan menampilkannya sesuai user()->role == guru
         // langkah pertama ambil id user yg role == guru dan sedang buka route /test
         $id_user = auth()->user()->id;
@@ -340,12 +363,12 @@ class NilaiController extends Controller
         }
         $tampung4 = Extra::all()->where('rombel_id', '=', $rombel2);
         //dd($tampung4);
-        for($bulan=1;$bulan < 7;$bulan++){
+        for ($bulan = 1; $bulan < 7; $bulan++) {
             $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
             $jumlah_penilaian[] = $chart_penilaian->jumlah;
         }
         //dd($jumlah_penilaian);
-    	return view('nilai.extra',[
+        return view('nilai.extra', [
             'jumlah_penilaian' => $jumlah_penilaian,
             'kelas_sub' => $kelas_sub,
             'nilai_start' => $nilai_start,
@@ -368,16 +391,15 @@ class NilaiController extends Controller
     public function extracreate(Request $request)
     {
         Extra::create($request->all());
-    	//return $request -> all();
-    	//return redirect('/nilai')->with('sukses','berhasil diinput');
-    	return Redirect::back()->with('sukses','berhasil diinput');
-
+        //return $request -> all();
+        //return redirect('/nilai')->with('sukses','berhasil diinput');
+        return Redirect::back()->with('sukses', 'berhasil diinput');
     }
     public function extradelete($id)
     {
         $extra = \App\Models\Extra::find($id);
-        $extra ->delete();
-        return redirect('/extra')->with('sukses','berhasil dihapus!');
+        $extra->delete();
+        return redirect('/extra')->with('sukses', 'berhasil dihapus!');
     }
     public function extraedit(Extra $extra)
     {
@@ -391,8 +413,8 @@ class NilaiController extends Controller
     }
     public function extraupdate(Request $request, extra $extra)
     {
-        $extra ->update($request->all());
-        return redirect('/extra')->with('sukses','berhasil diupdate!');
+        $extra->update($request->all());
+        return redirect('/extra')->with('sukses', 'berhasil diupdate!');
     }
     public function import_extra_excel(Request $request)
     {
@@ -406,25 +428,25 @@ class NilaiController extends Controller
         $file = $request->file('file');
 
         // membuat nama file unik
-        $nama_file = rand().$file->getClientOriginalName();
+        $nama_file = rand() . $file->getClientOriginalName();
 
         // upload ke folder file_nilai di dalam folder public
-        $file->move('file_nilai',$nama_file);
+        $file->move('file_nilai', $nama_file);
 
 
         // import data
-        Excel::import(new ExtraImport, public_path('/file_nilai/'.$nama_file));
+        Excel::import(new ExtraImport, public_path('/file_nilai/' . $nama_file));
 
         $siswa = Extra::all();
 
-        if($request->hasFile('avatar')){
-            $request->file('avatar')->move('images/',$request->file('avatar')->getClientOriginalName());
-            $siswa->avatar= $request->file('avatar')->getClientOriginalName();
+        if ($request->hasFile('avatar')) {
+            $request->file('avatar')->move('images/', $request->file('avatar')->getClientOriginalName());
+            $siswa->avatar = $request->file('avatar')->getClientOriginalName();
             $siswa->save();
         }
 
         // notifikasi dengan session
-        Session::flash('sukses','Berhasil Diimport!');
+        Session::flash('sukses', 'Berhasil Diimport!');
 
         // alihkan halaman kembali
         return redirect('/extra');
@@ -447,7 +469,7 @@ class NilaiController extends Controller
         //return Nilai::with('audits')->get();
         //dd($all);
 
-        return view('nilai.audit',[
+        return view('nilai.audit', [
             'nilai' => $nilai,
             'all' => $all,
         ]);
