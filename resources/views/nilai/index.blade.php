@@ -363,7 +363,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-sm-4">
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleFormControlSelect1">Tanggal</label>
+                                                                <input type="text" name="tanggal" class="form-control" id="datepicker">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlSelect1">GURU</label>
                                                                 <select name="guru_id" class="form-control"
@@ -377,7 +383,7 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-4">
+                                                        <div class="col-sm-3">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlSelect1">MAPEL</label>
                                                                 <select name="mapel_id" class="form-control"
@@ -391,7 +397,7 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-4">
+                                                        <div class="col-sm-3">
                                                             <div
                                                                 class="form-group {{ $errors->has('nilai') ? ' has-error' : '' }}">
                                                                 <label for="exampleFormControlInput1">Nilai</label>

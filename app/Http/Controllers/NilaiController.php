@@ -140,15 +140,14 @@ class NilaiController extends Controller
     }
     public function nilaicreate(Request $request)
     {
-        //$nilai = Nilai::create($request->all());
-        //dd($nilai);
+        //dd($request->tanggal);
         if ($request->tanggal == '0000-00-00') {
             $tanggal = null;
         } else {
-            $tanggal = Carbon::createFromFormat('Y-m-d', $request->tanggal);
+            $tanggal = Carbon::parse($request->tanggal)->format('Y-m-d');
         }
-
-        Nilai::create([
+        //dd($tanggal);
+        $nilai = Nilai::create([
             'nilai' => $request->nilai,
             'tanggal' => $tanggal,
             'nilai_start' => $request->nilai_start,
@@ -165,6 +164,7 @@ class NilaiController extends Controller
             'rombel_id' => $request->rombel_id
         ]);
         $id = $nilai->id;
+        //dd($id);
         $date = now();
         DB::table('penilaian_siswa')->insert([
             'siswa_id'      => $request->input('siswa_id'),

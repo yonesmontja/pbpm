@@ -20,8 +20,7 @@
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="{{ asset('/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- Bootstrap Color Picker -->
-    <link rel="stylesheet"
-        href="{{ asset('/admin/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/admin/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet"
         href="{{ asset('/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
@@ -44,6 +43,7 @@
     <link rel="stylesheet" href="{{ asset('/admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
     <!-- Toastr -->
     <link rel="stylesheet" href="{{ asset('/admin/plugins/toastr/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/frontend/css/jquery-ui.css') }}">
     @yield('header')
 </head>
 
@@ -77,6 +77,8 @@
     <script src="{{ asset('/admin/plugins/moment/moment.min.js') }}"></script>
     <script src="{{ asset('/admin/plugins/inputmask/min/jquery.inputmask.bundle.min.js') }}"></script>
     <script src="{{ asset('/admin/plugins/daterangepicker/daterangepicker.js') }}"></script>
+
+    <script src="{{ asset('/frontend/js/jquery-ui.js') }}"></script>
     <!-- bootstrap color picker -->
     <script src="{{ asset('/admin/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
     <!-- Tempusdominus Bootstrap 4 -->
@@ -225,7 +227,8 @@
                                 $('#siswa').append('<option hidden>Pilih Siswa</option>');
                                 $.each(data, function(siswa_id, get_siswa) {
                                     $('select[name="siswa_id"]').append(
-                                        '<option value="' + get_siswa.siswa_id + '">' +
+                                        '<option value="' + get_siswa.siswa_id +
+                                        '">' +
                                         get_siswa
                                         .nama_depan + " " + get_siswa
                                         .nama_belakang + '</option>');
@@ -263,16 +266,23 @@
     </script>
     <script type="text/javascript">
         $(function() {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000
-                    });
-                    $('.toastrDefaultSuccess').click(function() {
-                        toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-                    });
-                })
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            $('.toastrDefaultSuccess').click(function() {
+                toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+            });
+        })
+    </script>
+    <script>
+        $(function() {
+            $("#datepicker").datepicker({
+                format: 'YYYY-mm-dd'
+            });
+        });
     </script>
     @yield('footer')
 </body>
