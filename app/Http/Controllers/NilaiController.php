@@ -172,7 +172,8 @@ class NilaiController extends Controller
             'nilai' => $request->input('nilai'),
             'nilai_id' => $id,
             'created_at' => $date,
-            'updated_at' => $date
+            'updated_at' => $date,
+            'tanggal' => $tanggal,
         ]);
         DB::table('mapel_siswa')->insert([
             'siswa_id'      => $request->input('siswa_id'),
@@ -180,7 +181,8 @@ class NilaiController extends Controller
             'nilai' => $request->input('nilai'),
             'nilai_id' => $id,
             'created_at' => $date,
-            'updated_at' => $date
+            'updated_at' => $date,
+            'tanggal' => $tanggal,
         ]);
         //dd($nilai);
         return Redirect::back()->with(
