@@ -167,7 +167,7 @@
                                             <th>GURU</th>
                                             <th>PENILAIAN</th>
                                             <th>ROMBEL</th>
-                                            <th>KELAS</th>
+                                            <th>TANGGAL</th>
                                             <th>SISWA</th>
                                             <th>NILAI</th>
                                             <th></th>
@@ -187,7 +187,7 @@
                                                 <td><a href="#">{{ $nilai->rombel->rombel }}</a>
                                                 </td>
                                                 <td><a
-                                                        href="/kelas/{{ $nilai->kelas->id }}/profile">{{ $nilai->kelas->nama }}</a>
+                                                        href="/kelas/{{ $nilai->kelas->id }}/profile">{{ $nilai->tanggal }}</a>
                                                 </td>
                                                 <td><a href="/test/{{ $nilai->siswa->id }}/profile">{{ $nilai->siswa->nama_depan }}
                                                         {{ $nilai->siswa->nama_belakang }}</a>
@@ -212,7 +212,7 @@
                                             <th>GURU</th>
                                             <th>PENILAIAN</th>
                                             <th>ROMBEL</th>
-                                            <th>KELAS</th>
+                                            <th>TANGGAL</th>
 
                                             <th>SISWA</th>
                                             <th>NILAI</th>
