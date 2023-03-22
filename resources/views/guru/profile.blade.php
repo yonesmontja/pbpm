@@ -263,7 +263,10 @@
                                                              dari <a
                                                                  href="/test/{{ $n->siswa->id }}/profile">{{ $n->siswa->nama_depan }}
                                                                  {{ $n->siswa->nama_belakang }}</a></h3>
-                                                         <h3 class="timeline-header"><a href="#">Penilaian dilakukan tanggal: ---</a></h3>
+                                                         <h3 class="timeline-header"><a href="#">Penilaian dilakukan
+                                                                 tanggal:
+                                                             </a>{{ tanggal_indo($n->tanggal,true)}}
+                                                         </h3>
                                                          <div class="timeline-body">
                                                              <li>Materi: {{ $n->nilai_deskripsi }}</li>
                                                              <li>Indikator: {{ $n->nilai_notes }}</li>
