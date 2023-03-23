@@ -213,7 +213,7 @@
                                                                  </td>
                                                                  <td><a href="/kelas/{{ $siswa1->kelas_id }}/profile">{{ $siswa1->kelas_id }}
                                                                  </td>
-                                                                 <td>{{ $siswa1->tanggal }}</td>
+                                                                 <td>{{ \Carbon\Carbon::parse($siswa1->tanggal)->format('d M Y') }}</td>
                                                                  <td>{{ $siswa1->nilai }}</td>
                                                              </tr>
                                                          @endforeach
