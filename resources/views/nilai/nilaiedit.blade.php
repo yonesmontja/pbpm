@@ -46,12 +46,12 @@
                         {{ csrf_field() }}
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <div class="form-group {{ $errors->has('nilai_start') ? ' has-error' : '' }}">
                                         <label for="exampleFormControlInput1">Mulai</label>
                                         <input name="nilai_start" type="text" class="form-control"
                                             id="exampleFormControlInput1" placeholder="Kapan mulai?"
-                                            value="{{ $nilai_start[0] }}">
+                                            value="{{ $nilai -> nilai_start }}">
                                         @if ($errors->has('nilai_start'))
                                             <span class="help-block">{{ $errors->first('nilai_start') }}</span>
                                         @endif
@@ -60,12 +60,12 @@
                                         <span class="help-block">{{ $errors->first('nilai_start') }}</span>
                                     @endif
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <div class="form-group {{ $errors->has('nilai_end') ? ' has-error' : '' }}">
                                         <label for="exampleFormControlInput1">Berakhir</label>
                                         <input name="nilai_end" type="text" class="form-control"
                                             id="exampleFormControlInput1" placeholder="Kapan selesai?"
-                                            value="{{ $nilai_end[0] }}">
+                                            value="{{ $nilai -> nilai_end }}">
                                         @if ($errors->has('nilai_end'))
                                             <span class="help-block">{{ $errors->first('nilai_end') }}</span>
                                         @endif
@@ -74,7 +74,7 @@
                                         <span class="help-block">{{ $errors->first('nilai_end') }}</span>
                                     @endif
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">PENILAIAN</label>
                                         <select name="penilaian_id" class="form-control" id="exampleFormControlSelect2">
@@ -82,7 +82,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <div class="form-group {{ $errors->has('tahunpel_id') ? ' has-error' : '' }}">
                                         <label for="exampleFormControlSelect1">THN PELAJARAN</label>
                                         <select name="tahunpel_id" class="form-control" id="exampleFormControlSelect2">
@@ -101,17 +101,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label for="exampleFormControlSelect1">Kompetensi
-                                            Inti</label>
-                                        <select name="kompetensi_inti_id" class="form-control"
-                                            id="exampleFormControlSelect2">
-                                            <option value="{{ $nilai->kompetensi_inti_id }}">{{ $kompetensiinti[0] }} </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">KELAS</label>
                                         <select name="kelas_id" class="form-control" id="kelas">
@@ -119,7 +109,15 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">ROMBEL</label>
+                                        <select name="rombel_id" class="form-control" id="rombel">
+                                            <option value="{{ $nilai->rombel_id }}">{{ $nilai->rombel->rombel }} </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">SISWA</label>
                                         <select name="siswa_id" class="form-control" id="siswa">
@@ -127,9 +125,17 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">KInti</label>
+                                        <select name="kompetensi_inti_id" class="form-control" id="kompetensi_inti_id">
+                                            <option value="{{ $nilai->kompetensi_inti_id }}">{{ $nilai -> kompetensiinti -> kompetensi_inti }}</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">GURU</label>
                                         <select name="guru_id" class="form-control" id="exampleFormControlSelect2">
@@ -142,7 +148,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">MAPEL</label>
                                         <select name="mapel_id" class="form-control" id="exampleFormControlSelect2">
@@ -155,7 +161,7 @@
                                             <option value="3" @if ($nilai->mapel_id == 3) selected @endif>
                                                 Agama Katolik
                                             </option>
-                                            <option value="4" @if ($nilai->mapel_id == 4) selected @endif>
+                                            <option value="3" @if ($nilai->mapel_id == 4) selected @endif>
                                                 PPKn
                                             </option>
                                             <option value="5" @if ($nilai->mapel_id == 5) selected @endif>
@@ -180,7 +186,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <div class="form-group {{ $errors->has('nilai') ? ' has-error' : '' }}">
                                         <label for="exampleFormControlInput1">Nilai</label>
                                         <input name="nilai" type="text" class="form-control"
@@ -192,6 +198,20 @@
                                     </div>
                                     @if ($errors->has('nilai'))
                                         <span class="help-block">{{ $errors->first('nilai') }}</span>
+                                    @endif
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group {{ $errors->has('tanggal') ? ' has-error' : '' }}">
+                                        <label for="exampleFormControlInput1">Tanggal</label>
+                                        <input name="tanggal" type="text" class="form-control"
+                                            id="exampleFormControlInput1" placeholder="tanggal"
+                                            value="{{ $nilai->tanggal }}">
+                                        @if ($errors->has('tanggal'))
+                                            <span class="help-block">{{ $errors->first('tanggal') }}</span>
+                                        @endif
+                                    </div>
+                                    @if ($errors->has('tanggal'))
+                                        <span class="help-block">{{ $errors->first('tanggal') }}</span>
                                     @endif
                                 </div>
                             </div>

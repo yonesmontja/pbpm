@@ -67,5 +67,4 @@ class Penilaian extends Model
             unlink(public_path('storage/penilaian/small_' . $this->avatar));
         }
     }
-
 }

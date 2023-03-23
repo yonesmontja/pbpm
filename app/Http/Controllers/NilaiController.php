@@ -238,27 +238,85 @@ class NilaiController extends Controller
     }
     public function nilaiupdate(Request $request, Nilai $nilai)
     {
-        $nilai->update($request->all());
+        $guru_user_id = auth()->user()->id;
+        $guru_id = Guru::where('user_id', '=', $guru_user_id)->pluck('id')->first();
+        $data_nilai = Nilai::all()->where('guru_id', '=', $guru_id);
+        $kompetensiinti = Kompetensiinti::all();
+        $mapel = Mapel::all();
+        $siswa = Siswa::all();
+        $penilaian = Penilaian::all();
+
+        $guru = Guru::find($guru_id);
+        //dd($guru);
+        $nama_rombel = Rombel::where('guru_id', '=', $guru_id)->pluck('rombel')->first();
+        $guru_rombel = Rombel::where('guru_id', '=', $guru_id)->pluck('id')->first();
+        $kelas_rombel = Rombel::where('guru_id', '=', $guru_id)->pluck('kelas_id')->first();
+        if ($request->tanggal == '0000-00-00') {
+            $tanggal = null;
+        } else {
+            $tanggal = Carbon::parse($request->tanggal)->format('Y-m-d');
+        }
+        //dd($tanggal);
+        //$nilai->update($request->all());
+
+        $nilai->update([
+            'nilai' => $request->nilai,
+            'tanggal' => $tanggal,
+            'nilai_start' => $request->nilai_start,
+            'nilai_end' => $request->nilai_end,
+            'nilai_deskripsi' => $request->nilai_deskripsi,
+            'nilai_notes' => $request->nilai_notes,
+            'kompetensi_inti_id' => $request->kompetensi_inti_id,
+            'mapel_id' => $request->mapel_id,
+            'penilaian_id' => $request->penilaian_id,
+            'guru_id' => $request->guru_id,
+            'siswa_id' => $request->siswa_id,
+            'kelas_id' => $request->kelas_id,
+            'tahunpel_id' => $request->tahunpel_id,
+            'rombel_id' => $request->rombel_id
+        ]);
+        //dd($nilai);
         $date = now();
         //$siswa = Siswa::find($nilai->siswa_id)->penilaian()->updateExixtingPivot();
-        if ('siswa_id' == $nilai->siswa_id)
+        if ('siswa_id' == $nilai->siswa_id) {
             DB::table('penilaian_siswa')->where('siswa_id', $nilai->siswa_id)->update([
                 'siswa_id'      => $request->input('siswa_id'),
                 'penilaian_id'  => $request->input('penilaian_id'),
-            'nilai' => $request->input('nilai'),
-            'updated_at' => $date
-        ]);
-        if ('siswa_id' != $nilai->siswa_id)
-            DB::table('penilaian_siswa')->insert([
+                'nilai' => $request->input('nilai'),
+                'updated_at' => $date,
+                'tanggal' => $tanggal,
+            ]);
+            DB::table('mapel_siswa')->where('siswa_id', $nilai->siswa_id)->update([
+                'siswa_id'      => $request->input('siswa_id'),
+                'mapel_id'  => $request->input('mapel_id'),
+                'nilai' => $request->input('nilai'),
+                'updated_at' => $date,
+                'tanggal' => $tanggal,
+            ]);
+        }
+        if ('siswa_id' != $nilai->siswa_id) {
+            DB::table('penilaian_siswa')->where('siswa_id', $nilai->siswa_id)->update([
                 'siswa_id'      => $request->input('siswa_id'),
                 'penilaian_id'  => $request->input('penilaian_id'),
                 'nilai' => $request->input('nilai'),
-                'nilai_id' => $nilai->id,
-                'created_at' => $date,
-                'updated_at' => $date
+                'updated_at' => $date,
+                'tanggal' => $tanggal,
             ]);
+            DB::table('mapel_siswa')->where('siswa_id', $nilai->siswa_id)->update([
+                'siswa_id'      => $request->input('siswa_id'),
+                'mapel_id'  => $request->input('mapel_id'),
+                'nilai' => $request->input('nilai'),
+                'updated_at' => $date,
+                'tanggal' => $tanggal,
+            ]);
+        }
 
-        return redirect('/nilai')->with('sukses', 'berhasil diupdate!');
+        if (auth()->user()->role == 'admin') {
+            return redirect('/nilai')->with('sukses', 'berhasil diupdate!');
+        }
+        if (auth()->user()->role == 'guru') {
+            return redirect('/isinilai' . '/' . $guru_id)->with('sukses', 'berhasil diupdate');
+        }
     }
     public function import_excel(Request $request)
     {
