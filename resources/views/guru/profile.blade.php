@@ -265,7 +265,7 @@
                                                                  {{ $n->siswa->nama_belakang }}</a></h3>
                                                          <h3 class="timeline-header"><a href="#">Penilaian dilakukan
                                                                  tanggal:
-                                                             </a>{{ tanggal_indo($n->tanggal,true)}}
+                                                             </a>{{ \Carbon\Carbon::parse($n->tanggal)->diffForHumans()}}
                                                          </h3>
                                                          <div class="timeline-body">
                                                              <li>Materi: {{ $n->nilai_deskripsi }}</li>
