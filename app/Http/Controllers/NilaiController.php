@@ -354,7 +354,8 @@ class NilaiController extends Controller
                     'nilai' => $s->nilai,
                     'nilai_id' => $s->id,
                     'created_at' => $date,
-                    'updated_at' => $date
+                'updated_at' => $date,
+                'tanggal' => $s->tanggal,
                 ]);
             DB::table('mapel_siswa')
             ->where('nilai_id', '=', $s->id)
@@ -364,7 +365,8 @@ class NilaiController extends Controller
                     'nilai' => $s->nilai,
                     'nilai_id' => $s->id,
                     'created_at' => $date,
-                    'updated_at' => $date
+                'updated_at' => $date,
+                'tanggal' => $s->tanggal,
                 ]);
         }
         // when done commit
