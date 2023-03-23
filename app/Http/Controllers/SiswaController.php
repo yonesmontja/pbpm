@@ -92,7 +92,7 @@ class SiswaController extends Controller
             $rombel3 = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->pluck('siswa_id')->toArray();
             dd($rombel3);
             foreach ($rombel3 as $z => $zefa) {
-                $tampung3[] = Siswa::find($zefa);
+                $tampung[] = Siswa::find($zefa);
             }
             //dd($tampung3);
             $guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
@@ -104,10 +104,12 @@ class SiswaController extends Controller
             foreach ($rombel1 as $r => $s) {
                 $tampung[] = Siswa::find($s);
             }
+            foreach ($tampung as $t) {
+                $tampung2[] = $t->rombel();
+            }
+            $guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
         }
-        foreach ($tampung as $t) {
-            $tampung2[] = $t->rombel();
-        }
+
         return view('siswa.test', [
             'kelas' => $kelas,
             'data_siswa' => $data_siswa,
@@ -116,7 +118,7 @@ class SiswaController extends Controller
             'rombel' => $rombel,
             'rombel1' => $rombel1,
             'tampung2' => $tampung2,
-            'tampung3' => $tampung3,
+
             'guru' => $guru,
         ]);
     }

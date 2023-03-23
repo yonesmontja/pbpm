@@ -247,7 +247,7 @@
                                             @endforeach
                                         @endif
                                         @if (auth()->user()->role == 'guru')
-                                            @foreach ($tampung3 as $siswa)
+                                            @foreach ($tampung as $siswa)
                                                 <tr>
                                                     <td><a
                                                             href="/test/{{ $siswa->id }}/profile">{{ $siswa->nama_depan }}</a>
