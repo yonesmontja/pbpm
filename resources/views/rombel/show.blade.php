@@ -1,4 +1,4 @@
- @extends('layouts.mailbox-mapel')
+ @extends('layouts.mailbox-rombel')
 
  @section('title')
      <title> SD Dabolding Mapel </title>
