@@ -184,7 +184,7 @@
                                                 </td>
                                                 <td><a href="/penilaian/{{ $nilai->penilaian->id }}/profile">{{ $nilai->penilaian->nama_tes }}
                                                 </td>
-                                                <td><a href="/rombel/{{ $nilai->rombel->id }}">{{ $nilai->rombel->rombel }}</a>
+                                                <td><a href="/rombel/{{ $nilai->guru->id }}">{{ $nilai->rombel->rombel }}</a>
                                                 </td>
                                                 <td><a
                                                         href="/kelas/{{ $nilai->kelas->id }}/profile">{{ $nilai->kelas->nama }}</a>

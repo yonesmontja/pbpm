@@ -81,23 +81,29 @@ class SiswaController extends Controller
         $rombel = Rombel::all();
         $rombel1 = DB::table('rombel_siswa')->pluck('siswa_id')->toArray();
         $data_siswa1 = $data_siswa->pluck('id')->toArray();
-        // mengambil data siswa yang sudah memiliki rombel dan menampilkannya sesuai user()->role == guru
-        // langkah pertama ambil id user yg role == guru dan sedang buka route /test
-        $id_user = auth()->user()->id;
-        // lalu cari id guru dengan user_id == $id_user
-        $id_guru = Guru::where('user_id', '=', $id_user)->pluck('id')->first();
-        // lalu tampilkan data siswa rombel yang memiliki guru_id == $id_guru
-        $rombel2 = Rombel::where('guru_id', '=', $id_guru)->pluck('id')->first();
-        $rombel3 = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->pluck('siswa_id')->toArray();
-        foreach ($rombel3 as $z => $zefa) {
-            $tampung3[] = Siswa::find($zefa);
+        if (auth()->user()->role == 'guru') {
+            // mengambil data siswa yang sudah memiliki rombel dan menampilkannya sesuai user()->role == guru
+            // langkah pertama ambil id user yg role == guru dan sedang buka route /test
+            $id_user = auth()->user()->id;
+            // lalu cari id guru dengan user_id == $id_user
+            $id_guru = Guru::where('user_id', '=', $id_user)->pluck('id')->first();
+            // lalu tampilkan data siswa rombel yang memiliki guru_id == $id_guru
+            $rombel2 = Rombel::where('guru_id', '=', $id_guru)->pluck('id')->first();
+            $rombel3 = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->pluck('siswa_id')->toArray();
+            dd($rombel3);
+            foreach ($rombel3 as $z => $zefa) {
+                $tampung3[] = Siswa::find($zefa);
+            }
+            //dd($tampung3);
+            $guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
         }
-        //dd($tampung3);
-        $guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
-        // mengambil data siswa yang sudah memiliki rombel
-        // simpan di variabel $tampung dan $tampung2
-        foreach ($rombel1 as $r => $s) {
-            $tampung[] = Siswa::find($s);
+
+        if (auth()->user()->role == 'admin') {
+            // mengambil data siswa yang sudah memiliki rombel
+            // simpan di variabel $tampung dan $tampung2
+            foreach ($rombel1 as $r => $s) {
+                $tampung[] = Siswa::find($s);
+            }
         }
         foreach ($tampung as $t) {
             $tampung2[] = $t->rombel();

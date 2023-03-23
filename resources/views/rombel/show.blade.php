@@ -63,7 +63,11 @@
                      </div>
                      <div class="col-sm-6">
                          <ol class="breadcrumb float-sm-right">
-                             <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                             @if (auth()->user()->role == 'admin')
+                                 <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                             @elseif(auth()->user()->role == 'guru')
+                                 <li class="breadcrumb-item"><a href="/dashboard_guru">Home</a></li>
+                             @endif
                              <li class="breadcrumb-item active">Kelas</li>
                          </ol>
                      </div>
@@ -92,8 +96,8 @@
                          <div class="card card-primary card-outline">
                              <div class="card-body box-profile">
                                  <div class="text-center">
-                                     <img class="profile-user-img img-fluid img-circle"
-                                         src="{{ $rombel4->guru->avatar() }}" alt="User profile picture">
+                                     <img class="profile-user-img img-fluid img-circle" src="{{ $rombel4->guru->avatar() }}"
+                                         alt="User profile picture">
                                  </div>
 
                                  <h3 class="profile-username text-center"><a href="#">{{ $rombel2 }}</a></h3>
@@ -110,48 +114,54 @@
                                      </li>
                                  </ul>
 
-                                 <a href="/rombel/{{ $rombel }}/profile" class="btn btn-primary btn-block"><b>Ubah
-                                         data
-                                         rombel</b></a>
+                                 @if (auth()->user()->role == 'admin')
+                                     <a href="/rombel/{{ $rombel }}/profile" class="btn btn-primary btn-block"><b>Ubah
+                                             data rombel</b></a>
+                                 @else
+                                 @endif
                              </div>
                              <!-- /.card-body -->
                          </div>
                          <!-- /.card -->
 
-                         <!-- About Me Box -->
-                         <div class="card card-primary">
-                             <div class="card-header">
-                                 <h3 class="card-title">Skill Kelas</h3>
+                         @if (auth()->user()->role == 'admin')
+                             <!-- About Me Box -->
+                             <div class="card card-primary">
+                                 <div class="card-header">
+                                     <h3 class="card-title">Skill Kelas</h3>
+                                 </div>
+                                 <!-- /.card-header -->
+                                 <div class="card-body">
+                                     <strong><i class="fas fa-book mr-1"></i> Skill-Mapel</strong>
+                                     <p class="text-muted">
+                                         #
+                                     </p>
+                                     <hr>
+                                     <strong><i class="fas fa-map-marker-alt mr-1"></i> Penilaian Sikap?</strong>
+                                     <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                         fermentum enim neque.</p>
+                                     <hr>
+                                     <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+                                     <p class="text-muted">
+                                         <span class="tag tag-danger">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                             elit.
+                                             Etiam
+                                             fermentum enim neque.</span>
+
+                                     </p>
+
+                                     <hr>
+
+                                     <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+
+                                     <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                         fermentum enim neque.</p>
+                                 </div>
+                                 <!-- /.card-body -->
                              </div>
-                             <!-- /.card-header -->
-                             <div class="card-body">
-                                 <strong><i class="fas fa-book mr-1"></i> Skill-Mapel</strong>
-                                 <p class="text-muted">
-                                     #
-                                 </p>
-                                 <hr>
-                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Penilaian Sikap?</strong>
-                                 <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                                     fermentum enim neque.</p>
-                                 <hr>
-                                 <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
-                                 <p class="text-muted">
-                                     <span class="tag tag-danger">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                         Etiam
-                                         fermentum enim neque.</span>
-
-                                 </p>
-
-                                 <hr>
-
-                                 <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
-
-                                 <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                                     fermentum enim neque.</p>
-                             </div>
-                             <!-- /.card-body -->
-                         </div>
-                         <!-- /.card -->
+                             <!-- /.card -->
+                         @else
+                         @endif
                      </div>
                      <!-- /.col -->
                      <div class="col-md-9">
@@ -213,7 +223,8 @@
                                                                  </td>
                                                                  <td><a href="/kelas/{{ $siswa1->kelas_id }}/profile">{{ $siswa1->kelas_id }}
                                                                  </td>
-                                                                 <td>{{ \Carbon\Carbon::parse($siswa1->tanggal)->format('d M Y') }}</td>
+                                                                 <td>{{ \Carbon\Carbon::parse($siswa1->tanggal)->format('d M Y') }}
+                                                                 </td>
                                                                  <td>{{ $siswa1->nilai }}</td>
                                                              </tr>
                                                          @endforeach
@@ -231,7 +242,12 @@
                                              <div class="card-header border-0">
                                                  <div class="d-flex justify-content-between">
                                                      <h3 class="card-title">Grafik Nilai Rata-rata Kelas Mingguan</h3>
-                                                     <a href="/nilai">View Report</a>
+                                                     @if (auth()->user()->role == 'admin')
+                                                         <a href="/nilai">View Report</a>
+                                                     @elseif(auth()->user()->role ==
+                                                     'guru')
+
+                                                     @endif
                                                  </div>
                                              </div>
                                              <div class="card-body">
@@ -305,7 +321,7 @@
                                                              dari <a
                                                                  href="/test/{{ $siswa1->id }}/profile">{{ $n->siswa->nama_depan }}
                                                                  {{ $n->siswa->nama_belakang }}</a></h3>
-                                                         <h3 class="timeline-header">Penilaian dilakukan tanggal: ---</h3>
+                                                         <h3 class="timeline-header">Penilaian dilakukan tanggal: {{\Carbon\Carbon::parse($n -> tanggal)->format('d M Y')}}</h3>
                                                          <div class="timeline-body">
                                                              <li>Materi: {{ $n->nilai_deskripsi }}</li>
                                                              <li>Indikator: {{ $n->nilai_notes }}</li>
@@ -330,7 +346,12 @@
                                              <div class="card-header border-0">
                                                  <div class="d-flex justify-content-between">
                                                      <h3 class="card-title">Grafik Nilai Rata-rata Kelas Bulanan</h3>
-                                                     <a href="/nilai">View Report</a>
+                                                     @if (auth()->user()->role == 'admin')
+                                                         <a href="/nilai">View Report</a>
+                                                     @elseif(auth()->user()->role ==
+                                                     'guru')
+
+                                                     @endif
                                                  </div>
                                              </div>
                                              <div class="card-body">

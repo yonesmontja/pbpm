@@ -69,10 +69,10 @@ class GuruController extends Controller
         $user = User::all();
         // hitung nilai rata-rata per mapel $chart_nilai[] untuk ditampilkan di grafik
         for ($bulan = 1; $bulan < 7; $bulan++) {
-            $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where guru_id='$id' AND month(created_at)='$bulan'"))->first();
-            //$chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
-            (int)$chart_nilai1[] = Nilai::whereMonth('created_at', '=', $bulan)->where('penilaian_id', '=', $id)->pluck('nilai')->avg();
-            //(int)$chart_nilai1[] = Nilai::whereMonth('created_at','=',$bulan)->pluck('nilai')->avg();
+            $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where guru_id='$id' AND month(tanggal)='$bulan'"))->first();
+            //$chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(tanggal)='$bulan'"))->first();
+            (int)$chart_nilai1[] = Nilai::whereMonth('tanggal', '=', $bulan)->where('penilaian_id', '=', $id)->pluck('nilai')->avg();
+            //(int)$chart_nilai1[] = Nilai::whereMonth('tanggal','=',$bulan)->pluck('nilai')->avg();
 
             $jumlah_penilaian[] = $chart_penilaian->jumlah;
         }
@@ -84,22 +84,22 @@ class GuruController extends Controller
         $weekE = Carbon::now()->startOfWeek();
 
         $mapel_last_3month = Nilai::where('guru_id', '=', $id)
-            ->select('created_at', 'nilai')
-            ->whereBetween('created_at', [$dateS, $dateE])
+            ->select('tanggal', 'nilai')
+            ->whereBetween('tanggal', [$dateS, $dateE])
             ->avg('nilai');
 
         $mapel_last_3week = Nilai::where('guru_id', '=', $id)
-            ->select('created_at', 'nilai')
-            ->whereBetween('created_at', [$weekS, $weekE])
+            ->select('tanggal', 'nilai')
+            ->whereBetween('tanggal', [$weekS, $weekE])
             ->avg('nilai');
 
         $TotalSpent3 = DB::table('nilai')->where('guru_id', '=', $id)
-            ->select('created_at', 'nilai')
-            ->whereBetween('created_at', [$dateS, $dateE])
+            ->select('tanggal', 'nilai')
+            ->whereBetween('tanggal', [$dateS, $dateE])
             ->avg('nilai');
         $weekSpent3 = DB::table('nilai')->where('guru_id', '=', $id)
-            ->select('created_at', 'nilai')
-            ->whereBetween('created_at', [$weekS, $weekE])
+            ->select('tanggal', 'nilai')
+            ->whereBetween('tanggal', [$weekS, $weekE])
             ->avg('nilai');
         $last3month_average = number_format((float)$TotalSpent3, 2, '.', '');
         $last3week_average = number_format((float)$weekSpent3, 2, '.', '');
@@ -111,21 +111,21 @@ class GuruController extends Controller
         $weekE = Carbon::now()->startOfWeek();
 
         $mapel_last_2month = Nilai::where('guru_id', '=', $id)
-            ->select('created_at', 'nilai')
-            ->whereBetween('created_at', [$dateS, $dateE])
+            ->select('tanggal', 'nilai')
+            ->whereBetween('tanggal', [$dateS, $dateE])
             ->avg('nilai');
         $mapel_last_2week = Nilai::where('guru_id', '=', $id)
-            ->select('created_at', 'nilai')
-            ->whereBetween('created_at', [$weekS, $weekE])
+            ->select('tanggal', 'nilai')
+            ->whereBetween('tanggal', [$weekS, $weekE])
             ->avg('nilai');
 
         $TotalSpent2 = DB::table('nilai')->where('guru_id', '=', $id)
-            ->select('created_at', 'nilai')
-            ->whereBetween('created_at', [$dateS, $dateE])
+            ->select('tanggal', 'nilai')
+            ->whereBetween('tanggal', [$dateS, $dateE])
             ->avg('nilai');
         $weekSpent2 = DB::table('nilai')->where('guru_id', '=', $id)
-            ->select('created_at', 'nilai')
-            ->whereBetween('created_at', [$weekS, $weekE])
+            ->select('tanggal', 'nilai')
+            ->whereBetween('tanggal', [$weekS, $weekE])
             ->avg('nilai');
         $last2month_average = number_format((float)$TotalSpent2, 2, '.', '');
         $last2week_average = number_format((float)$weekSpent2, 2, '.', '');
@@ -137,44 +137,44 @@ class GuruController extends Controller
         $weekE = Carbon::now()->startOfWeek();
 
         $mapel_last_month_old = Nilai::where('guru_id', '=', $id)
-            ->select('created_at', 'nilai')
-            ->whereBetween('created_at', [$dateS, $dateE])
+            ->select('tanggal', 'nilai')
+            ->whereBetween('tanggal', [$dateS, $dateE])
             ->avg('nilai');
         $mapel_last_month = number_format((float)$mapel_last_month_old, 2, '.', '');
         $mapel_last_week_old = Nilai::where('guru_id', '=', $id)
-            ->select('created_at', 'nilai')
-            ->whereBetween('created_at', [$weekS, $weekE])
+            ->select('tanggal', 'nilai')
+            ->whereBetween('tanggal', [$weekS, $weekE])
             ->avg('nilai');
         $mapel_last_week = number_format((float)$mapel_last_week_old, 2, '.', '');
 
         for ($penilaian = 1; $penilaian < 6; $penilaian++) {
             $penilaian_old = Nilai::where('penilaian_id', '=', $penilaian)->where('guru_id', '=', $id)
-                ->select('created_at', 'nilai')
-                ->whereBetween('created_at', [$dateS, $dateE])
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$dateS, $dateE])
                 ->avg('nilai');
             $penilaian_week_old = Nilai::where('penilaian_id', '=', $penilaian)->where('guru_id', '=', $id)
-                ->select('created_at', 'nilai')
-                ->whereBetween('created_at', [$weekS, $weekE])
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$weekS, $weekE])
                 ->avg('nilai');
             $penilaian_last_month[] = number_format((float)$penilaian_old, 2, '.', '');
             $penilaian_last_week[] = number_format((float)$penilaian_week_old, 2, '.', '');
         }
         //dd($penilaian_last_week);
         $TotalSpent1 = DB::table('nilai')->where('guru_id', '=', $id)
-            ->select('created_at', 'nilai')
-            ->whereBetween('created_at', [$dateS, $dateE])
+            ->select('tanggal', 'nilai')
+            ->whereBetween('tanggal', [$dateS, $dateE])
             ->avg('nilai');
         $weekSpent1 = DB::table('nilai')->where('guru_id', '=', $id)
-            ->select('created_at', 'nilai')
-            ->whereBetween('created_at', [$weekS, $weekE])
+            ->select('tanggal', 'nilai')
+            ->whereBetween('tanggal', [$weekS, $weekE])
             ->avg('nilai');
         $last1month_average = number_format((float)$TotalSpent1, 2, '.', '');
         $last1week_average = number_format((float)$weekSpent1, 2, '.', '');
 
         // ambil data nilai siswa bulan ini sumber https://www.codegrepper.com/code-examples/php/get+last+month+data+in+laravel
-        $this_month = Nilai::whereMonth('created_at', date('m'))->where('guru_id', '=', $id)
-            ->whereYear('created_at', date('Y'))
-            ->get(['nilai', 'created_at'])
+        $this_month = Nilai::whereMonth('tanggal', date('m'))->where('guru_id', '=', $id)
+            ->whereYear('tanggal', date('Y'))
+            ->get(['nilai', 'tanggal'])
             ->avg('nilai');
         $this_month = number_format((float)$this_month, 2, '.', '');
 
@@ -185,24 +185,24 @@ class GuruController extends Controller
         $weekE = Carbon::now();
 
         $mapel_this_month_old = Nilai::where('guru_id', '=', $id)
-            ->select('created_at', 'nilai')
-            ->whereBetween('created_at', [$dateS, $dateE])
+            ->select('tanggal', 'nilai')
+            ->whereBetween('tanggal', [$dateS, $dateE])
             ->avg('nilai');
         $mapel_this_month = number_format((float)$mapel_this_month_old, 2, '.', '');
         $mapel_this_week_old = Nilai::where('guru_id', '=', $id)
-            ->select('created_at', 'nilai')
-            ->whereBetween('created_at', [$weekS, $weekE])
+            ->select('tanggal', 'nilai')
+            ->whereBetween('tanggal', [$weekS, $weekE])
             ->avg('nilai');
         $mapel_this_week = number_format((float)$mapel_this_week_old, 2, '.', '');
 
         for ($penilaian = 1; $penilaian < 6; $penilaian++) {
             $penilaian_old = Nilai::where('penilaian_id', '=', $penilaian)->where('guru_id', '=', $id)
-                ->select('created_at', 'nilai')
-                ->whereBetween('created_at', [$dateS, $dateE])
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$dateS, $dateE])
                 ->avg('nilai');
             $penilaian_week_old = Nilai::where('penilaian_id', '=', $penilaian)->where('guru_id', '=', $id)
-                ->select('created_at', 'nilai')
-                ->whereBetween('created_at', [$weekS, $weekE])
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$weekS, $weekE])
                 ->avg('nilai');
             $penilaian_this_month[] = number_format((float)$penilaian_old, 2, '.', '');
             $penilaian_this_week[] = number_format((float)$penilaian_week_old, 2, '.', '');
@@ -210,12 +210,12 @@ class GuruController extends Controller
         $penilaian_list = ['Tugas', 'Latihan', 'UH', 'PTS', 'PAS'];
         //dd($penilaian_this_week);
         $TotalSpent0 = Nilai::where('guru_id', '=', $id)
-            ->select('created_at', 'nilai')
-            ->whereBetween('created_at', [$dateS, $dateE])
+            ->select('tanggal', 'nilai')
+            ->whereBetween('tanggal', [$dateS, $dateE])
             ->avg('nilai');
         $weekSpent0 = Nilai::where('guru_id', '=', $id)
-            ->select('created_at', 'nilai')
-            ->whereBetween('created_at', [$weekS, $weekE])
+            ->select('tanggal', 'nilai')
+            ->whereBetween('tanggal', [$weekS, $weekE])
             ->avg('nilai');
         $last0month_average = number_format((float)$TotalSpent0, 2, '.', '');
         $last0week_average = number_format((float)$weekSpent0, 2, '.', '');

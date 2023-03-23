@@ -70,47 +70,50 @@
                          </div>
                          <!-- /.card -->
 
-                         <!-- About Me Box -->
-                         <div class="card card-primary">
-                             <div class="card-header">
-                                 <h3 class="card-title">About Me</h3>
+                         @if (auth()->user()->role == 'admin')
+                             <!-- About Me Box -->
+                             <div class="card card-primary">
+                                 <div class="card-header">
+                                     <h3 class="card-title">About Me</h3>
+                                 </div>
+                                 <!-- /.card-header -->
+                                 <div class="card-body">
+                                     <strong><i class="fas fa-book mr-1"></i> Education</strong>
+
+                                     <p class="text-muted">
+                                         B.S. in Computer Science from the University of Tennessee at Knoxville
+                                     </p>
+
+                                     <hr>
+
+                                     <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+
+                                     <p class="text-muted">Malibu, California</p>
+
+                                     <hr>
+
+                                     <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+
+                                     <p class="text-muted">
+                                         <span class="tag tag-danger">UI Design</span>
+                                         <span class="tag tag-success">Coding</span>
+                                         <span class="tag tag-info">Javascript</span>
+                                         <span class="tag tag-warning">PHP</span>
+                                         <span class="tag tag-primary">Node.js</span>
+                                     </p>
+
+                                     <hr>
+
+                                     <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+
+                                     <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                         fermentum enim neque.</p>
+                                 </div>
+                                 <!-- /.card-body -->
                              </div>
-                             <!-- /.card-header -->
-                             <div class="card-body">
-                                 <strong><i class="fas fa-book mr-1"></i> Education</strong>
-
-                                 <p class="text-muted">
-                                     B.S. in Computer Science from the University of Tennessee at Knoxville
-                                 </p>
-
-                                 <hr>
-
-                                 <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
-
-                                 <p class="text-muted">Malibu, California</p>
-
-                                 <hr>
-
-                                 <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
-
-                                 <p class="text-muted">
-                                     <span class="tag tag-danger">UI Design</span>
-                                     <span class="tag tag-success">Coding</span>
-                                     <span class="tag tag-info">Javascript</span>
-                                     <span class="tag tag-warning">PHP</span>
-                                     <span class="tag tag-primary">Node.js</span>
-                                 </p>
-
-                                 <hr>
-
-                                 <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
-
-                                 <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                                     fermentum enim neque.</p>
-                             </div>
-                             <!-- /.card-body -->
-                         </div>
-                         <!-- /.card -->
+                             <!-- /.card -->
+                         @elseif(auth()->user()->role == 'guru')
+                         @endif
                      </div>
                      <!-- /.col -->
                      <div class="col-md-9">
@@ -171,7 +174,8 @@
                                                                  </td>
                                                                  <td><a href="/kelas/{{ $siswa1->kelas_id }}/profile">{{ $siswa1->kelas_id }}
                                                                  </td>
-                                                                 <td>{{ $siswa1->created_at->format('d M Y') }}</td>
+                                                                 <td>{{ \Carbon\Carbon::parse($siswa1->tanggal)->format('d M Y') }}
+                                                                 </td>
                                                                  <td>{{ $siswa1->nilai }}</td>
                                                              </tr>
                                                          @endforeach
@@ -189,7 +193,10 @@
                                              <div class="card-header border-0">
                                                  <div class="d-flex justify-content-between">
                                                      <h3 class="card-title">Grafik Nilai Rata-rata Kelas Mingguan</h3>
-                                                     <a href="/nilai">View Report</a>
+                                                     @if (auth()->user()->role == 'admin')
+                                                         <a href="/nilai">View Report</a>
+                                                     @elseif(auth()->user()->role == 'guru')
+                                                     @endif
                                                  </div>
                                              </div>
                                              <div class="card-body">
@@ -265,7 +272,7 @@
                                                                  {{ $n->siswa->nama_belakang }}</a></h3>
                                                          <h3 class="timeline-header"><a href="#">Penilaian dilakukan
                                                                  tanggal:
-                                                             </a>{{ \Carbon\Carbon::parse($n->tanggal)->diffForHumans()}}
+                                                             </a>{{ \Carbon\Carbon::parse($n->tanggal)->diffForHumans() }}
                                                          </h3>
                                                          <div class="timeline-body">
                                                              <li>Materi: {{ $n->nilai_deskripsi }}</li>
@@ -290,7 +297,10 @@
                                              <div class="card-header border-0">
                                                  <div class="d-flex justify-content-between">
                                                      <h3 class="card-title">Grafik Nilai Rata-rata Kelas Bulanan</h3>
-                                                     <a href="/nilai">View Report</a>
+                                                     @if (auth()->user()->role == 'admin')
+                                                         <a href="/nilai">View Report</a>
+                                                     @elseif(auth()->user()->role == 'guru')
+                                                     @endif
                                                  </div>
                                              </div>
                                              <div class="card-body">
