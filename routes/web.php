@@ -89,7 +89,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
     Route::get('/rombel', [RombelController::class, 'index']);
     Route::post('/rombel/rombelcreate', [RombelController::class, 'rombelcreate']);
     Route::get('/rombel/{rombel}/profile', [RombelController::class, 'rombelprofile']);
-    Route::get('/rombel/{rombel}', [RombelController::class, 'show']);
+
     Route::get('/rombel_siswa', [RombelController::class, 'rombel_siswa']);
     Route::post('/rombel/rombelsiswacreate', [RombelController::class, 'rombelsiswacreate']);
 
@@ -306,7 +306,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
-
+    Route::get('/rombel/{rombel}', [RombelController::class, 'show']);
     Route::post('/extra/import_extra_excel', [NilaiController::class, 'import_extra_excel']);
     Route::get('/extra', [NilaiController::class, 'extra']);
     Route::post('/extra/extracreate', [NilaiController::class, 'extracreate']);

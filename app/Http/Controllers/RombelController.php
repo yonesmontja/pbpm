@@ -472,14 +472,14 @@ class RombelController extends Controller
     }
     public function show($id)
     {
-        $rombel = Rombel::find($id)->pluck('id')->first();
-        //dd($rombel);
-        $rombel2 = Rombel::find($id)->pluck('rombel')->first();
-        $rombel3 = Rombel::find($id)->pluck('kelas_id')->first();
+        $rombel = Rombel::where('guru_id', '=', $id)->pluck('id')->first();
+        $guru = Guru::find($id);
+        $rombel2 = Rombel::where('guru_id', '=', $rombel)->pluck('rombel')->first();
+        $rombel3 = Rombel::where('guru_id', '=', $id)->pluck('kelas_id')->first();
         $rombel4 = Rombel::find($id);
         $jumlah_siswa = DB::table('rombel_siswa')->where('rombel_id', '=', $id)->count();
         $siswa1 = Siswa::all();
-        //dd($jumlah_siswa);
+        //dd($rombel4);
         $penilaian1 = Penilaian::find($rombel);
         // menghitung jumlah berapa kali mata pelajaran melakukan penilaian di rombel. akumulasi dari semua penilaian yang siswa ikuti di rombel ini.
         $jml_kelas_penilaian = Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 1)->pluck('rombel_id', 'mapel_id')->count() +
@@ -693,6 +693,7 @@ class RombelController extends Controller
         $data['rombel'] = $rombel;
         $mapel = Mapel::all();
         return view('rombel.show', [
+            'guru' => $guru,
             'data' => $data,
             'penilaian1' => $penilaian1,
             'mapel' => $mapel,

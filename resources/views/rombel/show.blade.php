@@ -93,7 +93,7 @@
                              <div class="card-body box-profile">
                                  <div class="text-center">
                                      <img class="profile-user-img img-fluid img-circle"
-                                         src="{{ asset('images/admin-2.jpg') }}" alt="User profile picture">
+                                         src="{{ $rombel4->guru->avatar() }}" alt="User profile picture">
                                  </div>
 
                                  <h3 class="profile-username text-center"><a href="#">{{ $rombel2 }}</a></h3>
@@ -213,7 +213,7 @@
                                                                  </td>
                                                                  <td><a href="/kelas/{{ $siswa1->kelas_id }}/profile">{{ $siswa1->kelas_id }}
                                                                  </td>
-                                                                 <td>{{ $siswa1->created_at->format('d M Y') }}</td>
+                                                                 <td>{{ $siswa1->tanggal }}</td>
                                                                  <td>{{ $siswa1->nilai }}</td>
                                                              </tr>
                                                          @endforeach
