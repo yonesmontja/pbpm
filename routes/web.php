@@ -106,7 +106,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::post('/siswa/create',[SiswaController::class,'create']);
 	Route::get('/siswa/{siswa}/edit',[SiswaController::class,'edit']);
 	Route::post('/siswa/{siswa}/update',[SiswaController::class,'update']);
-    Route::post('/siswa/editnilai', [SiswaController::class, 'editnilai'])->name('siswa.editnilai');
+
 	Route::get('/siswa/export_excel',[SiswaController::class,'export_excel']);
 	Route::post('/siswa/import_excel',[SiswaController::class,'import_excel']);
 	//Route::get('/siswa/export_pdf',[SiswaController::class,'export_pdf']);
@@ -337,6 +337,7 @@ Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
     Route::get('/my_profile/{id}/myprofile', [UserController::class, 'my_profile']);
     Route::get('/user/{user}/edit', [UserController::class, 'useredit']);
     Route::post('/user/{user}/update', [UserController::class, 'userupdate']);
+    Route::post('/siswa/editnilai', [SiswaController::class, 'editnilai'])->name('siswa.editnilai');
     Route::get('/test/{siswa}/profile', [SiswaController::class, 'testprofile'])->name('testsiswaprofile');
     //Route::get('/test/{siswa}/profile', [SiswaController::class, 'testprofile']);
     Route::get('/test', [SiswaController::class, 'test']);
@@ -381,6 +382,7 @@ Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
     Route::get('/nilai/{nilai}/nilaidelete', [NilaiController::class, 'nilaidelete']);
     Route::get('/nilai/{nilai}/nilaiedit', [NilaiController::class, 'nilaiedit']);
     Route::post('/nilai/{nilai}/nilaiupdate', [NilaiController::class, 'nilaiupdate']);
+
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:admin,siswa,guru']], function ()
