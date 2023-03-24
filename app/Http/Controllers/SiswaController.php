@@ -238,6 +238,16 @@ class SiswaController extends Controller
         $siswa->alamat = $request->alamat;
         $siswa->kelas_id = $request->kelas_id;
         $siswa->save();
+        $date = now();
+        DB::table('rombel_siswa')->where('siswa_id', '=', $siswa_id)->update([
+            'siswa_id'      => $siswa_id,
+
+            'nama_depan' => $request->input('nama_depan'),
+            'nama_belakang' => $request->input('nama_belakang'),
+
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
         if (auth()->user()->role == 'admin') {
             return redirect('/test')->with('sukses', 'berhasil diupdate!');
         }
