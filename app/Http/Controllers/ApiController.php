@@ -10,7 +10,7 @@ class ApiController extends Controller
     //
     public function editnilai(Request $request, $id)
     {
-    	$nilai = \App\Models\Nilai::find($id);
+        $nilai = Nilai::find($id);
         //$aduh = $siswa->penilaian->pluck('id')->first();
         //$aduh = $request->$bk;
         //dd($aduh);

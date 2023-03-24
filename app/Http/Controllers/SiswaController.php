@@ -258,8 +258,6 @@ class SiswaController extends Controller
 
     public function editnilai(Request $request)
     {
-
-
         if ($request->ajax()) {
             Nilai::find($request->pk)
                 ->update([
