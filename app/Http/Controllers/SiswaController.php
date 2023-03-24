@@ -209,7 +209,7 @@ class SiswaController extends Controller
     {
         $kelas = Kelas::all();
         $guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
-        return view('siswa/testedit', [
+        return view('siswa.testedit', [
             'kelas' => $kelas,
             'siswa' => $siswa,
             'guru' => $guru,

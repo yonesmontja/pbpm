@@ -41,7 +41,8 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="/test/{{ $siswa->id }}/update" method="POST" enctype="multipart/form-data" role="form">
+                    <form action="/test/{{ $siswa->id }}/update" method="POST" enctype="multipart/form-data"
+                        role="form">
                         {{ csrf_field() }}
                         <div class="card-body">
                             <div class="row">
@@ -141,29 +142,40 @@
 
                                 </div>
                             </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label for="exampleFormControlTextarea1">Alamat</label>
-                                        <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1"
-                                            rows="3">{{ $siswa->alamat }}</textarea>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Alamat</label>
+                                            <textarea name="alamat" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ $siswa->alamat }}</textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="avatar" class="form-label">Foto Siswa</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-
-                                        <input class="form-control" type="file" name="avatar" class="custom-file-input"
-                                            id="avatar" onchange="previewImage()">
-                                        <label class="custom-file-label" for="avatar">Choose file</label>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="avatar" class="form-label">Foto Siswa</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input class="form-control" type="file" name="avatar"
+                                                    class="custom-file-input" id="avatar" onchange="previewImage()">
+                                                <label class="custom-file-label" for="avatar">Choose file</label>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <img class="img-preview img-fluid mb-3 col-sm-2" alt="">
-                                    </div>
-
                                 </div>
+                                <div class="col-sm-6">
+                                    <div>
+                                        @if ($siswa->avatar)
+                                            <img src="{{ $siswa->avatar() }}" alt="...">
+                                        @else
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <img class="img-preview img-fluid mb-3 col-sm-2" alt="">
                             </div>
                         </div>
                         <!-- /.card-body -->
