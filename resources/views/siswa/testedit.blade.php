@@ -158,7 +158,7 @@
                                         <label for="avatar" class="form-label">Foto Siswa</label>
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input class="form-control" type="file" name="avatar"
+                                                <input class="form-control" type="file" value="{{ $siswa->avatar }}" name="avatar"
                                                     class="custom-file-input" id="avatar" onchange="previewImage()">
                                                 <label class="custom-file-label" for="avatar">Choose file</label>
                                             </div>
