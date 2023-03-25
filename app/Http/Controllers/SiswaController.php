@@ -375,49 +375,99 @@ class SiswaController extends Controller
         $ips_average = Nilai::all()->where('siswa_id', $id)->where('mapel_id', 8)->pluck('nilai')->avg();
         $pjok_average = Nilai::all()->where('siswa_id', $id)->where('mapel_id', 9)->pluck('nilai')->avg();
         $sbk_average = Nilai::all()->where('siswa_id', $id)->where('mapel_id', 10)->pluck('nilai')->avg();
-        if ($siswa->agama == 'islam' || $siswa->agama == "Islam") {
-            $agama_average = (int)$islam_average;
-            $mapel3[0] = "Agama Islam";
-            $mapel3[1] = "PPKn";
-            $mapel3[2] = "B.Indonesia";
-            $mapel3[3] = "Matematika";
-            $mapel3[4] = "IPA";
-            $mapel3[5] = "IPS";
-            $mapel3[6] = "PJOK";
-            $mapel3[7] = "SBK";
-        }
+
         if (
-            $siswa->agama == 'katolik' || $siswa->agama == "Katolik"
+            $rombel == 1 || $rombel == 2 || $rombel == 3 || $rombel == 4
         ) {
-            $agama_average = (int)$katolik_average;
-            $mapel3[0] = "Agama Katolik";
-            $mapel3[1] = "PPKn";
-            $mapel3[2] = "B.Indonesia";
-            $mapel3[3] = "Matematika";
-            $mapel3[4] = "IPA";
-            $mapel3[5] = "IPS";
-            $mapel3[6] = "PJOK";
-            $mapel3[7] = "SBK";
+
+            if ($siswa->agama == 'islam' || $siswa->agama == "Islam"
+            ) {
+                $agama_average = (int)$islam_average;
+                $mapel3[0] = "Agama Islam";
+                $mapel3[1] = "PPKn";
+                $mapel3[2] = "B.Indonesia";
+                $mapel3[3] = "Matematika";
+
+                $mapel3[4] = "PJOK";
+                $mapel3[5] = "SBK";
+            }
+            if (
+                $siswa->agama == 'katolik' || $siswa->agama == "Katolik"
+            ) {
+                $agama_average = (int)$katolik_average;
+                $mapel3[0] = "Agama Katolik";
+                $mapel3[1] = "PPKn";
+                $mapel3[2] = "B.Indonesia";
+                $mapel3[3] = "Matematika";
+
+                $mapel3[4] = "PJOK";
+                $mapel3[5] = "SBK";
+            }
+            if ($siswa->agama == 'kristen protestan' || $siswa->agama == "Kristen Protestan") {
+                $agama_average = (int)$protestan_average;
+                $mapel3[0] = "Agama Kristen";
+                $mapel3[1] = "PPKn";
+                $mapel3[2] = "B.Indonesia";
+                $mapel3[3] = "Matematika";
+
+                $mapel3[4] = "PJOK";
+                $mapel3[5] = "SBK";
+            }
+            $matang1[0] = (int)$agama_average;
+            $matang1[1] = (int)$ppkn_average;
+            $matang1[2] = (int)$indonesia_average;
+            $matang1[3] = (int)$matematika_average;
+            $matang1[4] = (int)$pjok_average;
+            $matang1[5] = (int)$sbk_average;
+            $average_mapel = collect($matang1)->avg();
         }
-        if ($siswa->agama == 'kristen protestan' || $siswa->agama == "Kristen Protestan") {
-            $agama_average = (int)$protestan_average;
-            $mapel3[0] = "Agama Kristen";
-            $mapel3[1] = "PPKn";
-            $mapel3[2] = "B.Indonesia";
-            $mapel3[3] = "Matematika";
-            $mapel3[4] = "IPA";
-            $mapel3[5] = "IPS";
-            $mapel3[6] = "PJOK";
-            $mapel3[7] = "SBK";
+        if ($rombel == 5 || $rombel == 6 || $rombel == 7 || $rombel == 8 || $rombel == 9 || $rombel == 10 || $rombel == 11 || $rombel == 12) {
+
+            if ($siswa->agama == 'islam' || $siswa->agama == "Islam") {
+                $agama_average = (int)$islam_average;
+                $mapel3[0] = "Agama Islam";
+                $mapel3[1] = "PPKn";
+                $mapel3[2] = "B.Indonesia";
+                $mapel3[3] = "Matematika";
+                $mapel3[4] = "IPA";
+                $mapel3[5] = "IPS";
+                $mapel3[6] = "PJOK";
+                $mapel3[7] = "SBK";
+            }
+            if (
+                $siswa->agama == 'katolik' || $siswa->agama == "Katolik"
+            ) {
+                $agama_average = (int)$katolik_average;
+                $mapel3[0] = "Agama Katolik";
+                $mapel3[1] = "PPKn";
+                $mapel3[2] = "B.Indonesia";
+                $mapel3[3] = "Matematika";
+                $mapel3[4] = "IPA";
+                $mapel3[5] = "IPS";
+                $mapel3[6] = "PJOK";
+                $mapel3[7] = "SBK";
+            }
+            if ($siswa->agama == 'kristen protestan' || $siswa->agama == "Kristen Protestan") {
+                $agama_average = (int)$protestan_average;
+                $mapel3[0] = "Agama Kristen";
+                $mapel3[1] = "PPKn";
+                $mapel3[2] = "B.Indonesia";
+                $mapel3[3] = "Matematika";
+                $mapel3[4] = "IPA";
+                $mapel3[5] = "IPS";
+                $mapel3[6] = "PJOK";
+                $mapel3[7] = "SBK";
+            }
+            $matang1[0] = (int)$agama_average;
+            $matang1[1] = (int)$ppkn_average;
+            $matang1[2] = (int)$indonesia_average;
+            $matang1[3] = (int)$matematika_average;
+            $matang1[4] = (int)$ipa_average;
+            $matang1[5] = (int)$ips_average;
+            $matang1[6] = (int)$pjok_average;
+            $matang1[7] = (int)$sbk_average;
+            $average_mapel = collect($matang1)->avg();
         }
-        $matang1[0] = (int)$agama_average;
-        $matang1[1] = (int)$ppkn_average;
-        $matang1[2] = (int)$indonesia_average;
-        $matang1[3] = (int)$matematika_average;
-        $matang1[4] = (int)$ipa_average;
-        $matang1[5] = (int)$ips_average;
-        $matang1[6] = (int)$pjok_average;
-        $matang1[7] = (int)$sbk_average;
         $tescategories1 = collect($tescategories);
         $matpel = collect($data7)->sum();
         $average = collect($data7)->avg();

@@ -426,7 +426,7 @@
                                                      <div class="col-md-4">
                                                          <h3 class="card-title">
                                                              <a href="#" class="btn btn-primary">
-                                                                 {{ $average_mapel }}
+                                                                 {{ number_format($average_mapel,1) }}
                                                              </a>
                                                          </h3>
                                                      </div>
