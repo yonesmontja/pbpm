@@ -205,7 +205,7 @@
                                                              <th style="width: 10px">NIS</th>
                                                              <th>Nama</th>
                                                              <th>Penilaian</th>
-                                                             <th>Kelas</th>
+                                                             <th>Mapel</th>
                                                              <th>Tanggal</th>
                                                              <th>Nilai</th>
                                                          </tr>
@@ -221,7 +221,7 @@
                                                                  <td><a
                                                                          href="/penilaian/{{ $siswa1->penilaian->id }}/profile">{{ $siswa1->penilaian->nama_tes }}
                                                                  </td>
-                                                                 <td><a href="/kelas/{{ $siswa1->kelas_id }}/profile">{{ $siswa1->kelas_id }}
+                                                                 <td><a href="/mapel/{{ $siswa1->mapel_id }}/profile">{{ $siswa1->mapel->nama_mapel }}
                                                                  </td>
                                                                  <td>{{ \Carbon\Carbon::parse($siswa1->tanggal)->format('d M Y') }}
                                                                  </td>
