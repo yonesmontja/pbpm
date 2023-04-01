@@ -3,7 +3,7 @@
 /*
  * This file is part of Psy Shell.
  *
- * (c) 2012-2022 Justin Hileman
+ * (c) 2012-2023 Justin Hileman
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -95,7 +95,7 @@ class Theme
                     $config = static::MODERN_THEME;
                     break;
 
-                    case 'compact':
+                case 'compact':
                     $config = static::COMPACT_THEME;
                     break;
 
@@ -138,10 +138,6 @@ class Theme
 
                 case 'grayFallback':
                     $this->setGrayFallback($value);
-                    break;
-
-                case 'compact':
-                    $this->setCompact($value);
                     break;
             }
         }

@@ -67,12 +67,12 @@ class HtmlDumper extends CliDumper
     protected $lastDepth = -1;
     protected $styles;
 
-    private $displayOptions = [
+    private array $displayOptions = [
         'maxDepth' => 1,
         'maxStringLength' => 160,
         'fileLinkFormat' => null,
     ];
-    private $extraDisplayOptions = [];
+    private array $extraDisplayOptions = [];
 
     /**
      * {@inheritdoc}
@@ -134,7 +134,7 @@ class HtmlDumper extends CliDumper
     /**
      * {@inheritdoc}
      */
-    public function dump(Data $data, $output = null, array $extraDisplayOptions = [])
+    public function dump(Data $data, $output = null, array $extraDisplayOptions = []): ?string
     {
         $this->extraDisplayOptions = $extraDisplayOptions;
         $result = parent::dump($data, $output);
@@ -167,9 +167,9 @@ var refStyle = doc.createElement('style'),
     };
 
 refStyle.innerHTML = 'pre.sf-dump .sf-dump-compact, .sf-dump-str-collapse .sf-dump-str-collapse, .sf-dump-str-expand .sf-dump-str-expand { display: none; }';
-(doc.documentElement.firstElementChild || doc.documentElement.children[0]).appendChild(refStyle);
+doc.head.appendChild(refStyle);
 refStyle = doc.createElement('style');
-(doc.documentElement.firstElementChild || doc.documentElement.children[0]).appendChild(refStyle);
+doc.head.appendChild(refStyle);
 
 if (!doc.addEventListener) {
     addEventListener = function (element, eventName, callback) {
@@ -803,7 +803,7 @@ EOHTML
     /**
      * {@inheritdoc}
      */
-    public function enterHash(Cursor $cursor, int $type, $class, bool $hasChild)
+    public function enterHash(Cursor $cursor, int $type, string|int|null $class, bool $hasChild)
     {
         if (Cursor::HASH_OBJECT === $type) {
             $cursor->attr['depth'] = $cursor->depth;
@@ -834,7 +834,7 @@ EOHTML
     /**
      * {@inheritdoc}
      */
-    public function leaveHash(Cursor $cursor, int $type, $class, bool $hasChild, int $cut)
+    public function leaveHash(Cursor $cursor, int $type, string|int|null $class, bool $hasChild, int $cut)
     {
         $this->dumpEllipsis($cursor, $hasChild, $cut);
         if ($hasChild) {
@@ -846,7 +846,7 @@ EOHTML
     /**
      * {@inheritdoc}
      */
-    protected function style(string $style, string $value, array $attr = [])
+    protected function style(string $style, string $value, array $attr = []): string
     {
         if ('' === $value) {
             return '';
