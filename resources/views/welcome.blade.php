@@ -253,7 +253,7 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="count-box">
                             <i class="bi bi-emoji-smile"></i>
-                            <span data-purecounter-start="0" data-purecounter-end="353" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="{{ totalSiswa() }}" data-purecounter-duration="1"
                                 class="purecounter"></span>
                             <p>Jumlah Peserta Didik</p>
                         </div>
@@ -280,7 +280,7 @@
                     <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                         <div class="count-box">
                             <i class="bi bi-people"></i>
-                            <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1"
+                            <span data-purecounter-start="0" data-purecounter-end="{{ totalGuru() }}" data-purecounter-duration="1"
                                 class="purecounter"></span>
                             <p>Guru</p>
                         </div>

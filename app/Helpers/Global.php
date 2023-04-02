@@ -54,7 +54,7 @@ function luasyGrafik()
 }
 function totalSiswa()
 {
-    return Siswa::count();
+    return DB::table('rombel_siswa')->count();
 }
 function totalMapel()
 {
