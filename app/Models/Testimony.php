@@ -16,6 +16,6 @@ class Testimony extends Model
         if ($this->image && file_exists(public_path('storage/testimonies/' . $thumbnail . $this->image)))
             return asset('storage/testimonies/' . $thumbnail  . $this->image);
         else
-            return asset('no_image.png');
+            return asset('no_avatar.png');
     }
 }
