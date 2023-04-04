@@ -20,7 +20,7 @@ class HeroController extends Controller
         $misi = Misi::all();
         $guru = Guru::all();
         $testimony = Testimony::all();
-        //dd($visi);
+        //dd(__DIR__);
         return view('welcome', [
             'visi' => $visi, 'misi' => $misi, 'guru' => $guru,
             'testimony' => $testimony,

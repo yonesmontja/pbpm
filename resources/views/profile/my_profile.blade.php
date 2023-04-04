@@ -101,7 +101,7 @@
                                 </div>
                                 @if ($user->role == 'admin')
                                     <h3 class="profile-username text-center"><a
-                                            href="/user/{{ $user }}/profile">{{ $name }} </a></h3>
+                                            href="/user/{{ $user->id }}/profile">{{ $user->name }} </a></h3>
                                 @elseif ($user->role == 'guru')
                                     <h3 class="profile-username text-center"><a
                                             href="/guru/{{ $guru }}/profile">{{ $nama_guru }} </a></h3>
