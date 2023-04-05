@@ -336,6 +336,7 @@ class GuruController extends Controller
     public function guruupdate(Request $request, Guru $guru)
     {
         $guru ->update($request->all());
+        //dd($guru->user_id);
 
         if ($request->hasFile('avatar')) {
             $guru->delete_avatar();
@@ -347,18 +348,18 @@ class GuruController extends Controller
             $avatar->move('images/guru', $file_name);
             $guru->avatar = $file_name;
         }
-        //$user = new User();
-        //insert ke tabel Guru
+        $user = User::find($guru->user_id);
+        $date = now();
         $input = $request->all();
-        //$user_id = $user->id;
-        //dd($user->guru == null);
-        $user->role = 'guru';
-        $user->name = $input->nama_guru;
-        $user->email = $input->email;
-        $user->password = bcrypt('rahasia');
-        $user->remember_token = Str::random(60);
-        $user->avatar = $file_name;
-        $user->save();
+        DB::table('users')->where('id', '=', $user->id)->update([
+            'name'      => $request->input('nama_guru'),
+
+            'email' => $request->input('email'),
+            'role' => 'guru',
+
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
         //$guru = new Guru();
         //$request -> request -> add(['user_id' => $user -> id]);
         $guru -> user_id = $input['user_id'];
