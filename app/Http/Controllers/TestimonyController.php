@@ -37,12 +37,12 @@ class TestimonyController extends Controller
             'komentar' => 'required',
             'image' => 'mimes:jpeg,jpg,png',
         ]);
-        $image = $request->file('image')->move(public_path('storage\testimonies'), $request->file('image')->getClientOriginalName() . "." . $request->file('image')->getClientOriginalExtension());
+        $image = $request->file('image')->move(public_path('images/testimonies'), $request->file('image')->getClientOriginalName() . "." . $request->file('image')->getClientOriginalExtension());
         $file_name = rand(1000, 9999) . $request->file('image')->getClientOriginalName();
         $img = Image::make($image);
         //dd($img);
-        $img->resize('120', '120')->save(public_path('storage\testimonies') . '\small_' . $file_name);
-        $image->move(public_path('storage\testimonies'), $file_name);
+        $img->resize('120', '120')->save(public_path('images/testimonies/') . 'small_' . $file_name);
+        $image->move(public_path('images/testimonies'), $file_name);
 
         //insert ke tabel testimony
         $input = $request->all();
