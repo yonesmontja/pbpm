@@ -155,16 +155,15 @@
                                                         <div class="form-group">
                                                             <label for="image" class="form-label">Image</label>
                                                             <div class="input-group">
-                                                                <div class="custom-file">
-
+                                                                <div class="custom-file col-6">
                                                                     <input class="form-control" type="file"
                                                                         name="image" class="custom-file-input"
                                                                         id="image" onchange="previewImage()">
-                                                                    <label class="custom-file-label" for="image">Choose
-                                                                        file</label>
+                                                                    <label class="custom-file-label" for="image">Pilih
+                                                                        gambar</label>
                                                                 </div>
-                                                                <div>
-                                                                    <img class="img-preview img-fluid mb-3 col-sm-2"
+                                                                <div class="row col-6">
+                                                                    <img class="img-preview img-fluid"
                                                                         alt="">
                                                                 </div>
                                                             </div>
@@ -202,6 +201,4 @@
         </section>
         <!-- /.content -->
     </div>
-
-
 @endsection
