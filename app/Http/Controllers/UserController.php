@@ -44,15 +44,27 @@ class UserController extends Controller
         $nilai = Nilai::where('guru_id', '=', $guru)->orderBy('tanggal')->get();
         //dd($nilai);
 
-        return view('profile.my_profile', [
-            'user' => $user,
-            'guru' => $guru,
-            'nama_guru' => $nama_guru,
-            'siswa' => $siswa,
-            'kategori' => $kategori,
-            'journal' => $journal,
-            'nilai' => $nilai,
-        ]);
+        if (auth()->user()->role == 'admin') {
+            return view('profile.my_profile', [
+                'user' => $user,
+                'guru' => $guru,
+                'nama_guru' => $nama_guru,
+                'siswa' => $siswa,
+                'kategori' => $kategori,
+                'journal' => $journal,
+
+            ]);
+        } else {
+            return view('profile.my_profile', [
+                'user' => $user,
+                'guru' => $guru,
+                'nama_guru' => $nama_guru,
+                'siswa' => $siswa,
+                'kategori' => $kategori,
+                'journal' => $journal,
+                'nilai' => $nilai,
+            ]);
+        }
     }
 
     public function portofolio()
@@ -86,7 +98,7 @@ class UserController extends Controller
     {
         $data_user = User::select("*")
             ->whereNotNull('last_seen')
-        ->orderBy('last_seen', 'DESC')
+            ->orderBy('last_seen', 'DESC')
             ->paginate(10);
         return view('user.online', compact('data_user'));
     }

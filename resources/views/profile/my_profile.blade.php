@@ -195,7 +195,8 @@
                         <!-- /.card -->
                     </div>
                     <!-- /.col -->
-                    <div class="col-md-9">
+                    @if (auth()->user()->role == 'guru')
+                        <div class="col-md-9">
                         <div class="card">
                             <div class="card-header p-2">
                                 <ul class="nav nav-pills">
@@ -301,6 +302,9 @@
                         <!-- /.nav-tabs-custom -->
                     </div>
                     <!-- /.col -->
+                    @else
+
+                    @endif
                 </div>
                 <!-- /.row -->
             </div><!-- /.container-fluid -->
