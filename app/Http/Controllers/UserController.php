@@ -7,6 +7,8 @@ use App\Models\User;
 
 use App\Models\Siswa;
 use App\Models\Rombel;
+use App\Models\Journal;
+use App\Models\Kategori;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -36,14 +38,17 @@ class UserController extends Controller
         $guru = Guru::where('user_id', $id)->pluck('id')->first();
         $nama_guru = Guru::where('user_id', $id)->pluck('nama_guru')->first();
         $siswa = Siswa::where('user_id', $id)->pluck('id')->first();
-        //dd($guru);
-        //dd($user->guru());
+        $kategori = Kategori::all();
+        $journal = Journal::all();
+
 
         return view('profile.my_profile', [
             'user' => $user,
             'guru' => $guru,
             'nama_guru' => $nama_guru,
             'siswa' => $siswa,
+            'kategori' => $kategori,
+            'journal' => $journal,
         ]);
     }
 
