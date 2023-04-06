@@ -111,17 +111,30 @@ class SiswaController extends Controller
             $guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
         }
 
-        return view('siswa.test', [
-            'kelas' => $kelas,
-            'data_siswa' => $data_siswa,
-            'user_id' => $user_id,
-            'tampung' => $tampung,
-            'rombel' => $rombel,
-            'rombel1' => $rombel1,
-            'tampung2' => $tampung2,
+        if (auth()->user()->role == 'admin') {
+            return view('siswa.test', [
+                'kelas' => $kelas,
+                'data_siswa' => $data_siswa,
+                'user_id' => $user_id,
 
-            'guru' => $guru,
-        ]);
+                'rombel' => $rombel,
+                'rombel1' => $rombel1,
+                'tampung2' => $tampung2,
+                'guru' => $guru,
+            ]);
+        }
+        if (auth()->user()->role == 'guru') {
+            return view('siswa.test', [
+                'kelas' => $kelas,
+                'data_siswa' => $data_siswa,
+                'user_id' => $user_id,
+                'tampung' => $tampung,
+                'rombel' => $rombel,
+                'rombel1' => $rombel1,
+
+                'guru' => $guru,
+            ]);
+        }
     }
     public function testcreate(Request $request)
     {
