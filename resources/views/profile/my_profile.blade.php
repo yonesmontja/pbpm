@@ -1,7 +1,7 @@
 @extends('layouts.mailbox')
 
 @section('title')
-    <title> SD Dabolding Compose </title>
+    <title> My Profile </title>
 @endsection
 @section('header')
     <style type="text/css">
