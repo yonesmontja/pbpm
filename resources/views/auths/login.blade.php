@@ -21,12 +21,12 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="/"><b>Admin</b> SD INPRES DABOLDING</a>
+    <a href="/"><b>Login</b> SD INPRES DABOLDING</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Silahkan login</p>
+      <p class="login-box-msg">Silakan login</p>
 
       <form action="/postlogin" method="get">
         {{csrf_field()}}
