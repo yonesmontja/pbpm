@@ -47,16 +47,16 @@ class Journal extends Model
     {
         $thumbnail = $real_size ? '' : 'small_';
 
-        if ($this->thumbnail && file_exists(public_path('images/' . $thumbnail . $this->thumbnail)))
-            return asset('images/' . $thumbnail  . $this->thumbnail);
+        if ($this->thumbnail && file_exists(public_path('images/journals/' . $thumbnail . $this->thumbnail)))
+            return asset('images/journals/' . $thumbnail  . $this->thumbnail);
         else
             return asset('no_avatar.png');
     }
     function delete_avatar()
     {
-        if ($this->thumbnail && file_exists(public_path('images/' . $this->thumbnail)))
-            unlink(public_path('images/' . $this->thumbnail));
-        if ($this->thumbnail && file_exists(public_path('images/small_' . $this->thumbnail)))
-            unlink(public_path('images/small_' . $this->thumbnail));
+        if ($this->thumbnail && file_exists(public_path('images/journals/' . $this->thumbnail)))
+            unlink(public_path('images/journals/' . $this->thumbnail));
+        if ($this->thumbnail && file_exists(public_path('images/journals/small_' . $this->thumbnail)))
+            unlink(public_path('images/journals/small_' . $this->thumbnail));
     }
 }
