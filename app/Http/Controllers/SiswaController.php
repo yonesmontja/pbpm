@@ -152,7 +152,7 @@ class SiswaController extends Controller
         $img->resize('120', '120')
         ->save('images/siswa' . '/small_' . $file_name);
 
-        $avatar->move('/images', $file_name);
+        $avatar->move('images/siswa/', $file_name);
 
         //insert ke tabel Users
         $user = new User();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Guru;
 use App\Models\User;
 
+use App\Models\Nilai;
 use App\Models\Siswa;
 use App\Models\Rombel;
 use App\Models\Journal;
@@ -40,7 +41,8 @@ class UserController extends Controller
         $siswa = Siswa::where('user_id', $id)->pluck('id')->first();
         $kategori = Kategori::all();
         $journal = Journal::all();
-
+        $nilai = Nilai::where('guru_id', '=', $guru)->orderBy('tanggal')->get();
+        //dd($nilai);
 
         return view('profile.my_profile', [
             'user' => $user,
@@ -49,6 +51,7 @@ class UserController extends Controller
             'siswa' => $siswa,
             'kategori' => $kategori,
             'journal' => $journal,
+            'nilai' => $nilai,
         ]);
     }
 
