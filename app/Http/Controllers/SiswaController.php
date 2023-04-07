@@ -104,10 +104,11 @@ class SiswaController extends Controller
             foreach ($rombel1 as $r => $s) {
                 $tampung[] = Siswa::find($s);
             }
+            //dd($tampung[0]);
             foreach ($tampung as $t) {
                 $tampung2[] = $t->rombel();
             }
-            //dd($tampung);
+            //dd($tampung2[0]);
             $guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
         }
 
@@ -116,7 +117,7 @@ class SiswaController extends Controller
                 'kelas' => $kelas,
                 'data_siswa' => $data_siswa,
                 'user_id' => $user_id,
-
+                'tampung' => $tampung,
                 'rombel' => $rombel,
                 'rombel1' => $rombel1,
                 'tampung2' => $tampung2,
