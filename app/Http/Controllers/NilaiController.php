@@ -515,9 +515,11 @@ class NilaiController extends Controller
     }
     public function audit()
     {
-        $nilai = Nilai::all();
-        $article = Nilai::with('audits')->find(325);
-        $all = $article->audits()->with('user')->get()->toArray();
+        $nilai = Nilai::first();
+        //dd($nilai->audits);
+        $all = Nilai::with('audits')->orderBy('created_at', 'desc')->take(5)->get();
+        //dd($article);
+        //$all = $article->audits->toArray();
         //dd($all);
         //$all = $nilai -> audits;
 
@@ -525,9 +527,9 @@ class NilaiController extends Controller
         //dd($article);
 
         // Get latest Audit
-        $audit = $article->audits()->latest()->first();
-
-        var_dump($audit->getMetadata());
+        //$audit = $article->audits;
+        //dd($audit);
+        //var_dump($audit->getMetadata());
         //return Nilai::with('audits')->get();
         //dd($all);
 

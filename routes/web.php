@@ -402,4 +402,3 @@ Route::get('/{slug}',[
 	'uses' => 'App\Http\Controllers\JurnalController@singlepost',
 	'as' => 'site.single.post'
 ]);
-
