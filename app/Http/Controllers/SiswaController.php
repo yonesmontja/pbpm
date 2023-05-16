@@ -647,7 +647,9 @@ class SiswaController extends Controller
         $kalimat1 = $nama_depan[0];
         $kalimat2 = $nama_belakang[0];
         $kelas = Kelas::find($students->kelas_id);
-        $kelas_siswa = Kelas::find($students->kelas_id)->pluck('nama')->first();
+        //dd($kelas);
+        $kelas_siswa = Kelas::find($students->kelas_id)->nama;
+        //dd($kelas_siswa);
         if ($kelas_siswa == 'Kelas 1') {
             $kelas_naik = 'II';
         }
