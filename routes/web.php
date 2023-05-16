@@ -44,6 +44,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\GrafikController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\JurnalController;
+use App\Http\Controllers\MoodleController;
 use App\Http\Controllers\RombelController;
 use App\Http\Controllers\TujuanController;
 use App\Http\Controllers\WidgetController;
@@ -306,6 +307,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
+    Route::get('/moodle', [MoodleController::class, 'moodle']);
     Route::get('/rombel/{rombel}', [RombelController::class, 'show']);
     Route::post('/extra/import_extra_excel', [NilaiController::class, 'import_extra_excel']);
     Route::get('/extra', [NilaiController::class, 'extra']);
