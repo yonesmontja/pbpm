@@ -647,6 +647,7 @@ class SiswaController extends Controller
         $kalimat1 = $nama_depan[0];
         $kalimat2 = $nama_belakang[0];
         $kelas = Kelas::find($students->kelas_id);
+        $kelas_naik = $kelas + 1;
         $semester = Tahunpelajaran::all()->pluck('semester');
         //dd($semester);
         $data_siswa = Siswa::get();
@@ -2811,6 +2812,7 @@ class SiswaController extends Controller
         $pdf = PDF::loadView(
             'export.raport1',
             [
+                'kelas_naik' => $kelas_naik;
                 'deskripsi_sikap_spiritual' => $deskripsi_sikap_spiritual,
                 'deskripsi_sikap_sosial' => $deskripsi_sikap_sosial,
                 'catatan_wali_kelas' => $catatan_wali_kelas,

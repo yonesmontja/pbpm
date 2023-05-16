@@ -470,7 +470,7 @@
                                 <tr>
                                     <td colspan="8">
                                         Naik/Tidak Naik
-                                        <br> ke kelas:
+                                        <br> ke kelas: {{ $kelas_naik }}
                                     </td>
                                 </tr>
                             @endif
@@ -954,7 +954,7 @@
                                 <tr>
                                     <td colspan="8">
                                         Naik/Tidak Naik
-                                        <br> ke kelas:
+                                        <br> ke kelas: {{ $kelas_naik }}
                                     </td>
                                 </tr>
                             @endif
