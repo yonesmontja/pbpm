@@ -468,10 +468,17 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8">
+                                    @if ($kelas_siswa == 'Kelas 6')
+                                        <td colspan="8">
+                                        LULUS / TIDAK LULUS
+                                        <br>
+                                    </td>
+                                    @else
+                                        <td colspan="8">
                                         Naik/Tidak Naik
                                         <br> ke kelas: {{ $kelas_naik }}
                                     </td>
+                                    @endif
                                 </tr>
                             @endif
                             <tr>
