@@ -17,7 +17,19 @@ class Guru extends Model
     use HasFactory;
 
     protected $table = 'guru';
-    protected $fillable = ['nama_guru','telpon','alamat','kode_guru','jk','is_bk','stat_data','status','email','avatar','user_id'];
+    protected $fillable =
+    [
+        'nama_guru',
+        'telpon',
+        'alamat',
+        'kode_guru',
+        'jk', 'is_bk',
+        'stat_data',
+        'status',
+        'email',
+        'avatar',
+        'user_id'
+    ];
 
     public function getAvatar()
     {

@@ -47,9 +47,9 @@
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="formGroupExampleInput">Kode</label>
+                                <label for="formGroupExampleInput">NIP</label>
                                 <input name="kode_guru" type="text" class="form-control" id="formGroupExampleInput"
-                                    placeholder="Masukkan kode" value="{{ $guru->kode_guru }}">
+                                    placeholder="Masukkan NIP (jika ada)" value="{{ $guru->kode_guru }}">
                             </div>
                             <div class="form-group">
                                 <label for="formGroupExampleInput">Nama</label>
@@ -74,10 +74,10 @@
                             <div class="form-group">
                                 <label for="formGroupExampleInput">Kode User</label>
                                 <input name="user_id" type="text" class="form-control" id="formGroupExampleInput"
-                                    placeholder="Masukkan nomor user_id" value="{{ $guru->user_id }}">
+                                    placeholder="Masukkan nomor user_id" value="{{ $guru->user_id }}" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Mengajar BK?</label>
+                                <label for="exampleInputEmail1">Wali Kelas?</label>
                                 <select name="is_bk" class="form-control" id="exampleFormControlSelect1">
                                     <option value="1" @if ($guru->is_bk == '1') selected @endif>Tidak
                                     </option>
@@ -114,7 +114,7 @@
                                     </option>
                                 </select>
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="exampleInputEmail1">Agama</label>
                                 <select name="agama" class="form-control" id="exampleFormControlSelect1">
                                     <option value"{{ $guru->agama }}
@@ -133,20 +133,33 @@
                                     <option value="Konghucu" @if ($guru->agama == 'Konghucu') selected @endif>Konghucu
                                     </option>
                                 </select>
-                            </div>
+                            </div> --}}
                             <div class="form-group">
                                 <label for="avatar" class="form-label">Avatar</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input class="form-control" type="file" name="avatar" class="custom-file-input"
-                                            id="avatar" onchange="previewImage()">
-                                        <label class="custom-file-label" for="avatar">Choose file</label>
-                                    </div>
-                                    <div>
-                                        <img class="img-preview img-fluid mb-3 col-sm-2" alt="">
-                                    </div>
+                                <div class="row">
+                                    <div class="col-3">
 
+                                        <img class="profile-user-img img-fluid img-circle" src="{{ $guru->avatar() }}"
+                                            alt="User profile picture">
+
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input class="form-control" type="file" name="avatar"
+                                                    class="custom-file-input" id="avatar" onchange="previewImage()">
+                                                <label class="custom-file-label" for="avatar">Pilih file gambar yang
+                                                    baru</label>
+                                            </div>
+                                            <div>
+                                                <img class="img-preview img-fluid mb-3 col-sm-2" alt="">
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
+
+
                             </div>
                         </div>
                         <!-- /.card-body -->

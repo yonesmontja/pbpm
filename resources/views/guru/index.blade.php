@@ -69,7 +69,7 @@
                                     <thead>
                                         <tr>
                                             <th>NAMA</th>
-                                            <th>KODE GURU</th>
+                                            <th>NIP</th>
                                             <th>JENIS KELAMIN</th>
                                             <th>ALAMAT</th>
                                             <th>STATUS</th>
@@ -112,7 +112,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>NAMA</th>
-                                            <th>KODE GURU</th>
+                                            <th>NIP</th>
                                             <th>JENIS KELAMIN</th>
                                             <th>ALAMAT</th>
                                             <th>STATUS</th>
@@ -190,9 +190,9 @@
                                                     <div class="row">
                                                         <div class="col-sm-4">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlInput1">KODE GURU</label>
+                                                                <label for="exampleFormControlInput1">NIP</label>
                                                                 <input name="kode_guru" type="text" class="form-control"
-                                                                    id="exampleFormControlInput3" placeholder="KODE GURU">
+                                                                    id="exampleFormControlInput3" placeholder="Masukkan NIP (jika ada)">
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-4">
@@ -244,7 +244,7 @@
                                                                 @endif
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-6">
+                                                        {{-- <div class="col-sm-6">
                                                             <div
                                                                 class="form-group {{ $errors->has('agama') ? ' has-error' : '' }}">
                                                                 <label for="exampleFormControlSelect1">Agama</label>
@@ -263,7 +263,7 @@
                                                                         class="help-block">{{ $errors->first('agama') }}</span>
                                                                 @endif
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm-4">

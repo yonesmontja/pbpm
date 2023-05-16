@@ -281,6 +281,7 @@ class GuruController extends Controller
     public function index()
     {
         $data_guru = Guru::all();
+
     	return view('guru.index',['data_guru' => $data_guru]);
     }
     public function gurucreate(Request $request)
@@ -331,10 +332,12 @@ class GuruController extends Controller
     }
     public function guruedit(Guru $guru)
     {
+        //dd($guru->status);
         return view('guru/guruedit',['guru'=>$guru]);
     }
     public function guruupdate(Request $request, Guru $guru)
     {
+        //dd($request->hasFile('avatar'));
         $guru ->update($request->all());
         //dd($guru->user_id);
 
@@ -362,17 +365,17 @@ class GuruController extends Controller
         ]);
         //$guru = new Guru();
         //$request -> request -> add(['user_id' => $user -> id]);
-        $guru -> user_id = $input['user_id'];
-        $guru -> nama_guru = $input['nama_guru'];
-        $guru -> telpon = $input['telpon'];
-        $guru -> alamat = $input['alamat'];
-        $guru -> kode_guru = $input['kode_guru'];
-        $guru -> jk = $input['jk'];
-        $guru -> is_bk = $input['is_bk'];
-        $guru -> stat_data = $input['stat_data'];
-        $guru -> status = $input['status'];
-        $guru -> email = $input['email'];
-        $guru -> avatar = $file_name;
+        // $guru -> user_id = $input['user_id'];
+        // $guru -> nama_guru = $input['nama_guru'];
+        // $guru -> telpon = $input['telpon'];
+        // $guru -> alamat = $input['alamat'];
+        // $guru -> kode_guru = $input['kode_guru'];
+        // $guru -> jk = $input['jk'];
+        // $guru -> is_bk = $input['is_bk'];
+        // $guru -> stat_data = $input['stat_data'];
+        // $guru -> status = $input['status'];
+        // $guru -> email = $input['email'];
+        // $guru -> avatar = $file_name;
 
         $guru->save();
         return redirect('/guru')->with('sukses','berhasil diupdate!');
