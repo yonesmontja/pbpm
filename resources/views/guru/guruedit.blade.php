@@ -117,6 +117,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Agama</label>
                                 <select name="agama" class="form-control" id="exampleFormControlSelect1">
+                                    <option value"{{ $guru->agama }}
                                     <option value="Islam" @if ($guru->agama == 'Islam') selected @endif>Islam
                                     </option>
                                     <option value="Kristen Protestan" @if ($guru->agama == 'Kristen Protestan') selected @endif>

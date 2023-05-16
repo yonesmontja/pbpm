@@ -201,9 +201,9 @@ class SiswaController extends Controller
     public function testaktivasi(Request $request, $id)
     {
         $siswa = Siswa::find($id);
-
-        $user = new \App\Models\User;
         //dd($siswa);
+        $user = new User;
+
         $user->role = 'siswa';
         $user->name = $siswa->nama_depan;
         $user->email = $siswa->email;
@@ -213,7 +213,9 @@ class SiswaController extends Controller
         //dd($user);
         $status = '1';
         $request->request->add(['user_id' => $user->id, 'status' => $status]);
-        $siswa->update($request->all());
+        $siswa->update([
+            'user_id' => $user->id,
+        ]);
 
         //dd($siswa);
 
