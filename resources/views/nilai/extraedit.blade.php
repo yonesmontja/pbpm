@@ -42,7 +42,7 @@
                 @endif
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">ABSEN & CATATAN WALI KELAS</h3>
+                        <h3 class="card-title">ABSEN, DESKRIPSI SIKAP & CATATAN WALI KELAS</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -103,7 +103,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <label for="exampleFormControlTextarea1">CATATAN SIKAP</label>
+                                            <label for="exampleFormControlTextarea1">DESKRIPSI SIKAP SPIRITUAL</label>
                                             <textarea name="saran" class="form-control" id="exampleFormControlTextarea1"
                                                 rows="3">{{ $extra->saran }}</textarea>
                                         </div>
@@ -112,7 +112,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <label for="exampleFormControlTextarea1">CATATAN ABSENSI</label>
+                                            <label for="exampleFormControlTextarea1">DESKRIPSI SIKAP SOSIAL</label>
                                             <textarea name="ekskul" class="form-control" id="exampleFormControlTextarea2"
                                                 rows="3">{{ $extra->ekskul }}</textarea>
                                         </div>
@@ -121,7 +121,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <label for="exampleFormControlTextarea1">CATATAN MOTIVASI</label>
+                                            <label for="exampleFormControlTextarea1">CATATAN WALI KELAS</label>
                                             <textarea name="prestasi" class="form-control" id="exampleFormControlTextarea2"
                                                 rows="3">{{ $extra->prestasi }}</textarea>
                                         </div>
