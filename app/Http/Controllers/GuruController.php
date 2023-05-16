@@ -292,7 +292,7 @@ class GuruController extends Controller
             'email' => 'required|email|unique:users',
             'jk' => 'required',
             'status' => 'required',
-            'agama' => 'required',
+
             'alamat' => 'required',
             'avatar' => 'mimes:jpeg,jpg,png',
         ]);
