@@ -111,9 +111,9 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/siswa/export_excel',[SiswaController::class,'export_excel']);
 	Route::post('/siswa/import_excel',[SiswaController::class,'import_excel']);
 	//Route::get('/siswa/export_pdf',[SiswaController::class,'export_pdf']);
-    Route::get('/siswa/{id}/export_pdf',[SiswaController::class,'cetak_pdf']);
-    Route::get('/siswa/{id}/cover_pdf',[SiswaController::class,'cover_pdf']);
-    Route::get('/siswa/{id}/biodata_pdf',[SiswaController::class,'biodata_pdf']);
+    // Route::get('/siswa/{id}/export_pdf',[SiswaController::class,'cetak_pdf']);
+    // Route::get('/siswa/{id}/cover_pdf',[SiswaController::class,'cover_pdf']);
+    // Route::get('/siswa/{id}/biodata_pdf',[SiswaController::class,'biodata_pdf']);
 
 
 
@@ -331,7 +331,9 @@ Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
         $kelas = Kelas::all();
         return view('nilai.extrafilter', compact('data_extra', 'mapel', 'siswa', 'penilaian', 'guru', 'kelas', 'kompetensiinti'));
     });
-
+    Route::get('/siswa/{id}/export_pdf', [SiswaController::class, 'cetak_pdf']);
+    Route::get('/siswa/{id}/cover_pdf', [SiswaController::class, 'cover_pdf']);
+    Route::get('/siswa/{id}/biodata_pdf', [SiswaController::class, 'biodata_pdf']);
     Route::get('/guru/{guru}/profile', [GuruController::class, 'profile']);
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
