@@ -150,7 +150,7 @@ class UserController extends Controller
         }
 
         //dd($guru);
-        return view('user/edit', [
+        return view('user.edit', [
             'user' => $user,
             'guru' => $guru,
         ]);
@@ -160,6 +160,13 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
         ]);
+        $id = $user->id;
+        $guru = Guru::where('user_id', $id)->pluck('id')->first();
+        $nama_guru = Guru::where('user_id', $id)->pluck('nama_guru')->first();
+        $siswa = Siswa::where('user_id', $id)->pluck('id')->first();
+        $kategori = Kategori::all();
+        $journal = Journal::all();
+        $nilai = Nilai::where('guru_id', '=', $guru)->orderBy('tanggal')->get();
         //$user ->update($request->all());
         if ($request->hasFile('avatar')) {
             $user->delete_avatar();
@@ -184,12 +191,28 @@ class UserController extends Controller
         $siswa = Siswa::where('user_id', $user->id)->pluck('id')->first();
         //dd($guru);
         //dd($user->guru());
-        return view('profile.my_profile', [
-            'user' => $user,
-            'guru' => $guru,
-            'nama_guru' => $nama_guru,
-            'siswa' => $siswa,
-        ])->with('sukses', 'berhasil diupdate!');
+        if (auth()->user()->role == 'admin') {
+            return view('profile.my_profile', [
+                'user' => $user,
+                'guru' => $guru,
+                'nama_guru' => $nama_guru,
+                'siswa' => $siswa,
+                'kategori' => $kategori,
+                'journal' => $journal,
+
+            ])->with('sukses', 'berhasil diupdate!');
+        } else {
+            return view('profile.my_profile', [
+                'user' => $user,
+                'guru' => $guru,
+                'nama_guru' => $nama_guru,
+                'siswa' => $siswa,
+                'kategori' => $kategori,
+                'journal' => $journal,
+                'nilai' => $nilai,
+            ])->with('sukses', 'berhasil diupdate!');
+        }
+
     }
     public function userdelete(User $user)
     {

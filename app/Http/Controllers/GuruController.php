@@ -356,7 +356,8 @@ class GuruController extends Controller
         $input = $request->all();
         DB::table('users')->where('id', '=', $user->id)->update([
             'name'      => $request->input('nama_guru'),
-
+            'password' => bcrypt('rahasia'),
+            'remember_token' => Str::random(60),
             'email' => $request->input('email'),
             'role' => 'guru',
 
