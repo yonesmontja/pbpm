@@ -311,7 +311,18 @@
                     <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikathuruf }} </strong>
                         {{ $predikat_keterampilan_deskripsi_agama }}</td>
                 </tr>
-
+                <tr class="details">
+                    <td style="text-align: center;">2</td>
+                    <td style="text-align: left;">PPKn</td>
+                    <td style="text-align: center;">{{ $raport_pengetahuan_ppkn }}</td>
+                    <td style="text-align: center;">{{ $predikat_huruf_ppkn }}</td>
+                    <td style="text-align: left;">Memiliki kemampuan <strong> {{ $predikat_huruf_ppkn1 }} </strong>
+                        {{ $predikat_deskripsi_ppkn }}</td>
+                    <td style="text-align: center;">{{ $raport_keterampilan_ppkn }}</td>
+                    <td style="text-align: center;">{{ $predikat_keterampilan_huruf_ppkn }}</td>
+                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikathuruf_ppkn }} </strong>
+                        {{ $predikat_keterampilan_deskripsi_ppkn }}</td>
+                </tr>
                 <tr class="details">
                     <td style="text-align: center;">2</td>
                     <td style="text-align: left;">Bahasa Indonesia</td>
@@ -470,14 +481,14 @@
                                 <tr>
                                     @if ($kelas_siswa == 'Kelas 6')
                                         <td colspan="8">
-                                        LULUS / TIDAK LULUS
-                                        <br>
-                                    </td>
+                                            LULUS / TIDAK LULUS
+                                            <br>
+                                        </td>
                                     @else
                                         <td colspan="8">
-                                        Naik/Tidak Naik
-                                        <br> ke kelas: {{ $kelas_naik }}
-                                    </td>
+                                            Naik/Tidak Naik
+                                            <br> ke kelas: {{ $kelas_naik }}
+                                        </td>
                                     @endif
                                 </tr>
                             @endif
@@ -560,10 +571,7 @@
             </table>
         </div>
     @endif
-    @if ($rombel_kelas_raport == 3 ||
-        $rombel_kelas_raport == 4 ||
-        $rombel_kelas_raport == 5 ||
-        $rombel_kelas_raport == 6)
+    @if ($rombel_kelas_raport == 3 || $rombel_kelas_raport == 4 || $rombel_kelas_raport == 5 || $rombel_kelas_raport == 6)
         <div class="invoice-box">
             <table cellpadding="0" cellspacing="0">
                 <tr class="top">
