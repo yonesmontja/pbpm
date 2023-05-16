@@ -943,7 +943,7 @@
                                     <hr align="center">
                                 </td>
                             </tr>
-                            @if ($semester == 'Genap')
+                            @if ($semester_aktif == 'Genap')
                                 <tr>
                                     <td colspan="8">
                                         Berdasarkan penilaian selama semester ini, siswa dinyatakan:
