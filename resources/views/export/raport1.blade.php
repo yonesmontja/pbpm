@@ -246,11 +246,11 @@
                 </tr>
                 <tr class="details">
                     <td colspan="2">Sikap Spiritual</td>
-                    <td style="text-align: left;" colspan="6">Deskripsi sikap spiritual</td>
+                    <td style="text-align: left;" colspan="6">{{ $deskripsi_sikap_spiritual }}</td>
                 </tr>
                 <tr class="details">
                     <td colspan="2">Sikap Sosial</td>
-                    <td style="text-align: left;" colspan="6">Deskripsi sikap sosial</td>
+                    <td style="text-align: left;" colspan="6">{{ $deskripsi_sikap_sosial }}</td>
                 </tr>
                 </td>
                 </tr>
@@ -447,9 +447,9 @@
                 </tr>
                 <tr class="details">
                     <td colspan="8" style="text-align: left;">
-                        <br>1. sf
-                        <br>2. Catatan 2
-                        <br>3. Catatan 3
+                        <br>{{ $catatan_wali_kelas }}
+                        <br>
+                        <br>
                     </td>
                 </tr>
                 <tr class="top">
@@ -683,11 +683,11 @@
                 </tr>
                 <tr class="details">
                     <td colspan="2">Sikap Spiritual</td>
-                    <td style="text-align: left;" colspan="6">Deskripsi sikap spiritual</td>
+                    <td style="text-align: left;" colspan="6">{{ $deskripsi_sikap_spiritual }}</td>
                 </tr>
                 <tr class="details">
                     <td colspan="2">Sikap Sosial</td>
-                    <td style="text-align: left;" colspan="6">Deskripsi sikap sosial</td>
+                    <td style="text-align: left;" colspan="6">{{ $deskripsi_sikap_sosial }}</td>
                 </tr>
                 </td>
                 </tr>
@@ -930,9 +930,9 @@
                 </tr>
                 <tr class="details">
                     <td colspan="8" style="text-align: left;">
-                        1. Catatan 1
-                        <br>2. Catatan 2
-                        <br>3. Catatan 3
+                        {{ $catatan_wali_kelas }}
+                        <br>
+                        <br>
                     </td>
                 </tr>
                 <tr class="top">
