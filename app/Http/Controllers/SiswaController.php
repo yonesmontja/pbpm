@@ -673,61 +673,85 @@ class SiswaController extends Controller
         // wali kelas di raport
         if ($rombel == 1) {
             $wali_kelas = $rombel1->guru->nama_guru;
+            $nip_guru =
+            $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 2
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
+            $nip_guru =
+            $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 3
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
+            $nip_guru =
+            $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 4
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
+            $nip_guru =
+            $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 5
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
+            $nip_guru =
+            $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 6
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
+            $nip_guru =
+            $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 7
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
+            $nip_guru =
+            $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 8
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
+            $nip_guru =
+            $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 9
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
+            $nip_guru =
+            $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 10
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
+            $nip_guru =
+            $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 11
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
+            $nip_guru =
+            $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 12
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
+            $nip_guru =
+            $rombel1->guru->kode_guru;
         }
 
         //dd($wali_kelas);
@@ -2840,6 +2864,7 @@ class SiswaController extends Controller
                 'nama_rombel' => $nama_rombel,
                 'rombel1' => $rombel1,
                 'wali_kelas' => $wali_kelas,
+                'nip_guru' => $nip_guru,
                 'semester_aktif' => $semester_aktif,
                 'kepsek_aktif' => $kepsek_aktif,
                 'nip_kepsek' => $nip_kepsek,

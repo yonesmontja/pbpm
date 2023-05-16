@@ -525,6 +525,7 @@
                                 </td>
                                 <td text-align="center" colspan="4">
                                     <br>({{ $wali_kelas }})
+                                    <br> Nip. {{ $nip_guru }}
                                     <br>----------------------------------------
                                 </td>
                             </tr>
@@ -1008,6 +1009,7 @@
                                 </td>
                                 <td text-align="center" colspan="4">
                                     ({{ $wali_kelas }})
+                                    <br> Nip. {{ $nip_guru }}
                                 </td>
                             </tr>
                             <tr>
