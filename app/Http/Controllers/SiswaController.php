@@ -2812,7 +2812,7 @@ class SiswaController extends Controller
         $pdf = PDF::loadView(
             'export.raport1',
             [
-                'kelas_naik' => $kelas_naik;
+                'kelas_naik' => $kelas_naik,
                 'deskripsi_sikap_spiritual' => $deskripsi_sikap_spiritual,
                 'deskripsi_sikap_sosial' => $deskripsi_sikap_sosial,
                 'catatan_wali_kelas' => $catatan_wali_kelas,
