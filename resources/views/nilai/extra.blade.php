@@ -382,9 +382,8 @@
                                                     </div>
                                                     <div
                                                         class="form-group {{ $errors->has('saran') ? ' has-error' : '' }}">
-                                                        <label for="exampleFormControlTextarea1">Catatan Wali Kelas:
-                                                            Sikap</label>
-                                                        <textarea name="saran" class="form-control" id="exampleFormControlTextarea1" placeholder="catatan tentang sikap"
+                                                        <label for="exampleFormControlTextarea1">Sikap Spiritual</label>
+                                                        <textarea name="saran" class="form-control" id="exampleFormControlTextarea1" placeholder="deskripsi sikap spiritual"
                                                             value="{{ old('saran') }}" rows="3"></textarea>
                                                     </div>
                                                     @if ($errors->has('saran'))
@@ -392,10 +391,9 @@
                                                     @endif
                                                     <div
                                                         class="form-group {{ $errors->has('ekskul') ? ' has-error' : '' }}">
-                                                        <label for="exampleFormControlTextarea1">Catatan Wali Kelas:
-                                                            Kehadiran</label>
+                                                        <label for="exampleFormControlTextarea1">Sikap Sosial</label>
                                                         <textarea name="ekskul" class="form-control" id="exampleFormControlTextarea1"
-                                                            placeholder="catatan tentang kehadiran" value="{{ old('ekskul') }}" rows="3"></textarea>
+                                                            placeholder="deskripsi sikap sosial" value="{{ old('ekskul') }}" rows="3"></textarea>
                                                     </div>
                                                     @if ($errors->has('ekskul'))
                                                         <span class="help-block">{{ $errors->first('ekskul') }}</span>
