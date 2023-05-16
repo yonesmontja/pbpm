@@ -109,7 +109,7 @@
                                     <div class="col-sm-6">
                                         <button type="button" class="btn btn-primary float-right btn-sm"
                                             data-toggle="modal" data-target="#staticBackdrop">
-                                            TAMBAH DATA ABSEN DAN CATATAN WALI KELAS
+                                            TAMBAH DATA ABSEN, DESKRIPSI SIKAP DAN CATATAN WALI KELAS
                                         </button>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@
                             <div class="card-body">
                                 @if (session('sukses'))
                                     <div class="alert alert-success" role="alert">
-                                        Data <a href="/extra" class="alert-link">Absensi dan Catatan Wali Kelas</a>
+                                        Data <a href="/extra" class="alert-link">Absensi, Deskripsi Sikap dan Catatan Wali Kelas</a>
                                         {{ session('sukses') }}
                                     </div>
                                 @endif
@@ -131,9 +131,9 @@
                                             <th>IJIN</th>
                                             <th>ALPA</th>
                                             <th>KELAS</th>
-                                            <th>Catatan: Sikap</th>
-                                            <th>Catatan: Kehadiran</th>
-                                            <th>Catatan: Motivasi</th>
+                                            <th>SIKAP SPIRITUAL</th>
+                                            <th>SIKAP SOSIAL</th>
+                                            <th>Catatan Wali Kelas</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -198,9 +198,9 @@
                                             <th>IJIN</th>
                                             <th>ALPA</th>
                                             <th>KELAS</th>
-                                            <th>Catatan Wali Kelas: Sikap</th>
-                                            <th>Catatan Wali Kelas: Kehadiran</th>
-                                            <th>Catatan Wali Kelas: Motivasi</th>
+                                            <th>SIKAP SPIRITUAL</th>
+                                            <th>SIKAP SOSIAL</th>
+                                            <th>Catatan Wali Kelas</th>
                                             <th></th>
                                         </tr>
                                     </tfoot>
@@ -400,10 +400,9 @@
                                                     @endif
                                                     <div
                                                         class="form-group {{ $errors->has('prestasi') ? ' has-error' : '' }}">
-                                                        <label for="exampleFormControlTextarea1">Catatan Wali Kelas:
-                                                            Motivasi</label>
+                                                        <label for="exampleFormControlTextarea1">Catatan Wali Kelas</label>
                                                         <textarea name="prestasi" class="form-control" id="exampleFormControlTextarea1"
-                                                            placeholder="catatan motivasi siswa (jika ada)" value="{{ old('prestasi') }}" rows="3"></textarea>
+                                                            placeholder="catatan wali kelas (jika ada, misalnya tentang prestasi siswa yg menonjol, motivasi, keterangan dalam bidang ekskul, atau saran umum untuk semester dan/atau kelas berikutnya ...)" value="{{ old('prestasi') }}" rows="3"></textarea>
                                                     </div>
                                                     @if ($errors->has('prestasi'))
                                                         <span class="help-block">{{ $errors->first('prestasi') }}</span>
