@@ -2837,6 +2837,7 @@ class SiswaController extends Controller
         }
         //data sekolah
         $kepsek = Sekolah::all();
+        //dd($kepsek);
         foreach ($kepsek as $k) {
             $kepala = $k->kepsek;
             $nip = $k->nip_kepsek;
