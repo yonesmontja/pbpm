@@ -324,7 +324,7 @@
                         {{ $predikat_keterampilan_deskripsi_ppkn }}</td>
                 </tr>
                 <tr class="details">
-                    <td style="text-align: center;">2</td>
+                    <td style="text-align: center;">3</td>
                     <td style="text-align: left;">Bahasa Indonesia</td>
                     <td style="text-align: center;">{{ $raport_pengetahuan_indonesia }}</td>
                     <td style="text-align: center;">{{ $predikat_huruf_indonesia }}</td>
@@ -336,7 +336,7 @@
                         {{ $predikat_keterampilan_deskripsi_indonesia }}</td>
                 </tr>
                 <tr class="details">
-                    <td style="text-align: center;">3</td>
+                    <td style="text-align: center;">4</td>
                     <td style="text-align: left;">Matematika</td>
                     <td style="text-align: center;">{{ $raport_pengetahuan_matematika }}</td>
                     <td style="text-align: center;">{{ $predikat_huruf_matematika }}</td>
@@ -363,7 +363,18 @@
                     <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikathuruf_pjok }} </strong>
                         {{ $predikat_keterampilan_deskripsi_pjok }}</td>
                 </tr>
-
+                <tr class="details">
+                    <td style="text-align: center;">2</td>
+                    <td style="text-align: left;">Seni Budaya dan Keterampilan</td>
+                    <td style="text-align: center;">{{ $raport_pengetahuan_sbk }}</td>
+                    <td style="text-align: center;">{{ $predikat_huruf_sbk }}</td>
+                    <td style="text-align: left;">Memiliki kemampuan <strong> {{ $predikat_huruf_sbk1 }} </strong>
+                        {{ $predikat_deskripsi_sbk }}</td>
+                    <td style="text-align: center;">{{ $raport_keterampilan_sbk }}</td>
+                    <td style="text-align: center;">{{ $predikat_keterampilan_huruf_sbk }}</td>
+                    <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikathuruf_sbk }} </strong>
+                        {{ $predikat_keterampilan_deskripsi_sbk }}</td>
+                </tr>
                 <tr class="details">
                     <td colspan="2" style="text-align: center;">Jumlah</td>
                     <td style="text-align: center;">{{ $jumlah_raport_pengetahuan }}</td>
