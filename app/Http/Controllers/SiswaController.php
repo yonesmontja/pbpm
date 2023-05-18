@@ -1804,62 +1804,67 @@ class SiswaController extends Controller
         // --------------------------------------------------------------------
         // hitung nilai raport
         if ($students->agama == "Islam" || $students->agama == "islam") {
-            $raport_pengetahuan_islam = ((($rata_rata_tugas_islam
-                + $rata_rata_latihan_islam + $rata_rata_uh_islam) * 2)
+            $semua_nilai_proses = [$rata_rata_tugas_islam, $rata_rata_latihan_islam, $rata_rata_uh_islam];
+            $raport_pengetahuan_islam = ((max($semua_nilai_proses) * 2)
                 + ($rata_rata_pts_islam * 1)
-                + ($rata_rata_pas_islam * 1)) / 8;
+                + ($rata_rata_pas_islam * 1)) / 4;
             $raport_pengetahuan_agama = number_format((float)$raport_pengetahuan_islam, 1, '.', '');
         }
         //dd($raport_pengetahuan_islam);
         if ($students->agama == "Kristen Protestan" || $students->agama == "kristen protestan") {
-            $raport_pengetahuan_protestan = ((($rata_rata_tugas_protestan
-                + $rata_rata_latihan_protestan + $rata_rata_uh_protestan) * 2)
+            $semua_nilai_proses = [$rata_rata_tugas_protestan, $rata_rata_latihan_protestan, $rata_rata_uh_protestan];
+            $raport_pengetahuan_protestan = (((max($semua_nilai_proses)) * 2)
                 + ($rata_rata_pts_protestan * 1)
-                + ($rata_rata_pas_protestan * 1)) / 8;
+                + ($rata_rata_pas_protestan * 1)) / 4;
             $raport_pengetahuan_agama = number_format((float)$raport_pengetahuan_protestan, 1, '.', '');
         }
         //dd($rata_rata_tugas_protestan);
         if ($students->agama == "Katolik" || $students->agama == "katolik") {
-            $raport_pengetahuan_katolik = ((($rata_rata_tugas_katolik
-                + $rata_rata_latihan_katolik + $rata_rata_uh_katolik) * 2)
+            $semua_nilai_proses = [$rata_rata_tugas_katolik, $rata_rata_latihan_katolik, $rata_rata_uh_katolik];
+            $raport_pengetahuan_katolik = (((max($semua_nilai_proses)) * 2)
                 + ($rata_rata_pts_katolik * 1)
-                + ($rata_rata_pas_katolik * 1)) / 8;
+                + ($rata_rata_pas_katolik * 1)) / 4;
             $raport_pengetahuan_agama = number_format((float)$raport_pengetahuan_katolik, 1, '.', '');
         }
-        $raport_pengetahuan_ppkn = ((($rata_rata_tugas_ppkn
-            + $rata_rata_latihan_ppkn + $rata_rata_uh_ppkn) * 2)
-            + ($rata_rata_pts_ppkn * 1)
-            + ($rata_rata_pas_ppkn * 1)) / 8;
+        $raport_pengetahuan_ppkn = (((max(
+            [$rata_rata_tugas_ppkn, $rata_rata_latihan_ppkn, $rata_rata_uh_ppkn]
+        )) * 2) + ($rata_rata_pts_ppkn * 1) + ($rata_rata_pas_ppkn * 1)) / 4;
         $raport_pengetahuan_ppkn = number_format((float)$raport_pengetahuan_ppkn, 1, '.', '');
-        $raport_pengetahuan_indonesia = ((($rata_rata_tugas_indonesia
-            + $rata_rata_latihan_indonesia + $rata_rata_uh_indonesia) * 2)
+        $raport_pengetahuan_indonesia = (((max([
+            $rata_rata_tugas_ppkn, $rata_rata_latihan_ppkn, $rata_rata_uh_ppkn
+        ])) * 2)
             + ($rata_rata_pts_indonesia * 1)
-            + ($rata_rata_pas_indonesia * 1)) / 8;
+            + ($rata_rata_pas_indonesia * 1)) / 4;
         $raport_pengetahuan_indonesia = number_format((float)$raport_pengetahuan_indonesia, 1, '.', '');
-        $raport_pengetahuan_matematika = ((($rata_rata_tugas_matematika
-            + $rata_rata_latihan_matematika + $rata_rata_uh_matematika) * 2)
+        $raport_pengetahuan_matematika = (((max([
+            $rata_rata_tugas_matematika, $rata_rata_latihan_matematika, $rata_rata_uh_matematika
+        ])) * 2)
             + ($rata_rata_pts_matematika * 1)
-            + ($rata_rata_pas_matematika * 1)) / 8;
+            + ($rata_rata_pas_matematika * 1)) / 4;
         $raport_pengetahuan_matematika = number_format((float)$raport_pengetahuan_matematika, 1, '.', '');
-        $raport_pengetahuan_ipa = ((($rata_rata_tugas_ipa
-            + $rata_rata_latihan_ipa + $rata_rata_uh_ipa) * 2)
+        $raport_pengetahuan_ipa = (((max([
+            $rata_rata_tugas_ipa, $rata_rata_latihan_ipa, $rata_rata_uh_ipa
+        ])) * 2)
             + ($rata_rata_pts_ipa * 1)
-            + ($rata_rata_pas_ipa * 1)) / 8;
+            + ($rata_rata_pas_ipa * 1)) / 4;
         $raport_pengetahuan_ipa = number_format((float)$raport_pengetahuan_ipa, 1, '.', '');
-        $raport_pengetahuan_ips = ((($rata_rata_tugas_ips
-            + $rata_rata_latihan_ips + $rata_rata_uh_ips) * 2)
+        $raport_pengetahuan_ips = (((max([
+            $rata_rata_tugas_ips, $rata_rata_latihan_ips, $rata_rata_uh_ips
+        ])) * 2)
             + ($rata_rata_pts_ips * 1)
-            + ($rata_rata_pas_ips * 1)) / 8;
+            + ($rata_rata_pas_ips * 1)) / 4;
         $raport_pengetahuan_ips = number_format((float)$raport_pengetahuan_ips, 1, '.', '');
-        $raport_pengetahuan_pjok = ((($rata_rata_tugas_pjok
-            + $rata_rata_latihan_pjok + $rata_rata_uh_pjok) * 2)
+        $raport_pengetahuan_pjok = (((max([
+            $rata_rata_tugas_pjok, $rata_rata_latihan_pjok, $rata_rata_uh_pjok
+        ])) * 2)
             + ($rata_rata_pts_pjok * 1)
-            + ($rata_rata_pas_pjok * 1)) / 8;
+            + ($rata_rata_pas_pjok * 1)) / 4;
         $raport_pengetahuan_pjok = number_format((float)$raport_pengetahuan_pjok, 1, '.', '');
-        $raport_pengetahuan_sbk = ((($rata_rata_tugas_sbk
-            + $rata_rata_latihan_sbk + $rata_rata_uh_sbk) * 2)
+        $raport_pengetahuan_sbk = (((max([
+            $rata_rata_tugas_sbk, $rata_rata_latihan_sbk, $rata_rata_uh_sbk
+        ])) * 2)
             + ($rata_rata_pts_sbk * 1)
-            + ($rata_rata_pas_sbk * 1)) / 8;
+            + ($rata_rata_pas_sbk * 1)) / 4;
         $raport_pengetahuan_sbk = number_format((float)$raport_pengetahuan_sbk, 1, '.', '');
         $kkm = 65;
         // deskripsi agama
