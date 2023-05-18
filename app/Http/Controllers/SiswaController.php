@@ -396,7 +396,8 @@ class SiswaController extends Controller
             $rombel == 1 || $rombel == 2 || $rombel == 3 || $rombel == 4
         ) {
 
-            if ($siswa->agama == 'islam' || $siswa->agama == "Islam"
+            if (
+                $siswa->agama == 'islam' || $siswa->agama == "Islam"
             ) {
                 $agama_average = (int)$islam_average;
                 $mapel3[0] = "Agama Islam";
@@ -676,84 +677,84 @@ class SiswaController extends Controller
         if ($rombel == 1) {
             $wali_kelas = $rombel1->guru->nama_guru;
             $nip_guru =
-            $rombel1->guru->kode_guru;
+                $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 2
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
             $nip_guru =
-            $rombel1->guru->kode_guru;
+                $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 3
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
             $nip_guru =
-            $rombel1->guru->kode_guru;
+                $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 4
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
             $nip_guru =
-            $rombel1->guru->kode_guru;
+                $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 5
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
             $nip_guru =
-            $rombel1->guru->kode_guru;
+                $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 6
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
             $nip_guru =
-            $rombel1->guru->kode_guru;
+                $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 7
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
             $nip_guru =
-            $rombel1->guru->kode_guru;
+                $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 8
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
             $nip_guru =
-            $rombel1->guru->kode_guru;
+                $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 9
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
             $nip_guru =
-            $rombel1->guru->kode_guru;
+                $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 10
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
             $nip_guru =
-            $rombel1->guru->kode_guru;
+                $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 11
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
             $nip_guru =
-            $rombel1->guru->kode_guru;
+                $rombel1->guru->kode_guru;
         }
         if (
             $rombel == 12
         ) {
             $wali_kelas = $rombel1->guru->nama_guru;
             $nip_guru =
-            $rombel1->guru->kode_guru;
+                $rombel1->guru->kode_guru;
         }
 
         //dd($wali_kelas);
@@ -2126,10 +2127,10 @@ class SiswaController extends Controller
             $rombel == 3
         ) {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
-
+                + $raport_pengetahuan_ppkn
                 + $raport_pengetahuan_indonesia
                 + $raport_pengetahuan_matematika
-
+                + $raport_pengetahuan_sbk
                 + $raport_pengetahuan_pjok;
         }
         if (
