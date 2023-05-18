@@ -2113,6 +2113,8 @@ class SiswaController extends Controller
                 + $raport_pengetahuan_indonesia
                 + $raport_pengetahuan_matematika
                 + $raport_pengetahuan_pjok;
+            $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
+            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 4, 1, '.', '');
         }
         if (
             $rombel == 2
@@ -2122,6 +2124,8 @@ class SiswaController extends Controller
                 + $raport_pengetahuan_indonesia
                 + $raport_pengetahuan_matematika
                 + $raport_pengetahuan_pjok;
+            $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
+            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 4, 1, '.', '');
         }
         if (
             $rombel == 3
@@ -2132,6 +2136,8 @@ class SiswaController extends Controller
                 + $raport_pengetahuan_matematika
                 + $raport_pengetahuan_sbk
                 + $raport_pengetahuan_pjok;
+            $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
+            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 6, 1, '.', '');
         }
         if (
             $rombel == 4
@@ -2142,6 +2148,8 @@ class SiswaController extends Controller
                 + $raport_pengetahuan_matematika
 
                 + $raport_pengetahuan_pjok;
+            $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
+            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 4, 1, '.', '');
         }
         if (
             $rombel == 5
@@ -2154,6 +2162,8 @@ class SiswaController extends Controller
                 + $raport_pengetahuan_ips
                 + $raport_pengetahuan_pjok
                 + $raport_pengetahuan_sbk;
+            $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
+            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 8, 1, '.', '');
         }
         if (
             $rombel == 6
@@ -2166,6 +2176,8 @@ class SiswaController extends Controller
                 + $raport_pengetahuan_ips
                 + $raport_pengetahuan_pjok
                 + $raport_pengetahuan_sbk;
+            $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
+            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 8, 1, '.', '');
         }
         if (
             $rombel == 7
@@ -2178,6 +2190,8 @@ class SiswaController extends Controller
                 + $raport_pengetahuan_ips
                 + $raport_pengetahuan_pjok
                 + $raport_pengetahuan_sbk;
+            $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
+            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 8, 1, '.', '');
         }
         if (
             $rombel == 8
@@ -2190,6 +2204,8 @@ class SiswaController extends Controller
                 + $raport_pengetahuan_ips
                 + $raport_pengetahuan_pjok
                 + $raport_pengetahuan_sbk;
+            $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
+            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 8, 1, '.', '');
         }
         if (
             $rombel == 9
@@ -2202,6 +2218,8 @@ class SiswaController extends Controller
                 + $raport_pengetahuan_ips
                 + $raport_pengetahuan_pjok
                 + $raport_pengetahuan_sbk;
+            $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
+            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 8, 1, '.', '');
         }
         if (
             $rombel == 10
@@ -2214,6 +2232,8 @@ class SiswaController extends Controller
                 + $raport_pengetahuan_ips
                 + $raport_pengetahuan_pjok
                 + $raport_pengetahuan_sbk;
+            $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
+            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 8, 1, '.', '');
         }
         if (
             $rombel == 11
@@ -2226,6 +2246,8 @@ class SiswaController extends Controller
                 + $raport_pengetahuan_ips
                 + $raport_pengetahuan_pjok
                 + $raport_pengetahuan_sbk;
+            $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
+            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 8, 1, '.', '');
         }
         if (
             $rombel == 12
@@ -2238,9 +2260,10 @@ class SiswaController extends Controller
                 + $raport_pengetahuan_ips
                 + $raport_pengetahuan_pjok
                 + $raport_pengetahuan_sbk;
+            $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
+            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 8, 1, '.', '');
         }
-        $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
-        $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 8, 1, '.', '');
+
 
         //$jumlah_raport = number_format((float)$jumlah_raport_pengetahuan+$jumlah_raport_pengetahuan, 1, '.', '');
         //$ratarata_raport = number_format((float)($ratarata_raport_pengetahuan+$ratarata_raport_pengetahuan)/2, 1, '.', '');
