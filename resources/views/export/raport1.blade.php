@@ -905,14 +905,14 @@
                     <td colspan="5">Keterangan dalam Kegiatan</td>
                 </tr>
                 <tr class="details">
-                    <td colspan="2" style="text-align: center;">Ekskul 1</td>
-                    <td style="text-align: center;">#605</td>
-                    <td colspan="5" style="text-align: center;">Baik</td>
+                    <td colspan="2" style="text-align: center;">1</td>
+                    <td style="text-align: center;">---</td>
+                    <td colspan="5" style="text-align: center;">---</td>
                 </tr>
                 <tr class="details">
-                    <td colspan="2" style="text-align: center;">Ekskul 2</td>
-                    <td style="text-align: center;">#605</td>
-                    <td colspan="5" style="text-align: center;">Baik</td>
+                    <td colspan="2" style="text-align: center;">2</td>
+                    <td style="text-align: center;">---</td>
+                    <td colspan="5" style="text-align: center;">---</td>
                 </tr>
                 <tr>
                     <td colspan="8">
