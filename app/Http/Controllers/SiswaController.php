@@ -295,8 +295,8 @@ class SiswaController extends Controller
 
     public function testdelete(Siswa $siswa)
     {
-        dd($siswa);
-        $user->delete_avatar();
+        //dd($siswa);
+        $siswa->delete_avatar();
         $siswa->delete();
         return redirect('/test')->with('sukses', 'berhasil dihapus!');
     }

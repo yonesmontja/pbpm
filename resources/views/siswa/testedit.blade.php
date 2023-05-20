@@ -94,7 +94,6 @@
                                             <option value="6" @if ($siswa->kelas_id == 6) selected @endif>
                                                 Kelas 6
                                             </option>
-
                                         </select>
                                     </div>
                                 </div>
@@ -104,6 +103,7 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Pilih Jenis Kelamin</label>
                                         <select name="jenis_kelamin" class="form-control" id="exampleFormControlSelect1">
+                                            <option value="{{ $siswa->jenis_kelamin }}">{{ $siswa->jenis_kelamin }}</option>
                                             <option value="Laki-laki" @if ($siswa->jenis_kelamin == 'Laki-laki') selected @endif>
                                                 Laki-laki
                                             </option>
@@ -117,6 +117,7 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Pilih Agama</label>
                                         <select name="agama" class="form-control" id="exampleFormControlSelect1">
+                                            <option value="{{ $siswa->agama }}">{{ $siswa->agama }}</option>
                                             <option value="islam" @if ($siswa->agama == 'islam') selected @endif>Islam
                                             </option>
                                             <option value="katolik" @if ($siswa->agama == 'katolik') selected @endif>
@@ -160,7 +161,7 @@
                                             <div class="custom-file">
                                                 <input class="form-control" type="file" value="{{ $siswa->avatar }}" name="avatar"
                                                     class="custom-file-input" id="avatar" onchange="previewImage()">
-                                                <label class="custom-file-label" for="avatar">Choose file</label>
+                                                <label class="custom-file-label" for="avatar">Pilih foto siswa jika mau ganti yang baru</label>
                                             </div>
                                         </div>
                                     </div>

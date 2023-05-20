@@ -138,10 +138,8 @@
                                 <label for="avatar" class="form-label">Avatar</label>
                                 <div class="row">
                                     <div class="col-3">
-
                                         <img class="profile-user-img img-fluid img-circle" src="{{ $guru->avatar() }}"
                                             alt="User profile picture">
-
                                     </div>
                                     <div class="col-9">
                                         <div class="input-group">
@@ -154,16 +152,12 @@
                                             <div>
                                                 <img class="img-preview img-fluid mb-3 col-sm-2" alt="">
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                         <!-- /.card-body -->
-
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
