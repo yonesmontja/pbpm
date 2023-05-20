@@ -361,7 +361,7 @@
                                             <th>AGAMA</th>
                                             <th>KELAS</th>
                                             <th>CETAK</th>
-                                            @if (auth()->user()->role == 'admin')
+                                            @if (auth()->user()->role == 'admin' || auth()->user()->role == 'guru')
                                                 <th>AKSI</th>
                                             @endif
                                         </tr>
