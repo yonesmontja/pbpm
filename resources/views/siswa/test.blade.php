@@ -272,7 +272,24 @@
                                                             class="btn btn-primary btn-sm">Raport
                                                         </a>
                                                     </td>
-
+                                                    <td>
+                                                        <a href="/test/{{ $siswa->id }}/edit"
+                                                            class="btn btn-warning btn-sm">Ubah
+                                                        </a>
+                                                        <a href="/test/{{ $siswa->id }}/delete"
+                                                            class="btn btn-danger btn-sm"
+                                                            onclick="return confirm('Yakin mau dihapus?')">Hapus
+                                                        </a>
+                                                        @if ($siswa->user_id == null)
+                                                            <a href="#"
+                                                                class="btn btn-primary btn-sm" data-toggle="modal"
+                                                                data-target="#modal-dialog2{{ $siswa->id }}">Aktivasi
+                                                            </a>
+                                                        @else
+                                                            <button type="button"
+                                                                class="btn btn-default btn-sm disabled">User Aktif</button>
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                                 <!-- Modal aktivasi -->
                                                 <div class="modal fade" id="modalAktivasi{{ $siswa->id }}"
