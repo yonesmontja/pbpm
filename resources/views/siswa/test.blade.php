@@ -158,31 +158,31 @@
                                                     @endforeach
                                                     <td>
                                                         <a href="/siswa/{{ $siswa->id }}/cover_pdf"
-                                                            class="btn btn-primary btn-sm">Cover
+                                                            class="btn btn-primary btn-xs">Cover
                                                         </a>
                                                         <a href="/siswa/{{ $siswa->id }}/biodata_pdf"
-                                                            class="btn btn-primary btn-sm">Bio
+                                                            class="btn btn-primary btn-xs">Bio
                                                         </a>
                                                         <a href="/siswa/{{ $siswa->id }}/export_pdf"
-                                                            class="btn btn-primary btn-sm">Raport
+                                                            class="btn btn-primary btn-xs">Raport
                                                         </a>
                                                     </td>
                                                     <td>
                                                         <a href="/test/{{ $siswa->id }}/edit"
-                                                            class="btn btn-warning btn-sm">Ubah
+                                                            class="btn btn-warning btn-xs">Ubah
                                                         </a>
                                                         <a href="/test/{{ $siswa->id }}/delete"
-                                                            class="btn btn-danger btn-sm"
+                                                            class="btn btn-danger btn-xs"
                                                             onclick="return confirm('Yakin mau dihapus?')">Hapus
                                                         </a>
                                                         @if ($siswa->user_id == null)
                                                             <a href="/test/{{ $siswa->id }}/aktivasi"
-                                                                class="btn btn-primary btn-sm" data-toggle="modal"
+                                                                class="btn btn-primary btn-xs" data-toggle="modal"
                                                                 data-target="#modal-dialog2{{ $siswa->id }}">Aktivasi
                                                             </a>
                                                         @else
                                                             <button type="button"
-                                                                class="btn btn-default btn-sm disabled">User Aktif</button>
+                                                                class="btn btn-default btn-xs disabled">User Aktif</button>
                                                         @endif
                                                     </td>
                                                 </tr>
@@ -263,31 +263,31 @@
                                                     @endforeach
                                                     <td>
                                                         <a href="/siswa/{{ $siswa->id }}/cover_pdf"
-                                                            class="btn btn-primary btn-sm">Cover
+                                                            class="btn btn-primary btn-xs">Cover
                                                         </a>
                                                         <a href="/siswa/{{ $siswa->id }}/biodata_pdf"
-                                                            class="btn btn-primary btn-sm">Bio
+                                                            class="btn btn-primary btn-xs">Bio
                                                         </a>
                                                         <a href="/siswa/{{ $siswa->id }}/export_pdf"
-                                                            class="btn btn-primary btn-sm">Raport
+                                                            class="btn btn-primary btn-xs">Raport
                                                         </a>
                                                     </td>
                                                     <td>
                                                         <a href="/test/{{ $siswa->id }}/edit"
-                                                            class="btn btn-warning btn-sm">Ubah
+                                                            class="btn btn-warning btn-xs">Ubah
                                                         </a>
                                                         <a href="/test/{{ $siswa->id }}/delete"
-                                                            class="btn btn-danger btn-sm"
+                                                            class="btn btn-danger btn-xs"
                                                             onclick="return confirm('Yakin mau dihapus?')">Hapus
                                                         </a>
                                                         @if ($siswa->user_id == null)
                                                             <a href="#"
-                                                                class="btn btn-primary btn-sm" data-toggle="modal"
+                                                                class="btn btn-primary btn-xs" data-toggle="modal"
                                                                 data-target="#modal-dialog2{{ $siswa->id }}">Aktivasi
                                                             </a>
                                                         @else
                                                             <button type="button"
-                                                                class="btn btn-default btn-sm disabled">User Aktif</button>
+                                                                class="btn btn-default btn-xs disabled">User Aktif</button>
                                                         @endif
                                                     </td>
                                                 </tr>
