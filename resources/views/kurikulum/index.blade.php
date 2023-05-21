@@ -208,9 +208,8 @@
                                 <div class="row">
                                     <div class="col-md-8">
                                         <p class="text-center">
-                                            <strong>Rata-rata Nilai: Jan-Jun, 2022</strong>
+                                            <strong>Rata-rata Nilai: Jan-Jun, 2023</strong>
                                         </p>
-
                                         <div class="chart">
                                             <div class="chartjs-size-monitor">
                                                 <div class="chartjs-size-monitor-expand">
