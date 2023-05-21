@@ -193,6 +193,14 @@ function totalKelas1Percentage()
 {
     return totalKelas1() / totalSiswa() * 100;
 }
+function totalKelas1A()
+{
+    return DB::table('rombel_siswa')->where('rombel_id', '=', '1')->count();
+}
+function totalKelas1B()
+{
+    return DB::table('rombel_siswa')->where('rombel_id', '=', '2')->count();
+}
 function totalKelas2()
 {
     return DB::table('rombel_siswa')->where('rombel_id', '=', '3')->count() + DB::table('rombel_siswa')->where('rombel_id', '=', '4')->count();
@@ -200,6 +208,14 @@ function totalKelas2()
 function totalKelas2Percentage()
 {
     return totalKelas2() / totalSiswa() * 100;
+}
+function totalKelas2A()
+{
+    return DB::table('rombel_siswa')->where('rombel_id', '=', '3')->count();
+}
+function totalKelas2B()
+{
+    return DB::table('rombel_siswa')->where('rombel_id', '=', '4')->count();
 }
 function totalKelas3()
 {
@@ -209,6 +225,14 @@ function totalKelas3Percentage()
 {
     return totalKelas3() / totalSiswa() * 100;
 }
+function totalKelas3A()
+{
+    return DB::table('rombel_siswa')->where('rombel_id', '=', '5')->count();
+}
+function totalKelas3B()
+{
+    return DB::table('rombel_siswa')->where('rombel_id', '=', '6')->count();
+}
 function totalKelas4()
 {
     return DB::table('rombel_siswa')->where('rombel_id', '=', '7')->count() + DB::table('rombel_siswa')->where('rombel_id', '=', '8')->count();
@@ -216,6 +240,14 @@ function totalKelas4()
 function totalKelas4Percentage()
 {
     return totalKelas4() / totalSiswa() * 100;
+}
+function totalKelas4A()
+{
+    return DB::table('rombel_siswa')->where('rombel_id', '=', '7')->count();
+}
+function totalKelas4B()
+{
+    return DB::table('rombel_siswa')->where('rombel_id', '=', '8')->count();
 }
 function totalKelas5()
 {
@@ -225,6 +257,14 @@ function totalKelas5Percentage()
 {
     return totalKelas5() / totalSiswa() * 100;
 }
+function totalKelas5A()
+{
+    return DB::table('rombel_siswa')->where('rombel_id', '=', '9')->count();
+}
+function totalKelas5B()
+{
+    return DB::table('rombel_siswa')->where('rombel_id', '=', '10')->count();
+}
 function totalKelas6()
 {
     return DB::table('rombel_siswa')->where('rombel_id', '=', '11')->count() + DB::table('rombel_siswa')->where('rombel_id', '=', '12')->count();
@@ -233,7 +273,14 @@ function totalKelas6Percentage()
 {
     return totalKelas6() / totalSiswa() * 100;
 }
-
+function totalKelas6A()
+{
+    return DB::table('rombel_siswa')->where('rombel_id', '=', '11')->count();
+}
+function totalKelas6B()
+{
+    return DB::table('rombel_siswa')->where('rombel_id', '=', '12')->count();
+}
 function journal_this_week()
 {
     $dateS = Carbon::now()->startOfMonth()->subMonth(0);

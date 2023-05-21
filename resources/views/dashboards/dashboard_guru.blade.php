@@ -39,8 +39,21 @@
                          <div class="col-sm-6">
                              <h3 class="d-inline-block d-sm-none">Selamat Datang</h3>
                              <div class="col-12">
-                                 <img src="{{ asset('/admin/dist/img/prod-1.jpeg') }}" class="product-image"
-                                     alt="Product Image">
+                                 <div class="col-12 col-sm-6 col-md-2">
+                                     <div class="info-box">
+                                         <span class="info-box-icon bg-success elevation-1"><i
+                                                 class="fas fa-users"></i></span>
+                                         <div class="info-box-content">
+                                             <span class="info-box-text"><a href="#">Kelas 1</a></span>
+                                             <span class="info-box-number">
+                                                 {{ totalKelas1A() }}
+                                                 <small> siswa</small>
+                                             </span>
+                                         </div>
+                                         <!-- /.info-box-content -->
+                                     </div>
+                                     <!-- /.info-box -->
+                                 </div>
                              </div>
                              <div class="mt-4">
                                  <div class="col-12">
@@ -67,41 +80,41 @@
                          <hr>
                          <div class="col-sm-6">
                              <div class="row">
-                                <div class="col-12">
-                                    <div class="card card-primary card-outline">
-                                        <div class="card-body box-profile">
-                                            <div class="text-center">
-                                                <h3 class="d-inline-block">Selamat Datang</h3>
-                                                <hr>
-                                                <h3 class="d-inline-block">Yepmum</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h3 class="d-inline-block d-sm-none">Yepmum</h3>
-                                </div>
+                                 <div class="col-12">
+                                     <div class="card card-primary card-outline">
+                                         <div class="card-body box-profile">
+                                             <div class="text-center">
+                                                 <h3 class="d-inline-block">Selamat Datang</h3>
+                                                 <hr>
+                                                 <h3 class="d-inline-block">Yepmum</h3>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <h3 class="d-inline-block d-sm-none">Yepmum</h3>
+                                 </div>
                              </div>
                              <!-- Profile Image -->
                              <div class="row">
-                                <div class="col-12">
-                                 <div class="card card-primary card-outline">
-                                     <div class="card-body box-profile">
-                                         <div class="text-center">
-                                             <img class="profile-user-img img-fluid img-circle"
-                                                 src="{{ auth()->user()->avatar() }}" alt="User profile picture">
-                                         </div>
-                                         @if (auth()->user()->role == 'guru')
-                                             <h3 class="profile-username text-center"><a
-                                                     href="#">{{ $nama_guru }}
+                                 <div class="col-12">
+                                     <div class="card card-primary card-outline">
+                                         <div class="card-body box-profile">
+                                             <div class="text-center">
+                                                 <img class="profile-user-img img-fluid img-circle"
+                                                     src="{{ auth()->user()->avatar() }}" alt="User profile picture">
+                                             </div>
+                                             @if (auth()->user()->role == 'guru')
+                                                 <h3 class="profile-username text-center"><a
+                                                         href="#">{{ $nama_guru }}
                                                      </a></h3>
-                                             <h5 class="text-center"><a href="/isinilai/{{ $guru }}"
-                                                     class="btn btn-primary btn-lg btn-flat">
-                                                     Isi Nilai
-                                                 </a></h5>
-                                         @endif
+                                                 <h5 class="text-center"><a href="/isinilai/{{ $guru }}"
+                                                         class="btn btn-primary btn-lg btn-flat">
+                                                         Isi Nilai
+                                                     </a></h5>
+                                             @endif
+                                         </div>
+                                         <!-- /.card-body -->
                                      </div>
-                                     <!-- /.card-body -->
                                  </div>
-                             </div>
                              </div>
                              <!-- /.card -->
                              <hr>
