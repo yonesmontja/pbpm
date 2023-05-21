@@ -187,7 +187,7 @@ function totalKi()
 }
 function totalKelas1()
 {
-    return Siswa::all()->where('kelas', '=', 'Kelas 1')->pluck('kelas')->count();
+    return DB::table('rombel_siswa')->where('rombel_id', '=', '1')->count() + DB::table('rombel_siswa')->where('rombel_id', '=', '2')->count();
 }
 function totalKelas1Percentage()
 {
@@ -195,7 +195,7 @@ function totalKelas1Percentage()
 }
 function totalKelas2()
 {
-    return Siswa::all()->where('kelas', '=', 'Kelas 2')->pluck('kelas')->count();
+    return DB::table('rombel_siswa')->where('rombel_id', '=', '3')->count() + DB::table('rombel_siswa')->where('rombel_id', '=', '4')->count();
 }
 function totalKelas2Percentage()
 {
@@ -203,7 +203,7 @@ function totalKelas2Percentage()
 }
 function totalKelas3()
 {
-    return Siswa::all()->where('kelas', '=', 'Kelas 3')->pluck('kelas')->count();
+    return DB::table('rombel_siswa')->where('rombel_id', '=', '5')->count() + DB::table('rombel_siswa')->where('rombel_id', '=', '6')->count();
 }
 function totalKelas3Percentage()
 {
@@ -211,7 +211,7 @@ function totalKelas3Percentage()
 }
 function totalKelas4()
 {
-    return Siswa::all()->where('kelas', '=', 'Kelas 4')->pluck('kelas')->count();
+    return DB::table('rombel_siswa')->where('rombel_id', '=', '7')->count() + DB::table('rombel_siswa')->where('rombel_id', '=', '8')->count();
 }
 function totalKelas4Percentage()
 {
@@ -219,7 +219,7 @@ function totalKelas4Percentage()
 }
 function totalKelas5()
 {
-    return Siswa::all()->where('kelas', '=', 'Kelas 5')->pluck('kelas')->count();
+    return DB::table('rombel_siswa')->where('rombel_id', '=', '9')->count() + DB::table('rombel_siswa')->where('rombel_id', '=', '10')->count();
 }
 function totalKelas5Percentage()
 {
@@ -227,7 +227,7 @@ function totalKelas5Percentage()
 }
 function totalKelas6()
 {
-    return Siswa::all()->where('kelas', '=', 'Kelas 6')->pluck('kelas')->count();
+    return DB::table('rombel_siswa')->where('rombel_id', '=', '11')->count() + DB::table('rombel_siswa')->where('rombel_id', '=', '12')->count();
 }
 function totalKelas6Percentage()
 {

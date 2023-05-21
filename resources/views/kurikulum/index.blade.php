@@ -233,7 +233,6 @@
                                         <p class="text-center">
                                             <strong>Persentase Jumlah Siswa</strong>
                                         </p>
-
                                         <div class="progress-group">
                                             Kelas 1
                                             <span
@@ -244,7 +243,6 @@
                                             </div>
                                         </div>
                                         <!-- /.progress-group -->
-
                                         <div class="progress-group">
                                             Kelas 2
                                             <span
@@ -254,7 +252,6 @@
                                                     style="width: {{ totalKelas2Percentage() }}%"></div>
                                             </div>
                                         </div>
-
                                         <!-- /.progress-group -->
                                         <div class="progress-group">
                                             <span class="progress-text">Kelas 3</span>
