@@ -269,7 +269,8 @@ class SiswaController extends Controller
             return redirect('/test')->with('sukses', 'berhasil diupdate!');
         }
         if (auth()->user()->role == 'guru') {
-            return Redirect::route('testsiswaprofile', ['siswa' => $siswa_id])->with('sukses', 'berhasil diupdate!');
+            //return Redirect::route('testsiswaprofile', ['siswa' => $siswa_id])->with('sukses', 'berhasil diupdate!');
+            return redirect('/test')->with('sukses', 'berhasil diupdate!');
         }
     }
 
