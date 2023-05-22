@@ -1887,6 +1887,44 @@ class DashboardController extends Controller
         $guru = Guru::where('user_id', '=', $id)->pluck('id')->first();
         $nama_guru = Guru::where('user_id', '=', $id)->pluck('nama_guru')->first();
         //dd($nama_guru);
+        $satu = DB::table('rombel_siswa')->where('rombel_id', '=', 1)->pluck('siswa_id');
+        $data_siswa = Siswa::orderBy('nama_depan')->get();
+        $user_id = Siswa::orderBy('nama_depan')->get();
+        $kelas = Kelas::all();
+        $rombel = Rombel::all();
+        $rombel1 = DB::table('rombel_siswa')->pluck('siswa_id')->toArray();
+        $data_siswa1 = $data_siswa->pluck('id')->toArray();
+        if (auth()->user()->role == 'guru') {
+            // mengambil data siswa yang sudah memiliki rombel dan menampilkannya sesuai user()->role == guru
+            // langkah pertama ambil id user yg role == guru dan sedang buka route /test
+            $id_user = auth()->user()->id;
+            // lalu cari id guru dengan user_id == $id_user
+            $id_guru = Guru::where('user_id', '=', $id_user)->pluck('id')->first();
+            // lalu tampilkan data siswa rombel yang memiliki guru_id == $id_guru
+            $rombel2 = Rombel::where('guru_id', '=', $id_guru)->pluck('id')->first();
+            $rombel3 = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->pluck('siswa_id')->toArray();
+            //dd($rombel3);
+            foreach ($rombel3 as $z => $zefa) {
+                if (Siswa::find($zefa)->jenis_kelamin == 'Perempuan') {
+                    $tampung_female[] = Siswa::find($zefa);
+                }
+                if (Siswa::find($zefa)->jenis_kelamin == 'Laki-laki') {
+                    $tampung_male[] = Siswa::find($zefa);
+                }
+                if (Siswa::find($zefa)->agama == 'Islam' || Siswa::find($zefa)->agama == 'islam') {
+                    $tampung_islam[] = Siswa::find($zefa);
+                }
+                if (Siswa::find($zefa)->agama == 'katolik' || Siswa::find($zefa)->agama == 'Katolik') {
+                    $tampung_katolik[] = Siswa::find($zefa);
+                }
+                if (
+                    Siswa::find($zefa)->agama == 'Kristen Protestan' || Siswa::find($zefa)->agama == 'kristen protestan'
+                ) {
+                    $tampung_protestan[] = Siswa::find($zefa);
+                }
+            }
+        }
+
         $kkm = 65;
         $kkm1 = $kkm + (100 - $kkm) / 3;
         $kkm2 = $kkm1 + (100 - $kkm) / 3;
@@ -1918,6 +1956,11 @@ class DashboardController extends Controller
             $jumlah_penilaian[] = $chart_penilaian->jumlah;
         }
         return view('dashboards.dashboard_guru', [
+            'tampung_islam' => $tampung_islam,
+            'tampung_katolik' => $tampung_katolik,
+            'tampung_protestan' => $tampung_protestan,
+            'tampung_female' => $tampung_female,
+            'tampung_male' => $tampung_male,
             'kkm' => $kkm,
             'kkm1' => $kkm1,
             'kkm2' => $kkm2,

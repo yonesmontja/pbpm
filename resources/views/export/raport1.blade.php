@@ -313,7 +313,7 @@
                 </tr>
                 <tr class="details">
                     <td style="text-align: center;">2</td>
-                    <td style="text-align: left;">PPKn</td>
+                    <td style="text-align: left;">PKn</td>
                     <td style="text-align: center;">{{ $raport_pengetahuan_ppkn }}</td>
                     <td style="text-align: center;">{{ $predikat_huruf_ppkn }}</td>
                     <td style="text-align: left;">Memiliki kemampuan <strong> {{ $predikat_huruf_ppkn1 }} </strong>
@@ -779,7 +779,7 @@
                 </tr>
                 <tr class="details">
                     <td style="text-align: center;">2</td>
-                    <td style="text-align: left;">PPKn</td>
+                    <td style="text-align: left;">PKn</td>
                     <td style="text-align: center;">{{ $raport_pengetahuan_ppkn }}</td>
                     <td style="text-align: center;">{{ $predikat_huruf_ppkn }}</td>
                     <td style="text-align: left;">Memiliki kemampuan <strong> {{ $predikat_huruf_ppkn1 }} </strong>
