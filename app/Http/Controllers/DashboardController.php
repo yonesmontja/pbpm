@@ -1887,13 +1887,12 @@ class DashboardController extends Controller
         $guru = Guru::where('user_id', '=', $id)->pluck('id')->first();
         $nama_guru = Guru::where('user_id', '=', $id)->pluck('nama_guru')->first();
         //dd($nama_guru);
-        $satu = DB::table('rombel_siswa')->where('rombel_id', '=', 1)->pluck('siswa_id');
+
         $data_siswa = Siswa::orderBy('nama_depan')->get();
-        $user_id = Siswa::orderBy('nama_depan')->get();
+
         $kelas = Kelas::all();
         $rombel = Rombel::all();
-        $rombel1 = DB::table('rombel_siswa')->pluck('siswa_id')->toArray();
-        $data_siswa1 = $data_siswa->pluck('id')->toArray();
+
         if (auth()->user()->role == 'guru') {
             // mengambil data siswa yang sudah memiliki rombel dan menampilkannya sesuai user()->role == guru
             // langkah pertama ambil id user yg role == guru dan sedang buka route /test
@@ -1902,6 +1901,7 @@ class DashboardController extends Controller
             $id_guru = Guru::where('user_id', '=', $id_user)->pluck('id')->first();
             // lalu tampilkan data siswa rombel yang memiliki guru_id == $id_guru
             $rombel2 = Rombel::where('guru_id', '=', $id_guru)->pluck('id')->first();
+
             $rombel3 = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->pluck('siswa_id')->toArray();
             //dd($rombel3);
             foreach ($rombel3 as $z => $zefa) {

@@ -40,7 +40,7 @@
                              <div class="info-box">
                                  <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users"></i></span>
                                  <div class="info-box-content">
-                                     <span class="info-box-text"><a href="#">Kelas 1A</a></span>
+                                     <span class="info-box-text"><a href="#">{{ $nama_rombel }}</a></span>
                                      <span class="info-box-number">
                                          {{ totalKelas1A() }}
                                          <small> siswa</small>
