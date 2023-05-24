@@ -1907,7 +1907,7 @@ class DashboardController extends Controller
             $tampung_islam[] = 0;
             $tampung_katolik[] = 0;
             $tampung_protestan[] = 0;
-            dd($tampung_islam);
+            //dd($tampung_islam);
             foreach ($rombel3 as $z => $zefa) {
                 if (Siswa::find($zefa)->jenis_kelamin == 'Perempuan') {
                     $tampung_female[] = Siswa::find($zefa);
