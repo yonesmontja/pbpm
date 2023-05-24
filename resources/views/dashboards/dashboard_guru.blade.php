@@ -42,7 +42,42 @@
                                  <div class="info-box-content">
                                      <span class="info-box-text"><a href="#">{{ $nama_rombel }}</a></span>
                                      <span class="info-box-number">
-                                         {{ totalKelas1A() }}
+                                         @if ($nama_rombel == 'Kelas 1A')
+                                             {{ totalKelas1A() }}
+                                         @endif
+                                         @if ($nama_rombel == 'Kelas 1B')
+                                             {{ totalKelas1B() }}
+                                         @endif
+                                         @if ($nama_rombel == 'Kelas 2A')
+                                             {{ totalKelas2A() }}
+                                         @endif
+                                         @if ($nama_rombel == 'Kelas 2B')
+                                             {{ totalKelas2B() }}
+                                         @endif
+                                         @if ($nama_rombel == 'Kelas 3A')
+                                             {{ totalKelas3A() }}
+                                         @endif
+                                         @if ($nama_rombel == 'Kelas 3B')
+                                             {{ totalKelas3B() }}
+                                         @endif
+                                         @if ($nama_rombel == 'Kelas 4A')
+                                             {{ totalKelas4A() }}
+                                         @endif
+                                         @if ($nama_rombel == 'Kelas 4B')
+                                             {{ totalKelas4B() }}
+                                         @endif
+                                         @if ($nama_rombel == 'Kelas 5A')
+                                             {{ totalKelas5A() }}
+                                         @endif
+                                         @if ($nama_rombel == 'Kelas 5B')
+                                             {{ totalKelas5B() }}
+                                         @endif
+                                         @if ($nama_rombel == 'Kelas 6A')
+                                             {{ totalKelas6A() }}
+                                         @endif
+                                         @if ($nama_rombel == 'Kelas 6B')
+                                             {{ totalKelas6B() }}
+                                         @endif
                                          <small> siswa</small>
                                      </span>
                                  </div>
