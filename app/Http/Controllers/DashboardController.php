@@ -1904,6 +1904,10 @@ class DashboardController extends Controller
 
             $rombel3 = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->pluck('siswa_id')->toArray();
             //dd($rombel3);
+            $tampung_islam[] = 0;
+            $tampung_katolik[] = 0;
+            $tampung_protestan[] = 0;
+            dd($tampung_islam);
             foreach ($rombel3 as $z => $zefa) {
                 if (Siswa::find($zefa)->jenis_kelamin == 'Perempuan') {
                     $tampung_female[] = Siswa::find($zefa);
