@@ -79,7 +79,7 @@
                                         <label for="exampleFormControlSelect1">PENILAIAN</label>
                                         <select name="penilaian_id" class="form-control" id="exampleFormControlSelect2">
                                             <option value="{{ $nilai->penilaian_id }}">{{ $penilaian[0] }}</option>
-                                            @foreach ($penilaian as $key => $m)
+                                            @foreach ($all_penilaian as $key => $m)
                                                 <option value="{{ $m->id }}">
                                                     {{ $m->nama_tes }}
                                                 </option>
@@ -137,7 +137,7 @@
                                         <select name="kompetensi_inti_id" class="form-control" id="kompetensi_inti_id">
                                             <option value="{{ $nilai->kompetensi_inti_id }}">
                                                 {{ $nilai->kompetensiinti->kompetensi_inti }}</option>
-                                            @foreach ($kompetensiinti as $key => $m)
+                                            @foreach ($all_kompetensiinti as $key => $m)
                                                 <option value="{{ $m->id }}">
                                                     {{ $m->kompetensi_inti }}
                                                 </option>

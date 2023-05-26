@@ -199,6 +199,9 @@ class NilaiController extends Controller
     public function nilaiedit(Nilai $nilai)
     {
         $tahunpel = Tahunpel::all();
+        $all_kompetensiinti = Kompetensiinti::all();
+
+        $all_penilaian = Penilaian::all();
         $tahunpel1 = Tahunpel::where('id', $nilai->tahunpel_id)->pluck('thn_pel');
         $data_nilai = Nilai::all();
         $kompetensiinti = Kompetensiinti::where('id', $nilai->kompetensi_inti_id)->pluck('kompetensi_inti');
@@ -218,6 +221,8 @@ class NilaiController extends Controller
         $nilai_end = Tahunpelajaran::all()->where('id', '=', 1)->pluck('tahun');
         //dd($siswa->kelas->nama_depan);
         return view('nilai.nilaiedit', [
+            'all_penilaian' => $all_penilaian,
+            'all_kompetensiinti' => $all_kompetensiinti,
             'nilai' => $nilai,
             'tahunpel' => $tahunpel,
             'tahunpel1' => $tahunpel1,
