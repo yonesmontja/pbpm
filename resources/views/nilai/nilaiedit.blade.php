@@ -51,7 +51,7 @@
                                         <label for="exampleFormControlInput1">Mulai</label>
                                         <input name="nilai_start" type="text" class="form-control"
                                             id="exampleFormControlInput1" placeholder="Kapan mulai?"
-                                            value="{{ $nilai -> nilai_start }}">
+                                            value="{{ $nilai->nilai_start }}">
                                         @if ($errors->has('nilai_start'))
                                             <span class="help-block">{{ $errors->first('nilai_start') }}</span>
                                         @endif
@@ -65,7 +65,7 @@
                                         <label for="exampleFormControlInput1">Berakhir</label>
                                         <input name="nilai_end" type="text" class="form-control"
                                             id="exampleFormControlInput1" placeholder="Kapan selesai?"
-                                            value="{{ $nilai -> nilai_end }}">
+                                            value="{{ $nilai->nilai_end }}">
                                         @if ($errors->has('nilai_end'))
                                             <span class="help-block">{{ $errors->first('nilai_end') }}</span>
                                         @endif
@@ -79,6 +79,11 @@
                                         <label for="exampleFormControlSelect1">PENILAIAN</label>
                                         <select name="penilaian_id" class="form-control" id="exampleFormControlSelect2">
                                             <option value="{{ $nilai->penilaian_id }}">{{ $penilaian[0] }}</option>
+                                            @foreach ($penilaian as $key => $m)
+                                                <option value="{{ $m->id }}">
+                                                    {{ $m->nama_tes }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -121,7 +126,8 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">SISWA</label>
                                         <select name="siswa_id" class="form-control" id="siswa">
-                                            <option value="{{ $nilai->siswa_id }}">{{ $siswa1[0] }} {{ $siswa2[0] }}</option>
+                                            <option value="{{ $nilai->siswa_id }}">{{ $siswa1[0] }}
+                                                {{ $siswa2[0] }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -129,7 +135,13 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">KInti</label>
                                         <select name="kompetensi_inti_id" class="form-control" id="kompetensi_inti_id">
-                                            <option value="{{ $nilai->kompetensi_inti_id }}">{{ $nilai -> kompetensiinti -> kompetensi_inti }}</option>
+                                            <option value="{{ $nilai->kompetensi_inti_id }}">
+                                                {{ $nilai->kompetensiinti->kompetensi_inti }}</option>
+                                            @foreach ($kompetensiinti as $key => $m)
+                                                <option value="{{ $m->id }}">
+                                                    {{ $m->kompetensi_inti }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
