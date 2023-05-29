@@ -571,7 +571,7 @@ class SiswaController extends Controller
     public function testdeletenilai(Siswa $siswa, Nilai $idnilai)
     {
         $nilai = Nilai::find($idnilai);
-        dd($nilai);
+        dd($idnilai);
         $siswa->mapel()->detach($idnilai);
         $siswa->penilaian()->detach($idnilai);
         return redirect()->back()->with('sukses', 'nilai berhasil dihapus');
