@@ -568,12 +568,12 @@ class SiswaController extends Controller
         //dd($tes);
         return redirect()->back()->with('sukses', 'nilai sukses diinput');
     }
-    public function testdeletenilai(Siswa $siswa, $idmapel)
+    public function testdeletenilai(Siswa $siswa, Nilai $idnilai)
     {
-        $penilaian = Penilaian::find($idmapel);
-        dd($penilaian);
-        $siswa->mapel()->detach($idmapel);
-        $siswa->penilaian()->detach($idmapel);
+        $nilai = Nilai::find($idinilai);
+        dd($nilai);
+        $siswa->mapel()->detach($idinilai);
+        $siswa->penilaian()->detach($idinilai);
         return redirect()->back()->with('sukses', 'nilai berhasil dihapus');
     }
     public function export_excel()
