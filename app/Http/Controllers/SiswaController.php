@@ -571,9 +571,10 @@ class SiswaController extends Controller
     public function testdeletenilai(Siswa $siswa, $idnilai)
     {
         $nilai = Nilai::find($idnilai);
-        dd($nilai);
-        $siswa->mapel()->detach($idnilai);
-        $siswa->penilaian()->detach($idnilai);
+        //dd($nilai);
+        //$siswa->mapel()->detach($idnilai);
+        //$siswa->penilaian()->detach($idnilai);
+        $nilai->delete();
         return redirect()->back()->with('sukses', 'nilai berhasil dihapus');
     }
     public function export_excel()
