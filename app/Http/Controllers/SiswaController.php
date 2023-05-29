@@ -568,7 +568,7 @@ class SiswaController extends Controller
         //dd($tes);
         return redirect()->back()->with('sukses', 'nilai sukses diinput');
     }
-    public function testdeletenilai(Siswa $siswa, Nilai $idnilai)
+    public function testdeletenilai(Siswa $siswa, $idnilai)
     {
         $nilai = Nilai::find($idnilai);
         dd($idnilai);
