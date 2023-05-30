@@ -128,28 +128,114 @@
                              <!-- About Me Box -->
                              <div class="card card-primary">
                                  <div class="card-header">
-                                     <h3 class="card-title">Skill Kelas</h3>
+                                     <h3 class="card-title">Data Penilaian Kelas Ini</h3>
                                  </div>
                                  <!-- /.card-header -->
                                  <div class="card-body">
-                                     <strong><i class="fas fa-book mr-1"></i> Skill-Mapel</strong>
+                                     <strong><i class="fas fa-book mr-1"></i>Jumlah Penilaian</strong>
                                      <p class="text-muted">
-                                         #
+                                         {{ $jumlah_penilaian_rombel_ini }}
                                      </p>
                                      <hr>
-                                     <strong><i class="fas fa-map-marker-alt mr-1"></i> Penilaian Sikap?</strong>
-                                     <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                                         fermentum enim neque.</p>
+                                     <strong><i class="fas fa-map-marker-alt mr-1"></i>Penilaian sudah lengkap?</strong>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            Tugas
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_rombel_ini_1}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            Latihan
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_rombel_ini_2}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            Ulangan Harian
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_rombel_ini_3}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            PTS
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_rombel_ini_4}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            PAS
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_rombel_ini_5}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            Pemetaan Awal
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_rombel_ini_6}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            Pemetaan Akhir
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_rombel_ini_7}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            Praktek
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_rombel_ini_18}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            Project
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_rombel_ini_19}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            Portofolio
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_rombel_ini_20}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            Presentasi
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_rombel_ini_21}}</p>
+                                        </div>
+                                     </div>
                                      <hr>
-                                     <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
-                                     <p class="text-muted">
-                                         <span class="tag tag-danger">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                             elit.
-                                             Etiam
-                                             fermentum enim neque.</span>
-
-                                     </p>
-
+                                     <strong><i class="fas fa-pencil-alt mr-1"></i> Data Absensi</strong>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            Sudah mengisi data sebanyak
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_data_absensi}} siswa</p>
+                                        </div>
+                                     </div>
                                      <hr>
 
                                      <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
