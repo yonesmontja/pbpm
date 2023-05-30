@@ -472,271 +472,542 @@ class RombelController extends Controller
     }
     public function show($id)
     {
-        $rombel = Rombel::where('guru_id', '=', $id)->pluck('id')->first();
-        //dd($rombel);
-        $guru = Guru::find($id);
-        $rombel2 = Rombel::where('guru_id', '=', $id)->pluck('rombel')->first();
-        $rombel3 = Rombel::where('guru_id', '=', $id)->pluck('kelas_id')->first();
-        $rombel4 = Rombel::find($rombel);
-        $jumlah_siswa = DB::table('rombel_siswa')->where('rombel_id', '=', $id)->count();
-        $siswa1 = Siswa::all();
-        //dd($rombel4);
-        $penilaian1 = Penilaian::find($rombel);
-        // menghitung jumlah berapa kali mata pelajaran melakukan penilaian di rombel. akumulasi dari semua penilaian yang siswa ikuti di rombel ini.
-        $jml_kelas_penilaian = Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 1)->pluck('rombel_id', 'mapel_id')->count() +
-            Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 2)->pluck('rombel_id', 'mapel_id')->count() +
-            Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 3)->pluck('rombel_id', 'mapel_id')->count() +
-            Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 4)->pluck('rombel_id', 'mapel_id')->count() +
-            Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 5)->pluck('rombel_id', 'mapel_id')->count() +
-            Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 6)->pluck('rombel_id', 'mapel_id')->count() +
-            Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 7)->pluck('rombel_id', 'mapel_id')->count() +
-            Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 8)->pluck('rombel_id', 'mapel_id')->count() +
-            Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 9)->pluck('rombel_id', 'mapel_id')->count() +
-            Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 10)->pluck('rombel_id', 'mapel_id')->count();
-        //dd($jml_kelas_penilaian);
-        // menghitung jumlah berapa kali penilaian di rombel.
-        $jml_mapel_penilaian = Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 1)->pluck('penilaian_id', 'rombel_id')->count() +
-            Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 2)->pluck('penilaian_id', 'rombel_id')->count() +
-            Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 3)->pluck('penilaian_id', 'rombel_id')->count() +
-            Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 4)->pluck('penilaian_id', 'rombel_id')->count() +
-            Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 5)->pluck('penilaian_id', 'rombel_id')->count() +
-            Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 6)->pluck('penilaian_id', 'rombel_id')->count() +
-            Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 18)->pluck('penilaian_id', 'rombel_id')->count() +
-            Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 19)->pluck('penilaian_id', 'rombel_id')->count() +
-            Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 20)->pluck('penilaian_id', 'rombel_id')->count() +
-            Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 21)->pluck('penilaian_id', 'rombel_id')->count();
-        //dd($jml_mapel_penilaian);
-        // menghitung berapa jumlah siswa di rombel ini yang telah melakukan penilaian.
-        $jml_siswa_penilaian = Nilai::where('rombel_id', '=', $rombel)->select('siswa_id', 'penilaian_id')->pluck('penilaian_id', 'siswa_id')->count();
-        //$penilaian = Penilaian::;
+        if (auth()->user()->role == 'admin') {
+            $rombel = Rombel::where('id', '=', $id)->pluck('id')->first();
+            //dd($rombel);
+            $id_guru = Rombel::where('id', '=', $id)->pluck('guru_id')->first();
+            $guru = Guru::find($id_guru);
+            $rombel2 = Rombel::where('guru_id', '=', $id_guru)->pluck('rombel')->first();
+            $rombel3 = Rombel::where('guru_id', '=', $id_guru)->pluck('kelas_id')->first();
+            $rombel4 = Rombel::find($rombel);
+            $jumlah_siswa = DB::table('rombel_siswa')->where('rombel_id', '=', $id_guru)->count();
+            $siswa1 = Siswa::all();
+            //dd($rombel4);
+            $penilaian1 = Penilaian::find($rombel);
+            // menghitung jumlah berapa kali mata pelajaran melakukan penilaian di rombel. akumulasi dari semua penilaian yang siswa ikuti di rombel ini.
+            $jml_kelas_penilaian = Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 1)->pluck('rombel_id', 'mapel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 2)->pluck('rombel_id', 'mapel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 3)->pluck('rombel_id', 'mapel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 4)->pluck('rombel_id', 'mapel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 5)->pluck('rombel_id', 'mapel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 6)->pluck('rombel_id', 'mapel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 7)->pluck('rombel_id', 'mapel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 8)->pluck('rombel_id', 'mapel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 9)->pluck('rombel_id', 'mapel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 10)->pluck('rombel_id', 'mapel_id')->count();
+            //dd($jml_kelas_penilaian);
+            // menghitung jumlah berapa kali penilaian di rombel.
+            $jml_mapel_penilaian = Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 1)->pluck('penilaian_id', 'rombel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 2)->pluck('penilaian_id', 'rombel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 3)->pluck('penilaian_id', 'rombel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 4)->pluck('penilaian_id', 'rombel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 5)->pluck('penilaian_id', 'rombel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 6)->pluck('penilaian_id', 'rombel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 18)->pluck('penilaian_id', 'rombel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 19)->pluck('penilaian_id', 'rombel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 20)->pluck('penilaian_id', 'rombel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 21)->pluck('penilaian_id', 'rombel_id')->count();
+            //dd($jml_mapel_penilaian);
+            // menghitung berapa jumlah siswa di rombel ini yang telah melakukan penilaian.
+            $jml_siswa_penilaian = Nilai::where('rombel_id', '=', $rombel)->select('siswa_id', 'penilaian_id')->pluck('penilaian_id', 'siswa_id')->count();
+            //$penilaian = Penilaian::;
 
-        //hitung nilai rata-rata kelas untuk semua mapel di rombel ini
-        $rata_kelas1 = Nilai::all()->where('rombel_id', '=', $rombel)->pluck('nilai')->avg();
-        $rata_kelas = number_format((float)$rata_kelas1, 1, '.', '');
-        //dd($rata_kelas);
-        //-----------------------------------------------
-        // menghitung nilai rata-rata pemetaan awal dari rombel ini
-        $nilai = Nilai::all()->where('guru_id', '=', $id);
-        //dd($nilai);
-        $nilai1 = Nilai::all()->where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 6)->avg('nilai');
-        //dd($nilai1);
-        $user = User::all();
-        // hitung nilai rata-rata per bulan $chart_nilai[] untuk ditampilkan di grafik
-        for ($bulan = 1; $bulan < 7; $bulan++) {
-            $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where rombel_id='$rombel' AND month(tanggal)='$bulan'"))->first();
-            //$chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(tanggal)='$bulan'"))->first();
-            (int)$chart_nilai1[] = Nilai::whereMonth('tanggal', '=', $bulan)->where('rombel_id', '=', $rombel)->pluck('nilai')->avg();
-            //(int)$chart_nilai1[] = Nilai::whereMonth('tanggal','=',$bulan)->pluck('nilai')->avg();
+            //hitung nilai rata-rata kelas untuk semua mapel di rombel ini
+            $rata_kelas1 = Nilai::all()->where('rombel_id', '=', $rombel)->pluck('nilai')->avg();
+            $rata_kelas = number_format((float)$rata_kelas1, 1, '.', '');
+            //dd($rata_kelas);
+            //-----------------------------------------------
+            // menghitung nilai rata-rata pemetaan awal dari rombel ini
+            $nilai = Nilai::all()->where('guru_id', '=', $id_guru);
+            //dd($nilai);
+            $nilai1 = Nilai::all()->where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 6)->avg('nilai');
+            //dd($nilai1);
+            $user = User::all();
+            // hitung nilai rata-rata per bulan $chart_nilai[] untuk ditampilkan di grafik
+            for ($bulan = 1; $bulan < 7; $bulan++) {
+                $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where rombel_id='$rombel' AND month(tanggal)='$bulan'"))->first();
+                //$chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(tanggal)='$bulan'"))->first();
+                (int)$chart_nilai1[] = Nilai::whereMonth('tanggal', '=', $bulan)->where('rombel_id', '=', $rombel)->pluck('nilai')->avg();
+                //(int)$chart_nilai1[] = Nilai::whereMonth('tanggal','=',$bulan)->pluck('nilai')->avg();
 
-            $jumlah_penilaian[] = $chart_penilaian->jumlah;
-        }
-        //dd($jumlah_penilaian);
-        // ambil data nilai siswa 3 bulan lalu, kemudian hitung rata-rata
-        $dateS = Carbon::now()->startOfMonth()->subMonth(3);
-        $dateE = Carbon::now()->startOfMonth();
-        $weekS = Carbon::now()->startOfWeek()->subWeek(3);
-        $weekE = Carbon::now()->startOfWeek();
+                $jumlah_penilaian[] = $chart_penilaian->jumlah;
+            }
+            //dd($jumlah_penilaian);
+            // ambil data nilai siswa 3 bulan lalu, kemudian hitung rata-rata
+            $dateS = Carbon::now()->startOfMonth()->subMonth(3);
+            $dateE = Carbon::now()->startOfMonth();
+            $weekS = Carbon::now()->startOfWeek()->subWeek(3);
+            $weekE = Carbon::now()->startOfWeek();
 
-        $mapel_last_3month = Nilai::where('rombel_id', '=', $rombel)
-            ->select('tanggal', 'nilai')
-            ->whereBetween('tanggal', [$dateS, $dateE])
-            ->avg('nilai');
-
-        $mapel_last_3week = Nilai::where('rombel_id', '=', $rombel)
-            ->select('tanggal', 'nilai')
-            ->whereBetween('tanggal', [$weekS, $weekE])
-            ->avg('nilai');
-
-        $TotalSpent3 = DB::table('nilai')->where('rombel_id', '=', $rombel)
-            ->select('tanggal', 'nilai')
-            ->whereBetween('tanggal', [$dateS, $dateE])
-            ->avg('nilai');
-        $weekSpent3 = DB::table('nilai')->where('rombel_id', '=', $rombel)
-            ->select('tanggal', 'nilai')
-            ->whereBetween('tanggal', [$weekS, $weekE])
-            ->avg('nilai');
-        $last3month_average = number_format((float)$TotalSpent3, 2, '.', '');
-        $last3week_average = number_format((float)$weekSpent3, 2, '.', '');
-
-        // ambil data nilai siswa 2 bulan lalu, kemudian hitung rata-rata
-        $dateS = Carbon::now()->startOfMonth()->subMonth(2);
-        $dateE = Carbon::now()->startOfMonth();
-        $weekS = Carbon::now()->startOfWeek()->subWeek(2);
-        $weekE = Carbon::now()->startOfWeek();
-
-        $mapel_last_2month = Nilai::where('rombel_id', '=', $rombel)
-            ->select('tanggal', 'nilai')
-            ->whereBetween('tanggal', [$dateS, $dateE])
-            ->avg('nilai');
-        $mapel_last_2week = Nilai::where('rombel_id', '=', $rombel)
-            ->select('tanggal', 'nilai')
-            ->whereBetween('tanggal', [$weekS, $weekE])
-            ->avg('nilai');
-
-        $TotalSpent2 = DB::table('nilai')->where('rombel_id', '=', $rombel)
-            ->select('tanggal', 'nilai')
-            ->whereBetween('tanggal', [$dateS, $dateE])
-            ->avg('nilai');
-        $weekSpent2 = DB::table('nilai')->where('rombel_id', '=', $rombel)
-            ->select('tanggal', 'nilai')
-            ->whereBetween('tanggal', [$weekS, $weekE])
-            ->avg('nilai');
-        $last2month_average = number_format((float)$TotalSpent2, 2, '.', '');
-        $last2week_average = number_format((float)$weekSpent2, 2, '.', '');
-
-        // ambil data nilai siswa 1 bulan lalu, kemudian hitung rata-rata
-        $dateS = Carbon::now()->startOfMonth()->subMonth(1);
-        $dateE = Carbon::now()->startOfMonth();
-        $weekS = Carbon::now()->startOfWeek()->subWeek(1);
-        $weekE = Carbon::now()->startOfWeek();
-
-        $mapel_last_month_old = Nilai::where('rombel_id', '=', $rombel)
-            ->select('tanggal', 'nilai')
-            ->whereBetween('tanggal', [$dateS, $dateE])
-            ->avg('nilai');
-        $mapel_last_month = number_format((float)$mapel_last_month_old, 2, '.', '');
-        $mapel_last_week_old = Nilai::where('rombel_id', '=', $rombel)
-            ->select('tanggal', 'nilai')
-            ->whereBetween('tanggal', [$weekS, $weekE])
-            ->avg('nilai');
-        $mapel_last_week = number_format((float)$mapel_last_week_old, 2, '.', '');
-
-        for ($penilaian = 1; $penilaian < 6; $penilaian++) {
-            $penilaian_old = Nilai::where('penilaian_id', '=', $penilaian)->where('rombel_id', '=', $rombel)
+            $mapel_last_3month = Nilai::where('rombel_id', '=', $rombel)
                 ->select('tanggal', 'nilai')
                 ->whereBetween('tanggal', [$dateS, $dateE])
                 ->avg('nilai');
-            $penilaian_week_old = Nilai::where('penilaian_id', '=', $penilaian)->where('rombel_id', '=', $rombel)
+
+            $mapel_last_3week = Nilai::where('rombel_id', '=', $rombel)
                 ->select('tanggal', 'nilai')
                 ->whereBetween('tanggal', [$weekS, $weekE])
                 ->avg('nilai');
-            $penilaian_last_month[] = number_format((float)$penilaian_old, 2, '.', '');
-            $penilaian_last_week[] = number_format((float)$penilaian_week_old, 2, '.', '');
-        }
-        //dd($penilaian_last_week);
-        $TotalSpent1 = DB::table('nilai')->where('rombel_id', '=', $rombel)
-            ->select('tanggal', 'nilai')
-            ->whereBetween('tanggal', [$dateS, $dateE])
-            ->avg('nilai');
-        $weekSpent1 = DB::table('nilai')->where('rombel_id', '=', $rombel)
-            ->select('tanggal', 'nilai')
-            ->whereBetween('tanggal', [$weekS, $weekE])
-            ->avg('nilai');
-        $last1month_average = number_format((float)$TotalSpent1, 2, '.', '');
-        $last1week_average = number_format((float)$weekSpent1, 2, '.', '');
 
-        // ambil data nilai siswa bulan ini sumber https://www.codegrepper.com/code-examples/php/get+last+month+data+in+laravel
-        $this_month = Nilai::whereMonth('tanggal', date('m'))->where('rombel_id', '=', $rombel)
-            ->whereYear('tanggal', date('Y'))
-            ->get(['nilai', 'tanggal'])
-            ->avg('nilai');
-        $this_month = number_format((float)$this_month, 2, '.', '');
-
-        // ambil data nilai siswa bulan ini, kemudian hitung rata-rata
-        $dateS = Carbon::now()->startOfMonth()->subMonth(0);
-        $dateE = Carbon::now();
-        $weekS = Carbon::now()->startOfWeek()->subWeek(0);
-        $weekE = Carbon::now();
-
-        $mapel_this_month_old = Nilai::where('rombel_id', '=', $rombel)
-            ->select('tanggal', 'nilai')
-            ->whereBetween('tanggal', [$dateS, $dateE])
-            ->avg('nilai');
-        $mapel_this_month = number_format((float)$mapel_this_month_old, 2, '.', '');
-        $mapel_this_week_old = Nilai::where('rombel_id', '=', $rombel)
-            ->select('tanggal', 'nilai')
-            ->whereBetween('tanggal', [$weekS, $weekE])
-            ->avg('nilai');
-        $mapel_this_week = number_format((float)$mapel_this_week_old, 2, '.', '');
-
-        for ($penilaian = 1; $penilaian < 6; $penilaian++) {
-            $penilaian_old = Nilai::where('penilaian_id', '=', $penilaian)->where('rombel_id', '=', $rombel)
+            $TotalSpent3 = DB::table('nilai')->where('rombel_id', '=', $rombel)
                 ->select('tanggal', 'nilai')
                 ->whereBetween('tanggal', [$dateS, $dateE])
                 ->avg('nilai');
-            $penilaian_week_old = Nilai::where('penilaian_id', '=', $penilaian)->where('rombel_id', '=', $rombel)
+            $weekSpent3 = DB::table('nilai')->where('rombel_id', '=', $rombel)
                 ->select('tanggal', 'nilai')
                 ->whereBetween('tanggal', [$weekS, $weekE])
                 ->avg('nilai');
-            $penilaian_this_month[] = number_format((float)$penilaian_old, 2, '.', '');
-            $penilaian_this_week[] = number_format((float)$penilaian_week_old, 2, '.', '');
+            $last3month_average = number_format((float)$TotalSpent3, 2, '.', '');
+            $last3week_average = number_format((float)$weekSpent3, 2, '.', '');
+
+            // ambil data nilai siswa 2 bulan lalu, kemudian hitung rata-rata
+            $dateS = Carbon::now()->startOfMonth()->subMonth(2);
+            $dateE = Carbon::now()->startOfMonth();
+            $weekS = Carbon::now()->startOfWeek()->subWeek(2);
+            $weekE = Carbon::now()->startOfWeek();
+
+            $mapel_last_2month = Nilai::where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$dateS, $dateE])
+                ->avg('nilai');
+            $mapel_last_2week = Nilai::where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$weekS, $weekE])
+                ->avg('nilai');
+
+            $TotalSpent2 = DB::table('nilai')->where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$dateS, $dateE])
+                ->avg('nilai');
+            $weekSpent2 = DB::table('nilai')->where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$weekS, $weekE])
+                ->avg('nilai');
+            $last2month_average = number_format((float)$TotalSpent2, 2, '.', '');
+            $last2week_average = number_format((float)$weekSpent2, 2, '.', '');
+
+            // ambil data nilai siswa 1 bulan lalu, kemudian hitung rata-rata
+            $dateS = Carbon::now()->startOfMonth()->subMonth(1);
+            $dateE = Carbon::now()->startOfMonth();
+            $weekS = Carbon::now()->startOfWeek()->subWeek(1);
+            $weekE = Carbon::now()->startOfWeek();
+
+            $mapel_last_month_old = Nilai::where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$dateS, $dateE])
+                ->avg('nilai');
+            $mapel_last_month = number_format((float)$mapel_last_month_old, 2, '.', '');
+            $mapel_last_week_old = Nilai::where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$weekS, $weekE])
+                ->avg('nilai');
+            $mapel_last_week = number_format((float)$mapel_last_week_old, 2, '.', '');
+
+            for ($penilaian = 1; $penilaian < 6; $penilaian++) {
+                $penilaian_old = Nilai::where('penilaian_id', '=', $penilaian)->where('rombel_id', '=', $rombel)
+                    ->select('tanggal', 'nilai')
+                    ->whereBetween('tanggal', [$dateS, $dateE])
+                    ->avg('nilai');
+                $penilaian_week_old = Nilai::where('penilaian_id', '=', $penilaian)->where('rombel_id', '=', $rombel)
+                    ->select('tanggal', 'nilai')
+                    ->whereBetween('tanggal', [$weekS, $weekE])
+                    ->avg('nilai');
+                $penilaian_last_month[] = number_format((float)$penilaian_old, 2, '.', '');
+                $penilaian_last_week[] = number_format((float)$penilaian_week_old, 2, '.', '');
+            }
+            //dd($penilaian_last_week);
+            $TotalSpent1 = DB::table('nilai')->where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$dateS, $dateE])
+                ->avg('nilai');
+            $weekSpent1 = DB::table('nilai')->where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$weekS, $weekE])
+                ->avg('nilai');
+            $last1month_average = number_format((float)$TotalSpent1, 2, '.', '');
+            $last1week_average = number_format((float)$weekSpent1, 2, '.', '');
+
+            // ambil data nilai siswa bulan ini sumber https://www.codegrepper.com/code-examples/php/get+last+month+data+in+laravel
+            $this_month = Nilai::whereMonth('tanggal', date('m'))->where('rombel_id', '=', $rombel)
+                ->whereYear('tanggal', date('Y'))
+                ->get(['nilai', 'tanggal'])
+                ->avg('nilai');
+            $this_month = number_format((float)$this_month, 2, '.', '');
+
+            // ambil data nilai siswa bulan ini, kemudian hitung rata-rata
+            $dateS = Carbon::now()->startOfMonth()->subMonth(0);
+            $dateE = Carbon::now();
+            $weekS = Carbon::now()->startOfWeek()->subWeek(0);
+            $weekE = Carbon::now();
+
+            $mapel_this_month_old = Nilai::where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$dateS, $dateE])
+                ->avg('nilai');
+            $mapel_this_month = number_format((float)$mapel_this_month_old, 2, '.', '');
+            $mapel_this_week_old = Nilai::where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$weekS, $weekE])
+                ->avg('nilai');
+            $mapel_this_week = number_format((float)$mapel_this_week_old, 2, '.', '');
+
+            for ($penilaian = 1; $penilaian < 6; $penilaian++) {
+                $penilaian_old = Nilai::where('penilaian_id', '=', $penilaian)->where('rombel_id', '=', $rombel)
+                    ->select('tanggal', 'nilai')
+                    ->whereBetween('tanggal', [$dateS, $dateE])
+                    ->avg('nilai');
+                $penilaian_week_old = Nilai::where('penilaian_id', '=', $penilaian)->where('rombel_id', '=', $rombel)
+                    ->select('tanggal', 'nilai')
+                    ->whereBetween('tanggal', [$weekS, $weekE])
+                    ->avg('nilai');
+                $penilaian_this_month[] = number_format((float)$penilaian_old, 2, '.', '');
+                $penilaian_this_week[] = number_format((float)$penilaian_week_old, 2, '.', '');
+            }
+            $penilaian_list = ['Tugas', 'Latihan', 'UH', 'PTS', 'PAS'];
+            //dd($penilaian_this_week);
+            $TotalSpent0 = Nilai::where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$dateS, $dateE])
+                ->avg('nilai');
+            $weekSpent0 = Nilai::where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$weekS, $weekE])
+                ->avg('nilai');
+            $last0month_average = number_format((float)$TotalSpent0, 2, '.', '');
+            $last0week_average = number_format((float)$weekSpent0, 2, '.', '');
+
+            $last_average = 0.00;
+            $last_week_average = 0.00;
+            if ($last1month_average > 0.00) {
+                $last_average = number_format((float)(($last0month_average - $last1month_average) / $last1month_average * 100), 2, '.', '');  // Outputs in two dp
+
+            } elseif ($last1week_average > 0.00) {
+
+                $last_week_average = number_format((float)(($last0week_average - $last1week_average) / $last1week_average * 100), 2, '.', '');
+            } elseif ($last1month_average == 0) {
+                $last_average = 0;
+            } elseif ($last1week_average == 0) {
+
+                $last_week_average = 0;
+            }
+            //dd($last_average);
+
+            $data['title'] = Rombel::find($rombel)->rombel;
+            $data['rombel'] = $rombel;
+            $mapel = Mapel::all();
+            return view('rombel.show', [
+                'guru' => $guru,
+                'data' => $data,
+                'penilaian1' => $penilaian1,
+                'mapel' => $mapel,
+                'jml_kelas_penilaian' => $jml_kelas_penilaian,
+                'nilai' => $nilai,
+                'nilai1' => $nilai1,
+                'rombel2' => $rombel2,
+                'rombel3' => $rombel3,
+                'rombel4' => $rombel4,
+                'jumlah_siswa' => $jumlah_siswa,
+                'siswa1' => $siswa1,
+                'rata_kelas' => $rata_kelas,
+                'penilaian_list' => $penilaian_list,
+                'penilaian_this_month' => $penilaian_this_month,
+                'penilaian_this_week' => $penilaian_this_week,
+                'penilaian_last_month' => $penilaian_last_month,
+                'penilaian_last_week' => $penilaian_last_week,
+                'mapel_last_3week' => $mapel_last_3week,
+                'mapel_last_2week' => $mapel_last_2week,
+                'mapel_last_week' => $mapel_last_week,
+                'mapel_this_week' => $mapel_this_week,
+                'last_week_average' => $last_week_average,
+                'mapel_last_3month' => $mapel_last_3month,
+                'mapel_last_2month' => $mapel_last_2month,
+                'mapel_last_month' => $mapel_last_month,
+                'mapel_this_month' => $mapel_this_month,
+                'last3week_average' => $last3week_average,
+                'last2week_average' => $last2week_average,
+                'last1week_average' => $last1week_average,
+                'last0week_average' => $last0week_average,
+                'this_month' => $this_month,
+                'last3month_average' => $last3month_average,
+                'last2month_average' => $last2month_average,
+                'last1month_average' => $last1month_average,
+                'last0month_average' => $last0month_average,
+                'last_average' => $last_average,
+                'jml_siswa_penilaian' => $jml_siswa_penilaian,
+                'jml_mapel_penilaian' => $jml_mapel_penilaian,
+                'user' => $user,
+                'rombel' => $rombel,
+
+
+            ]);
         }
-        $penilaian_list = ['Tugas', 'Latihan', 'UH', 'PTS', 'PAS'];
-        //dd($penilaian_this_week);
-        $TotalSpent0 = Nilai::where('rombel_id', '=', $rombel)
-            ->select('tanggal', 'nilai')
-            ->whereBetween('tanggal', [$dateS, $dateE])
-            ->avg('nilai');
-        $weekSpent0 = Nilai::where('rombel_id', '=', $rombel)
-            ->select('tanggal', 'nilai')
-            ->whereBetween('tanggal', [$weekS, $weekE])
-            ->avg('nilai');
-        $last0month_average = number_format((float)$TotalSpent0, 2, '.', '');
-        $last0week_average = number_format((float)$weekSpent0, 2, '.', '');
+        if (auth()->user()->role == 'guru') {
+            $rombel = Rombel::where('guru_id', '=', $id)->pluck('id')->first();
+            //dd($rombel);
+            $guru = Guru::find($id);
+            $rombel2 = Rombel::where('guru_id', '=', $id)->pluck('rombel')->first();
+            $rombel3 = Rombel::where('guru_id', '=', $id)->pluck('kelas_id')->first();
+            $rombel4 = Rombel::find($rombel);
+            $jumlah_siswa = DB::table('rombel_siswa')->where('rombel_id', '=', $id)->count();
+            $siswa1 = Siswa::all();
+            //dd($rombel4);
+            $penilaian1 = Penilaian::find($rombel);
+            // menghitung jumlah berapa kali mata pelajaran melakukan penilaian di rombel. akumulasi dari semua penilaian yang siswa ikuti di rombel ini.
+            $jml_kelas_penilaian = Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 1)->pluck('rombel_id', 'mapel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 2)->pluck('rombel_id', 'mapel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 3)->pluck('rombel_id', 'mapel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 4)->pluck('rombel_id', 'mapel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 5)->pluck('rombel_id', 'mapel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 6)->pluck('rombel_id', 'mapel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 7)->pluck('rombel_id', 'mapel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 8)->pluck('rombel_id', 'mapel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 9)->pluck('rombel_id', 'mapel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 10)->pluck('rombel_id', 'mapel_id')->count();
+            //dd($jml_kelas_penilaian);
+            // menghitung jumlah berapa kali penilaian di rombel.
+            $jml_mapel_penilaian = Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 1)->pluck('penilaian_id', 'rombel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 2)->pluck('penilaian_id', 'rombel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 3)->pluck('penilaian_id', 'rombel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 4)->pluck('penilaian_id', 'rombel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 5)->pluck('penilaian_id', 'rombel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 6)->pluck('penilaian_id', 'rombel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 18)->pluck('penilaian_id', 'rombel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 19)->pluck('penilaian_id', 'rombel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 20)->pluck('penilaian_id', 'rombel_id')->count() +
+                Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 21)->pluck('penilaian_id', 'rombel_id')->count();
+            //dd($jml_mapel_penilaian);
+            // menghitung berapa jumlah siswa di rombel ini yang telah melakukan penilaian.
+            $jml_siswa_penilaian = Nilai::where('rombel_id', '=', $rombel)->select('siswa_id', 'penilaian_id')->pluck('penilaian_id', 'siswa_id')->count();
+            //$penilaian = Penilaian::;
 
-        $last_average = 0.00;
-        $last_week_average = 0.00;
-        if ($last1month_average > 0.00) {
-            $last_average = number_format((float)(($last0month_average - $last1month_average) / $last1month_average * 100), 2, '.', '');  // Outputs in two dp
+            //hitung nilai rata-rata kelas untuk semua mapel di rombel ini
+            $rata_kelas1 = Nilai::all()->where('rombel_id', '=', $rombel)->pluck('nilai')->avg();
+            $rata_kelas = number_format((float)$rata_kelas1, 1, '.', '');
+            //dd($rata_kelas);
+            //-----------------------------------------------
+            // menghitung nilai rata-rata pemetaan awal dari rombel ini
+            $nilai = Nilai::all()->where('guru_id', '=', $id);
+            //dd($nilai);
+            $nilai1 = Nilai::all()->where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 6)->avg('nilai');
+            //dd($nilai1);
+            $user = User::all();
+            // hitung nilai rata-rata per bulan $chart_nilai[] untuk ditampilkan di grafik
+            for ($bulan = 1; $bulan < 7; $bulan++) {
+                $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where rombel_id='$rombel' AND month(tanggal)='$bulan'"))->first();
+                //$chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(tanggal)='$bulan'"))->first();
+                (int)$chart_nilai1[] = Nilai::whereMonth('tanggal', '=', $bulan)->where('rombel_id', '=', $rombel)->pluck('nilai')->avg();
+                //(int)$chart_nilai1[] = Nilai::whereMonth('tanggal','=',$bulan)->pluck('nilai')->avg();
 
-        } elseif ($last1week_average > 0.00) {
+                $jumlah_penilaian[] = $chart_penilaian->jumlah;
+            }
+            //dd($jumlah_penilaian);
+            // ambil data nilai siswa 3 bulan lalu, kemudian hitung rata-rata
+            $dateS = Carbon::now()->startOfMonth()->subMonth(3);
+            $dateE = Carbon::now()->startOfMonth();
+            $weekS = Carbon::now()->startOfWeek()->subWeek(3);
+            $weekE = Carbon::now()->startOfWeek();
 
-            $last_week_average = number_format((float)(($last0week_average - $last1week_average) / $last1week_average * 100), 2, '.', '');
-        } elseif ($last1month_average == 0) {
-            $last_average = 0;
-        } elseif ($last1week_average == 0) {
+            $mapel_last_3month = Nilai::where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$dateS, $dateE])
+                ->avg('nilai');
 
-            $last_week_average = 0;
+            $mapel_last_3week = Nilai::where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$weekS, $weekE])
+                ->avg('nilai');
+
+            $TotalSpent3 = DB::table('nilai')->where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$dateS, $dateE])
+                ->avg('nilai');
+            $weekSpent3 = DB::table('nilai')->where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$weekS, $weekE])
+                ->avg('nilai');
+            $last3month_average = number_format((float)$TotalSpent3, 2, '.', '');
+            $last3week_average = number_format((float)$weekSpent3, 2, '.', '');
+
+            // ambil data nilai siswa 2 bulan lalu, kemudian hitung rata-rata
+            $dateS = Carbon::now()->startOfMonth()->subMonth(2);
+            $dateE = Carbon::now()->startOfMonth();
+            $weekS = Carbon::now()->startOfWeek()->subWeek(2);
+            $weekE = Carbon::now()->startOfWeek();
+
+            $mapel_last_2month = Nilai::where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$dateS, $dateE])
+                ->avg('nilai');
+            $mapel_last_2week = Nilai::where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$weekS, $weekE])
+                ->avg('nilai');
+
+            $TotalSpent2 = DB::table('nilai')->where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$dateS, $dateE])
+                ->avg('nilai');
+            $weekSpent2 = DB::table('nilai')->where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$weekS, $weekE])
+                ->avg('nilai');
+            $last2month_average = number_format((float)$TotalSpent2, 2, '.', '');
+            $last2week_average = number_format((float)$weekSpent2, 2, '.', '');
+
+            // ambil data nilai siswa 1 bulan lalu, kemudian hitung rata-rata
+            $dateS = Carbon::now()->startOfMonth()->subMonth(1);
+            $dateE = Carbon::now()->startOfMonth();
+            $weekS = Carbon::now()->startOfWeek()->subWeek(1);
+            $weekE = Carbon::now()->startOfWeek();
+
+            $mapel_last_month_old = Nilai::where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$dateS, $dateE])
+                ->avg('nilai');
+            $mapel_last_month = number_format((float)$mapel_last_month_old, 2, '.', '');
+            $mapel_last_week_old = Nilai::where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$weekS, $weekE])
+                ->avg('nilai');
+            $mapel_last_week = number_format((float)$mapel_last_week_old, 2, '.', '');
+
+            for ($penilaian = 1; $penilaian < 6; $penilaian++) {
+                $penilaian_old = Nilai::where('penilaian_id', '=', $penilaian)->where('rombel_id', '=', $rombel)
+                    ->select('tanggal', 'nilai')
+                    ->whereBetween('tanggal', [$dateS, $dateE])
+                    ->avg('nilai');
+                $penilaian_week_old = Nilai::where('penilaian_id', '=', $penilaian)->where('rombel_id', '=', $rombel)
+                    ->select('tanggal', 'nilai')
+                    ->whereBetween('tanggal', [$weekS, $weekE])
+                    ->avg('nilai');
+                $penilaian_last_month[] = number_format((float)$penilaian_old, 2, '.', '');
+                $penilaian_last_week[] = number_format((float)$penilaian_week_old, 2, '.', '');
+            }
+            //dd($penilaian_last_week);
+            $TotalSpent1 = DB::table('nilai')->where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$dateS, $dateE])
+                ->avg('nilai');
+            $weekSpent1 = DB::table('nilai')->where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$weekS, $weekE])
+                ->avg('nilai');
+            $last1month_average = number_format((float)$TotalSpent1, 2, '.', '');
+            $last1week_average = number_format((float)$weekSpent1, 2, '.', '');
+
+            // ambil data nilai siswa bulan ini sumber https://www.codegrepper.com/code-examples/php/get+last+month+data+in+laravel
+            $this_month = Nilai::whereMonth('tanggal', date('m'))->where('rombel_id', '=', $rombel)
+                ->whereYear('tanggal', date('Y'))
+                ->get(['nilai', 'tanggal'])
+                ->avg('nilai');
+            $this_month = number_format((float)$this_month, 2, '.', '');
+
+            // ambil data nilai siswa bulan ini, kemudian hitung rata-rata
+            $dateS = Carbon::now()->startOfMonth()->subMonth(0);
+            $dateE = Carbon::now();
+            $weekS = Carbon::now()->startOfWeek()->subWeek(0);
+            $weekE = Carbon::now();
+
+            $mapel_this_month_old = Nilai::where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$dateS, $dateE])
+                ->avg('nilai');
+            $mapel_this_month = number_format((float)$mapel_this_month_old, 2, '.', '');
+            $mapel_this_week_old = Nilai::where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$weekS, $weekE])
+                ->avg('nilai');
+            $mapel_this_week = number_format((float)$mapel_this_week_old, 2, '.', '');
+
+            for ($penilaian = 1; $penilaian < 6; $penilaian++) {
+                $penilaian_old = Nilai::where('penilaian_id', '=', $penilaian)->where('rombel_id', '=', $rombel)
+                    ->select('tanggal', 'nilai')
+                    ->whereBetween('tanggal', [$dateS, $dateE])
+                    ->avg('nilai');
+                $penilaian_week_old = Nilai::where('penilaian_id', '=', $penilaian)->where('rombel_id', '=', $rombel)
+                    ->select('tanggal', 'nilai')
+                    ->whereBetween('tanggal', [$weekS, $weekE])
+                    ->avg('nilai');
+                $penilaian_this_month[] = number_format((float)$penilaian_old, 2, '.', '');
+                $penilaian_this_week[] = number_format((float)$penilaian_week_old, 2, '.', '');
+            }
+            $penilaian_list = ['Tugas', 'Latihan', 'UH', 'PTS', 'PAS'];
+            //dd($penilaian_this_week);
+            $TotalSpent0 = Nilai::where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$dateS, $dateE])
+                ->avg('nilai');
+            $weekSpent0 = Nilai::where('rombel_id', '=', $rombel)
+                ->select('tanggal', 'nilai')
+                ->whereBetween('tanggal', [$weekS, $weekE])
+                ->avg('nilai');
+            $last0month_average = number_format((float)$TotalSpent0, 2, '.', '');
+            $last0week_average = number_format((float)$weekSpent0, 2, '.', '');
+
+            $last_average = 0.00;
+            $last_week_average = 0.00;
+            if ($last1month_average > 0.00) {
+                $last_average = number_format((float)(($last0month_average - $last1month_average) / $last1month_average * 100), 2, '.', '');  // Outputs in two dp
+
+            } elseif ($last1week_average > 0.00) {
+
+                $last_week_average = number_format((float)(($last0week_average - $last1week_average) / $last1week_average * 100), 2, '.', '');
+            } elseif ($last1month_average == 0) {
+                $last_average = 0;
+            } elseif ($last1week_average == 0) {
+
+                $last_week_average = 0;
+            }
+            //dd($last_average);
+
+            $data['title'] = Rombel::find($rombel)->rombel;
+            $data['rombel'] = $rombel;
+            $mapel = Mapel::all();
+            return view('rombel.show', [
+                'guru' => $guru,
+                'data' => $data,
+                'penilaian1' => $penilaian1,
+                'mapel' => $mapel,
+                'jml_kelas_penilaian' => $jml_kelas_penilaian,
+                'nilai' => $nilai,
+                'nilai1' => $nilai1,
+                'rombel2' => $rombel2,
+                'rombel3' => $rombel3,
+                'rombel4' => $rombel4,
+                'jumlah_siswa' => $jumlah_siswa,
+                'siswa1' => $siswa1,
+                'rata_kelas' => $rata_kelas,
+                'penilaian_list' => $penilaian_list,
+                'penilaian_this_month' => $penilaian_this_month,
+                'penilaian_this_week' => $penilaian_this_week,
+                'penilaian_last_month' => $penilaian_last_month,
+                'penilaian_last_week' => $penilaian_last_week,
+                'mapel_last_3week' => $mapel_last_3week,
+                'mapel_last_2week' => $mapel_last_2week,
+                'mapel_last_week' => $mapel_last_week,
+                'mapel_this_week' => $mapel_this_week,
+                'last_week_average' => $last_week_average,
+                'mapel_last_3month' => $mapel_last_3month,
+                'mapel_last_2month' => $mapel_last_2month,
+                'mapel_last_month' => $mapel_last_month,
+                'mapel_this_month' => $mapel_this_month,
+                'last3week_average' => $last3week_average,
+                'last2week_average' => $last2week_average,
+                'last1week_average' => $last1week_average,
+                'last0week_average' => $last0week_average,
+                'this_month' => $this_month,
+                'last3month_average' => $last3month_average,
+                'last2month_average' => $last2month_average,
+                'last1month_average' => $last1month_average,
+                'last0month_average' => $last0month_average,
+                'last_average' => $last_average,
+                'jml_siswa_penilaian' => $jml_siswa_penilaian,
+                'jml_mapel_penilaian' => $jml_mapel_penilaian,
+                'user' => $user,
+                'rombel' => $rombel,
+
+
+            ]);
         }
-        //dd($last_average);
-
-        $data['title'] = Rombel::find($rombel)->rombel;
-        $data['rombel'] = $rombel;
-        $mapel = Mapel::all();
-        return view('rombel.show', [
-            'guru' => $guru,
-            'data' => $data,
-            'penilaian1' => $penilaian1,
-            'mapel' => $mapel,
-            'jml_kelas_penilaian' => $jml_kelas_penilaian,
-            'nilai' => $nilai,
-            'nilai1' => $nilai1,
-            'rombel2' => $rombel2,
-            'rombel3' => $rombel3,
-            'rombel4' => $rombel4,
-            'jumlah_siswa' => $jumlah_siswa,
-            'siswa1' => $siswa1,
-            'rata_kelas' => $rata_kelas,
-            'penilaian_list' => $penilaian_list,
-            'penilaian_this_month' => $penilaian_this_month,
-            'penilaian_this_week' => $penilaian_this_week,
-            'penilaian_last_month' => $penilaian_last_month,
-            'penilaian_last_week' => $penilaian_last_week,
-            'mapel_last_3week' => $mapel_last_3week,
-            'mapel_last_2week' => $mapel_last_2week,
-            'mapel_last_week' => $mapel_last_week,
-            'mapel_this_week' => $mapel_this_week,
-            'last_week_average' => $last_week_average,
-            'mapel_last_3month' => $mapel_last_3month,
-            'mapel_last_2month' => $mapel_last_2month,
-            'mapel_last_month' => $mapel_last_month,
-            'mapel_this_month' => $mapel_this_month,
-            'last3week_average' => $last3week_average,
-            'last2week_average' => $last2week_average,
-            'last1week_average' => $last1week_average,
-            'last0week_average' => $last0week_average,
-            'this_month' => $this_month,
-            'last3month_average' => $last3month_average,
-            'last2month_average' => $last2month_average,
-            'last1month_average' => $last1month_average,
-            'last0month_average' => $last0month_average,
-            'last_average' => $last_average,
-            'jml_siswa_penilaian' => $jml_siswa_penilaian,
-            'jml_mapel_penilaian' => $jml_mapel_penilaian,
-            'user' => $user,
-            'rombel' => $rombel,
-
-
-        ]);
     }
 }
