@@ -1539,16 +1539,16 @@ class DashboardController extends Controller
         $matang1[8] = (int)$pjok_average;
         $matang1[9] = (int)$sbk_average;
         //dd($matang1);
-        $sumbux = [];
-        $sumbuy = [];
-        foreach($nilai as $mnp){
-                $sumbux[] = $mnp->nilai;
-                //$sumbuy[] = $mnp -> mapel -> nama_mapel;
-        }
-        foreach($nilai as $mnp){
-            //$sumbux[] = $mnp->nilai;
-            $sumbuy[] = $mnp -> mapel -> nama_mapel;
-        }
+        // $sumbux = [];
+        // $sumbuy = [];
+        // foreach($nilai as $mnp){
+        //         $sumbux[] = $mnp->nilai;
+        //         //$sumbuy[] = $mnp -> mapel -> nama_mapel;
+        // }
+        // foreach($nilai as $mnp){
+        //     //$sumbux[] = $mnp->nilai;
+        //     $sumbuy[] = $mnp -> mapel -> nama_mapel;
+        // }
         // inisiasi
         $hpit = 0;
         $hpmt = 0;
