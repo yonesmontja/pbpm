@@ -1849,8 +1849,9 @@ class DashboardController extends Controller
             'matang1'=>$matang1,
             'matpel'=>$matpel,
             'matpel_pemetaan' => $matpel_pemetaan,
-            'sumbux'=>$sumbux,
-            'sumbuy'=>$sumbuy]);
+            // 'sumbux'=>$sumbux,
+            // 'sumbuy'=>$sumbuy
+        ]);
     }
     public function dashboard_siswa()
     {
