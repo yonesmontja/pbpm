@@ -309,8 +309,8 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
     Route::get('/moodle', [MoodleController::class, 'moodle']);
     Route::get('/rombel/{rombel}', [RombelController::class, 'show']);
-    Route::post('/extra/import_extra_excel', [NilaiController::class, 'import_extra_excel']);
-    Route::get('/extra', [NilaiController::class, 'extra']);
+    Route::post('/extra/import_extra_excel', [NilaiController::class, 'import_extra_excel'])->middleware('cache.headers:private;max_age=3600');
+    Route::get('/extra', [NilaiController::class, 'extra'])->middleware('cache.headers:private;max_age=3600');
     Route::post('/extra/extracreate', [NilaiController::class, 'extracreate']);
     Route::get('/extra/{extra}/extradelete', [NilaiController::class, 'extradelete']);
     Route::get('/extra/{extra}/extraedit', [NilaiController::class, 'extraedit']);
@@ -331,20 +331,20 @@ Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
         $kelas = Kelas::all();
         return view('nilai.extrafilter', compact('data_extra', 'mapel', 'siswa', 'penilaian', 'guru', 'kelas', 'kompetensiinti'));
     });
-    Route::get('/siswa/{id}/export_pdf', [SiswaController::class, 'cetak_pdf']);
-    Route::get('/siswa/{id}/cover_pdf', [SiswaController::class, 'cover_pdf']);
-    Route::get('/siswa/{id}/biodata_pdf', [SiswaController::class, 'biodata_pdf']);
-    Route::get('/guru/{guru}/profile', [GuruController::class, 'profile']);
+    Route::get('/siswa/{id}/export_pdf', [SiswaController::class, 'cetak_pdf'])->middleware('cache.headers:private;max_age=3600');
+    Route::get('/siswa/{id}/cover_pdf', [SiswaController::class, 'cover_pdf'])->middleware('cache.headers:private;max_age=3600');
+    Route::get('/siswa/{id}/biodata_pdf', [SiswaController::class, 'biodata_pdf'])->middleware('cache.headers:private;max_age=3600');
+    Route::get('/guru/{guru}/profile', [GuruController::class, 'profile'])->middleware('cache.headers:private;max_age=3600');
 
-    Route::get('/dashboard', [DashboardController::class, 'index']);
-    Route::get('/user/{id}/profile', [UserController::class, 'userprofile']);
-    Route::get('/my_profile/{id}/myprofile', [UserController::class, 'my_profile']);
+    Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('cache.headers:private;max_age=3600');
+    Route::get('/user/{id}/profile', [UserController::class, 'userprofile'])->middleware('cache.headers:private;max_age=3600');
+    Route::get('/my_profile/{id}/myprofile', [UserController::class, 'my_profile'])->middleware('cache.headers:private;max_age=3600');
     Route::get('/user/{user}/edit', [UserController::class, 'useredit']);
     Route::post('/user/{user}/update', [UserController::class, 'userupdate']);
     Route::post('/siswa/editnilai', [SiswaController::class, 'editnilai'])->name('siswa.editnilai');
     Route::get('/test/{siswa}/profile', [SiswaController::class, 'testprofile'])->name('testsiswaprofile');
     //Route::get('/test/{siswa}/profile', [SiswaController::class, 'testprofile']);
-    Route::get('/test', [SiswaController::class, 'test']);
+    Route::get('/test', [SiswaController::class, 'test'])->middleware('cache.headers:private;max_age=3600');
     Route::post('/test/testcreate', [SiswaController::class, 'testcreate']);
     Route::get('/test/{siswa}/edit', [SiswaController::class, 'testedit']);
     Route::post('/test/{siswa}/update', [SiswaController::class, 'testupdate']);
