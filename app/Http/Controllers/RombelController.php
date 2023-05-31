@@ -477,10 +477,10 @@ class RombelController extends Controller
             $rombel = Rombel::where('id', '=', $id)->pluck('id')->first();
             //dd($rombel);
             $id_guru = Rombel::where('id', '=', $id)->pluck('guru_id')->first();
-            $guru = Guru::find($id_guru);
+            //$guru = Guru::find($id_guru);
             $rombel2 = Rombel::where('guru_id', '=', $id_guru)->pluck('rombel')->first();
             $rombel3 = Rombel::where('guru_id', '=', $id_guru)->pluck('kelas_id')->first();
-            $rombel4 = Rombel::find($rombel);
+            $rombel4 = Rombel::find($rombel, ['guru_id', 'id']);
             $jumlah_siswa = DB::table('rombel_siswa')->where('rombel_id', '=', $id)->count();
             $siswa1 = Siswa::all();
             //dd($rombel4);
@@ -522,6 +522,17 @@ class RombelController extends Controller
             $jumlah_penilaian_rombel_ini_20 = Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 20)->pluck('penilaian_id', 'rombel_id')->count();
             $jumlah_penilaian_rombel_ini_21 = Nilai::where('rombel_id', '=', $rombel)->where('penilaian_id', '=', 21)->pluck('penilaian_id', 'rombel_id')->count();
             $jumlah_data_absensi = Extra::where('rombel_id', '=', $rombel)->pluck('id')->count();
+            $jumlah_penilaian_mapel_ini_1 = Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 1)->pluck('mapel_id', 'rombel_id')->count();
+            $jumlah_penilaian_mapel_ini_2 = Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 2)->pluck('mapel_id', 'rombel_id')->count();
+            $jumlah_penilaian_mapel_ini_3 = Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 3)->pluck('mapel_id', 'rombel_id')->count();
+            $jumlah_penilaian_mapel_ini_4 = Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 4)->pluck('mapel_id', 'rombel_id')->count();
+            $jumlah_penilaian_mapel_ini_5 = Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 5)->pluck('mapel_id', 'rombel_id')->count();
+            $jumlah_penilaian_mapel_ini_6 = Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 6)->pluck('mapel_id', 'rombel_id')->count();
+            $jumlah_penilaian_mapel_ini_7 = Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 7)->pluck('mapel_id', 'rombel_id')->count();
+            $jumlah_penilaian_mapel_ini_8 = Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 8)->pluck('mapel_id', 'rombel_id')->count();
+            $jumlah_penilaian_mapel_ini_9 = Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 9)->pluck('mapel_id', 'rombel_id')->count();
+            $jumlah_penilaian_mapel_ini_10 = Nilai::where('rombel_id', '=', $rombel)->where('mapel_id', '=', 10)->pluck('mapel_id', 'rombel_id')->count();
+
             // menghitung berapa jumlah siswa di rombel ini yang telah melakukan penilaian.
             $jml_siswa_penilaian = Nilai::where('rombel_id', '=', $rombel)->select('siswa_id', 'penilaian_id')->pluck('penilaian_id', 'siswa_id')->count();
             //$penilaian = Penilaian::;
@@ -710,7 +721,7 @@ class RombelController extends Controller
             $data['rombel'] = $rombel;
             $mapel = Mapel::all();
             return view('rombel.show', [
-                'guru' => $guru,
+                //'guru' => $guru,
                 'data' => $data,
                 'penilaian1' => $penilaian1,
                 'mapel' => $mapel,
@@ -764,12 +775,22 @@ class RombelController extends Controller
                 'jumlah_penilaian_rombel_ini_20' => $jumlah_penilaian_rombel_ini_20,
                 'jumlah_penilaian_rombel_ini_21' => $jumlah_penilaian_rombel_ini_21,
                 'jumlah_data_absensi' => $jumlah_data_absensi,
+                'jumlah_penilaian_mapel_ini_1' => $jumlah_penilaian_mapel_ini_1,
+                'jumlah_penilaian_mapel_ini_2' => $jumlah_penilaian_mapel_ini_2,
+                'jumlah_penilaian_mapel_ini_3' => $jumlah_penilaian_mapel_ini_3,
+                'jumlah_penilaian_mapel_ini_4' => $jumlah_penilaian_mapel_ini_4,
+                'jumlah_penilaian_mapel_ini_5' => $jumlah_penilaian_mapel_ini_5,
+                'jumlah_penilaian_mapel_ini_6' => $jumlah_penilaian_mapel_ini_6,
+                'jumlah_penilaian_mapel_ini_7' => $jumlah_penilaian_mapel_ini_7,
+                'jumlah_penilaian_mapel_ini_8' => $jumlah_penilaian_mapel_ini_8,
+                'jumlah_penilaian_mapel_ini_9' => $jumlah_penilaian_mapel_ini_9,
+                'jumlah_penilaian_mapel_ini_10' => $jumlah_penilaian_mapel_ini_10,
             ]);
         }
         if (auth()->user()->role == 'guru') {
-            $rombel = Rombel::where('guru_id', '=', $id)->pluck('id')->first();
+            $rombel = Rombel::where('guru_id', '=', $id)->pluck('id ')->first();
             //dd($rombel);
-            $guru = Guru::find($id);
+            //$guru = Guru::find($id);
             $rombel2 = Rombel::where('guru_id', '=', $id)->pluck('rombel')->first();
             $rombel3 = Rombel::where('guru_id', '=', $id)->pluck('kelas_id')->first();
             $rombel4 = Rombel::find($rombel);
@@ -989,7 +1010,7 @@ class RombelController extends Controller
             $data['rombel'] = $rombel;
             $mapel = Mapel::all();
             return view('rombel.show', [
-                'guru' => $guru,
+                //'guru' => $guru,
                 'data' => $data,
                 'penilaian1' => $penilaian1,
                 'mapel' => $mapel,

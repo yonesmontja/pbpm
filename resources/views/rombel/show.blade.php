@@ -227,6 +227,88 @@
                                         </div>
                                      </div>
                                      <hr>
+                                     <strong><i class="fas fa-map-marker-alt mr-1"></i>Mapel sudah lengkap?</strong>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            Agama Islam
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_mapel_ini_1}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            Agama Katolik
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_mapel_ini_2}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            Agama Kristen
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_mapel_ini_3}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            PKn
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_mapel_ini_4}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            Bahasa Indonesia
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_mapel_ini_5}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            Matematika
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_mapel_ini_6}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            IPA
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_mapel_ini_7}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            IPS
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_mapel_ini_8}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            PJOK
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_mapel_ini_9}}</p>
+                                        </div>
+                                     </div>
+                                     <div class="row">
+                                        <div class="col-6">
+                                            SBK
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="text-muted">{{ $jumlah_penilaian_mapel_ini_10}}</p>
+                                        </div>
+                                     </div>
+                                     <hr>
                                      <strong><i class="fas fa-pencil-alt mr-1"></i> Data Absensi</strong>
                                      <div class="row">
                                         <div class="col-6">
@@ -238,10 +320,6 @@
                                      </div>
                                      <hr>
 
-                                     <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
-
-                                     <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                                         fermentum enim neque.</p>
                                  </div>
                                  <!-- /.card-body -->
                              </div>
