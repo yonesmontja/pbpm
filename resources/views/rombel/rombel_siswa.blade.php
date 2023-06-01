@@ -81,7 +81,7 @@
                                                     <td><a href="#">{{ $h->tahunpel->thn_pel }} {{ $h->tahunpel->semester }}</a></td>
                                                     <td>
                                                         <ul>
-                                                            @foreach ($h->siswa as $s)
+                                                            @foreach ($h->siswa->sortBy('nama_depan') as $s)
                                                                 <li><a href="/test/{{ $s -> id }}/profile">{{ $s->nama_depan }} {{ $s->nama_belakang }}</a></li>
                                                             @endforeach
                                                         </ul>
