@@ -2114,6 +2114,7 @@ class SiswaController extends Controller
                 + $raport_pengetahuan_ppkn
                 + $raport_pengetahuan_indonesia
                 + $raport_pengetahuan_matematika
+                + $raport_pengetahuan_sbk
                 + $raport_pengetahuan_pjok;
             $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
             $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 6, 1, '.', '');
@@ -2125,6 +2126,7 @@ class SiswaController extends Controller
                 + $raport_pengetahuan_ppkn
                 + $raport_pengetahuan_indonesia
                 + $raport_pengetahuan_matematika
+                + $raport_pengetahuan_sbk
                 + $raport_pengetahuan_pjok;
             $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
             $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 6, 1, '.', '');
