@@ -633,11 +633,7 @@ class SiswaController extends Controller
     public function cetak_PDF($id)
     {
         // cetak_PDF
-        $count_tugas1 = Nilai::all()
-            ->where('siswa_id', '=', $id)
-            ->where('penilaian_id', '=', 1)
-            ->where('mapel_id', '=', 1)
-            ->pluck('nilai')->avg();
+
         $students = Siswa::find($id);
         $deskripsi_sikap_spiritual = DB::table('extra')->where('siswa_id', '=', $id)->pluck('saran')->first();
         $deskripsi_sikap_sosial = DB::table('extra')->where('siswa_id', '=', $id)->pluck('ekskul')->first();
@@ -671,8 +667,6 @@ class SiswaController extends Controller
         if ($kelas_siswa == 'Kelas 5') {
             $kelas_naik = 'VI';
         }
-
-
         $semester = Tahunpelajaran::all()->pluck('semester');
         //dd($semester);
         $data_siswa = Siswa::get();
@@ -1943,7 +1937,7 @@ class SiswaController extends Controller
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 5)
             ->pluck('nilai_notes')->toArray();
-        //dd(implode($predikat_keterampilan_bi));
+        //dd(implode($predikat_pengetahuan_bi));
         if ($raport_pengetahuan_indonesia < $kkm) {
             $predikat_huruf_bi = "kurang";
             $predikat_huruf_indonesia = "D";
@@ -1962,7 +1956,7 @@ class SiswaController extends Controller
             $predikat_deskripsi_indonesia = " dalam | " . implode(", ", $predikat_pengetahuan_bi);
         }
         // -------------
-        //dd($predikat_huruf_bi);
+        //dd($predikat_deskripsi_indonesia);
         // deskripsi matematika
         $predikat_pengetahuan_math = Nilai::all()
             ->where('siswa_id', '=', $id)
@@ -2117,23 +2111,23 @@ class SiswaController extends Controller
         // ---------------------------------------------
         if ($rombel == 1) {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
-
+                + $raport_pengetahuan_ppkn
                 + $raport_pengetahuan_indonesia
                 + $raport_pengetahuan_matematika
                 + $raport_pengetahuan_pjok;
             $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
-            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 4, 1, '.', '');
+            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 6, 1, '.', '');
         }
         if (
             $rombel == 2
         ) {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
-
+                + $raport_pengetahuan_ppkn
                 + $raport_pengetahuan_indonesia
                 + $raport_pengetahuan_matematika
                 + $raport_pengetahuan_pjok;
             $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
-            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 4, 1, '.', '');
+            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 6, 1, '.', '');
         }
         if (
             $rombel == 3
@@ -2151,13 +2145,13 @@ class SiswaController extends Controller
             $rombel == 4
         ) {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
-
+                + $raport_pengetahuan_ppkn
                 + $raport_pengetahuan_indonesia
                 + $raport_pengetahuan_matematika
-
+                + $raport_pengetahuan_sbk
                 + $raport_pengetahuan_pjok;
             $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
-            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 4, 1, '.', '');
+            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 6, 1, '.', '');
         }
         if (
             $rombel == 5
@@ -2704,37 +2698,49 @@ class SiswaController extends Controller
         // beda bentuk raport untuk kelas 1, 2 dan 3, 4, 5, dan 6
         if ($rombel == 1) {
             $jumlah_raport_keterampilan = $raport_keterampilan_agama
-
+                + $raport_keterampilan_ppkn
                 + $raport_keterampilan_indonesia
                 + $raport_keterampilan_matematika
-                + $raport_keterampilan_pjok;
+                + $raport_keterampilan_pjok
+                + $raport_keterampilan_sbk;
+            $jumlah_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan, 1, '.', '');
+            $ratarata_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan / 6, 1, '.', '');
         }
         if (
             $rombel == 2
         ) {
             $jumlah_raport_keterampilan = $raport_keterampilan_agama
-
+                + $raport_keterampilan_ppkn
                 + $raport_keterampilan_indonesia
                 + $raport_keterampilan_matematika
-                + $raport_keterampilan_pjok;
+                + $raport_keterampilan_pjok
+                + $raport_keterampilan_sbk;
+            $jumlah_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan, 1, '.', '');
+            $ratarata_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan / 6, 1, '.', '');
         }
         if (
             $rombel == 3
         ) {
             $jumlah_raport_keterampilan = $raport_keterampilan_agama
-
+                + $raport_keterampilan_ppkn
                 + $raport_keterampilan_indonesia
                 + $raport_keterampilan_matematika
-                + $raport_keterampilan_pjok;
+                + $raport_keterampilan_pjok
+                + $raport_keterampilan_sbk;
+            $jumlah_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan, 1, '.', '');
+            $ratarata_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan / 6, 1, '.', '');
         }
         if (
             $rombel == 4
         ) {
             $jumlah_raport_keterampilan = $raport_keterampilan_agama
-
+                + $raport_keterampilan_ppkn
                 + $raport_keterampilan_indonesia
                 + $raport_keterampilan_matematika
-                + $raport_keterampilan_pjok;
+                + $raport_keterampilan_pjok
+                + $raport_keterampilan_sbk;
+            $jumlah_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan, 1, '.', '');
+            $ratarata_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan / 6, 1, '.', '');
         }
         if (
             $rombel == 5
@@ -2747,6 +2753,8 @@ class SiswaController extends Controller
                 + $raport_keterampilan_ips
                 + $raport_keterampilan_pjok
                 + $raport_keterampilan_sbk;
+            $jumlah_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan, 1, '.', '');
+            $ratarata_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan / 8, 1, '.', '');
         }
         if (
             $rombel == 6
@@ -2759,6 +2767,8 @@ class SiswaController extends Controller
                 + $raport_keterampilan_ips
                 + $raport_keterampilan_pjok
                 + $raport_keterampilan_sbk;
+            $jumlah_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan, 1, '.', '');
+            $ratarata_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan / 8, 1, '.', '');
         }
         if (
             $rombel == 7
@@ -2771,6 +2781,8 @@ class SiswaController extends Controller
                 + $raport_keterampilan_ips
                 + $raport_keterampilan_pjok
                 + $raport_keterampilan_sbk;
+            $jumlah_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan, 1, '.', '');
+            $ratarata_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan / 8, 1, '.', '');
         }
         if (
             $rombel == 8
@@ -2783,6 +2795,8 @@ class SiswaController extends Controller
                 + $raport_keterampilan_ips
                 + $raport_keterampilan_pjok
                 + $raport_keterampilan_sbk;
+            $jumlah_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan, 1, '.', '');
+            $ratarata_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan / 8, 1, '.', '');
         }
         if (
             $rombel == 9
@@ -2795,6 +2809,8 @@ class SiswaController extends Controller
                 + $raport_keterampilan_ips
                 + $raport_keterampilan_pjok
                 + $raport_keterampilan_sbk;
+            $jumlah_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan, 1, '.', '');
+            $ratarata_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan / 8, 1, '.', '');
         }
         if (
             $rombel == 10
@@ -2807,6 +2823,8 @@ class SiswaController extends Controller
                 + $raport_keterampilan_ips
                 + $raport_keterampilan_pjok
                 + $raport_keterampilan_sbk;
+            $jumlah_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan, 1, '.', '');
+            $ratarata_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan / 8, 1, '.', '');
         }
         if (
             $rombel == 11
@@ -2819,6 +2837,8 @@ class SiswaController extends Controller
                 + $raport_keterampilan_ips
                 + $raport_keterampilan_pjok
                 + $raport_keterampilan_sbk;
+            $jumlah_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan, 1, '.', '');
+            $ratarata_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan / 8, 1, '.', '');
         }
         if (
             $rombel == 12
@@ -2831,10 +2851,11 @@ class SiswaController extends Controller
                 + $raport_keterampilan_ips
                 + $raport_keterampilan_pjok
                 + $raport_keterampilan_sbk;
+            $jumlah_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan, 1, '.', '');
+            $ratarata_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan / 8, 1, '.', '');
         }
 
-        $jumlah_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan, 1, '.', '');
-        $ratarata_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan / 8, 1, '.', '');
+
 
         // -------------------------------------------------------
         // Hitung nilai raport pengetahuan dan keterampilan
