@@ -42,6 +42,7 @@ return array(
     'App\\Http\\Controllers\\MailboxController' => $baseDir . '/app/Http/Controllers/MailboxController.php',
     'App\\Http\\Controllers\\MapelController' => $baseDir . '/app/Http/Controllers/MapelController.php',
     'App\\Http\\Controllers\\MisiController' => $baseDir . '/app/Http/Controllers/MisiController.php',
+    'App\\Http\\Controllers\\MoodleController' => $baseDir . '/app/Http/Controllers/MoodleController.php',
     'App\\Http\\Controllers\\NilaiController' => $baseDir . '/app/Http/Controllers/NilaiController.php',
     'App\\Http\\Controllers\\PagesController' => $baseDir . '/app/Http/Controllers/PagesController.php',
     'App\\Http\\Controllers\\PenilaianController' => $baseDir . '/app/Http/Controllers/PenilaianController.php',

@@ -684,6 +684,7 @@ class ComposerStaticInit3138ba957d040e3c4b33038701880e47
         'App\\Http\\Controllers\\MailboxController' => __DIR__ . '/../..' . '/app/Http/Controllers/MailboxController.php',
         'App\\Http\\Controllers\\MapelController' => __DIR__ . '/../..' . '/app/Http/Controllers/MapelController.php',
         'App\\Http\\Controllers\\MisiController' => __DIR__ . '/../..' . '/app/Http/Controllers/MisiController.php',
+        'App\\Http\\Controllers\\MoodleController' => __DIR__ . '/../..' . '/app/Http/Controllers/MoodleController.php',
         'App\\Http\\Controllers\\NilaiController' => __DIR__ . '/../..' . '/app/Http/Controllers/NilaiController.php',
         'App\\Http\\Controllers\\PagesController' => __DIR__ . '/../..' . '/app/Http/Controllers/PagesController.php',
         'App\\Http\\Controllers\\PenilaianController' => __DIR__ . '/../..' . '/app/Http/Controllers/PenilaianController.php',
