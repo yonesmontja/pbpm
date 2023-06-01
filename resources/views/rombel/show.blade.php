@@ -238,7 +238,7 @@
                                      </div>
                                      <div class="row">
                                         <div class="col-6">
-                                            Agama Katolik
+                                            Agama Kristen
                                         </div>
                                         <div class="col-6">
                                             <p class="text-muted">{{ $jumlah_penilaian_mapel_ini_2}}</p>
@@ -246,7 +246,7 @@
                                      </div>
                                      <div class="row">
                                         <div class="col-6">
-                                            Agama Kristen
+                                            Agama Katolik
                                         </div>
                                         <div class="col-6">
                                             <p class="text-muted">{{ $jumlah_penilaian_mapel_ini_3}}</p>
