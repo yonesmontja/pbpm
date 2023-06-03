@@ -298,7 +298,7 @@
                         <td style="text-align: center;">{{ $raport_pengetahuan_agama }}</td>
                     @endif
                     <td style="text-align: center;">{{ $predikat_huruf_agama }}</td>
-                    <td style="text-align: left;">Memiliki kemampuan <strong> {{ $predikathuruf }} </strong>
+                    <td style="text-align: left;">Memiliki kemampuan <strong> {{ $predikat_huruf_agama1 }} </strong>
                         {{ $predikat_deskripsi_agama }}</td>
                     @if ($students->agama == 'Islam' || $students->agama == 'islam')
                         <td style="text-align: center;">{{ $raport_keterampilan_agama }}</td>
@@ -328,7 +328,7 @@
                     <td style="text-align: left;">Bahasa Indonesia</td>
                     <td style="text-align: center;">{{ $raport_pengetahuan_indonesia }}</td>
                     <td style="text-align: center;">{{ $predikat_huruf_indonesia }}</td>
-                    <td style="text-align: left;">Memiliki kemampuan <strong> {{ $predikathuruf_bi }} </strong>
+                    <td style="text-align: left;">Memiliki kemampuan <strong> {{ $predikat_huruf_bi }} </strong>
                         {{ $predikat_deskripsi_indonesia }}</td>
                     <td style="text-align: center;">{{ $raport_keterampilan_indonesia }}</td>
                     <td style="text-align: center;">{{ $predikat_keterampilan_huruf_indonesia }}</td>
@@ -340,7 +340,7 @@
                     <td style="text-align: left;">Matematika</td>
                     <td style="text-align: center;">{{ $raport_pengetahuan_matematika }}</td>
                     <td style="text-align: center;">{{ $predikat_huruf_matematika }}</td>
-                    <td style="text-align: left;">Memiliki kemampuan <strong> {{ $predikathuruf_math }} </strong>
+                    <td style="text-align: left;">Memiliki kemampuan <strong> {{ $predikat_huruf_math }} </strong>
                         {{ $predikat_deskripsi_matematika }}</td>
                     <td style="text-align: center;">{{ $raport_keterampilan_matematika }}</td>
                     <td style="text-align: center;">{{ $predikat_keterampilan_huruf_matematika }}</td>
@@ -356,7 +356,7 @@
                     <td style="text-align: left;">Pendidikan Jasmani, Olahraga dan Kesehatan</td>
                     <td style="text-align: center;">{{ $raport_pengetahuan_pjok }}</td>
                     <td style="text-align: center;">{{ $predikat_huruf_pjok }}</td>
-                    <td style="text-align: left;">Memiliki kemampuan <strong> {{ $predikathuruf_pjok }} </strong>
+                    <td style="text-align: left;">Memiliki kemampuan <strong> {{ $predikat_huruf_pjok }} </strong>
                         {{ $predikat_deskripsi_pjok }}</td>
                     <td style="text-align: center;">{{ $raport_keterampilan_pjok }}</td>
                     <td style="text-align: center;">{{ $predikat_keterampilan_huruf_pjok }}</td>
