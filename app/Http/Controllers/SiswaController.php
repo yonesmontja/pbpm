@@ -1865,18 +1865,97 @@ class SiswaController extends Controller
             + ($rata_rata_pas_sbk * 1)) / 4;
         $raport_pengetahuan_sbk = number_format((float)$raport_pengetahuan_sbk, 1, '.', '');
         $kkm = 65;
-        // deskripsi agama
-        $predikat_pengetahuan = Nilai::all()
+        // hitung deskripsi agama
+        if ($students->agama == "Islam" || $students->agama == "islam") {
+            $predikat_pengetahuan = [Nilai::all()
+            ->where('siswa_id', '=', $id)
+            ->where('penilaian_id', '=', 4)
+            ->where('mapel_id', '=', 1)
+            ->pluck('nilai_notes')->toArray(), Nilai::all()
+            ->where('siswa_id', '=', $id)
+            ->where('penilaian_id', '=', 5)
+            ->where('mapel_id', '=', 1)
+            ->pluck('nilai_notes')->toArray()];
+            $predikat_keterampilan = [Nilai::all()
+            ->where('siswa_id', '=', $id)
+            ->where('penilaian_id', '=', 18)
+            ->where('mapel_id', '=', 1)
+            ->pluck('nilai_notes')->toArray(), Nilai::all()
+            ->where('siswa_id', '=', $id)
+            ->where('penilaian_id', '=', 19)
+            ->where('mapel_id', '=', 1)
+            ->pluck('nilai_notes')->toArray(), Nilai::all()
+            ->where('siswa_id', '=', $id)
+            ->where('penilaian_id', '=', 20)
+            ->where('mapel_id', '=', 1)
+            ->pluck('nilai_notes')->toArray(), Nilai::all()
+            ->where('siswa_id', '=', $id)
+            ->where('penilaian_id', '=', 21)
+            ->where('mapel_id', '=', 1)
+            ->pluck('nilai_notes')->toArray()];
+            //dd(implode($predikat));
+        }
+        //dd($raport_pengetahuan_islam);
+        if ($students->agama == "Kristen Protestan" || $students->agama == "kristen protestan") {
+            $predikat_pengetahuan = [Nilai::all()
+            ->where('siswa_id', '=', $id)
+            ->where('penilaian_id', '=', 4)
+            ->where('mapel_id', '=', 2)
+            ->pluck('nilai_notes')->toArray(), Nilai::all()
             ->where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 2)
-        ->pluck('nilai_notes')->toArray();
-        $predikat_keterampilan = Nilai::all()
+            ->pluck('nilai_notes')->toArray()];
+            $predikat_keterampilan = [Nilai::all()
+                ->where('siswa_id', '=', $id)
+                ->where('penilaian_id', '=', 18)
+                ->where('mapel_id', '=', 2)
+                ->pluck('nilai_notes')->toArray(), Nilai::all()
+                ->where('siswa_id', '=', $id)
+                ->where('penilaian_id', '=', 19)
+                ->where('mapel_id', '=', 2)
+                ->pluck('nilai_notes')->toArray(), Nilai::all()
+                ->where('siswa_id', '=', $id)
+                ->where('penilaian_id', '=', 20)
+                ->where('mapel_id', '=', 2)
+                ->pluck('nilai_notes')->toArray(), Nilai::all()
+                ->where('siswa_id', '=', $id)
+                ->where('penilaian_id', '=', 21)
+            ->where('mapel_id', '=', 2)
+            ->pluck('nilai_notes')->toArray()];
+            //dd(implode($predikat));
+        }
+        //dd($rata_rata_tugas_protestan);
+        if ($students->agama == "Katolik" || $students->agama == "katolik") {
+            $predikat_pengetahuan = [Nilai::all()
+            ->where('siswa_id', '=', $id)
+            ->where('penilaian_id', '=', 4)
+            ->where('mapel_id', '=', 3)
+            ->pluck('nilai_notes')->toArray(), Nilai::all()
+            ->where('siswa_id', '=', $id)
+            ->where('penilaian_id', '=', 5)
+            ->where('mapel_id', '=', 3)
+            ->pluck('nilai_notes')->toArray()];
+            $predikat_keterampilan = [Nilai::all()
+            ->where('siswa_id', '=', $id)
+            ->where('penilaian_id', '=', 18)
+            ->where('mapel_id', '=', 3)
+            ->pluck('nilai_notes')->toArray(), Nilai::all()
             ->where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
-            ->where('mapel_id', '=', 2)
-            ->pluck('nilai_notes')->toArray();
-        //dd(implode($predikat));
+            ->where('mapel_id', '=', 3)
+            ->pluck('nilai_notes')->toArray(), Nilai::all()
+            ->where('siswa_id', '=', $id)
+            ->where('penilaian_id', '=', 20)
+            ->where('mapel_id', '=', 3)
+            ->pluck('nilai_notes')->toArray(), Nilai::all()
+            ->where('siswa_id', '=', $id)
+            ->where('penilaian_id', '=', 21)
+            ->where('mapel_id', '=', 3)
+            ->pluck('nilai_notes')->toArray()];
+            //dd(implode($predikat));
+        }
+
         if ($raport_pengetahuan_agama < $kkm) {
             $predikat_huruf_agama1 = "kurang";
             $predikat_huruf_agama = "D";
