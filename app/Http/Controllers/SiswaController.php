@@ -1840,6 +1840,7 @@ class SiswaController extends Controller
             + ($rata_rata_pts_matematika * 1)
             + ($rata_rata_pas_matematika * 1)) / 4;
         $raport_pengetahuan_matematika = number_format((float)$raport_pengetahuan_matematika, 1, '.', '');
+        dd($raport_pengetahuan_matematika);
         $raport_pengetahuan_ipa = (((max([
             $rata_rata_tugas_ipa, $rata_rata_latihan_ipa, $rata_rata_uh_ipa
         ])) * 2)
