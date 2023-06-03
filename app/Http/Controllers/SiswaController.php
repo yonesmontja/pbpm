@@ -1827,6 +1827,7 @@ class SiswaController extends Controller
             [$rata_rata_tugas_ppkn, $rata_rata_latihan_ppkn, $rata_rata_uh_ppkn]
         )) * 2) + ($rata_rata_pts_ppkn * 1) + ($rata_rata_pas_ppkn * 1)) / 4;
         $raport_pengetahuan_ppkn = number_format((float)$raport_pengetahuan_ppkn, 1, '.', '');
+        //dd($raport_pengetahuan_ppkn);
         $raport_pengetahuan_indonesia = (((max([
             $rata_rata_tugas_ppkn, $rata_rata_latihan_ppkn, $rata_rata_uh_ppkn
         ])) * 2)
