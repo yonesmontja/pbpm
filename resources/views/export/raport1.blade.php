@@ -356,7 +356,7 @@
                     <td style="text-align: left;">Pendidikan Jasmani, Olahraga dan Kesehatan</td>
                     <td style="text-align: center;">{{ $raport_pengetahuan_pjok }}</td>
                     <td style="text-align: center;">{{ $predikat_huruf_pjok }}</td>
-                    <td style="text-align: left;">Memiliki kemampuan <strong> {{ $predikat_huruf_pjok }} </strong>
+                    <td style="text-align: left;">Memiliki kemampuan <strong> {{ $predikat_huruf_pjok1 }} </strong>
                         {{ $predikat_deskripsi_pjok }}</td>
                     <td style="text-align: center;">{{ $raport_keterampilan_pjok }}</td>
                     <td style="text-align: center;">{{ $predikat_keterampilan_huruf_pjok }}</td>
