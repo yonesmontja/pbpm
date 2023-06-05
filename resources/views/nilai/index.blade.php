@@ -189,7 +189,7 @@
                                                 <td><a
                                                         href="/kelas/{{ $nilai->kelas->id }}/profile">{{ $nilai->tanggal }}</a>
                                                 </td>
-                                                <td><a href="/test/{{ $nilai->siswa->id }}/profile">{{ $nilai->siswa->nama_depan }}
+                                                <td><a href="#">{{ $nilai->siswa->nama_depan }}
                                                         {{ $nilai->siswa->nama_belakang }}</a>
                                                 </td>
                                                 <td>{{ $nilai->nilai }}</td>
