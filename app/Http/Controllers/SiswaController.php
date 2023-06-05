@@ -90,7 +90,7 @@ class SiswaController extends Controller
             // lalu tampilkan data siswa rombel yang memiliki guru_id == $id_guru
             $rombel2 = Rombel::where('guru_id', '=', $id_guru)->pluck('id')->first();
             $rombel3 = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->pluck('siswa_id')->toArray();
-            //dd($rombel3);
+            dd($rombel3);
             foreach ($rombel3 as $z => $zefa) {
                 $tampung[] = Siswa::find($zefa);
             }
