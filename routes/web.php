@@ -79,7 +79,7 @@ Route::get('/dashboard_siswa',[DashboardController::class,'dashboard_siswa'])->n
 Route::get('/dashboard_guru',[DashboardController::class,'dashboard_guru'])->name('dashboard_guru');
 Route::get('/login',[AuthController::class,'login'])->name('login');
 Route::get('/postlogin',[AuthController::class,'postlogin'])->name('postlogin');
-Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+Route::get('/logout',[AuthController::class,'logout']);
 Route::get('/reset',[AuthController::class,'reset'])->name('reset');
 
 Route::group(['middleware' => ['auth','checkRole:admin']], function()
