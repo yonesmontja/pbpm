@@ -186,12 +186,15 @@
                                                 </td>
                                                 <td><a href="#">{{ $nilai->rombel->rombel }}</a>
                                                 </td>
+
                                                 <td><a
                                                         href="/kelas/{{ $nilai->kelas->id }}/profile">{{ $nilai->tanggal }}</a>
                                                 </td>
+
                                                 <td><a href="#">{{ $nilai->siswa->nama_depan }}
                                                         {{ $nilai->siswa->nama_belakang }}</a>
                                                 </td>
+
                                                 <td>{{ $nilai->nilai }}</td>
                                                 <td>
                                                     <a href="/nilai/{{ $nilai->id }}/nilaiedit"
