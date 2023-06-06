@@ -1889,10 +1889,10 @@ class DashboardController extends Controller
         $nama_guru = Guru::where('user_id', '=', $id)->pluck('nama_guru')->first();
         //dd($nama_guru);
 
-        $data_siswa = Siswa::orderBy('nama_depan')->get();
+        //$data_siswa = Siswa::orderBy('nama_depan')->get();
 
-        $kelas = Kelas::all();
-        $rombel = Rombel::all();
+        //$kelas = Kelas::all();
+        //$rombel = Rombel::all();
 
         if (auth()->user()->role == 'guru') {
             // mengambil data siswa yang sudah memiliki rombel dan menampilkannya sesuai user()->role == guru
@@ -1947,9 +1947,9 @@ class DashboardController extends Controller
         $kelas_rombel = Rombel::where('guru_id', '=', $guru)->pluck('kelas_id')->first();
         //dd($kelas_rombel);
         //dd($guru_rombel);
-        $rombel = DB::table('rombel_siswa')->where('rombel_id', '=', $guru_rombel)->pluck('rombel_id')->first();
+        //$rombel = DB::table('rombel_siswa')->where('rombel_id', '=', $guru_rombel)->pluck('rombel_id')->first();
         //dd($guru);
-        $kelas = Kelas::where('guru_id', '=', $guru)->pluck('nama');
+        //$kelas = Kelas::where('guru_id', '=', $guru)->pluck('nama');
 
         //dd($kelas);
         $nilai_start = Tahunpelajaran::all()->where('id', '=', 2)->pluck('tahun');
@@ -1974,7 +1974,7 @@ class DashboardController extends Controller
             'user' => $user,
             'user1' => $user1,
             'id' => $id,
-            'rombel' => $rombel,
+            //'rombel' => $rombel,
             'nama_rombel' => $nama_rombel,
             'guru_rombel' => $guru_rombel,
             'kelas_rombel' => $kelas_rombel,
@@ -1983,7 +1983,7 @@ class DashboardController extends Controller
             'nilai_start' => $nilai_start,
             'nilai_end' => $nilai_end,
             'tahunpel' => $tahunpel,
-            'kelas' => $kelas,
+            //'kelas' => $kelas,
             'penilaian' => $penilaian,
             //'siswa' => $siswa,
             'mapel' => $mapel,
