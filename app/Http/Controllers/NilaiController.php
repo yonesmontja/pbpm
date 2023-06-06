@@ -97,7 +97,7 @@ class NilaiController extends Controller
             'nama_rombel' => $nama_rombel,
             'guru_rombel' => $guru_rombel,
             'kelas_rombel' => $kelas_rombel,
-            'jumlah_penilaian' => $jumlah_penilaian,
+            // 'jumlah_penilaian' => $jumlah_penilaian,
             'kelas_sub' => $kelas_sub,
             'nilai_start' => $nilai_start,
             'nilai_end' => $nilai_end,
