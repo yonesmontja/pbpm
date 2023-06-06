@@ -1044,7 +1044,7 @@
                             <tr>
                                 <td text-align="center" colspan="8">
                                     <img class="logo" src="{{ asset('images/ttd_barcode.jpg') }}"
-                                        width="610" alt="">
+                                        width="310" alt="">
                                     <hr align="center">
                                 </td>
                             </tr>
