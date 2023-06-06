@@ -64,7 +64,7 @@ class NilaiController extends Controller
     }
     public function isinilai($id)
     {
-        $data_nilai = Nilai::all()->where('guru_id', '=', $id);
+        $data_nilai = Nilai::where('guru_id', '=', $id);
         $kompetensiinti = Kompetensiinti::all();
         $mapel = Mapel::all();
         $siswa = Siswa::all();
