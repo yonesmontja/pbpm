@@ -64,15 +64,16 @@ class NilaiController extends Controller
     }
     public function isinilai($id)
     {
-        $data_nilai = Nilai::where('guru_id', '=', $id);
-        $kompetensiinti = Kompetensiinti::all();
-        $mapel = Mapel::all();
-        $siswa = Siswa::all();
-        $penilaian = Penilaian::all();
+
         $guru = Guru::find($id);
         $nama_rombel = Rombel::where('guru_id', '=', $id)->pluck('rombel')->first();
         $guru_rombel = Rombel::where('guru_id', '=', $id)->pluck('id')->first();
         $kelas_rombel = Rombel::where('guru_id', '=', $id)->pluck('kelas_id')->first();
+        $data_nilai = Nilai::where('guru_id', '=', $id);
+        $kompetensiinti = Kompetensiinti::all();
+        $mapel = Mapel::all();
+        $siswa = Siswa::where('kelas_id', '=', $kelas_rombel)->get();
+        $penilaian = Penilaian::all();
         //dd($kelas_rombel);
         //dd($guru_rombel);
         $rombel = DB::table('rombel_siswa')->where('rombel_id', '=', $guru_rombel)->pluck('rombel_id')->first();
@@ -80,27 +81,27 @@ class NilaiController extends Controller
         $kelas = Kelas::where('guru_id', '=', $id)->pluck('nama');
 
         //dd($kelas);
-        $nilai_start = Tahunpelajaran::all()->where('id', '=', 2)->pluck('tahun');
-        $nilai_end = Tahunpelajaran::all()->where('id', '=', 1)->pluck('tahun');
-        $kelas_sub = Siswa::where('kelas_id', 0)->get();
-        $tahunpel = Tahunpel::all();
+        // $nilai_start = Tahunpelajaran::all()->where('id', '=', 2)->pluck('tahun');
+        // $nilai_end = Tahunpelajaran::all()->where('id', '=', 1)->pluck('tahun');
+        // $kelas_sub = Siswa::where('kelas_id', 0)->get();
+        // $tahunpel = Tahunpel::all();
         //$rombel = Rombel::all();
         //dd($kelas_sub);
-        for ($bulan = 1; $bulan < 7; $bulan++) {
-            $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
-            $jumlah_penilaian[] = $chart_penilaian->jumlah;
-        }
+        // for ($bulan = 1; $bulan < 7; $bulan++) {
+        //     $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
+        //     $jumlah_penilaian[] = $chart_penilaian->jumlah;
+        // }
         //dd($jumlah_penilaian);
         return view('nilai.isinilai', [
             'rombel' => $rombel,
             'nama_rombel' => $nama_rombel,
             'guru_rombel' => $guru_rombel,
             'kelas_rombel' => $kelas_rombel,
-            'jumlah_penilaian' => $jumlah_penilaian,
-            'kelas_sub' => $kelas_sub,
-            'nilai_start' => $nilai_start,
-            'nilai_end' => $nilai_end,
-            'tahunpel' => $tahunpel,
+            // 'jumlah_penilaian' => $jumlah_penilaian,
+            // 'kelas_sub' => $kelas_sub,
+            // 'nilai_start' => $nilai_start,
+            // 'nilai_end' => $nilai_end,
+            // 'tahunpel' => $tahunpel,
             'kelas' => $kelas,
             'penilaian' => $penilaian,
             'siswa' => $siswa,
