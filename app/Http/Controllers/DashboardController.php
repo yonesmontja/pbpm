@@ -1935,7 +1935,7 @@ class DashboardController extends Controller
         $kkm = 65;
         $kkm1 = $kkm + (100 - $kkm) / 3;
         $kkm2 = $kkm1 + (100 - $kkm) / 3;
-        $data_nilai = Nilai::all()->where('guru_id', '=', $guru)->count();
+        $data_nilai = Nilai::where('guru_id', '=', $guru)->count();
 
         $kompetensiinti = Kompetensiinti::all();
         $mapel = Mapel::all();
