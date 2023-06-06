@@ -406,12 +406,12 @@ class NilaiController extends Controller
         $rombel = Rombel::all();
         $kompetensiinti = Kompetensiinti::all();
         $mapel = Mapel::all();
-        $siswa = Siswa::all();
+
         $penilaian = Penilaian::all();
 
         $kelas = Kelas::all();
-        $nilai_start = Tahunpelajaran::all()->where('id', '=', 2)->pluck('tahun');
-        $nilai_end = Tahunpelajaran::all()->where('id', '=', 1)->pluck('tahun');
+        $nilai_start = Tahunpelajaran::where('id', '=', 2)->pluck('tahun');
+        $nilai_end = Tahunpelajaran::where('id', '=', 1)->pluck('tahun');
         $kelas_sub = Siswa::where('kelas_id', 0)->get();
         // mengambil data siswa yang sudah memiliki rombel dan menampilkannya sesuai user()->role == guru
         // langkah pertama ambil id user yg role == guru dan sedang buka route /test
@@ -425,6 +425,7 @@ class NilaiController extends Controller
             = Rombel::where('guru_id', '=', $id_guru)->pluck('kelas_id')->first();
         $nama_rombel_kelas = Kelas::where('id', '=', $rombel_kelas)->pluck('nama')->first();
         $guru = $id_guru;
+        $siswa = Siswa::where('kelas_id', '=', $rombel_kelas)->get();
         $rombel3 = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->pluck('siswa_id')->toArray();
         foreach ($rombel3 as $z => $zefa) {
             $tampung3[] = Siswa::find($zefa);
