@@ -1878,11 +1878,11 @@ class DashboardController extends Controller
     {
         // kkm dan rentang nilai
         // Retrieve the currently authenticated user...
-        $user = Auth::user();
+        //$user = Auth::user();
         // Retrieve the currently authenticated user's ID...
         $id = Auth::id();
         //dd($id);
-        $user1 = User::find($id)->pluck('id');
+        //$user1 = User::find($id)->pluck('id');
 
         //dd($user1);
         $guru = Guru::where('user_id', '=', $id)->pluck('id')->first();
@@ -1935,12 +1935,12 @@ class DashboardController extends Controller
         $kkm = 65;
         $kkm1 = $kkm + (100 - $kkm) / 3;
         $kkm2 = $kkm1 + (100 - $kkm) / 3;
-        $data_nilai = Nilai::where('guru_id', '=', $guru)->count();
+        //$data_nilai = Nilai::where('guru_id', '=', $guru)->count();
 
-        $kompetensiinti = Kompetensiinti::all();
-        $mapel = Mapel::all();
+        //$kompetensiinti = Kompetensiinti::all();
+        //$mapel = Mapel::all();
         //$siswa = Siswa::all();
-        $penilaian = Penilaian::all();
+        //$penilaian = Penilaian::all();
 
         $nama_rombel = Rombel::where('guru_id', '=', $guru)->pluck('rombel')->first();
         $guru_rombel = Rombel::where('guru_id', '=', $guru)->pluck('id')->first();
@@ -1952,16 +1952,16 @@ class DashboardController extends Controller
         //$kelas = Kelas::where('guru_id', '=', $guru)->pluck('nama');
 
         //dd($kelas);
-        $nilai_start = Tahunpelajaran::all()->where('id', '=', 2)->pluck('tahun');
-        $nilai_end = Tahunpelajaran::all()->where('id', '=', 1)->pluck('tahun');
-        $kelas_sub = Siswa::where('kelas_id', 0)->get();
-        $tahunpel = Tahunpel::all();
+        //$nilai_start = Tahunpelajaran::where('id', '=', 2)->pluck('tahun');
+        //$nilai_end = Tahunpelajaran::where('id', '=', 1)->pluck('tahun');
+        //$kelas_sub = Siswa::where('kelas_id', 0)->get();
+        //$tahunpel = Tahunpel::all();
         //$rombel = Rombel::all();
         //dd($kelas_sub);
-        for ($bulan = 1; $bulan < 7; $bulan++) {
-            $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
-            $jumlah_penilaian[] = $chart_penilaian->jumlah;
-        }
+        // for ($bulan = 1; $bulan < 7; $bulan++) {
+        //     $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
+        //     $jumlah_penilaian[] = $chart_penilaian->jumlah;
+        // }
         return view('dashboards.dashboard_guru', [
             'tampung_islam' => $tampung_islam,
             'tampung_katolik' => $tampung_katolik,
@@ -1971,8 +1971,8 @@ class DashboardController extends Controller
             'kkm' => $kkm,
             'kkm1' => $kkm1,
             'kkm2' => $kkm2,
-            'user' => $user,
-            'user1' => $user1,
+            //'user' => $user,
+            //'user1' => $user1,
             'id' => $id,
             //'rombel' => $rombel,
             'nama_rombel' => $nama_rombel,
@@ -1984,11 +1984,11 @@ class DashboardController extends Controller
             'nilai_end' => $nilai_end,
             'tahunpel' => $tahunpel,
             //'kelas' => $kelas,
-            'penilaian' => $penilaian,
+            //'penilaian' => //,
             //'siswa' => $siswa,
-            'mapel' => $mapel,
-            'kompetensiinti' => $kompetensiinti,
-            'data_nilai' => $data_nilai,
+            //'mapel' => $mapel,
+            //'kompetensiinti' => $kompetensiinti,
+            //'data_nilai' => $data_nilai,
             'guru' => $guru,
             'nama_guru' => $nama_guru
         ]);
