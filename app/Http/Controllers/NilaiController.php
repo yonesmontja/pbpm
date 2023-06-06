@@ -81,10 +81,10 @@ class NilaiController extends Controller
         $kelas = Kelas::where('guru_id', '=', $id)->pluck('nama');
 
         //dd($kelas);
-        // $nilai_start = Tahunpelajaran::all()->where('id', '=', 2)->pluck('tahun');
-        // $nilai_end = Tahunpelajaran::all()->where('id', '=', 1)->pluck('tahun');
-        // $kelas_sub = Siswa::where('kelas_id', 0)->get();
-        // $tahunpel = Tahunpel::all();
+        $nilai_start = Tahunpelajaran::all()->where('id', '=', 2)->pluck('tahun');
+        $nilai_end = Tahunpelajaran::all()->where('id', '=', 1)->pluck('tahun');
+        $kelas_sub = Siswa::where('kelas_id', 0)->get();
+        $tahunpel = Tahunpel::all();
         //$rombel = Rombel::all();
         //dd($kelas_sub);
         // for ($bulan = 1; $bulan < 7; $bulan++) {
@@ -97,11 +97,11 @@ class NilaiController extends Controller
             'nama_rombel' => $nama_rombel,
             'guru_rombel' => $guru_rombel,
             'kelas_rombel' => $kelas_rombel,
-            // 'jumlah_penilaian' => $jumlah_penilaian,
-            // 'kelas_sub' => $kelas_sub,
-            // 'nilai_start' => $nilai_start,
-            // 'nilai_end' => $nilai_end,
-            // 'tahunpel' => $tahunpel,
+            'jumlah_penilaian' => $jumlah_penilaian,
+            'kelas_sub' => $kelas_sub,
+            'nilai_start' => $nilai_start,
+            'nilai_end' => $nilai_end,
+            'tahunpel' => $tahunpel,
             'kelas' => $kelas,
             'penilaian' => $penilaian,
             'siswa' => $siswa,
