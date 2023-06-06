@@ -26,7 +26,7 @@ function dataNilai()
 {
     $id = Auth::id();
     $guru = Guru::where('user_id', '=', $id)->pluck('id')->first();
-    $data_nilai = Nilai::all()->where('guru_id', '=', $guru)->count();
+    $data_nilai = Nilai::where('guru_id', '=', $guru)->count();
 
     return $data_nilai;
 }

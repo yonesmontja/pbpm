@@ -171,7 +171,7 @@
                                          <h3 class="profile-username text-center"><a href="#">{{ $nama_guru }}
                                              </a></h3>
                                          <h5 class="text-center"><a href="/isinilai/{{ $guru }}"
-                                                 class="btn btn-primary btn-lg btn-flat">
+                                                 class="btn btn-primary btn-sm btn-flat">
                                                  Isi Nilai
                                              </a></h5>
                                      @endif
