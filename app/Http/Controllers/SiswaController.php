@@ -667,6 +667,9 @@ class SiswaController extends Controller
         if ($kelas_siswa == 'Kelas 5') {
             $kelas_naik = 'VI';
         }
+        if ($kelas_siswa == 'Kelas 6') {
+            $kelas_naik = 'SMP';
+        }
         $semester = Tahunpelajaran::all()->pluck('semester');
         //dd($semester);
         $data_siswa = Siswa::get();
