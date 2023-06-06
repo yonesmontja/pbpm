@@ -1916,11 +1916,11 @@ class DashboardController extends Controller
                     $tampung_female[] = Siswa::where('kelas_id', '=', $rombel23)->find($zefa);
                 } elseif (Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->jenis_kelamin == 'Laki-laki') {
                     $tampung_male[] = Siswa::where('kelas_id', '=', $rombel23)->find($zefa);
-                } else if (Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'Islam' || Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'islam') {
+                } elseif (Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'Islam' || Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'islam') {
                     $tampung_islam[] = Siswa::where('kelas_id', '=', $rombel23)->find($zefa);
-                } else if (Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'katolik' || Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'Katolik') {
+                } elseif (Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'katolik' || Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'Katolik') {
                     $tampung_katolik[] = Siswa::where('kelas_id', '=', $rombel23)->find($zefa);
-                } else if (
+                } elseif (
                     Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'Kristen Protestan' || Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'kristen protestan'
                 ) {
                     $tampung_protestan[] = Siswa::where('kelas_id', '=', $rombel23)->find($zefa);
