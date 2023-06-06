@@ -102,6 +102,14 @@ class SiswaController extends Controller
         }
 
         if (auth()->user()->role == 'admin') {
+            //--------------------------------------
+            $data_siswa = Siswa::orderBy('nama_depan')->get();
+            $user_id = Siswa::orderBy('nama_depan')->get();
+            $kelas = Kelas::all();
+            $rombel = Rombel::all();
+            $rombel1 = DB::table('rombel_siswa')->pluck('siswa_id')->toArray();
+            $data_siswa1 = $data_siswa->pluck('id')->toArray();
+            //--------------------------------------
             // mengambil data siswa yang sudah memiliki rombel
             // simpan di variabel $tampung dan $tampung2
             foreach ($rombel1 as $r => $s) {
