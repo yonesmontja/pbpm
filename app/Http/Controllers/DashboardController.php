@@ -1902,7 +1902,7 @@ class DashboardController extends Controller
             $id_guru = Guru::where('user_id', '=', $id_user)->pluck('id')->first();
             // lalu tampilkan data siswa rombel yang memiliki guru_id == $id_guru
             $rombel2 = Rombel::where('guru_id', '=', $id_guru)->pluck('id')->first();
-
+            $rombel23 = Rombel::where('guru_id', '=', $id_guru)->pluck('kelas_id')->first();
             $rombel3 = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->pluck('siswa_id')->toArray();
             //dd($rombel3);
             $tampung_islam = [];
@@ -1912,22 +1912,22 @@ class DashboardController extends Controller
             $tampung_male = [];
             //dd($tampung_islam);
             foreach ($rombel3 as $z => $zefa) {
-                if (Siswa::find($zefa)->jenis_kelamin == 'Perempuan') {
-                    $tampung_female[] = Siswa::find($zefa);
+                if (Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->jenis_kelamin == 'Perempuan') {
+                    $tampung_female[] = Siswa::where('kelas_id', '=', $rombel23)->find($zefa);
                 }
-                if (Siswa::find($zefa)->jenis_kelamin == 'Laki-laki') {
-                    $tampung_male[] = Siswa::find($zefa);
+                if (Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->jenis_kelamin == 'Laki-laki') {
+                    $tampung_male[] = Siswa::where('kelas_id', '=', $rombel23)->find($zefa);
                 }
-                if (Siswa::find($zefa)->agama == 'Islam' || Siswa::find($zefa)->agama == 'islam') {
-                    $tampung_islam[] = Siswa::find($zefa);
+                if (Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'Islam' || Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'islam') {
+                    $tampung_islam[] = Siswa::where('kelas_id', '=', $rombel23)->find($zefa);
                 }
-                if (Siswa::find($zefa)->agama == 'katolik' || Siswa::find($zefa)->agama == 'Katolik') {
-                    $tampung_katolik[] = Siswa::find($zefa);
+                if (Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'katolik' || Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'Katolik') {
+                    $tampung_katolik[] = Siswa::where('kelas_id', '=', $rombel23)->find($zefa);
                 }
                 if (
-                    Siswa::find($zefa)->agama == 'Kristen Protestan' || Siswa::find($zefa)->agama == 'kristen protestan'
+                    Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'Kristen Protestan' || Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'kristen protestan'
                 ) {
-                    $tampung_protestan[] = Siswa::find($zefa);
+                    $tampung_protestan[] = Siswa::where('kelas_id', '=', $rombel23)->find($zefa);
                 }
             }
         }
