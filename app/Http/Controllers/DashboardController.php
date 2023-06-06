@@ -1928,9 +1928,9 @@ class DashboardController extends Controller
             }
         }
 
-        $kkm = 65;
-        $kkm1 = $kkm + (100 - $kkm) / 3;
-        $kkm2 = $kkm1 + (100 - $kkm) / 3;
+        // $kkm = 65;
+        // $kkm1 = $kkm + (100 - $kkm) / 3;
+        // $kkm2 = $kkm1 + (100 - $kkm) / 3;
         //$data_nilai = Nilai::where('guru_id', '=', $guru)->count();
 
         //$kompetensiinti = Kompetensiinti::all();
@@ -1964,9 +1964,9 @@ class DashboardController extends Controller
             'tampung_protestan' => $tampung_protestan,
             'tampung_female' => $tampung_female,
             'tampung_male' => $tampung_male,
-            'kkm' => $kkm,
-            'kkm1' => $kkm1,
-            'kkm2' => $kkm2,
+            // 'kkm' => $kkm,
+            // 'kkm1' => $kkm1,
+            // 'kkm2' => $kkm2,
             //'user' => $user,
             //'user1' => $user1,
             'id' => $id,
