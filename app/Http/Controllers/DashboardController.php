@@ -1939,7 +1939,7 @@ class DashboardController extends Controller
 
         $kompetensiinti = Kompetensiinti::all();
         $mapel = Mapel::all();
-        $siswa = Siswa::all();
+        //$siswa = Siswa::all();
         $penilaian = Penilaian::all();
 
         $nama_rombel = Rombel::where('guru_id', '=', $guru)->pluck('rombel')->first();
@@ -1985,7 +1985,7 @@ class DashboardController extends Controller
             'tahunpel' => $tahunpel,
             'kelas' => $kelas,
             'penilaian' => $penilaian,
-            'siswa' => $siswa,
+            //'siswa' => $siswa,
             'mapel' => $mapel,
             'kompetensiinti' => $kompetensiinti,
             'data_nilai' => $data_nilai,
