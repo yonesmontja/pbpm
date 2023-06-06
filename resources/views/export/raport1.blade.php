@@ -563,11 +563,9 @@
                             </tr>
                             <tr>
                                 <td text-align="center" colspan="8">
-                                    <br>
-                                    <br>
-                                    <br>
-                                    <br>
-                                    <br>
+                                    <img class="logo" src="{{ asset('images/ttd_barcode.jpg') }}"
+                                        width="310" alt="">
+                                    <hr align="center">
                                 </td>
                             </tr>
                             <tr>
