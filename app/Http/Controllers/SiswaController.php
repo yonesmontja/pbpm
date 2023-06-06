@@ -95,7 +95,7 @@ class SiswaController extends Controller
             $data_siswa1 = $data_siswa->pluck('id')->toArray();
             //--------------------------------------
             foreach ($rombel3 as $z => $zefa) {
-                $tampung[] = Siswa::find($zefa);
+                $tampung[] = Siswa::where('kelas_id', '=', $rombel23)->find($zefa);
             }
             //dd($tampung3);
             $guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
