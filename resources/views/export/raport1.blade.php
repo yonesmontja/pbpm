@@ -545,11 +545,19 @@
                                     <br>
                                     <br>----------------------------------------
                                 </td>
-                                <td text-align="center" colspan="4">
-                                    <br>({{ $wali_kelas }})
-                                    <br> Nip. {{ $nip_guru }}
-                                    <br>----------------------------------------
-                                </td>
+                                @if ($nama_rombel == 'Kelas 2A')
+                                    <td text-align="center" colspan="4">
+                                        <br>(Datu Kondorura, S.Pd)
+                                        <br> Nip. -
+                                        <br>----------------------------------------
+                                    </td>
+                                @else
+                                    <td text-align="center" colspan="4">
+                                        <br>({{ $wali_kelas }})
+                                        <br> Nip. {{ $nip_guru }}
+                                        <br>----------------------------------------
+                                    </td>
+                                @endif
                             </tr>
                             <tr>
                                 <td colspan="8" text-align="center">

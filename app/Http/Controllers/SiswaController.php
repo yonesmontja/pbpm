@@ -823,6 +823,11 @@ class SiswaController extends Controller
                 ->where('mapel_id', '=', 10)
                 ->pluck('nilai')->avg();
             $nilai_tugas_sbk[] = (int)$tampung_tugas_sbk;
+            $tampung_tugas_mulok = Nilai::where('siswa_id', '=', $id)
+            ->where('penilaian_id', '=', $penilaian)
+                ->where('mapel_id', '=', 11)
+                ->pluck('nilai')->avg();
+            $nilai_tugas_mulok[] = (int)$tampung_tugas_mulok;
         }
         //dd(array_sum($nilai_tugas_protestan));
         //dd($nilai_tugas_protestan);
@@ -972,6 +977,19 @@ class SiswaController extends Controller
             $rata_rata_tugas_sbk = 0.00;
         }
 
+        if (array_sum($nilai_tugas_mulok) > 0) {
+            for ($key = 0; $key < count($nilai_tugas_mulok); $key++) {
+                if ($nilai_tugas_mulok[$key] > 0) {
+                    $nilai_tugas_sbk_yes[] = $nilai_tugas_mulok[$key];
+                }
+            }
+            $jml_pel_tugas_mulok    = count($nilai_tugas_mulok_yes);
+            $sum_pel_tugas_mulok    = array_sum($nilai_tugas_mulok_yes);
+            $rata_rata_tugas_mulok  = number_format((float)$sum_pel_tugas_mulok / $jml_pel_tugas_mulok, 2, '.', '');
+        } elseif (array_sum($nilai_tugas_mulok) == 0) {
+            $rata_rata_tugas_mulok = 0.00;
+        }
+
         // --------------------------------------------------------------------
 
         //menghitung nilai latihan
@@ -1026,6 +1044,11 @@ class SiswaController extends Controller
                 ->where('mapel_id', '=', 10)
                 ->pluck('nilai')->avg();
             $nilai_latihan_sbk[] = (int)$tampung_latihan_sbk;
+            $tampung_latihan_mulok = Nilai::where('siswa_id', '=', $id)
+            ->where('penilaian_id', '=', $penilaian)
+                ->where('mapel_id', '=', 11)
+                ->pluck('nilai')->avg();
+            $nilai_latihan_mulok[] = (int)$tampung_latihan_mulok;
         }
 
         if (
@@ -1171,6 +1194,19 @@ class SiswaController extends Controller
             $rata_rata_latihan_sbk = 0.00;
         }
 
+        if (array_sum($nilai_latihan_mulok) > 0) {
+            for ($key = 0; $key < count($nilai_latihan_mulok); $key++) {
+                if ($nilai_latihan_mulok[$key] > 0) {
+                    $nilai_latihan_mulok_yes[] = $nilai_latihan_mulok[$key];
+                }
+            }
+            $jml_pel_latihan_mulok    = count($nilai_latihan_mulok_yes);
+            $sum_pel_latihan_mulok    = array_sum($nilai_latihan_mulok_yes);
+            $rata_rata_latihan_mulok  = number_format((float)$sum_pel_latihan_mulok / $jml_pel_latihan_mulok, 2, '.', '');
+        } elseif (array_sum($nilai_latihan_mulok) == 0) {
+            $rata_rata_latihan_mulok = 0.00;
+        }
+
         // --------------------------------------------------------------------
         //menghitung nilai ulangan harian
         for ($penilaian = 3; $penilaian < 4; $penilaian++) {
@@ -1224,6 +1260,11 @@ class SiswaController extends Controller
                 ->where('mapel_id', '=', 10)
                 ->pluck('nilai')->avg();
             $nilai_uh_sbk[] = (int)$tampung_uh_sbk;
+            $tampung_uh_mulok = Nilai::where('siswa_id', '=', $id)
+            ->where('penilaian_id', '=', $penilaian)
+                ->where('mapel_id', '=', 11)
+                ->pluck('nilai')->avg();
+            $nilai_uh_mulok[] = (int)$tampung_uh_mulok;
         }
 
         if (
@@ -1369,6 +1410,18 @@ class SiswaController extends Controller
         } elseif (array_sum($nilai_uh_sbk) == 0) {
             $rata_rata_uh_sbk = 0.00;
         }
+        if (array_sum($nilai_uh_mulok) > 0) {
+            for ($key = 0; $key < count($nilai_uh_mulok); $key++) {
+                if ($nilai_uh_mulok[$key] > 0) {
+                    $nilai_uh_mulok_yes[] = $nilai_uh_mulok[$key];
+                }
+            }
+            $jml_pel_uh_mulok    = count($nilai_uh_mulok_yes);
+            $sum_pel_uh_mulok    = array_sum($nilai_uh_mulok_yes);
+            $rata_rata_uh_mulok  = number_format((float)$sum_pel_uh_mulok / $jml_pel_uh_mulok, 2, '.', '');
+        } elseif (array_sum($nilai_uh_mulok) == 0) {
+            $rata_rata_uh_mulok = 0.00;
+        }
 
         // --------------------------------------------------------------------
         //menghitung nilai pts
@@ -1423,6 +1476,11 @@ class SiswaController extends Controller
                 ->where('mapel_id', '=', 10)
                 ->pluck('nilai')->avg();
             $nilai_pts_sbk[] = (int)$tampung_pts_sbk;
+            $tampung_pts_mulok = Nilai::where('siswa_id', '=', $id)
+            ->where('penilaian_id', '=', $penilaian)
+                ->where('mapel_id', '=', 11)
+                ->pluck('nilai')->avg();
+            $nilai_pts_mulok[] = (int)$tampung_pts_mulok;
         }
 
         if (
@@ -1568,6 +1626,19 @@ class SiswaController extends Controller
             $rata_rata_pts_sbk = 0.00;
         }
 
+        if (array_sum($nilai_pts_mulok) > 0) {
+            for ($key = 0; $key < count($nilai_pts_mulok); $key++) {
+                if ($nilai_pts_mulok[$key] > 0) {
+                    $nilai_pts_mulok_yes[] = $nilai_pts_mulok[$key];
+                }
+            }
+            $jml_pel_pts_mulok    = count($nilai_pts_mulok_yes);
+            $sum_pel_pts_mulok    = array_sum($nilai_pts_mulok_yes);
+            $rata_rata_pts_mulok  = number_format((float)$sum_pel_pts_mulok / $jml_pel_pts_mulok, 2, '.', '');
+        } elseif (array_sum($nilai_pts_mulok) == 0) {
+            $rata_rata_pts_mulok = 0.00;
+        }
+
         // --------------------------------------------------------------------
         //menghitung nilai pas
         for ($penilaian = 5; $penilaian < 6; $penilaian++) {
@@ -1621,6 +1692,11 @@ class SiswaController extends Controller
                 ->where('mapel_id', '=', 10)
                 ->pluck('nilai')->avg();
             $nilai_pas_sbk[] = (int)$tampung_pas_sbk;
+            $tampung_pas_mulok = Nilai::where('siswa_id', '=', $id)
+            ->where('penilaian_id', '=', $penilaian)
+                ->where('mapel_id', '=', 11)
+                ->pluck('nilai')->avg();
+            $nilai_pas_mulok[] = (int)$tampung_pas_mulok;
         }
 
         if (
@@ -1762,6 +1838,19 @@ class SiswaController extends Controller
             $rata_rata_pas_sbk  = number_format((float)$sum_pel_pas_sbk / $jml_pel_pas_sbk, 2, '.', '');
         } elseif (array_sum($nilai_pas_sbk) == 0) {
             $rata_rata_pas_sbk = 0.00;
+        }
+
+        if (array_sum($nilai_pas_mulok) > 0) {
+            for ($key = 0; $key < count($nilai_pas_mulok); $key++) {
+                if ($nilai_pas_mulok[$key] > 0) {
+                    $nilai_pas_mulok_yes[] = $nilai_pas_mulok[$key];
+                }
+            }
+            $jml_pel_pas_mulok    = count($nilai_pas_mulok_yes);
+            $sum_pel_pas_mulok    = array_sum($nilai_pas_mulok_yes);
+            $rata_rata_pas_mulok  = number_format((float)$sum_pel_pas_mulok / $jml_pel_pas_mulok, 2, '.', '');
+        } elseif (array_sum($nilai_pas_mulok) == 0) {
+            $rata_rata_pas_mulok = 0.00;
         }
 
         // --------------------------------------------------------------------

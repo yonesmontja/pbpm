@@ -81,8 +81,8 @@ class NilaiController extends Controller
         $kelas = Kelas::where('guru_id', '=', $id)->pluck('nama');
 
         //dd($kelas);
-        $nilai_start = Tahunpelajaran::all()->where('id', '=', 2)->pluck('tahun');
-        $nilai_end = Tahunpelajaran::all()->where('id', '=', 1)->pluck('tahun');
+        $nilai_start = Tahunpelajaran::where('id', '=', 2)->pluck('tahun');
+        $nilai_end = Tahunpelajaran::where('id', '=', 1)->pluck('tahun');
         $kelas_sub = Siswa::where('kelas_id', 0)->get();
         $tahunpel = Tahunpel::all();
         //$rombel = Rombel::all();
