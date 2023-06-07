@@ -110,7 +110,7 @@ class SiswaController extends Controller
             $kelas = Kelas::all();
             $rombel = Rombel::all();
             $rombel1 = DB::table('rombel_siswa')->pluck('siswa_id')->toArray();
-            $data_siswa1 = $data_siswa->pluck('id')->toArray();
+            //$data_siswa1 = $data_siswa->pluck('id')->toArray();
             //--------------------------------------
             // mengambil data siswa yang sudah memiliki rombel
             // simpan di variabel $tampung dan $tampung2
@@ -118,9 +118,9 @@ class SiswaController extends Controller
                 $tampung[] = Siswa::find($s);
             }
             //dd($tampung[0]);
-            foreach ($tampung as $t) {
-                $tampung2[] = $t->rombel();
-            }
+            // foreach ($tampung as $t) {
+            //     $tampung2[] = $t->rombel();
+            // }
             //dd($tampung2[0]);
             //$guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
         }
@@ -133,7 +133,7 @@ class SiswaController extends Controller
                 'tampung' => $tampung,
                 'rombel' => $rombel,
                 'rombel1' => $rombel1,
-                'tampung2' => $tampung2,
+                // 'tampung2' => $tampung2,
                 //'guru' => $guru,
             ]);
         }
