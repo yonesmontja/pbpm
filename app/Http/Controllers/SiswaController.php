@@ -122,7 +122,7 @@ class SiswaController extends Controller
                 $tampung2[] = $t->rombel();
             }
             //dd($tampung2[0]);
-            $guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
+            //$guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
         }
 
         if (auth()->user()->role == 'admin') {
@@ -134,7 +134,7 @@ class SiswaController extends Controller
                 'rombel' => $rombel,
                 'rombel1' => $rombel1,
                 'tampung2' => $tampung2,
-                'guru' => $guru,
+                //'guru' => $guru,
             ]);
         }
         if (auth()->user()->role == 'guru') {
