@@ -563,8 +563,8 @@
                             </tr>
                             <tr>
                                 <td text-align="center" colspan="8">
-                                    <img class="logo" src="{{ asset('images/ttd_barcode.jpg') }}"
-                                        width="310" alt="">
+                                    <img class="logo" src="{{ asset('images/ttd_barcode.jpg') }}" width="310"
+                                        alt="">
                                     <hr align="center">
                                 </td>
                             </tr>
@@ -977,10 +977,17 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8">
-                                        Naik/Tidak Naik
-                                        <br> ke kelas: {{ $kelas_naik }}
-                                    </td>
+                                    @if ($kelas_siswa == 'Kelas 6')
+                                        <td colspan="8">
+                                            Lulus/Tidak Lulus
+
+                                        </td>
+                                    @elseif($kelas_siswa == 'Kelas 5' || $kelas_siswa == 'Kelas 4' || $kelas_siswa == 'Kelas 3')
+                                        <td colspan="8">
+                                            Naik/Tidak Naik
+                                            <br> ke kelas: {{ $kelas_naik }}
+                                        </td>
+                                    @endif
                                 </tr>
                             @endif
                             <tr>
@@ -1041,8 +1048,8 @@
                             </tr>
                             <tr>
                                 <td text-align="center" colspan="8">
-                                    <img class="logo" src="{{ asset('images/ttd_barcode.jpg') }}"
-                                        width="310" alt="">
+                                    <img class="logo" src="{{ asset('images/ttd_barcode.jpg') }}" width="310"
+                                        alt="">
                                     <hr align="center">
                                 </td>
                             </tr>
