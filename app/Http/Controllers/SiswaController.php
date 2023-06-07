@@ -77,6 +77,7 @@ class SiswaController extends Controller
     {
         $id_user = auth()->user()->id;
         $id_guru = Guru::where('user_id', '=', $id_user)->pluck('id')->first();
+        dd($id_user);
         if (auth()->user()->role == 'guru') {
             // mengambil data siswa yang sudah memiliki rombel dan menampilkannya sesuai user()->role == guru
             // langkah pertama ambil id user yg role == guru dan sedang buka route /test
