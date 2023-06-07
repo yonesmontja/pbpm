@@ -430,7 +430,7 @@ class NilaiController extends Controller
         foreach ($rombel3 as $z => $zefa) {
             $tampung3[] = Siswa::find($zefa);
         }
-        $tampung4 = Extra::all()->where('rombel_id', '=', $rombel2);
+        $tampung4 = Extra::where('rombel_id', '=', $rombel2);
         //dd($tampung4);
         for ($bulan = 1; $bulan < 7; $bulan++) {
             $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
