@@ -264,7 +264,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    KKM Satuan Pendidikan: 65
+                                    KKM Satuan Pendidikan: 60
                                 </td>
                             </tr>
                         </table>
@@ -727,7 +727,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    KKM Satuan Pendidikan: 65
+                                    KKM Satuan Pendidikan: 60
                                 </td>
                             </tr>
                         </table>
