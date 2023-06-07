@@ -685,7 +685,7 @@ class SiswaController extends Controller
         }
         $semester = Tahunpelajaran::all()->pluck('semester');
         //dd($semester);
-        $data_siswa = Siswa::get();
+        //$data_siswa = Siswa::get();
         // wali kelas di raport
         if ($rombel == 1) {
             $wali_kelas = $rombel1->guru->nama_guru;
@@ -773,62 +773,52 @@ class SiswaController extends Controller
         //dd($wali_kelas);
         //menghitung nilai tugas
         for ($penilaian = 1; $penilaian < 2; $penilaian++) {
-            $tampung_tugas_islam = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_tugas_islam = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 1)
                 ->pluck('nilai')->avg();
             $nilai_tugas_islam[] = (int)$tampung_tugas_islam;
-            $tampung_tugas_protestan = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_tugas_protestan = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 2)
                 ->pluck('nilai')->avg();
             $nilai_tugas_protestan[] = (int)$tampung_tugas_protestan;
-            $tampung_tugas_katolik = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_tugas_katolik = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 3)
                 ->pluck('nilai')->avg();
             $nilai_tugas_katolik[] = (int)$tampung_tugas_katolik;
-            $tampung_tugas_ppkn = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_tugas_ppkn = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 4)
                 ->pluck('nilai')->avg();
             $nilai_tugas_ppkn[] = (int)$tampung_tugas_ppkn;
-            $tampung_tugas_indonesia = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_tugas_indonesia = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 5)
                 ->pluck('nilai')->avg();
             $nilai_tugas_indonesia[] = (int)$tampung_tugas_indonesia;
-            $tampung_tugas_matematika = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_tugas_matematika = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 6)
                 ->pluck('nilai')->avg();
             $nilai_tugas_matematika[] = (int)$tampung_tugas_matematika;
-            $tampung_tugas_ipa = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_tugas_ipa = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 7)
                 ->pluck('nilai')->avg();
             $nilai_tugas_ipa[] = (int)$tampung_tugas_ipa;
-            $tampung_tugas_ips = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_tugas_ips = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 8)
                 ->pluck('nilai')->avg();
             $nilai_tugas_ips[] = (int)$tampung_tugas_ips;
-            $tampung_tugas_pjok = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_tugas_pjok = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 9)
                 ->pluck('nilai')->avg();
             $nilai_tugas_pjok[] = (int)$tampung_tugas_pjok;
-            $tampung_tugas_sbk = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_tugas_sbk = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 10)
                 ->pluck('nilai')->avg();
@@ -986,62 +976,52 @@ class SiswaController extends Controller
 
         //menghitung nilai latihan
         for ($penilaian = 2; $penilaian < 3; $penilaian++) {
-            $tampung_latihan_islam = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_latihan_islam = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 1)
                 ->pluck('nilai')->avg();
             $nilai_latihan_islam[] = (int)$tampung_latihan_islam;
-            $tampung_latihan_protestan = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_latihan_protestan = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 2)
                 ->pluck('nilai')->avg();
             $nilai_latihan_protestan[] = (int)$tampung_latihan_protestan;
-            $tampung_latihan_katolik = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_latihan_katolik = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 3)
                 ->pluck('nilai')->avg();
             $nilai_latihan_katolik[] = (int)$tampung_latihan_katolik;
-            $tampung_latihan_ppkn = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_latihan_ppkn = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 4)
                 ->pluck('nilai')->avg();
             $nilai_latihan_ppkn[] = (int)$tampung_latihan_ppkn;
-            $tampung_latihan_indonesia = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_latihan_indonesia = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 5)
                 ->pluck('nilai')->avg();
             $nilai_latihan_indonesia[] = (int)$tampung_latihan_indonesia;
-            $tampung_latihan_matematika = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_latihan_matematika = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 6)
                 ->pluck('nilai')->avg();
             $nilai_latihan_matematika[] = (int)$tampung_latihan_matematika;
-            $tampung_latihan_ipa = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_latihan_ipa = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 7)
                 ->pluck('nilai')->avg();
             $nilai_latihan_ipa[] = (int)$tampung_latihan_ipa;
-            $tampung_latihan_ips = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_latihan_ips = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 8)
                 ->pluck('nilai')->avg();
             $nilai_latihan_ips[] = (int)$tampung_latihan_ips;
-            $tampung_latihan_pjok = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_latihan_pjok = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 9)
                 ->pluck('nilai')->avg();
             $nilai_latihan_pjok[] = (int)$tampung_latihan_pjok;
-            $tampung_latihan_sbk = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_latihan_sbk = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 10)
                 ->pluck('nilai')->avg();
@@ -1194,62 +1174,52 @@ class SiswaController extends Controller
         // --------------------------------------------------------------------
         //menghitung nilai ulangan harian
         for ($penilaian = 3; $penilaian < 4; $penilaian++) {
-            $tampung_uh_islam = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_uh_islam = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 1)
                 ->pluck('nilai')->avg();
             $nilai_uh_islam[] = (int)$tampung_uh_islam;
-            $tampung_uh_protestan = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_uh_protestan = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 2)
                 ->pluck('nilai')->avg();
             $nilai_uh_protestan[] = (int)$tampung_uh_protestan;
-            $tampung_uh_katolik = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_uh_katolik = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 3)
                 ->pluck('nilai')->avg();
             $nilai_uh_katolik[] = (int)$tampung_uh_katolik;
-            $tampung_uh_ppkn = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_uh_ppkn = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 4)
                 ->pluck('nilai')->avg();
             $nilai_uh_ppkn[] = (int)$tampung_uh_ppkn;
-            $tampung_uh_indonesia = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_uh_indonesia = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 5)
                 ->pluck('nilai')->avg();
             $nilai_uh_indonesia[] = (int)$tampung_uh_indonesia;
-            $tampung_uh_matematika = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_uh_matematika = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 6)
                 ->pluck('nilai')->avg();
             $nilai_uh_matematika[] = (int)$tampung_uh_matematika;
-            $tampung_uh_ipa = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_uh_ipa = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 7)
                 ->pluck('nilai')->avg();
             $nilai_uh_ipa[] = (int)$tampung_uh_ipa;
-            $tampung_uh_ips = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_uh_ips = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 8)
                 ->pluck('nilai')->avg();
             $nilai_uh_ips[] = (int)$tampung_uh_ips;
-            $tampung_uh_pjok = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_uh_pjok = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 9)
                 ->pluck('nilai')->avg();
             $nilai_uh_pjok[] = (int)$tampung_uh_pjok;
-            $tampung_uh_sbk = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_uh_sbk = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 10)
                 ->pluck('nilai')->avg();
@@ -1403,62 +1373,52 @@ class SiswaController extends Controller
         // --------------------------------------------------------------------
         //menghitung nilai pts
         for ($penilaian = 4; $penilaian < 5; $penilaian++) {
-            $tampung_pts_islam = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pts_islam = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 1)
                 ->pluck('nilai')->avg();
             $nilai_pts_islam[] = (int)$tampung_pts_islam;
-            $tampung_pts_protestan = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pts_protestan = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 2)
                 ->pluck('nilai')->avg();
             $nilai_pts_protestan[] = (int)$tampung_pts_protestan;
-            $tampung_pts_katolik = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pts_katolik = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 3)
                 ->pluck('nilai')->avg();
             $nilai_pts_katolik[] = (int)$tampung_pts_katolik;
-            $tampung_pts_ppkn = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pts_ppkn = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 4)
                 ->pluck('nilai')->avg();
             $nilai_pts_ppkn[] = (int)$tampung_pts_ppkn;
-            $tampung_pts_indonesia = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pts_indonesia = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 5)
                 ->pluck('nilai')->avg();
             $nilai_pts_indonesia[] = (int)$tampung_pts_indonesia;
-            $tampung_pts_matematika = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pts_matematika = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 6)
                 ->pluck('nilai')->avg();
             $nilai_pts_matematika[] = (int)$tampung_pts_matematika;
-            $tampung_pts_ipa = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pts_ipa = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 7)
                 ->pluck('nilai')->avg();
             $nilai_pts_ipa[] = (int)$tampung_pts_ipa;
-            $tampung_pts_ips = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pts_ips = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 8)
                 ->pluck('nilai')->avg();
             $nilai_pts_ips[] = (int)$tampung_pts_ips;
-            $tampung_pts_pjok = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pts_pjok = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 9)
                 ->pluck('nilai')->avg();
             $nilai_pts_pjok[] = (int)$tampung_pts_pjok;
-            $tampung_pts_sbk = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pts_sbk = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 10)
                 ->pluck('nilai')->avg();
@@ -1611,62 +1571,52 @@ class SiswaController extends Controller
         // --------------------------------------------------------------------
         //menghitung nilai pas
         for ($penilaian = 5; $penilaian < 6; $penilaian++) {
-            $tampung_pas_islam = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pas_islam = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 1)
                 ->pluck('nilai')->avg();
             $nilai_pas_islam[] = (int)$tampung_pas_islam;
-            $tampung_pas_protestan = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pas_protestan = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 2)
                 ->pluck('nilai')->avg();
             $nilai_pas_protestan[] = (int)$tampung_pas_protestan;
-            $tampung_pas_katolik = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pas_katolik = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 3)
                 ->pluck('nilai')->avg();
             $nilai_pas_katolik[] = (int)$tampung_pas_katolik;
-            $tampung_pas_ppkn = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pas_ppkn = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 4)
                 ->pluck('nilai')->avg();
             $nilai_pas_ppkn[] = (int)$tampung_pas_ppkn;
-            $tampung_pas_indonesia = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pas_indonesia = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 5)
                 ->pluck('nilai')->avg();
             $nilai_pas_indonesia[] = (int)$tampung_pas_indonesia;
-            $tampung_pas_matematika = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pas_matematika = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 6)
                 ->pluck('nilai')->avg();
             $nilai_pas_matematika[] = (int)$tampung_pas_matematika;
-            $tampung_pas_ipa = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pas_ipa = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 7)
                 ->pluck('nilai')->avg();
             $nilai_pas_ipa[] = (int)$tampung_pas_ipa;
-            $tampung_pas_ips = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pas_ips = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 8)
                 ->pluck('nilai')->avg();
             $nilai_pas_ips[] = (int)$tampung_pas_ips;
-            $tampung_pas_pjok = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pas_pjok = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 9)
                 ->pluck('nilai')->avg();
             $nilai_pas_pjok[] = (int)$tampung_pas_pjok;
-            $tampung_pas_sbk = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_pas_sbk = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 10)
                 ->pluck('nilai')->avg();
@@ -1884,13 +1834,11 @@ class SiswaController extends Controller
         $kkm = 65;
         // hitung deskripsi agama
         if ($students->agama == "Islam" || $students->agama == "islam") {
-            $predikat_pengetahuan = Nilai::all()
-            ->where('siswa_id', '=', $id)
+            $predikat_pengetahuan = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 1)
             ->pluck('nilai_notes')->toArray();
-            $predikat_keterampilan = Nilai::all()
-            ->where('siswa_id', '=', $id)
+            $predikat_keterampilan = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 1)
             ->pluck('nilai_notes')->toArray();
@@ -1898,13 +1846,11 @@ class SiswaController extends Controller
         }
         //dd($raport_pengetahuan_islam);
         if ($students->agama == "Kristen Protestan" || $students->agama == "kristen protestan") {
-            $predikat_pengetahuan = Nilai::all()
-            ->where('siswa_id', '=', $id)
+            $predikat_pengetahuan = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 2)
             ->pluck('nilai_notes')->toArray();
-            $predikat_keterampilan = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $predikat_keterampilan = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', 19)
                 ->where('mapel_id', '=', 2)
             ->pluck('nilai_notes')->toArray();
@@ -1912,13 +1858,11 @@ class SiswaController extends Controller
         }
         //dd($rata_rata_tugas_protestan);
         if ($students->agama == "Katolik" || $students->agama == "katolik") {
-            $predikat_pengetahuan = Nilai::all()
-            ->where('siswa_id', '=', $id)
+            $predikat_pengetahuan = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 3)
             ->pluck('nilai_notes')->toArray();
-            $predikat_keterampilan = Nilai::all()
-            ->where('siswa_id', '=', $id)
+            $predikat_keterampilan = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 3)
             ->pluck('nilai_notes')->toArray();
@@ -1944,13 +1888,11 @@ class SiswaController extends Controller
         }
         // -------------
         // deskripsi ppkn
-        $predikat_pengetahuan_ppkn = Nilai::all()
-            ->where('siswa_id', '=', $id)
+        $predikat_pengetahuan_ppkn = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 4)
             ->pluck('nilai_notes')->toArray();
-        $predikat_keterampilan_ppkn = Nilai::all()
-            ->where('siswa_id', '=', $id)
+        $predikat_keterampilan_ppkn = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 4)
             ->pluck('nilai_notes')->toArray();
@@ -1981,8 +1923,7 @@ class SiswaController extends Controller
         ->where('penilaian_id', '=', 5)
         ->where('mapel_id', '=', 5)
         ->pluck('nilai_notes')->toArray();
-        $predikat_keterampilan_bi = Nilai::all()
-            ->where('siswa_id', '=', $id)
+        $predikat_keterampilan_bi = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 5)
             ->pluck('nilai_notes')->toArray();
@@ -2007,13 +1948,11 @@ class SiswaController extends Controller
         // -------------
         //dd($predikat_deskripsi_indonesia);
         // deskripsi matematika
-        $predikat_pengetahuan_math = Nilai::all()
-            ->where('siswa_id', '=', $id)
+        $predikat_pengetahuan_math = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 6)
             ->pluck('nilai_notes')->toArray();
-        $predikat_keterampilan_math = Nilai::all()
-            ->where('siswa_id', '=', $id)
+        $predikat_keterampilan_math = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 6)
             ->pluck('nilai_notes')->toArray();
@@ -2037,13 +1976,11 @@ class SiswaController extends Controller
         }
         // -------------
         // deskripsi ipa
-        $predikat_pengetahuan_ipa = Nilai::all()
-            ->where('siswa_id', '=', $id)
+        $predikat_pengetahuan_ipa = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 7)
             ->pluck('nilai_notes')->toArray();
-        $predikat_keterampilan_ipa = Nilai::all()
-            ->where('siswa_id', '=', $id)
+        $predikat_keterampilan_ipa = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 7)
             ->pluck('nilai_notes')->toArray();
@@ -2067,13 +2004,11 @@ class SiswaController extends Controller
         }
         // -------------
         // deskripsi ips
-        $predikat_pengetahuan_ips = Nilai::all()
-            ->where('siswa_id', '=', $id)
+        $predikat_pengetahuan_ips = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 8)
             ->pluck('nilai_notes')->toArray();
-        $predikat_keterampilan_ips = Nilai::all()
-            ->where('siswa_id', '=', $id)
+        $predikat_keterampilan_ips = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 8)
             ->pluck('nilai_notes')->toArray();
@@ -2097,13 +2032,11 @@ class SiswaController extends Controller
         }
         // -------------
         // deskripsi pjok
-        $predikat_pengetahuan_pjok = Nilai::all()
-            ->where('siswa_id', '=', $id)
+        $predikat_pengetahuan_pjok = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 9)
             ->pluck('nilai_notes')->toArray();
-        $predikat_keterampilan_pjok = Nilai::all()
-            ->where('siswa_id', '=', $id)
+        $predikat_keterampilan_pjok = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 9)
             ->pluck('nilai_notes')->toArray();
@@ -2129,13 +2062,11 @@ class SiswaController extends Controller
         }
         // -------------
         // deskripsi sbk
-        $predikat_pengetahuan_sbk = Nilai::all()
-            ->where('siswa_id', '=', $id)
+        $predikat_pengetahuan_sbk = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 10)
             ->pluck('nilai_notes')->toArray();
-        $predikat_keterampilan_sbk = Nilai::all()
-            ->where('siswa_id', '=', $id)
+        $predikat_keterampilan_sbk = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 10)
             ->pluck('nilai_notes')->toArray();
@@ -2327,62 +2258,52 @@ class SiswaController extends Controller
             $penilaian < 22;
             $penilaian++
         ) {
-            $tampung_keterampilan_islam = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_keterampilan_islam = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 1)
                 ->pluck('nilai')->avg();
             $nilai_keterampilan_islam[] = (int)$tampung_keterampilan_islam;
-            $tampung_keterampilan_protestan = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_keterampilan_protestan = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 2)
                 ->pluck('nilai')->avg();
             $nilai_keterampilan_protestan[] = (int)$tampung_keterampilan_protestan;
-            $tampung_keterampilan_katolik = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_keterampilan_katolik = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 3)
                 ->pluck('nilai')->avg();
             $nilai_keterampilan_katolik[] = (int)$tampung_keterampilan_katolik;
-            $tampung_keterampilan_ppkn = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_keterampilan_ppkn = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 4)
                 ->pluck('nilai')->avg();
             $nilai_keterampilan_ppkn[] = (int)$tampung_keterampilan_ppkn;
-            $tampung_keterampilan_indonesia = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_keterampilan_indonesia = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 5)
                 ->pluck('nilai')->avg();
             $nilai_keterampilan_indonesia[] = (int)$tampung_keterampilan_indonesia;
-            $tampung_keterampilan_matematika = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_keterampilan_matematika = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 6)
                 ->pluck('nilai')->avg();
             $nilai_keterampilan_matematika[] = (int)$tampung_keterampilan_matematika;
-            $tampung_keterampilan_ipa = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_keterampilan_ipa = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 7)
                 ->pluck('nilai')->avg();
             $nilai_keterampilan_ipa[] = (int)$tampung_keterampilan_ipa;
-            $tampung_keterampilan_ips = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_keterampilan_ips = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 8)
                 ->pluck('nilai')->avg();
             $nilai_keterampilan_ips[] = (int)$tampung_keterampilan_ips;
-            $tampung_keterampilan_pjok = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_keterampilan_pjok = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 9)
                 ->pluck('nilai')->avg();
             $nilai_keterampilan_pjok[] = (int)$tampung_keterampilan_pjok;
-            $tampung_keterampilan_sbk = Nilai::all()
-                ->where('siswa_id', '=', $id)
+            $tampung_keterampilan_sbk = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 10)
                 ->pluck('nilai')->avg();
@@ -2916,27 +2837,27 @@ class SiswaController extends Controller
         //input absensi
         //dd(Extra::all()->where('siswa_id', '=', $id)->pluck('sakit'));
         //dd(Extra::all()->where('siswa_id', '=', $id)->pluck('sakit')->isEmpty());
-        if (Extra::all()->where('siswa_id', '=', $id)->pluck('sakit')->isEmpty()) {
+        if (Extra::where('siswa_id', '=', $id)->pluck('sakit')->isEmpty()) {
             $sakit1 = 0;
         } else {
 
-            $sakit = Extra::all()->where('siswa_id', '=', $id)->pluck('sakit');
+            $sakit = Extra::where('siswa_id', '=', $id)->pluck('sakit');
             $sakit1 = $sakit[0];
         }
 
-        if (Extra::all()->where('siswa_id', '=', $id)->pluck('alpa')->isEmpty()) {
+        if (Extra::where('siswa_id', '=', $id)->pluck('alpa')->isEmpty()) {
             $alpa1 = 0;
         } else {
 
-            $alpa = Extra::all()->where('siswa_id', '=', $id)->pluck('alpa');
+            $alpa = Extra::where('siswa_id', '=', $id)->pluck('alpa');
             $alpa1 = $alpa[0];
         }
 
-        if (Extra::all()->where('siswa_id', '=', $id)->pluck('ijin')->isEmpty()) {
+        if (Extra::where('siswa_id', '=', $id)->pluck('ijin')->isEmpty()) {
             $ijin1 = 0;
         } else {
 
-            $ijin = Extra::all()->where('siswa_id', '=', $id)->pluck('ijin');
+            $ijin = Extra::where('siswa_id', '=', $id)->pluck('ijin');
             $ijin1 = $ijin[0];
         }
         //data sekolah
@@ -2947,7 +2868,7 @@ class SiswaController extends Controller
             $nip = $k->nip_kepsek;
             $kecamatan = $k->kecamatan;
         }
-        $tahunpel = Tahunpel::all()->where('aktif', 'Y');
+        $tahunpel = Tahunpel::where('aktif', 'Y')->get();
         foreach ($tahunpel as $thn) {
             $semester_aktif = $thn->semester;
             $kepsek_aktif = $thn->nama_kepsek;
@@ -3058,7 +2979,7 @@ class SiswaController extends Controller
                 'sakit1' => $sakit1,
                 'alpa1' => $alpa1,
                 'ijin1' => $ijin1,
-                'data_siswa' => $data_siswa,
+                //'data_siswa' => $data_siswa,
                 'students' => $students
             ]
         );
