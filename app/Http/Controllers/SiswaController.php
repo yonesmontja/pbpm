@@ -391,7 +391,7 @@ class SiswaController extends Controller
         //dd($tes1);
         $nilai_start = Tahunpel::all()->where('id', '=', 2)->pluck('tahun');
         $nilai_end = Tahunpel::all()->where('id', '=', 1)->pluck('tahun');
-        $id1 = Nilai::where('siswa_id', $id)->pluck('siswa_id', $id)->first();
+        // $id1 = Nilai::where('siswa_id', $id)->pluck('siswa_id', $id)->first();
         $mapel1 = Nilai::where('siswa_id', $id)->pluck('mapel_id')->count();
 
         //dd($mapel3);
@@ -534,7 +534,7 @@ class SiswaController extends Controller
             'kompetensiinti' => $kompetensiinti,
             'mapel' => $mapel,
             'data_nilai' => $data_nilai,
-            'id1' => $id1,
+            // 'id1' => $id1,
             'nilai' => $nilai,
             'categories7' => $categories7,
             'data7' => $data7,
