@@ -392,7 +392,7 @@ class SiswaController extends Controller
         $nilai_start = Tahunpel::all()->where('id', '=', 2)->pluck('tahun');
         $nilai_end = Tahunpel::all()->where('id', '=', 1)->pluck('tahun');
         $id1 = Nilai::where('siswa_id', $id)->pluck('siswa_id')->first();
-        dd($id1);
+        //dd($id1);
         $mapel1 = Nilai::where('siswa_id', $id)->pluck('mapel_id')->count();
 
         //dd($mapel3);
