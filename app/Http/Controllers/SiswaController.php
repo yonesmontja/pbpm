@@ -2583,7 +2583,7 @@ class SiswaController extends Controller
 
         if (array_sum($nilai_keterampilan_mulok) > 0) {
             for ($key = 0; $key < count($nilai_keterampilan_mulok); $key++) {
-                if ($nilai_keterampilan_sbk[$mulok] > 0) {
+                if ($nilai_keterampilan_mulok[$key] > 0) {
                     $nilai_keterampilan_mulok_yes[] = $nilai_keterampilan_mulok[$key];
                 }
             }
