@@ -1920,6 +1920,12 @@ class SiswaController extends Controller
             + ($rata_rata_pts_sbk * 1)
             + ($rata_rata_pas_sbk * 1)) / 4;
         $raport_pengetahuan_sbk = number_format((float)$raport_pengetahuan_sbk, 1, '.', '');
+        $raport_pengetahuan_mulok = (((max([
+            $rata_rata_tugas_mulok, $rata_rata_latihan_mulok, $rata_rata_uh_mulok
+        ])) * 2)
+        + ($rata_rata_pts_mulok * 1)
+        + ($rata_rata_pas_mulok * 1)) / 4;
+        $raport_pengetahuan_mulok = number_format((float)$raport_pengetahuan_mulok, 1, '.', '');
         $kkm = 60;
         // hitung deskripsi agama
         if ($students->agama == "Islam" || $students->agama == "islam") {
@@ -2178,6 +2184,35 @@ class SiswaController extends Controller
             $predikat_deskripsi_sbk = " dalam | " . implode(", ", $predikat_pengetahuan_sbk);
         }
         // ---------------------------------------------
+        // -------------
+        // deskripsi mulok
+        $predikat_pengetahuan_mulok = Nilai::where('siswa_id', '=', $id)
+        ->where('penilaian_id', '=', 5)
+        ->where('mapel_id', '=', 11)
+        ->pluck('nilai_notes')->toArray();
+        $predikat_keterampilan_mulok = Nilai::where('siswa_id', '=', $id)
+        ->where('penilaian_id', '=', 19)
+        ->where('mapel_id', '=', 11)
+        ->pluck('nilai_notes')->toArray();
+        //dd(implode($predikat));
+        if ($raport_pengetahuan_mulok < $kkm) {
+            $predikat_huruf_mulok1 = "kurang";
+            $predikat_huruf_mulok = "D";
+            $predikat_deskripsi_mulok = " dalam | " . implode(", ", $predikat_pengetahuan_mulok);
+        } elseif ($raport_pengetahuan_mulok >= $kkm && $raport_pengetahuan_mulok <= ($kkm + 1 * ((100 - $kkm) / 3))) {
+            $predikat_huruf_mulok1 = "cukup";
+            $predikat_huruf_mulok = "C";
+            $predikat_deskripsi_mulok = " dalam | " . implode(", ", $predikat_pengetahuan_mulok);
+        } elseif ($raport_pengetahuan_mulok > ($kkm + 1 * ((100 - $kkm) / 3)) && $raport_pengetahuan_mulok <= ($kkm + 2 * ((100 - $kkm) / 3))) {
+            $predikat_huruf_mulok1 = "baik";
+            $predikat_huruf_mulok = "B";
+            $predikat_deskripsi_mulok = " dalam | " . implode(", ", $predikat_pengetahuan_mulok);
+        } elseif ($raport_pengetahuan_mulok > ($kkm + 2 * ((100 - $kkm) / 3))) {
+            $predikat_huruf_mulok1 = "sangat baik";
+            $predikat_huruf_mulok = "A";
+            $predikat_deskripsi_mulok = " dalam | " . implode(", ", $predikat_pengetahuan_mulok);
+        }
+        // ---------------------------------------------
         if ($rombel == 1) {
             $jumlah_raport_pengetahuan = $raport_pengetahuan_agama
                 + $raport_pengetahuan_ppkn
@@ -2332,7 +2367,8 @@ class SiswaController extends Controller
                 + $raport_pengetahuan_ipa
                 + $raport_pengetahuan_ips
                 + $raport_pengetahuan_pjok
-                + $raport_pengetahuan_sbk;
+                + $raport_pengetahuan_sbk
+                + $raport_pengetahuan_mulok;
             $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
             $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 8, 1, '.', '');
         }
@@ -2397,6 +2433,11 @@ class SiswaController extends Controller
                 ->where('mapel_id', '=', 10)
                 ->pluck('nilai')->avg();
             $nilai_keterampilan_sbk[] = (int)$tampung_keterampilan_sbk;
+            $tampung_keterampilan_mulok = Nilai::where('siswa_id', '=', $id)
+            ->where('penilaian_id', '=', $penilaian)
+                ->where('mapel_id', '=', 11)
+                ->pluck('nilai')->avg();
+            $nilai_keterampilan_mulok[] = (int)$tampung_keterampilan_mulok;
         }
         //dd($nilai_keterampilan_indonesia);
         if ($students->agama == "Islam" || $students->agama == "islam") {
@@ -2540,6 +2581,19 @@ class SiswaController extends Controller
             $rata_rata_keterampilan_sbk = 0.00;
         }
 
+        if (array_sum($nilai_keterampilan_mulok) > 0) {
+            for ($key = 0; $key < count($nilai_keterampilan_mulok); $key++) {
+                if ($nilai_keterampilan_sbk[$mulok] > 0) {
+                    $nilai_keterampilan_mulok_yes[] = $nilai_keterampilan_mulok[$key];
+                }
+            }
+            $jml_pel_keterampilan_mulok    = count($nilai_keterampilan_mulok_yes);
+            $sum_pel_keterampilan_mulok    = array_sum($nilai_keterampilan_mulok_yes);
+            $rata_rata_keterampilan_mulok  = number_format((float)$sum_pel_keterampilan_mulok / $jml_pel_keterampilan_mulok, 2, '.', '');
+        } elseif (array_sum($nilai_keterampilan_mulok) == 0) {
+            $rata_rata_keterampilan_mulok = 0.00;
+        }
+
         // --------------------------------------------------------------------
         // hitung nilai raport keterampilan
         if ($students->agama == "Islam" || $students->agama == "islam") {
@@ -2598,6 +2652,11 @@ class SiswaController extends Controller
             + ($rata_rata_keterampilan_sbk * 1)
             + ($rata_rata_keterampilan_sbk * 1)) / 8;
         $raport_keterampilan_sbk = number_format((float)$raport_keterampilan_sbk, 1, '.', '');
+        $raport_keterampilan_mulok = ((($rata_rata_keterampilan_mulok
+        + $rata_rata_keterampilan_mulok + $rata_rata_keterampilan_mulok) * 2)
+        + ($rata_rata_keterampilan_mulok * 1)
+        + ($rata_rata_keterampilan_mulok * 1)) / 8;
+        $raport_keterampilan_mulok = number_format((float)$raport_keterampilan_mulok, 1, '.', '');
         //dd($raport_keterampilan_indonesia);
         //------------------------------------------------------
         // deskripsi keterampilan agama
@@ -2756,6 +2815,25 @@ class SiswaController extends Controller
             $predikat_keterampilan_huruf_sbk = "A";
             $predikat_keterampilan_deskripsi_sbk = " dalam | " . implode(", ", $predikat_keterampilan_sbk);
         }
+        // -------------
+        // deskripsi mulok
+        if ($raport_keterampilan_mulok < $kkm) {
+            $predikathuruf_mulok = "kurang";
+            $predikat_keterampilan_huruf_mulok = "D";
+            $predikat_keterampilan_deskripsi_mulok = " dalam | " . implode(", ", $predikat_keterampilan_mulok);
+        } elseif ($raport_keterampilan_mulok >= $kkm && $raport_keterampilan_mulok <= ($kkm + 1 * ((100 - $kkm) / 3))) {
+            $predikathuruf_mulok = "cukup";
+            $predikat_keterampilan_huruf_mulok = "C";
+            $predikat_keterampilan_deskripsi_mulok = " dalam | " . implode($predikat_keterampilan_mulok);
+        } elseif ($raport_keterampilan_mulok > ($kkm + 1 * ((100 - $kkm) / 3)) && $raport_keterampilan_mulok <= ($kkm + 2 * ((100 - $kkm) / 3))) {
+            $predikathuruf_mulok = "baik";
+            $predikat_keterampilan_huruf_mulok = "B";
+            $predikat_keterampilan_deskripsi_mulok = " dalam | " . implode($predikat_keterampilan_mulok);
+        } elseif ($raport_keterampilan_mulok > ($kkm + 2 * ((100 - $kkm) / 3))) {
+            $predikathuruf_mulok = "sangat baik";
+            $predikat_keterampilan_huruf_mulok = "A";
+            $predikat_keterampilan_deskripsi_mulok = " dalam | " . implode(", ", $predikat_keterampilan_mulok);
+        }
         // beda bentuk raport untuk kelas 1, 2 dan 3, 4, 5, dan 6
         if ($rombel == 1) {
             $jumlah_raport_keterampilan = $raport_keterampilan_agama
@@ -2911,7 +2989,8 @@ class SiswaController extends Controller
                 + $raport_keterampilan_ipa
                 + $raport_keterampilan_ips
                 + $raport_keterampilan_pjok
-                + $raport_keterampilan_sbk;
+                + $raport_keterampilan_sbk
+                + $raport_keterampilan_mulok;
             $jumlah_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan, 1, '.', '');
             $ratarata_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan / 8, 1, '.', '');
         }
@@ -2998,6 +3077,7 @@ class SiswaController extends Controller
                 'predikathuruf_math' => $predikathuruf_math,
                 'predikathuruf_pjok' => $predikathuruf_pjok,
                 'predikathuruf_sbk' => $predikathuruf_sbk,
+                'predikathuruf_mulok' => $predikathuruf_mulok,
                 'predikathuruf_ipa' => $predikathuruf_ipa,
                 'predikathuruf_ips' => $predikathuruf_ips,
                 'predikathuruf_ppkn' => $predikathuruf_ppkn,
@@ -3009,6 +3089,7 @@ class SiswaController extends Controller
                 'predikat_huruf_ips1' => $predikat_huruf_ips1,
                 'predikat_huruf_pjok1' => $predikat_huruf_pjok1,
                 'predikat_huruf_sbk1' => $predikat_huruf_sbk1,
+                'predikat_huruf_mulok1' => $predikat_huruf_mulok1,
                 'predikat_huruf_agama' => $predikat_huruf_agama,
                 'predikat_huruf_ppkn' => $predikat_huruf_ppkn,
                 'predikat_huruf_indonesia' => $predikat_huruf_indonesia,
@@ -3017,6 +3098,7 @@ class SiswaController extends Controller
                 'predikat_huruf_ips' => $predikat_huruf_ips,
                 'predikat_huruf_pjok' => $predikat_huruf_pjok,
                 'predikat_huruf_sbk' => $predikat_huruf_sbk,
+                'predikat_huruf_mulok' => $predikat_huruf_mulok,
                 'predikat_deskripsi_agama' => $predikat_deskripsi_agama,
                 'predikat_deskripsi_ppkn' => $predikat_deskripsi_ppkn,
                 'predikat_deskripsi_indonesia' => $predikat_deskripsi_indonesia,
@@ -3025,6 +3107,7 @@ class SiswaController extends Controller
                 'predikat_deskripsi_ips' => $predikat_deskripsi_ips,
                 'predikat_deskripsi_pjok' => $predikat_deskripsi_pjok,
                 'predikat_deskripsi_sbk' => $predikat_deskripsi_sbk,
+                'predikat_deskripsi_mulok' => $predikat_deskripsi_mulok,
                 'predikat_keterampilan_huruf_agama' => $predikat_keterampilan_huruf_agama,
                 'predikat_keterampilan_huruf_ppkn' => $predikat_keterampilan_huruf_ppkn,
                 'predikat_keterampilan_huruf_indonesia' => $predikat_keterampilan_huruf_indonesia,
@@ -3033,6 +3116,7 @@ class SiswaController extends Controller
                 'predikat_keterampilan_huruf_ips' => $predikat_keterampilan_huruf_ips,
                 'predikat_keterampilan_huruf_pjok' => $predikat_keterampilan_huruf_pjok,
                 'predikat_keterampilan_huruf_sbk' => $predikat_keterampilan_huruf_sbk,
+                'predikat_keterampilan_huruf_mulok' => $predikat_keterampilan_huruf_mulok,
                 'predikat_keterampilan_deskripsi_agama' => $predikat_keterampilan_deskripsi_agama,
                 'predikat_keterampilan_deskripsi_ppkn' => $predikat_keterampilan_deskripsi_ppkn,
                 'predikat_keterampilan_deskripsi_indonesia' => $predikat_keterampilan_deskripsi_indonesia,
@@ -3041,6 +3125,7 @@ class SiswaController extends Controller
                 'predikat_keterampilan_deskripsi_ips' => $predikat_keterampilan_deskripsi_ips,
                 'predikat_keterampilan_deskripsi_pjok' => $predikat_keterampilan_deskripsi_pjok,
                 'predikat_keterampilan_deskripsi_sbk' => $predikat_keterampilan_deskripsi_sbk,
+                'predikat_keterampilan_deskripsi_mulok' => $predikat_keterampilan_deskripsi_mulok,
                 'jumlah_raport' => $jumlah_raport,
                 'ratarata_raport' => $ratarata_raport,
                 'ratarata_raport_pengetahuan' => $ratarata_raport_pengetahuan,
@@ -3053,6 +3138,7 @@ class SiswaController extends Controller
                 'raport_pengetahuan_ips' => $raport_pengetahuan_ips,
                 'raport_pengetahuan_pjok' => $raport_pengetahuan_pjok,
                 'raport_pengetahuan_sbk' => $raport_pengetahuan_sbk,
+                'raport_pengetahuan_mulok' => $raport_pengetahuan_mulok,
                 'jumlah_raport_keterampilan' => $jumlah_raport_keterampilan,
                 'ratarata_raport_keterampilan' => $ratarata_raport_keterampilan,
                 'ratarata_raport_keterampilan' => $ratarata_raport_keterampilan,
@@ -3065,6 +3151,7 @@ class SiswaController extends Controller
                 'raport_keterampilan_ips' => $raport_keterampilan_ips,
                 'raport_keterampilan_pjok' => $raport_keterampilan_pjok,
                 'raport_keterampilan_sbk' => $raport_keterampilan_sbk,
+                'raport_keterampilan_mulok' => $raport_keterampilan_mulok,
                 'sakit1' => $sakit1,
                 'alpa1' => $alpa1,
                 'ijin1' => $ijin1,

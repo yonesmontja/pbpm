@@ -870,30 +870,79 @@
                     <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikathuruf_sbk }} </strong>
                         {{ $predikat_keterampilan_deskripsi_sbk }}</td>
                 </tr>
-                <tr class="details">
-                    <td colspan="2" style="text-align: center;">Jumlah</td>
-                    <td style="text-align: center;">{{ $jumlah_raport_pengetahuan }}</td>
-                    <td colspan="2" style="text-align: left;">{{ terbilang($jumlah_raport_pengetahuan) }}</td>
-                    <td style="text-align: center;">{{ $jumlah_raport_keterampilan }}</td>
-                    <td colspan="2" style="text-align: left;">{{ terbilang($jumlah_raport_keterampilan) }}</td>
-                </tr>
-                <tr class="details">
-                    <td colspan="2" style="text-align: center;">Rata-rata</td>
-                    <td style="text-align: center;">{{ $ratarata_raport_pengetahuan }}</td>
-                    <td colspan="2" style="text-align: left;">{{ terbilang($ratarata_raport_pengetahuan) }}</td>
-                    <td style="text-align: center;">{{ $ratarata_raport_keterampilan }}</td>
-                    <td colspan="2" style="text-align: left;">{{ terbilang($ratarata_raport_keterampilan) }}</td>
-                </tr>
-                <tr class="details">
-                    <td colspan="2" style="text-align: center;">Total Nilai</td>
-                    <td style="text-align: center;">{{ $jumlah_raport }}</td>
-                    <td colspan="5" style="text-align: left;">{{ terbilang($jumlah_raport) }}</td>
-                </tr>
-                <tr class="details">
-                    <td colspan="2" style="text-align: center;">Rata-rata</td>
-                    <td style="text-align: center;">{{ $ratarata_raport }}</td>
-                    <td colspan="5" style="text-align: left;">{{ terbilang($ratarata_raport) }}</td>
-                </tr>
+                @if ($nama_rombel == 'Kelas 6B')
+                    <tr class="details">
+                        <td style="text-align: center;">3</td>
+                        <td style="text-align: left;">Muatan Lokal</td>
+                        <td style="text-align: center;">{{ $raport_pengetahuan_mulok }}</td>
+                        <td style="text-align: center;">{{ $predikat_huruf_mulok }}</td>
+                        <td style="text-align: left;">Memiliki kemampuan <strong> {{ $predikat_huruf_mulok1 }}
+                            </strong>
+                            {{ $predikat_deskripsi_mulok }}</td>
+                        <td style="text-align: center;">{{ $raport_keterampilan_mulok }}</td>
+                        <td style="text-align: center;">{{ $predikat_keterampilan_huruf_mulok }}</td>
+                        <td style="text-align: left;">Memiliki keterampilan <strong> {{ $predikathuruf_mulok }}
+                            </strong>
+                            {{ $predikat_keterampilan_deskripsi_mulok }}</td>
+                    </tr>
+                    <tr class="details">
+                        <td colspan="2" style="text-align: center;">Jumlah</td>
+                        <td style="text-align: center;">{{ $jumlah_raport_pengetahuan }}</td>
+                        <td colspan="2" style="text-align: left;">{{ terbilang($jumlah_raport_pengetahuan) }}
+                        </td>
+                        <td style="text-align: center;">{{ $jumlah_raport_keterampilan }}</td>
+                        <td colspan="2" style="text-align: left;">{{ terbilang($jumlah_raport_keterampilan) }}
+                        </td>
+                    </tr>
+                    <tr class="details">
+                        <td colspan="2" style="text-align: center;">Rata-rata</td>
+                        <td style="text-align: center;">{{ $ratarata_raport_pengetahuan }}</td>
+                        <td colspan="2" style="text-align: left;">{{ terbilang($ratarata_raport_pengetahuan) }}
+                        </td>
+                        <td style="text-align: center;">{{ $ratarata_raport_keterampilan }}</td>
+                        <td colspan="2" style="text-align: left;">{{ terbilang($ratarata_raport_keterampilan) }}
+                        </td>
+                    </tr>
+                    <tr class="details">
+                        <td colspan="2" style="text-align: center;">Total Nilai</td>
+                        <td style="text-align: center;">{{ $jumlah_raport }}</td>
+                        <td colspan="5" style="text-align: left;">{{ terbilang($jumlah_raport) }}</td>
+                    </tr>
+                    <tr class="details">
+                        <td colspan="2" style="text-align: center;">Rata-rata</td>
+                        <td style="text-align: center;">{{ $ratarata_raport }}</td>
+                        <td colspan="5" style="text-align: left;">{{ terbilang($ratarata_raport) }}</td>
+                    </tr>
+                @else
+                    <tr class="details">
+                        <td colspan="2" style="text-align: center;">Jumlah</td>
+                        <td style="text-align: center;">{{ $jumlah_raport_pengetahuan }}</td>
+                        <td colspan="2" style="text-align: left;">{{ terbilang($jumlah_raport_pengetahuan) }}
+                        </td>
+                        <td style="text-align: center;">{{ $jumlah_raport_keterampilan }}</td>
+                        <td colspan="2" style="text-align: left;">{{ terbilang($jumlah_raport_keterampilan) }}
+                        </td>
+                    </tr>
+                    <tr class="details">
+                        <td colspan="2" style="text-align: center;">Rata-rata</td>
+                        <td style="text-align: center;">{{ $ratarata_raport_pengetahuan }}</td>
+                        <td colspan="2" style="text-align: left;">{{ terbilang($ratarata_raport_pengetahuan) }}
+                        </td>
+                        <td style="text-align: center;">{{ $ratarata_raport_keterampilan }}</td>
+                        <td colspan="2" style="text-align: left;">{{ terbilang($ratarata_raport_keterampilan) }}
+                        </td>
+                    </tr>
+                    <tr class="details">
+                        <td colspan="2" style="text-align: center;">Total Nilai</td>
+                        <td style="text-align: center;">{{ $jumlah_raport }}</td>
+                        <td colspan="5" style="text-align: left;">{{ terbilang($jumlah_raport) }}</td>
+                    </tr>
+                    <tr class="details">
+                        <td colspan="2" style="text-align: center;">Rata-rata</td>
+                        <td style="text-align: center;">{{ $ratarata_raport }}</td>
+                        <td colspan="5" style="text-align: left;">{{ terbilang($ratarata_raport) }}</td>
+                    </tr>
+                @endif
                 <tr>
                     <td colspan="8">
                         <table>
