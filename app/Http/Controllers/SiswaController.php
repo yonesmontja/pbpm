@@ -980,7 +980,7 @@ class SiswaController extends Controller
         if (array_sum($nilai_tugas_mulok) > 0) {
             for ($key = 0; $key < count($nilai_tugas_mulok); $key++) {
                 if ($nilai_tugas_mulok[$key] > 0) {
-                    $nilai_tugas_sbk_yes[] = $nilai_tugas_mulok[$key];
+                    $nilai_tugas_mulok_yes[] = $nilai_tugas_mulok[$key];
                 }
             }
             $jml_pel_tugas_mulok    = count($nilai_tugas_mulok_yes);
@@ -2992,7 +2992,7 @@ class SiswaController extends Controller
                 + $raport_keterampilan_sbk
                 + $raport_keterampilan_mulok;
             $jumlah_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan, 1, '.', '');
-            $ratarata_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan / 8, 1, '.', '');
+            $ratarata_raport_keterampilan = number_format((float)$jumlah_raport_keterampilan / 9, 1, '.', '');
         }
 
 
