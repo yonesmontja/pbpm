@@ -830,7 +830,7 @@ class SiswaController extends Controller
             $nilai_tugas_mulok[] = (int)$tampung_tugas_mulok;
         }
         //dd(array_sum($nilai_tugas_protestan));
-        //dd($nilai_tugas_protestan);
+        dd($nilai_tugas_mulok);
         if ($students->agama == "Islam" || $students->agama == "islam") {
             if (array_sum($nilai_tugas_islam) > 0) {
                 for ($key = 0; $key < count($nilai_tugas_islam); $key++) {
@@ -2370,7 +2370,7 @@ class SiswaController extends Controller
                 + $raport_pengetahuan_sbk
                 + $raport_pengetahuan_mulok;
             $jumlah_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan, 1, '.', '');
-            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 8, 1, '.', '');
+            $ratarata_raport_pengetahuan = number_format((float)$jumlah_raport_pengetahuan / 9, 1, '.', '');
         }
 
 
