@@ -830,7 +830,7 @@ class SiswaController extends Controller
             $nilai_tugas_mulok[] = (int)$tampung_tugas_mulok;
         }
         //dd(array_sum($nilai_tugas_protestan));
-        dd($nilai_tugas_mulok);
+        //dd($nilai_tugas_mulok);
         if ($students->agama == "Islam" || $students->agama == "islam") {
             if (array_sum($nilai_tugas_islam) > 0) {
                 for ($key = 0; $key < count($nilai_tugas_islam); $key++) {
@@ -1050,7 +1050,7 @@ class SiswaController extends Controller
                 ->pluck('nilai')->avg();
             $nilai_latihan_mulok[] = (int)$tampung_latihan_mulok;
         }
-
+        dd($nilai_latihan_mulok);
         if (
             $students->agama == "Islam" || $students->agama == "islam"
         ) {
