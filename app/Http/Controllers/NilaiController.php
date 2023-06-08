@@ -69,7 +69,7 @@ class NilaiController extends Controller
         $nama_rombel = Rombel::where('guru_id', '=', $id)->pluck('rombel')->first();
         $guru_rombel = Rombel::where('guru_id', '=', $id)->pluck('id')->first();
         $kelas_rombel = Rombel::where('guru_id', '=', $id)->pluck('kelas_id')->first();
-        $data_nilai = Nilai::where('guru_id', '=', $id)->get();
+        $data_nilai = Nilai::with('mapel', 'guru', 'penilaian', 'rombel', 'kelas', 'siswa')->where('guru_id', '=', $id)->get();
         $kompetensiinti = Kompetensiinti::all();
         $mapel = Mapel::all();
         $siswa = Siswa::where('kelas_id', '=', $kelas_rombel)->get();
