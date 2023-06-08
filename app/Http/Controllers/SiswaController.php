@@ -989,7 +989,7 @@ class SiswaController extends Controller
         } elseif (array_sum($nilai_tugas_mulok) == 0) {
             $rata_rata_tugas_mulok = 0.00;
         }
-
+        dd($rata_rata_tugas_mulok);
         // --------------------------------------------------------------------
 
         //menghitung nilai latihan
@@ -1050,7 +1050,7 @@ class SiswaController extends Controller
                 ->pluck('nilai')->avg();
             $nilai_latihan_mulok[] = (int)$tampung_latihan_mulok;
         }
-        dd($nilai_latihan_mulok);
+        //dd($nilai_latihan_mulok);
         if (
             $students->agama == "Islam" || $students->agama == "islam"
         ) {
