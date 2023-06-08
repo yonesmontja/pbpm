@@ -37,8 +37,8 @@
                         <!-- /.card -->
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Tahun Pelajaran <a
-                                        href="/dashboard_guru">{{ thnPel() }}</a></h3>
+                                <h3 class="card-title">Tahun Pelajaran <a href="/dashboard_guru">{{ thnPel() }}</a>
+                                </h3>
                             </div>
                             <div class="card-header">
                                 <div class="row">
@@ -72,7 +72,8 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-primary">Import Nilai</button>
+                                                            <button type="submit" class="btn btn-primary">Import
+                                                                Nilai</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -156,7 +157,8 @@
                             <div class="card-body">
                                 @if (session('sukses'))
                                     <div class="alert alert-success" role="alert">
-                                        Data <a href="/dashboard_guru" class="alert-link">Nilai</a> {{ session('sukses') }}
+                                        Data <a href="/dashboard_guru" class="alert-link">Nilai</a>
+                                        {{ session('sukses') }}
                                     </div>
                                 @endif
                                 <table id="example2" class="table table-bordered table-hover">
@@ -184,7 +186,8 @@
                                                 </td>
                                                 <td><a href="/penilaian/{{ $nilai->penilaian->id }}/profile">{{ $nilai->penilaian->nama_tes }}
                                                 </td>
-                                                <td><a href="/rombel/{{ $nilai->guru->id }}">{{ $nilai->rombel->rombel }}</a>
+                                                <td><a
+                                                        href="/rombel/{{ $nilai->guru->id }}">{{ $nilai->rombel->rombel }}</a>
                                                 </td>
                                                 <td><a
                                                         href="/kelas/{{ $nilai->kelas->id }}/profile">{{ $nilai->kelas->nama }}</a>
@@ -346,10 +349,10 @@
                                                                 <select name="siswa_id" class="form-control"
                                                                     id="siswa">
                                                                     <!--<option>---</option>
-                                                                            @foreach ($siswa as $key => $m)
+                                                                                @foreach ($siswa as $key => $m)
     <option value="{{ $m->id }}">
-                                                                                    {{ $m->nama_depan }}
-                                                                                    {{ $m->nama_belakang }}</option>
+                                                                                        {{ $m->nama_depan }}
+                                                                                        {{ $m->nama_belakang }}</option>
     @endforeach-->
                                                                 </select>
                                                             </div>
