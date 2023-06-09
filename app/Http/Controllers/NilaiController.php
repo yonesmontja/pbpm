@@ -72,12 +72,14 @@ class NilaiController extends Controller
         $data_nilai = Nilai::with('kompetensiinti', 'mapel', 'guru', 'penilaian', 'rombel', 'kelas', 'siswa')->where('guru_id', '=', $id)->get();
         $kompetensiinti = Kompetensiinti::all();
         $mapel = Mapel::all();
-        $siswa = Siswa::where('kelas_id', '=', $kelas_rombel)->get();
         $penilaian = Penilaian::all();
         //dd($kelas_rombel);
         //dd($guru_rombel);
         $rombel = DB::table('rombel_siswa')->where('rombel_id', '=', $guru_rombel)->pluck('rombel_id')->first();
-        //dd($guru);
+        $siswa =
+        DB::table('rombel_siswa')->where('rombel_id', '=', $guru_rombel)->join('siswa', 'siswa.id', '=', 'rombel_siswa.siswa_id')
+        ->get();
+
         $kelas = Kelas::where('guru_id', '=', $id)->pluck('nama');
 
         //dd($kelas);

@@ -258,9 +258,10 @@
                                                     <td>{{ $siswa->nis }}</td>
                                                     <td>{{ $siswa->jenis_kelamin }}</td>
                                                     <td>{{ $siswa->agama }}</td>
-                                                    @foreach ($siswa->rombel as $r)
+                                                    {{-- @foreach ($siswa->rombel as $r)
                                                         <td>{{ $r->rombel }}</td>
-                                                    @endforeach
+                                                    @endforeach --}}
+                                                    <td>{{ $rombel23 }}</td>
                                                     <td>
                                                         <a href="/siswa/{{ $siswa->id }}/cover_pdf"
                                                             class="btn btn-primary btn-xs">Cover

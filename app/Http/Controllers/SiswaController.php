@@ -77,75 +77,51 @@ class SiswaController extends Controller
     {
         $id_user = auth()->user()->id;
         $id_guru = Guru::where('user_id', '=', $id_user)->pluck('id')->first();
-        //dd($id_user);
         if (auth()->user()->role == 'guru') {
             // mengambil data siswa yang sudah memiliki rombel dan menampilkannya sesuai user()->role == guru
             // langkah pertama ambil id user yg role == guru dan sedang buka route /test
             //$id_user = auth()->user()->id;
             // lalu cari id guru dengan user_id == $id_user
-
             // lalu tampilkan data siswa rombel yang memiliki guru_id == $id_guru
             $rombel2 = Rombel::where('guru_id', '=', $id_guru)->pluck('id')->first();
-            $rombel3 = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->pluck('siswa_id')->toArray();
-            $rombel23 = Rombel::where('guru_id', '=', $id_guru)->pluck('kelas_id')->first();
-            //--------------------------------------
-            $data_siswa = Siswa::where('kelas_id', '=', $rombel23)->orderBy('nama_depan')->get();
-            $user_id = Siswa::where('kelas_id', '=', $rombel23)->orderBy('nama_depan')->get();
+            $tampung = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->join('siswa', 'siswa.id', '=', 'rombel_siswa.siswa_id')->get();
+            $rombel23 = Rombel::where(
+                    'guru_id',
+                    '=',
+                    $id_guru
+                )->pluck('rombel')->first();
             $kelas = Kelas::all();
             $rombel = Rombel::all();
             $rombel1 = DB::table('rombel_siswa')->pluck('siswa_id')->toArray();
-            $data_siswa1 = $data_siswa->pluck('id')->toArray();
-            //--------------------------------------
-            foreach ($rombel3 as $z => $zefa) {
-                $tampung[] = Siswa::where('kelas_id', '=', $rombel23)->find($zefa);
-            }
-            //dd($tampung3);
             $guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
         }
-
         if (auth()->user()->role == 'admin') {
-            //--------------------------------------
-            //$data_siswa = Siswa::orderBy('nama_depan')->get();
-            //$user_id = Siswa::orderBy('nama_depan')->get();
             $kelas = Kelas::all();
             $rombel = Rombel::all();
             $rombel1 = DB::table('rombel_siswa')->pluck('siswa_id')->toArray();
-            //$data_siswa1 = $data_siswa->pluck('id')->toArray();
             //--------------------------------------
             // mengambil data siswa yang sudah memiliki rombel
             // simpan di variabel $tampung dan $tampung2
             foreach ($rombel1 as $r => $s) {
                 $tampung[] = Siswa::where('id', '=', $s)->find($s);
             }
-            //dd($tampung[0]);
-            // foreach ($tampung as $t) {
-            //     $tampung2[] = $t->rombel();
-            // }
-            //dd($tampung2[0]);
-            //$guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
         }
 
         if (auth()->user()->role == 'admin') {
             return view('siswa.test', [
                 'kelas' => $kelas,
-                //'data_siswa' => $data_siswa,
-                //'user_id' => $user_id,
                 'tampung' => $tampung,
                 'rombel' => $rombel,
                 'rombel1' => $rombel1,
-                // 'tampung2' => $tampung2,
-                //'guru' => $guru,
             ]);
         }
         if (auth()->user()->role == 'guru') {
             return view('siswa.test', [
                 'kelas' => $kelas,
-                'data_siswa' => $data_siswa,
-                'user_id' => $user_id,
                 'tampung' => $tampung,
                 'rombel' => $rombel,
                 'rombel1' => $rombel1,
-
+                'rombel23' => $rombel23,
                 'guru' => $guru,
             ]);
         }
@@ -825,7 +801,7 @@ class SiswaController extends Controller
                 ->pluck('nilai')->avg();
             $nilai_tugas_sbk[] = (int)$tampung_tugas_sbk;
             $tampung_tugas_mulok = Nilai::where('siswa_id', '=', $id)
-            ->where('penilaian_id', '=', $penilaian)
+                ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 11)
                 ->pluck('nilai')->avg();
             $nilai_tugas_mulok[] = (int)$tampung_tugas_mulok;
@@ -1046,7 +1022,7 @@ class SiswaController extends Controller
                 ->pluck('nilai')->avg();
             $nilai_latihan_sbk[] = (int)$tampung_latihan_sbk;
             $tampung_latihan_mulok = Nilai::where('siswa_id', '=', $id)
-            ->where('penilaian_id', '=', $penilaian)
+                ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 11)
                 ->pluck('nilai')->avg();
             $nilai_latihan_mulok[] = (int)$tampung_latihan_mulok;
@@ -1262,7 +1238,7 @@ class SiswaController extends Controller
                 ->pluck('nilai')->avg();
             $nilai_uh_sbk[] = (int)$tampung_uh_sbk;
             $tampung_uh_mulok = Nilai::where('siswa_id', '=', $id)
-            ->where('penilaian_id', '=', $penilaian)
+                ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 11)
                 ->pluck('nilai')->avg();
             $nilai_uh_mulok[] = (int)$tampung_uh_mulok;
@@ -1478,7 +1454,7 @@ class SiswaController extends Controller
                 ->pluck('nilai')->avg();
             $nilai_pts_sbk[] = (int)$tampung_pts_sbk;
             $tampung_pts_mulok = Nilai::where('siswa_id', '=', $id)
-            ->where('penilaian_id', '=', $penilaian)
+                ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 11)
                 ->pluck('nilai')->avg();
             $nilai_pts_mulok[] = (int)$tampung_pts_mulok;
@@ -1694,7 +1670,7 @@ class SiswaController extends Controller
                 ->pluck('nilai')->avg();
             $nilai_pas_sbk[] = (int)$tampung_pas_sbk;
             $tampung_pas_mulok = Nilai::where('siswa_id', '=', $id)
-            ->where('penilaian_id', '=', $penilaian)
+                ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 11)
                 ->pluck('nilai')->avg();
             $nilai_pas_mulok[] = (int)$tampung_pas_mulok;
@@ -1924,8 +1900,8 @@ class SiswaController extends Controller
         $raport_pengetahuan_mulok = (((max([
             $rata_rata_tugas_mulok, $rata_rata_latihan_mulok, $rata_rata_uh_mulok
         ])) * 2)
-        + ($rata_rata_pts_mulok * 1)
-        + ($rata_rata_pas_mulok * 1)) / 4;
+            + ($rata_rata_pts_mulok * 1)
+            + ($rata_rata_pas_mulok * 1)) / 4;
         $raport_pengetahuan_mulok = number_format((float)$raport_pengetahuan_mulok, 1, '.', '');
         $kkm = 60;
         // hitung deskripsi agama
@@ -2189,12 +2165,12 @@ class SiswaController extends Controller
         // deskripsi mulok
         $predikat_pengetahuan_mulok = Nilai::where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 5)
-        ->where('mapel_id', '=', 11)
-        ->pluck('nilai_notes')->toArray();
+            ->where('mapel_id', '=', 11)
+            ->pluck('nilai_notes')->toArray();
         $predikat_keterampilan_mulok = Nilai::where('siswa_id', '=', $id)
-        ->where('penilaian_id', '=', 19)
-        ->where('mapel_id', '=', 11)
-        ->pluck('nilai_notes')->toArray();
+            ->where('penilaian_id', '=', 19)
+            ->where('mapel_id', '=', 11)
+            ->pluck('nilai_notes')->toArray();
         //dd(implode($predikat));
         if ($raport_pengetahuan_mulok < $kkm) {
             $predikat_huruf_mulok1 = "kurang";
@@ -2435,7 +2411,7 @@ class SiswaController extends Controller
                 ->pluck('nilai')->avg();
             $nilai_keterampilan_sbk[] = (int)$tampung_keterampilan_sbk;
             $tampung_keterampilan_mulok = Nilai::where('siswa_id', '=', $id)
-            ->where('penilaian_id', '=', $penilaian)
+                ->where('penilaian_id', '=', $penilaian)
                 ->where('mapel_id', '=', 11)
                 ->pluck('nilai')->avg();
             $nilai_keterampilan_mulok[] = (int)$tampung_keterampilan_mulok;
@@ -2654,9 +2630,9 @@ class SiswaController extends Controller
             + ($rata_rata_keterampilan_sbk * 1)) / 8;
         $raport_keterampilan_sbk = number_format((float)$raport_keterampilan_sbk, 1, '.', '');
         $raport_keterampilan_mulok = ((($rata_rata_keterampilan_mulok
-        + $rata_rata_keterampilan_mulok + $rata_rata_keterampilan_mulok) * 2)
-        + ($rata_rata_keterampilan_mulok * 1)
-        + ($rata_rata_keterampilan_mulok * 1)) / 8;
+            + $rata_rata_keterampilan_mulok + $rata_rata_keterampilan_mulok) * 2)
+            + ($rata_rata_keterampilan_mulok * 1)
+            + ($rata_rata_keterampilan_mulok * 1)) / 8;
         $raport_keterampilan_mulok = number_format((float)$raport_keterampilan_mulok, 1, '.', '');
         //dd($raport_keterampilan_indonesia);
         //------------------------------------------------------
