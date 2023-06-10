@@ -302,7 +302,7 @@ class SiswaController extends Controller
         $rombel = DB::table('rombel_siswa')->where('siswa_id', $id)->pluck('rombel_id')->first();
 
         $siswa1 = Siswa::where('id', '=', $id);
-        $matapelajaran = Mapel::all();
+        // $matapelajaran = Mapel::all();
         $penilaian = Penilaian::all();
         $tahunpel = Tahunpel::all();
         $nilai = Nilai::where('siswa_id', '=', $id)->get();
@@ -319,32 +319,32 @@ class SiswaController extends Controller
         $rombel2 = $rombel1->rombel;
 
         // data untuk Chart.js
-        $categories = [];
-        $data = [];
+        // $categories = [];
+        // $data = [];
         $tescategories = [];
-        $tes1 = [];
-        $data5 = [];
-        $categories2 = [];
-        $data6 = [];
-        $categories3 = [];
+        //$tes1 = [];
+        // $data5 = [];
+        //$categories2 = [];
+        // $data6 = [];
+        // $categories3 = [];
         $data7 = [];
         $categories7 = [];
         $data8 = [];
         $categories8 = [];
-        foreach ($matapelajaran as $mp) {
-            if ($siswa->mapel()->wherePivot('mapel_id', $mp->id)->first()) {
-                $categories[] = $mp->nama_mapel;
-                $data[] = $siswa->mapel()->wherePivot('mapel_id', $mp->id)->first()->pivot->nilai;
-            }
-        }
-        foreach ($siswa->mapel as $mnp) {
-            $data5[] = $mnp->pivot->nilai;
-            $categories2[] = $mnp->nama_mapel;
-        }
-        foreach ($siswa->penilaian as $mnpx) {
-            $data6[] = $mnpx->pivot->nilai;
-            $categories3[] = $mnpx->nama_tes;
-        }
+        // foreach ($matapelajaran as $mp) {
+        //     if ($siswa->mapel()->wherePivot('mapel_id', $mp->id)->first()) {
+        //         $categories[] = $mp->nama_mapel;
+        //         $data[] = $siswa->mapel()->wherePivot('mapel_id', $mp->id)->first()->pivot->nilai;
+        //     }
+        // }
+        // foreach ($siswa->mapel as $mnp) {
+        //     $data5[] = $mnp->pivot->nilai;
+        //     $categories2[] = $mnp->nama_mapel;
+        // }
+        // foreach ($siswa->penilaian as $mnpx) {
+        //     $data6[] = $mnpx->pivot->nilai;
+        //     $categories3[] = $mnpx->nama_tes;
+        // }
         foreach ($nilai as $mnp) {
             if ($mnp->siswa_id == $id) {
                 $data7[] = $mnp->nilai;
@@ -357,13 +357,13 @@ class SiswaController extends Controller
                 $categories8[] = $mnpx->penilaian->nama_tes;
             }
         }
-        foreach ($penilaian as $mp2) {
-            if ($siswa->penilaian()->wherePivot('penilaian_id', $mp2->id)->first()) {
-                $tescategories[] = $mp2->nama_tes;
-                $tes1[] = $siswa->penilaian()->wherePivot('penilaian_id', $mp2->id)->first()->pivot->nilai;
-                //dd($tes1);
-            }
-        }
+        // foreach ($penilaian as $mp2) {
+        //     if ($siswa->penilaian()->wherePivot('penilaian_id', $mp2->id)->first()) {
+        //         $tescategories[] = $mp2->nama_tes;
+        //         $tes1[] = $siswa->penilaian()->wherePivot('penilaian_id', $mp2->id)->first()->pivot->nilai;
+        //         //dd($tes1);
+        //     }
+        // }
         //dd($tes1);
         $nilai_start = Tahunpel::all()->where('id', '=', 2)->pluck('tahun');
         $nilai_end = Tahunpel::all()->where('id', '=', 1)->pluck('tahun');
@@ -517,8 +517,8 @@ class SiswaController extends Controller
             'data7' => $data7,
             'categories8' => $categories8,
             'data8' => $data8,
-            'data5' => $data5,
-            'categories2' => $categories2,
+            // 'data5' => $data5,
+            //'categories2' => $categories2,
             'mapel3' => $mapel3,
             'matang1' => $matang1,
             'tescategories1' => $tescategories1,
@@ -529,11 +529,11 @@ class SiswaController extends Controller
             'average' => $average,
             'siswa' => $siswa,
             'kelas' => $kelas,
-            'matapelajaran' => $matapelajaran,
-            'categories' => $categories,
-            'data' => $data,
-            'tescategories' => $tescategories,
-            'tes1' => $tes1
+            // 'matapelajaran' => $matapelajaran,
+            // 'categories' => $categories,
+            // 'data' => $data,
+            // 'tescategories' => $tescategories,
+            // 'tes1' => $tes1
         ]);
     }
 
@@ -638,7 +638,7 @@ class SiswaController extends Controller
         $nama_belakang = Siswa::where('id', '=', $id)->select('nama_depan', 'nama_belakang')->pluck('nama_belakang');
         $kalimat1 = $nama_depan[0];
         $kalimat2 = $nama_belakang[0];
-        $kelas = Kelas::find($students->kelas_id);
+        //$kelas = Kelas::find($students->kelas_id);
         //dd($kelas);
         $kelas_siswa = Kelas::find($students->kelas_id)->nama;
         //dd($kelas_siswa);
@@ -1909,11 +1909,11 @@ class SiswaController extends Controller
             $predikat_pengetahuan = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 1)
-            ->pluck('nilai_notes')->toArray();
+            ->pluck('nilai_notes')->first()->toArray();
             $predikat_keterampilan = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 1)
-            ->pluck('nilai_notes')->toArray();
+            ->pluck('nilai_notes')->first()->toArray();
             //dd(implode($predikat));
         }
         //dd($raport_pengetahuan_islam);
@@ -1921,11 +1921,11 @@ class SiswaController extends Controller
             $predikat_pengetahuan = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 2)
-            ->pluck('nilai_notes')->toArray();
+            ->pluck('nilai_notes')->first()->toArray();
             $predikat_keterampilan = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', 19)
                 ->where('mapel_id', '=', 2)
-            ->pluck('nilai_notes')->toArray();
+            ->pluck('nilai_notes')->first()->toArray();
             //dd(implode($predikat));
         }
         //dd($rata_rata_tugas_protestan);
@@ -1933,11 +1933,11 @@ class SiswaController extends Controller
             $predikat_pengetahuan = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 3)
-            ->pluck('nilai_notes')->toArray();
+            ->pluck('nilai_notes')->first()->toArray();
             $predikat_keterampilan = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 3)
-            ->pluck('nilai_notes')->toArray();
+            ->pluck('nilai_notes')->first()->toArray();
             //dd(implode($predikat));
         }
 
@@ -1963,11 +1963,11 @@ class SiswaController extends Controller
         $predikat_pengetahuan_ppkn = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 4)
-            ->pluck('nilai_notes')->toArray();
+        ->pluck('nilai_notes')->first()->toArray();
         $predikat_keterampilan_ppkn = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 4)
-            ->pluck('nilai_notes')->toArray();
+            ->pluck('nilai_notes')->first()->toArray();
         //dd(implode($predikat));
         if ($raport_pengetahuan_ppkn < $kkm) {
             $predikat_huruf_ppkn1 = "kurang";
@@ -1994,11 +1994,11 @@ class SiswaController extends Controller
         ->where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 5)
         ->where('mapel_id', '=', 5)
-        ->pluck('nilai_notes')->toArray();
+        ->pluck('nilai_notes')->first()->toArray();
         $predikat_keterampilan_bi = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 5)
-            ->pluck('nilai_notes')->toArray();
+            ->pluck('nilai_notes')->first()->toArray();
         //dd(implode($predikat_pengetahuan_bi));
         if ($raport_pengetahuan_indonesia < $kkm) {
             $predikat_huruf_bi = "kurang";
@@ -2023,11 +2023,11 @@ class SiswaController extends Controller
         $predikat_pengetahuan_math = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 6)
-            ->pluck('nilai_notes')->toArray();
+        ->pluck('nilai_notes')->first()->toArray();
         $predikat_keterampilan_math = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 6)
-            ->pluck('nilai_notes')->toArray();
+            ->pluck('nilai_notes')->first()->toArray();
         //dd(implode($predikat));
         if ($raport_pengetahuan_matematika < $kkm) {
             $predikat_huruf_math = "kurang";
@@ -2051,11 +2051,11 @@ class SiswaController extends Controller
         $predikat_pengetahuan_ipa = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 7)
-            ->pluck('nilai_notes')->toArray();
+            ->pluck('nilai_notes')->first()->toArray();
         $predikat_keterampilan_ipa = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 7)
-            ->pluck('nilai_notes')->toArray();
+            ->pluck('nilai_notes')->first()->toArray();
         //dd(implode($predikat));
         if ($raport_pengetahuan_ipa < $kkm) {
             $predikat_huruf_ipa1 = "kurang";
@@ -2079,11 +2079,11 @@ class SiswaController extends Controller
         $predikat_pengetahuan_ips = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 8)
-            ->pluck('nilai_notes')->toArray();
+            ->pluck('nilai_notes')->first()->toArray();
         $predikat_keterampilan_ips = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 8)
-            ->pluck('nilai_notes')->toArray();
+            ->pluck('nilai_notes')->first()->toArray();
         //dd(implode($predikat));
         if ($raport_pengetahuan_ips < $kkm) {
             $predikat_huruf_ips1 = "kurang";
@@ -2107,11 +2107,11 @@ class SiswaController extends Controller
         $predikat_pengetahuan_pjok = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 9)
-            ->pluck('nilai_notes')->toArray();
+        ->pluck('nilai_notes')->first()->toArray();
         $predikat_keterampilan_pjok = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 9)
-            ->pluck('nilai_notes')->toArray();
+            ->pluck('nilai_notes')->first()->toArray();
         //dd(implode($predikat));
         if ($raport_pengetahuan_pjok < $kkm) {
             $predikat_huruf_pjok1 = "kurang";
@@ -2137,11 +2137,11 @@ class SiswaController extends Controller
         $predikat_pengetahuan_sbk = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 10)
-            ->pluck('nilai_notes')->toArray();
+            ->pluck('nilai_notes')->first()->toArray();
         $predikat_keterampilan_sbk = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 10)
-            ->pluck('nilai_notes')->toArray();
+            ->pluck('nilai_notes')->first()->toArray();
         //dd(implode($predikat));
         if ($raport_pengetahuan_sbk < $kkm) {
             $predikat_huruf_sbk1 = "kurang";
@@ -2166,11 +2166,11 @@ class SiswaController extends Controller
         $predikat_pengetahuan_mulok = Nilai::where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 11)
-            ->pluck('nilai_notes')->toArray();
+        ->pluck('nilai_notes')->first()->toArray();
         $predikat_keterampilan_mulok = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 11)
-            ->pluck('nilai_notes')->toArray();
+            ->pluck('nilai_notes')->first()->toArray();
         //dd(implode($predikat));
         if ($raport_pengetahuan_mulok < $kkm) {
             $predikat_huruf_mulok1 = "kurang";
