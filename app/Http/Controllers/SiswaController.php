@@ -1963,7 +1963,7 @@ class SiswaController extends Controller
         $predikat_pengetahuan_ppkn = optional(Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 4)
-            ->pluck('nilai_notes'))->toArray();
+        ->pluck('nilai_notes')->first())->toArray();
         $predikat_keterampilan_ppkn = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 4)
