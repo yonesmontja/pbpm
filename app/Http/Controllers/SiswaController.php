@@ -1909,11 +1909,11 @@ class SiswaController extends Controller
             $predikat_pengetahuan = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 1)
-            ->pluck('nilai_notes')->first()->toArray();
+            ->pluck('nilai_notes')->toArray();
             $predikat_keterampilan = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 1)
-            ->pluck('nilai_notes')->first()->toArray();
+            ->pluck('nilai_notes')->toArray();
             //dd(implode($predikat));
         }
         //dd($raport_pengetahuan_islam);
@@ -1921,11 +1921,11 @@ class SiswaController extends Controller
             $predikat_pengetahuan = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 2)
-            ->pluck('nilai_notes')->first()->toArray();
+            ->pluck('nilai_notes')->toArray();
             $predikat_keterampilan = Nilai::where('siswa_id', '=', $id)
                 ->where('penilaian_id', '=', 19)
                 ->where('mapel_id', '=', 2)
-            ->pluck('nilai_notes')->first()->toArray();
+            ->pluck('nilai_notes')->toArray();
             //dd(implode($predikat));
         }
         //dd($rata_rata_tugas_protestan);
@@ -1933,60 +1933,60 @@ class SiswaController extends Controller
             $predikat_pengetahuan = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 3)
-            ->pluck('nilai_notes')->first()->toArray();
+            ->pluck('nilai_notes')->toArray();
             $predikat_keterampilan = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 3)
-            ->pluck('nilai_notes')->first()->toArray();
+            ->pluck('nilai_notes')->toArray();
             //dd(implode($predikat));
         }
 
         if ($raport_pengetahuan_agama < $kkm) {
             $predikat_huruf_agama1 = "kurang";
             $predikat_huruf_agama = "D";
-            $predikat_deskripsi_agama = " dalam | " . implode(", ", $predikat_pengetahuan);
+            $predikat_deskripsi_agama = " dalam | " . implode(", ", $predikat_pengetahuan[0]);
         } elseif ($raport_pengetahuan_agama >= $kkm && $raport_pengetahuan_agama <= ($kkm + 1 * ((100 - $kkm) / 3))) {
             $predikat_huruf_agama1 = "cukup";
             $predikat_huruf_agama = "C";
-            $predikat_deskripsi_agama = " dalam | " . implode(", ", $predikat_pengetahuan);
+            $predikat_deskripsi_agama = " dalam | " . implode(", ", $predikat_pengetahuan[0]);
         } elseif ($raport_pengetahuan_agama > ($kkm + 1 * ((100 - $kkm) / 3)) && $raport_pengetahuan_agama <= ($kkm + 2 * ((100 - $kkm) / 3))) {
             $predikat_huruf_agama1 = "baik";
             $predikat_huruf_agama = "B";
-            $predikat_deskripsi_agama = " dalam | " . implode(", ", $predikat_pengetahuan);
+            $predikat_deskripsi_agama = " dalam | " . implode(", ", $predikat_pengetahuan[0]);
         } elseif ($raport_pengetahuan_agama > ($kkm + 2 * ((100 - $kkm) / 3))) {
             $predikat_huruf_agama1 = "sangat baik";
             $predikat_huruf_agama = "A";
-            $predikat_deskripsi_agama = " dalam | " . implode(", ", $predikat_pengetahuan);
+            $predikat_deskripsi_agama = " dalam | " . implode(", ", $predikat_pengetahuan[0]);
         }
         // -------------
         // deskripsi ppkn
         $predikat_pengetahuan_ppkn = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 4)
-        ->pluck('nilai_notes')->first()->toArray();
+        ->pluck('nilai_notes')->toArray();
         $predikat_keterampilan_ppkn = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 4)
-            ->pluck('nilai_notes')->first()->toArray();
+            ->pluck('nilai_notes')->toArray();
         //dd(implode($predikat));
         if ($raport_pengetahuan_ppkn < $kkm) {
             $predikat_huruf_ppkn1 = "kurang";
             $predikat_huruf_ppkn = "D";
-            $predikat_deskripsi_ppkn = " dalam | " . implode(", ", $predikat_pengetahuan_ppkn);
+            $predikat_deskripsi_ppkn = " dalam | " . implode(", ", $predikat_pengetahuan_ppkn[0]);
         } elseif (
             $raport_pengetahuan_ppkn >= $kkm && $raport_pengetahuan_ppkn <= ($kkm + 1 * ((100 - $kkm) / 3))
         ) {
             $predikat_huruf_ppkn1 = "cukup";
             $predikat_huruf_ppkn = "C";
-            $predikat_deskripsi_ppkn = " dalam | " . implode(", ", $predikat_pengetahuan_ppkn);
+            $predikat_deskripsi_ppkn = " dalam | " . implode(", ", $predikat_pengetahuan_ppkn[0]);
         } elseif ($raport_pengetahuan_ppkn > ($kkm + 1 * ((100 - $kkm) / 3)) && $raport_pengetahuan_ppkn <= ($kkm + 2 * ((100 - $kkm) / 3))) {
             $predikat_huruf_ppkn1 = "baik";
             $predikat_huruf_ppkn = "B";
-            $predikat_deskripsi_ppkn = " dalam | " . implode(", ", $predikat_pengetahuan_ppkn);
+            $predikat_deskripsi_ppkn = " dalam | " . implode(", ", $predikat_pengetahuan_ppkn[0]);
         } elseif ($raport_pengetahuan_ppkn > ($kkm + 2 * ((100 - $kkm) / 3))) {
             $predikat_huruf_ppkn1 = "sangat baik";
             $predikat_huruf_ppkn = "A";
-            $predikat_deskripsi_ppkn = " dalam | " . implode(", ", $predikat_pengetahuan_ppkn);
+            $predikat_deskripsi_ppkn = " dalam | " . implode(", ", $predikat_pengetahuan_ppkn[0]);
         }
         // -------------
         // deskripsi indonesia
@@ -1994,28 +1994,28 @@ class SiswaController extends Controller
         ->where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 5)
         ->where('mapel_id', '=', 5)
-        ->pluck('nilai_notes')->first()->toArray();
+        ->pluck('nilai_notes')->toArray();
         $predikat_keterampilan_bi = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 5)
-            ->pluck('nilai_notes')->first()->toArray();
+            ->pluck('nilai_notes')->toArray();
         //dd(implode($predikat_pengetahuan_bi));
         if ($raport_pengetahuan_indonesia < $kkm) {
             $predikat_huruf_bi = "kurang";
             $predikat_huruf_indonesia = "D";
-            $predikat_deskripsi_indonesia = " dalam | " . implode(", ", $predikat_pengetahuan_bi);
+            $predikat_deskripsi_indonesia = " dalam | " . implode(", ", $predikat_pengetahuan_bi[0]);
         } elseif ($raport_pengetahuan_indonesia >= $kkm && $raport_pengetahuan_indonesia <= ($kkm + 1 * ((100 - $kkm) / 3))) {
             $predikat_huruf_bi = "cukup";
             $predikat_huruf_indonesia = "C";
-            $predikat_deskripsi_indonesia = " dalam | " . implode(", ", $predikat_pengetahuan_bi);
+            $predikat_deskripsi_indonesia = " dalam | " . implode(", ", $predikat_pengetahuan_bi[0]);
         } elseif ($raport_pengetahuan_indonesia > ($kkm + 1 * ((100 - $kkm) / 3)) && $raport_pengetahuan_indonesia <= ($kkm + 2 * ((100 - $kkm) / 3))) {
             $predikat_huruf_bi = "baik";
             $predikat_huruf_indonesia = "B";
-            $predikat_deskripsi_indonesia = " dalam | " . implode(", ", $predikat_pengetahuan_bi);
+            $predikat_deskripsi_indonesia = " dalam | " . implode(", ", $predikat_pengetahuan_bi[0]);
         } elseif ($raport_pengetahuan_indonesia > ($kkm + 2 * ((100 - $kkm) / 3))) {
             $predikat_huruf_bi = "sangat baik";
             $predikat_huruf_indonesia = "A";
-            $predikat_deskripsi_indonesia = " dalam | " . implode(", ", $predikat_pengetahuan_bi);
+            $predikat_deskripsi_indonesia = " dalam | " . implode(", ", $predikat_pengetahuan_bi[0]);
         }
         // -------------
         //dd($predikat_deskripsi_indonesia);
@@ -2023,142 +2023,142 @@ class SiswaController extends Controller
         $predikat_pengetahuan_math = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 6)
-        ->pluck('nilai_notes')->first()->toArray();
+        ->pluck('nilai_notes')->toArray();
         $predikat_keterampilan_math = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 6)
-            ->pluck('nilai_notes')->first()->toArray();
+            ->pluck('nilai_notes')->toArray();
         //dd(implode($predikat));
         if ($raport_pengetahuan_matematika < $kkm) {
             $predikat_huruf_math = "kurang";
             $predikat_huruf_matematika = "D";
-            $predikat_deskripsi_matematika = " dalam | " . implode(", ", $predikat_pengetahuan_math);
+            $predikat_deskripsi_matematika = " dalam | " . implode(", ", $predikat_pengetahuan_math[0]);
         } elseif ($raport_pengetahuan_matematika >= $kkm && $raport_pengetahuan_matematika <= ($kkm + 1 * ((100 - $kkm) / 3))) {
             $predikat_huruf_math = "cukup";
             $predikat_huruf_matematika = "C";
-            $predikat_deskripsi_matematika = " dalam | " . implode(", ", $predikat_pengetahuan_math);
+            $predikat_deskripsi_matematika = " dalam | " . implode(", ", $predikat_pengetahuan_math[0]);
         } elseif ($raport_pengetahuan_matematika > ($kkm + 1 * ((100 - $kkm) / 3)) && $raport_pengetahuan_matematika <= ($kkm + 2 * ((100 - $kkm) / 3))) {
             $predikat_huruf_math = "baik";
             $predikat_huruf_matematika = "B";
-            $predikat_deskripsi_matematika = " dalam | " . implode(", ", $predikat_pengetahuan_math);
+            $predikat_deskripsi_matematika = " dalam | " . implode(", ", $predikat_pengetahuan_math[0]);
         } elseif ($raport_pengetahuan_matematika > ($kkm + 2 * ((100 - $kkm) / 3))) {
             $predikat_huruf_math = "sangat baik";
             $predikat_huruf_matematika = "A";
-            $predikat_deskripsi_matematika = " dalam | " . implode(", ", $predikat_pengetahuan_math);
+            $predikat_deskripsi_matematika = " dalam | " . implode(", ", $predikat_pengetahuan_math[0]);
         }
         // -------------
         // deskripsi ipa
         $predikat_pengetahuan_ipa = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 7)
-            ->pluck('nilai_notes')->first()->toArray();
+            ->pluck('nilai_notes')->toArray();
         $predikat_keterampilan_ipa = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 7)
-            ->pluck('nilai_notes')->first()->toArray();
+            ->pluck('nilai_notes')->toArray();
         //dd(implode($predikat));
         if ($raport_pengetahuan_ipa < $kkm) {
             $predikat_huruf_ipa1 = "kurang";
             $predikat_huruf_ipa = "D";
-            $predikat_deskripsi_ipa = " dalam | " . implode(", ", $predikat_pengetahuan_ipa);
+            $predikat_deskripsi_ipa = " dalam | " . implode(", ", $predikat_pengetahuan_ipa[0]);
         } elseif ($raport_pengetahuan_ipa >= $kkm && $raport_pengetahuan_ipa <= ($kkm + 1 * ((100 - $kkm) / 3))) {
             $predikat_huruf_ipa1 = "cukup";
             $predikat_huruf_ipa = "C";
-            $predikat_deskripsi_ipa = " dalam | " . implode(", ", $predikat_pengetahuan_ipa);
+            $predikat_deskripsi_ipa = " dalam | " . implode(", ", $predikat_pengetahuan_ipa[0]);
         } elseif ($raport_pengetahuan_ipa > ($kkm + 1 * ((100 - $kkm) / 3)) && $raport_pengetahuan_ipa <= ($kkm + 2 * ((100 - $kkm) / 3))) {
             $predikat_huruf_ipa1 = "baik";
             $predikat_huruf_ipa = "B";
-            $predikat_deskripsi_ipa = " dalam | " . implode(", ", $predikat_pengetahuan_ipa);
+            $predikat_deskripsi_ipa = " dalam | " . implode(", ", $predikat_pengetahuan_ipa[0]);
         } elseif ($raport_pengetahuan_ipa > ($kkm + 2 * ((100 - $kkm) / 3))) {
             $predikat_huruf_ipa1 = "sangat baik";
             $predikat_huruf_ipa = "A";
-            $predikat_deskripsi_ipa = " dalam | " . implode(", ", $predikat_pengetahuan_ipa);
+            $predikat_deskripsi_ipa = " dalam | " . implode(", ", $predikat_pengetahuan_ipa[0]);
         }
         // -------------
         // deskripsi ips
         $predikat_pengetahuan_ips = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 8)
-            ->pluck('nilai_notes')->first()->toArray();
+            ->pluck('nilai_notes')->toArray();
         $predikat_keterampilan_ips = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 8)
-            ->pluck('nilai_notes')->first()->toArray();
+            ->pluck('nilai_notes')->toArray();
         //dd(implode($predikat));
         if ($raport_pengetahuan_ips < $kkm) {
             $predikat_huruf_ips1 = "kurang";
             $predikat_huruf_ips = "D";
-            $predikat_deskripsi_ips = " dalam | " . implode(", ", $predikat_pengetahuan_ips);
+            $predikat_deskripsi_ips = " dalam | " . implode(", ", $predikat_pengetahuan_ips[0]);
         } elseif ($raport_pengetahuan_ips >= $kkm && $raport_pengetahuan_ips <= ($kkm + 1 * ((100 - $kkm) / 3))) {
             $predikat_huruf_ips1 = "cukup";
             $predikat_huruf_ips = "C";
-            $predikat_deskripsi_ips = " dalam | " . implode(", ", $predikat_pengetahuan_ips);
+            $predikat_deskripsi_ips = " dalam | " . implode(", ", $predikat_pengetahuan_ips[0]);
         } elseif ($raport_pengetahuan_ips > ($kkm + 1 * ((100 - $kkm) / 3)) && $raport_pengetahuan_ips <= ($kkm + 2 * ((100 - $kkm) / 3))) {
             $predikat_huruf_ips1 = "baik";
             $predikat_huruf_ips = "B";
-            $predikat_deskripsi_ips = " dalam | " . implode(", ", $predikat_pengetahuan_ips);
+            $predikat_deskripsi_ips = " dalam | " . implode(", ", $predikat_pengetahuan_ips[0]);
         } elseif ($raport_pengetahuan_ips > ($kkm + 2 * ((100 - $kkm) / 3))) {
             $predikat_huruf_ips1 = "sangat baik";
             $predikat_huruf_ips = "A";
-            $predikat_deskripsi_ips = " dalam | " . implode(", ", $predikat_pengetahuan_ips);
+            $predikat_deskripsi_ips = " dalam | " . implode(", ", $predikat_pengetahuan_ips[0]);
         }
         // -------------
         // deskripsi pjok
         $predikat_pengetahuan_pjok = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 9)
-        ->pluck('nilai_notes')->first()->toArray();
+        ->pluck('nilai_notes')->toArray();
         $predikat_keterampilan_pjok = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 9)
-            ->pluck('nilai_notes')->first()->toArray();
+            ->pluck('nilai_notes')->toArray();
         //dd(implode($predikat));
         if ($raport_pengetahuan_pjok < $kkm) {
             $predikat_huruf_pjok1 = "kurang";
             $predikat_huruf_pjok = "D";
-            $predikat_deskripsi_pjok = " dalam | " . implode(", ", $predikat_pengetahuan_pjok);
+            $predikat_deskripsi_pjok = " dalam | " . implode(", ", $predikat_pengetahuan_pjok[0]);
         } elseif (
             $raport_pengetahuan_pjok >= $kkm && $raport_pengetahuan_pjok <= ($kkm + 1 * ((100 - $kkm) / 3))
         ) {
             $predikat_huruf_pjok1 = "cukup";
             $predikat_huruf_pjok = "C";
-            $predikat_deskripsi_pjok = " dalam | " . implode(", ", $predikat_pengetahuan_pjok);
+            $predikat_deskripsi_pjok = " dalam | " . implode(", ", $predikat_pengetahuan_pjok[0]);
         } elseif ($raport_pengetahuan_pjok > ($kkm + 1 * ((100 - $kkm) / 3)) && $raport_pengetahuan_pjok <= ($kkm + 2 * ((100 - $kkm) / 3))) {
             $predikat_huruf_pjok1 = "baik";
             $predikat_huruf_pjok = "B";
-            $predikat_deskripsi_pjok = " dalam | " . implode(", ", $predikat_pengetahuan_pjok);
+            $predikat_deskripsi_pjok = " dalam | " . implode(", ", $predikat_pengetahuan_pjok[0]);
         } elseif ($raport_pengetahuan_pjok > ($kkm + 2 * ((100 - $kkm) / 3))) {
             $predikat_huruf_pjok1 = "sangat baik";
             $predikat_huruf_pjok = "A";
-            $predikat_deskripsi_pjok = " dalam | " . implode(", ", $predikat_pengetahuan_pjok);
+            $predikat_deskripsi_pjok = " dalam | " . implode(", ", $predikat_pengetahuan_pjok[0]);
         }
         // -------------
         // deskripsi sbk
         $predikat_pengetahuan_sbk = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 10)
-            ->pluck('nilai_notes')->first()->toArray();
+            ->pluck('nilai_notes')->toArray();
         $predikat_keterampilan_sbk = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 10)
-            ->pluck('nilai_notes')->first()->toArray();
+            ->pluck('nilai_notes')->toArray();
         //dd(implode($predikat));
         if ($raport_pengetahuan_sbk < $kkm) {
             $predikat_huruf_sbk1 = "kurang";
             $predikat_huruf_sbk = "D";
-            $predikat_deskripsi_sbk = " dalam | " . implode(", ", $predikat_pengetahuan_sbk);
+            $predikat_deskripsi_sbk = " dalam | " . implode(", ", $predikat_pengetahuan_sbk[0]);
         } elseif ($raport_pengetahuan_sbk >= $kkm && $raport_pengetahuan_sbk <= ($kkm + 1 * ((100 - $kkm) / 3))) {
             $predikat_huruf_sbk1 = "cukup";
             $predikat_huruf_sbk = "C";
-            $predikat_deskripsi_sbk = " dalam | " . implode(", ", $predikat_pengetahuan_sbk);
+            $predikat_deskripsi_sbk = " dalam | " . implode(", ", $predikat_pengetahuan_sbk[0]);
         } elseif ($raport_pengetahuan_sbk > ($kkm + 1 * ((100 - $kkm) / 3)) && $raport_pengetahuan_sbk <= ($kkm + 2 * ((100 - $kkm) / 3))) {
             $predikat_huruf_sbk1 = "baik";
             $predikat_huruf_sbk = "B";
-            $predikat_deskripsi_sbk = " dalam | " . implode(", ", $predikat_pengetahuan_sbk);
+            $predikat_deskripsi_sbk = " dalam | " . implode(", ", $predikat_pengetahuan_sbk[0]);
         } elseif ($raport_pengetahuan_sbk > ($kkm + 2 * ((100 - $kkm) / 3))) {
             $predikat_huruf_sbk1 = "sangat baik";
             $predikat_huruf_sbk = "A";
-            $predikat_deskripsi_sbk = " dalam | " . implode(", ", $predikat_pengetahuan_sbk);
+            $predikat_deskripsi_sbk = " dalam | " . implode(", ", $predikat_pengetahuan_sbk[0]);
         }
         // ---------------------------------------------
         // -------------
@@ -2166,28 +2166,28 @@ class SiswaController extends Controller
         $predikat_pengetahuan_mulok = Nilai::where('siswa_id', '=', $id)
         ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 11)
-        ->pluck('nilai_notes')->first()->toArray();
+        ->pluck('nilai_notes')->toArray();
         $predikat_keterampilan_mulok = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 11)
-            ->pluck('nilai_notes')->first()->toArray();
+            ->pluck('nilai_notes')->toArray();
         //dd(implode($predikat));
         if ($raport_pengetahuan_mulok < $kkm) {
             $predikat_huruf_mulok1 = "kurang";
             $predikat_huruf_mulok = "D";
-            $predikat_deskripsi_mulok = " dalam | " . implode(", ", $predikat_pengetahuan_mulok);
+            $predikat_deskripsi_mulok = " dalam | " . implode(", ", $predikat_pengetahuan_mulok[0]);
         } elseif ($raport_pengetahuan_mulok >= $kkm && $raport_pengetahuan_mulok <= ($kkm + 1 * ((100 - $kkm) / 3))) {
             $predikat_huruf_mulok1 = "cukup";
             $predikat_huruf_mulok = "C";
-            $predikat_deskripsi_mulok = " dalam | " . implode(", ", $predikat_pengetahuan_mulok);
+            $predikat_deskripsi_mulok = " dalam | " . implode(", ", $predikat_pengetahuan_mulok[0]);
         } elseif ($raport_pengetahuan_mulok > ($kkm + 1 * ((100 - $kkm) / 3)) && $raport_pengetahuan_mulok <= ($kkm + 2 * ((100 - $kkm) / 3))) {
             $predikat_huruf_mulok1 = "baik";
             $predikat_huruf_mulok = "B";
-            $predikat_deskripsi_mulok = " dalam | " . implode(", ", $predikat_pengetahuan_mulok);
+            $predikat_deskripsi_mulok = " dalam | " . implode(", ", $predikat_pengetahuan_mulok[0]);
         } elseif ($raport_pengetahuan_mulok > ($kkm + 2 * ((100 - $kkm) / 3))) {
             $predikat_huruf_mulok1 = "sangat baik";
             $predikat_huruf_mulok = "A";
-            $predikat_deskripsi_mulok = " dalam | " . implode(", ", $predikat_pengetahuan_mulok);
+            $predikat_deskripsi_mulok = " dalam | " . implode(", ", $predikat_pengetahuan_mulok[0]);
         }
         // ---------------------------------------------
         if ($rombel == 1) {
