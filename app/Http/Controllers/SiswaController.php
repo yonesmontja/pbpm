@@ -86,10 +86,10 @@ class SiswaController extends Controller
             $rombel2 = Rombel::where('guru_id', '=', $id_guru)->pluck('id')->first();
             $tampung = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->join('siswa', 'siswa.id', '=', 'rombel_siswa.siswa_id')->get();
             $rombel23 = Rombel::where(
-                    'guru_id',
-                    '=',
-                    $id_guru
-                )->pluck('rombel')->first();
+                'guru_id',
+                '=',
+                $id_guru
+            )->pluck('rombel')->first();
             $kelas = Kelas::all();
             $rombel = Rombel::all();
             $rombel1 = DB::table('rombel_siswa')->pluck('siswa_id')->toArray();
@@ -1960,10 +1960,11 @@ class SiswaController extends Controller
         }
         // -------------
         // deskripsi ppkn
-        $predikat_pengetahuan_ppkn = optional(Nilai::where('siswa_id', '=', $id)
+        $predikat_pengetahuan_ppkn = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 4)
-        ->pluck('nilai_notes')->first())->toArray();
+        ->pluck('nilai_notes')->toArray();
+        dd($predikat_pengetahuan_ppkn);
         $predikat_keterampilan_ppkn = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 4)
@@ -2164,7 +2165,7 @@ class SiswaController extends Controller
         // -------------
         // deskripsi mulok
         $predikat_pengetahuan_mulok = Nilai::where('siswa_id', '=', $id)
-        ->where('penilaian_id', '=', 5)
+            ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 11)
         ->pluck('nilai_notes')->toArray();
         $predikat_keterampilan_mulok = Nilai::where('siswa_id', '=', $id)
