@@ -261,9 +261,9 @@
                                                         <div class="col-sm-3">
                                                             <div
                                                                 class="form-group {{ $errors->has('nilai_start') ? ' has-error' : '' }}">
-                                                                <label for="exampleFormControlInput1">Mulai</label>
+                                                                <label for="exampleFormControlInput14">Mulai</label>
                                                                 <input name="nilai_start" type="text"
-                                                                    class="form-control" id="exampleFormControlInput1"
+                                                                    class="form-control" id="exampleFormControlInput14"
                                                                     placeholder="Kapan mulai?"
                                                                     value="{{ $nilai_start[0] }}">
                                                                 @if ($errors->has('nilai_start'))
@@ -279,9 +279,9 @@
                                                         <div class="col-sm-3">
                                                             <div
                                                                 class="form-group {{ $errors->has('nilai_end') ? ' has-error' : '' }}">
-                                                                <label for="exampleFormControlInput1">Berakhir</label>
+                                                                <label for="exampleFormControlInput12">Berakhir</label>
                                                                 <input name="nilai_end" type="text"
-                                                                    class="form-control" id="exampleFormControlInput1"
+                                                                    class="form-control" id="exampleFormControlInput12"
                                                                     placeholder="Kapan selesai?"
                                                                     value="{{ $nilai_end[0] }}">
                                                                 @if ($errors->has('nilai_end'))
@@ -406,9 +406,9 @@
                                                         <div class="col-sm-4">
                                                             <div
                                                                 class="form-group {{ $errors->has('nilai') ? ' has-error' : '' }}">
-                                                                <label for="exampleFormControlInput1">Nilai</label>
+                                                                <label for="exampleFormControlInput13">Nilai</label>
                                                                 <input name="nilai" type="text" class="form-control"
-                                                                    id="exampleFormControlInput1" placeholder="Nilai"
+                                                                    id="exampleFormControlInput13" placeholder="Nilai"
                                                                     value="{{ old('nilai') }}">
                                                                 @if ($errors->has('nilai'))
                                                                     <span
