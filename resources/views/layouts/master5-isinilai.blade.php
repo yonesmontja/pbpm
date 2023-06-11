@@ -215,7 +215,7 @@
                         all_ids.push($(this).val());
                     });
                     $.ajax({
-                            url: "{{ /selected-nilai }}",
+                            url: '/selected-nilai',
                             type: "DELETE",
                             data: {
                                 ids: all_ids,
