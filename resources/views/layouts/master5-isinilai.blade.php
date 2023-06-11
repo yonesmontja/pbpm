@@ -202,8 +202,9 @@
                 "autoWidth": false,
                 "responsive": true,
             });
-
         });
+    </script>
+    <script>
         $(function(e) {
             $("#select_all_ids").click(function() {
                 $('.checkbox_ids').prop('checked', $(this).prop('checked'));
@@ -230,7 +231,6 @@
             });
         });
     </script>
-
     <script>
         $(document).ready(function() {
             $('#rombel').on('change', function() {
