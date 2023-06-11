@@ -340,7 +340,7 @@
                                                         </div>
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect100">KELAS</label>
+                                                                <label for="kelas">KELAS</label>
                                                                 <select name="kelas_id" class="form-control"
                                                                     id="kelas">
                                                                     <option value="{{ $kelas_rombel }}">
@@ -351,7 +351,7 @@
                                                         </div>
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect101">ROMBEL</label>
+                                                                <label for="rombel">ROMBEL</label>
                                                                 <select name="rombel_id" class="form-control"
                                                                     id="rombel">
                                                                     <option hidden>Pilih rombel</option>
@@ -363,7 +363,7 @@
                                                         </div>
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect102">SISWA</label>
+                                                                <label for="siswa">SISWA</label>
                                                                 <select name="siswa_id" class="form-control"
                                                                     id="siswa">
                                                                     <!--<option>---</option>
