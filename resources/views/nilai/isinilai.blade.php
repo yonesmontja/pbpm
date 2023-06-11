@@ -164,8 +164,11 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th><div class="form-check"><input class="form-check-input"
-                                                            type="checkbox"></div></th>
+                                            <th>
+
+                                                    <input type="checkbox">
+
+                                            </th>
                                             <th>KI</th>
                                             <th>MAPEL</th>
                                             <th>GURU</th>
@@ -181,8 +184,9 @@
                                         @foreach ($data_nilai as $nilai)
                                             <tr>
                                                 <td>
-                                                    <div class="form-check"><input class="form-check-input" name="ids" value="{{ $nilai -> id }}"
-                                                            type="checkbox"></div>
+                                                    <div class="form-check"><input class="form-check-input"
+                                                            name="ids" value="{{ $nilai->id }}" type="checkbox">
+                                                    </div>
                                                 </td>
                                                 </td>
                                                 <td>{{ $nilai->kompetensiinti->kompetensi_inti }}</td>
@@ -357,10 +361,10 @@
                                                                 <select name="siswa_id" class="form-control"
                                                                     id="siswa">
                                                                     <!--<option>---</option>
-                                                                                                @foreach ($siswa as $key => $m)
+                                                                                                    @foreach ($siswa as $key => $m)
     <option value="{{ $m->id }}">
-                                                                                                        {{ $m->nama_depan }}
-                                                                                                        {{ $m->nama_belakang }}</option>
+                                                                                                            {{ $m->nama_depan }}
+                                                                                                            {{ $m->nama_belakang }}</option>
     @endforeach-->
                                                                 </select>
                                                             </div>
