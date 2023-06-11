@@ -151,10 +151,7 @@
                                         </button>
                                     </div>
                                     <div class="col-sm-6">
-                                        <button type="button" class="btn btn-danger float-right btn-xs"
-                                            data-toggle="#" data-target="#" id="deleteAllSelectedRecord">
-                                            HAPUS NILAI YG DIPILIH
-                                        </button>
+                                        <a href="#" class="btn btn-danger" id="deleteAllSelectedRecord">Hapus Data yg Dipilih</a>
                                     </div>
                                 </div>
                             </div>
