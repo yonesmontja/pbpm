@@ -77,8 +77,8 @@ class NilaiController extends Controller
         //dd($guru_rombel);
         $rombel = DB::table('rombel_siswa')->where('rombel_id', '=', $guru_rombel)->pluck('rombel_id')->first();
         $siswa =
-        DB::table('rombel_siswa')->where('rombel_id', '=', $guru_rombel)->join('siswa', 'siswa.id', '=', 'rombel_siswa.siswa_id')
-        ->get();
+            DB::table('rombel_siswa')->where('rombel_id', '=', $guru_rombel)->join('siswa', 'siswa.id', '=', 'rombel_siswa.siswa_id')
+            ->get();
 
         $kelas = Kelas::where('guru_id', '=', $id)->pluck('nama');
 
@@ -118,7 +118,11 @@ class NilaiController extends Controller
     {
         $ids = $request->ids;
         Nilai::whereIn('id', $ids)->delete();
-        return response()->json(["success" => "Nilai berhasil dihapus!"]);
+        return
+            Redirect::back()->with(
+                'sukses',
+                'berhasil diinput'
+            );
     }
 
     public function getSiswa($id)
