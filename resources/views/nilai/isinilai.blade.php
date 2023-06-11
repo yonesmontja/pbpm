@@ -166,7 +166,7 @@
                                         <tr>
                                             <th>
 
-                                                    <input type="checkbox">
+                                                    <input type="checkbox" name="" id="select_all_ids">
 
                                             </th>
                                             <th>KI</th>
@@ -184,9 +184,9 @@
                                         @foreach ($data_nilai as $nilai)
                                             <tr>
                                                 <td>
-                                                    <div class="form-check"><input class="form-check-input"
+                                                    <input class="checbox_ids" id=""
                                                             name="ids" value="{{ $nilai->id }}" type="checkbox">
-                                                    </div>
+
                                                 </td>
                                                 </td>
                                                 <td>{{ $nilai->kompetensiinti->kompetensi_inti }}</td>
