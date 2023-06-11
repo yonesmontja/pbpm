@@ -217,6 +217,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
+                                            <th></th>
                                             <th>KI</th>
                                             <th>MAPEL</th>
                                             <th>GURU</th>
