@@ -433,8 +433,8 @@
                                                     @endif
                                                     <div
                                                         class="form-group {{ $errors->has('nilai_notes') ? ' has-error' : '' }}">
-                                                        <label for="exampleFormControlTextarea1">INDIKATOR</label>
-                                                        <textarea name="nilai_notes" class="form-control" id="exampleFormControlTextarea1"
+                                                        <label for="exampleFormControlTextarea12">INDIKATOR</label>
+                                                        <textarea name="nilai_notes" class="form-control" id="exampleFormControlTextarea12"
                                                             placeholder="Indikator Capaian Kompetensi" value="{{ old('nilai_notes') }}" rows="3"></textarea>
                                                     </div>
                                                     @if ($errors->has('nilai_notes'))
