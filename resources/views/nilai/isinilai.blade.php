@@ -164,6 +164,12 @@
                                         {{ session('sukses') }}
                                     </div>
                                 @endif
+                                @if (session('success'))
+                                    <div class="alert alert-success" role="alert">
+                                        Data <a href="/dashboard_guru" class="alert-link">Nilai</a>
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
