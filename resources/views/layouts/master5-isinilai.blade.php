@@ -215,7 +215,7 @@
                         all_ids.push($(this).val());
                     });
                     $.ajax({
-                            url: "{{ route('nilai.hapusBanyak') }}",
+                            url: "{{ route('hapusBanyak') }}",
                             type: "DELETE",
                             data: {
                                 ids: all_ids,
