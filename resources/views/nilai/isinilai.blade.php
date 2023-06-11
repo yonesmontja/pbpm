@@ -296,7 +296,7 @@
                                                         </div>
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">PENILAIAN</label>
+                                                                <label for="exampleFormControlSelect2">PENILAIAN</label>
                                                                 <select name="penilaian_id" class="form-control"
                                                                     id="exampleFormControlSelect2">
                                                                     <option>---</option>
@@ -312,7 +312,7 @@
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlSelect1">TP</label>
                                                                 <select name="tahunpel_id" class="form-control"
-                                                                    id="exampleFormControlSelect2">
+                                                                    id="exampleFormControlSelect1">
                                                                     <option>---</option>
                                                                     @foreach ($tahunpel as $key => $m)
                                                                         <option value="{{ $m->id }}">
@@ -326,9 +326,9 @@
                                                     <div class="row">
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">KInti</label>
+                                                                <label for="exampleFormControlSelect12">KInti</label>
                                                                 <select name="kompetensi_inti_id" class="form-control"
-                                                                    id="exampleFormControlSelect2">
+                                                                    id="exampleFormControlSelect12">
                                                                     <option>---</option>
                                                                     @foreach ($kompetensiinti as $key => $m)
                                                                         <option value="{{ $m->id }}">
@@ -340,7 +340,7 @@
                                                         </div>
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">KELAS</label>
+                                                                <label for="exampleFormControlSelect100">KELAS</label>
                                                                 <select name="kelas_id" class="form-control"
                                                                     id="kelas">
                                                                     <option value="{{ $kelas_rombel }}">
@@ -351,7 +351,7 @@
                                                         </div>
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">ROMBEL</label>
+                                                                <label for="exampleFormControlSelect101">ROMBEL</label>
                                                                 <select name="rombel_id" class="form-control"
                                                                     id="rombel">
                                                                     <option hidden>Pilih rombel</option>
@@ -363,7 +363,7 @@
                                                         </div>
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">SISWA</label>
+                                                                <label for="exampleFormControlSelect102">SISWA</label>
                                                                 <select name="siswa_id" class="form-control"
                                                                     id="siswa">
                                                                     <!--<option>---</option>
@@ -379,9 +379,9 @@
                                                     <div class="row">
                                                         <div class="col-sm-4">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">GURU</label>
+                                                                <label for="exampleFormControlSelect13">GURU</label>
                                                                 <select name="guru_id" class="form-control"
-                                                                    id="exampleFormControlSelect2">
+                                                                    id="exampleFormControlSelect13">
                                                                     <option value="{{ $guru->id }}">
                                                                         {{ $guru->nama_guru }}
                                                                     </option>
@@ -391,9 +391,9 @@
                                                         </div>
                                                         <div class="col-sm-4">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">MAPEL</label>
+                                                                <label for="exampleFormControlSelect14">MAPEL</label>
                                                                 <select name="mapel_id" class="form-control"
-                                                                    id="exampleFormControlSelect2">
+                                                                    id="exampleFormControlSelect14">
                                                                     <option>---</option>
                                                                     @foreach ($mapel as $key => $m)
                                                                         <option value="{{ $m->id }}">
