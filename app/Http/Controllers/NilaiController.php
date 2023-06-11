@@ -113,6 +113,14 @@ class NilaiController extends Controller
             'guru' => $guru
         ]);
     }
+
+    public function hapusBanyak(Request $request)
+    {
+        $ids = $request->ids;
+        Nilai::whereIn('id', $ids)->delete();
+        return response()->json(["success" => "Nilai berhasil dihapus!"]);
+    }
+
     public function getSiswa($id)
     {
         //$get_siswa = Siswa::where('kelas_id',$id)->get();

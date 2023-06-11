@@ -188,7 +188,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($data_nilai as $nilai)
-                                            <tr>
+                                            <tr id="nilai_ids{{ $nilai -> id }}">
                                                 <td>
                                                     <input class="checkbox_ids" id=""
                                                             name="ids" value="{{ $nilai->id }}" type="checkbox">

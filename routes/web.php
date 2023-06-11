@@ -386,6 +386,7 @@ Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
     Route::get('/nilai/{nilai}/nilaidelete', [NilaiController::class, 'nilaidelete']);
     Route::get('/nilai/{nilai}/nilaiedit', [NilaiController::class, 'nilaiedit']);
     Route::post('/nilai/{nilai}/nilaiupdate', [NilaiController::class, 'nilaiupdate']);
+    Route::delete('/selected-nilai', [NilaiController::class, 'hapusBanyak'])->name('nilai.hapusBanyak');
 
 });
 

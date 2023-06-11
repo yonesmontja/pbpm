@@ -20,8 +20,7 @@
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="{{ asset('/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- Bootstrap Color Picker -->
-    <link rel="stylesheet"
-        href="{{ asset('/admin/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/admin/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet"
         href="{{ asset('/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
@@ -205,10 +204,30 @@
             });
 
         });
-        $(function(e){
-            $("#select_all_ids").click(function(){
-                $('.checkbox_ids').prop('checked',$(this).prop('checked'));
-            })
+        $(function(e) {
+            $("#select_all_ids").click(function() {
+                $('.checkbox_ids').prop('checked', $(this).prop('checked'));
+            });
+            $('#deleteAllSelectedRecord').click(function(e) {
+                    e.preventDefault();
+                    var all_ids = [];
+                    $('input:checkbox[name=ids]:checked').each(function() {
+                        all_ids.push($(this).val());
+                    });
+                    $.ajax({
+                            url: "{{ route('nilai.hapusBanyak') }}",
+                            type: "DELETE",
+                            data: {
+                                ids: all_ids,
+                                _token: '{{ csrf_token() }}'
+                            },
+                            success: function(response) {
+                                $.each(all_ids, function(key, val)) {
+                                    $('#nilai_ids' + val).remove();
+                                })
+                        }
+                    });
+            });
         });
     </script>
 
@@ -230,7 +249,8 @@
                                 $('#siswa').append('<option hidden>Pilih Siswa</option>');
                                 $.each(data, function(siswa_id, get_siswa) {
                                     $('select[name="siswa_id"]').append(
-                                        '<option value="' + get_siswa.siswa_id + '">' +
+                                        '<option value="' + get_siswa.siswa_id +
+                                        '">' +
                                         get_siswa
                                         .nama_depan + " " + get_siswa
                                         .nama_belakang + '</option>');
@@ -268,16 +288,16 @@
     </script>
     <script type="text/javascript">
         $(function() {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000
-                    });
-                    $('.toastrDefaultSuccess').click(function() {
-                        toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-                    });
-                })
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
+            $('.toastrDefaultSuccess').click(function() {
+                toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+            });
+        })
     </script>
     @yield('footer')
 </body>
