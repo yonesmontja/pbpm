@@ -43,7 +43,7 @@
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <button type="button" class="btn btn-primary float btn-sm" data-toggle="modal"
+                                        <button type="button" class="btn btn-primary float btn-xs" data-toggle="modal"
                                             data-target="#importExcel">
                                             IMPORT NILAI
                                         </button>
@@ -82,7 +82,7 @@
                                     </div>
                                     <!-- Export Excel -->
                                     <div class="col-sm-6">
-                                        <a href="/nilai/export_excel" class="btn btn-primary float btn-sm"
+                                        <a href="/nilai/export_excel" class="btn btn-primary float btn-xs"
                                             target="_blank">EXPORT NILAI</a>
                                     </div>
 
@@ -135,7 +135,7 @@
                                             <div class="input-group mb-3">
                                                 <input type="date" class="form-control" name="start_date">
                                                 <input type="date" class="form-control" name="end_date">
-                                                <button class="btn btn-primary float-right btn-sm"
+                                                <button class="btn btn-primary float-right btn-xs"
                                                     type="submit">FILTER</button>
                                             </div>
                                         </form>
@@ -145,7 +145,7 @@
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <button type="button" class="btn btn-primary float-right btn-sm"
+                                        <button type="button" class="btn btn-primary float-right btn-xs"
                                             data-toggle="modal" data-target="#staticBackdrop">
                                             TAMBAH NILAI
                                         </button>
@@ -164,6 +164,8 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
+                                            <th><div class="form-check"><input class="form-check-input"
+                                                            type="checkbox"></div></th>
                                             <th>KI</th>
                                             <th>MAPEL</th>
                                             <th>GURU</th>
@@ -178,6 +180,11 @@
                                     <tbody>
                                         @foreach ($data_nilai as $nilai)
                                             <tr>
+                                                <td>
+                                                    <div class="form-check"><input class="form-check-input" name="ids" value="{{ $nilai -> id }}"
+                                                            type="checkbox"></div>
+                                                </td>
+                                                </td>
                                                 <td>{{ $nilai->kompetensiinti->kompetensi_inti }}</td>
                                                 <td><a href="/mapel/{{ $nilai->mapel->id }}">{{ $nilai->mapel->nama_mapel }}
                                                 </td>
@@ -198,11 +205,11 @@
                                                 <td>{{ $nilai->nilai }}</td>
                                                 <td>
                                                     <a href="/nilai/{{ $nilai->id }}/nilaiedit"
-                                                        class="btn btn-warning btn-sm">Ubah
+                                                        class="btn btn-warning btn-xs">Ubah
                                                     </a>
-                                                    <!--a href="/nilai/{{ $nilai->id }}/delete" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau dihapus?')" >Hapus</a-->
+                                                    <!--a href="/nilai/{{ $nilai->id }}/delete" class="btn btn-danger btn-xs" onclick="return confirm('Yakin mau dihapus?')" >Hapus</a-->
                                                     <a href="/nilai/{{ $nilai->id }}/nilaidelete"
-                                                        class="btn btn-danger btn-sm"
+                                                        class="btn btn-danger btn-xs"
                                                         onclick="return confirm('Yakin mau dihapus?')">Hapus</a>
                                                 </td>
                                             </tr>
@@ -349,10 +356,10 @@
                                                                 <select name="siswa_id" class="form-control"
                                                                     id="siswa">
                                                                     <!--<option>---</option>
-                                                                                @foreach ($siswa as $key => $m)
+                                                                                                @foreach ($siswa as $key => $m)
     <option value="{{ $m->id }}">
-                                                                                        {{ $m->nama_depan }}
-                                                                                        {{ $m->nama_belakang }}</option>
+                                                                                                        {{ $m->nama_depan }}
+                                                                                                        {{ $m->nama_belakang }}</option>
     @endforeach-->
                                                                 </select>
                                                             </div>
