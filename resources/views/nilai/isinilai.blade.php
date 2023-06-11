@@ -190,7 +190,7 @@
                                         @foreach ($data_nilai as $nilai)
                                             <tr>
                                                 <td>
-                                                    <input class="checbox_ids" id=""
+                                                    <input class="checkbox_ids" id=""
                                                             name="ids" value="{{ $nilai->id }}" type="checkbox">
 
                                                 </td>
