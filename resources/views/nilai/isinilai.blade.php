@@ -150,6 +150,12 @@
                                             TAMBAH NILAI
                                         </button>
                                     </div>
+                                    <div class="col-sm-6">
+                                        <button type="button" class="btn btn-danger float-right btn-xs"
+                                            data-toggle="#" data-target="#" id="deleteAllSelectedRecord">
+                                            HAPUS NILAI YG DIPILIH
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
 
