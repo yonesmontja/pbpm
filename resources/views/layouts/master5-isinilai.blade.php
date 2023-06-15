@@ -217,7 +217,7 @@
                 });
                 $.ajax({
                     url: '/selected-nilai',
-                    type: "GET",
+                    type: "POST",
                     data: {
                         ids: all_ids,
                         _token: '{{ csrf_token() }}'
