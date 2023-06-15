@@ -150,8 +150,13 @@
                                             TAMBAH NILAI
                                         </button>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <a href="#" class="btn btn-danger float-right btn-xs" id="deleteAllSelectedRecord">Hapus Data yg Dipilih</a>
+                                    <div class="col-sm-3">
+                                        <a href="#" class="btn btn-danger float-right btn-xs"
+                                            id="deleteAllSelectedRecord">Hapus Data yg Dipilih</a>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button href="#" class="btn btn-danger float-right btn-xs"
+                                            id="multi-delete" data-route="{{ route('posts.multi-delete') }}">Hapus Data</button>
                                     </div>
                                 </div>
                             </div>
@@ -170,12 +175,28 @@
                                         {{ session('success') }}
                                     </div>
                                 @endif
-                                <table id="example2" class="table table-bordered table-hover">
+                                @if (Session::get('success', false))
+                                    <?php $data = Session::get('success'); ?>
+                                    @if (is_array($data))
+                                        @foreach ($data as $msg)
+                                            <div class="alert alert-success" role="alert">
+                                                <i class="fa fa-check"></i>
+                                                {{ $msg }}
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <div class="alert alert-success" role="alert">
+                                            <i class="fa fa-check"></i>
+                                            {{ $data }}
+                                        </div>
+                                    @endif
+                                @endif
+                                <table id="posts-table" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>
 
-                                                    <input type="checkbox" name="" id="select_all_ids">
+                                                <input type="checkbox" name="" class="check-all">
 
                                             </th>
                                             <th>KI</th>
@@ -191,11 +212,9 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($data_nilai as $nilai)
-                                            <tr id="nilai_ids{{ $nilai -> id }}">
+                                            <tr>
                                                 <td>
-                                                    <input class="checkbox_ids" id=""
-                                                            name="ids" value="{{ $nilai->id }}" type="checkbox">
-
+                                                    <input class="check"value="{{ $nilai->id }}" type="checkbox">
                                                 </td>
                                                 </td>
                                                 <td>{{ $nilai->kompetensiinti->kompetensi_inti }}</td>
@@ -370,10 +389,10 @@
                                                                 <select name="siswa_id" class="form-control"
                                                                     id="siswa">
                                                                     <!--<option>---</option>
-                                                                                                    @foreach ($siswa as $key => $m)
+                                                                                                        @foreach ($siswa as $key => $m)
     <option value="{{ $m->id }}">
-                                                                                                            {{ $m->nama_depan }}
-                                                                                                            {{ $m->nama_belakang }}</option>
+                                                                                                                {{ $m->nama_depan }}
+                                                                                                                {{ $m->nama_belakang }}</option>
     @endforeach-->
                                                                 </select>
                                                             </div>

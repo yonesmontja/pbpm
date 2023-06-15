@@ -387,7 +387,7 @@ Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
     Route::get('/nilai/{nilai}/nilaiedit', [NilaiController::class, 'nilaiedit']);
     Route::post('/nilai/{nilai}/nilaiupdate', [NilaiController::class, 'nilaiupdate']);
     Route::post('/selected-nilai', [NilaiController::class, 'hapusBanyak'])->name('hapusBanyak');
-
+    Route::post('/posts/multi-delete', [NilaiController::class, 'multiDelete'])->name('posts.multi-delete');
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:admin,siswa,guru']], function ()

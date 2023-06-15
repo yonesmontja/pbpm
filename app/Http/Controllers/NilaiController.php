@@ -121,6 +121,13 @@ class NilaiController extends Controller
         return response()->json(["success" => "Nilai berhasil dihapus!"]);
     }
 
+    public function multiDelete(Request $request)
+    {
+        Nilai::whereIn('id', $request->get('selected'))->delete();
+
+        return response("Selected nilai(s) deleted successfully.", 200);
+    }
+
     public function getSiswa($id)
     {
         //$get_siswa = Siswa::where('kelas_id',$id)->get();
