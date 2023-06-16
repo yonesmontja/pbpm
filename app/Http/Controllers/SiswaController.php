@@ -1964,7 +1964,7 @@ class SiswaController extends Controller
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 4)
         ->pluck('nilai_notes')->toArray();
-        dd($predikat_pengetahuan_ppkn);
+        //dd($predikat_pengetahuan_ppkn);
         $predikat_keterampilan_ppkn = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 19)
             ->where('mapel_id', '=', 4)
