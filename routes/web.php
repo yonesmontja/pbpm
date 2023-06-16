@@ -283,8 +283,8 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 	Route::get('/langkahstrategis/{langkahstrategis}/langkahstrategisedit',[LangkahstrategisController::class,'langkahstrategisedit']);
 	Route::post('/langkahstrategis/{langkahstrategis}/langkahstrategisupdate',[LangkahstrategisController::class,'langkahstrategisupdate']);
 
-	Route::get('dependent-dropdown', 'DependentDropdownController@index')
-    ->name('dependent-dropdown.index');
+	//Route::get('dependent-dropdown', 'DependentDropdownController@index')
+    //->name('dependent-dropdown.index');
 	Route::post('/dependent-dropdown', [DependentDropdownController::class,'store'])->name('dependent-dropdown.store');
 	Route::get('/merk',[PagesController::class,'index']);
 	Route::get('/merk/{id}',[PagesController::class,'merkAjax']);
@@ -387,7 +387,7 @@ Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
     Route::get('/nilai/{nilai}/nilaiedit', [NilaiController::class, 'nilaiedit']);
     Route::post('/nilai/{nilai}/nilaiupdate', [NilaiController::class, 'nilaiupdate']);
     Route::post('/selected-nilai', [NilaiController::class, 'hapusBanyak'])->name('hapusBanyak');
-    Route::post('/posts/multi-delete', [NilaiController::class, 'multiDelete'])->name('posts.multi-delete');
+    Route::post('/posts/multi-delete', [NilaiController::class, 'multiDelete'])->name('nilai.multi-delete');
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:admin,siswa,guru']], function ()
