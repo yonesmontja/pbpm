@@ -67,6 +67,92 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('/admin/plugins/Jquery-Table-Check-All/dist/TableCheckAll.js') }}"></script>
     <!-- jQuery -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $("#posts-table").TableCheckAll();
+
+            $('#multi-delete').on('click', function() {
+                var button = $(this);
+                var selected = [];
+                $('#posts-table .check:checked').each(function() {
+                    selected.push($(this).val());
+                });
+
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Are you sure you want to delete selected record(s)?',
+                    showDenyButton: false,
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes'
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: 'post',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: button.data('route'),
+                            data: {
+                                'selected': selected
+                            },
+                            success: function(response, textStatus, xhr) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: response,
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    confirmButtonText: 'Yes'
+                                }).then((result) => {
+                                    window.location = '/posts'
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+
+            $('.delete-form').on('submit', function(e) {
+                e.preventDefault();
+                var button = $(this);
+
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Are you sure you want to delete this record?',
+                    showDenyButton: false,
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes'
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: 'post',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: button.data('route'),
+                            data: {
+                                '_method': 'delete'
+                            },
+                            success: function(response, textStatus, xhr) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: response,
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    confirmButtonText: 'Yes'
+                                }).then((result) => {
+                                    window.location = '/posts'
+                                });
+                            }
+                        });
+                    }
+                });
+
+            })
+        });
+    </script>
     <!--<script src="{{ asset('/admin/plugins/jquery/jquery.min.js') }}"></script>-->
 
     <script src="{{ asset('/admin/plugins/jquery/jquery.min.js') }}"></script>
@@ -303,92 +389,7 @@
             });
         })
     </script>
-    <script type="text/javascript">
-          $(document).ready(function() {
 
-            $("#posts-table").TableCheckAll();
-
-            $('#multi-delete').on('click', function() {
-              var button = $(this);
-              var selected = [];
-              $('#posts-table .check:checked').each(function() {
-                selected.push($(this).val());
-              });
-
-              Swal.fire({
-                icon: 'warning',
-                  title: 'Are you sure you want to delete selected record(s)?',
-                  showDenyButton: false,
-                  showCancelButton: true,
-                  confirmButtonText: 'Yes'
-              }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
-                if (result.isConfirmed) {
-                  $.ajax({
-                    type: 'post',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: button.data('route'),
-                    data: {
-                      'selected': selected
-                    },
-                    success: function (response, textStatus, xhr) {
-                      Swal.fire({
-                        icon: 'success',
-                          title: response,
-                          showDenyButton: false,
-                          showCancelButton: false,
-                          confirmButtonText: 'Yes'
-                      }).then((result) => {
-                        window.location='/posts'
-                      });
-                    }
-                  });
-                }
-              });
-            });
-
-            $('.delete-form').on('submit', function(e) {
-              e.preventDefault();
-              var button = $(this);
-
-              Swal.fire({
-                icon: 'warning',
-                  title: 'Are you sure you want to delete this record?',
-                  showDenyButton: false,
-                  showCancelButton: true,
-                  confirmButtonText: 'Yes'
-              }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
-                if (result.isConfirmed) {
-                  $.ajax({
-                    type: 'post',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: button.data('route'),
-                    data: {
-                      '_method': 'delete'
-                    },
-                    success: function (response, textStatus, xhr) {
-                      Swal.fire({
-                        icon: 'success',
-                          title: response,
-                          showDenyButton: false,
-                          showCancelButton: false,
-                          confirmButtonText: 'Yes'
-                      }).then((result) => {
-                        window.location='/posts'
-                      });
-                    }
-                  });
-                }
-              });
-
-            })
-          });
-        </script>
     @yield('footer')
 </body>
 
