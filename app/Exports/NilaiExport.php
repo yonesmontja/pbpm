@@ -14,7 +14,7 @@ class NilaiExport implements FromCollection, WithHeadings, ShouldAutoSize
      */
     public function collection()
     {
-        return Nilai::select('nilai_start', 'nilai_end', 'nilai_deskripsi', 'nilai_notes', 'kompetensi_inti_id', 'mapel_id', 'penilaian_id', 'guru_id', 'siswa_id', 'kelas_id', 'nilai', 'tahunpel_id', 'rombel_id')->get();
+        return Nilai::select('nilai_start', 'nilai_end', 'nilai_deskripsi', 'nilai_notes', 'kompetensi_inti_id', 'mapel_id', 'penilaian_id', 'guru_id', 'siswa_id', 'kelas_id', 'nilai', 'tanggal', 'tahunpel_id', 'rombel_id')->get();
     }
     public function headings(): array
     {
@@ -30,6 +30,7 @@ class NilaiExport implements FromCollection, WithHeadings, ShouldAutoSize
             'siswa_id',
             'kelas_id',
             'nilai',
+            'tanggal',
             'tahunpel_id',
             'rombel_id'
         ];
