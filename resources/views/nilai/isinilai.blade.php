@@ -156,7 +156,7 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <button href="#" class="btn btn-danger float-right btn-xs"
-                                            id="multi-delete" data-route="{{ route('nilai.multi-delete') }}">Hapus Data</button>
+                                            id="multi-delete" data-route="/posts/multi-delete">Hapus Data</button>
                                     </div>
                                 </div>
                             </div>
