@@ -211,11 +211,11 @@
             $('[data-mask]').inputmask()
 
             //Date range picker
-            $('#reservationdate1').datetimepicker({
+            $('#reservationdate1').datepicker({
                 format: 'Y-MM-DD'
             });
             //Date range picker
-            $('#reservationdate2').datetimepicker({
+            $('#reservationdate2').datepicker({
                 format: 'Y-MM-DD'
             });
             //Date range picker
@@ -249,7 +249,7 @@
             )
 
             //Timepicker
-            $('#timepicker').datetimepicker({
+            $('#timepicker').datepicker({
                 format: 'LT'
             })
 
