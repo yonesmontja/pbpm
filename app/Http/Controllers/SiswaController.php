@@ -293,7 +293,7 @@ class SiswaController extends Controller
     public function testprofile($id, Request $request)
     {
         // kkm dan rentang nilai
-        $kkm_0 = 60;
+        $kkm_0 = 50;
         $kkm = number_format((float)$kkm_0, 1, '.', '');
         $kkm1 = $kkm + (100 - $kkm) / 3;
         $kkm2 = $kkm1 + (100 - $kkm) / 3;
@@ -1903,7 +1903,7 @@ class SiswaController extends Controller
             + ($rata_rata_pts_mulok * 1)
             + ($rata_rata_pas_mulok * 1)) / 4;
         $raport_pengetahuan_mulok = number_format((float)$raport_pengetahuan_mulok, 1, '.', '');
-        $kkm = 60;
+        $kkm = 50;
         // hitung deskripsi agama
         if ($students->agama == "Islam" || $students->agama == "islam") {
             $predikat_pengetahuan = Nilai::where('siswa_id', '=', $id)
