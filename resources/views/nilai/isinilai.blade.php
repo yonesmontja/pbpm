@@ -195,9 +195,7 @@
                                     <thead>
                                         <tr>
                                             <th>
-
                                                 <input type="checkbox" class="check-all">
-
                                             </th>
                                             <th>KI</th>
                                             <th>MAPEL</th>
