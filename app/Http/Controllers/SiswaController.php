@@ -93,7 +93,7 @@ class SiswaController extends Controller
             $kelas = Kelas::all();
             // $rombel = Rombel::all();
             $rombel1 = DB::table('rombel_siswa')->pluck('siswa_id')->toArray();
-            $guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
+            // $guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
         }
         if (auth()->user()->role == 'admin') {
             $kelas = Kelas::all();
@@ -122,7 +122,7 @@ class SiswaController extends Controller
                 // 'rombel' => $rombel,
                 'rombel1' => $rombel1,
                 'rombel23' => $rombel23,
-                'guru' => $guru,
+                // 'guru' => $guru,
             ]);
         }
     }
