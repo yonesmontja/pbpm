@@ -335,7 +335,7 @@
                           </a>
                           <ul class="nav nav-treeview">
                               <li class="nav-item">
-                                  <a href="/isinilai/{{ $guru->id }}" class="nav-link">
+                                  <a href="/isinilai/{{ $id_guru }}" class="nav-link">
                                       <i class="nav-icon far fa-calendar-alt"></i>
                                       <p>
                                           Isi Nilai Siswa

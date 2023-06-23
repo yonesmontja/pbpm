@@ -123,6 +123,7 @@ class SiswaController extends Controller
                 'rombel1' => $rombel1,
                 'rombel23' => $rombel23,
                 // 'guru' => $guru,
+                'id_guru' => $id_guru,
             ]);
         }
     }
