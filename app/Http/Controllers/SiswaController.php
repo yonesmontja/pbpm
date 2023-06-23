@@ -119,7 +119,7 @@ class SiswaController extends Controller
             return view('siswa.test', [
                 'kelas' => $kelas,
                 'tampung' => $tampung,
-                'rombel' => $rombel,
+                // 'rombel' => $rombel,
                 'rombel1' => $rombel1,
                 'rombel23' => $rombel23,
                 'guru' => $guru,
