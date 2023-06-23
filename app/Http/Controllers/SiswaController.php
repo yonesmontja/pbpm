@@ -91,7 +91,7 @@ class SiswaController extends Controller
                 $id_guru
             )->pluck('rombel')->first();
             $kelas = Kelas::all();
-            $rombel = Rombel::all();
+            // $rombel = Rombel::all();
             $rombel1 = DB::table('rombel_siswa')->pluck('siswa_id')->toArray();
             $guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
         }
