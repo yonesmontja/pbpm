@@ -63,7 +63,7 @@
         </div>
       </form>
       <p class="mb-0">
-        <a href="/" class="text-center">ALIRENA | {{ date('Y') }}</a>
+        <a href="/" class="text-center">SD DABOLDING | {{ date('Y') }}</a>
       </p>
     </div>
     <!-- /.login-card-body -->
