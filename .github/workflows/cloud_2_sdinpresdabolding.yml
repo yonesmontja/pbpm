@@ -56,5 +56,5 @@ jobs:
         with:
           app-name: 'sdinpresdabolding'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_460D7C94DB714744A2A98B20C28D948D }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E4B828FAD77641308C24202DEBD9227D }}
           package: .
