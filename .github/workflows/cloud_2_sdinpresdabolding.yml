@@ -19,7 +19,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: '8.0'
 
       - name: Check if composer.json exists
         id: check_files
@@ -29,7 +29,7 @@ jobs:
 
       - name: Run composer install if composer.json exists
         if: steps.check_files.outputs.files_exists == 'true'
-        run: composer update laminas/laminas-escaper
+        run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -56,5 +56,5 @@ jobs:
         with:
           app-name: 'sdinpresdabolding'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E4B828FAD77641308C24202DEBD9227D }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D0A99B83349B490BBD01C0A4D1006382 }}
           package: .
