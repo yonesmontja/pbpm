@@ -300,12 +300,31 @@ class SiswaController extends Controller
         $kkm2 = $kkm1 + (100 - $kkm) / 3;
         $user = User::find($id);
         $siswa = Siswa::find($id);
-        $rombel = DB::table('rombel_siswa')->where('siswa_id', $id)->pluck('rombel_id')->first();
 
         $siswa1 = Siswa::where('id', '=', $id);
         // $matapelajaran = Mapel::all();
         $penilaian = Penilaian::all();
         $tahunpel = Tahunpel::all();
+        $tahunpel = Tahunpel::where('aktif', 'Y')->get();
+        foreach ($tahunpel as $thn) {
+            $semester_aktif = $thn->semester;
+            $kepsek_aktif = $thn->nama_kepsek;
+            $nip_kepsek = $thn->kode_kepsek;
+            $tanggal_raport = Carbon::parse($thn->tgl_raport)->isoFormat('D MMMM Y');
+            $tanggal_raport_kls6 = $thn->tgl_raport_kelas3;
+            $tahun_pelajaran = $thn->thn_pel;
+            $tahun_aktif = $thn->tahun;
+            $thn_id = $thn->id;
+        }
+        $rombel_awal = DB::table('rombel_siswa')->where('siswa_id', $id)->get();
+        //dd($rombel_awal);
+        foreach ($rombel_awal as $rombels) {
+            if ($rombels->tahunpelajaran_id == $thn_id) {
+                $rombel = $thn_id;
+                $rombel_id = $rombels->rombel_id;
+            };
+        }
+        //dd($rombel_id);
         $nilai = Nilai::where('siswa_id', '=', $id)->get();
         $data_nilai = Nilai::where('siswa_id', '=', $id)->get();
         $kompetensiinti = Kompetensiinti::all();
@@ -315,10 +334,10 @@ class SiswaController extends Controller
 
         $kelas = Kelas::all();
         $rombel3 = Rombel::all();
-        $rombel1 = Rombel::find($rombel);
-        //dd($rombel1);
-        $rombel2 = $rombel1->rombel;
-
+        $rombel2 = DB::table('rombels')->where('id', $rombel_id)->pluck('rombel')->first();
+        //dd($rombel2);
+        //$rombel2 = $rombel1->rombel;
+        //dd($rombel2);
         // data untuk Chart.js
         // $categories = [];
         // $data = [];
@@ -491,7 +510,7 @@ class SiswaController extends Controller
             'kkm2' => $kkm2,
             'rombel2' => $rombel2,
             'rombel3' => $rombel3,
-            'rombel1' => $rombel1,
+            //'rombel1' => $rombel1,
             'nilai_start' => $nilai_start,
             'nilai_end' => $nilai_end,
             'average_mapel' => $average_mapel,

@@ -125,7 +125,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <img class="logo" src="{{ asset('images/logo_dabolding.png') }}" width="610"
+                                    <img class="logo" src="{{ asset('/images/logo_dabolding.png') }}" width="610"
                                         alt="">
                                     <hr align="center">
                                 </td>
