@@ -78,6 +78,7 @@
                                          @if ($nama_rombel == 'Kelas 6B')
                                              {{ totalKelas6B() }}
                                          @endif
+                                         {{ $rombel23 }}
                                          <small> siswa</small>
                                      </span>
                                  </div>
