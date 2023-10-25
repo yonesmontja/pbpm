@@ -94,16 +94,16 @@ class SiswaController extends Controller
             //$id_user = auth()->user()->id;
             // lalu cari id guru dengan user_id == $id_user
             // lalu tampilkan data siswa rombel yang memiliki guru_id == $id_guru
-            $rombel2 = Rombel::where('guru_id', '=', $id_guru)->pluck('id')->first();
+            $rombel2 = Rombel::where('guru_id', '=', $id_guru)->where('tahunpelajaran_id', '=', $thn_id)->pluck('id')->first();
             $tampung = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->where('tahunpelajaran_id', '=', $thn_id)->join('siswa', 'siswa.id', '=', 'rombel_siswa.siswa_id')->get();
             $rombel23 = Rombel::where(
                 'guru_id',
                 '=',
                 $id_guru
-            )->pluck('rombel')->first();
+            )->where('tahunpelajaran_id', '=', $thn_id)->pluck('rombel')->first();
             $kelas = Kelas::all();
             // $rombel = Rombel::all();
-            $rombel1 = DB::table('rombel_siswa')->pluck('siswa_id')->toArray();
+            $rombel1 = DB::table('rombel_siswa')->where('tahunpelajaran_id', '=', $thn_id)->pluck('siswa_id')->toArray();
             $guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
         }
         if (auth()->user()->role == 'admin') {
