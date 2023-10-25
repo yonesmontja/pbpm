@@ -1913,7 +1913,7 @@ class DashboardController extends Controller
             $id_guru = Guru::where('user_id', '=', $id_user)->pluck('id')->first();
             // lalu tampilkan data siswa rombel yang memiliki guru_id == $id_guru
             $rombel2 = Rombel::where('guru_id', '=', $id_guru)->where('tahunpelajaran_id', '=', $thn_id)->pluck('id')->first();
-            $rombel23 = Rombel::select('*')->where('guru_id', '=', $id_guru)->where('tahunpelajaran_id', '=', $thn_id)->count();
+            $rombel23 = DB::table('rombel_siswa')->where('guru_id', '=', $id_guru)->where('tahunpelajaran_id', '=', $thn_id)->count();
             $rombel3 = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->where('tahunpelajaran_id', '=', $thn_id)->pluck('siswa_id')->toArray();
             //dd($rombel3);
             $tampung_islam = [];
