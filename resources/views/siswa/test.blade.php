@@ -154,7 +154,9 @@
                                                     <td>{{ $siswa->jenis_kelamin }}</td>
                                                     <td>{{ $siswa->agama }}</td>
                                                     @foreach ($siswa->rombel as $r)
+                                                    @if($r -> tahunpelajaran_id == $thn_id)
                                                         <td>{{ $r->rombel }}</td>
+                                                        @endif
                                                     @endforeach
                                                     <td>
                                                         <a href="/siswa/{{ $siswa->id }}/cover_pdf"

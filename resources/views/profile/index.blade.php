@@ -242,7 +242,7 @@
                                                                                  href="/mapel/{{ $key->mapel_id }}">{{ $key->mapel->nama_mapel }}</a>
                                                                          @endif
                                                                      </td>
-                                                                     <td>{{ $key->mapel->semester }}</td>
+                                                                     <td>{{ $key->tahunpel->thn_pel }}-{{ $key->tahunpel->semester }}</td>
                                                                      <td>
                                                                          @if (auth()->user()->role == 'siswa')
                                                                              <a href="#">

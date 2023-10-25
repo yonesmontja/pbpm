@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Guru;
 use App\Models\User;
 use App\Models\Kelas;
@@ -1893,7 +1894,17 @@ class DashboardController extends Controller
 
         //$kelas = Kelas::all();
         //$rombel = Rombel::all();
-
+        $tahunpel = Tahunpel::where('aktif', 'Y')->get();
+        foreach ($tahunpel as $thn) {
+            $semester_aktif = $thn->semester;
+            $kepsek_aktif = $thn->nama_kepsek;
+            $nip_kepsek = $thn->kode_kepsek;
+            $tanggal_raport = Carbon::parse($thn->tgl_raport)->isoFormat('D MMMM Y');
+            $tanggal_raport_kls6 = $thn->tgl_raport_kelas3;
+            $tahun_pelajaran = $thn->thn_pel;
+            $tahun_aktif = $thn->tahun;
+            $thn_id = $thn->id;
+        }
         if (auth()->user()->role == 'guru') {
             // mengambil data siswa yang sudah memiliki rombel dan menampilkannya sesuai user()->role == guru
             // langkah pertama ambil id user yg role == guru dan sedang buka route /test
@@ -1902,7 +1913,7 @@ class DashboardController extends Controller
             $id_guru = Guru::where('user_id', '=', $id_user)->pluck('id')->first();
             // lalu tampilkan data siswa rombel yang memiliki guru_id == $id_guru
             $rombel2 = Rombel::where('guru_id', '=', $id_guru)->pluck('id')->first();
-            $rombel23 = Rombel::where('guru_id', '=', $id_guru)->pluck('kelas_id')->first();
+            $rombel23 = Rombel::select('*')->where('guru_id', '=', $id_guru)->where('tahunpelajaran_id', '=', $thn_id)->pluck('kelas_id')->first();
             $rombel3 = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->pluck('siswa_id')->toArray();
             //dd($rombel3);
             $tampung_islam = [];
@@ -1912,20 +1923,28 @@ class DashboardController extends Controller
             $tampung_male = [];
             //dd($tampung_islam);
             foreach ($rombel3 as $z => $zefa) {
-                if (Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->jenis_kelamin == 'Perempuan') {
-                    $tampung_female[] = Siswa::where('kelas_id', '=', $rombel23)->find($zefa);
-                } elseif (Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->jenis_kelamin == 'Laki-laki') {
-                    $tampung_male[] = Siswa::where('kelas_id', '=', $rombel23)->find($zefa);
+                $siswa = Siswa::where('id', '=', $zefa)->get();
+                foreach ($siswa as $s) {
+                    if ($s) {
+                        if ($s->jenis_kelamin == 'Perempuan') {
+                            $tampung_female[] = $s;
+                        } else if ($s->jenis_kelamin == 'Laki-laki') {
+                            $tampung_male[] = $s;
+                        }
+                    }
+                    if ($s) {
+                        $agama = $s->agama ?? 'Tidak Diketahui'; // Mengatur nilai default jika null
+                        //dd($agama);
+                        if (strtolower($agama) === 'islam') {
+                            $tampung_islam[] = $s;
+                        } elseif (strtolower($agama) === 'katolik') {
+                            $tampung_katolik[] = $s;
+                        } elseif (strtolower($agama) === 'kristen protestan') {
+                            $tampung_protestan[] = $s;
+                        }
+                    }
                 }
-                if (Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'Islam' || Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'islam') {
-                    $tampung_islam[] = Siswa::where('kelas_id', '=', $rombel23)->find($zefa);
-                } elseif (Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'katolik' || Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'Katolik') {
-                    $tampung_katolik[] = Siswa::where('kelas_id', '=', $rombel23)->find($zefa);
-                } elseif (
-                    Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'Kristen Protestan' || Siswa::where('kelas_id', '=', $rombel23)->find($zefa)->agama == 'kristen protestan'
-                ) {
-                    $tampung_protestan[] = Siswa::where('kelas_id', '=', $rombel23)->find($zefa);
-                }
+
             }
         }
 
@@ -1971,6 +1990,7 @@ class DashboardController extends Controller
             //'user' => $user,
             //'user1' => $user1,
             'id' => $id,
+            'thn_id' => $thn_id,
             //'rombel' => $rombel,
             'nama_rombel' => $nama_rombel,
             'guru_rombel' => $guru_rombel,
