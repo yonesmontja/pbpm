@@ -64,21 +64,31 @@ class NilaiController extends Controller
     }
     public function isinilai($id)
     {
-
+        $tahunpel = Tahunpel::where('aktif', 'Y')->get();
+        foreach ($tahunpel as $thn) {
+            $semester_aktif = $thn->semester;
+            $kepsek_aktif = $thn->nama_kepsek;
+            $nip_kepsek = $thn->kode_kepsek;
+            $tanggal_raport = Carbon::parse($thn->tgl_raport)->isoFormat('D MMMM Y');
+            $tanggal_raport_kls6 = $thn->tgl_raport_kelas3;
+            $tahun_pelajaran = $thn->thn_pel;
+            $tahun_aktif = $thn->tahun;
+            $thn_id = $thn->id;
+        }
         $guru = Guru::find($id);
-        $nama_rombel = Rombel::where('guru_id', '=', $id)->pluck('rombel')->first();
-        $guru_rombel = Rombel::where('guru_id', '=', $id)->pluck('id')->first();
+        $nama_rombel = Rombel::where('guru_id', '=', $id)->where('tahunpelajaran_id', '=', $thn_id)->pluck('rombel')->first();
+        $guru_rombel = Rombel::where('guru_id', '=', $id)->where('tahunpelajaran_id', '=', $thn_id)->pluck('id')->first();
         $id_guru = $guru_rombel;
-        $kelas_rombel = Rombel::where('guru_id', '=', $id)->pluck('kelas_id')->first();
+        $kelas_rombel = Rombel::where('guru_id', '=', $id)->where('tahunpelajaran_id', '=', $thn_id)->pluck('kelas_id')->first();
         $data_nilai = Nilai::with('kompetensiinti', 'mapel', 'guru', 'penilaian', 'rombel', 'kelas', 'siswa')->where('guru_id', '=', $id)->get();
         $kompetensiinti = Kompetensiinti::all();
         $mapel = Mapel::all();
         $penilaian = Penilaian::all();
         //dd($kelas_rombel);
         //dd($guru_rombel);
-        $rombel = DB::table('rombel_siswa')->where('rombel_id', '=', $guru_rombel)->pluck('rombel_id')->first();
+        $rombel = DB::table('rombel_siswa')->where('rombel_id', '=', $guru_rombel)->where('tahunpelajaran_id', '=', $thn_id)->pluck('rombel_id')->first();
         $siswa =
-        DB::table('rombel_siswa')->where('rombel_id', '=', $guru_rombel)->join('siswa', 'siswa.id', '=', 'rombel_siswa.siswa_id')
+        DB::table('rombel_siswa')->where('rombel_id', '=', $guru_rombel)->where('tahunpelajaran_id', '=', $thn_id)->join('siswa', 'siswa.id', '=', 'rombel_siswa.siswa_id')
         ->get();
 
         $kelas = Kelas::where('guru_id', '=', $id)->pluck('nama');
