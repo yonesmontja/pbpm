@@ -1912,9 +1912,9 @@ class DashboardController extends Controller
             // lalu cari id guru dengan user_id == $id_user
             $id_guru = Guru::where('user_id', '=', $id_user)->pluck('id')->first();
             // lalu tampilkan data siswa rombel yang memiliki guru_id == $id_guru
-            $rombel2 = Rombel::where('guru_id', '=', $id_guru)->pluck('id')->first();
+            $rombel2 = Rombel::where('guru_id', '=', $id_guru)->where('tahunpelajaran_id', '=', $thn_id)->pluck('id')->first();
             $rombel23 = Rombel::select('*')->where('guru_id', '=', $id_guru)->where('tahunpelajaran_id', '=', $thn_id)->pluck('kelas_id')->first();
-            $rombel3 = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->pluck('siswa_id')->toArray();
+            $rombel3 = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->where('tahunpelajaran_id', '=', $thn_id)->pluck('siswa_id')->toArray();
             //dd($rombel3);
             $tampung_islam = [];
             $tampung_katolik = [];
@@ -1958,10 +1958,10 @@ class DashboardController extends Controller
         //$siswa = Siswa::all();
         //$penilaian = Penilaian::all();
 
-        $nama_rombel = Rombel::where('guru_id', '=', $guru)->pluck('rombel')->first();
-        $guru_rombel = Rombel::where('guru_id', '=', $guru)->pluck('id')->first();
-        $kelas_rombel = Rombel::where('guru_id', '=', $guru)->pluck('kelas_id')->first();
-        //dd($kelas_rombel);
+        $nama_rombel = Rombel::where('guru_id', '=', $guru)->where('tahunpelajaran_id', '=', $thn_id)->pluck('rombel')->first();
+        $guru_rombel = Rombel::where('guru_id', '=', $guru)->where('tahunpelajaran_id', '=', $thn_id)->pluck('id')->first();
+        $kelas_rombel = Rombel::where('guru_id', '=', $guru)->where('tahunpelajaran_id', '=', $thn_id)->pluck('kelas_id')->first();
+        //dd($nama_rombel);
         //dd($guru_rombel);
         //$rombel = DB::table('rombel_siswa')->where('rombel_id', '=', $guru_rombel)->pluck('rombel_id')->first();
         //dd($guru);
