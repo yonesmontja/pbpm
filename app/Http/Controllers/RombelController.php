@@ -46,9 +46,21 @@ class RombelController extends Controller
     }
     public function rombel_siswa()
     {
-
+        $tahunpel = Tahunpel::where('aktif', 'Y')->get();
+        foreach ($tahunpel as $thn) {
+            $semester_aktif = $thn->semester;
+            $kepsek_aktif = $thn->nama_kepsek;
+            $nip_kepsek = $thn->kode_kepsek;
+            $tanggal_raport = Carbon::parse($thn->tgl_raport)->isoFormat('D MMMM Y');
+            $tanggal_raport_kls6 = $thn->tgl_raport_kelas3;
+            $tahun_pelajaran = $thn->thn_pel;
+            $tahun_aktif = $thn->tahun;
+            $thn_id = $thn->id;
+        }
         $rombel = Rombel::all();
         //dd($rombel);
+        $rombel_siswa = DB::table('rombel_siswa')->where('tahunpelajaran_id', '=', $thn_id)->get();
+        //dd($rombel_siswa);
         $kelas = Kelas::all();
         $guru = Guru::orderBy('nama_guru')->get();
         //dd($guru);

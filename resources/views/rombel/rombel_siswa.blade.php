@@ -62,10 +62,11 @@
                                         <thead>
                                             <tr>
                                                 <th>Rombel</th>
-                                                <th>Kelas</th>
+                                                <th>Jumlah</th>
                                                 <th>Wali Kelas</th>
                                                 <th>Semester</th>
                                                 <th>Siswa</th>
+                                                <th>Kode Siswa</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -73,18 +74,28 @@
                                                 <tr>
                                                     <td><a href="#">{{ $h->rombel }}</a>
                                                     </td>
-                                                    <td><a
-                                                            href="/kelas/{{ $h->kelas->id }}/profile">{{ $h->kelas->nama }}</a>
+                                                    <td>{{$h -> siswa -> count()}} siswa
                                                     </td>
                                                     <td><a href="/guru/{{ $h->guru->id }}/profile">{{ $h->guru->nama_guru }}
                                                     </td>
-                                                    <td><a href="#">{{ $h->tahunpel->thn_pel }} {{ $h->tahunpel->semester }}</a></td>
+                                                    <td><a href="#">{{ $h->tahunpel->thn_pel }}
+                                                            {{ $h->tahunpel->semester }}</a></td>
                                                     <td>
                                                         <ul>
                                                             @foreach ($h->siswa->sortBy('nama_depan') as $s)
-                                                                <li><a href="/test/{{ $s -> id }}/profile">{{ $s->nama_depan }} {{ $s->nama_belakang }}</a></li>
+                                                                <li><a href="/test/{{ $s->id }}/profile">{{ $s->nama_depan }}
+                                                                        {{ $s->nama_belakang }}</a>
+                                                                </li>
                                                             @endforeach
                                                         </ul>
+                                                    </td>
+                                                    <td>
+
+                                                        @foreach ($h->siswa->sortBy('nama_depan') as $s)
+                                                            <li><a href="/test/{{ $s->id }}/profile">
+                                                                    {{ $s->id }}</a></li>
+                                                        @endforeach
+
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -92,10 +103,12 @@
                                         <tfoot>
                                             <tr>
                                                 <th>Rombel</th>
-                                                <th>Kelas</th>
+                                                <th>Jumlah</th>
                                                 <th>Wali Kelas</th>
                                                 <th>Semester</th>
                                                 <th>Siswa</th>
+                                                <th>Kode Siswa</th>
+
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -156,7 +169,8 @@
                                                                         <option hidden>Pilih siswa</option>
                                                                         @foreach ($siswa as $key => $m)
                                                                             <option value="{{ $m->id }}">
-                                                                                {{ $m->nama_depan }} {{ $m->nama_belakang }}
+                                                                                {{ $m->nama_depan }}
+                                                                                {{ $m->nama_belakang }}
                                                                             </option>
                                                                         @endforeach
                                                                     </select>
@@ -164,7 +178,8 @@
                                                             </div>
                                                             <div class="col-sm-4">
                                                                 <div class="form-group">
-                                                                    <label for="exampleFormControlSelect1">Nama Depan</label>
+                                                                    <label for="exampleFormControlSelect1">Nama
+                                                                        Depan</label>
                                                                     <select name="nama_depan" class="form-control"
                                                                         id="nama_depan">
                                                                         <option hidden>Pilih siswa</option>
@@ -178,7 +193,8 @@
                                                             </div>
                                                             <div class="col-sm-4">
                                                                 <div class="form-group">
-                                                                    <label for="exampleFormControlSelect1">Nama Belakang</label>
+                                                                    <label for="exampleFormControlSelect1">Nama
+                                                                        Belakang</label>
                                                                     <select name="nama_belakang" class="form-control"
                                                                         id="nama_belakang">
                                                                         <option hidden>Pilih siswa</option>
