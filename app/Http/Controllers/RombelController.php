@@ -74,17 +74,13 @@ class RombelController extends Controller
         $kelas = Kelas::all();
         $guru = Guru::orderBy('nama_guru')->get();
         //dd($guru);
-        $tahunpelajaran = Tahunpel::all();
-
-
-
+        //$tahunpelajaran = Tahunpel::all();
         //dd($user_id);
-
         return view('rombel.rombel_siswa', [
             'rombel' => $rombel,
             'kelas' => $kelas,
             'guru' => $guru,
-            'tahunpelajaran' => $tahunpelajaran,
+            'tahunpel' => $tahunpel,
             'siswa' => $siswa,
         ]);
     }

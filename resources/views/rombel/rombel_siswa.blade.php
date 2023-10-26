@@ -230,7 +230,7 @@
                                                                     <select name="tahunpelajaran_id" class="form-control"
                                                                         id="exampleFormControlSelect2">
                                                                         <option>---</option>
-                                                                        @foreach ($tahunpelajaran as $key => $m)
+                                                                        @foreach ($tahunpel as $key => $m)
                                                                             <option value="{{ $m->id }}">
                                                                                 {{ $m->thn_pel }} - {{ $m->semester }}
                                                                             </option>
