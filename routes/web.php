@@ -306,7 +306,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 
 });
 
-Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
+Route::group(['middleware' => ['auth', 'checkRole:guru,tata_usaha,admin']], function () {
     Route::get('/moodle', [MoodleController::class, 'moodle']);
     Route::get('/rombel/{rombel}', [RombelController::class, 'show']);
     Route::post('/extra/import_extra_excel', [NilaiController::class, 'import_extra_excel'])->middleware('cache.headers:private;max_age=3600');
@@ -390,7 +390,7 @@ Route::group(['middleware' => ['auth', 'checkRole:guru,admin']], function () {
     Route::post('/posts/multi-delete', [NilaiController::class, 'multiDelete'])->name('nilai.multi-delete');
 });
 
-Route::group(['middleware' => ['auth', 'checkRole:admin,siswa,guru']], function ()
+Route::group(['middleware' => ['auth', 'checkRole:admin,siswa,guru,tata_usaha']], function ()
 {
 	Route::get('/dashboard',[DashboardController::class,'index']);
     Route::get('/user/{id}/profile',[UserController::class,'userprofile']);
