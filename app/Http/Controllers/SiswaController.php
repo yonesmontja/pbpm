@@ -111,6 +111,13 @@ class SiswaController extends Controller
                 $tampung[] = Siswa::with('rombel')->where('id', '=', $s)->find($s);
             }
             //dd($tampung);
+            // $siswart = DB::table('rombel_siswa')
+            // ->where('tahunpelajaran_id', '=', $thn_id)
+            //     ->join('siswa', 'rombel_siswa.siswa_id', '=', 'siswa.id')
+            //     ->select('siswa.*')
+            //     ->orderBy('nama_depan')
+            //     ->get();
+            // //dd($siswart);
         }
 
         if (auth()->user()->role == 'admin') {
@@ -120,6 +127,7 @@ class SiswaController extends Controller
                 'rombel' => $rombel,
                 'rombel1' => $rombel1,
                 'thn_id' => $thn_id,
+                // 'siswart' => $siswart,
             ]);
         }
         if (auth()->user()->role == 'guru') {
