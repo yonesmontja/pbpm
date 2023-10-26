@@ -78,13 +78,17 @@ function totalOAP()
 }
 function thnPel()
 {
-    if (!empty(Tahunpel::where('aktif', 'Y')->first()->thn_pel)) {
-        $tp = Tahunpel::where('aktif', 'Y')->first()->thn_pel;
+    $tahunPelajaranAktif = Tahunpel::where('aktif', 'Y')->first();
+
+    if (!empty($tahunPelajaranAktif->thn_pel)) {
+        $tp = $tahunPelajaranAktif->thn_pel;
     } else {
         $tp = Carbon::now()->year;
     }
+
     return $tp;
 }
+
 function totalAgats()
 {
     $siswaAgats = Siswa::where('distrik', 'like', '%agats%')->count();

@@ -79,13 +79,6 @@ class SiswaController extends Controller
         $id_guru = Guru::where('user_id', '=', $id_user)->pluck('id')->first();
         $tahunpel = Tahunpel::where('aktif', 'Y')->get();
         foreach ($tahunpel as $thn) {
-            $semester_aktif = $thn->semester;
-            $kepsek_aktif = $thn->nama_kepsek;
-            $nip_kepsek = $thn->kode_kepsek;
-            $tanggal_raport = Carbon::parse($thn->tgl_raport)->isoFormat('D MMMM Y');
-            $tanggal_raport_kls6 = $thn->tgl_raport_kelas3;
-            $tahun_pelajaran = $thn->thn_pel;
-            $tahun_aktif = $thn->tahun;
             $thn_id = $thn->id;
         }
         if (auth()->user()->role == 'guru') {
@@ -110,12 +103,14 @@ class SiswaController extends Controller
             $kelas = Kelas::all();
             $rombel = Rombel::all();
             $rombel1 = DB::table('rombel_siswa')->where('tahunpelajaran_id', '=', $thn_id)->pluck('siswa_id')->toArray();
+            //dd($rombel1);
             //--------------------------------------
             // mengambil data siswa yang sudah memiliki rombel
             // simpan di variabel $tampung dan $tampung2
             foreach ($rombel1 as $r => $s) {
-                $tampung[] = Siswa::where('id', '=', $s)->find($s);
+                $tampung[] = Siswa::with('rombel')->where('id', '=', $s)->find($s);
             }
+            //dd($tampung);
         }
 
         if (auth()->user()->role == 'admin') {
