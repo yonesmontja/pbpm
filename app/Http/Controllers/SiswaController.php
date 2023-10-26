@@ -3715,7 +3715,7 @@ class SiswaController extends Controller
                 'students' => $students
             ]
         );
-        return $pdf->download($kalimat1 . '_' . $kalimat2 . '_' . date('Y-m-d_H') . '.pdf');
+        return $pdf->download($kalimat1 . '_' . $kalimat2 . '_' . $id . '_' . date('Y-m-d_H') . '.pdf');
     }
     public function cover_pdf($id)
     {
