@@ -57,16 +57,26 @@ class RombelController extends Controller
             $tahun_aktif = $thn->tahun;
             $thn_id = $thn->id;
         }
-        $rombel = Rombel::all();
+        $rombel = Rombel::where('tahunpelajaran_id', '=', $thn_id)->get();
         //dd($rombel);
-        $rombel_siswa = DB::table('rombel_siswa')->where('tahunpelajaran_id', '=', $thn_id)->get();
-        //dd($rombel_siswa);
+        //$rombel_siswa = DB::table('rombel_siswa')->where('tahunpelajaran_id', '=', $thn_id)->pluck('siswa_id');
+        $siswa = DB::table('rombel_siswa')
+        ->where('tahunpelajaran_id', '=', $thn_id)
+        ->join('siswa', 'rombel_siswa.siswa_id', '=', 'siswa.id')
+        ->select('siswa.*')
+        ->orderBy('nama_depan')
+        ->get();
+        //foreach ($rombel_siswa as $rs) {
+        //    $siswa[] = DB::table('siswa')->where('id', '=', $rs)->orderBy('nama_depan')->get();
+        //}
+        //dd($siswa);
+        //dd(Siswa::orderBy('nama_depan')->get());
         $kelas = Kelas::all();
         $guru = Guru::orderBy('nama_guru')->get();
         //dd($guru);
         $tahunpelajaran = Tahunpel::all();
 
-        $siswa = Siswa::orderBy('nama_depan')->get();
+
 
         //dd($user_id);
 

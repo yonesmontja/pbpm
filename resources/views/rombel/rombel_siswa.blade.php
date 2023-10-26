@@ -74,7 +74,7 @@
                                                 <tr>
                                                     <td><a href="#">{{ $h->rombel }}</a>
                                                     </td>
-                                                    <td>{{$h -> siswa -> count()}} siswa
+                                                    <td>{{ $h->siswa->count() }} siswa
                                                     </td>
                                                     <td><a href="/guru/{{ $h->guru->id }}/profile">{{ $h->guru->nama_guru }}
                                                     </td>
@@ -182,7 +182,7 @@
                                                                         Depan</label>
                                                                     <select name="nama_depan" class="form-control"
                                                                         id="nama_depan">
-                                                                        <option hidden>Pilih siswa</option>
+                                                                        <option hidden>Pilih siswa 1</option>
                                                                         @foreach ($siswa as $key => $m)
                                                                             <option value="{{ $m->nama_depan }}">
                                                                                 {{ $m->nama_depan }}
