@@ -332,10 +332,13 @@ class SiswaController extends Controller
         $rombel_awal = DB::table('rombel_siswa')->where('siswa_id', $id)->get();
         //dd($rombel_awal);
         foreach ($rombel_awal as $rombels) {
+            //dd($rombels->tahunpelajaran_id == $thn_id);
             if ($rombels->tahunpelajaran_id == $thn_id) {
                 $rombel = $thn_id;
                 $rombel_id = $rombels->rombel_id;
             };
+            $rombel = $thn_id;
+            $rombel_id = $rombels->rombel_id;
         }
         //dd($rombel_id);
         $nilai = Nilai::where('siswa_id', '=', $id)->get();
