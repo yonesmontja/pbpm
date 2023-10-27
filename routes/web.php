@@ -117,12 +117,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 
 
 
-    Route::get('/sekolah',[SekolahController::class,'index']);
-	Route::post('/sekolah/sekolahcreate',[SekolahController::class,'sekolahcreate']);
-	Route::get('/sekolah/{sekolah}/sekolahedit',[SekolahController::class,'sekolahedit']);
-	Route::post('/sekolah/{sekolah}/sekolahupdate',[SekolahController::class,'sekolahupdate']);
-	Route::get('/sekolah/{sekolah}/sekolahdelete',[SekolahController::class,'sekolahdelete']);
-	Route::get('/sekolah/{sekolah}/profile',[SekolahController::class,'profile']);
+
 
 	Route::get('/guru',[GuruController::class,'index']);
 	Route::post('/guru/gurucreate',[GuruController::class,'gurucreate']);
@@ -304,6 +299,15 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function()
 		Route::delete('/{id}/delete', [PpknController::class,'delete'])->name('ppkn.destroy');
 	});
 
+});
+
+Route::group(['middleware' => ['auth', 'checkRole:admin,tata_usaha']], function () {
+    Route::get('/sekolah', [SekolahController::class, 'index']);
+    Route::post('/sekolah/sekolahcreate', [SekolahController::class, 'sekolahcreate']);
+    Route::get('/sekolah/{sekolah}/sekolahedit', [SekolahController::class, 'sekolahedit']);
+    Route::post('/sekolah/{sekolah}/sekolahupdate', [SekolahController::class, 'sekolahupdate']);
+    Route::get('/sekolah/{sekolah}/sekolahdelete', [SekolahController::class, 'sekolahdelete']);
+    Route::get('/sekolah/{sekolah}/profile', [SekolahController::class, 'profile']);
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:guru,tata_usaha,admin']], function () {

@@ -79,6 +79,15 @@
                                   </a>
                               </li>
                           @endif
+                          @if (auth()->user()->role == 'tata_usaha')
+
+                              <li class="nav-item">
+                                  <a href="/sekolah" class="nav-link {{ set_active('sekolah') }}">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>DATA SEKOLAH</p>
+                                  </a>
+                              </li>
+                          @endif
                           @if (auth()->user()->role == 'admin')
                               <li class="nav-item">
                                   <a href="/kurikulum" class="nav-link {{ set_active('kurikulum') }}">

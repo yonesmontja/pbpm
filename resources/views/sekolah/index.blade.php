@@ -12,15 +12,21 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Data <a href="/sekolah/{{ 1 }}/profile">Sekolah</a></h1>
+                        @if (auth()->user()->role == 'admin')
+                            <h1>Data <a href="/sekolah/{{ 1 }}/profile">Sekolah</a></h1>
+                        @else
+                            <h1>Data Sekolah</h1>
+                        @endif
                     </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                            <li class="breadcrumb-item active">Data <a
-                                    href="/sekolah/{{ 1 }}/profile">Sekolah</a></li>
-                        </ol>
-                    </div>
+                    @if (auth()->user()->role == 'admin')
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                                <li class="breadcrumb-item active">Data <a
+                                        href="/sekolah/{{ 1 }}/profile">Sekolah</a></li>
+                            </ol>
+                        </div>
+                    @endif
                 </div>
             </div><!-- /.container-fluid -->
         </section>
@@ -120,8 +126,7 @@
                                     <tbody>
                                         @foreach ($data_sekolah as $sekolah)
                                             <tr>
-                                                <td><a
-                                                        href="/sekolah/{{ $sekolah->id }}/profile">{{ $sekolah->nama }}</a>
+                                                <td><a href="/sekolah/{{ $sekolah->id }}/profile">{{ $sekolah->nama }}</a>
                                                 </td>
                                                 <td>{{ $sekolah->npsn }}</td>
                                                 <td>{{ $sekolah->nss }}</td>
@@ -261,7 +266,8 @@
                                                         <div class="col-sm-6">
                                                             <div
                                                                 class="form-group {{ $errors->has('jk') ? ' has-error' : '' }}">
-                                                                <label for="exampleFormControlSelect1">Jenis Kelamin</label>
+                                                                <label for="exampleFormControlSelect1">Jenis
+                                                                    Kelamin</label>
                                                                 <select name="jk" class="form-control"
                                                                     id="exampleFormControlSelect1">
                                                                     <option>---</option>
@@ -340,13 +346,13 @@
                                                                     file</label>
                                                             </div>
                                                             <div>
-                                                                <img class="img-preview img-fluid mb-3 col-sm-2" alt="">
+                                                                <img class="img-preview img-fluid mb-3 col-sm-2"
+                                                                    alt="">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     @if ($errors->has('avatar'))
-                                                        <span
-                                                            class="help-block">{{ $errors->first('avatar') }}</span>
+                                                        <span class="help-block">{{ $errors->first('avatar') }}</span>
                                                     @endif
                                                     <!-- akhir form isian data -->
                                             </div>
