@@ -80,7 +80,6 @@
                               </li>
                           @endif
                           @if (auth()->user()->role == 'tata_usaha')
-
                               <li class="nav-item">
                                   <a href="/sekolah" class="nav-link {{ set_active('sekolah') }}">
                                       <i class="far fa-circle nav-icon"></i>
@@ -263,6 +262,98 @@
                               </li>
                           </ul>
                       </li>
+                      <li class="nav-item has-treeview">
+                          <a href="#" class="nav-link">
+                              <i class="nav-icon fas fa-book"></i>
+                              <p>
+                                  Kontak & Pengumuman
+                                  <i class="fas fa-angle-left right"></i>
+                              </p>
+                          </a>
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="/contacts" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Kontak Siswa</p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="/posting" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Pengumuman</p>
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
+                  @endif
+                  @if (auth()->user()->role == 'tata_usaha')
+
+                      <li class="nav-item has-treeview">
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="/grafiknilai" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Grafik Nilai</p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="/grafikmateri" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Grafik Materi</p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="/grafikkompetensi" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Grafik Kompetensi</p>
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                          <a href="#" class="nav-link">
+                              <i class="nav-icon fas fa-table"></i>
+                              <p>
+                                  Raport
+                                  <i class="fas fa-angle-left right"></i>
+                              </p>
+                          </a>
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="/test" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Raport Siswa</p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="/extra" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Absensi & Catatan</p>
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="nav-item has-treeview">
+                          <a href="#" class="nav-link">
+                              <i class="nav-icon fas fa-table"></i>
+                              <p>
+                                  Tabel Data
+                                  <i class="fas fa-angle-left right"></i>
+                              </p>
+                          </a>
+
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="/guru" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Data Guru</p>
+                                  </a>
+                              </li>
+                          </ul>
+
+
+                      </li>
+
                       <li class="nav-item has-treeview">
                           <a href="#" class="nav-link">
                               <i class="nav-icon fas fa-book"></i>

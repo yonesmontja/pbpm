@@ -105,7 +105,7 @@
                                 @elseif ($user->role == 'guru')
                                     <h3 class="profile-username text-center"><a
                                             href="/guru/{{ $guru }}/profile">{{ $nama_guru }} </a></h3>
-                                @else
+                                @elseif($user->role == 'siswa')
                                     <h3 class="profile-username text-center"><a
                                             href="#">{{ $user->siswa->nama_depan }}
                                             {{ $user->siswa->nama_belakang }}</a></h3>
@@ -118,14 +118,14 @@
                                         <b>Email</b> <a class="float-right">{{ $user->email }}</a>
                                     </li>
                                     <li class="list-group-item">
-                                        @if ($user->role == 'admin' || $user->role == 'guru')
+                                        @if ($user->role == 'admin' || $user->role == 'guru' || $user->role == 'tata_usaha')
                                             <b>Role</b> <a class="float-right">{{ $user->role }}</a>
-                                        @else
+                                        @elseif($user->role == 'siswa')
                                             <b>Kelas</b> <a class="float-right">{{ $user->siswa->kelas }}</a>
                                         @endif
                                     </li>
                                     <li class="list-group-item">
-                                        @if ($user->role == 'admin' || $user->role == 'guru')
+                                        @if ($user->role == 'admin' || $user->role == 'guru' || $user->role == 'tata_usaha')
                                             ---
                                         @else
                                             <b>Jenis Kelamin</b> <a
@@ -146,17 +146,20 @@
                             <div class="card-header">
                                 @if ($user->role == 'guru')
                                     <h3 class="card-title">Data Diri</h3>
-                                @else
+                                @elseif ($user->role == 'siswa')
                                     <h3 class="card-title">Data Diri Siswa</h3>
                                 @endif
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <strong><i class="fas fa-book mr-1"></i> Tempat Lahir</strong>
+                                @if ($user->role == 'admin' || $user->role == 'guru' || $user->role == 'tata_usaha')
+                                    <strong><i class="fas fa-book mr-1"></i> SD Inpres Dabolding</strong>
+                                @endif
 
                                 @if ($user->role == 'admin' || $user->role == 'guru')
                                     ---
-                                @else
+                                @elseif($user -> role == 'siswa')
+                                <strong><i class="fas fa-book mr-1"></i> Tempat Lahir</strong>
                                     <p class="text-muted">
                                         {{ $user->siswa->tempat_lahir }}
                                     </p>
@@ -164,7 +167,7 @@
 
                                 <hr>
 
-                                @if ($user->role == 'admin' || $user->role == 'guru')
+                                @if ($user->role == 'admin' || $user->role == 'guru' || $user -> role == 'tata_usaha')
                                     ---
                                 @else
                                     <strong><i class="fas fa-map-marker-alt mr-1"></i> Tanggal Lahir</strong>
@@ -174,7 +177,7 @@
 
                                 <hr>
 
-                                @if ($user->role == 'admin' || $user->role == 'guru')
+                                @if ($user->role == 'admin' || $user->role == 'guru' || $user -> role == 'tata_usaha')
                                 @else
                                     <strong><i class="fas fa-pencil-alt mr-1"></i> Agama</strong>
 
@@ -183,7 +186,7 @@
 
                                 <hr>
 
-                                @if ($user->role == 'admin' || $user->role == 'guru')
+                                @if ($user->role == 'admin' || $user->role == 'guru' || $user -> role == 'tata_usaha')
                                 @else
                                     <strong><i class="far fa-file-alt mr-1"></i> Alamat</strong>
 
@@ -197,113 +200,115 @@
                     <!-- /.col -->
                     @if (auth()->user()->role == 'guru')
                         <div class="col-md-9">
-                        <div class="card">
-                            <div class="card-header p-2">
-                                <ul class="nav nav-pills">
-                                    <li class="nav-item"><a class="nav-link active" href="#activity"
-                                            data-toggle="tab">Jurnal Penilaian</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Linimasa Penilaian</a>
-                                    </li>
-                                </ul>
-                            </div><!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="tab-content">
-                                    <!-- /.tab-pane -->
+                            <div class="card">
+                                <div class="card-header p-2">
+                                    <ul class="nav nav-pills">
+                                        <li class="nav-item"><a class="nav-link active" href="#activity"
+                                                data-toggle="tab">Jurnal Penilaian</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Linimasa
+                                                Penilaian</a>
+                                        </li>
+                                    </ul>
+                                </div><!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="tab-content">
+                                        <!-- /.tab-pane -->
 
-                                    <!-- /.tab-pane -->
+                                        <!-- /.tab-pane -->
 
-                                    <div class="tab-pane" id="activity">
-                                        <!-- Post -->
-                                        @foreach ($nilai as $n)
-                                            <div class="post">
-                                                <div class="user-block">
-                                                    <img class="img-circle img-bordered-sm"
-                                                        src="{{ $n->guru->avatar() }}" alt="user image">
-                                                    <span class="username">
-                                                        <a href="#">{{ $n->guru->nama_guru }}</a>
-                                                        <a href="#" class="float-right btn-tool"><i
-                                                                class="fas fa-times"></i></a>
-                                                    </span>
-                                                    <span class="description">Melakukan penilaian -
-                                                        {{ \Carbon\Carbon::parse($n->tanggal)->diffForHumans() }}</span>
+                                        <div class="tab-pane" id="activity">
+                                            <!-- Post -->
+                                            @foreach ($nilai as $n)
+                                                <div class="post">
+                                                    <div class="user-block">
+                                                        <img class="img-circle img-bordered-sm"
+                                                            src="{{ $n->guru->avatar() }}" alt="user image">
+                                                        <span class="username">
+                                                            <a href="#">{{ $n->guru->nama_guru }}</a>
+                                                            <a href="#" class="float-right btn-tool"><i
+                                                                    class="fas fa-times"></i></a>
+                                                        </span>
+                                                        <span class="description">Melakukan penilaian -
+                                                            {{ \Carbon\Carbon::parse($n->tanggal)->diffForHumans() }}</span>
+                                                    </div>
+                                                    <!-- /.user-block -->
+                                                    <p>
+                                                        <li>Materi: {{ $n->nilai_deskripsi }}</li>
+                                                        <li>Indikator: {{ $n->nilai_notes }}</li>
+                                                    </p>
+                                                    <p>
+                                                        <a href="#" class="link-black text-sm mr-2"><i
+                                                                class="fas fa-share mr-1"></i> Siswa:
+                                                            {{ $n->siswa->nama_depan }}
+                                                            {{ $n->siswa->nama_belakang }}</a>
+                                                        <a href="#" class="link-black text-sm"><i
+                                                                class="far fa-thumbs-up mr-1"></i> Mapel:
+                                                            {{ $n->mapel->nama_mapel }}</a>
+                                                        <span class="float-right">
+                                                            <a href="#" class="link-black text-sm">
+                                                                <i class="far fa-comments mr-1"></i> Nilai:
+                                                                {{ $n->nilai }}
+                                                            </a>
+                                                        </span>
+                                                    </p>
                                                 </div>
-                                                <!-- /.user-block -->
-                                                <p>
-                                                    <li>Materi: {{ $n->nilai_deskripsi }}</li>
-                                                    <li>Indikator: {{ $n->nilai_notes }}</li>
-                                                </p>
-                                                <p>
-                                                    <a href="#" class="link-black text-sm mr-2"><i
-                                                            class="fas fa-share mr-1"></i> Siswa:
-                                                        {{ $n->siswa->nama_depan }}
-                                                        {{ $n->siswa->nama_belakang }}</a>
-                                                    <a href="#" class="link-black text-sm"><i
-                                                            class="far fa-thumbs-up mr-1"></i> Mapel:
-                                                        {{ $n->mapel->nama_mapel }}</a>
-                                                    <span class="float-right">
-                                                        <a href="#" class="link-black text-sm">
-                                                            <i class="far fa-comments mr-1"></i> Nilai: {{ $n->nilai }}
-                                                        </a>
-                                                    </span>
-                                                </p>
-                                            </div>
-                                        @endforeach
-                                        <!-- /.post -->
+                                            @endforeach
+                                            <!-- /.post -->
+                                        </div>
+                                        <!-- /.tab-pane -->
+                                        <div class="tab-pane" id="timeline">
+                                            <!-- The timeline -->
+                                            @foreach ($nilai as $n)
+                                                <div class="timeline timeline-inverse">
+                                                    <!-- timeline time label -->
+                                                    <div class="time-label">
+                                                        <span class="bg-danger">
+                                                            {{ $n->updated_at->format('d M Y') }}
+                                                        </span>
+                                                    </div>
+                                                    <!-- /.timeline-label -->
+                                                    <!-- timeline item -->
+                                                    <div>
+                                                        <i class="fas fa-envelope bg-primary"></i>
+                                                        <div class="timeline-item">
+                                                            <span class="time"><i class="far fa-clock"></i>
+                                                                {{ $n->updated_at->format('H:i') }}</span>
+                                                            <h3 class="timeline-header"><a
+                                                                    href="#">{{ $n->guru->nama_guru }}</a> input
+                                                                nilai <a
+                                                                    href="{{ $n->mapel->id }}">{{ $n->mapel->nama_mapel }}</a>
+                                                                dari <a
+                                                                    href="/test/{{ $n->siswa->id }}/profile">{{ $n->siswa->nama_depan }}
+                                                                    {{ $n->siswa->nama_belakang }}</a></h3>
+                                                            <h3 class="timeline-header"><a href="#">Penilaian
+                                                                    dilakukan
+                                                                    tanggal:
+                                                                </a>{{ \Carbon\Carbon::parse($n->tanggal)->diffForHumans() }}
+                                                            </h3>
+                                                            <div class="timeline-body">
+                                                                <li>Materi: {{ $n->nilai_deskripsi }}</li>
+                                                                <li>Indikator: {{ $n->nilai_notes }}</li>
+                                                            </div>
+                                                            <div class="timeline-footer">
+                                                                <a href="#"
+                                                                    class="btn btn-primary btn-sm">{{ $n->penilaian->nama_tes }}</a>
+                                                                <a href="#"
+                                                                    class="btn btn-danger btn-sm">{{ $n->kompetensiinti->kompetensi_inti }}</a>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
-                                    <!-- /.tab-pane -->
-                                    <div class="tab-pane" id="timeline">
-                                         <!-- The timeline -->
-                                         @foreach ($nilai as $n)
-                                             <div class="timeline timeline-inverse">
-                                                 <!-- timeline time label -->
-                                                 <div class="time-label">
-                                                     <span class="bg-danger">
-                                                         {{ $n->updated_at->format('d M Y') }}
-                                                     </span>
-                                                 </div>
-                                                 <!-- /.timeline-label -->
-                                                 <!-- timeline item -->
-                                                 <div>
-                                                     <i class="fas fa-envelope bg-primary"></i>
-                                                     <div class="timeline-item">
-                                                         <span class="time"><i class="far fa-clock"></i>
-                                                             {{ $n->updated_at->format('H:i') }}</span>
-                                                         <h3 class="timeline-header"><a
-                                                                 href="#">{{ $n->guru->nama_guru }}</a> input
-                                                             nilai <a
-                                                                 href="{{ $n->mapel->id }}">{{ $n->mapel->nama_mapel }}</a>
-                                                             dari <a
-                                                                 href="/test/{{ $n->siswa->id }}/profile">{{ $n->siswa->nama_depan }}
-                                                                 {{ $n->siswa->nama_belakang }}</a></h3>
-                                                         <h3 class="timeline-header"><a href="#">Penilaian dilakukan
-                                                                 tanggal:
-                                                             </a>{{ \Carbon\Carbon::parse($n->tanggal)->diffForHumans() }}
-                                                         </h3>
-                                                         <div class="timeline-body">
-                                                             <li>Materi: {{ $n->nilai_deskripsi }}</li>
-                                                             <li>Indikator: {{ $n->nilai_notes }}</li>
-                                                         </div>
-                                                         <div class="timeline-footer">
-                                                             <a href="#"
-                                                                 class="btn btn-primary btn-sm">{{ $n->penilaian->nama_tes }}</a>
-                                                             <a href="#"
-                                                                 class="btn btn-danger btn-sm">{{ $n->kompetensiinti->kompetensi_inti }}</a>
-                                                         </div>
-
-                                                     </div>
-                                                 </div>
-                                             </div>
-                                         @endforeach
-                                     </div>
-                                </div>
-                                <!-- /.tab-content -->
-                            </div><!-- /.card-body -->
+                                    <!-- /.tab-content -->
+                                </div><!-- /.card-body -->
+                            </div>
+                            <!-- /.nav-tabs-custom -->
                         </div>
-                        <!-- /.nav-tabs-custom -->
-                    </div>
-                    <!-- /.col -->
+                        <!-- /.col -->
                     @else
-
                     @endif
                 </div>
                 <!-- /.row -->

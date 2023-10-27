@@ -71,9 +71,8 @@
                                     <tbody>
                                         @foreach ($tahunpel as $tahunpel)
                                             <tr>
-                                                @if (auth()->user()->role == 'admin')
-                                                    <td><a
-                                                            href="/tahunpel/{{ $tahunpel->id }}">{{ $tahunpel->thn_pel }}</a>
+                                                @if (auth()->user()->role == 'admin' || auth()->user()->role == 'tata_usaha')
+                                                    <td><a href="/tahunpel/{{ $tahunpel->id }}">{{ $tahunpel->thn_pel }}</a>
                                                     </td>
                                                     <td>{{ $tahunpel->semester }}</td>
                                                     <td>{{ $tahunpel->tahun }}</td>
@@ -91,8 +90,10 @@
                                                             style="display: inline-block;">
                                                             @method('DELETE')
                                                             @csrf
-                                                            <button class="btn btn-sm btn-danger"
-                                                                onclick="return confirm('Hapus Data?')">Delete</button>
+                                                            @if (auth()->user()->role == 'admin')
+                                                                <button class="btn btn-sm btn-danger"
+                                                                    onclick="return confirm('Hapus Data?')">Delete</button>
+                                                            @endif
                                                         </form>
                                                     </td>
                                                 @endif
@@ -151,8 +152,8 @@
                                                             <div
                                                                 class="form-group {{ $errors->has('semester') ? ' has-error' : '' }}">
                                                                 <label for="exampleFormControlInput1">Semester</label>
-                                                                <input name="semester" type="semester"
-                                                                    class="form-control" id="exampleFormControlInput1"
+                                                                <input name="semester" type="semester" class="form-control"
+                                                                    id="exampleFormControlInput1"
                                                                     placeholder="Masukkan semester"
                                                                     value="{{ old('semester') }}">
                                                                 @if ($errors->has('semester'))
@@ -191,15 +192,17 @@
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlInput1">Kepsek</label>
-                                                                <input name="nama_kepsek" type="text" class="form-control"
-                                                                    id="exampleFormControlInput3" placeholder="Kepsek">
+                                                                <input name="nama_kepsek" type="text"
+                                                                    class="form-control" id="exampleFormControlInput3"
+                                                                    placeholder="Kepsek">
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlInput1">NIP</label>
-                                                                <input name="kode_kepsek" type="text" class="form-control"
-                                                                    id="exampleFormControlInput3" placeholder="NIP">
+                                                                <input name="kode_kepsek" type="text"
+                                                                    class="form-control" id="exampleFormControlInput3"
+                                                                    placeholder="NIP">
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6">
@@ -291,5 +294,4 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
 @endsection

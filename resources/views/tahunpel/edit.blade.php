@@ -120,7 +120,7 @@
                                         <div class="input-group date" id="reservationdate1" data-target-input="nearest">
                                             <input name="tgl_raport" type="text" class="form-control datetimepicker-input"
                                                 data-target="#reservationdate1"
-                                                placeholder="{{ $tahunpel->tgl_raport }}" />
+                                                placeholder="{{ $tahunpel->tgl_raport }}" value="{{ $tahunpel->tgl_raport }}" />
                                             <div class="input-group-append" data-target="#reservationdate1"
                                                 data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -134,7 +134,7 @@
                                         <div class="input-group date" id="reservationdate2" data-target-input="nearest">
                                             <input name="tgl_raport_kelas3" type="text"
                                                 class="form-control datetimepicker-input" data-target="#reservationdate2"
-                                                placeholder="{{ $tahunpel->tgl_raport_kelas3 }}" />
+                                                placeholder="{{ $tahunpel->tgl_raport_kelas3 }}" value="{{ $tahunpel->tgl_raport_kelas3 }}" />
                                             <div class="input-group-append" data-target="#reservationdate2"
                                                 data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>

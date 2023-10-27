@@ -135,7 +135,7 @@
                                  <strong><i class="fas fa-map-marker-alt mr-1"></i> Penilaian Sikap?</strong>
                                  <p class="text-muted">{{ $mapel1->is_sikap == '0' ? 'Tidak' : 'Ya' }}</p>
                                  <hr>
-                                 <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+                                 <strong><i class="fas fa-pencil-alt mr-1"></i> Capaian Pembelajaran</strong>
                                  <p class="text-muted">
                                      <span class="tag tag-danger">{{ $mapel1->kd_singkat }}</span>
 
@@ -143,10 +143,9 @@
 
                                  <hr>
 
-                                 <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+                                 <strong><i class="far fa-file-alt mr-1"></i> Konsep Kurikulum</strong>
 
-                                 <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                                     fermentum enim neque.</p>
+                                 <p class="text-muted">PBPM - Expert Kampung.</p>
                              </div>
                              <!-- /.card-body -->
                          </div>

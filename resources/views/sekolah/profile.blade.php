@@ -90,22 +90,22 @@
 
                                  <hr>
 
-                                 <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+                                 <strong><i class="fas fa-pencil-alt mr-1"></i> Kurikulum</strong>
 
                                  <p class="text-muted">
-                                     <span class="tag tag-danger">UI Design</span>
-                                     <span class="tag tag-success">Coding</span>
-                                     <span class="tag tag-info">Javascript</span>
-                                     <span class="tag tag-warning">PHP</span>
-                                     <span class="tag tag-primary">Node.js</span>
+                                     <span class="tag tag-danger">K-13</span>
+                                     <span class="tag tag-success">KOSP: </span>
+                                     <span class="tag tag-info">PBPM - Expert Kampung</span>
+                                     <span class="tag tag-warning">MBK</span>
+                                     <span class="tag tag-primary">Lab. Komputer & Perpustakaan</span>
                                  </p>
 
                                  <hr>
 
-                                 <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+                                 <strong><i class="far fa-file-alt mr-1"></i> Visi</strong>
 
-                                 <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                                     fermentum enim neque.</p>
+                                 <p class="text-muted">Menghasilkan generasi yang beriman, menguasai ilmu pengetahuan dan
+                                     teknologi, berbudaya, peduli dan cinta lingkungan.</p>
                              </div>
                              <!-- /.card-body -->
                          </div>
@@ -119,12 +119,13 @@
                                      <li class="nav-item"><a class="nav-link active" href="#mapel"
                                              data-toggle="tab">Mapel</a></li>
 
-                                     <li class="nav-item"><a class="nav-link" href="#guru"
-                                             data-toggle="tab">Guru</a></li>
-                                     <li class="nav-item"><a class="nav-link" href="#timeline"
-                                             data-toggle="tab">Timeline</a></li>
-                                     <li class="nav-item"><a class="nav-link" href="#settings"
-                                             data-toggle="tab">Settings</a></li>
+                                     <li class="nav-item"><a class="nav-link" href="#guru" data-toggle="tab">Guru</a></li>
+                                     @if (auth()->user()->role == 'admin')
+                                         <li class="nav-item"><a class="nav-link" href="#timeline"
+                                                 data-toggle="tab">Timeline</a></li>
+                                         <li class="nav-item"><a class="nav-link" href="#settings"
+                                                 data-toggle="tab">Settings</a></li>
+                                     @endif
                                  </ul>
                              </div><!-- /.card-header -->
                              <div class="card-body">
@@ -260,7 +261,8 @@
                                                      <span class="time"><i class="far fa-clock"></i>
                                                          12:05</span>
 
-                                                     <h3 class="timeline-header"><a href="#">Support Team</a> sent you an
+                                                     <h3 class="timeline-header"><a href="#">Support Team</a> sent
+                                                         you an
                                                          email</h3>
 
                                                      <div class="timeline-body">
@@ -284,7 +286,8 @@
                                                      <span class="time"><i class="far fa-clock"></i> 5 mins
                                                          ago</span>
 
-                                                     <h3 class="timeline-header border-0"><a href="#">Sarah Young</a>
+                                                     <h3 class="timeline-header border-0"><a href="#">Sarah
+                                                             Young</a>
                                                          accepted your friend request
                                                      </h3>
                                                  </div>
@@ -298,7 +301,8 @@
                                                      <span class="time"><i class="far fa-clock"></i> 27 mins
                                                          ago</span>
 
-                                                     <h3 class="timeline-header"><a href="#">Jay White</a> commented on
+                                                     <h3 class="timeline-header"><a href="#">Jay White</a> commented
+                                                         on
                                                          your post</h3>
 
                                                      <div class="timeline-body">
@@ -328,7 +332,8 @@
                                                      <span class="time"><i class="far fa-clock"></i> 2 days
                                                          ago</span>
 
-                                                     <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new
+                                                     <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded
+                                                         new
                                                          photos</h3>
 
                                                      <div class="timeline-body">
@@ -387,7 +392,8 @@
                                                  <div class="offset-sm-2 col-sm-10">
                                                      <div class="checkbox">
                                                          <label>
-                                                             <input type="checkbox"> I agree to the <a href="#">terms and
+                                                             <input type="checkbox"> I agree to the <a
+                                                                 href="#">terms and
                                                                  conditions</a>
                                                          </label>
                                                      </div>

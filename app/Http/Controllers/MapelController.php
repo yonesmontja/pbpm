@@ -9,6 +9,7 @@ use App\Models\Kelas;
 use App\Models\Mapel;
 use App\Models\Nilai;
 use App\Models\Siswa;
+use App\Models\Tahunpel;
 use App\Models\Penilaian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -86,38 +87,49 @@ class MapelController extends Controller
      */
     public function show(Mapel $mapel)
     {
+        $tahunpel = Tahunpel::where('aktif', 'Y')->get();
+        foreach ($tahunpel as $thn) {
+            $semester_aktif = $thn->semester;
+            $kepsek_aktif = $thn->nama_kepsek;
+            $nip_kepsek = $thn->kode_kepsek;
+            $tanggal_raport = Carbon::parse($thn->tgl_raport)->isoFormat('D MMMM Y');
+            $tanggal_raport_kls6 = $thn->tgl_raport_kelas3;
+            $tahun_pelajaran = $thn->thn_pel;
+            $tahun_aktif = $thn->tahun;
+            $thn_id = $thn->id;
+        }
         $mapel1 = Mapel::find($mapel->id);
         $penilaian1 = Penilaian::find($mapel->id);
 
-        $jml_kelas_penilaian = Nilai::where('mapel_id','=',$mapel->id)->where('kelas_id','=',1)->pluck('mapel_id','kelas_id')->count()+
-                             Nilai::where('mapel_id','=',$mapel->id)->where('kelas_id','=',2)->pluck('mapel_id','kelas_id')->count()+
-                             Nilai::where('mapel_id','=',$mapel->id)->where('kelas_id','=',3)->pluck('mapel_id','kelas_id')->count()+
-                             Nilai::where('mapel_id','=',$mapel->id)->where('kelas_id','=',4)->pluck('mapel_id','kelas_id')->count()+
-                             Nilai::where('mapel_id','=',$mapel->id)->where('kelas_id','=',5)->pluck('mapel_id','kelas_id')->count()+
-                             Nilai::where('mapel_id','=',$mapel->id)->where('kelas_id','=',6)->pluck('mapel_id','kelas_id')->count();
+        $jml_kelas_penilaian = Nilai::where('mapel_id', '=', $mapel->id)->where('tahunpel_id', '=', $thn_id)->where('kelas_id', '=', 1)->pluck('mapel_id', 'kelas_id')->count() +
+            Nilai::where('mapel_id', '=', $mapel->id)->where('tahunpel_id', '=', $thn_id)->where('kelas_id', '=', 2)->pluck('mapel_id', 'kelas_id')->count() +
+            Nilai::where('mapel_id', '=', $mapel->id)->where('tahunpel_id', '=', $thn_id)->where('kelas_id', '=', 3)->pluck('mapel_id', 'kelas_id')->count() +
+            Nilai::where('mapel_id', '=', $mapel->id)->where('tahunpel_id', '=', $thn_id)->where('kelas_id', '=', 4)->pluck('mapel_id', 'kelas_id')->count() +
+            Nilai::where('mapel_id', '=', $mapel->id)->where('tahunpel_id', '=', $thn_id)->where('kelas_id', '=', 5)->pluck('mapel_id', 'kelas_id')->count() +
+            Nilai::where('mapel_id', '=', $mapel->id)->where('tahunpel_id', '=', $thn_id)->where('kelas_id', '=', 6)->pluck('mapel_id', 'kelas_id')->count();
         //dd(Nilai::where('mapel_id','=',$mapel->id)->where('kelas_id','=',1)->pluck('mapel_id','kelas_id')->count());
-        $jml_mapel_penilaian = Nilai::where('mapel_id','=',$mapel->id)->where('penilaian_id','=',1)->pluck('penilaian_id','mapel_id')->count()+
-                             Nilai::where('mapel_id','=',$mapel->id)->where('penilaian_id','=',2)->pluck('penilaian_id','mapel_id')->count()+
-                             Nilai::where('mapel_id','=',$mapel->id)->where('penilaian_id','=',3)->pluck('penilaian_id','mapel_id')->count()+
-                             Nilai::where('mapel_id','=',$mapel->id)->where('penilaian_id','=',4)->pluck('penilaian_id','mapel_id')->count()+
-                             Nilai::where('mapel_id','=',$mapel->id)->where('penilaian_id','=',5)->pluck('penilaian_id','mapel_id')->count()+
-                             Nilai::where('mapel_id','=',$mapel->id)->where('penilaian_id','=',6)->pluck('penilaian_id','mapel_id')->count()+
-                             Nilai::where('mapel_id','=',$mapel->id)->where('penilaian_id','=',18)->pluck('penilaian_id','mapel_id')->count()+
-                             Nilai::where('mapel_id','=',$mapel->id)->where('penilaian_id','=',19)->pluck('penilaian_id','mapel_id')->count()+
-                             Nilai::where('mapel_id','=',$mapel->id)->where('penilaian_id','=',20)->pluck('penilaian_id','mapel_id')->count()+
-                             Nilai::where('mapel_id','=',$mapel->id)->where('penilaian_id','=',21)->pluck('penilaian_id','mapel_id')->count();
-        $jml_siswa_penilaian = Nilai::where('mapel_id','=',$mapel->id)->select('siswa_id','penilaian_id')->pluck('penilaian_id','siswa_id')->count();
+        $jml_mapel_penilaian = Nilai::where('mapel_id', '=', $mapel->id)->where('tahunpel_id', '=', $thn_id)->where('penilaian_id', '=', 1)->pluck('penilaian_id', 'mapel_id')->count() +
+            Nilai::where('mapel_id', '=', $mapel->id)->where('tahunpel_id', '=', $thn_id)->where('penilaian_id', '=', 2)->pluck('penilaian_id', 'mapel_id')->count() +
+            Nilai::where('mapel_id', '=', $mapel->id)->where('tahunpel_id', '=', $thn_id)->where('penilaian_id', '=', 3)->pluck('penilaian_id', 'mapel_id')->count() +
+            Nilai::where('mapel_id', '=', $mapel->id)->where('tahunpel_id', '=', $thn_id)->where('penilaian_id', '=', 4)->pluck('penilaian_id', 'mapel_id')->count() +
+            Nilai::where('mapel_id', '=', $mapel->id)->where('tahunpel_id', '=', $thn_id)->where('penilaian_id', '=', 5)->pluck('penilaian_id', 'mapel_id')->count() +
+            Nilai::where('mapel_id', '=', $mapel->id)->where('tahunpel_id', '=', $thn_id)->where('penilaian_id', '=', 6)->pluck('penilaian_id', 'mapel_id')->count() +
+            Nilai::where('mapel_id', '=', $mapel->id)->where('tahunpel_id', '=', $thn_id)->where('penilaian_id', '=', 18)->pluck('penilaian_id', 'mapel_id')->count() +
+            Nilai::where('mapel_id', '=', $mapel->id)->where('tahunpel_id', '=', $thn_id)->where('penilaian_id', '=', 19)->pluck('penilaian_id', 'mapel_id')->count() +
+            Nilai::where('mapel_id', '=', $mapel->id)->where('tahunpel_id', '=', $thn_id)->where('penilaian_id', '=', 20)->pluck('penilaian_id', 'mapel_id')->count() +
+            Nilai::where('mapel_id', '=', $mapel->id)->where('tahunpel_id', '=', $thn_id)->where('penilaian_id', '=', 21)->pluck('penilaian_id', 'mapel_id')->count();
+        $jml_siswa_penilaian = Nilai::where('mapel_id', '=', $mapel->id)->where('tahunpel_id', '=', $thn_id)->select('siswa_id', 'penilaian_id')->pluck('penilaian_id', 'siswa_id')->count();
 
 
         //hitung nilai rata-rata kelas untuk semua mapel
-        $rata_kelas1 = Nilai::all()->where('penilaian_id','=',$mapel->id)->pluck('nilai')->avg();
+        $rata_kelas1 = Nilai::where('tahunpel_id', '=', $thn_id)->where('penilaian_id', '=', $mapel->id)->pluck('nilai')->avg();
         $rata_kelas = number_format((float)$rata_kelas1, 1, '.', '');
         //-----------------------------------------------
 
-        $nilai = Nilai::all()->where('mapel_id','=',$mapel->id);
-        $nilai1 = Nilai::all()->where('mapel_id', '=', $mapel->id)->where('penilaian_id', '=', 6)->avg('nilai');
+        $nilai = Nilai::where('tahunpel_id', '=', $thn_id)->where('mapel_id', '=', $mapel->id);
+        $nilai1 = Nilai::where('tahunpel_id', '=', $thn_id)->where('mapel_id', '=', $mapel->id)->where('penilaian_id', '=', 6)->avg('nilai');
         //dd($nilai1);
-        $user = User::all();
+        // $user = User::all();
         // hitung nilai rata-rata per mapel $chart_nilai[] untuk ditampilkan di grafik
         for($bulan=1; $bulan < 7; $bulan++){
             $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where penilaian_id='$mapel->id' AND month(created_at)='$bulan'"))->first();
@@ -135,20 +147,24 @@ class MapelController extends Controller
         $weekE = Carbon::now()->startOfWeek();
 
         $mapel_last_3month = Nilai::where('mapel_id','=',$mapel->id)
+            ->where('tahunpel_id', '=', $thn_id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$dateS,$dateE])
         ->avg('nilai');
 
         $mapel_last_3week = Nilai::where('mapel_id','=',$mapel->id)
+            ->where('tahunpel_id', '=', $thn_id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$weekS,$weekE])
         ->avg('nilai');
 
         $TotalSpent3 = DB::table('nilai')->where('mapel_id','=',$mapel->id)
+            ->where('tahunpel_id', '=', $thn_id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$dateS,$dateE])
         ->avg('nilai');
         $weekSpent3 = DB::table('nilai')->where('mapel_id','=',$mapel->id)
+            ->where('tahunpel_id', '=', $thn_id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$weekS,$weekE])
         ->avg('nilai');
@@ -162,19 +178,23 @@ class MapelController extends Controller
         $weekE = Carbon::now()->startOfWeek();
 
         $mapel_last_2month = Nilai::where('mapel_id','=',$mapel->id)
+            ->where('tahunpel_id', '=', $thn_id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$dateS,$dateE])
         ->avg('nilai');
         $mapel_last_2week = Nilai::where('mapel_id','=',$mapel->id)
+            ->where('tahunpel_id', '=', $thn_id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$weekS,$weekE])
         ->avg('nilai');
 
         $TotalSpent2 = DB::table('nilai')->where('mapel_id','=',$mapel->id)
+            ->where('tahunpel_id', '=', $thn_id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$dateS,$dateE])
         ->avg('nilai');
         $weekSpent2 = DB::table('nilai')->where('mapel_id','=',$mapel->id)
+            ->where('tahunpel_id', '=', $thn_id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$weekS,$weekE])
         ->avg('nilai');
@@ -188,11 +208,13 @@ class MapelController extends Controller
         $weekE = Carbon::now()->startOfWeek();
 
         $mapel_last_month_old = Nilai::where('mapel_id','=',$mapel->id)
+            ->where('tahunpel_id', '=', $thn_id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$dateS,$dateE])
         ->avg('nilai');
         $mapel_last_month = number_format((float)$mapel_last_month_old, 2, '.', '');
         $mapel_last_week_old = Nilai::where('mapel_id','=',$mapel->id)
+            ->where('tahunpel_id', '=', $thn_id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$weekS,$weekE])
         ->avg('nilai');
@@ -201,10 +223,12 @@ class MapelController extends Controller
         for($penilaian = 1; $penilaian < 6; $penilaian++)
         {
             $penilaian_old = Nilai::where('penilaian_id','=',$penilaian)->where('mapel_id','=',$mapel->id)
+                ->where('tahunpel_id', '=', $thn_id)
                 -> select('created_at','nilai')
                 -> whereBetween('created_at',[$dateS, $dateE])
                 -> avg('nilai');
             $penilaian_week_old = Nilai::where('penilaian_id','=',$penilaian)->where('mapel_id','=',$mapel->id)
+                ->where('tahunpel_id', '=', $thn_id)
                 -> select('created_at','nilai')
                 -> whereBetween('created_at',[$weekS, $weekE])
                 -> avg('nilai');
@@ -213,10 +237,12 @@ class MapelController extends Controller
         }
         //dd($penilaian_last_week);
         $TotalSpent1 = DB::table('nilai')->where('mapel_id','=',$mapel->id)
+            ->where('tahunpel_id', '=', $thn_id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$dateS,$dateE])
         ->avg('nilai');
         $weekSpent1 = DB::table('nilai')->where('mapel_id','=',$mapel->id)
+            ->where('tahunpel_id', '=', $thn_id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$weekS,$weekE])
         ->avg('nilai');
@@ -225,6 +251,7 @@ class MapelController extends Controller
 
         // ambil data nilai siswa bulan ini sumber https://www.codegrepper.com/code-examples/php/get+last+month+data+in+laravel
         $this_month = Nilai::whereMonth('created_at', date('m'))->where('mapel_id','=',$mapel->id)
+            ->where('tahunpel_id', '=', $thn_id)
             ->whereYear('created_at', date('Y'))
             ->get(['nilai','created_at'])
             ->avg('nilai');
@@ -237,11 +264,13 @@ class MapelController extends Controller
         $weekE = Carbon::now();
 
         $mapel_this_month_old = Nilai::where('mapel_id','=',$mapel->id)
+            ->where('tahunpel_id', '=', $thn_id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$dateS,$dateE])
         ->avg('nilai');
         $mapel_this_month = number_format((float)$mapel_this_month_old, 2, '.', '');
         $mapel_this_week_old = Nilai::where('mapel_id','=',$mapel->id)
+            ->where('tahunpel_id', '=', $thn_id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$weekS,$weekE])
         ->avg('nilai');
@@ -250,10 +279,12 @@ class MapelController extends Controller
         for($penilaian = 1; $penilaian < 6; $penilaian++)
         {
             $penilaian_old = Nilai::where('penilaian_id','=',$penilaian)->where('mapel_id','=',$mapel->id)
+                ->where('tahunpel_id', '=', $thn_id)
                 -> select('created_at','nilai')
                 -> whereBetween('created_at',[$dateS, $dateE])
                 -> avg('nilai');
             $penilaian_week_old = Nilai::where('penilaian_id','=',$penilaian)->where('mapel_id','=',$mapel->id)
+                ->where('tahunpel_id', '=', $thn_id)
                 -> select('created_at','nilai')
                 -> whereBetween('created_at',[$weekS, $weekE])
                 -> avg('nilai');
@@ -263,10 +294,12 @@ class MapelController extends Controller
         $penilaian_list = ['Tugas','Latihan','UH','PTS','PAS'];
         //dd($penilaian_this_week);
         $TotalSpent0 = Nilai::where('mapel_id','=',$mapel->id)
+            ->where('tahunpel_id', '=', $thn_id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$dateS,$dateE])
         ->avg('nilai');
         $weekSpent0 = Nilai::where('mapel_id','=',$mapel->id)
+            ->where('tahunpel_id', '=', $thn_id)
         ->select('created_at','nilai')
         ->whereBetween('created_at',[$weekS,$weekE])
         ->avg('nilai');
@@ -335,7 +368,7 @@ class MapelController extends Controller
             'last_average' => $last_average,
             'jml_siswa_penilaian' => $jml_siswa_penilaian,
             'jml_mapel_penilaian' => $jml_mapel_penilaian,
-            'user' => $user,
+            // 'user' => $user,
 
 
         ]);

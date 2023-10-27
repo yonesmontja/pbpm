@@ -141,7 +141,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if (auth()->user()->role == 'admin')
+                                        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'tata_usaha')
                                             @foreach ($tampung as $siswa)
                                                 <tr>
                                                     <td><a
@@ -173,14 +173,18 @@
                                                         <a href="/test/{{ $siswa->id }}/edit"
                                                             class="btn btn-warning btn-xs">Ubah
                                                         </a>
-                                                        <a href="/test/{{ $siswa->id }}/delete"
+                                                        @if (auth()->user()->role == 'admin')
+                                                            <a href="/test/{{ $siswa->id }}/delete"
                                                             class="btn btn-danger btn-xs"
                                                             onclick="return confirm('Yakin mau dihapus?')">Hapus
                                                         </a>
-                                                        @if ($siswa->user_id == null)
+                                                        @endif
+                                                        @if ($siswa->user_id == null && auth()->user()->role == 'admin')
                                                             <a href="/test/{{ $siswa->id }}/aktivasi"
                                                                 class="btn btn-primary btn-xs" data-toggle="modal"
-                                                                data-target="#modal-dialog2{{ $siswa->id }}">Aktivasi
+
+                                                                    data-target="#modal-dialog2{{ $siswa->id }}">Aktivasi
+
                                                             </a>
                                                         @else
                                                             <button type="button"
