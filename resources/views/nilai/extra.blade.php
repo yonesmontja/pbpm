@@ -138,7 +138,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if (auth()->user()->role == 'admin')
+                                        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'tata_usaha')
                                             @foreach ($data_extra as $extra)
                                                 <tr>
                                                     <td><a href="/test/{{ $extra->siswa_id }}/profile">{{ $extra->siswa->nama_depan }}
@@ -223,12 +223,12 @@
                                                     enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     <div class="row">
-                                                        <div class="col-sm-4">
+                                                        <div class="col-sm-3">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlSelect1">KELAS</label>
                                                                 <select name="kelas_id" class="form-control"
                                                                     id="kelas">
-                                                                    @if (auth()->user()->role == 'admin')
+                                                                    @if (auth()->user()->role == 'admin' || auth()->user()->role == 'tata_usaha')
                                                                         <option hidden>Pilih Kelas</option>
                                                                         @foreach ($kelas as $key => $m)
                                                                             <option value="{{ $m->id }}">
@@ -244,14 +244,14 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        @if (auth()->user()->role == 'admin')
-                                                            <div class="col-sm-4">
+                                                        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'tata_usaha')
+                                                            <div class="col-sm-3">
                                                                 <div class="form-group">
                                                                     <label for="exampleFormControlSelect1">ROMBEL</label>
                                                                     <select name="rombel_id" class="form-control"
                                                                         id="rombel">
                                                                         <option hidden>Pilih rombel</option>
-                                                                        @if (auth()->user()->role == 'admin')
+                                                                        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'tata_usaha')
                                                                             @foreach ($rombel as $key => $r)
                                                                                 <option value="{{ $r->id }}">
                                                                                     {{ $r->rombel }}
@@ -263,7 +263,7 @@
                                                             </div>
                                                         @endif
                                                         @if (auth()->user()->role == 'guru')
-                                                            <div class="col-sm-4">
+                                                            <div class="col-sm-3">
                                                                 <div class="form-group">
                                                                     <label for="exampleFormControlSelect1">ROMBEL</label>
                                                                     <select name="rombel_id" class="form-control"
@@ -278,13 +278,27 @@
                                                                 </div>
                                                             </div>
                                                         @endif
-                                                        <div class="col-sm-4">
+                                                        <div class="col-sm-3">
                                                             <div class="form-group">
                                                                 <label for="exampleFormControlSelect1">SISWA</label>
                                                                 <select name="siswa_id" class="form-control"
                                                                     id="siswa">
 
                                                                 </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group">
+                                                                <label for="exampleFormControlSelect1">SEMESTER</label>
+                                                                    <select name="tahunpelajaran_id" class="form-control"
+                                                                        id="tahunpelajaran_id">
+
+                                                                        @if (auth()->user()->role == 'guru' || auth()->user()->role == 'admin' || auth()->user()->role == 'tata_usaha')
+                                                                            <option value="{{ $thn_id }}">
+                                                                               {{ $tahun_pelajaran }} - {{ $semester_aktif }}
+                                                                            </option>
+                                                                        @endif
+                                                                    </select>
                                                             </div>
                                                         </div>
 

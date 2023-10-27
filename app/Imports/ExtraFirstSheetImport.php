@@ -28,7 +28,8 @@ class ExtraFirstSheetImport implements ToModel, WithHeadingRow, WithCalculatedFo
             "pendengaran" => $row["pendengaran"],
             "penglihatan" => $row["penglihatan"],
             "gigi" => $row["gigi"],
-            "rombel_id" => $row["rombel_id"]
+            "rombel_id" => $row["rombel_id"],
+            "tahunpelajaran_id" => $row["tahunpelajaran_id"]
         ]);
     }
 
