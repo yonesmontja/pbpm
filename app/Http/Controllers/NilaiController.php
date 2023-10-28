@@ -64,6 +64,7 @@ class NilaiController extends Controller
     }
     public function isinilai($id)
     {
+
         $tahunpel = Tahunpel::where('aktif', 'Y')->get();
         foreach ($tahunpel as $thn) {
             $semester_aktif = $thn->semester;
@@ -76,9 +77,12 @@ class NilaiController extends Controller
             $thn_id = $thn->id;
         }
         $guru = Guru::find($id);
+        //dd($guru);
         $nama_rombel = Rombel::where('guru_id', '=', $id)->where('tahunpelajaran_id', '=', $thn_id)->pluck('rombel')->first();
         $guru_rombel = Rombel::where('guru_id', '=', $id)->where('tahunpelajaran_id', '=', $thn_id)->pluck('id')->first();
-        $id_guru = $guru_rombel;
+        //dd($guru_rombel);
+        $id_guru = $id;
+        //dd($id_guru);
         $kelas_rombel = Rombel::where('guru_id', '=', $id)->where('tahunpelajaran_id', '=', $thn_id)->pluck('kelas_id')->first();
         $data_nilai = Nilai::with('kompetensiinti', 'mapel', 'guru', 'penilaian', 'rombel', 'kelas', 'siswa')->where('guru_id', '=', $id)->where('tahunpel_id', '=', $thn_id)->get();
         $kompetensiinti = Kompetensiinti::all();
@@ -222,9 +226,16 @@ class NilaiController extends Controller
     }
     public function nilaidelete($id)
     {
-        $nilai = \App\Models\Nilai::find($id);
+        $id_user = auth()->user()->id;
+        $guru = Guru::where('user_id', $id_user)->value('id');
+        $role = auth()->user()->role;
+        $nilai = Nilai::find($id);
         $nilai->delete();
-        return redirect('/nilai')->with('sukses', 'berhasil dihapus!');
+        if ($role == 'admin') {
+            return redirect('/nilai')->with('sukses', 'berhasil dihapus!');
+        } else {
+            return redirect('/isinilai' . '/' . $guru)->with('sukses', 'berhasil dihapus');
+        }
     }
     public function nilaiedit(Nilai $nilai)
     {
