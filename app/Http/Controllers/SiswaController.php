@@ -28,6 +28,7 @@ use App\Models\Kompetensiinti;
 use App\Models\Tahunpelajaran;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Redirect;
@@ -78,37 +79,37 @@ class SiswaController extends Controller
         $id_user = auth()->user()->id;
         $role = auth()->user()->role;
         $kelas = Kelas::all();
-        $thn_id = Tahunpel::where('aktif', 'Y')->value('id');
+        $minutes = 30;
+        $thn_id = Cache::remember('tahun_pelajaran', $minutes, function () {
+            return Tahunpel::where('aktif', 'Y')->value('id');
+        });
+
         $rombel1 = []; // Inisialisasi variabel $rombel1 sebagai array kosong.
+        $cacheKey = 'user_' . $id_user . '_role_' . $role; // Membuat kunci unik berdasarkan user dan role.
 
-        if ($role == 'guru') {
-            $id_guru = Guru::where('user_id', $id_user)->value('id');
-            $rombel2 = Rombel::where('guru_id', $id_guru)->where('tahunpelajaran_id', $thn_id)->value('id');
+        $tampung = Cache::remember($cacheKey, $minutes, function () use ($id_user, $role, $thn_id) {
+            if ($role == 'guru') {
+                $id_guru = Guru::where('user_id', $id_user)->value('id');
+                $rombel2 = Rombel::where('guru_id', $id_guru)->where('tahunpelajaran_id', $thn_id)->value('id');
 
-            $tampung = Siswa::join('rombel_siswa', 'siswa.id', '=', 'rombel_siswa.siswa_id')
-            ->where('rombel_siswa.rombel_id', $rombel2)
+                return Siswa::join('rombel_siswa', 'siswa.id', '=', 'rombel_siswa.siswa_id')
+                ->where('rombel_siswa.rombel_id', $rombel2)
                 ->where('rombel_siswa.tahunpelajaran_id', $thn_id)
                 ->get();
+            } elseif ($role == 'admin' || $role == 'tata_usaha') {
+                $rombel1 = DB::table('rombel_siswa')->where('tahunpelajaran_id', $thn_id)->pluck('siswa_id')->toArray();
 
-            $rombel23 = Rombel::where('guru_id', $id_guru)->where('tahunpelajaran_id', $thn_id)->value('rombel');
-        }
+                return Siswa::whereIn('id', $rombel1)->with('rombel')->get();
+            }
 
-        if ($role == 'admin' || $role == 'tata_usaha') {
-            // Hanya mengisi $rombel1 jika peran adalah 'admin' atau 'tata_usaha'.
-            $rombel1 = DB::table('rombel_siswa')->where('tahunpelajaran_id', $thn_id)->pluck('siswa_id')->toArray();
-
-            // Membaca data siswa yang memiliki rombel dengan menggunakan $rombel1.
-            $tampung = Siswa::whereIn('id', $rombel1)->with('rombel')->get();
-        }
+            return [];
+        });
 
         return view('siswa.test', [
             'kelas' => $kelas,
             'tampung' => $tampung,
             'rombel1' => $rombel1,
             'thn_id' => $thn_id,
-            'rombel23' => $rombel23 ?? null,
-            'guru' => $guru ?? null,
-            'id_guru' => $id_guru ?? null,
         ]);
     }
 
