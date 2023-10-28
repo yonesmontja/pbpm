@@ -76,73 +76,39 @@ class SiswaController extends Controller
     public function test(Siswa $data_siswa)
     {
         $id_user = auth()->user()->id;
-        $id_guru = Guru::where('user_id', '=', $id_user)->pluck('id')->first();
-        $tahunpel = Tahunpel::where('aktif', 'Y')->get();
-        foreach ($tahunpel as $thn) {
-            $thn_id = $thn->id;
-        }
-        if (auth()->user()->role == 'guru') {
-            // mengambil data siswa yang sudah memiliki rombel dan menampilkannya sesuai user()->role == guru
-            // langkah pertama ambil id user yg role == guru dan sedang buka route /test
-            //$id_user = auth()->user()->id;
-            // lalu cari id guru dengan user_id == $id_user
-            // lalu tampilkan data siswa rombel yang memiliki guru_id == $id_guru
-            $rombel2 = Rombel::where('guru_id', '=', $id_guru)->where('tahunpelajaran_id', '=', $thn_id)->pluck('id')->first();
-            $tampung = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel2)->where('tahunpelajaran_id', '=', $thn_id)->join('siswa', 'siswa.id', '=', 'rombel_siswa.siswa_id')->get();
-            $rombel23 = Rombel::where(
-                'guru_id',
-                '=',
-                $id_guru
-            )->where('tahunpelajaran_id', '=', $thn_id)->pluck('rombel')->first();
-            $kelas = Kelas::all();
-            // $rombel = Rombel::all();
-            $rombel1 = DB::table('rombel_siswa')->where('tahunpelajaran_id', '=', $thn_id)->pluck('siswa_id')->toArray();
-            $guru = Guru::where('user_id', '=', auth()->user()->id)->pluck('id')->first();
-        }
-        if (auth()->user()->role == 'admin' || auth()->user()->role == 'tata_usaha') {
-            $kelas = Kelas::all();
-            //$rombel = Rombel::all();
-            $rombel1 = DB::table('rombel_siswa')->where('tahunpelajaran_id', '=', $thn_id)->pluck('siswa_id')->toArray();
-            //dd($rombel1);
-            //--------------------------------------
-            // mengambil data siswa yang sudah memiliki rombel
-            // simpan di variabel $tampung dan $tampung2
-            foreach ($rombel1 as $r => $s) {
-                $tampung[] = Siswa::with('rombel')->where('id', '=', $s)->find($s);
-            }
-            //dd($tampung);
-            // $siswart = DB::table('rombel_siswa')
-            // ->where('tahunpelajaran_id', '=', $thn_id)
-            //     ->join('siswa', 'rombel_siswa.siswa_id', '=', 'siswa.id')
-            //     ->select('siswa.*')
-            //     ->orderBy('nama_depan')
-            //     ->get();
-            // //dd($siswart);
+        $role = auth()->user()->role;
+        $kelas = Kelas::all();
+        $thn_id = Tahunpel::where('aktif', 'Y')->value('id');
+
+        if ($role == 'guru') {
+            $id_guru = Guru::where('user_id', $id_user)->value('id');
+            $rombel2 = Rombel::where('guru_id', $id_guru)->where('tahunpelajaran_id', $thn_id)->value('id');
+
+            $tampung = Siswa::join('rombel_siswa', 'siswa.id', '=', 'rombel_siswa.siswa_id')
+            ->where('rombel_siswa.rombel_id', $rombel2)
+                ->where('rombel_siswa.tahunpelajaran_id', $thn_id)
+                ->get();
+
+            $rombel23 = Rombel::where('guru_id', $id_guru)->where('tahunpelajaran_id', $thn_id)->value('rombel');
         }
 
-        if (auth()->user()->role == 'admin' || auth()->user()->role == 'tata_usaha') {
-            return view('siswa.test', [
-                'kelas' => $kelas,
-                'tampung' => $tampung,
-                //'rombel' => $rombel,
-                'rombel1' => $rombel1,
-                'thn_id' => $thn_id,
-                // 'siswart' => $siswart,
-            ]);
+        if ($role == 'admin' || $role == 'tata_usaha') {
+            $rombel1 = DB::table('rombel_siswa')->where('tahunpelajaran_id', $thn_id)->pluck('siswa_id')->toArray();
+
+            $tampung = Siswa::whereIn('id', $rombel1)->with('rombel')->get();
         }
-        if (auth()->user()->role == 'guru') {
-            return view('siswa.test', [
-                'kelas' => $kelas,
-                'tampung' => $tampung,
-                // 'rombel' => $rombel,
-                'rombel1' => $rombel1,
-                'rombel23' => $rombel23,
-                'guru' => $guru,
-                'id_guru' => $id_guru,
-                'thn_id' => $thn_id,
-            ]);
-        }
+
+        return view('siswa.test', [
+            'kelas' => $kelas,
+            'tampung' => $tampung,
+            'rombel1' => $rombel1,
+            'thn_id' => $thn_id,
+            'rombel23' => $rombel23 ?? null,
+            'guru' => $guru ?? null,
+            'id_guru' => $id_guru ?? null,
+        ]);
     }
+
     public function testcreate(Request $request)
     {
         $this->validate($request, [
