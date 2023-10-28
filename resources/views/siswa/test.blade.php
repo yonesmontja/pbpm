@@ -135,55 +135,70 @@
                                             <th>AGAMA</th>
                                             <th>KELAS</th>
                                             <th>CETAK</th>
-                                            @if (auth()->user()->role == 'admin' || auth()->user()->role == 'guru' || auth() -> user() -> role == 'tata_usaha')
+                                            @if (auth()->user()->role == 'admin' || auth()->user()->role == 'guru' || auth()->user()->role == 'tata_usaha')
                                                 <th>AKSI</th>
                                             @endif
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php
+                                            $siswaWithRombel = [];
+
+                                            foreach ($tampung as $siswa) {
+                                                // Mengelompokkan siswa ke dalam rombel sesuai tahun_pelajaran
+                                                foreach ($siswa->rombel as $r) {
+                                                    if ($r->tahunpelajaran_id == $thn_id) {
+                                                        $siswaWithRombel[] = [
+                                                            'siswa' => $siswa,
+                                                            'rombel' => $r->rombel,
+                                                        ];
+                                                    }
+                                                }
+                                            }
+                                        @endphp
                                         @if (auth()->user()->role == 'admin' || auth()->user()->role == 'tata_usaha')
-                                            @foreach ($tampung as $siswa)
+                                            @foreach ($siswaWithRombel as $data)
                                                 <tr>
                                                     <td><a
-                                                            href="/test/{{ $siswa->id }}/profile">{{ $siswa->nama_depan }}</a>
+                                                            href="/test/{{ $data['siswa']->id }}/profile">{{ $data['siswa']->nama_depan }}</a>
                                                     </td>
                                                     <td><a
-                                                            href="/test/{{ $siswa->id }}/profile">{{ $siswa->nama_belakang }}</a>
+                                                            href="/test/{{ $data['siswa']->id }}/profile">{{ $data['siswa']->nama_belakang }}</a>
                                                     </td>
-                                                    <td>{{ $siswa->nis }}</td>
-                                                    <td>{{ $siswa->jenis_kelamin }}</td>
-                                                    <td>{{ $siswa->agama }}</td>
-                                                    @foreach ($siswa->rombel as $r)
-                                                    @if($r -> tahunpelajaran_id == $thn_id)
-                                                        <td>{{ $r->rombel }}</td>
+                                                    <td>{{ $data['siswa']->nis }}</td>
+                                                    <td>{{ $data['siswa']->jenis_kelamin }}</td>
+                                                    <td>{{ $data['siswa']->agama }}</td>
+                                                    <td>{{ $data['rombel'] }}</td>
+                                                    {{-- @foreach ($siswa->rombel as $r)
+                                                        @if ($r->tahunpelajaran_id == $thn_id)
+                                                            <td>{{ $r->rombel }}</td>
                                                         @endif
-                                                    @endforeach
+                                                    @endforeach --}}
                                                     <td>
-                                                        <a href="/siswa/{{ $siswa->id }}/cover_pdf"
+                                                        <a href="/siswa/{{ $data['siswa']->id }}/cover_pdf"
                                                             class="btn btn-primary btn-xs">Cover
                                                         </a>
-                                                        <a href="/siswa/{{ $siswa->id }}/biodata_pdf"
+                                                        <a href="/siswa/{{ $data['siswa']->id }}/biodata_pdf"
                                                             class="btn btn-primary btn-xs">Bio
                                                         </a>
-                                                        <a href="/siswa/{{ $siswa->id }}/export_pdf"
+                                                        <a href="/siswa/{{ $data['siswa']->id }}/export_pdf"
                                                             class="btn btn-primary btn-xs">Raport
                                                         </a>
                                                     </td>
                                                     <td>
-                                                        <a href="/test/{{ $siswa->id }}/edit"
+                                                        <a href="/test/{{ $data['siswa']->id }}/edit"
                                                             class="btn btn-warning btn-xs">Ubah
                                                         </a>
                                                         @if (auth()->user()->role == 'admin')
-                                                            <a href="/test/{{ $siswa->id }}/delete"
-                                                            class="btn btn-danger btn-xs"
-                                                            onclick="return confirm('Yakin mau dihapus?')">Hapus
-                                                        </a>
+                                                            <a href="/test/{{ $data['siswa']->id }}/delete"
+                                                                class="btn btn-danger btn-xs"
+                                                                onclick="return confirm('Yakin mau dihapus?')">Hapus
+                                                            </a>
                                                         @endif
-                                                        @if ($siswa->user_id == null && auth()->user()->role == 'admin')
-                                                            <a href="/test/{{ $siswa->id }}/aktivasi"
+                                                        @if ($data['siswa']->user_id == null && auth()->user()->role == 'admin')
+                                                            <a href="/test/{{ $data['siswa']->id }}/aktivasi"
                                                                 class="btn btn-primary btn-xs" data-toggle="modal"
-
-                                                                    data-target="#modal-dialog2{{ $siswa->id }}">Aktivasi
+                                                                data-target="#modal-dialog2{{ $data['siswa']->id }}">Aktivasi
 
                                                             </a>
                                                         @else
@@ -193,7 +208,7 @@
                                                     </td>
                                                 </tr>
                                                 <!-- Modal aktivasi -->
-                                                <div class="modal fade" id="modalAktivasi{{ $siswa->id }}"
+                                                <div class="modal fade" id="modalAktivasi{{ $data['siswa']->id }}"
                                                     tabindex="-1" aria-labelledby="modalAktivasi" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
@@ -201,11 +216,11 @@
                                                                 <h4 class="text-center">Apakah anda yakin aktivasi user
                                                                     atas
                                                                     nama siswa ini? :
-                                                                    <span>{{ $siswa->nama_depan }}</span>
+                                                                    <span>{{ $data['siswa']->nama_depan }}</span>
                                                                 </h4>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <form action="/test/{{ $siswa->id }}/aktivasi"
+                                                                <form action="/test/{{ $data['siswa']->id }}/aktivasi"
                                                                     method="post">
                                                                     @csrf
                                                                     @method('post')
@@ -218,7 +233,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="modal fade" id="modal-dialog2{{ $siswa->id }}">
+                                                <div class="modal fade" id="modal-dialog2{{ $data['siswa']->id }}">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content bg-danger">
                                                             <div class="modal-header">
@@ -230,13 +245,13 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <p>Anda yakin mengaktifkan user atas nama siswa: </p>
-                                                                <p>{{ $siswa->nama_depan }}
-                                                                    {{ $siswa->nama_belakang }} &hellip;?</p>
+                                                                <p>{{ $data['siswa']->nama_depan }}
+                                                                    {{ $data['siswa']->nama_belakang }} &hellip;?</p>
 
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default">
-                                                                    <a href="/test/{{ $siswa->id }}/aktivasi">Aktivasi
+                                                                    <a href="/test/{{ $data['siswa']->id }}/aktivasi">Aktivasi
                                                                     </a>
                                                                 </button>
                                                                 <button type="button" class="btn btn-default"
@@ -288,8 +303,8 @@
                                                             onclick="return confirm('Yakin mau dihapus?')">Hapus
                                                         </a>
                                                         @if ($siswa->user_id == null)
-                                                            <a href="#"
-                                                                class="btn btn-primary btn-xs" data-toggle="modal"
+                                                            <a href="#" class="btn btn-primary btn-xs"
+                                                                data-toggle="modal"
                                                                 data-target="#modal-dialog2{{ $siswa->id }}">Aktivasi
                                                             </a>
                                                         @else
@@ -368,7 +383,7 @@
                                             <th>AGAMA</th>
                                             <th>KELAS</th>
                                             <th>CETAK</th>
-                                            @if (auth()->user()->role == 'admin' || auth()->user()->role == 'guru' || auth() -> user() -> role == 'tata_usaha')
+                                            @if (auth()->user()->role == 'admin' || auth()->user()->role == 'guru' || auth()->user()->role == 'tata_usaha')
                                                 <th>AKSI</th>
                                             @endif
                                         </tr>
