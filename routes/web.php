@@ -77,6 +77,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/dashboard_siswa', [DashboardController::class, 'dashboard_siswa'])->name('dashboard_siswa');
 Route::get('/dashboard_guru', [DashboardController::class, 'dashboard_guru'])->name('dashboard_guru');
+Route::get('/dashboard_tu', [DashboardController::class, 'dashboard_tu'])->name('dashboard_tu');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/postlogin', [AuthController::class, 'postlogin'])->name('postlogin');
 Route::get('/logout', [AuthController::class, 'logout']);

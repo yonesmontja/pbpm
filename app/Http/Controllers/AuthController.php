@@ -41,7 +41,7 @@ class AuthController extends Controller
             // dd(Auth::attempt([
             //     'email' => $email, 'password' => $password, 'role' => $role_tu
             // ]));
-            return redirect('/dashboard');
+            return redirect('/dashboard_tu');
         }
         //dd('yes');
         if (Auth::attempt(['email' => $email, 'password' => $password, 'role' => $role_guru])) {
