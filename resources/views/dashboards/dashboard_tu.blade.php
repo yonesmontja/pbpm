@@ -23,6 +23,9 @@
                             @elseif(auth()->user()->role == 'guru')
                                 <li class="breadcrumb-item"><a href="/dashboard_guru">Home</a></li>
                                 <li class="breadcrumb-item active">CAPAIAN SISWA</li>
+                            @elseif(auth()->user()->role == 'tata_usaha')
+                                <li class="breadcrumb-item"><a href="/dashboard_tu">Home</a></li>
+                                <li class="breadcrumb-item active">CAPAIAN SISWA</li>
                             @else
                                 <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
                                 <li class="breadcrumb-item active">CAPAIAN SISWA</li>
@@ -67,7 +70,7 @@
                                 <a href="/test" class="small-box-footer">Info lebih lanjut <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             @else
-                                <a href="/dashboard_guru" class="small-box-footer">Info lebih lanjut <i
+                                <a href="/dashboard_tu" class="small-box-footer">Info lebih lanjut <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             @endif
                         </div>
@@ -95,7 +98,7 @@
                                 <a href="/test" class="small-box-footer">Info lebih lanjut <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             @else
-                                <a href="/dashboard_guru" class="small-box-footer">Info lebih lanjut <i
+                                <a href="/dashboard_tu" class="small-box-footer">Info lebih lanjut <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             @endif
                         </div>
@@ -124,7 +127,7 @@
                                 <a href="/test" class="small-box-footer">Info lebih lanjut <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             @else
-                                <a href="/dashboard_guru" class="small-box-footer">Info lebih lanjut <i
+                                <a href="/dashboard_tu" class="small-box-footer">Info lebih lanjut <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             @endif
                         </div>
@@ -152,7 +155,7 @@
                                 <a href="/test" class="small-box-footer">Info lebih lanjut <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             @else
-                                <a href="/dashboard_guru" class="small-box-footer">Info lebih lanjut <i
+                                <a href="/dashboard_tu" class="small-box-footer">Info lebih lanjut <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             @endif
                         </div>
@@ -189,7 +192,7 @@
                                 <a href="/test" class="small-box-footer">Info lebih lanjut <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             @else
-                                <a href="/dashboard_guru" class="small-box-footer">Info lebih lanjut <i
+                                <a href="/dashboard_tu" class="small-box-footer">Info lebih lanjut <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             @endif
                         </div>
@@ -217,7 +220,7 @@
                                 <a href="/test" class="small-box-footer">Info lebih lanjut <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             @else
-                                <a href="/dashboard_guru" class="small-box-footer">Info lebih lanjut <i
+                                <a href="/dashboard_tu" class="small-box-footer">Info lebih lanjut <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             @endif
                         </div>
@@ -246,7 +249,7 @@
                                 <a href="/test" class="small-box-footer">Info lebih lanjut <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             @else
-                                <a href="/dashboard_guru" class="small-box-footer">Info lebih lanjut <i
+                                <a href="/dashboard_tu" class="small-box-footer">Info lebih lanjut <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             @endif
                         </div>
@@ -274,7 +277,7 @@
                                 <a href="/test" class="small-box-footer">Info lebih lanjut <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             @else
-                                <a href="/dashboard_guru" class="small-box-footer">Info lebih lanjut <i
+                                <a href="/dashboard_tu" class="small-box-footer">Info lebih lanjut <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             @endif
                         </div>

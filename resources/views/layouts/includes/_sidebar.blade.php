@@ -12,6 +12,12 @@
                   class="brand-image img-circle elevation-3" style="opacity: .8">
               <span class="brand-text font-weight-light">SDI Dabolding</span>
           </a>
+          @elseif (auth()->user()->role == 'tata_usaha')
+          <a href="/dashboard_tu" class="brand-link">
+              <img src="{{ asset('/admin/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
+                  class="brand-image img-circle elevation-3" style="opacity: .8">
+              <span class="brand-text font-weight-light">SDI Dabolding</span>
+          </a>
       @else
           <a href="/dashboard" class="brand-link">
               <img src="{{ asset('/admin/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
@@ -48,6 +54,14 @@
                           </a>
                       @elseif(auth()->user()->role == 'guru')
                           <a href="/dashboard_guru" class="nav-link active">
+                              <i class="nav-icon fas fa-tachometer-alt"></i>
+                              <p>
+                                  DASHBOARD
+                                  <i class="right fas fa-angle-left"></i>
+                              </p>
+                          </a>
+                          @elseif(auth()->user()->role == 'tata_usaha')
+                          <a href="/dashboard_tu" class="nav-link active">
                               <i class="nav-icon fas fa-tachometer-alt"></i>
                               <p>
                                   DASHBOARD
