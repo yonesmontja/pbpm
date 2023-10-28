@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Guru;
-use App\Models\User;
 
+use App\Models\User;
 use App\Models\Nilai;
 use App\Models\Siswa;
 use App\Models\Rombel;
 use App\Models\Journal;
 use App\Models\Kategori;
+use App\Models\Tahunpel;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -74,19 +76,31 @@ class UserController extends Controller
 
     public function contacts()
     {
-        $siswa = Siswa::all();
-        $rombel = Rombel::all();
+
+        $tahunpel = Tahunpel::where('aktif', 'Y')->get();
+        foreach ($tahunpel as $thn) {
+            $semester_aktif = $thn->semester;
+            $kepsek_aktif = $thn->nama_kepsek;
+            $nip_kepsek = $thn->kode_kepsek;
+            $tanggal_raport = Carbon::parse($thn->tgl_raport)->isoFormat('D MMMM Y');
+            $tanggal_raport_kls6 = $thn->tgl_raport_kelas3;
+            $tahun_pelajaran = $thn->thn_pel;
+            $tahun_aktif = $thn->tahun;
+            $thn_id = $thn->id;
+        }
+        //$siswa = Siswa::all();
+        $rombel = Rombel::where('tahunpelajaran_id', '=', $thn_id)->get();
         //$rombel1 = DB::table('rombel_siswa')->pluck('siswa_id')->toArray();
-        $siswa_rombel = DB::table('rombel_siswa')->paginate(10)->pluck('siswa_id')->toArray();
-        $data = DB::table('rombel_siswa')->paginate(10);
+        $siswa_rombel = DB::table('rombel_siswa')->where('tahunpelajaran_id', '=', $thn_id)->paginate(10)->pluck('siswa_id')->toArray();
+        $data = DB::table('rombel_siswa')->where('tahunpelajaran_id', '=', $thn_id)->paginate(10);
         foreach ($siswa_rombel as $n => $m) {
-            $rombel_siswa[] = $siswa->find($m);
+            $rombel_siswa[] = Siswa::with('rombel')->where('id', '=', $m)->find($m);
         }
         //dd($rombel_siswa);
         return view(
             'profile.contacts',
             [
-                'siswa' => $siswa,
+                //'siswa' => $siswa,
                 'rombel' => $rombel,
                 'siswa_rombel' => $siswa_rombel,
                 'rombel_siswa' => $rombel_siswa,

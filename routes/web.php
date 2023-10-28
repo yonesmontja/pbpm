@@ -98,7 +98,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
     Route::post('/testimony/testimonycreate', [TestimonyController::class, 'testimonycreate']);
 
     //Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('posting', PostingController::class);
+
     Route::resource('usertest', UsertestController::class);
 
     Route::get('/siswa', [SiswaController::class, 'index']);
@@ -185,7 +185,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
     Route::get('/user/{id}/profile', [UserController::class, 'userprofile']);
     Route::get('/my_profile/{id}/myprofile', [UserController::class, 'my_profile']);
     Route::post('/user/create', [UserController::class, 'create']);
-    Route::get('/contacts', [UserController::class, 'contacts']);
+
     Route::get('/user/{user}/edit', [UserController::class, 'useredit']);
     Route::post('/user/{user}/update', [UserController::class, 'userupdate']);
     Route::get('/user/{user}/delete', [UserController::class, 'userdelete']);
@@ -290,10 +290,10 @@ Route::group(['middleware' => ['auth', 'checkRole:admin,tata_usaha']], function 
     Route::get('/sekolah/{sekolah}/sekolahdelete', [SekolahController::class, 'sekolahdelete']);
     Route::get('/sekolah/{sekolah}/profile', [SekolahController::class, 'profile']);
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('cache.headers:private;max_age=3600');
-
+    Route::get('/contacts', [UserController::class, 'contacts']);
     Route::resource('tahunpel', TahunpelController::class);
     Route::resource('mapel', MapelController::class);
-
+    Route::resource('posting', PostingController::class);
     Route::get('/guru', [GuruController::class, 'index']);
     Route::post('/guru/gurucreate', [GuruController::class, 'gurucreate']);
     Route::get('/guru/{guru}/guruedit', [GuruController::class, 'guruedit']);
