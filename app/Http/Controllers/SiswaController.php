@@ -99,7 +99,11 @@ class SiswaController extends Controller
             } elseif ($role == 'admin' || $role == 'tata_usaha') {
                 $rombel1 = DB::table('rombel_siswa')->where('tahunpelajaran_id', $thn_id)->pluck('siswa_id')->toArray();
 
-                return Siswa::whereIn('id', $rombel1)->with('rombel')->get();
+                return Siswa::whereIn('id', $rombel1)
+                ->whereHas('rombel', function ($query) use ($thn_id) {
+                    $query->where('rombel_siswa.tahunpelajaran_id', $thn_id);
+                })
+                ->get();
             }
 
             return [];
