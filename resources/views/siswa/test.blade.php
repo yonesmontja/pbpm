@@ -155,6 +155,7 @@
                                                     }
                                                 }
                                             }
+                                            //dd($siswaWithRombel);
                                         @endphp
                                         @if (auth()->user()->role == 'admin' || auth()->user()->role == 'tata_usaha')
                                             @foreach ($siswaWithRombel as $data)
@@ -268,44 +269,44 @@
                                             @endforeach
                                         @endif
                                         @if (auth()->user()->role == 'guru')
-                                            @foreach ($tampung as $siswa)
+                                            @foreach ($tampung as $data)
                                                 <tr>
                                                     <td><a
-                                                            href="/test/{{ $siswa->id }}/profile">{{ $siswa->nama_depan }}</a>
+                                                            href="/test/{{ $data->id }}/profile">{{ $data->nama_depan }}</a>
                                                     </td>
                                                     <td><a
-                                                            href="/test/{{ $siswa->id }}/profile">{{ $siswa->nama_belakang }}</a>
+                                                            href="/test/{{ $data->id }}/profile">{{ $data->nama_belakang }}</a>
                                                     </td>
-                                                    <td>{{ $siswa->nis }}</td>
-                                                    <td>{{ $siswa->jenis_kelamin }}</td>
-                                                    <td>{{ $siswa->agama }}</td>
-                                                    {{-- @foreach ($siswa->rombel as $r)
+                                                    <td>{{ $data->nis }}</td>
+                                                    <td>{{ $data->jenis_kelamin }}</td>
+                                                    <td>{{ $data->agama }}</td>
+                                                    {{-- @foreach ($data->rombel as $r)
                                                         <td>{{ $r->rombel }}</td>
                                                     @endforeach --}}
-                                                    <td>{{ $rombel23 }}</td>
+                                                    <td>{{ $rombel3 }}</td>
                                                     <td>
-                                                        <a href="/siswa/{{ $siswa->id }}/cover_pdf"
+                                                        <a href="/siswa/{{ $data->id }}/cover_pdf"
                                                             class="btn btn-primary btn-xs">Cover
                                                         </a>
-                                                        <a href="/siswa/{{ $siswa->id }}/biodata_pdf"
+                                                        <a href="/siswa/{{ $data->id }}/biodata_pdf"
                                                             class="btn btn-primary btn-xs">Bio
                                                         </a>
-                                                        <a href="/siswa/{{ $siswa->id }}/export_pdf"
+                                                        <a href="/siswa/{{ $data->id }}/export_pdf"
                                                             class="btn btn-primary btn-xs">Raport
                                                         </a>
                                                     </td>
                                                     <td>
-                                                        <a href="/test/{{ $siswa->id }}/edit"
+                                                        <a href="/test/{{ $data->id }}/edit"
                                                             class="btn btn-warning btn-xs">Ubah
                                                         </a>
-                                                        <a href="/test/{{ $siswa->id }}/delete"
+                                                        {{-- <a href="/test/{{ $data->id }}/delete"
                                                             class="btn btn-danger btn-xs"
                                                             onclick="return confirm('Yakin mau dihapus?')">Hapus
-                                                        </a>
-                                                        @if ($siswa->user_id == null)
+                                                        </a> --}}
+                                                        @if ($data->user_id == null)
                                                             <a href="#" class="btn btn-primary btn-xs"
                                                                 data-toggle="modal"
-                                                                data-target="#modal-dialog2{{ $siswa->id }}">Aktivasi
+                                                                data-target="#modal-dialog2{{ $data->id }}">Aktivasi
                                                             </a>
                                                         @else
                                                             <button type="button"
@@ -314,7 +315,7 @@
                                                     </td>
                                                 </tr>
                                                 <!-- Modal aktivasi -->
-                                                <div class="modal fade" id="modalAktivasi{{ $siswa->id }}"
+                                                <div class="modal fade" id="modalAktivasi{{ $data->id }}"
                                                     tabindex="-1" aria-labelledby="modalAktivasi" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
@@ -322,11 +323,11 @@
                                                                 <h4 class="text-center">Apakah anda yakin aktivasi user
                                                                     atas
                                                                     nama siswa ini? :
-                                                                    <span>{{ $siswa->nama_depan }}</span>
+                                                                    <span>{{ $data->nama_depan }}</span>
                                                                 </h4>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <form action="/test/{{ $siswa->id }}/aktivasi"
+                                                                <form action="/test/{{ $data->id }}/aktivasi"
                                                                     method="post">
                                                                     @csrf
                                                                     @method('post')
@@ -339,7 +340,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="modal fade" id="modal-dialog2{{ $siswa->id }}">
+                                                <div class="modal fade" id="modal-dialog2{{ $data->id }}">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content bg-danger">
                                                             <div class="modal-header">
@@ -351,13 +352,13 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <p>Anda yakin mengaktifkan user atas nama siswa: </p>
-                                                                <p>{{ $siswa->nama_depan }}
-                                                                    {{ $siswa->nama_belakang }} &hellip;?</p>
+                                                                <p>{{ $data->nama_depan }}
+                                                                    {{ $data->nama_belakang }} &hellip;?</p>
 
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default">
-                                                                    <a href="/test/{{ $siswa->id }}/aktivasi">Aktivasi
+                                                                    <a href="/test/{{ $data->id }}/aktivasi">Aktivasi
                                                                     </a>
                                                                 </button>
                                                                 <button type="button" class="btn btn-default"

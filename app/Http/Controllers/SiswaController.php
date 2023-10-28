@@ -83,14 +83,14 @@ class SiswaController extends Controller
         $thn_id = Cache::remember('tahun_pelajaran', $minutes, function () {
             return Tahunpel::where('aktif', 'Y')->value('id');
         });
-
+        $guru = Guru::where('user_id', $id_user)->value('id');
         $rombel1 = []; // Inisialisasi variabel $rombel1 sebagai array kosong.
         $cacheKey = 'user_' . $id_user . '_role_' . $role; // Membuat kunci unik berdasarkan user dan role.
-
+        $rombel3 = Rombel::where('guru_id', $guru)->where('tahunpelajaran_id', $thn_id)->value('rombel');
         $tampung = Cache::remember($cacheKey, $minutes, function () use ($id_user, $role, $thn_id) {
             if ($role == 'guru') {
-                $id_guru = Guru::where('user_id', $id_user)->value('id');
-                $rombel2 = Rombel::where('guru_id', $id_guru)->where('tahunpelajaran_id', $thn_id)->value('id');
+                $guru = Guru::where('user_id', $id_user)->value('id');
+                $rombel2 = Rombel::where('guru_id', $guru)->where('tahunpelajaran_id', $thn_id)->value('id');
 
                 return Siswa::join('rombel_siswa', 'siswa.id', '=', 'rombel_siswa.siswa_id')
                 ->where('rombel_siswa.rombel_id', $rombel2)
@@ -104,12 +104,14 @@ class SiswaController extends Controller
 
             return [];
         });
-        //dd($tampung);
+        //dd($rombel3);
         return view('siswa.test', [
             'kelas' => $kelas,
             'tampung' => $tampung,
             'rombel1' => $rombel1,
             'thn_id' => $thn_id,
+            'guru' => $guru,
+            'rombel3' => $rombel3,
         ]);
     }
 
