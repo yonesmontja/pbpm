@@ -78,15 +78,15 @@ function totalOAP()
 }
 function thnPel()
 {
-    $tahunPelajaranAktif = Tahunpel::where('aktif', 'Y')->first();
+    return Cache::remember('tahun_pelajaran_aktif', now()->addHours(1), function () {
+        $tahunPelajaranAktif = Tahunpel::where('aktif', 'Y')->first();
 
-    if (!empty($tahunPelajaranAktif->thn_pel)) {
-        $tp = $tahunPelajaranAktif->thn_pel;
-    } else {
-        $tp = Carbon::now()->year;
-    }
-
-    return $tp;
+        if (!empty($tahunPelajaranAktif->thn_pel)) {
+            return $tahunPelajaranAktif->thn_pel;
+        } else {
+            return Carbon::now()->year;
+        }
+    });
 }
 
 function totalAgats()

@@ -79,6 +79,7 @@ class SiswaController extends Controller
         $role = auth()->user()->role;
         $kelas = Kelas::all();
         $thn_id = Tahunpel::where('aktif', 'Y')->value('id');
+        $rombel1 = []; // Inisialisasi variabel $rombel1 sebagai array kosong.
 
         if ($role == 'guru') {
             $id_guru = Guru::where('user_id', $id_user)->value('id');
@@ -93,8 +94,10 @@ class SiswaController extends Controller
         }
 
         if ($role == 'admin' || $role == 'tata_usaha') {
+            // Hanya mengisi $rombel1 jika peran adalah 'admin' atau 'tata_usaha'.
             $rombel1 = DB::table('rombel_siswa')->where('tahunpelajaran_id', $thn_id)->pluck('siswa_id')->toArray();
 
+            // Membaca data siswa yang memiliki rombel dengan menggunakan $rombel1.
             $tampung = Siswa::whereIn('id', $rombel1)->with('rombel')->get();
         }
 
@@ -108,6 +111,7 @@ class SiswaController extends Controller
             'id_guru' => $id_guru ?? null,
         ]);
     }
+
 
     public function testcreate(Request $request)
     {
