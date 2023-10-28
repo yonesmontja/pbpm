@@ -147,13 +147,14 @@
                                             foreach ($tampung as $siswa) {
                                                 // Mengelompokkan siswa ke dalam rombel sesuai tahun_pelajaran
                                                 foreach ($siswa->rombel as $r) {
-                                                    $siswaWithRombel[] = [
-                                                        'siswa' => $siswa,
-                                                        'rombel' => $r->rombel,
-                                                    ];
+                                                    if ($r->tahunpelajaran_id == $thn_id) {
+                                                        $siswaWithRombel[] = [
+                                                            'siswa' => $siswa,
+                                                            'rombel' => $r->rombel,
+                                                        ];
+                                                    }
                                                 }
                                             }
-                                            //dd($siswaWithRombel);
                                         @endphp
                                         @if (auth()->user()->role == 'admin' || auth()->user()->role == 'tata_usaha')
                                             @foreach ($siswaWithRombel as $data)
