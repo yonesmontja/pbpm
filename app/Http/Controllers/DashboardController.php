@@ -33,8 +33,9 @@ class DashboardController extends Controller
             $tahun_aktif = $thn->tahun;
             $thn_id = $thn->id;
         }
-        $nilai = Nilai::where('tahunpel_id', '=', $thn_id);
+        $nilai = Nilai::where('tahunpel_id', '=', $thn_id)->get();
         $id = Auth::id();
+        dd($id);
         $user = User::find($id);
 
         $guru = Guru::where('user_id', '=', $id)->pluck('id')->first();
