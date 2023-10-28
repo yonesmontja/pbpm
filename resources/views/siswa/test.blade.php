@@ -135,7 +135,7 @@
                                             <th>AGAMA</th>
                                             <th>KELAS</th>
                                             <th>CETAK</th>
-                                            @if (auth()->user()->role == 'admin' || auth()->user()->role == 'guru')
+                                            @if (auth()->user()->role == 'admin' || auth()->user()->role == 'guru' || auth() -> user() -> role == 'tata_usaha')
                                                 <th>AKSI</th>
                                             @endif
                                         </tr>
@@ -450,9 +450,9 @@
                                                         <div class="col-sm-4">
                                                             <div
                                                                 class="form-group {{ $errors->has('kelas_id') ? ' has-error' : '' }}">
-                                                                <label for="exampleFormControlSelect1">KELAS</label>
+                                                                <label for="exampleFormControlSelect22">KELAS</label>
                                                                 <select name="kelas_id" class="form-control"
-                                                                    id="exampleFormControlSelect2">
+                                                                    id="exampleFormControlSelect22">
                                                                     <option>---</option>
                                                                     @foreach ($kelas as $key => $m)
                                                                         <option value="{{ $m->id }}">
@@ -469,10 +469,10 @@
                                                         <div class="col-sm-4">
                                                             <div
                                                                 class="form-group {{ $errors->has('jenis_kelamin') ? ' has-error' : '' }}">
-                                                                <label for="exampleFormControlSelect1">Jenis
+                                                                <label for="exampleFormControlSelect12">Jenis
                                                                     Kelamin</label>
                                                                 <select name="jenis_kelamin" class="form-control"
-                                                                    id="exampleFormControlSelect1">
+                                                                    id="exampleFormControlSelect12">
                                                                     <option>---</option>
                                                                     <option value="Laki-laki"
                                                                         {{ old('jenis_kelamin') == 'L' ? ' selected' : '' }}>
@@ -490,9 +490,9 @@
                                                         <div class="col-sm-4">
                                                             <div
                                                                 class="form-group {{ $errors->has('agama') ? ' has-error' : '' }}">
-                                                                <label for="exampleFormControlSelect1">Agama</label>
+                                                                <label for="exampleFormControlSelect13">Agama</label>
                                                                 <select name="agama" class="form-control"
-                                                                    id="exampleFormControlSelect2">
+                                                                    id="exampleFormControlSelect13">
                                                                     <option>---</option>
                                                                     <option>Islam</option>
                                                                     <option>Kristen Protestan</option>

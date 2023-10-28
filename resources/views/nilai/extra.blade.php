@@ -306,9 +306,9 @@
                                                     <div class="row">
                                                         <div class="col-sm-4">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">PENDENGARAN</label>
+                                                                <label for="exampleFormControlSelect11">PENDENGARAN</label>
                                                                 <select name="pendengaran" class="form-control"
-                                                                    id="exampleFormControlSelect2">
+                                                                    id="exampleFormControlSelect21">
                                                                     <option>---</option>
                                                                     <option value="Baik">Baik</option>
                                                                     <option value="Baik">Cukup</option>
@@ -318,9 +318,9 @@
                                                         </div>
                                                         <div class="col-sm-4">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">PENGLIHATAN</label>
+                                                                <label for="exampleFormControlSelect12">PENGLIHATAN</label>
                                                                 <select name="penglihatan" class="form-control"
-                                                                    id="exampleFormControlSelect2">
+                                                                    id="exampleFormControlSelect22">
                                                                     <option>---</option>
                                                                     <option value="Baik">Baik</option>
                                                                     <option value="Baik">Cukup</option>

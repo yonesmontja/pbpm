@@ -271,7 +271,7 @@ class SiswaController extends Controller
             'created_at' => $date,
             'updated_at' => $date
         ]);
-        if (auth()->user()->role == 'admin') {
+        if (auth()->user()->role == 'admin' || auth()->user()->role == 'tata_usaha') {
             return redirect('/test')->with('sukses', 'berhasil diupdate!');
         }
         if (auth()->user()->role == 'guru') {
