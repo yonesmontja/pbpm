@@ -96,7 +96,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
     Route::get('/testimony', [TestimonyController::class, 'testimony']);
     Route::post('/testimony/testimonycreate', [TestimonyController::class, 'testimonycreate']);
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    //Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('posting', PostingController::class);
     Route::resource('usertest', UsertestController::class);
 
@@ -385,7 +385,7 @@ Route::group(['middleware' => ['auth', 'checkRole:guru,tata_usaha,admin']], func
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:admin,siswa,guru,tata_usaha']], function () {
-    Route::get('/dashboard', [DashboardController::class, 'index']);
+    //Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/user/{id}/profile', [UserController::class, 'userprofile']);
     Route::get('/my_profile/{id}/myprofile', [UserController::class, 'my_profile']);
     Route::get('/user/{user}/edit', [UserController::class, 'useredit']);
