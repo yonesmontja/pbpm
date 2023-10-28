@@ -100,8 +100,6 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
     Route::resource('posting', PostingController::class);
     Route::resource('usertest', UsertestController::class);
 
-
-
     Route::get('/siswa', [SiswaController::class, 'index']);
     Route::post('/siswa/create', [SiswaController::class, 'create']);
     Route::get('/siswa/{siswa}/edit', [SiswaController::class, 'edit']);
