@@ -101,7 +101,7 @@ class SiswaController extends Controller
         }
         if (auth()->user()->role == 'admin' || auth()->user()->role == 'tata_usaha') {
             $kelas = Kelas::all();
-            $rombel = Rombel::all();
+            //$rombel = Rombel::all();
             $rombel1 = DB::table('rombel_siswa')->where('tahunpelajaran_id', '=', $thn_id)->pluck('siswa_id')->toArray();
             //dd($rombel1);
             //--------------------------------------
@@ -124,7 +124,7 @@ class SiswaController extends Controller
             return view('siswa.test', [
                 'kelas' => $kelas,
                 'tampung' => $tampung,
-                'rombel' => $rombel,
+                //'rombel' => $rombel,
                 'rombel1' => $rombel1,
                 'thn_id' => $thn_id,
                 // 'siswart' => $siswart,
