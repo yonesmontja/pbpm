@@ -293,7 +293,7 @@ class SiswaController extends Controller
         $siswa1 = Siswa::where('id', '=', $id);
         // $matapelajaran = Mapel::all();
         $penilaian = Penilaian::all();
-        $tahunpel = Tahunpel::all();
+
         $tahunpel = Tahunpel::where('aktif', 'Y')->get();
         foreach ($tahunpel as $thn) {
             $semester_aktif = $thn->semester;
@@ -305,7 +305,7 @@ class SiswaController extends Controller
             $tahun_aktif = $thn->tahun;
             $thn_id = $thn->id;
         }
-        $rombel_awal = DB::table('rombel_siswa')->where('siswa_id', $id)->get();
+        $rombel_awal = DB::table('rombel_siswa')->where('siswa_id', $id)->where('tahunpelajaran_id', '=', $thn_id)->get();
         //dd($rombel_awal);
         foreach ($rombel_awal as $rombels) {
             //dd($rombels->tahunpelajaran_id == $thn_id);
@@ -317,8 +317,12 @@ class SiswaController extends Controller
             $rombel_id = $rombels->rombel_id;
         }
         //dd($rombel_id);
-        $nilai = Nilai::where('siswa_id', '=', $id)->get();
-        $data_nilai = Nilai::where('siswa_id', '=', $id)->get();
+        $nilai = Nilai::where(
+            'siswa_id',
+            '=',
+            $id
+        )->where('tahunpel_id', '=', $thn_id)->get();
+        $data_nilai = Nilai::where('siswa_id', '=', $id)->where('tahunpel_id', '=', $thn_id)->get();
         $kompetensiinti = Kompetensiinti::all();
         $mapel = Mapel::all();
         $guru = Guru::all();
@@ -381,19 +385,19 @@ class SiswaController extends Controller
         $nilai_end = Tahunpel::all()->where('id', '=', 1)->pluck('tahun');
         $id1 = Nilai::where('siswa_id', $id)->pluck('siswa_id')->first();
         //dd($id1);
-        $mapel1 = Nilai::where('siswa_id', $id)->pluck('mapel_id')->count();
+        $mapel1 = Nilai::where('siswa_id', $id)->pluck('mapel_id')->where('tahunpel_id', '=', $thn_id)->count();
 
         //dd($mapel3);
-        $islam_average = Nilai::where('siswa_id', $id)->where('mapel_id', 1)->pluck('nilai')->avg();
-        $protestan_average = Nilai::where('siswa_id', $id)->where('mapel_id', 2)->pluck('nilai')->avg();
-        $katolik_average = Nilai::where('siswa_id', $id)->where('mapel_id', 3)->pluck('nilai')->avg();
-        $ppkn_average = Nilai::where('siswa_id', $id)->where('mapel_id', 4)->pluck('nilai')->avg();
-        $indonesia_average = Nilai::where('siswa_id', $id)->where('mapel_id', 5)->pluck('nilai')->avg();
-        $matematika_average = Nilai::where('siswa_id', $id)->where('mapel_id', 6)->pluck('nilai')->avg();
-        $ipa_average = Nilai::where('siswa_id', $id)->where('mapel_id', 7)->pluck('nilai')->avg();
-        $ips_average = Nilai::where('siswa_id', $id)->where('mapel_id', 8)->pluck('nilai')->avg();
-        $pjok_average = Nilai::where('siswa_id', $id)->where('mapel_id', 9)->pluck('nilai')->avg();
-        $sbk_average = Nilai::where('siswa_id', $id)->where('mapel_id', 10)->pluck('nilai')->avg();
+        $islam_average = Nilai::where('siswa_id', $id)->where('mapel_id', 1)->where('tahunpel_id', '=', $thn_id)->pluck('nilai')->avg();
+        $protestan_average = Nilai::where('siswa_id', $id)->where('mapel_id', 2)->where('tahunpel_id', '=', $thn_id)->pluck('nilai')->avg();
+        $katolik_average = Nilai::where('siswa_id', $id)->where('mapel_id', 3)->where('tahunpel_id', '=', $thn_id)->pluck('nilai')->avg();
+        $ppkn_average = Nilai::where('siswa_id', $id)->where('mapel_id', 4)->where('tahunpel_id', '=', $thn_id)->pluck('nilai')->avg();
+        $indonesia_average = Nilai::where('siswa_id', $id)->where('mapel_id', 5)->where('tahunpel_id', '=', $thn_id)->pluck('nilai')->avg();
+        $matematika_average = Nilai::where('siswa_id', $id)->where('mapel_id', 6)->where('tahunpel_id', '=', $thn_id)->pluck('nilai')->avg();
+        $ipa_average = Nilai::where('siswa_id', $id)->where('mapel_id', 7)->where('tahunpel_id', '=', $thn_id)->pluck('nilai')->avg();
+        $ips_average = Nilai::where('siswa_id', $id)->where('mapel_id', 8)->where('tahunpel_id', '=', $thn_id)->pluck('nilai')->avg();
+        $pjok_average = Nilai::where('siswa_id', $id)->where('mapel_id', 9)->where('tahunpel_id', '=', $thn_id)->pluck('nilai')->avg();
+        $sbk_average = Nilai::where('siswa_id', $id)->where('mapel_id', 10)->where('tahunpel_id', '=', $thn_id)->pluck('nilai')->avg();
 
         if (
             $rombel == 1 || $rombel == 2 || $rombel == 3 || $rombel == 4

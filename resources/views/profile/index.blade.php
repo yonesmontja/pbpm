@@ -4,54 +4,6 @@
      <title> Profil </title>
  @endsection
  @section('header')
-     <style type="text/css">
-         /* Chart.js */
-         @keyframes chartjs-render-animation {
-             from {
-                 opacity: .99
-             }
-
-             to {
-                 opacity: 1
-             }
-         }
-
-         .chartjs-render-monitor {
-             animation: chartjs-render-animation 1ms
-         }
-
-         .chartjs-size-monitor,
-         .chartjs-size-monitor-expand,
-         .chartjs-size-monitor-shrink {
-             position: absolute;
-             direction: ltr;
-             left: 0;
-             top: 0;
-             right: 0;
-             bottom: 0;
-             overflow: hidden;
-             pointer-events: none;
-             visibility: hidden;
-             z-index: -1
-         }
-
-         .chartjs-size-monitor-expand>div {
-             position: absolute;
-             width: 1000000px;
-             height: 1000000px;
-             left: 0;
-             top: 0
-         }
-
-         .chartjs-size-monitor-shrink>div {
-             position: absolute;
-             width: 200%;
-             height: 200%;
-             left: 0;
-             top: 0
-         }
-     </style>
-     <link href="{{ asset('bootstrap3-editable/css/bootstrap-editable.css') }}" rel="stylesheet">
  @endsection
  @section('content')
      <div class="content-wrapper">
@@ -169,24 +121,22 @@
                                          <div class="card">
                                              <div class="card-header">
                                                  <div class="row">
-                                                     <div class="col-md-3">
-                                                         <h3 class="card-title">Nilai Siswa</h3>
-                                                     </div>
-                                                     <div class="col-md-3">
+
+                                                     <div class="col-md-4">
                                                          <h3 class="card-title">
                                                              @if (auth()->user()->role == 'siswa')
                                                                  <a href="#" target="_blank">CETAK RAPORT
                                                                  </a>
                                                              @else
                                                                  <a href="/siswa/{{ $siswa->id }}/export_pdf"
-                                                                     target="_blank">CETAK RAPORT
-                                                                 </a>
+                                                                     class="btn btn-primary float-right" role="button"
+                                                                     aria-pressed="true">Cetak Raport</a>
                                                              @endif
                                                          </h3>
                                                      </div>
                                                      @if (auth()->user()->role == 'siswa')
                                                      @else
-                                                         <div class="col-md-2 float-right">
+                                                         <div class="col-md-4 float-right">
                                                              <div class="card-tools">
                                                                  <button type="button" class="btn btn-primary float-right"
                                                                      data-toggle="modal" data-target="#exampleModal">
@@ -214,8 +164,8 @@
                                                  </div>
                                              </div>
                                              <!-- /.card-header -->
-                                             <div class="card-body table-responsive p-0">
-                                                 <table class="table table-hover text-nowrap">
+                                             <div class="card-body table-responsive p-4">
+                                                 <table id="example2" class="table table-bordered table-hover">
                                                      <thead>
                                                          <tr>
                                                              <th style="width: 10px">Kode Mapel</th>
@@ -242,7 +192,8 @@
                                                                                  href="/mapel/{{ $key->mapel_id }}">{{ $key->mapel->nama_mapel }}</a>
                                                                          @endif
                                                                      </td>
-                                                                     <td>{{ $key->tahunpel->thn_pel }}-{{ $key->tahunpel->semester }}</td>
+                                                                     <td>{{ $key->tahunpel->thn_pel }}-{{ $key->tahunpel->semester }}
+                                                                     </td>
                                                                      <td>
                                                                          @if (auth()->user()->role == 'siswa')
                                                                              <a href="#">
@@ -349,7 +300,7 @@
                                                  </div>
                                              </div>
                                              <!-- /.card-header -->
-                                             <div class="card-body p-0">
+                                             <div class="card-body p-1">
                                                  <div class="card card-success">
                                                      <div class="card-header">
                                                          <h3 class="card-title">Nilai Siswa</h3>
@@ -426,7 +377,7 @@
                                                      <div class="col-md-4">
                                                          <h3 class="card-title">
                                                              <a href="#" class="btn btn-primary">
-                                                                 {{ number_format($average_mapel,1) }}
+                                                                 {{ number_format($average_mapel, 1) }}
                                                              </a>
                                                          </h3>
                                                      </div>
@@ -449,8 +400,8 @@
                                                  </div>
                                              </div>
                                              <!-- /.card-header -->
-                                             <div class="card-body table-responsive p-0">
-                                                 <table class="table table-hover text-nowrap">
+                                             <div class="card-body table-responsive p-4">
+                                                 <table id="example5" class="table table-bordered table-hover">
                                                      <thead>
                                                          <tr>
                                                              <th>Mapel</th>
@@ -677,8 +628,8 @@
                          @endif
                          <div class="form-group {{ $errors->has('nilai_notes') ? ' has-error' : '' }}">
                              <label for="exampleFormControlTextarea12">INDIKATOR</label>
-                             <textarea name="nilai_notes" class="form-control" id="exampleFormControlTextarea12" placeholder="Indikator Capaian Kompetensi"
-                                 value="{{ old('nilai_notes') }}" rows="3"></textarea>
+                             <textarea name="nilai_notes" class="form-control" id="exampleFormControlTextarea12"
+                                 placeholder="Indikator Capaian Kompetensi" value="{{ old('nilai_notes') }}" rows="3"></textarea>
                          </div>
                          @if ($errors->has('nilai_notes'))
                              <span class="help-block">{{ $errors->first('nilai_notes') }}</span>

@@ -303,6 +303,16 @@
                 "autoWidth": false,
                 "responsive": true,
             });
+            $("#example5").DataTable({
+                "paging": false,
+                "pagingType": "numbers",
+                "lengthChange": true,
+                "searching": false,
+                "ordering": true,
+                "info": false,
+                "autoWidth": false,
+                "responsive": true,
+            });
         });
     </script>
 
