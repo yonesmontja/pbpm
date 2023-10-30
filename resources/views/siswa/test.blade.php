@@ -272,10 +272,10 @@
                                             @foreach ($tampung as $data)
                                                 <tr>
                                                     <td><a
-                                                            href="/test/{{ $data->id }}/profile">{{ $data->nama_depan }}</a>
+                                                            href="/test/{{ $data->siswa_id }}/profile">{{ $data->nama_depan }}</a>
                                                     </td>
                                                     <td><a
-                                                            href="/test/{{ $data->id }}/profile">{{ $data->nama_belakang }}</a>
+                                                            href="/test/{{ $data->siswa_id }}/profile">{{ $data->nama_belakang }}</a>
                                                     </td>
                                                     <td>{{ $data->nis }}</td>
                                                     <td>{{ $data->jenis_kelamin }}</td>
@@ -285,18 +285,18 @@
                                                     @endforeach --}}
                                                     <td>{{ $rombel3 }}</td>
                                                     <td>
-                                                        <a href="/siswa/{{ $data->id }}/cover_pdf"
+                                                        <a href="/siswa/{{ $data->siswa_id }}/cover_pdf"
                                                             class="btn btn-primary btn-xs">Cover
                                                         </a>
-                                                        <a href="/siswa/{{ $data->id }}/biodata_pdf"
+                                                        <a href="/siswa/{{ $data->siswa_id }}/biodata_pdf"
                                                             class="btn btn-primary btn-xs">Bio
                                                         </a>
-                                                        <a href="/siswa/{{ $data->id }}/export_pdf"
+                                                        <a href="/siswa/{{ $data->siswa_id }}/export_pdf"
                                                             class="btn btn-primary btn-xs">Raport
                                                         </a>
                                                     </td>
                                                     <td>
-                                                        <a href="/test/{{ $data->id }}/edit"
+                                                        <a href="/test/{{ $data->siswa_id }}/edit"
                                                             class="btn btn-warning btn-xs">Ubah
                                                         </a>
                                                         {{-- <a href="/test/{{ $data->id }}/delete"
@@ -306,7 +306,7 @@
                                                         @if ($data->user_id == null)
                                                             <a href="#" class="btn btn-primary btn-xs"
                                                                 data-toggle="modal"
-                                                                data-target="#modal-dialog2{{ $data->id }}">Aktivasi
+                                                                data-target="#modal-dialog2{{ $data->siswa_id }}">Aktivasi
                                                             </a>
                                                         @else
                                                             <button type="button"
@@ -315,7 +315,7 @@
                                                     </td>
                                                 </tr>
                                                 <!-- Modal aktivasi -->
-                                                <div class="modal fade" id="modalAktivasi{{ $data->id }}"
+                                                <div class="modal fade" id="modalAktivasi{{ $data->siswa_id }}"
                                                     tabindex="-1" aria-labelledby="modalAktivasi" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
@@ -327,7 +327,7 @@
                                                                 </h4>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <form action="/test/{{ $data->id }}/aktivasi"
+                                                                <form action="/test/{{ $data->siswa_id }}/aktivasi"
                                                                     method="post">
                                                                     @csrf
                                                                     @method('post')
@@ -340,7 +340,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="modal fade" id="modal-dialog2{{ $data->id }}">
+                                                <div class="modal fade" id="modal-dialog2{{ $data->siswa_id }}">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content bg-danger">
                                                             <div class="modal-header">
@@ -358,7 +358,7 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default">
-                                                                    <a href="/test/{{ $data->id }}/aktivasi">Aktivasi
+                                                                    <a href="/test/{{ $data->siswa_id }}/aktivasi">Aktivasi
                                                                     </a>
                                                                 </button>
                                                                 <button type="button" class="btn btn-default"

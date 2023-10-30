@@ -104,7 +104,7 @@ class SiswaController extends Controller
 
             return [];
         });
-        //dd($rombel3);
+        //dd($tampung);
         return view('siswa.test', [
             'kelas' => $kelas,
             'tampung' => $tampung,
