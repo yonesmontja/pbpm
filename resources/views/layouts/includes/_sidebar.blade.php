@@ -151,21 +151,29 @@
                           </ul>
                       </li>
                       <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                              <i class="nav-icon fas fa-copy"></i>
+                              <p>
+                                  Grafik
+                                  <i class="fas fa-angle-left right"></i>
+                                  <span class="badge badge-info right">{{ totalJournal() }}</span>
+                              </p>
+                          </a>
                           <ul class="nav nav-treeview">
                               <li class="nav-item">
-                                  <a href="/grafiknilai" class="nav-link">
+                                  <a href="/grafiknilai" class="nav-link {{ set_active('grafiknilai') }}">
                                       <i class="far fa-circle nav-icon"></i>
                                       <p>Grafik Nilai</p>
                                   </a>
                               </li>
                               <li class="nav-item">
-                                  <a href="/grafikmateri" class="nav-link">
+                                  <a href="/grafikmateri" class="nav-link {{ set_active('grafikmateri') }}">
                                       <i class="far fa-circle nav-icon"></i>
                                       <p>Grafik Materi</p>
                                   </a>
                               </li>
                               <li class="nav-item">
-                                  <a href="/grafikkompetensi" class="nav-link">
+                                  <a href="/grafikkompetensi" class="nav-link {{ set_active('grafikkompetensi') }}">
                                       <i class="far fa-circle nav-icon"></i>
                                       <p>Grafik Kompetensi</p>
                                   </a>
@@ -182,13 +190,13 @@
                           </a>
                           <ul class="nav nav-treeview">
                               <li class="nav-item">
-                                  <a href="/test" class="nav-link">
+                                  <a href="/test" class="nav-link {{ set_active('test') }}">
                                       <i class="far fa-circle nav-icon"></i>
                                       <p>Raport Siswa</p>
                                   </a>
                               </li>
                               <li class="nav-item">
-                                  <a href="/extra" class="nav-link">
+                                  <a href="/extra" class="nav-link {{ set_active('extra') }}">
                                       <i class="far fa-circle nav-icon"></i>
                                       <p>Absensi & Catatan</p>
                                   </a>
@@ -205,7 +213,7 @@
                           </a>
                           <ul class="nav nav-treeview">
                               <li class="nav-item">
-                                  <a href="/kelas" class="nav-link">
+                                  <a href="/kelas" class="nav-link {{ set_active('kelas') }}">
                                       <i class="far fa-circle nav-icon"></i>
                                       <p>Data Kelas</p>
                                   </a>
@@ -213,7 +221,23 @@
                           </ul>
                           <ul class="nav nav-treeview">
                               <li class="nav-item">
-                                  <a href="/guru" class="nav-link">
+                                  <a href="/rombel" class="nav-link {{ set_active('rombel') }}">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Data Rombel</p>
+                                  </a>
+                              </li>
+                          </ul>
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="/rombel_siswa" class="nav-link {{ set_active('rombel-siswa') }}">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Rombel Siswa</p>
+                                  </a>
+                              </li>
+                          </ul>
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="/guru" class="nav-link {{ set_active('guru') }}">
                                       <i class="far fa-circle nav-icon"></i>
                                       <p>Data Guru</p>
                                   </a>
@@ -229,7 +253,7 @@
                           </ul>
                           <ul class="nav nav-treeview">
                               <li class="nav-item">
-                                  <a href="/nilai" class="nav-link">
+                                  <a href="/nilai" class="nav-link {{ set_active('nilai') }}">
                                       <i class="far fa-circle nav-icon"></i>
                                       <p>Data Nilai</p>
                                   </a>
@@ -237,7 +261,7 @@
                           </ul>
                           <ul class="nav nav-treeview">
                               <li class="nav-item">
-                                  <a href="/user" class="nav-link">
+                                  <a href="/user" class="nav-link {{ set_active('user') }}">
                                       <i class="far fa-circle nav-icon"></i>
                                       <p>Data Users</p>
                                   </a>
@@ -245,7 +269,7 @@
                           </ul>
                       </li>
                       <li class="nav-item has-treeview menu-open">
-                          <a href="/dashboard" class="nav-link active">
+                          <a href="/dashboard" class="nav-link active {{ set_active('dashboard') }}">
                               <i class="nav-icon fas fa-tachometer-alt"></i>
                               <p>
                                   PBPM
@@ -254,7 +278,7 @@
                           </a>
                           <ul class="nav nav-treeview">
                               <li class="nav-item">
-                                  <a href="/kalender" class="nav-link">
+                                  <a href="/kalender" class="nav-link {{ set_active('kalender') }}">
                                       <i class="nav-icon far fa-calendar-alt"></i>
                                       <p>
                                           Kalender
@@ -263,13 +287,13 @@
                                   </a>
                               </li>
                               <li class="nav-item">
-                                  <a href="/portofolio" class="nav-link">
+                                  <a href="/portofolio" class="nav-link {{ set_active('portofolio') }}">
                                       <i class="far fa-circle nav-icon"></i>
                                       <p>Portofolio</p>
                                   </a>
                               </li>
                               <li class="nav-item">
-                                  <a href="/projects" class="nav-link">
+                                  <a href="/projects" class="nav-link {{ set_active('projects') }}">
                                       <i class="far fa-circle nav-icon"></i>
                                       <p>Project Siswa</p>
                                   </a>
@@ -286,7 +310,7 @@
                           </a>
                           <ul class="nav nav-treeview">
                               <li class="nav-item">
-                                  <a href="/contacts" class="nav-link">
+                                  <a href="/contacts" class="nav-link {{ set_active('contacts') }}">
                                       <i class="far fa-circle nav-icon"></i>
                                       <p>Kontak Siswa</p>
                                   </a>

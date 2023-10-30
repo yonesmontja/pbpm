@@ -86,13 +86,7 @@ Route::get('/reset', [AuthController::class, 'reset'])->name('reset');
 Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
     Route::get('/hero', [HeroController::class, 'hero']);
     Route::post('/hero/herocreate', [HeroController::class, 'herocreate']);
-    Route::get('/nilai', [NilaiController::class, 'nilai']);
-    Route::get('/rombel', [RombelController::class, 'index']);
-    Route::post('/rombel/rombelcreate', [RombelController::class, 'rombelcreate']);
-    Route::get('/rombel/{rombel}/profile', [RombelController::class, 'rombelprofile']);
-
-    Route::get('/rombel_siswa', [RombelController::class, 'rombel_siswa']);
-    Route::post('/rombel/rombelsiswacreate', [RombelController::class, 'rombelsiswacreate']);
+    Route::get('/nilai', [NilaiController::class, 'nilai'])->name('nilai');
 
     Route::get('/testimony', [TestimonyController::class, 'testimony']);
     Route::post('/testimony/testimonycreate', [TestimonyController::class, 'testimonycreate']);
@@ -127,7 +121,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
     Route::get('/level/{level}/leveldelete', [LevelController::class, 'leveldelete']);
     Route::get('/level/{level}/profile', [LevelController::class, 'profile']);
 
-    Route::get('/kelas', [KelasController::class, 'index']);
+    Route::get('/kelas', [KelasController::class, 'index'])->name('kelas');
     Route::post('/kelas/kelascreate', [KelasController::class, 'kelascreate']);
     Route::get('/kelas/{kelas}/kelasedit', [KelasController::class, 'kelasedit']);
     Route::post('/kelas/{kelas}/kelasupdate', [KelasController::class, 'kelasupdate']);
@@ -148,7 +142,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
     Route::get('/grafikmateri', [GrafikController::class, 'grafikmateri'])->name('grafikmateri');
     Route::get('/grafikkompetensi', [GrafikController::class, 'grafikkompetensi'])->name('grafikkompetensi');
 
-    Route::get('/kalender', [KalenderController::class, 'kalender']);
+    Route::get('/kalender', [KalenderController::class, 'kalender'])->name('kalender');
     Route::get('full-calender', [KalenderController::class, 'index']);
     Route::post('full-calender/action', [KalenderController::class, 'action']);
     Route::get('/jadwal', [JadwalController::class, 'index'])->name('kalender.jadwal');
@@ -171,9 +165,9 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
     Route::get('/read', [MailboxController::class, 'read']);
 
     Route::get('/profile/{id}/profile', [UserController::class, 'profile1']);
-    Route::get('/portofolio', [UserController::class, 'portofolio']);
+    Route::get('/portofolio', [UserController::class, 'portofolio'])->name('portofolio');
 
-    Route::get('/projects', [ProjectController::class, 'projects']);
+    Route::get('/projects', [ProjectController::class, 'projects'])->name('projects');
     Route::get('/projects-add', [ProjectController::class, 'projects_add']);
     Route::post('/projects-create', [ProjectController::class, 'projects_create']);
     Route::get('/projects-edit', [ProjectController::class, 'projects_edit']);
@@ -181,7 +175,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
     //Route::get('/getSiswa/{id}', [ProjectController::class, 'getSiswa']);
 
     Route::get('online-user', [UserController::class, 'index']);
-    Route::get('/user', [UserController::class, 'user']);
+    Route::get('/user', [UserController::class, 'user'])->name('user');
     Route::get('/user/{id}/profile', [UserController::class, 'userprofile']);
     Route::get('/my_profile/{id}/myprofile', [UserController::class, 'my_profile']);
     Route::post('/user/create', [UserController::class, 'create']);
@@ -289,23 +283,29 @@ Route::group(['middleware' => ['auth', 'checkRole:admin,tata_usaha']], function 
     Route::post('/sekolah/{sekolah}/sekolahupdate', [SekolahController::class, 'sekolahupdate']);
     Route::get('/sekolah/{sekolah}/sekolahdelete', [SekolahController::class, 'sekolahdelete']);
     Route::get('/sekolah/{sekolah}/profile', [SekolahController::class, 'profile']);
-    Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('cache.headers:private;max_age=3600');
-    Route::get('/contacts', [UserController::class, 'contacts']);
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('cache.headers:private;max_age=3600');
+    Route::get('/contacts', [UserController::class, 'contacts'])->name('contacts');
     Route::resource('tahunpel', TahunpelController::class);
     Route::resource('mapel', MapelController::class);
     Route::resource('posting', PostingController::class);
-    Route::get('/guru', [GuruController::class, 'index']);
+    Route::get('/guru', [GuruController::class, 'index'])->name('guru');
     Route::post('/guru/gurucreate', [GuruController::class, 'gurucreate']);
     Route::get('/guru/{guru}/guruedit', [GuruController::class, 'guruedit']);
     Route::post('/guru/{guru}/guruupdate', [GuruController::class, 'guruupdate']);
     Route::get('/guru/{guru}/gurudelete', [GuruController::class, 'gurudelete']);
+    Route::get('/rombel', [RombelController::class, 'index'])->name('rombel');
+    Route::post('/rombel/rombelcreate', [RombelController::class, 'rombelcreate']);
+    Route::get('/rombel/{rombel}/profile', [RombelController::class, 'rombelprofile']);
+
+    Route::get('/rombel_siswa', [RombelController::class, 'rombel_siswa'])->name('rombel-siswa');
+    Route::post('/rombel/rombelsiswacreate', [RombelController::class, 'rombelsiswacreate']);
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:guru,tata_usaha,admin']], function () {
     Route::get('/moodle', [MoodleController::class, 'moodle']);
     Route::get('/rombel/{rombel}', [RombelController::class, 'show']);
     Route::post('/extra/import_extra_excel', [NilaiController::class, 'import_extra_excel'])->middleware('cache.headers:private;max_age=3600');
-    Route::get('/extra', [NilaiController::class, 'extra'])->middleware('cache.headers:private;max_age=3600');
+    Route::get('/extra', [NilaiController::class, 'extra'])->name('extra')->middleware('cache.headers:private;max_age=3600');
     Route::post('/extra/extracreate', [NilaiController::class, 'extracreate']);
     Route::get('/extra/{extra}/extradelete', [NilaiController::class, 'extradelete']);
     Route::get('/extra/{extra}/extraedit', [NilaiController::class, 'extraedit']);
@@ -338,7 +338,7 @@ Route::group(['middleware' => ['auth', 'checkRole:guru,tata_usaha,admin']], func
     Route::post('/siswa/editnilai', [SiswaController::class, 'editnilai'])->name('siswa.editnilai');
     Route::get('/test/{siswa}/profile', [SiswaController::class, 'testprofile'])->name('testsiswaprofile');
     //Route::get('/test/{siswa}/profile', [SiswaController::class, 'testprofile']);
-    Route::get('/test', [SiswaController::class, 'test'])->middleware('cache.headers:private;max_age=3600');
+    Route::get('/test', [SiswaController::class, 'test'])->name('test')->middleware('cache.headers:private;max_age=3600');
     Route::post('/test/testcreate', [SiswaController::class, 'testcreate']);
     Route::get('/test/{siswa}/edit', [SiswaController::class, 'testedit']);
     Route::post('/test/{siswa}/update', [SiswaController::class, 'testupdate']);
