@@ -36,6 +36,44 @@
         <!-- /.content-header -->
 
         <!-- Main content -->
+        {{-- <section class="content">
+            <div class="container-fluid">
+                <div class="row mb-6">
+                    <div class="col-sm-6">
+                        <h5 class="m-0 text-dark">PENILAIAN KELAS</h5>
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <div class="col-lg-2 col-6">
+                        <!-- small box -->
+                        <div class="small-box custom-background">
+                            <div class="inner">
+                                <h5>{{ count($high_pemetaan_indonesia_total) }} siswa</h5>
+                                <p>High</p>
+                                @if (count($high_pemetaan_indonesia_total) == !null)
+                                    <h5>Nilai rata-rata:
+                                        {{ number_format((float) array_sum($high_pemetaan_indonesia_total) / count($high_pemetaan_indonesia_total), 1, '.', '') }}
+                                    </h5>
+                                @endif
+                                @if (count($high_pemetaan_indonesia_total) == null)
+                                    <h5>Nilai rata-rata: {{ count($high_pemetaan_indonesia_total) }}</h5>
+                                @endif
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            @if (auth()->user()->role == 'admin')
+                                <a href="/test" class="small-box-footer">Info lebih lanjut <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            @else
+                                <a href="/dashboard_guru" class="small-box-footer">Info lebih lanjut <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> --}}
         <section class="content">
             <div class="container-fluid">
                 <div class="row mb-6">

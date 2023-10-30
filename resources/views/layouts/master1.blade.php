@@ -17,7 +17,7 @@
     <!-- linear icons -->
     <link rel="stylesheet" href="{{ asset('/admin/linearicons/WebFont/style.css') }}">
 
-
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bbootstrap 4 -->
