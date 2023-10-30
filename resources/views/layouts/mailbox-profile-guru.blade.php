@@ -16,8 +16,7 @@
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="{{ asset('/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- Bootstrap Color Picker -->
-    <link rel="stylesheet"
-        href="{{ asset('/admin/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/admin/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet"
         href="{{ asset('/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
@@ -139,37 +138,39 @@
     <script>
         $(document).ready(function() {
             $(document).ready(function() {
-            $('#rombel').on('change', function() {
-                var kelasID = $(this).val();
-                if (kelasID) {
-                    $.ajax({
-                        url: '/getSiswa/' + kelasID,
-                        type: "GET",
-                        data: {
-                            "_token": "{{ csrf_token() }}"
-                        },
-                        dataType: "json",
-                        success: function(data) {
-                            if (data) {
-                                $('#siswa').empty();
-                                $('#siswa').append('<option hidden>Pilih Siswa</option>');
-                                $.each(data, function(siswa_id, get_siswa) {
-                                    $('select[name="siswa_id"]').append(
-                                        '<option value="' + get_siswa.siswa_id + '">' +
-                                        get_siswa
-                                        .nama_depan + " " + get_siswa
-                                        .nama_belakang + '</option>');
-                                });
-                            } else {
-                                $('#siswa').empty();
+                $('#rombel').on('change', function() {
+                    var kelasID = $(this).val();
+                    if (kelasID) {
+                        $.ajax({
+                            url: '/getSiswa/' + kelasID,
+                            type: "GET",
+                            data: {
+                                "_token": "{{ csrf_token() }}"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                if (data) {
+                                    $('#siswa').empty();
+                                    $('#siswa').append(
+                                        '<option hidden>Pilih Siswa</option>');
+                                    $.each(data, function(siswa_id, get_siswa) {
+                                        $('select[name="siswa_id"]').append(
+                                            '<option value="' + get_siswa
+                                            .siswa_id + '">' +
+                                            get_siswa
+                                            .nama_depan + " " + get_siswa
+                                            .nama_belakang + '</option>');
+                                    });
+                                } else {
+                                    $('#siswa').empty();
+                                }
                             }
-                        }
-                    });
-                } else {
-                    $('#siswa').empty();
-                }
+                        });
+                    } else {
+                        $('#siswa').empty();
+                    }
+                });
             });
-        });
         });
     </script>
     <script>
@@ -272,6 +273,10 @@
                 "searching": true,
                 "ordering": true,
                 "info": true,
+                "language": {
+                    "sInfo": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+
+                }
             });
             $("#example2").DataTable({
                 "paging": true,
@@ -282,6 +287,13 @@
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
+                "language": {
+                    "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                    "lengthMenu": "Tampilkan _MENU_ data nilai per halaman",
+                    "zeroRecords": "Tarada data - sorry",
+                    "infoEmpty": "Tarada data tersedia",
+                    "infoFiltered": "(disaring dari _MAX_ total data)"
+                }
             });
             $("#example3").DataTable({
                 "paging": true,
@@ -292,6 +304,9 @@
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
+                "language": {
+                    "sInfo": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                }
             });
             $("#example4").DataTable({
                 "paging": true,
@@ -302,6 +317,9 @@
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
+                "language": {
+                    "sInfo": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                }
             });
             $("#example5").DataTable({
                 "paging": false,
