@@ -213,6 +213,14 @@
                           </a>
                           <ul class="nav nav-treeview">
                               <li class="nav-item">
+                                  <a href="/test" class="nav-link {{ set_active('test') }}">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Data Siswa</p>
+                                  </a>
+                              </li>
+                          </ul>
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
                                   <a href="/kelas" class="nav-link {{ set_active('kelas') }}">
                                       <i class="far fa-circle nav-icon"></i>
                                       <p>Data Kelas</p>
