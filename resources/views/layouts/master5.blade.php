@@ -195,7 +195,11 @@
                 "ordering": true,
                 "info": true,
                 "language":{
-                    "sInfo": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                    "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                    "lengthMenu": "Tampilkan _MENU_ data nilai per halaman",
+                    "zeroRecords": "Tarada data - sorry",
+                    "infoEmpty": "Tarada data tersedia",
+                    "infoFiltered": "(disaring dari _MAX_ total data)"
                 }
             });
             $("#example2").DataTable({
@@ -208,7 +212,11 @@
                 "autoWidth": false,
                 "responsive": true,
                 "language":{
-                    "sInfo": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                    "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                    "lengthMenu": "Tampilkan _MENU_ data nilai per halaman",
+                    "zeroRecords": "Tarada data - sorry",
+                    "infoEmpty": "Tarada data tersedia",
+                    "infoFiltered": "(disaring dari _MAX_ total data)"
                 }
             });
 
