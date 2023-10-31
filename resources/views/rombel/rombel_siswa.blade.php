@@ -64,7 +64,7 @@
                                                 <th>Rombel</th>
                                                 <th>Jumlah</th>
                                                 <th>Wali Kelas</th>
-                                                <th>Semester</th>
+
                                                 <th>Siswa</th>
                                                 <th>Kode Siswa</th>
                                                 <th></th>
@@ -79,8 +79,7 @@
                                                     </td>
                                                     <td><a href="/guru/{{ $h->guru->id }}/profile">{{ $h->guru->nama_guru }}
                                                     </td>
-                                                    <td><a href="#">{{ $h->tahunpel->thn_pel }}
-                                                            {{ $h->tahunpel->semester }}</a></td>
+
                                                     <td>
                                                         <ul>
                                                             @foreach ($h->siswa->sortBy('nama_depan') as $s)
@@ -99,9 +98,11 @@
                                                     <td>
                                                         @foreach ($h->siswa->sortBy('nama_depan') as $s)
                                                             <li><a href="/rombel/{{ $s->id }}/rombelsiswadelete"
-                                                                    class="btn btn-danger btn-xs" onclick="return confirm('Yakin mau dihapus?')">
-                                                                    Hapus {{ $s->nama_depan }} {{ $s->nama_belakang }}</a></li>
-                                                                    {{-- <li><button href="/rombel/{{ $s->id }}/rombelsiswadelete" type="button"
+                                                                    class="btn btn-danger btn-xs"
+                                                                    onclick="return confirm('Yakin mau dihapus?')">
+                                                                    Hapus {{ $s->nama_depan }} {{ $s->nama_belakang }}</a>
+                                                            </li>
+                                                            {{-- <li><button href="/rombel/{{ $s->id }}/rombelsiswadelete" type="button"
                                                         class="btn btn-danger btn-xs" data-toggle="modal"
                                                         data-target="#modal-danger">
                                                         Hapus
@@ -116,7 +117,7 @@
                                                 <th>Rombel</th>
                                                 <th>Jumlah</th>
                                                 <th>Wali Kelas</th>
-                                                <th>Semester</th>
+
                                                 <th>Siswa</th>
                                                 <th>Kode Siswa</th>
                                                 <th></th>
@@ -238,7 +239,8 @@
                                                             </div>
                                                             <div class="col-sm-6">
                                                                 <div class="form-group">
-                                                                    <label for="exampleFormControlSelect16">Semester</label>
+                                                                    <label
+                                                                        for="exampleFormControlSelect16">Semester</label>
                                                                     <select name="tahunpelajaran_id" class="form-control"
                                                                         id="exampleFormControlSelect16">
                                                                         <option>---</option>
