@@ -28,27 +28,24 @@ class NilaiController extends Controller
     //
     public function nilai()
     {
-        $data_nilai = Nilai::all();
+        $data_nilai = Nilai::where('tahunpel_id', '=', tahunpelajaran_aktif())->get();
         $kompetensiinti = Kompetensiinti::all();
         $mapel = Mapel::all();
-        $siswa = Siswa::all();
+        $siswa = DB::table('rombel_siswa')->where('tahunpelajaran_id', '=', tahunpelajaran_aktif())->get();
         $penilaian = Penilaian::all();
         $guru = Guru::all();
         $kelas = Kelas::all();
         $nilai_start = Tahunpelajaran::all()->where('id', '=', 2)->pluck('tahun');
         $nilai_end = Tahunpelajaran::all()->where('id', '=', 1)->pluck('tahun');
         $kelas_sub = Siswa::where('kelas_id', 0)->get();
-        $tahunpel = Tahunpel::all();
-        $rombel = Rombel::all();
-        //dd($kelas_sub);
-        for ($bulan = 1; $bulan < 7; $bulan++) {
-            $chart_penilaian     = collect(DB::SELECT("SELECT count(penilaian_id) AS jumlah from nilai where month(created_at)='$bulan'"))->first();
-            $jumlah_penilaian[] = $chart_penilaian->jumlah;
-        }
-        //dd($jumlah_penilaian);
+        $tahunpelajaran_id = tahunpelajaran_aktif();
+        $tahunpel = Tahunpel::find($tahunpelajaran_id);
+        //dd($tahunpel);
+        $rombel = Rombel::where('tahunpelajaran_id', '=', tahunpelajaran_aktif())->get();
+
         return view('nilai.index', [
             'rombel' => $rombel,
-            'jumlah_penilaian' => $jumlah_penilaian,
+
             'kelas_sub' => $kelas_sub,
             'nilai_start' => $nilai_start,
             'nilai_end' => $nilai_end,

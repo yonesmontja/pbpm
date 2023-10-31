@@ -216,7 +216,6 @@
                                             <th>PENILAIAN</th>
                                             <th>ROMBEL</th>
                                             <th>TANGGAL</th>
-
                                             <th>SISWA</th>
                                             <th>NILAI</th>
                                             <th></th>
@@ -244,9 +243,9 @@
                                                         <div class="col-sm-3">
                                                             <div
                                                                 class="form-group {{ $errors->has('nilai_start') ? ' has-error' : '' }}">
-                                                                <label for="exampleFormControlInput1">Mulai</label>
+                                                                <label for="exampleFormControlInput13">Mulai</label>
                                                                 <input name="nilai_start" type="text"
-                                                                    class="form-control" id="exampleFormControlInput1"
+                                                                    class="form-control" id="exampleFormControlInput13"
                                                                     placeholder="Kapan mulai?"
                                                                     value="{{ $nilai_start[0] }}">
                                                                 @if ($errors->has('nilai_start'))
@@ -262,9 +261,9 @@
                                                         <div class="col-sm-3">
                                                             <div
                                                                 class="form-group {{ $errors->has('nilai_end') ? ' has-error' : '' }}">
-                                                                <label for="exampleFormControlInput1">Berakhir</label>
+                                                                <label for="exampleFormControlInput11">Berakhir</label>
                                                                 <input name="nilai_end" type="text"
-                                                                    class="form-control" id="exampleFormControlInput1"
+                                                                    class="form-control" id="exampleFormControlInput11"
                                                                     placeholder="Kapan selesai?"
                                                                     value="{{ $nilai_end[0] }}">
                                                                 @if ($errors->has('nilai_end'))
@@ -279,9 +278,9 @@
                                                         </div>
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">PENILAIAN</label>
+                                                                <label for="exampleFormControlSelect21">PENILAIAN</label>
                                                                 <select name="penilaian_id" class="form-control"
-                                                                    id="exampleFormControlSelect2">
+                                                                    id="exampleFormControlSelect21">
                                                                     <option>---</option>
                                                                     @foreach ($penilaian as $key => $m)
                                                                         <option value="{{ $m->id }}">
@@ -293,15 +292,13 @@
                                                         </div>
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">TP</label>
+                                                                <label for="exampleFormControlSelect22">TP</label>
                                                                 <select name="tahunpel_id" class="form-control"
-                                                                    id="exampleFormControlSelect2">
-                                                                    <option>---</option>
-                                                                    @foreach ($tahunpel as $key => $m)
-                                                                        <option value="{{ $m->id }}">
-                                                                            {{ $m->thn_pel }} - {{ $m->semester }}
-                                                                        </option>
-                                                                    @endforeach
+                                                                    id="exampleFormControlSelect22">
+                                                                    <option value="{{ $tahunpel->id }}">
+                                                                        {{ $tahunpel->thn_pel }} -
+                                                                        {{ $tahunpel->semester }}
+                                                                    </option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -309,9 +306,9 @@
                                                     <div class="row">
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">KInti</label>
+                                                                <label for="exampleFormControlSelect23">KInti</label>
                                                                 <select name="kompetensi_inti_id" class="form-control"
-                                                                    id="exampleFormControlSelect2">
+                                                                    id="exampleFormControlSelect23">
                                                                     <option>---</option>
                                                                     @foreach ($kompetensiinti as $key => $m)
                                                                         <option value="{{ $m->id }}">
@@ -324,7 +321,7 @@
 
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">KELAS</label>
+                                                                <label for="kelas">KELAS</label>
                                                                 <select name="kelas_id" class="form-control"
                                                                     id="kelas">
                                                                     <option hidden>Pilih Kelas</option>
@@ -338,7 +335,7 @@
                                                         </div>
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">ROMBEL</label>
+                                                                <label for="rombel">ROMBEL</label>
                                                                 <select name="rombel_id" class="form-control"
                                                                     id="rombel">
                                                                     <option hidden>Pilih rombel</option>
@@ -352,10 +349,9 @@
                                                         </div>
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">SISWA</label>
+                                                                <label for="siswa">SISWA</label>
                                                                 <select name="siswa_id" class="form-control"
                                                                     id="siswa">
-                                                                    <!--<option>---</option>
                                                                     @foreach ($siswa as $key => $m)
                                                                         <option value="{{ $m->id }}">
                                                                             {{ $m->nama_depan }}
@@ -368,15 +364,16 @@
                                                     <div class="row">
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">Tanggal</label>
-                                                                <input type="text" name="tanggal" class="form-control" id="datepicker">
+                                                                <label for="datepicker">Tanggal</label>
+                                                                <input type="text" name="tanggal" class="form-control"
+                                                                    id="datepicker">
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">GURU</label>
+                                                                <label for="exampleFormControlSelect25">GURU</label>
                                                                 <select name="guru_id" class="form-control"
-                                                                    id="exampleFormControlSelect2">
+                                                                    id="exampleFormControlSelect25">
                                                                     <option>---</option>
                                                                     @foreach ($guru as $key => $m)
                                                                         <option value="{{ $m->id }}">
@@ -388,9 +385,9 @@
                                                         </div>
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">MAPEL</label>
+                                                                <label for="exampleFormControlSelect26">MAPEL</label>
                                                                 <select name="mapel_id" class="form-control"
-                                                                    id="exampleFormControlSelect2">
+                                                                    id="exampleFormControlSelect26">
                                                                     <option>---</option>
                                                                     @foreach ($mapel as $key => $m)
                                                                         <option value="{{ $m->id }}">
@@ -403,9 +400,9 @@
                                                         <div class="col-sm-3">
                                                             <div
                                                                 class="form-group {{ $errors->has('nilai') ? ' has-error' : '' }}">
-                                                                <label for="exampleFormControlInput1">Nilai</label>
+                                                                <label for="exampleFormControlInput12">Nilai</label>
                                                                 <input name="nilai" type="text" class="form-control"
-                                                                    id="exampleFormControlInput1" placeholder="Nilai"
+                                                                    id="exampleFormControlInput12" placeholder="Nilai"
                                                                     value="{{ old('nilai') }}">
                                                                 @if ($errors->has('nilai'))
                                                                     <span
@@ -430,8 +427,8 @@
                                                     @endif
                                                     <div
                                                         class="form-group {{ $errors->has('nilai_notes') ? ' has-error' : '' }}">
-                                                        <label for="exampleFormControlTextarea1">INDIKATOR</label>
-                                                        <textarea name="nilai_notes" class="form-control" id="exampleFormControlTextarea1"
+                                                        <label for="exampleFormControlTextarea12">INDIKATOR</label>
+                                                        <textarea name="nilai_notes" class="form-control" id="exampleFormControlTextarea12"
                                                             placeholder="Indikator Capaian Kompetensi" value="{{ old('nilai_notes') }}" rows="3"></textarea>
                                                     </div>
                                                     @if ($errors->has('nilai_notes'))
