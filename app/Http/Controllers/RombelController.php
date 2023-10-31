@@ -100,6 +100,22 @@ class RombelController extends Controller
         //dd($request->input('nama_depan'));
         return Redirect::back()->with('sukses', 'berhasil diinput');
     }
+    public function rombelsiswadelete($idnilai)
+    {
+        $tahunpel = Tahunpel::where('aktif', 'Y')->first();
+        if ($tahunpel) {
+            $thn_id = $tahunpel->id;
+            DB::table('rombel_siswa')
+            ->where('tahunpelajaran_id', $thn_id)
+                ->where('siswa_id', $idnilai)
+                ->delete();
+
+            return redirect('/rombel_siswa')->with('sukses', 'berhasil dihapus!');
+        } else {
+            return redirect('/rombel_siswa')->with('error', 'Tidak dapat menemukan tahun pelajaran aktif.');
+        }
+    }
+
     public function rombeledit(Rombel $rombel)
     {
         $rombel = Rombel::all();

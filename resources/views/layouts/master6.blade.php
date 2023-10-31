@@ -43,6 +43,7 @@
     <link rel="stylesheet" href="{{ asset('/admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
     <!-- Toastr -->
     <link rel="stylesheet" href="{{ asset('/admin/plugins/toastr/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/frontend/css/jquery-ui.css') }}">
     @yield('header')
 </head>
 

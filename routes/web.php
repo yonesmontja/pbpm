@@ -299,6 +299,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin,tata_usaha']], function 
 
     Route::get('/rombel_siswa', [RombelController::class, 'rombel_siswa'])->name('rombel-siswa');
     Route::post('/rombel/rombelsiswacreate', [RombelController::class, 'rombelsiswacreate']);
+    Route::get('/rombel/{siswa_id}/rombelsiswadelete', [RombelController::class, 'rombelsiswadelete']);
 });
 
 Route::group(['middleware' => ['auth', 'checkRole:guru,tata_usaha,admin']], function () {
