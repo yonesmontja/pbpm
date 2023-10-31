@@ -112,7 +112,7 @@ class RombelController extends Controller
 
             return redirect('/rombel_siswa')->with('sukses', 'berhasil dihapus!');
         } else {
-            return redirect('/rombel_siswa')->with('error', 'Tidak dapat menemukan tahun pelajaran aktif.');
+            return redirect('/rombel_siswa')->with('error', 'tidak berhasil dihapus.');
         }
     }
 
