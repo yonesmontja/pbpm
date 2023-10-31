@@ -35,8 +35,16 @@
                         <!-- /.card -->
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Tahun Pelajaran <a
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h3 class="card-title">Tahun Pelajaran <a
                                         href="{{ route('tahunpel.index') }}">{{ thnPel() }}</a></h3>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3 class="card-title">Jumlah Siswa Aktif: <a
+                                        href="{{ route('tahunpel.index') }}">{{ totalSiswa() }}</a></h3>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-header">
                                 <div class="btn-group" role="group">
@@ -64,7 +72,6 @@
                                                 <th>Rombel</th>
                                                 <th>Jumlah</th>
                                                 <th>Wali Kelas</th>
-
                                                 <th>Siswa</th>
                                                 <th>Kode Siswa</th>
                                                 <th></th>
@@ -117,7 +124,6 @@
                                                 <th>Rombel</th>
                                                 <th>Jumlah</th>
                                                 <th>Wali Kelas</th>
-
                                                 <th>Siswa</th>
                                                 <th>Kode Siswa</th>
                                                 <th></th>

@@ -11,6 +11,21 @@ use App\Models\Kompetensiinti;
 use App\Models\Langkahstrategis;
 use Illuminate\Support\Facades\Auth;
 
+function tahunpelajaran_aktif()
+{
+    $tahunpel = Tahunpel::where('aktif', 'Y')->get();
+    foreach ($tahunpel as $thn) {
+        $semester_aktif = $thn->semester;
+        $kepsek_aktif = $thn->nama_kepsek;
+        $nip_kepsek = $thn->kode_kepsek;
+        $tanggal_raport = Carbon::parse($thn->tgl_raport)->isoFormat('D MMMM Y');
+        $tanggal_raport_kls6 = $thn->tgl_raport_kelas3;
+        $tahun_pelajaran = $thn->thn_pel;
+        $tahun_aktif = $thn->tahun;
+        $thn_id = $thn->id;
+        return $thn_id;
+    }
+}
 function rangking5Besar()
 {
     $siswa = Siswa::all();
@@ -65,7 +80,7 @@ function luasyGrafik()
 }
 function totalSiswa()
 {
-    return DB::table('rombel_siswa')->count();
+    return DB::table('rombel_siswa')->where('tahunpelajaran_id', '=', tahunpelajaran_aktif())->count();
 }
 function totalMapel()
 {
@@ -478,21 +493,5 @@ function Stand_Deviation($arr)
             return $hari[$num] . ', ' . $tgl_indo;
         }
         return $tgl_indo;
-    }
-}
-
-function tahunpelajaran_aktif()
-{
-    $tahunpel = Tahunpel::where('aktif', 'Y')->get();
-    foreach ($tahunpel as $thn) {
-        $semester_aktif = $thn->semester;
-        $kepsek_aktif = $thn->nama_kepsek;
-        $nip_kepsek = $thn->kode_kepsek;
-        $tanggal_raport = Carbon::parse($thn->tgl_raport)->isoFormat('D MMMM Y');
-        $tanggal_raport_kls6 = $thn->tgl_raport_kelas3;
-        $tahun_pelajaran = $thn->thn_pel;
-        $tahun_aktif = $thn->tahun;
-        $thn_id = $thn->id;
-        return $thn_id;
     }
 }
