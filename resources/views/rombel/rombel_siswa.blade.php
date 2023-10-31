@@ -100,7 +100,7 @@
                                                         @foreach ($h->siswa->sortBy('nama_depan') as $s)
                                                             <li><a href="/rombel/{{ $s->id }}/rombelsiswadelete"
                                                                     class="btn btn-danger btn-xs" onclick="return confirm('Yakin mau dihapus?')">
-                                                                    Hapus</a></li>
+                                                                    Hapus {{ $s->nama_depan }} {{ $s->nama_belakang }}</a></li>
                                                                     {{-- <li><button href="/rombel/{{ $s->id }}/rombelsiswadelete" type="button"
                                                         class="btn btn-danger btn-xs" data-toggle="modal"
                                                         data-target="#modal-danger">
