@@ -641,15 +641,13 @@ class SiswaController extends Controller
         // cetak_PDF
         //data sekolah
         $kepsek = Sekolah::all();
-        //dd($kepsek);
         foreach ($kepsek as $k) {
             $kepala = $k->kepsek;
             $nip = $k->nip_kepsek;
             $kecamatan = $k->kecamatan;
         }
-
-        //dd($semester_aktif);
         //-----------------------------------
+        // Tahun pelajaran dan semester aktif
         $tahunpel = Tahunpel::where('aktif', 'Y')->get();
         foreach ($tahunpel as $thn) {
             $semester_aktif = $thn->semester;
@@ -662,10 +660,10 @@ class SiswaController extends Controller
             $thn_id = $thn->id;
         }
         $semester = Tahunpelajaran::all()->pluck('semester');
-        //dd($semester);
+        // -----------------------------------
+        // Rombel, siswa, wali kelas pada semester aktif
         $rombel = DB::table('rombel_siswa')->where('siswa_id', '=', $id)->where('tahunpelajaran_id', '=', $thn_id)->pluck('rombel_id')->first();
         $rombel1 = Rombel::find($rombel);
-        //dd($rombel1->guru->nama_guru);
         $students = Siswa::find($id);
         $deskripsi_sikap_spiritual = DB::table('extra')->where('rombel_id', '=', $rombel)->where('siswa_id', '=', $id)->pluck('saran')->first();
         $deskripsi_sikap_sosial = DB::table('extra')->where('rombel_id', '=', $rombel)->where('siswa_id', '=', $id)->pluck('ekskul')->first();
@@ -678,10 +676,8 @@ class SiswaController extends Controller
         $nama_belakang = Siswa::where('id', '=', $id)->select('nama_depan', 'nama_belakang')->pluck('nama_belakang');
         $kalimat1 = $nama_depan[0];
         $kalimat2 = $nama_belakang[0];
-        //$kelas = Kelas::find($students->kelas_id);
-        //dd($kelas);
         $kelas_siswa = Kelas::find($students->kelas_id)->nama;
-        //dd($kelas_siswa);
+        // Keterangan Naik ke kelas selanjutnya
         if ($kelas_siswa == 'Kelas 1') {
             $kelas_naik = 'II';
         }
@@ -700,175 +696,15 @@ class SiswaController extends Controller
         if ($kelas_siswa == 'Kelas 6') {
             $kelas_naik = 'SMP';
         }
-
-        //$data_siswa = Siswa::get();
+        // -------------------------------------------
         // wali kelas di raport
-        if ($rombel == 1) {
+        if ($rombel == $rombel1->id) {
             $wali_kelas = $rombel1->guru->nama_guru;
             $nip_guru =
                 $rombel1->guru->kode_guru;
         }
-        if (
-            $rombel == 2
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-                $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 3
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-                $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 4
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-                $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 5
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-                $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 6
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-                $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 7
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-                $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 8
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-                $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 9
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-                $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 10
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-                $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 11
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-                $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 12
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-                $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 13
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-            $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 14
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-            $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 15
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-            $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 16
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-            $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 17
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-            $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 18
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-            $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 19
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-            $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 20
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-            $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 21
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-            $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 22
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-            $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 23
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-            $rombel1->guru->kode_guru;
-        }
-        if (
-            $rombel == 24
-        ) {
-            $wali_kelas = $rombel1->guru->nama_guru;
-            $nip_guru =
-            $rombel1->guru->kode_guru;
-        }
+
+        //--------------------------------------------------------
         //dd($wali_kelas);
         //menghitung nilai tugas
         for ($penilaian = 1; $penilaian < 2; $penilaian++) {

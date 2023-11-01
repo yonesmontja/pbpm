@@ -20,6 +20,7 @@ class UsertestController extends Controller
         $data['q'] = $request->query('q');
         //dd($data['q']);
         $data['usertests'] = Usertest::where('name', 'like', '%' . $data['q'] . '%')->get();
+        //dd($data);
         return view('usertest.index', $data);
     }
 

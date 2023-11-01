@@ -40,7 +40,7 @@ class MoodleController extends Controller
         $result = json_decode($response, true);
 
         // Tampilkan hasilnya
-        dd($result);
+        //dd($result);
         return view('moodle.moodle', [
             'result' => $result,
 

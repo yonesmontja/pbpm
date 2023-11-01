@@ -12,7 +12,7 @@
                   class="brand-image img-circle elevation-3" style="opacity: .8">
               <span class="brand-text font-weight-light">SDI Dabolding</span>
           </a>
-          @elseif (auth()->user()->role == 'tata_usaha')
+      @elseif (auth()->user()->role == 'tata_usaha')
           <a href="/dashboard_tu" class="brand-link">
               <img src="{{ asset('/admin/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                   class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -60,7 +60,7 @@
                                   <i class="right fas fa-angle-left"></i>
                               </p>
                           </a>
-                          @elseif(auth()->user()->role == 'tata_usaha')
+                      @elseif(auth()->user()->role == 'tata_usaha')
                           <a href="/dashboard_tu" class="nav-link active">
                               <i class="nav-icon fas fa-tachometer-alt"></i>
                               <p>
@@ -151,7 +151,7 @@
                           </ul>
                       </li>
                       <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
+                          <a href="#" class="nav-link">
                               <i class="nav-icon fas fa-copy"></i>
                               <p>
                                   Grafik
@@ -331,9 +331,31 @@
                               </li>
                           </ul>
                       </li>
+                      <li class="nav-item has-treeview">
+                          <a href="#" class="nav-link">
+                              <i class="nav-icon fas fa-book"></i>
+                              <p>
+                                  Admin Tools
+                                  <i class="fas fa-angle-left right"></i>
+                              </p>
+                          </a>
+                          <ul class="nav nav-treeview">
+                              <li class="nav-item">
+                                  <a href="/online-user" class="nav-link {{ set_active('online-user') }}">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Online User</p>
+                                  </a>
+                              </li>
+                              <li class="nav-item">
+                                  <a href="/audits" class="nav-link">
+                                      <i class="far fa-circle nav-icon"></i>
+                                      <p>Audits</p>
+                                  </a>
+                              </li>
+                          </ul>
+                      </li>
                   @endif
                   @if (auth()->user()->role == 'tata_usaha')
-
                       <li class="nav-item has-treeview">
                           <ul class="nav nav-treeview">
                               <li class="nav-item">

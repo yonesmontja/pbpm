@@ -174,7 +174,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
     Route::get('/projects/{id}/detail', [ProjectController::class, 'projects_detail']);
     //Route::get('/getSiswa/{id}', [ProjectController::class, 'getSiswa']);
 
-    Route::get('online-user', [UserController::class, 'index']);
+    Route::get('online-user', [UserController::class, 'index'])->name('online-user');
     Route::get('/user', [UserController::class, 'user'])->name('user');
     Route::get('/user/{id}/profile', [UserController::class, 'userprofile']);
     Route::get('/my_profile/{id}/myprofile', [UserController::class, 'my_profile']);
