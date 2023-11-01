@@ -1976,8 +1976,7 @@ class SiswaController extends Controller
         }
         // -------------
         // deskripsi indonesia
-        $predikat_pengetahuan_bi = Nilai::all()
-            ->where('siswa_id', '=', $id)
+        $predikat_pengetahuan_bi = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
             ->where('mapel_id', '=', 5)
             ->where('tahunpel_id', '=', $thn_id)
