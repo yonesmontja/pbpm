@@ -121,7 +121,6 @@
                                          <div class="card">
                                              <div class="card-header">
                                                  <div class="row">
-
                                                      <div class="col-md-4">
                                                          <h3 class="card-title">
                                                              @if (auth()->user()->role == 'siswa')
@@ -130,7 +129,7 @@
                                                              @else
                                                                  <a href="/siswa/{{ $siswa->id }}/export_pdf"
                                                                      class="btn btn-primary float-right" role="button"
-                                                                     aria-pressed="true">Cetak Raport</a>
+                                                                     aria-pressed="true">Cetak Raport ke PDF</a>
                                                              @endif
                                                          </h3>
                                                      </div>
@@ -145,20 +144,12 @@
                                                              </div>
                                                          </div>
                                                      @endif
-                                                     <div class="col-md-4">
+                                                     <div class="col-md-4 float-right">
                                                          <div class="card-tools">
-                                                             <ul class="pagination pagination-sm float-right">
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">«</a></li>
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">1</a></li>
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">2</a></li>
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">3</a></li>
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">»</a></li>
-                                                             </ul>
+                                                             <a class="btn btn-success float-right"
+                                                                 href="/siswa/{{ $siswa->id }}/cetak_raport">
+                                                                 Lihat & Cetak Raport
+                                                             </a>
                                                          </div>
                                                      </div>
                                                  </div>
@@ -281,20 +272,12 @@
                                                              </div>
                                                          </div>
                                                      @endif
-                                                     <div class="col-md-4">
+                                                     <div class="col-md-4 float-right">
                                                          <div class="card-tools">
-                                                             <ul class="pagination pagination-sm float-right">
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">«</a></li>
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">1</a></li>
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">2</a></li>
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">3</a></li>
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">»</a></li>
-                                                             </ul>
+                                                             <a class="btn btn-success float-right"
+                                                                 href="/siswa/{{ $siswa->id }}/cetak_raport">
+                                                                 Lihat & Cetak Raport
+                                                             </a>
                                                          </div>
                                                      </div>
                                                  </div>
@@ -381,20 +364,12 @@
                                                              </a>
                                                          </h3>
                                                      </div>
-                                                     <div class="col-md-4">
+                                                     <div class="col-md-4 float-right">
                                                          <div class="card-tools">
-                                                             <ul class="pagination pagination-sm float-right">
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">«</a></li>
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">1</a></li>
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">2</a></li>
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">3</a></li>
-                                                                 <li class="page-item"><a class="page-link"
-                                                                         href="#">»</a></li>
-                                                             </ul>
+                                                             <a class="btn btn-success float-right"
+                                                                 href="/siswa/{{ $siswa->id }}/cetak_raport">
+                                                                 Lihat & Cetak Raport
+                                                             </a>
                                                          </div>
                                                      </div>
                                                  </div>

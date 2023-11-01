@@ -185,6 +185,9 @@
                                                         <a href="/siswa/{{ $data['siswa']->id }}/export_pdf"
                                                             class="btn btn-primary btn-xs">Raport
                                                         </a>
+                                                        <a href="/siswa/{{ $data['siswa']->id }}/cetak_raport"
+                                                            class="btn btn-success btn-xs">Lihat & Cetak Raport
+                                                        </a>
                                                     </td>
                                                     <td>
                                                         <a href="/test/{{ $data['siswa']->id }}/edit"
@@ -293,6 +296,9 @@
                                                         </a>
                                                         <a href="/siswa/{{ $data->siswa_id }}/export_pdf"
                                                             class="btn btn-primary btn-xs">Raport
+                                                        </a>
+                                                        <a href="/siswa/{{ $data->siswa_id }}/cetak_raport"
+                                                            class="btn btn-success btn-xs">Lihat & Cetak Raport
                                                         </a>
                                                     </td>
                                                     <td>
