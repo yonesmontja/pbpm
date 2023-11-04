@@ -332,6 +332,7 @@ Route::group(['middleware' => ['auth', 'checkRole:guru,tata_usaha,admin']], func
     Route::get('/siswa/{id}/biodata_pdf', [SiswaController::class, 'biodata_pdf'])->middleware('cache.headers:private;max_age=3600');
     Route::get('/guru/{guru}/profile', [GuruController::class, 'profile'])->middleware('cache.headers:private;max_age=3600');
     Route::get('/siswa/{id}/cetak_raport', [SiswaController::class, 'cetak_raport'])->middleware('cache.headers:private;max_age=3600');
+    Route::get('/siswa/nilai_raport', [SiswaController::class, 'nilai_raport'])->middleware('cache.headers:private;max_age=3600');
     Route::get('/user/{id}/profile', [UserController::class, 'userprofile'])->middleware('cache.headers:private;max_age=3600');
     Route::get('/my_profile/{id}/myprofile', [UserController::class, 'my_profile'])->middleware('cache.headers:private;max_age=3600');
     Route::get('/user/{user}/edit', [UserController::class, 'useredit']);

@@ -5225,4 +5225,72 @@ class SiswaController extends Controller
         );
         // return $pdf->download($kalimat1 . '_' . $kalimat2 . '_' . $id . '_' . date('Y-m-d_H') . '.pdf');
     }
+    public function nilai_raport()
+    {
+        $id_user = auth()->user()->id;
+        $role = auth()->user()->role;
+        $kelas = Kelas::all();
+        $minutes = 30;
+        $thn_id = Cache::remember('tahun_pelajaran', $minutes, function () {
+            return Tahunpel::where('aktif', 'Y')->value('id');
+        });
+        $guru = Guru::where('user_id', $id_user)->value('id');
+        $rombel1 = []; // Inisialisasi variabel $rombel1 sebagai array kosong.
+        $cacheKey = 'user_' . $id_user . '_role_' . $role; // Membuat kunci unik berdasarkan user dan role.
+        $rombel3 = Rombel::where('guru_id', $guru)->where('tahunpelajaran_id', $thn_id)->value('rombel');
+        $data_nilai = Nilai::where('tahunpel_id', '=', tahunpelajaran_aktif())->get();
+        $siswa = DB::table('rombel_siswa')->where('tahunpelajaran_id', '=', tahunpelajaran_aktif())->get();
+        //dd($data_nilai);
+        $tampung2 = [];
+        $tampung = Cache::remember($cacheKey, $minutes, function () use ($id_user, $role, $thn_id) {
+            if ($role == 'guru') {
+                $guru = Guru::where('user_id', $id_user)->value('id');
+                $rombel2 = Rombel::where('guru_id', $guru)->where('tahunpelajaran_id', $thn_id)->value('id');
+
+                return Siswa::join('rombel_siswa', 'siswa.id', '=', 'rombel_siswa.siswa_id')
+                ->where('rombel_siswa.rombel_id', $rombel2)
+                    ->where('rombel_siswa.tahunpelajaran_id', $thn_id)
+                    ->get();
+            } elseif ($role == 'admin' || $role == 'tata_usaha') {
+                $rombel1 = DB::table('rombel_siswa')->where('tahunpelajaran_id', $thn_id)->pluck('siswa_id')->toArray();
+
+                return Siswa::whereIn('id', $rombel1)->with('rombel')->get();
+            }
+
+            return [];
+        });
+        //dd($tampung);
+        foreach ($tampung as $t) {
+            foreach ($t->nilai as $tn) {
+                if ($tn->tahunpel_id == $thn_id && $tn->penilaian && $tn->mapel && $t->nama_depan) {
+                    $tampung2[] = [
+                        'siswa' => $t,
+                        'nilai' => $tn->nilai,
+                        'penilaian' => $tn->penilaian->nama_tes,
+                        'mapel' => $tn->mapel->nama_mapel,
+                        'rombel' => $tn->rombel->rombel,
+
+                    ];
+                }
+            }
+        }
+        //dd($tampung2);
+        foreach ($tampung2 as $t2) {
+            $nilai[] = [
+                'siswa' => $t2['siswa']->id,
+                'raport' => $t2['nilai'],
+                'penilaian' => $t2['penilaian'],
+            ];
+        }
+        //dd($nilai);
+        return view('siswa.nilai-raport', [
+            'kelas' => $kelas,
+            'tampung' => $tampung,
+            'rombel1' => $rombel1,
+            'thn_id' => $thn_id,
+            'guru' => $guru,
+            'rombel3' => $rombel3,
+            'tampung2' => $tampung2,
+        ]);
+    }
 }
