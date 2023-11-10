@@ -384,7 +384,7 @@ class NilaiController extends Controller
         //Excel::import(new NilaiImport, $request->file('file'));
         $date = now();
         //dd($date);
-        $siswa = Nilai::all();
+        $siswa = Nilai::where('tahunpel_id', '=', tahunpelajaran_aktif())->get();
         //DB::beginTransaction();
         // do all your updates here
         //dd($siswa);
@@ -428,7 +428,7 @@ class NilaiController extends Controller
         if (auth()->user()->role == 'admin') {
             return redirect('/nilai');
         }
-        if (auth()->user()->role == 'guru') {
+        if (auth()->user()->role == 'guru' || auth()->user()->role == 'tata_usaha') {
             return Redirect::back()->with('sukses', 'berhasil diinput');
         }
     }
