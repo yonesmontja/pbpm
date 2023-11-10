@@ -384,7 +384,7 @@ class NilaiController extends Controller
         //Excel::import(new NilaiImport, $request->file('file'));
         $date = now();
         //dd($date);
-        $siswa = Nilai::where('tahunpel_id', '=', tahunpelajaran_aktif())->get();
+        $siswa = Nilai::all();
         //DB::beginTransaction();
         // do all your updates here
         //dd($siswa);
