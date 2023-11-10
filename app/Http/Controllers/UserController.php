@@ -46,7 +46,7 @@ class UserController extends Controller
         $nilai = Nilai::where('guru_id', '=', $guru)->orderBy('tanggal')->get();
         //dd($nilai);
 
-        if (auth()->user()->role == 'admin') {
+        if (auth()->user()->role == 'admin' || auth()->user()->role == 'tata_usaha') {
             return view('profile.my_profile', [
                 'user' => $user,
                 'guru' => $guru,
@@ -159,7 +159,7 @@ class UserController extends Controller
         if (auth()->user()->role == 'guru') {
             $guru = Guru::where('user_id', '=', $id_user)->pluck('id')->first();
         }
-        if (auth()->user()->role == 'admin') {
+        if (auth()->user()->role == 'admin' || auth()->user()->role == 'tata_usaha') {
             $guru = auth()->user()->id;
         }
 
