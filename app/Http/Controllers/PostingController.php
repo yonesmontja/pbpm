@@ -54,7 +54,7 @@ class PostingController extends Controller
 
         $img = Image::make($image->path());
         $img->resize('180', '120')
-            ->save(public_path('images/posting') . '/small_' . $file_name);
+        ->save('images/posting' . '/small_' . $file_name);
 
         $image->move('images/posting', $file_name);
 
