@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'e74dd69e9236bb16f90c72d88d55b61a466e3fd8',
+        'reference' => '4e69d047a7d77c8b1a9b284046b143d2e2775c3c',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -502,9 +502,9 @@
             ),
         ),
         'laminas/laminas-escaper' => array(
-            'pretty_version' => '2.8.0',
-            'version' => '2.8.0.0',
-            'reference' => '2d6dce99668b413610e9544183fa10392437f542',
+            'pretty_version' => '2.5.2',
+            'version' => '2.5.2.0',
+            'reference' => 'f2e77784202bb7d3d77241b890c349140b4f4195',
             'type' => 'library',
             'install_path' => __DIR__ . '/../laminas/laminas-escaper',
             'aliases' => array(),
@@ -531,7 +531,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'e74dd69e9236bb16f90c72d88d55b61a466e3fd8',
+            'reference' => '4e69d047a7d77c8b1a9b284046b143d2e2775c3c',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -1507,7 +1507,7 @@
         'zendframework/zend-escaper' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => '^2.6.1',
+                0 => '2.5.2',
             ),
         ),
     ),

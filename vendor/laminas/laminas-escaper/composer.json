@@ -1,6 +1,6 @@
 {
     "name": "laminas/laminas-escaper",
-    "description": "Securely and safely escape HTML, HTML attributes, JavaScript, CSS, and URLs",
+    "description": " ",
     "license": "BSD-3-Clause",
     "keywords": [
         "laminas",
@@ -19,20 +19,18 @@
         "sort-packages": true
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "2.5-dev",
+            "dev-develop": "2.6-dev"
+        }
     },
     "require": {
-        "php": "^7.3 || ~8.0.0",
+        "php": ">=5.5",
         "laminas/laminas-zendframework-bridge": "^1.0"
     },
-    "suggest": {
-        "ext-iconv": "*",
-        "ext-mbstring": "*"
-    },
     "require-dev": {
-        "laminas/laminas-coding-standard": "~2.3.0",
-        "phpunit/phpunit": "^9.3",
-        "psalm/plugin-phpunit": "^0.12.2",
-        "vimeo/psalm": "^3.16"
+        "fabpot/php-cs-fixer": "1.7.*",
+        "phpunit/phpunit": "~4.0"
     },
     "autoload": {
         "psr-4": {
@@ -44,18 +42,7 @@
             "LaminasTest\\Escaper\\": "test/"
         }
     },
-    "scripts": {
-        "check": [
-            "@cs-check",
-            "@test"
-        ],
-        "cs-check": "phpcs",
-        "cs-fix": "phpcbf",
-        "static-analysis": "psalm --shepherd --stats",
-        "test": "phpunit --colors=always",
-        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
-    },
     "replace": {
-        "zendframework/zend-escaper": "^2.6.1"
+        "zendframework/zend-escaper": "self.version"
     }
 }
