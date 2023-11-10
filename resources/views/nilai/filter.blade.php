@@ -87,7 +87,6 @@
                                             <div class="input-group mb-3">
                                                 <input type="date" class="form-control" name="start_date">
                                                 <input type="date" class="form-control" name="end_date">
-
                                             </div>
                                             <div class="input-group mb-3">
                                                 <button class="btn btn-primary float-right btn-sm" type="submit">FILTER</button>
@@ -283,9 +282,9 @@
                                                     <div class="row">
                                                         <div class="col-sm-4">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlSelect1">GURU</label>
+                                                                <label for="exampleFormControlSelect12">GURU</label>
                                                                 <select name="guru_id" class="form-control"
-                                                                    id="exampleFormControlSelect2">
+                                                                    id="exampleFormControlSelect12">
                                                                     <option>---</option>
                                                                     @foreach ($guru as $key => $m)
                                                                         <option value="{{ $m->id }}">

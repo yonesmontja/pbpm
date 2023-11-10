@@ -86,7 +86,14 @@ class SiswaController extends Controller
         $guru = Guru::where('user_id', $id_user)->value('id');
         $rombel1 = []; // Inisialisasi variabel $rombel1 sebagai array kosong.
         $cacheKey = 'user_' . $id_user . '_role_' . $role; // Membuat kunci unik berdasarkan user dan role.
-        $rombel3 = Rombel::where('guru_id', $guru)->where('tahunpelajaran_id', $thn_id)->value('rombel');
+        if ($role == 'guru') {
+            $rombel3 = Rombel::where('guru_id', $guru)->where('tahunpelajaran_id', $thn_id)->value('rombel');
+        } else {
+            $rombel3 = Rombel::where(
+                'tahunpelajaran_id',
+                $thn_id
+            )->get();
+        }
         $tampung = Cache::remember($cacheKey, $minutes, function () use ($id_user, $role, $thn_id) {
             if ($role == 'guru') {
                 $guru = Guru::where('user_id', $id_user)->value('id');
@@ -104,7 +111,7 @@ class SiswaController extends Controller
 
             return [];
         });
-        //dd($tampung);
+        //dd($rombel3);
         return view('siswa.test', [
             'kelas' => $kelas,
             'tampung' => $tampung,
@@ -129,8 +136,14 @@ class SiswaController extends Controller
         $guru = Guru::where('user_id', $id_user)->value('id');
         $rombel1 = []; // Inisialisasi variabel $rombel1 sebagai array kosong.
         $cacheKey = 'user_' . $id_user . '_role_' . $role; // Membuat kunci unik berdasarkan user dan role.
-        $rombel3 = Rombel::where('guru_id', $guru)->where('tahunpelajaran_id', $thn_id)->value('rombel');
-        //dd($rombel3);
+        if ($role == 'guru') {
+            $rombel3 = Rombel::where('guru_id', $guru)->where('tahunpelajaran_id', $thn_id)->value('rombel');
+        } else {
+            $rombel3 = Rombel::where(
+                'tahunpelajaran_id',
+                $thn_id
+            )->get();
+        }
         $tampung = Cache::remember($cacheKey, $minutes, function () use ($id_user, $role, $rombel, $thn_id) {
             if ($role == 'guru') {
                 $guru = Guru::where('user_id', $id_user)->value('id');
@@ -149,7 +162,7 @@ class SiswaController extends Controller
             return [];
         });
         //dd($tampung);
-        return view('siswa.test', [
+        return view('siswa.siswa-filter', [
             'kelas' => $kelas,
             'tampung' => $tampung,
             'rombel1' => $rombel1,

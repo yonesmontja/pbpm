@@ -65,11 +65,16 @@
                                                 <div class="form-group">
                                                     <label for="rombel">Pilih Rombel:</label>
                                                     <select class="form-control" name="rombel" id="rombel">
-                                                        <option value="13" selected>Rombel A</option>
-                                                        <option value="14">Rombel B</option>
+                                                        @foreach ($rombel3 as $rombel4)
+                                                            <option value="{{ $rombel4->id }}">{{ $rombel4->rombel }}
+                                                            </option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
-                                                <button class="btn btn-primary" type="submit">Filter</button>
+                                                <div class="input-group mb-3">
+                                                    <button class="btn btn-primary float-right btn-xs"
+                                                        type="submit">Pilih</button>
+                                                </div>
                                             </form>
                                         </div>
                                     @endif
