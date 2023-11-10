@@ -44,29 +44,41 @@
                                 <div class="row">
                                     @if (auth()->user()->role == 'admin')
                                         <div class="col-sm-2">
-                                            <h3 class="card-title">
+                                            <h6 class="card-title">
                                                 <a href="/siswa/export_pdf" target="_blank">EXPOR
                                                     PDF
                                                 </a>
-                                            </h3>
+                                            </h6>
                                         </div>
                                     @endif
                                     @if (auth()->user()->role == 'admin')
                                         <div class="col-sm-2">
-                                            <h3 class="card-title">
+                                            <h6 class="card-title">
                                                 <a href="/siswa/export_excel" target="_blank">EXPOR EXCEL
                                                 </a>
-                                            </h3>
+                                            </h6>
                                         </div>
                                     @endif
-                                    <div class="col-sm-2">
-                                    </div>
+                                    @if (auth()->user()->role == 'admin' || auth()->user()->role == 'tata_usaha')
+                                        <div class="col-sm-2">
+                                            <form action="/siswa/filter" method="GET">
+                                                <div class="form-group">
+                                                    <label for="rombel">Pilih Rombel:</label>
+                                                    <select class="form-control" name="rombel" id="rombel">
+                                                        <option value="13" selected>Rombel A</option>
+                                                        <option value="14">Rombel B</option>
+                                                    </select>
+                                                </div>
+                                                <button class="btn btn-primary" type="submit">Filter</button>
+                                            </form>
+                                        </div>
+                                    @endif
                                     @if (auth()->user()->role == 'admin')
                                         <div class="col-sm-2">
-                                            <h3 class="card-title" data-toggle="modal" data-target="#importExcel">
+                                            <h6 class="card-title" data-toggle="modal" data-target="#importExcel">
                                                 <a href="#">
                                                     IMPOR EXCEL</a>
-                                            </h3>
+                                            </h6>
                                             <!-- Import Excel -->
                                             <div class="modal fade" id="importExcel" tabindex="-1" role="dialog"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -103,12 +115,12 @@
                                     @endif
                                     @if (auth()->user()->role == 'admin')
                                         <div class="col-sm-2">
-                                            <h3 class="card-title" data-toggle="modal" data-target="#staticBackdrop">
+                                            <h6 class="card-title" data-toggle="modal" data-target="#staticBackdrop">
                                                 <a href="#">AKTIVASI USER</a>
-                                            </h3>
+                                            </h6>
                                         </div>
                                         <div class="col-sm-2">
-                                            <button type="button" class="btn btn-primary float-right btn-sm"
+                                            <button type="button" class="btn btn-primary float-right btn-xs"
                                                 data-toggle="modal" data-target="#staticBackdrop">
                                                 Tambah Data Siswa
                                             </button>
@@ -431,9 +443,10 @@
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlInput1">Nama Belakang</label>
+                                                                <label for="exampleFormControlInput12">Nama
+                                                                    Belakang</label>
                                                                 <input name="nama_belakang" type="text"
-                                                                    class="form-control" id="exampleFormControlInput2"
+                                                                    class="form-control" id="exampleFormControlInput12"
                                                                     placeholder="nama belakang">
                                                             </div>
                                                         </div>
@@ -442,9 +455,9 @@
                                                         <div class="col-sm-6">
                                                             <div
                                                                 class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-                                                                <label for="exampleFormControlInput1">E-mail</label>
+                                                                <label for="exampleFormControlInput13">E-mail</label>
                                                                 <input name="email" type="email" class="form-control"
-                                                                    id="exampleFormControlInput1"
+                                                                    id="exampleFormControlInput13"
                                                                     placeholder="Masukkan email"
                                                                     value="{{ old('email') }}">
                                                                 @if ($errors->has('email'))
@@ -455,16 +468,16 @@
                                                         </div>
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlInput1">NIS</label>
+                                                                <label for="exampleFormControlInput14">NIS</label>
                                                                 <input name="nis" type="text" class="form-control"
-                                                                    id="exampleFormControlInput3" placeholder="NIS">
+                                                                    id="exampleFormControlInput14" placeholder="NIS">
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-3">
                                                             <div class="form-group">
-                                                                <label for="exampleFormControlInput1">NISN</label>
+                                                                <label for="exampleFormControlInput15">NISN</label>
                                                                 <input name="nisn" type="text" class="form-control"
-                                                                    id="exampleFormControlInput3" placeholder="NISN">
+                                                                    id="exampleFormControlInput15" placeholder="NISN">
                                                             </div>
                                                         </div>
                                                     </div>

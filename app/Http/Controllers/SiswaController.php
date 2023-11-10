@@ -115,6 +115,49 @@ class SiswaController extends Controller
         ]);
     }
 
+    public function filter(Request $request)
+    {
+        $rombel = $request->input('rombel');
+        //dd($rombel);
+        $id_user = auth()->user()->id;
+        $role = auth()->user()->role;
+        $kelas = Kelas::all();
+        $minutes = 30;
+        $thn_id = Cache::remember('tahun_pelajaran', $minutes, function () {
+            return Tahunpel::where('aktif', 'Y')->value('id');
+        });
+        $guru = Guru::where('user_id', $id_user)->value('id');
+        $rombel1 = []; // Inisialisasi variabel $rombel1 sebagai array kosong.
+        $cacheKey = 'user_' . $id_user . '_role_' . $role; // Membuat kunci unik berdasarkan user dan role.
+        $rombel3 = Rombel::where('guru_id', $guru)->where('tahunpelajaran_id', $thn_id)->value('rombel');
+        //dd($rombel3);
+        $tampung = Cache::remember($cacheKey, $minutes, function () use ($id_user, $role, $rombel, $thn_id) {
+            if ($role == 'guru') {
+                $guru = Guru::where('user_id', $id_user)->value('id');
+                $rombel2 = Rombel::where('guru_id', $guru)->where('tahunpelajaran_id', $thn_id)->value('id');
+
+                return Siswa::join('rombel_siswa', 'siswa.id', '=', 'rombel_siswa.siswa_id')
+                ->where('rombel_siswa.rombel_id', $rombel2)
+                    ->where('rombel_siswa.tahunpelajaran_id', $thn_id)
+                    ->get();
+            } elseif ($role == 'admin' || $role == 'tata_usaha') {
+                $rombel1 = DB::table('rombel_siswa')->where('rombel_id', '=', $rombel)->where('tahunpelajaran_id', $thn_id)->pluck('siswa_id')->toArray();
+                //dd(Siswa::whereIn('id', $rombel1)->with('rombel')->get());
+                return Siswa::whereIn('id', $rombel1)->with('rombel')->get();
+            }
+
+            return [];
+        });
+        //dd($tampung);
+        return view('siswa.test', [
+            'kelas' => $kelas,
+            'tampung' => $tampung,
+            'rombel1' => $rombel1,
+            'thn_id' => $thn_id,
+            'guru' => $guru,
+            'rombel3' => $rombel3,
+        ]);
+    }
     public function testcreate(Request $request)
     {
         $this->validate($request, [

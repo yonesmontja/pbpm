@@ -266,7 +266,8 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
 
     // Nilai PPKn
     Route::group(['prefix' => '/ppkn'], function () {
-        Route::get('/',
+        Route::get(
+            '/',
             [PpknController::class, 'index']
         )->name('ppkn.index');
         Route::post('/', [PpknController::class, 'import'])->name('ppkn.import');
@@ -296,7 +297,22 @@ Route::group(['middleware' => ['auth', 'checkRole:admin,tata_usaha']], function 
     Route::get('/rombel', [RombelController::class, 'index'])->name('rombel');
     Route::post('/rombel/rombelcreate', [RombelController::class, 'rombelcreate']);
     Route::get('/rombel/{rombel}/profile', [RombelController::class, 'rombelprofile']);
-
+    Route::get('/siswa/filter', [SiswaController::class, 'filter'])->name('filter');
+    //     Route::get('/siswa/filter', function () {
+    //     if (request()->rombel) {
+    //         $rombel = request()->rombel;
+    //         dd($rombel);
+    //     } else {
+    //         $data_extra = App\Models\Extra::latest()->get();
+    //     }
+    //     $kompetensiinti = Kompetensiinti::all();
+    //     $mapel = Mapel::all();
+    //     $siswa = Siswa::all();
+    //     $penilaian = Penilaian::all();
+    //     $guru = Guru::all();
+    //     $kelas = Kelas::all();
+    //     return view('siswa.siswa-filter', compact('data_extra', 'mapel', 'siswa', 'penilaian', 'guru', 'kelas', 'kompetensiinti'));
+    // });
     Route::get('/rombel_siswa', [RombelController::class, 'rombel_siswa'])->name('rombel-siswa');
     Route::post('/rombel/rombelsiswacreate', [RombelController::class, 'rombelsiswacreate']);
     Route::get('/rombel/{siswa_id}/rombelsiswadelete', [RombelController::class, 'rombelsiswadelete']);
@@ -338,6 +354,7 @@ Route::group(['middleware' => ['auth', 'checkRole:guru,tata_usaha,admin']], func
     Route::get('/user/{user}/edit', [UserController::class, 'useredit']);
     Route::post('/user/{user}/update', [UserController::class, 'userupdate']);
     Route::post('/siswa/editnilai', [SiswaController::class, 'editnilai'])->name('siswa.editnilai');
+
     Route::get('/test/{siswa}/profile', [SiswaController::class, 'testprofile'])->name('testsiswaprofile');
     //Route::get('/test/{siswa}/profile', [SiswaController::class, 'testprofile']);
     Route::get('/test', [SiswaController::class, 'test'])->name('test')->middleware('cache.headers:private;max_age=3600');
