@@ -615,8 +615,8 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-default"><a href="/test/{{ $siswa->id }}/delete"
-                            siswa-id="{{ $siswa->id }}">Hapus</a></button>
+                    <button type="button" class="btn btn-default"><a href="/test/{{ $siswa->siswa_id }}/delete"
+                            siswa-id="{{ $siswa->siswa_id }}">Hapus</a></button>
                 </div>
             </div>
             <!-- /.modal-content -->

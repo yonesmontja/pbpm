@@ -29,7 +29,7 @@ class FirstSheetImport implements ToModel, WithHeadingRow
             'penilaian_id' => $row['penilaian'],
             'guru_id' => $row['guru'],
             'kelas_id' => $row['kelas'],
-            'siswa_id' => $row['nama_siswa'],
+            'siswa_id' => $row['nomor_siswa'],
             'nilai' => $row['nilai_siswa'],
             'tahunpel_id' => $row['tahun_pelajaran'],
             'rombel_id' => $row['rombel'],

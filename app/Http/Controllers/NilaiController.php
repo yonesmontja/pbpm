@@ -374,7 +374,7 @@ class NilaiController extends Controller
         $file = $request->file('file');
         //dd($file);
         // membuat nama file unik
-        $nama_file = rand() . $file->getClientOriginalName();
+        $nama_file = uniqid() . $file->getClientOriginalName();
         //dd($nama_file);
         // upload ke folder file_nilai di dalam folder public
         $file->move('file_nilai', $nama_file);
@@ -387,47 +387,43 @@ class NilaiController extends Controller
         $import = new NilaiImport;
         //dd($import);
         Excel::import($import, public_path('/file_nilai/' . $nama_file));
-        //dd('Row count: ' . $import->getRowCount());
-        //Excel::import(new NilaiImport, public_path('/file_nilai/' . $nama_file));
-        //Excel::import(new NilaiImport, $request->file('file'));
-        //dd($import->getRowCount());
         $date = now();
-        //dd($date);
         // mendapatkan jumlah data nilai yang baru diimpor
-        //$sheet = Excel::import($import, public_path('/file_nilai/' . $nama_file))->getSheet();
-        //$jumlahData = $sheet->getHighestDataRow() - 1;
-        //dd($jumlahData);
         // mendapatkan nilai yang baru diimpor dengan pagination
         $siswa = Nilai::orderBy('id', 'desc')->paginate($import->getRowCount());
-        //dd($siswa);
-        //$siswa = Nilai::all();
-        //DB::beginTransaction();
         // do all your updates here
-        //dd($siswa);
-        foreach ($siswa as $s) {
-            DB::table('penilaian_siswa')
-            ->where('nilai_id', '=', $s->id)
+        DB::transaction(function () use ($siswa, $date) {
+            $output = new ConsoleOutput();
+            $progressBar = new ProgressBar($output, count($siswa));
+            $progressBar->start();
+            foreach ($siswa as $s) {
+                DB::table('penilaian_siswa')
+                ->where('nilai_id', '=', $s->id)
                 ->insert([
                     'siswa_id'      => $s->siswa_id,
                     'penilaian_id'  => $s->penilaian_id,
                     'nilai' => $s->nilai,
                     'nilai_id' => $s->id,
                     'created_at' => $date,
-                'updated_at' => $date,
-                'tanggal' => $s->tanggal,
+                    'updated_at' => $date,
+                    'tanggal' => $s->tanggal,
                 ]);
-            DB::table('mapel_siswa')
-            ->where('nilai_id', '=', $s->id)
+                DB::table('mapel_siswa')
+                ->where('nilai_id', '=', $s->id)
                 ->insert([
                     'siswa_id'      => $s->siswa_id,
                     'mapel_id'  => $s->mapel_id,
                     'nilai' => $s->nilai,
                     'nilai_id' => $s->id,
                     'created_at' => $date,
-                'updated_at' => $date,
-                'tanggal' => $s->tanggal,
+                    'updated_at' => $date,
+                    'tanggal' => $s->tanggal,
                 ]);
-        }
+                $progressBar->advance();
+            }
+            $progressBar->finish();
+            $output->writeln('');
+        });
         // when done commit
         //DB::commit();
 
