@@ -392,38 +392,30 @@ class NilaiController extends Controller
         // mendapatkan nilai yang baru diimpor dengan pagination
         $siswa = Nilai::orderBy('id', 'desc')->paginate($import->getRowCount());
         // do all your updates here
-        DB::transaction(function () use ($siswa, $date) {
-            $output = new ConsoleOutput();
-            $progressBar = new ProgressBar($output, count($siswa));
-            $progressBar->start();
-            foreach ($siswa as $s) {
-                DB::table('penilaian_siswa')
-                ->where('nilai_id', '=', $s->id)
+        foreach ($siswa as $s) {
+            DB::table('penilaian_siswa')
+            ->where('nilai_id', '=', $s->id)
                 ->insert([
                     'siswa_id'      => $s->siswa_id,
                     'penilaian_id'  => $s->penilaian_id,
                     'nilai' => $s->nilai,
                     'nilai_id' => $s->id,
                     'created_at' => $date,
-                    'updated_at' => $date,
-                    'tanggal' => $s->tanggal,
+                'updated_at' => $date,
+                'tanggal' => $s->tanggal,
                 ]);
-                DB::table('mapel_siswa')
-                ->where('nilai_id', '=', $s->id)
+            DB::table('mapel_siswa')
+            ->where('nilai_id', '=', $s->id)
                 ->insert([
                     'siswa_id'      => $s->siswa_id,
                     'mapel_id'  => $s->mapel_id,
                     'nilai' => $s->nilai,
                     'nilai_id' => $s->id,
                     'created_at' => $date,
-                    'updated_at' => $date,
-                    'tanggal' => $s->tanggal,
+                'updated_at' => $date,
+                'tanggal' => $s->tanggal,
                 ]);
-                $progressBar->advance();
-            }
-            $progressBar->finish();
-            $output->writeln('');
-        });
+        }
         // when done commit
         //DB::commit();
 
