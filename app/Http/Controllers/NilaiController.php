@@ -387,43 +387,43 @@ class NilaiController extends Controller
         $import = new NilaiImport;
         //dd($import);
         Excel::import($import, public_path('/file_nilai/' . $nama_file));
-        $date = now();
-        // mendapatkan jumlah data nilai yang baru diimpor
-        // mendapatkan nilai yang baru diimpor dengan pagination
-        $siswa = Nilai::orderBy('id', 'desc')->paginate($import->getRowCount());
-        // do all your updates here
-        foreach ($siswa as $s) {
-            DB::table('penilaian_siswa')
-            ->where('nilai_id', '=', $s->id)
-                ->insert([
-                    'siswa_id'      => $s->siswa_id,
-                    'penilaian_id'  => $s->penilaian_id,
-                    'nilai' => $s->nilai,
-                    'nilai_id' => $s->id,
-                    'created_at' => $date,
-                'updated_at' => $date,
-                'tanggal' => $s->tanggal,
-                ]);
-            DB::table('mapel_siswa')
-            ->where('nilai_id', '=', $s->id)
-                ->insert([
-                    'siswa_id'      => $s->siswa_id,
-                    'mapel_id'  => $s->mapel_id,
-                    'nilai' => $s->nilai,
-                    'nilai_id' => $s->id,
-                    'created_at' => $date,
-                'updated_at' => $date,
-                'tanggal' => $s->tanggal,
-                ]);
-        }
+        // $date = now();
+        // // mendapatkan jumlah data nilai yang baru diimpor
+        // // mendapatkan nilai yang baru diimpor dengan pagination
+        // $siswa = Nilai::orderBy('id', 'desc')->paginate($import->getRowCount());
+        // // do all your updates here
+        // foreach ($siswa as $s) {
+        //     DB::table('penilaian_siswa')
+        //     ->where('nilai_id', '=', $s->id)
+        //         ->insert([
+        //             'siswa_id'      => $s->siswa_id,
+        //             'penilaian_id'  => $s->penilaian_id,
+        //             'nilai' => $s->nilai,
+        //             'nilai_id' => $s->id,
+        //             'created_at' => $date,
+        //         'updated_at' => $date,
+        //         'tanggal' => $s->tanggal,
+        //         ]);
+        //     DB::table('mapel_siswa')
+        //     ->where('nilai_id', '=', $s->id)
+        //         ->insert([
+        //             'siswa_id'      => $s->siswa_id,
+        //             'mapel_id'  => $s->mapel_id,
+        //             'nilai' => $s->nilai,
+        //             'nilai_id' => $s->id,
+        //             'created_at' => $date,
+        //         'updated_at' => $date,
+        //         'tanggal' => $s->tanggal,
+        //         ]);
+        // }
         // when done commit
         //DB::commit();
 
-        if ($request->hasFile('avatar')) {
-            $request->file('avatar')->move('images/', $request->file('avatar')->getClientOriginalName());
-            $siswa->avatar = $request->file('avatar')->getClientOriginalName();
-            $siswa->save();
-        }
+        // if ($request->hasFile('avatar')) {
+        //     $request->file('avatar')->move('images/', $request->file('avatar')->getClientOriginalName());
+        //     $siswa->avatar = $request->file('avatar')->getClientOriginalName();
+        //     $siswa->save();
+        // }
 
         // notifikasi dengan session
         Session::flash('sukses', 'Berhasil Diimport!');
