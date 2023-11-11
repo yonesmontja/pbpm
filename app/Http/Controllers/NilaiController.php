@@ -380,8 +380,11 @@ class NilaiController extends Controller
 
 
         // import data
-        Excel::import(new NilaiImport, public_path('/file_nilai/' . $nama_file));
+        $import = new NilaiImport;
+        Excel::import($import, public_path('/file_nilai/' . $nama_file));
+        //Excel::import(new NilaiImport, public_path('/file_nilai/' . $nama_file));
         //Excel::import(new NilaiImport, $request->file('file'));
+        dd($import->getRowCount());
         $date = now();
         //dd($date);
         $siswa = Nilai::all();
