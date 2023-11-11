@@ -15,11 +15,17 @@ class NilaiImport implements WithMultipleSheets
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+    public $rowCount = 0;
 
     public function sheets(): array
     {
+        ++$this->rowCount;
         return [
             'Worksheet' => new FirstSheetImport()
         ];
+    }
+    public function getRowCount(): int
+    {
+        return $this->rowCount;
     }
 }

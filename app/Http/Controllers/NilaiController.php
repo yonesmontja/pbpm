@@ -16,6 +16,7 @@ use App\Models\Penilaian;
 use App\Exports\NilaiExport;
 use App\Imports\ExtraImport;
 use App\Imports\NilaiImport;
+use App\Imports\FirstSheetImport;
 use Illuminate\Http\Request;
 use App\Models\Kompetensiinti;
 use App\Models\Tahunpelajaran;
@@ -380,14 +381,26 @@ class NilaiController extends Controller
 
 
         // import data
+
+        //dd($rows->count());
+        $import1 = new FirstSheetImport;
         $import = new NilaiImport;
+        //dd($import);
         Excel::import($import, public_path('/file_nilai/' . $nama_file));
+        //dd('Row count: ' . $import->getRowCount());
         //Excel::import(new NilaiImport, public_path('/file_nilai/' . $nama_file));
         //Excel::import(new NilaiImport, $request->file('file'));
-        dd($import->getRowCount());
+        //dd($import->getRowCount());
         $date = now();
         //dd($date);
-        $siswa = Nilai::all();
+        // mendapatkan jumlah data nilai yang baru diimpor
+        //$sheet = Excel::import($import, public_path('/file_nilai/' . $nama_file))->getSheet();
+        //$jumlahData = $sheet->getHighestDataRow() - 1;
+        //dd($jumlahData);
+        // mendapatkan nilai yang baru diimpor dengan pagination
+        $siswa = Nilai::orderBy('id', 'desc')->paginate($import->getRowCount());
+        //dd($siswa);
+        //$siswa = Nilai::all();
         //DB::beginTransaction();
         // do all your updates here
         //dd($siswa);

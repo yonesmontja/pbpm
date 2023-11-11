@@ -13,8 +13,11 @@ class FirstSheetImport implements ToModel, WithHeadingRow
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+
+    public $rowCount = 0;
     public function model(array $row)
     {
+        ++$this->rowCount;
         return new Nilai([
             //
             'nilai_start' => $row['nilai_start'],
@@ -32,5 +35,9 @@ class FirstSheetImport implements ToModel, WithHeadingRow
             'rombel_id' => $row['rombel'],
             'tanggal' => $row['tanggal'],
         ]);
+    }
+    public function getRowCount(): int
+    {
+        return $this->rowCount;
     }
 }
