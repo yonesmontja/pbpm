@@ -285,7 +285,7 @@
                                                                 <input name="nilai_start" type="text"
                                                                     class="form-control" id="exampleFormControlInput14"
                                                                     placeholder="Kapan mulai?"
-                                                                    value="{{ $nilai_start[0] }}">
+                                                                    value="{{ $nilai_start }}">
                                                                 @if ($errors->has('nilai_start'))
                                                                     <span
                                                                         class="help-block">{{ $errors->first('nilai_start') }}</span>
@@ -303,7 +303,7 @@
                                                                 <input name="nilai_end" type="text"
                                                                     class="form-control" id="exampleFormControlInput12"
                                                                     placeholder="Kapan selesai?"
-                                                                    value="{{ $nilai_end[0] }}">
+                                                                    value="{{ $nilai_end }}">
                                                                 @if ($errors->has('nilai_end'))
                                                                     <span
                                                                         class="help-block">{{ $errors->first('nilai_end') }}</span>
