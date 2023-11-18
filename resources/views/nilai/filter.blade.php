@@ -314,8 +314,8 @@
                                                                 <select name="siswa_id" class="form-control"
                                                                     id="exampleFormControlSelect2">
                                                                     <option>---</option>
-                                                                    @foreach ($siswa as $key => $m)
-                                                                        <option value="{{ $m->id }}">
+                                                                    @foreach ($siswa1 as $key => $m)
+                                                                        <option value="{{ $m->siswa_id }}">
                                                                             {{ $m->nama_depan }}
                                                                             {{ $m->nama_belakang }}
                                                                         </option>

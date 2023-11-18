@@ -87,7 +87,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
     Route::get('/hero', [HeroController::class, 'hero']);
     Route::post('/hero/herocreate', [HeroController::class, 'herocreate']);
     Route::get('/nilai', [NilaiController::class, 'nilai'])->name('nilai');
-
+    Route::get('/nilai_rombel', [NilaiController::class, 'nilai_rombel'])->name('nilai_rombel');
     Route::get('/testimony', [TestimonyController::class, 'testimony']);
     Route::post('/testimony/testimonycreate', [TestimonyController::class, 'testimonycreate']);
 
@@ -380,17 +380,19 @@ Route::group(['middleware' => ['auth', 'checkRole:guru,tata_usaha,admin']], func
         if (request()->start_date || request()->end_date) {
             $start_date = Carbon::parse(request()->start_date)->toDateTimeString();
             $end_date = Carbon::parse(request()->end_date)->toDateTimeString();
-            $data = App\Models\Nilai::whereBetween('created_at', [$start_date, $end_date])->get();
+            $data = Nilai::where('tahunpel_id', '=', tahunpelajaran_aktif())->whereBetween('created_at', [$start_date, $end_date])->get();
         } else {
-            $data = App\Models\Nilai::latest()->get();
+            $data = Nilai::where('tahunpel_id', '=', tahunpelajaran_aktif())->latest()->get();
         }
         $kompetensiinti = Kompetensiinti::all();
         $mapel = Mapel::all();
-        $siswa = Siswa::all();
+        $siswa1 = DB::table('rombel_siswa')->where('tahunpelajaran_id', '=', tahunpelajaran_aktif())->get();
+        //dd($siswa1);
+        //$siswa = Siswa::all();
         $penilaian = Penilaian::all();
         $guru = Guru::all();
         $kelas = Kelas::all();
-        return view('nilai.filter', compact('data', 'mapel', 'siswa', 'penilaian', 'guru', 'kelas', 'kompetensiinti'));
+        return view('nilai.filter', compact('data', 'mapel', 'siswa1', 'penilaian', 'guru', 'kelas', 'kompetensiinti'));
     });
     Route::post('/nilai/import_excel', [NilaiController::class, 'import_excel']);
     Route::get('/nilai/export_excel', [NilaiController::class, 'export_excel']);

@@ -159,6 +159,17 @@
                                         Data <a href="#" class="alert-link">Nilai</a> {{ session('sukses') }}
                                     </div>
                                 @endif
+                                <form method="GET" action="/nilai_rombel">
+                                    <select name="rombel">
+                                        <option value="">Pilih Rombel</option>
+                                        @foreach ($rombel as $nilai)
+                                            <option value="{{ $nilai->id }}">{{ $nilai->rombel }}</option>
+                                        @endforeach
+
+                                        <!-- Tambahkan opsi rombel lain di sini -->
+                                    </select>
+                                    <button type="submit">Tampilkan</button>
+                                </form>
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
