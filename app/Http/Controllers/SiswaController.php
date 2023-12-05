@@ -436,7 +436,7 @@ class SiswaController extends Controller
                 $mapel3[5] = "SBK";
             }
             if (
-                $siswa->agama == 'katolik' || $siswa->agama == "Katolik"
+                $siswa->agama == 'katolik' || $siswa->agama == "Katolik" || $siswa->agama == "Kristen Katolik"
             ) {
                 $agama_average = (int)$katolik_average;
                 $mapel3[0] = "Agama Katolik";
