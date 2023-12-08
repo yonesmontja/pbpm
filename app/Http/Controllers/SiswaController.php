@@ -421,6 +421,7 @@ class SiswaController extends Controller
 
         if (
             $rombel == 1 || $rombel == 2 || $rombel == 3 || $rombel == 4
+            || $rombel == 13 || $rombel == 14 || $rombel == 15 || $rombel == 16
         ) {
 
             if (
@@ -465,7 +466,7 @@ class SiswaController extends Controller
             $matang1[5] = (int)$sbk_average;
             $average_mapel = collect($matang1)->avg();
         }
-        if ($rombel == 5 || $rombel == 6 || $rombel == 7 || $rombel == 8 || $rombel == 9 || $rombel == 10 || $rombel == 11 || $rombel == 12) {
+        if ($rombel == 5 || $rombel == 6 || $rombel == 7 || $rombel == 8 || $rombel == 9 || $rombel == 10 || $rombel == 11 || $rombel == 12 || $rombel == 17 || $rombel == 18 || $rombel == 19 || $rombel == 20 || $rombel == 21 || $rombel == 22 || $rombel == 23 || $rombel == 24) {
 
             if ($siswa->agama == 'islam' || $siswa->agama == "Islam") {
                 $agama_average = (int)$islam_average;
@@ -3128,6 +3129,7 @@ class SiswaController extends Controller
 
         if (
             $students->agama == "Katolik" || $students->agama == "katolik"
+            || $students->agama == "Kristen Katolik"
         ) {
             if (array_sum($nilai_tugas_katolik) > 0) {
                 for ($key = 0; $key < count($nilai_tugas_katolik); $key++) {
@@ -4230,7 +4232,7 @@ class SiswaController extends Controller
         $raport_pengetahuan_ppkn = number_format((float)$raport_pengetahuan_ppkn, 1, '.', '');
         //dd($raport_pengetahuan_ppkn);
         $raport_pengetahuan_indonesia = (((max([
-            $rata_rata_tugas_ppkn, $rata_rata_latihan_ppkn, $rata_rata_uh_ppkn
+            $rata_rata_tugas_indonesia, $rata_rata_latihan_indonesia, $rata_rata_uh_indonesia
         ])) * 2)
         + ($rata_rata_pts_indonesia * 1)
             + ($rata_rata_pas_indonesia * 1)) / 4;
