@@ -686,8 +686,8 @@ class SiswaController extends Controller
         $rombel = DB::table('rombel_siswa')->where('siswa_id', '=', $id)->where('tahunpelajaran_id', '=', $thn_id)->pluck('rombel_id')->first();
         $rombel1 = Rombel::find($rombel);
         $students = Siswa::find($id);
-        $deskripsi_sikap_spiritual = DB::table('extra')->where('rombel_id', '=', $rombel)->where('siswa_id', '=', $id)->pluck('saran')->first();
-        $deskripsi_sikap_sosial = DB::table('extra')->where('rombel_id', '=', $rombel)->where('siswa_id', '=', $id)->pluck('ekskul')->first();
+        $deskripsi_sikap_spiritual = DB::table('extra')->where('tahunpelajaran_id', '=', $thn_id)->where('rombel_id', '=', $rombel)->where('siswa_id', '=', $id)->pluck('saran')->first();
+        $deskripsi_sikap_sosial = DB::table('extra')->where('tahunpelajaran_id', '=', $thn_id)->where('rombel_id', '=', $rombel)->where('siswa_id', '=', $id)->pluck('ekskul')->first();
         $catatan_wali_kelas = DB::table('extra')->where('rombel_id', '=', $rombel)->where('siswa_id', '=', $id)->pluck('prestasi')->first();
 
         $nama_rombel = Rombel::find($rombel)->rombel;
@@ -4304,7 +4304,7 @@ class SiswaController extends Controller
             //dd(implode($predikat));
         }
         //dd($rata_rata_tugas_protestan);
-        if ($students->agama == "Katolik" || $students->agama == "katolik") {
+        if ($students->agama == "Katolik" || $students->agama == "katolik" || $students->agama == "Kristen Katolik") {
             $predikat_pengetahuan = Nilai::where('siswa_id', '=', $id)
             ->where('penilaian_id', '=', 5)
                 ->where('mapel_id', '=', 3)
