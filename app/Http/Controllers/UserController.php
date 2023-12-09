@@ -37,13 +37,23 @@ class UserController extends Controller
     public function my_profile($id)
     {
         $user = User::find($id);
-        //dd($user);
+        $tahunpel = Tahunpel::where('aktif', 'Y')->get();
+        foreach ($tahunpel as $thn) {
+            $semester_aktif = $thn->semester;
+            $kepsek_aktif = $thn->nama_kepsek;
+            $nip_kepsek = $thn->kode_kepsek;
+            $tanggal_raport = Carbon::parse($thn->tgl_raport)->isoFormat('D MMMM Y');
+            $tanggal_raport_kls6 = $thn->tgl_raport_kelas3;
+            $tahun_pelajaran = $thn->thn_pel;
+            $tahun_aktif = $thn->tahun;
+            $thn_id = $thn->id;
+        }
         $guru = Guru::where('user_id', $id)->pluck('id')->first();
         $nama_guru = Guru::where('user_id', $id)->pluck('nama_guru')->first();
         $siswa = Siswa::where('user_id', $id)->pluck('id')->first();
         $kategori = Kategori::all();
         $journal = Journal::all();
-        $nilai = Nilai::where('guru_id', '=', $guru)->orderBy('tanggal')->get();
+        $nilai = Nilai::where('guru_id', '=', $guru)->where('tahunpel_id', '=', $thn_id)->orderBy('tanggal')->get();
         //dd($nilai);
 
         if (auth()->user()->role == 'admin' || auth()->user()->role == 'tata_usaha') {
